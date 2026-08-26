@@ -165,7 +165,7 @@ $25 초과는 "과소 편성"(로스터가 예산을 못 씀) 경고입니다.
 | c2 | Jokić 압축 | $192 | $8 | $127/$153 | 5 | 13개 | — | **13**/13 | $183 |
 | c3 | SGA + 저가 빅 4인 | $196 | $4 | $57/$85 | 4 | 9개 | 3P%, 3PM, FT%, TOV | **9**/13 | $183 |
 | c4 | 무앵커 분산 (상한 $31) | $186 | $14 | $84/$107 | 4 | 8개 | 3P%, 3PM, A/T, FT%, TOV | **8**/13 | $193 |
-| c5 | Sabonis 부상 할인 (조건부 베팅) | $186 | $14 | $70/$96 | 5 | 9개 | 3PM, FT%, PTS, TOV | **9**/13 | $184 |
+| c5 | Sabonis 부상 할인 (조건부 베팅) | $186 | $14 | $70/$96 | 5 | 9개 | 3PM, FT%, PTS, TOV | **9**/13 | $177 |
 | c6 | A/T 분산 조달 (정상 시장 기본값) | $191 | $9 | $79/$113 | 3 | 9개 | 3P%, 3PM, FT%, TOV | **9**/13 | $188 |
 | c7 | 중가 센터 전환 (센터 인플레 대응) | $184 | $16 | $107/$130 | 5 | 9개 | 3P%, A/T, FT%, TOV | **9**/13 | $185 |
 
@@ -450,26 +450,32 @@ $25 초과는 "과소 편성"(로스터가 예산을 못 씀) 경고입니다.
 
 **트리거**: `Donovan Clingan > $22` · `Ivica Zubac > $16`
 
-> Sabonis 자체가 부상 할인 자산이라 빅맨 과열 영향이 가장 작다. 헤지 빅을 최저가로 내리고 절감분을 3PM·FT%·STL 윙(Murphy)으로.
+> 🔴 **39차 재설계.** 이전 설계는 '헤지 빅을 최저가로 내리고 절감분을 윙으로'였는데, 그 결과 세 칸이 Mark Williams $7 · Nic Claxton $4 · Trey Murphy로 채워져 **총액 $184에 maximin 21.7%** 였다 — 7피벗 중 최저 견고성이다.
+
+다시 골랐다. 저가 센터가 과열되는 세계에서 c5는 이미 Mobley·Sabonis·Ayton 세 빅을 들고 있으므로 **빅을 한 명 더 싸게 쌓는 것보다 그 자리를 제대로 쓰는 편이 낫다.** C 한 칸은 **Jarrett Allen**(FG% 67.2% w3 · OREB 2.6 · REB 9.1)으로 올리고, 남은 두 칸은 **Desmond Bane**(FT% 90.3% w3 · 7캣 폭)과 **Isaiah Joe $2**(3P% 41.8% w3 · 3PM 2.5)로 채운다.
+
+실측(4000시행 · 실제 12팀 · 같은 스트림): **81.2% / maximin 28.1%** · $181 · 예비 $19. 현행 79.4% / 21.7% 대비 **평균 +1.8%p · 견고 +6.4%p**.
+
+⚠️ **대가: 빅5 동시 패배 확률이 54.7% → 64.0% 로 오른다.** 빅맨이 5명에서 4명으로 줄기 때문이다. 목적함수상 붕괴 확률은 maximin이 동률일 때의 타이브레이크인데 여기서는 동률이 아니므로 1·2차 지표를 따랐다. **「헤지 빅 2명 필수」 전제는 유지된다** — Sabonis 헤지는 Ayton + Jarrett Allen 이다.
+빅5 보존안(Bane · Myles Turner · Bobby Portis)은 79.5% / 27.2% / 붕괴 61.0% 로, 평균을 1.7%p 내주고 붕괴를 3.0%p 얻는 교환이라 채택하지 않았다.
 
 | 슬롯 | 변경 | 계획가 | 증감 |
 |---|---|---|---|
-| C | Donovan Clingan → **Mark Williams** | $7 | -5 |
-| UTIL | Ivica Zubac → **Nic Claxton** | $4 | -7 |
-| SG | Kon Knueppel → **Trey Murphy III** | $32 | +7 |
-| SF | Amen Thompson → **Amen Thompson** | $26 | +3 |
+| C | Donovan Clingan → **Jarrett Allen** | $12 | +0 |
+| UTIL | Ivica Zubac → **Desmond Bane** | $22 | +11 |
+| SG | Kon Knueppel → **Isaiah Joe** | $2 | -20 |
 
-**피벗 최종 9인** — 총액 $184 · 예비비 $16 · 빅맨 $58 (C자격 5명) · 노리는 캣 `A/T AST BLK DD FG% OREB REB STL TOV` · 포기 `3P% 3PM FT% PTS`
+**피벗 최종 9인** — 총액 $177 · 예비비 $23 · 빅맨 $59 (C자격 4명) · 노리는 캣 `3P% A/T AST BLK DD FG% OREB PTS REB STL TOV` · 포기 `3PM FT%`
 
 | 슬롯 | 선수 | 계획가 | 상한 |
 |---|---|---|---|
 | PG | Tyrese Haliburton | $56 | $56 |
 | SF | Amen Thompson | $26 | $49 |
 | UTIL | Evan Mobley `C` | $23 | $30 |
-| SG | Trey Murphy III | $32 | $32 |
+| SG | Isaiah Joe | $2 | $10 |
 | PF | Domantas Sabonis `C` | $19 | $34 |
-| C | Mark Williams `C` | $7 | $14 |
-| UTIL | Nic Claxton `C` | $4 | $12 |
+| C | Jarrett Allen `C` | $12 | $16 |
+| UTIL | Desmond Bane | $22 | $31 |
 | BN | Deandre Ayton `C` | $5 | $14 |
 | BN | Dyson Daniels | $12 | $20 |
 
