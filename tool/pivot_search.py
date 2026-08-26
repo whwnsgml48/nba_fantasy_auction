@@ -26,6 +26,20 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import matchup_sim as MS
 import rebuild_search as RS
 import cat_model as CM
+import real_opponents as RO   # 39차: 1차 지표는 실제 12팀
+
+# ── 39차: 정렬 기준을 maximin → **실제 12팀 평균**으로 교체 ─────────────
+# maximin의 최소값이 7코어 전부 value_max 하나에서 나오고, 그 상대는 우리 z모델의
+# 자기 최적해다(작업 A). 조립 상대로 피벗을 고르면 "우리 모델에 가까운 로스터"를
+# 고르는 셈이다. 1차는 실제 12팀 평균 · 2차는 maximin(견고성)으로 본다.
+REAL, _RREP = RO.build()
+
+
+def real_mean(names, iters, seed):
+    """실제 12팀 평균 주간 승률. 상대마다 같은 시드로 rng를 새로 만든다(34차)."""
+    wr = [MS.simulate(list(names), r, random.Random(seed), iters, None)["weekly_win_rate"]
+          for r in REAL.values()]
+    return round(sum(wr) / len(wr), 4)
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PL, CJ = MS.PL, MS.CJ
@@ -109,17 +123,15 @@ def search(cid, iters=1200, top=12, seed=20261020):
     PRE = min(30, len(ranked))
     print(f"      프리필터(cat_model 한계기여) 상위 {PRE}개만 시뮬")
 
-    rng = random.Random(seed)
-    opps = MS.build_opponents(rng)
+    # 탐색 단계는 **1차 지표만** 돈다 — 조립 상대 6종을 함께 돌리면 비용이 두 배이고,
+    # 어차피 정렬 기준이 아니다. maximin은 confirm 단계에서 낸다.
     rows = []
-    for c, s in ranked[:PRE]:
+    for c, sc in ranked[:PRE]:
         names = keep + list(c)
-        r = RS.evaluate(names, random.Random(seed), iters, opps)
-        r["fill"] = list(c)
-        r["total"] = round(base_cost + s)
-        r["reserve"] = BUDGET - r["total"]
-        rows.append(r)
-    rows.sort(key=lambda r: -r["min_win_rate"])
+        rows.append({"fill": list(c), "total": round(base_cost + sc),
+                     "reserve": BUDGET - round(base_cost + sc),
+                     "real_mean": real_mean(names, iters, seed)})
+    rows.sort(key=lambda r: -r["real_mean"])
     return rows[:top]
 
 
@@ -132,31 +144,45 @@ def confirm(cid, rows, iters=6000, seed=20261020, n=4):
     cur = [r["name"] for r in pv["final_roster"]]
     for r in rows[:n]:
         names = keep + r["fill"]
-        rr = RS.evaluate(names, random.Random(seed), iters, opps)
+        rr = RS.evaluate(names, random.Random(seed), iters, opps)   # 2차 maximin
+        rr["real_mean"] = real_mean(names, iters, seed)             # 1차
         rr["fill"] = r["fill"]; rr["total"] = r["total"]; rr["reserve"] = r["reserve"]
+        rr["names"] = names
         out.append(rr)
     rr = RS.evaluate(cur, random.Random(seed), iters, opps)
+    rr["real_mean"] = real_mean(cur, iters, seed)
     rr["fill"] = ["(현행 피벗)"]; rr["total"] = pv["final_total"]
-    rr["reserve"] = BUDGET - pv["final_total"]
+    rr["reserve"] = BUDGET - pv["final_total"]; rr["names"] = cur
     out.append(rr)
-    out.sort(key=lambda r: -r["min_win_rate"])
+    out.sort(key=lambda r: -r["real_mean"])   # 1차 지표로 정렬 (39차)
     return out
 
 
-def show(title, rows):
+def show(title, rows, full=False):
     print(f"\n{title}")
-    print("  %-46s %5s %5s %7s %7s %7s" % ("채우는 선수", "총액", "예비", "최소승률", "보수", "빅5붕괴"))
-    for r in rows:
-        mx = RS.mixmax(r)
-        print("  %-46s $%-4d $%-4d %6.1f%% %6.1f%% %6.1f%%" % (
-            " · ".join(r["fill"])[:46], r["total"], r["reserve"],
-            r["min_win_rate"]*100, (r.get("mixture") or {}).get("보수", 0)*100,
-            mx["p_big5_collapse"]*100))
+    if full:
+        print("  %-44s %5s %5s %9s %8s %8s" % ("채우는 선수", "총액", "예비", "실제12평균", "maximin", "빅5붕괴"))
+        for r in rows:
+            mx = RS.mixmax(r)
+            print("  %-44s $%-4d $%-4d %8.1f%% %7.1f%% %7.1f%%" % (
+                " · ".join(r["fill"])[:44], r["total"], r["reserve"],
+                r["real_mean"]*100, r["min_win_rate"]*100, mx["p_big5_collapse"]*100))
+    else:
+        print("  %-52s %5s %5s %9s" % ("채우는 선수", "총액", "예비", "실제12평균"))
+        for r in rows:
+            print("  %-52s $%-4d $%-4d %8.1f%%" % (
+                " · ".join(r["fill"])[:52], r["total"], r["reserve"], r["real_mean"]*100))
 
 
 if __name__ == "__main__":
     cid = sys.argv[1] if len(sys.argv) > 1 else "c6"
-    rows = search(cid)
+    it1 = int(sys.argv[2]) if len(sys.argv) > 2 else 1200
+    it2 = int(sys.argv[3]) if len(sys.argv) > 3 else 6000
+    rows = search(cid, iters=it1)
     if rows:
-        show(f"[{cid}] 1차 탐색 (1200시행 · maximin 상위)", rows)
-        show(f"[{cid}] 🔴 재대조 (6000시행 · 같은 스트림 · 현행 포함)", confirm(cid, rows))
+        show(f"[{cid}] 1차 탐색 ({it1}시행 · **실제 12팀 평균** 상위)", rows)
+        show(f"[{cid}] 🔴 재대조 ({it2}시행 · 같은 스트림 · 현행 포함)",
+             confirm(cid, rows, iters=it2), full=True)
+        best = confirm(cid, rows, iters=it2)[0]
+        print("\n  1위 로스터: " + ", ".join(best["names"]))
+        print("  ⚠️ 채택은 사람이 한다 — 이 스크립트는 cores.json을 쓰지 않는다.")
