@@ -1243,9 +1243,15 @@ function renderCore(){
           const o=oRows.filter(function(x){return x.idx===idx;})[0];
           if(!o) return "";
           const ec=effCeil(o,oSlack);
-          // 슬롯 상한까지 여력이 있으면 상한을, 예산이 먼저 걸리면 실질을 띄운다.
-          return ec>=o.ceil ? '<span class="ceilv" title="슬롯 상한 — 예산이 아직 안 걸린다">↗$'+o.ceil+'</span>'
-               : '<span class="ceilv bind" title="실질 상한 — 슬롯 상한 $'+o.ceil
+          if(ec>=o.ceil) return '<span class="ceilv" title="슬롯 상한 — 예산이 아직 안 걸린다">↗$'+o.ceil+'</span>';
+          // 🔴 실질 상한이 **시장 하단보다 낮으면** 그 값으로는 애초에 못 산다.
+          //    빨간 숫자만 띄우면 "싸게 사면 된다"로 읽힌다 — 그게 아니라 계획이 깨진 것이다.
+          const cp=P.find(function(x){return x.n===o.name;});
+          const lo=cp&&cp.mk?cp.mk[0]:null;
+          if(lo!=null&&ec<lo)
+            return '<span class="ceilv bind" title="실질 상한 $'+Math.max(0,ec)+' 이 시장 하단 $'+lo
+              +' 보다 낮다 — 이 슬롯은 계획대로 살 수 없다. 다른 슬롯을 깎거나 코어를 바꿔라">✖시장하단 $'+lo+'</span>';
+          return '<span class="ceilv bind" title="실질 상한 — 슬롯 상한 $'+o.ceil
                  +' 이지만 남은 계획가를 맞추려면 여기까지다">↗$'+Math.max(0,ec)+'</span>';
         })()+'</span><span class="pa '+actCls+'">'+(m?"$"+m.price:actTxt)+'</span></div>';
     if(!m){
