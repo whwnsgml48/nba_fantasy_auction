@@ -76,7 +76,14 @@ def write_prices(co):
     def put(e):
         n=e.get("name")
         if n not in PL: return
-        e["bid_ceiling"]=ceil_price(n,cap); e["expected_cost"]=exp_cost(n,cap)
+        e["bid_ceiling"]=ceil_price(n,cap)
+        # 37차: 피벗 전용 가격 오버라이드. 35차에 exp_cost가 **선수당 전역 단일값**이 되면서
+        # 피벗의 "가격 상향" 스왑(KAT $45→$56)이 구조적으로 불가능해졌다 — put()이 모든
+        # 엔트리를 같은 값으로 덮어썼기 때문이다. 과열 세계에서는 네임밸류 빅을 시장 상단에
+        # 사야 하므로 엔트리 단위 예외가 필요하다. 상한은 bid_ceiling(=my_max·철수가 이하)이고,
+        # I23이 expected_cost <= 시장 상단도 함께 검사한다.
+        oc=e.get("overheat_cost")
+        e["expected_cost"]=min(oc,e["bid_ceiling"]) if oc else exp_cost(n,cap)
         e["plan_price"]=e["expected_cost"]
     for s in co["slots"]:
         for cd in s["candidates"]: put(cd)

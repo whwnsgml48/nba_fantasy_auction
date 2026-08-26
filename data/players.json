@@ -182,6 +182,8 @@
    "gp": 67.1,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 91,
+   "gp_adjusted_raw": 91,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -340,11 +342,13 @@
    },
    "dollar_naive": 40,
    "rank_by_value": 6,
-   "rank_by_my_max": 3,
-   "rank_divergence": -3,
+   "rank_by_my_max": 4,
+   "rank_divergence": -2,
    "gp": 58.2,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 63,
+   "gp_adjusted_raw": 63,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -355,8 +359,8 @@
   "pos": "G",
   "market_low": 81,
   "market_high": 89,
-  "my_max": 72,
-  "surplus": -13,
+  "my_max": 79,
+  "surplus": -6,
   "obtainable": false,
   "injury_exclude": false,
   "tag": "buy",
@@ -526,8 +530,17 @@
    "gp": 71.4,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 79,
-   "gp_adjust_basis": "현재 my_max 기준",
+   "gp_adjusted_raw": 87,
+   "gp_adjust_applied": true,
+   "gp_adjust_basis": "상향 적용 완료(37차) — 재적용 금지. 원값은 gp_adjusted_raw",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
+  },
+  "my_max_basis": {
+   "revised": "37차 · GP 출장 보정 상향 (사용자 결정 2026-08-26)",
+   "prior": 72,
+   "rule": "value_reference.gp_adjusted_my_max 가 현재보다 $4 이상 높으면 상향 (23차 하향 규칙의 대칭 적용)",
+   "why": "23차에 같은 참고선으로 저출장 선수를 하향했으면서 고출장 선수는 미적용으로 남겨 규칙이 한쪽으로만 작동하고 있었다. 상향은 실지출이 나가는 방향이라 사람 판단으로 보류돼 있었고, 2026-08-26 사용자가 적용을 지시했다.",
+   "prior_basis": null
   }
  },
  {
@@ -536,8 +549,8 @@
   "pos": "F/C",
   "market_low": 41,
   "market_high": 49,
-  "my_max": 62,
-  "surplus": 17,
+  "my_max": 71,
+  "surplus": 26,
   "obtainable": true,
   "injury_exclude": false,
   "tag": "buy",
@@ -690,13 +703,22 @@
    },
    "dollar_naive": 43,
    "rank_by_value": 4,
-   "rank_by_my_max": 4,
-   "rank_divergence": 0,
+   "rank_by_my_max": 3,
+   "rank_divergence": -1,
    "gp": 73.8,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 71,
-   "gp_adjust_basis": "현재 my_max 기준",
+   "gp_adjusted_raw": 81,
+   "gp_adjust_applied": true,
+   "gp_adjust_basis": "상향 적용 완료(37차) — 재적용 금지. 원값은 gp_adjusted_raw",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
+  },
+  "my_max_basis": {
+   "revised": "37차 · GP 출장 보정 상향 (사용자 결정 2026-08-26)",
+   "prior": 62,
+   "rule": "value_reference.gp_adjusted_my_max 가 현재보다 $4 이상 높으면 상향 (23차 하향 규칙의 대칭 적용)",
+   "why": "23차에 같은 참고선으로 저출장 선수를 하향했으면서 고출장 선수는 미적용으로 남겨 규칙이 한쪽으로만 작동하고 있었다. 상향은 실지출이 나가는 방향이라 사람 판단으로 보류돼 있었고, 2026-08-26 사용자가 적용을 지시했다.",
+   "prior_basis": null
   }
  },
  {
@@ -864,6 +886,8 @@
    "gp": 66.5,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 62,
+   "gp_adjusted_raw": 62,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -874,9 +898,9 @@
   "pos": "G",
   "market_low": 54,
   "market_high": 66,
-  "my_max": 50,
-  "surplus": -10,
-  "obtainable": false,
+  "my_max": 56,
+  "surplus": -4,
+  "obtainable": true,
   "injury_exclude": false,
   "tag": "buy",
   "cats": "AST3 A/T3 3P%2 FT%2 STL3 3PM3 BLK1 PTS1 TOV1 DD1",
@@ -1032,13 +1056,22 @@
    },
    "dollar_naive": 54,
    "rank_by_value": 2,
-   "rank_by_my_max": 8,
-   "rank_divergence": 6,
+   "rank_by_my_max": 6,
+   "rank_divergence": 4,
    "gp": 73.0,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 56,
-   "gp_adjust_basis": "현재 my_max 기준",
+   "gp_adjusted_raw": 63,
+   "gp_adjust_applied": true,
+   "gp_adjust_basis": "상향 적용 완료(37차) — 재적용 금지. 원값은 gp_adjusted_raw",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
+  },
+  "my_max_basis": {
+   "revised": "37차 · GP 출장 보정 상향 (사용자 결정 2026-08-26)",
+   "prior": 50,
+   "rule": "value_reference.gp_adjusted_my_max 가 현재보다 $4 이상 높으면 상향 (23차 하향 규칙의 대칭 적용)",
+   "why": "23차에 같은 참고선으로 저출장 선수를 하향했으면서 고출장 선수는 미적용으로 남겨 규칙이 한쪽으로만 작동하고 있었다. 상향은 실지출이 나가는 방향이라 사람 판단으로 보류돼 있었고, 2026-08-26 사용자가 적용을 지시했다.",
+   "prior_basis": null
   }
  },
  {
@@ -1201,11 +1234,13 @@
    },
    "dollar_naive": 31,
    "rank_by_value": 22,
-   "rank_by_my_max": 6,
-   "rank_divergence": -16,
+   "rank_by_my_max": 7,
+   "rank_divergence": -15,
    "gp": 63.0,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 55,
+   "gp_adjusted_raw": 55,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -1216,8 +1251,8 @@
   "pos": "G/F",
   "market_low": 64,
   "market_high": 70,
-  "my_max": 44,
-  "surplus": -23,
+  "my_max": 51,
+  "surplus": -16,
   "obtainable": false,
   "injury_exclude": false,
   "tag": null,
@@ -1370,13 +1405,22 @@
    },
    "dollar_naive": 32,
    "rank_by_value": 16,
-   "rank_by_my_max": 14,
-   "rank_divergence": -2,
+   "rank_by_my_max": 13,
+   "rank_divergence": -3,
    "gp": 74.7,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 51,
-   "gp_adjust_basis": "현재 my_max 기준",
+   "gp_adjusted_raw": 59,
+   "gp_adjust_applied": true,
+   "gp_adjust_basis": "상향 적용 완료(37차) — 재적용 금지. 원값은 gp_adjusted_raw",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
+  },
+  "my_max_basis": {
+   "revised": "37차 · GP 출장 보정 상향 (사용자 결정 2026-08-26)",
+   "prior": 44,
+   "rule": "value_reference.gp_adjusted_my_max 가 현재보다 $4 이상 높으면 상향 (23차 하향 규칙의 대칭 적용)",
+   "why": "23차에 같은 참고선으로 저출장 선수를 하향했으면서 고출장 선수는 미적용으로 남겨 규칙이 한쪽으로만 작동하고 있었다. 상향은 실지출이 나가는 방향이라 사람 판단으로 보류돼 있었고, 2026-08-26 사용자가 적용을 지시했다.",
+   "prior_basis": null
   }
  },
  {
@@ -1538,11 +1582,13 @@
    },
    "dollar_naive": 27,
    "rank_by_value": 36,
-   "rank_by_my_max": 17,
-   "rank_divergence": -19,
+   "rank_by_my_max": 18,
+   "rank_divergence": -18,
    "gp": 61.4,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 40,
+   "gp_adjusted_raw": 40,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -1711,6 +1757,8 @@
    "gp": 60.3,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 37,
+   "gp_adjusted_raw": 37,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -1734,8 +1782,8 @@
   "pos": "G",
   "market_low": 36,
   "market_high": 42,
-  "my_max": 44,
-  "surplus": 5,
+  "my_max": 52,
+  "surplus": 13,
   "obtainable": true,
   "injury_exclude": false,
   "tag": "buy",
@@ -1887,13 +1935,22 @@
    },
    "dollar_naive": 30,
    "rank_by_value": 27,
-   "rank_by_my_max": 15,
-   "rank_divergence": -12,
+   "rank_by_my_max": 8,
+   "rank_divergence": -19,
    "gp": 76.6,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 52,
-   "gp_adjust_basis": "현재 my_max 기준",
+   "gp_adjusted_raw": 62,
+   "gp_adjust_applied": true,
+   "gp_adjust_basis": "상향 적용 완료(37차) — 재적용 금지. 원값은 gp_adjusted_raw",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
+  },
+  "my_max_basis": {
+   "revised": "37차 · GP 출장 보정 상향 (사용자 결정 2026-08-26)",
+   "prior": 44,
+   "rule": "value_reference.gp_adjusted_my_max 가 현재보다 $4 이상 높으면 상향 (23차 하향 규칙의 대칭 적용)",
+   "why": "23차에 같은 참고선으로 저출장 선수를 하향했으면서 고출장 선수는 미적용으로 남겨 규칙이 한쪽으로만 작동하고 있었다. 상향은 실지출이 나가는 방향이라 사람 판단으로 보류돼 있었고, 2026-08-26 사용자가 적용을 지시했다.",
+   "prior_basis": null
   }
  },
  {
@@ -1902,9 +1959,9 @@
   "pos": "F/C",
   "market_low": 35,
   "market_high": 43,
-  "my_max": 34,
-  "surplus": -5,
-  "obtainable": false,
+  "my_max": 39,
+  "surplus": 0,
+  "obtainable": true,
   "injury_exclude": false,
   "tag": null,
   "cats": "DD1 REB3 STL2 PTS1 OREB2 BLK1 TOV1 A/T1",
@@ -2048,13 +2105,22 @@
    },
    "dollar_naive": 34,
    "rank_by_value": 9,
-   "rank_by_my_max": 22,
-   "rank_divergence": 13,
+   "rank_by_my_max": 21,
+   "rank_divergence": 12,
    "gp": 75.1,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 39,
-   "gp_adjust_basis": "현재 my_max 기준",
+   "gp_adjusted_raw": 45,
+   "gp_adjust_applied": true,
+   "gp_adjust_basis": "상향 적용 완료(37차) — 재적용 금지. 원값은 gp_adjusted_raw",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
+  },
+  "my_max_basis": {
+   "revised": "37차 · GP 출장 보정 상향 (사용자 결정 2026-08-26)",
+   "prior": 34,
+   "rule": "value_reference.gp_adjusted_my_max 가 현재보다 $4 이상 높으면 상향 (23차 하향 규칙의 대칭 적용)",
+   "why": "23차에 같은 참고선으로 저출장 선수를 하향했으면서 고출장 선수는 미적용으로 남겨 규칙이 한쪽으로만 작동하고 있었다. 상향은 실지출이 나가는 방향이라 사람 판단으로 보류돼 있었고, 2026-08-26 사용자가 적용을 지시했다.",
+   "prior_basis": null
   }
  },
  {
@@ -2214,11 +2280,13 @@
    },
    "dollar_naive": 26,
    "rank_by_value": 38,
-   "rank_by_my_max": 26,
-   "rank_divergence": -12,
+   "rank_by_my_max": 28,
+   "rank_divergence": -10,
    "gp": 61.5,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 30,
+   "gp_adjusted_raw": 30,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -2229,8 +2297,8 @@
   "pos": "C",
   "market_low": 24,
   "market_high": 30,
-  "my_max": 46,
-  "surplus": 19,
+  "my_max": 52,
+  "surplus": 25,
   "obtainable": true,
   "injury_exclude": false,
   "tag": "buy",
@@ -2377,13 +2445,22 @@
    },
    "dollar_naive": 35,
    "rank_by_value": 7,
-   "rank_by_my_max": 11,
-   "rank_divergence": 4,
+   "rank_by_my_max": 9,
+   "rank_divergence": 2,
    "gp": 73.4,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 52,
-   "gp_adjust_basis": "현재 my_max 기준",
+   "gp_adjusted_raw": 59,
+   "gp_adjust_applied": true,
+   "gp_adjust_basis": "상향 적용 완료(37차) — 재적용 금지. 원값은 gp_adjusted_raw",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
+  },
+  "my_max_basis": {
+   "revised": "37차 · GP 출장 보정 상향 (사용자 결정 2026-08-26)",
+   "prior": 46,
+   "rule": "value_reference.gp_adjusted_my_max 가 현재보다 $4 이상 높으면 상향 (23차 하향 규칙의 대칭 적용)",
+   "why": "23차에 같은 참고선으로 저출장 선수를 하향했으면서 고출장 선수는 미적용으로 남겨 규칙이 한쪽으로만 작동하고 있었다. 상향은 실지출이 나가는 방향이라 사람 판단으로 보류돼 있었고, 2026-08-26 사용자가 적용을 지시했다.",
+   "prior_basis": null
   }
  },
  {
@@ -2392,8 +2469,8 @@
   "pos": "F/C",
   "market_low": 23,
   "market_high": 29,
-  "my_max": 46,
-  "surplus": 20,
+  "my_max": 52,
+  "surplus": 26,
   "obtainable": true,
   "injury_exclude": false,
   "tag": "buy",
@@ -2547,13 +2624,22 @@
    },
    "dollar_naive": 31,
    "rank_by_value": 20,
-   "rank_by_my_max": 12,
-   "rank_divergence": -8,
+   "rank_by_my_max": 10,
+   "rank_divergence": -10,
    "gp": 73.7,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 52,
-   "gp_adjust_basis": "현재 my_max 기준",
+   "gp_adjusted_raw": 59,
+   "gp_adjust_applied": true,
+   "gp_adjust_basis": "상향 적용 완료(37차) — 재적용 금지. 원값은 gp_adjusted_raw",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
+  },
+  "my_max_basis": {
+   "revised": "37차 · GP 출장 보정 상향 (사용자 결정 2026-08-26)",
+   "prior": 46,
+   "rule": "value_reference.gp_adjusted_my_max 가 현재보다 $4 이상 높으면 상향 (23차 하향 규칙의 대칭 적용)",
+   "why": "23차에 같은 참고선으로 저출장 선수를 하향했으면서 고출장 선수는 미적용으로 남겨 규칙이 한쪽으로만 작동하고 있었다. 상향은 실지출이 나가는 방향이라 사람 판단으로 보류돼 있었고, 2026-08-26 사용자가 적용을 지시했다.",
+   "prior_basis": null
   }
  },
  {
@@ -2562,8 +2648,8 @@
   "pos": "G/F",
   "market_low": 23,
   "market_high": 29,
-  "my_max": 42,
-  "surplus": 16,
+  "my_max": 49,
+  "surplus": 23,
   "obtainable": true,
   "injury_exclude": false,
   "tag": "buy",
@@ -2709,13 +2795,22 @@
    },
    "dollar_naive": 33,
    "rank_by_value": 14,
-   "rank_by_my_max": 18,
-   "rank_divergence": 4,
+   "rank_by_my_max": 15,
+   "rank_divergence": 1,
    "gp": 75.3,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 49,
-   "gp_adjust_basis": "현재 my_max 기준",
+   "gp_adjusted_raw": 57,
+   "gp_adjust_applied": true,
+   "gp_adjust_basis": "상향 적용 완료(37차) — 재적용 금지. 원값은 gp_adjusted_raw",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
+  },
+  "my_max_basis": {
+   "revised": "37차 · GP 출장 보정 상향 (사용자 결정 2026-08-26)",
+   "prior": 42,
+   "rule": "value_reference.gp_adjusted_my_max 가 현재보다 $4 이상 높으면 상향 (23차 하향 규칙의 대칭 적용)",
+   "why": "23차에 같은 참고선으로 저출장 선수를 하향했으면서 고출장 선수는 미적용으로 남겨 규칙이 한쪽으로만 작동하고 있었다. 상향은 실지출이 나가는 방향이라 사람 판단으로 보류돼 있었고, 2026-08-26 사용자가 적용을 지시했다.",
+   "prior_basis": null
   }
  },
  {
@@ -2869,11 +2964,13 @@
    },
    "dollar_naive": 29,
    "rank_by_value": 33,
-   "rank_by_my_max": 21,
-   "rank_divergence": -12,
+   "rank_by_my_max": 23,
+   "rank_divergence": -10,
    "gp": 67.5,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 38,
+   "gp_adjusted_raw": 38,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -2884,8 +2981,8 @@
   "pos": "G/F",
   "market_low": 19,
   "market_high": 25,
-  "my_max": 26,
-  "surplus": 4,
+  "my_max": 31,
+  "surplus": 9,
   "obtainable": true,
   "injury_exclude": false,
   "tag": "buy",
@@ -3028,13 +3125,22 @@
    },
    "dollar_naive": 31,
    "rank_by_value": 21,
-   "rank_by_my_max": 32,
-   "rank_divergence": 11,
+   "rank_by_my_max": 31,
+   "rank_divergence": 10,
    "gp": 77.3,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 31,
-   "gp_adjust_basis": "현재 my_max 기준",
+   "gp_adjusted_raw": 37,
+   "gp_adjust_applied": true,
+   "gp_adjust_basis": "상향 적용 완료(37차) — 재적용 금지. 원값은 gp_adjusted_raw",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
+  },
+  "my_max_basis": {
+   "revised": "37차 · GP 출장 보정 상향 (사용자 결정 2026-08-26)",
+   "prior": 26,
+   "rule": "value_reference.gp_adjusted_my_max 가 현재보다 $4 이상 높으면 상향 (23차 하향 규칙의 대칭 적용)",
+   "why": "23차에 같은 참고선으로 저출장 선수를 하향했으면서 고출장 선수는 미적용으로 남겨 규칙이 한쪽으로만 작동하고 있었다. 상향은 실지출이 나가는 방향이라 사람 판단으로 보류돼 있었고, 2026-08-26 사용자가 적용을 지시했다.",
+   "prior_basis": null
   }
  },
  {
@@ -3197,6 +3303,8 @@
    "gp": 76.0,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 23,
+   "gp_adjusted_raw": 23,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -3327,6 +3435,8 @@
    "gp": 51.9,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 15,
+   "gp_adjusted_raw": 15,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -3360,8 +3470,8 @@
   "pos": "C",
   "market_low": 8,
   "market_high": 16,
-  "my_max": 34,
-  "surplus": 22,
+  "my_max": 38,
+  "surplus": 26,
   "obtainable": true,
   "injury_exclude": false,
   "tag": "buy",
@@ -3510,13 +3620,22 @@
    },
    "dollar_naive": 31,
    "rank_by_value": 26,
-   "rank_by_my_max": 23,
-   "rank_divergence": -3,
+   "rank_by_my_max": 22,
+   "rank_divergence": -4,
    "gp": 73.3,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 38,
-   "gp_adjust_basis": "현재 my_max 기준",
+   "gp_adjusted_raw": 43,
+   "gp_adjust_applied": true,
+   "gp_adjust_basis": "상향 적용 완료(37차) — 재적용 금지. 원값은 gp_adjusted_raw",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
+  },
+  "my_max_basis": {
+   "revised": "37차 · GP 출장 보정 상향 (사용자 결정 2026-08-26)",
+   "prior": 34,
+   "rule": "value_reference.gp_adjusted_my_max 가 현재보다 $4 이상 높으면 상향 (23차 하향 규칙의 대칭 적용)",
+   "why": "23차에 같은 참고선으로 저출장 선수를 하향했으면서 고출장 선수는 미적용으로 남겨 규칙이 한쪽으로만 작동하고 있었다. 상향은 실지출이 나가는 방향이라 사람 판단으로 보류돼 있었고, 2026-08-26 사용자가 적용을 지시했다.",
+   "prior_basis": null
   }
  },
  {
@@ -3525,8 +3644,8 @@
   "pos": "C",
   "market_low": 4,
   "market_high": 12,
-  "my_max": 26,
-  "surplus": 18,
+  "my_max": 30,
+  "surplus": 22,
   "obtainable": true,
   "injury_exclude": false,
   "tag": "buy",
@@ -3675,21 +3794,22 @@
    },
    "dollar_naive": 33,
    "rank_by_value": 11,
-   "rank_by_my_max": 33,
-   "rank_divergence": 22,
+   "rank_by_my_max": 32,
+   "rank_divergence": 21,
    "gp": 74.5,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 30,
-   "gp_adjust_basis": "현재 my_max 기준",
+   "gp_adjusted_raw": 35,
+   "gp_adjust_applied": true,
+   "gp_adjust_basis": "상향 적용 완료(37차) — 재적용 금지. 원값은 gp_adjusted_raw",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
   "my_max_basis": {
-   "revised": "28차 · 근거 기록(값 미변경)",
+   "revised": "37차 · GP 출장 보정 상향 (사용자 결정 2026-08-26)",
    "prior": 26,
-   "source": "28차 달러 노출 트리거로 새로 드러남",
-   "why": "div +22(우리가 **과소**평가) · 노출 $33 · 등장 22회 · 시장 $4-12. 천장을 올릴지는 **승률 기반 판정이 붙은 뒤** 결정한다 — 지금 올려도 쓸 곳이 없다. 과소평가는 돈이 새는 방향이 아니라 기회를 놓치는 방향이고, 그 손익은 '이 선수를 더 사면 캣을 더 이기는가'로만 판정할 수 있다. 값 미변경.",
-   "direction": "과소",
-   "defer_to": "승률 기반 판정 (지시 4번)"
+   "rule": "value_reference.gp_adjusted_my_max 가 현재보다 $4 이상 높으면 상향 (23차 하향 규칙의 대칭 적용)",
+   "why": "23차에 같은 참고선으로 저출장 선수를 하향했으면서 고출장 선수는 미적용으로 남겨 규칙이 한쪽으로만 작동하고 있었다. 상향은 실지출이 나가는 방향이라 사람 판단으로 보류돼 있었고, 2026-08-26 사용자가 적용을 지시했다.",
+   "prior_basis": "28차 · 근거 기록(값 미변경)"
   }
  },
  {
@@ -3842,6 +3962,8 @@
    "gp": 53.2,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 10,
+   "gp_adjusted_raw": 10,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -4014,6 +4136,8 @@
    "gp": 63.4,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 18,
+   "gp_adjusted_raw": 18,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -4179,6 +4303,8 @@
    "gp": 54.7,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 15,
+   "gp_adjusted_raw": 15,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -4344,6 +4470,8 @@
    "gp": 68.8,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 17,
+   "gp_adjusted_raw": 17,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -4521,6 +4649,8 @@
    "gp": 69.4,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 13,
+   "gp_adjusted_raw": 13,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -4688,6 +4818,8 @@
    "gp": 67.9,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 8,
+   "gp_adjusted_raw": 8,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -4865,6 +4997,8 @@
    "gp": 71.4,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 20,
+   "gp_adjusted_raw": 20,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -5030,6 +5164,8 @@
    "gp": 72.4,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 4,
+   "gp_adjusted_raw": 4,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -5200,6 +5336,8 @@
    "gp": 72.2,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 7,
+   "gp_adjusted_raw": 7,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -5369,6 +5507,8 @@
    "gp": 56.2,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 7,
+   "gp_adjusted_raw": 7,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -5537,6 +5677,8 @@
    "gp": 75.8,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 5,
+   "gp_adjusted_raw": 5,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -5699,6 +5841,8 @@
    "gp": 70.1,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 4,
+   "gp_adjusted_raw": 4,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -5872,6 +6016,8 @@
    "gp": 60.5,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 6,
+   "gp_adjusted_raw": 6,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -6034,6 +6180,8 @@
    "gp": 69.0,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 9,
+   "gp_adjusted_raw": 9,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -6194,6 +6342,8 @@
    "gp": 57.8,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 4,
+   "gp_adjusted_raw": 4,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -6355,6 +6505,8 @@
    "gp": 69.0,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 9,
+   "gp_adjusted_raw": 9,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -6518,6 +6670,8 @@
    "gp": 71.1,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 7,
+   "gp_adjusted_raw": 7,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -6689,6 +6843,8 @@
    "gp": 51.8,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 3,
+   "gp_adjusted_raw": 3,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -6850,6 +7006,8 @@
    "gp": 64.3,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 8,
+   "gp_adjusted_raw": 8,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -7004,6 +7162,8 @@
    "gp": 71.7,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 4,
+   "gp_adjusted_raw": 4,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -7177,6 +7337,8 @@
    "gp": 61.2,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 5,
+   "gp_adjusted_raw": 5,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -7352,6 +7514,8 @@
    "gp": 68.1,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 8,
+   "gp_adjusted_raw": 8,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -7513,6 +7677,8 @@
    "gp": 73.7,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 9,
+   "gp_adjusted_raw": 9,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -7672,6 +7838,8 @@
    "gp": 79.0,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 6,
+   "gp_adjusted_raw": 6,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -7845,6 +8013,8 @@
    "gp": 61.1,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 4,
+   "gp_adjusted_raw": 4,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -8005,6 +8175,8 @@
    "gp": 78.2,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 12,
+   "gp_adjusted_raw": 12,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -8171,6 +8343,8 @@
    "gp": 70.0,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 19,
+   "gp_adjusted_raw": 19,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -8181,8 +8355,8 @@
   "pos": "G/F",
   "market_low": 19,
   "market_high": 25,
-  "my_max": 22,
-  "surplus": 0,
+  "my_max": 27,
+  "surplus": 5,
   "obtainable": true,
   "injury_exclude": false,
   "tag": null,
@@ -8328,13 +8502,22 @@
    },
    "dollar_naive": 24,
    "rank_by_value": 47,
-   "rank_by_my_max": 45,
-   "rank_divergence": -2,
+   "rank_by_my_max": 35,
+   "rank_divergence": -12,
    "gp": 79.6,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 27,
-   "gp_adjust_basis": "현재 my_max 기준",
+   "gp_adjusted_raw": 33,
+   "gp_adjust_applied": true,
+   "gp_adjust_basis": "상향 적용 완료(37차) — 재적용 금지. 원값은 gp_adjusted_raw",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
+  },
+  "my_max_basis": {
+   "revised": "37차 · GP 출장 보정 상향 (사용자 결정 2026-08-26)",
+   "prior": 22,
+   "rule": "value_reference.gp_adjusted_my_max 가 현재보다 $4 이상 높으면 상향 (23차 하향 규칙의 대칭 적용)",
+   "why": "23차에 같은 참고선으로 저출장 선수를 하향했으면서 고출장 선수는 미적용으로 남겨 규칙이 한쪽으로만 작동하고 있었다. 상향은 실지출이 나가는 방향이라 사람 판단으로 보류돼 있었고, 2026-08-26 사용자가 적용을 지시했다.",
+   "prior_basis": null
   }
  },
  {
@@ -8497,15 +8680,17 @@
    },
    "dollar_naive": 32,
    "rank_by_value": 15,
-   "rank_by_my_max": 7,
-   "rank_divergence": -8,
+   "rank_by_my_max": 11,
+   "rank_divergence": -4,
    "gp": 59.2,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 48,
+   "gp_adjusted_raw": 48,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
-  "tag_basis": "burn 유지 — div -8: my_max가 가치보다 관대하다(동일가중 모델도 my_max $52를 넘지 않는다). 시장 $83-91로 획득 불가. ⚠️ |div| < 20 이라 M5에 애초에 걸리지 않는다 — 이 필드는 **예외 목적이 아니라 결정 기록**이다. 사용자 결정 26차."
+  "tag_basis": "burn 유지 — div -4: my_max가 가치보다 관대하다(동일가중 모델도 my_max $52를 넘지 않는다). 시장 $83-91로 획득 불가. ⚠️ |div| < 20 이라 M5에 애초에 걸리지 않는다 — 이 필드는 **예외 목적이 아니라 결정 기록**이다. 사용자 결정 26차."
  },
  {
   "name": "Anthony Edwards",
@@ -8668,6 +8853,8 @@
    "gp": 69.3,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 43,
+   "gp_adjusted_raw": 43,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -8790,11 +8977,13 @@
    },
    "dollar_naive": 23,
    "rank_by_value": 56,
-   "rank_by_my_max": 40,
-   "rank_divergence": -16,
+   "rank_by_my_max": 41,
+   "rank_divergence": -15,
    "gp": 53.2,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 21,
+   "gp_adjusted_raw": 21,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준 · 23차 GP 보정 이미 반영됨",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -8979,11 +9168,13 @@
    },
    "dollar_naive": 32,
    "rank_by_value": 17,
-   "rank_by_my_max": 34,
-   "rank_divergence": 17,
+   "rank_by_my_max": 36,
+   "rank_divergence": 19,
    "gp": 72.5,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 29,
+   "gp_adjusted_raw": 29,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -9152,6 +9343,8 @@
    "gp": 57.3,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 19,
+   "gp_adjusted_raw": 19,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -9313,11 +9506,13 @@
    },
    "dollar_naive": 27,
    "rank_by_value": 37,
-   "rank_by_my_max": 35,
-   "rank_divergence": -2,
+   "rank_by_my_max": 37,
+   "rank_divergence": 0,
    "gp": 57.1,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 23,
+   "gp_adjusted_raw": 23,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -9489,6 +9684,8 @@
    "gp": 61.2,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 21,
+   "gp_adjusted_raw": 21,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -9668,6 +9865,8 @@
    "gp": 64.4,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 16,
+   "gp_adjusted_raw": 16,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -9806,6 +10005,8 @@
    "gp": 39.5,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 6,
+   "gp_adjusted_raw": 6,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준 · 23차 GP 보정 이미 반영됨",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -9939,11 +10140,13 @@
    },
    "dollar_naive": 24,
    "rank_by_value": 45,
-   "rank_by_my_max": 29,
-   "rank_divergence": -16,
+   "rank_by_my_max": 33,
+   "rank_divergence": -12,
    "gp": 62.1,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 29,
+   "gp_adjusted_raw": 29,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -10119,11 +10322,13 @@
    },
    "dollar_naive": 33,
    "rank_by_value": 13,
-   "rank_by_my_max": 16,
-   "rank_divergence": 3,
+   "rank_by_my_max": 17,
+   "rank_divergence": 4,
    "gp": 64.0,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 44,
+   "gp_adjusted_raw": 44,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -10254,11 +10459,13 @@
    },
    "dollar_naive": 23,
    "rank_by_value": 51,
-   "rank_by_my_max": 9,
-   "rank_divergence": -42,
+   "rank_by_my_max": 16,
+   "rank_divergence": -35,
    "gp": 58.0,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 43,
+   "gp_adjusted_raw": 43,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -10297,8 +10504,8 @@
   "pos": "G",
   "market_low": 54,
   "market_high": 60,
-  "my_max": 48,
-  "surplus": -9,
+  "my_max": 52,
+  "surplus": -5,
   "obtainable": false,
   "injury_exclude": false,
   "tag": "buy",
@@ -10442,15 +10649,24 @@
    },
    "dollar_naive": 29,
    "rank_by_value": 30,
-   "rank_by_my_max": 10,
-   "rank_divergence": -20,
+   "rank_by_my_max": 12,
+   "rank_divergence": -18,
    "gp": 70.4,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 52,
-   "gp_adjust_basis": "현재 my_max 기준",
+   "gp_adjusted_raw": 57,
+   "gp_adjust_applied": true,
+   "gp_adjust_basis": "상향 적용 완료(37차) — 재적용 금지. 원값은 gp_adjusted_raw",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
-  "tag_basis": "buy 유지 · 변경 없음 — div -20는 임계 경계값이고, 시장 $54-60 > my_max $48로 **애초에 획득 불가**다. 우리가 과대평가하는 방향이지만 그 천장으로 실제 입찰이 일어나지 않는다. 사용자 결정 27차."
+  "tag_basis": "buy 유지 · 변경 없음 — div -20는 임계 경계값이고, 시장 $54-60 > my_max $48로 **애초에 획득 불가**다. 우리가 과대평가하는 방향이지만 그 천장으로 실제 입찰이 일어나지 않는다. 사용자 결정 27차.",
+  "my_max_basis": {
+   "revised": "37차 · GP 출장 보정 상향 (사용자 결정 2026-08-26)",
+   "prior": 48,
+   "rule": "value_reference.gp_adjusted_my_max 가 현재보다 $4 이상 높으면 상향 (23차 하향 규칙의 대칭 적용)",
+   "why": "23차에 같은 참고선으로 저출장 선수를 하향했으면서 고출장 선수는 미적용으로 남겨 규칙이 한쪽으로만 작동하고 있었다. 상향은 실지출이 나가는 방향이라 사람 판단으로 보류돼 있었고, 2026-08-26 사용자가 적용을 지시했다.",
+   "prior_basis": null
+  }
  },
  {
   "name": "Jamal Murray",
@@ -10458,8 +10674,8 @@
   "pos": "G",
   "market_low": 52,
   "market_high": 58,
-  "my_max": 46,
-  "surplus": -9,
+  "my_max": 51,
+  "surplus": -4,
   "obtainable": false,
   "injury_exclude": false,
   "tag": "buy",
@@ -10610,13 +10826,22 @@
    },
    "dollar_naive": 42,
    "rank_by_value": 5,
-   "rank_by_my_max": 13,
-   "rank_divergence": 8,
+   "rank_by_my_max": 14,
+   "rank_divergence": 9,
    "gp": 72.0,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 51,
-   "gp_adjust_basis": "현재 my_max 기준",
+   "gp_adjusted_raw": 57,
+   "gp_adjust_applied": true,
+   "gp_adjust_basis": "상향 적용 완료(37차) — 재적용 금지. 원값은 gp_adjusted_raw",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
+  },
+  "my_max_basis": {
+   "revised": "37차 · GP 출장 보정 상향 (사용자 결정 2026-08-26)",
+   "prior": 46,
+   "rule": "value_reference.gp_adjusted_my_max 가 현재보다 $4 이상 높으면 상향 (23차 하향 규칙의 대칭 적용)",
+   "why": "23차에 같은 참고선으로 저출장 선수를 하향했으면서 고출장 선수는 미적용으로 남겨 규칙이 한쪽으로만 작동하고 있었다. 상향은 실지출이 나가는 방향이라 사람 판단으로 보류돼 있었고, 2026-08-26 사용자가 적용을 지시했다.",
+   "prior_basis": null
   }
  },
  {
@@ -10775,11 +11000,13 @@
    },
    "dollar_naive": 28,
    "rank_by_value": 34,
-   "rank_by_my_max": 27,
-   "rank_divergence": -7,
+   "rank_by_my_max": 29,
+   "rank_divergence": -5,
    "gp": 70.7,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 35,
+   "gp_adjusted_raw": 35,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -10942,11 +11169,13 @@
    },
    "dollar_naive": 23,
    "rank_by_value": 54,
-   "rank_by_my_max": 30,
-   "rank_divergence": -24,
+   "rank_by_my_max": 34,
+   "rank_divergence": -20,
    "gp": 64.4,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 30,
+   "gp_adjusted_raw": 30,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -11125,6 +11354,8 @@
    "gp": 70.0,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 37,
+   "gp_adjusted_raw": 37,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -11299,11 +11530,13 @@
    },
    "dollar_naive": 22,
    "rank_by_value": 60,
-   "rank_by_my_max": 28,
-   "rank_divergence": -32,
+   "rank_by_my_max": 30,
+   "rank_divergence": -30,
    "gp": 61.7,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 31,
+   "gp_adjusted_raw": 31,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -11475,6 +11708,8 @@
    "gp": 44.1,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 13,
+   "gp_adjusted_raw": 13,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준 · 23차 GP 보정 이미 반영됨",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -11641,11 +11876,13 @@
    },
    "dollar_naive": 23,
    "rank_by_value": 52,
-   "rank_by_my_max": 36,
-   "rank_divergence": -16,
+   "rank_by_my_max": 38,
+   "rank_divergence": -14,
    "gp": 69.3,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 28,
+   "gp_adjusted_raw": 28,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -11805,11 +12042,13 @@
    },
    "dollar_naive": 17,
    "rank_by_value": 96,
-   "rank_by_my_max": 41,
-   "rank_divergence": -55,
+   "rank_by_my_max": 42,
+   "rank_divergence": -54,
    "gp": 68.5,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 25,
+   "gp_adjusted_raw": 25,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -11981,11 +12220,13 @@
    },
    "dollar_naive": 21,
    "rank_by_value": 69,
-   "rank_by_my_max": 42,
-   "rank_divergence": -27,
+   "rank_by_my_max": 43,
+   "rank_divergence": -26,
    "gp": 68.8,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 26,
+   "gp_adjusted_raw": 26,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -12157,11 +12398,13 @@
    },
    "dollar_naive": 15,
    "rank_by_value": 110,
-   "rank_by_my_max": 37,
-   "rank_divergence": -73,
+   "rank_by_my_max": 39,
+   "rank_divergence": -71,
    "gp": 56.8,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 23,
+   "gp_adjusted_raw": 23,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -12306,6 +12549,8 @@
    "gp": 54.0,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 13,
+   "gp_adjusted_raw": 13,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -12465,6 +12710,8 @@
    "gp": 55.2,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 29,
+   "gp_adjusted_raw": 29,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -12643,6 +12890,8 @@
    "gp": 64.8,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 18,
+   "gp_adjusted_raw": 18,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -12816,6 +13065,8 @@
    "gp": 78.2,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 14,
+   "gp_adjusted_raw": 14,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -12981,6 +13232,8 @@
    "gp": 75.3,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 21,
+   "gp_adjusted_raw": 21,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -13111,6 +13364,8 @@
    "gp": 59.8,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 15,
+   "gp_adjusted_raw": 15,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -13416,6 +13671,8 @@
    "gp": 73.1,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 7,
+   "gp_adjusted_raw": 7,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -13426,8 +13683,8 @@
   "pos": "G/F",
   "market_low": 19,
   "market_high": 25,
-  "my_max": 26,
-  "surplus": 4,
+  "my_max": 33,
+  "surplus": 11,
   "obtainable": true,
   "injury_exclude": false,
   "tag": "buy",
@@ -13574,21 +13831,22 @@
    },
    "dollar_naive": 34,
    "rank_by_value": 8,
-   "rank_by_my_max": 38,
-   "rank_divergence": 30,
+   "rank_by_my_max": 27,
+   "rank_divergence": 19,
    "gp": 81.0,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 33,
-   "gp_adjust_basis": "현재 my_max 기준",
+   "gp_adjusted_raw": 41,
+   "gp_adjust_applied": true,
+   "gp_adjust_basis": "상향 적용 완료(37차) — 재적용 금지. 원값은 gp_adjusted_raw",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
   "my_max_basis": {
-   "revised": "28차 · 근거 기록(값 미변경)",
+   "revised": "37차 · GP 출장 보정 상향 (사용자 결정 2026-08-26)",
    "prior": 26,
-   "source": "28차 달러 노출 트리거로 새로 드러남",
-   "why": "div +30(우리가 **과소**평가) · 노출 $34 · 등장 13회 · 시장 $19-25. 천장을 올릴지는 **승률 기반 판정이 붙은 뒤** 결정한다 — 지금 올려도 쓸 곳이 없다. 과소평가는 돈이 새는 방향이 아니라 기회를 놓치는 방향이고, 그 손익은 '이 선수를 더 사면 캣을 더 이기는가'로만 판정할 수 있다. 값 미변경.",
-   "direction": "과소",
-   "defer_to": "승률 기반 판정 (지시 4번)"
+   "rule": "value_reference.gp_adjusted_my_max 가 현재보다 $4 이상 높으면 상향 (23차 하향 규칙의 대칭 적용)",
+   "why": "23차에 같은 참고선으로 저출장 선수를 하향했으면서 고출장 선수는 미적용으로 남겨 규칙이 한쪽으로만 작동하고 있었다. 상향은 실지출이 나가는 방향이라 사람 판단으로 보류돼 있었고, 2026-08-26 사용자가 적용을 지시했다.",
+   "prior_basis": "28차 · 근거 기록(값 미변경)"
   }
  },
  {
@@ -13749,6 +14007,8 @@
    "gp": 73.4,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 6,
+   "gp_adjusted_raw": 6,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -13926,6 +14186,8 @@
    "gp": 56.9,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 4,
+   "gp_adjusted_raw": 4,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -14086,6 +14348,8 @@
    "gp": 68.9,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 2,
+   "gp_adjusted_raw": 2,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -14250,6 +14514,8 @@
    "gp": 58.8,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 15,
+   "gp_adjusted_raw": 15,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -14380,6 +14646,8 @@
    "gp": 41.9,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 3,
+   "gp_adjusted_raw": 3,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -14556,6 +14824,8 @@
    "gp": 72.2,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 11,
+   "gp_adjusted_raw": 11,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -14717,6 +14987,8 @@
    "gp": 75.0,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 8,
+   "gp_adjusted_raw": 8,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -14878,6 +15150,8 @@
    "gp": 78.8,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 12,
+   "gp_adjusted_raw": 12,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -15037,6 +15311,8 @@
    "gp": 69.8,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 4,
+   "gp_adjusted_raw": 4,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -15201,6 +15477,8 @@
    "gp": 69.4,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 13,
+   "gp_adjusted_raw": 13,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -15361,6 +15639,8 @@
    "gp": 54.4,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 7,
+   "gp_adjusted_raw": 7,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -15512,6 +15792,8 @@
    "gp": 63.1,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 1,
+   "gp_adjusted_raw": 1,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -15671,6 +15953,8 @@
    "gp": 55.7,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 5,
+   "gp_adjusted_raw": 5,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -15834,6 +16118,8 @@
    "gp": 59.9,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 20,
+   "gp_adjusted_raw": 20,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -16005,11 +16291,13 @@
    },
    "dollar_naive": 16,
    "rank_by_value": 102,
-   "rank_by_my_max": 39,
-   "rank_divergence": -63,
+   "rank_by_my_max": 40,
+   "rank_divergence": -62,
    "gp": 68.0,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 27,
+   "gp_adjusted_raw": 27,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -16189,6 +16477,8 @@
    "gp": 50.0,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 8,
+   "gp_adjusted_raw": 8,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -16350,6 +16640,8 @@
    "gp": 73.2,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 7,
+   "gp_adjusted_raw": 7,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -16512,6 +16804,8 @@
    "gp": 72.1,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 13,
+   "gp_adjusted_raw": 13,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -16683,6 +16977,8 @@
    "gp": 69.9,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 4,
+   "gp_adjusted_raw": 4,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -16842,6 +17138,8 @@
    "gp": 54.5,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 5,
+   "gp_adjusted_raw": 5,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -17007,6 +17305,8 @@
    "gp": 61.9,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 10,
+   "gp_adjusted_raw": 10,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -17169,6 +17469,8 @@
    "gp": 61.9,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 10,
+   "gp_adjusted_raw": 10,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -17308,6 +17610,8 @@
    "gp": 45.1,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 6,
+   "gp_adjusted_raw": 6,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -17484,6 +17788,8 @@
    "gp": 66.1,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 10,
+   "gp_adjusted_raw": 10,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -17641,6 +17947,8 @@
    "gp": 68.3,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 2,
+   "gp_adjusted_raw": 2,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -17817,6 +18125,8 @@
    "gp": 80.4,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 17,
+   "gp_adjusted_raw": 17,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -17979,6 +18289,8 @@
    "gp": 58.8,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 9,
+   "gp_adjusted_raw": 9,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -18137,6 +18449,8 @@
    "gp": 70.4,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 4,
+   "gp_adjusted_raw": 4,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -18298,6 +18612,8 @@
    "gp": 60.8,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 8,
+   "gp_adjusted_raw": 8,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -18434,6 +18750,8 @@
    "gp": 51.4,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 2,
+   "gp_adjusted_raw": 2,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -18615,6 +18933,8 @@
    "gp": 51.5,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 10,
+   "gp_adjusted_raw": 10,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -18782,6 +19102,8 @@
    "gp": 60.9,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 9,
+   "gp_adjusted_raw": 9,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -18921,6 +19243,8 @@
    "gp": 36.7,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 4,
+   "gp_adjusted_raw": 4,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준 · 23차 GP 보정 이미 반영됨",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -19091,6 +19415,8 @@
    "gp": 68.0,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 9,
+   "gp_adjusted_raw": 9,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -19254,6 +19580,8 @@
    "gp": 61.1,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 10,
+   "gp_adjusted_raw": 10,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -19372,6 +19700,8 @@
    "gp": 33.9,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 3,
+   "gp_adjusted_raw": 3,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -19489,6 +19819,8 @@
    "gp": 45.3,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 1,
+   "gp_adjusted_raw": 1,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -19664,6 +19996,8 @@
    "gp": 62.4,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 4,
+   "gp_adjusted_raw": 4,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -19823,6 +20157,8 @@
    "gp": 62.5,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 2,
+   "gp_adjusted_raw": 2,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -19941,6 +20277,8 @@
    "gp": 31.5,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 1,
+   "gp_adjusted_raw": 1,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -20063,6 +20401,8 @@
    "gp": 38.7,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 5,
+   "gp_adjusted_raw": 5,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준 · 23차 GP 보정 이미 반영됨",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -20232,6 +20572,8 @@
    "gp": 69.0,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 21,
+   "gp_adjusted_raw": 21,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -20394,6 +20736,8 @@
    "gp": 67.4,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 8,
+   "gp_adjusted_raw": 8,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -20550,6 +20894,8 @@
    "gp": 53.5,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 8,
+   "gp_adjusted_raw": 8,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -20713,6 +21059,8 @@
    "gp": 54.0,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 4,
+   "gp_adjusted_raw": 4,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -20835,6 +21183,8 @@
    "gp": 38.8,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 10,
+   "gp_adjusted_raw": 10,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준 · 23차 GP 보정 이미 반영됨",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -21008,6 +21358,8 @@
    "gp": 72.4,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 13,
+   "gp_adjusted_raw": 13,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -21018,9 +21370,9 @@
   "pos": "G",
   "market_low": 31,
   "market_high": 39,
-  "my_max": 30,
-  "surplus": -5,
-  "obtainable": false,
+  "my_max": 34,
+  "surplus": -1,
+  "obtainable": true,
   "injury_exclude": false,
   "tag": null,
   "cats": "AST3 3PM3 FT%3 PTS2 STL2 DD1 A/T1 3P%1",
@@ -21172,26 +21524,22 @@
    },
    "dollar_naive": 34,
    "rank_by_value": 10,
-   "rank_by_my_max": 31,
-   "rank_divergence": 21,
+   "rank_by_my_max": 26,
+   "rank_divergence": 16,
    "gp": 73.9,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 34,
-   "gp_adjust_basis": "현재 my_max 기준",
+   "gp_adjusted_raw": 39,
+   "gp_adjust_applied": true,
+   "gp_adjust_basis": "상향 적용 완료(37차) — 재적용 금지. 원값은 gp_adjusted_raw",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
   "my_max_basis": {
-   "auto": true,
-   "rule": "M6/unused_ceiling",
-   "generated_by": "tool/close_unused_ceilings.py",
-   "why": "미사용 천장 — 코어·피벗·대체후보 등장 0회 / 획득 불가(my_max $30 < 시장 하단 $31). 천장이 입찰에 쓰이지 않음",
-   "conditions": {
-    "core_hits": 0,
-    "obtainable": false
-   },
-   "invalidation": "conditions가 현재값과 달라지면 이 basis는 무효가 되어 M6 위반으로 다시 뜬다 (divergence_rules.has_any_basis)",
-   "div": 21,
-   "exposure": 39
+   "revised": "37차 · GP 출장 보정 상향 (사용자 결정 2026-08-26)",
+   "prior": 30,
+   "rule": "value_reference.gp_adjusted_my_max 가 현재보다 $4 이상 높으면 상향 (23차 하향 규칙의 대칭 적용)",
+   "why": "23차에 같은 참고선으로 저출장 선수를 하향했으면서 고출장 선수는 미적용으로 남겨 규칙이 한쪽으로만 작동하고 있었다. 상향은 실지출이 나가는 방향이라 사람 판단으로 보류돼 있었고, 2026-08-26 사용자가 적용을 지시했다.",
+   "prior_basis": null
   }
  },
  {
@@ -21345,11 +21693,13 @@
    },
    "dollar_naive": 23,
    "rank_by_value": 55,
-   "rank_by_my_max": 43,
-   "rank_divergence": -12,
+   "rank_by_my_max": 44,
+   "rank_divergence": -11,
    "gp": 60.8,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 23,
+   "gp_adjusted_raw": 23,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -21516,6 +21866,8 @@
    "gp": 62.5,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 19,
+   "gp_adjusted_raw": 19,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -21690,6 +22042,8 @@
    "gp": 52.1,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 2,
+   "gp_adjusted_raw": 2,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -21860,6 +22214,8 @@
    "gp": 64.2,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 22,
+   "gp_adjusted_raw": 22,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -22030,6 +22386,8 @@
    "gp": 67.1,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 15,
+   "gp_adjusted_raw": 15,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -22189,11 +22547,13 @@
    },
    "dollar_naive": 20,
    "rank_by_value": 77,
-   "rank_by_my_max": 44,
-   "rank_divergence": -33,
+   "rank_by_my_max": 45,
+   "rank_divergence": -32,
    "gp": 68.4,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 25,
+   "gp_adjusted_raw": 25,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -22334,6 +22694,8 @@
    "gp": 46.3,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 10,
+   "gp_adjusted_raw": 10,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준 · 23차 GP 보정 이미 반영됨",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -22514,6 +22876,8 @@
    "gp": 63.2,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 6,
+   "gp_adjusted_raw": 6,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -22675,6 +23039,8 @@
    "gp": 61.1,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 8,
+   "gp_adjusted_raw": 8,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -22843,6 +23209,8 @@
    "gp": 76.1,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 13,
+   "gp_adjusted_raw": 13,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -23004,6 +23372,8 @@
    "gp": 75.8,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 11,
+   "gp_adjusted_raw": 11,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -23165,6 +23535,8 @@
    "gp": 52.7,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 7,
+   "gp_adjusted_raw": 7,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -23325,6 +23697,8 @@
    "gp": 76.8,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 9,
+   "gp_adjusted_raw": 9,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -23486,6 +23860,8 @@
    "gp": 64.7,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 4,
+   "gp_adjusted_raw": 4,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -23645,6 +24021,8 @@
    "gp": 59.9,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 5,
+   "gp_adjusted_raw": 5,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -23807,6 +24185,8 @@
    "gp": 68.0,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 9,
+   "gp_adjusted_raw": 9,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -23970,6 +24350,8 @@
    "gp": 65.0,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 6,
+   "gp_adjusted_raw": 6,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -24127,6 +24509,8 @@
    "gp": 76.9,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 12,
+   "gp_adjusted_raw": 12,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -24302,6 +24686,8 @@
    "gp": 70.8,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 5,
+   "gp_adjusted_raw": 5,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -24474,6 +24860,8 @@
    "gp": 74.0,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 11,
+   "gp_adjusted_raw": 11,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -24642,6 +25030,8 @@
    "gp": 77.1,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 7,
+   "gp_adjusted_raw": 7,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -24802,6 +25192,8 @@
    "gp": 66.4,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 3,
+   "gp_adjusted_raw": 3,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -24965,6 +25357,8 @@
    "gp": 75.0,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 10,
+   "gp_adjusted_raw": 10,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -25130,6 +25524,8 @@
    "gp": 70.3,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 8,
+   "gp_adjusted_raw": 8,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -25289,6 +25685,8 @@
    "gp": 63.4,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 3,
+   "gp_adjusted_raw": 3,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -25451,6 +25849,8 @@
    "gp": 67.5,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 4,
+   "gp_adjusted_raw": 4,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -25611,6 +26011,8 @@
    "gp": 60.4,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 4,
+   "gp_adjusted_raw": 4,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -25773,6 +26175,8 @@
    "gp": 54.2,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 13,
+   "gp_adjusted_raw": 13,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -25946,6 +26350,8 @@
    "gp": 77.4,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 4,
+   "gp_adjusted_raw": 4,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -26107,6 +26513,8 @@
    "gp": 50.8,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 2,
+   "gp_adjusted_raw": 2,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -26271,6 +26679,8 @@
    "gp": 77.0,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 19,
+   "gp_adjusted_raw": 19,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -26438,6 +26848,8 @@
    "gp": 58.0,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 13,
+   "gp_adjusted_raw": 13,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -26573,6 +26985,8 @@
    "gp": 58.5,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 11,
+   "gp_adjusted_raw": 11,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -26750,6 +27164,8 @@
    "gp": 55.2,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 9,
+   "gp_adjusted_raw": 9,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -26913,6 +27329,8 @@
    "gp": 56.9,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 5,
+   "gp_adjusted_raw": 5,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -27031,6 +27449,8 @@
    "gp": 24.1,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 1,
+   "gp_adjusted_raw": 1,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준 · 23차 GP 보정 이미 반영됨",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -27201,6 +27621,8 @@
    "gp": 45.5,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 4,
+   "gp_adjusted_raw": 4,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -27326,6 +27748,8 @@
    "gp": 59.0,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 4,
+   "gp_adjusted_raw": 4,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   },
@@ -27502,6 +27926,8 @@
    "gp": 82.0,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 6,
+   "gp_adjusted_raw": 6,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -27662,6 +28088,8 @@
    "gp": 46.0,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 2,
+   "gp_adjusted_raw": 2,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -27820,6 +28248,8 @@
    "gp": 65.5,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 3,
+   "gp_adjusted_raw": 3,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }
@@ -27980,6 +28410,8 @@
    "gp": 68.8,
    "gp_ref": 64.7,
    "gp_adjusted_my_max": 4,
+   "gp_adjusted_raw": 4,
+   "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
   }

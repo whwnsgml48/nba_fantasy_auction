@@ -71,9 +71,9 @@
      }
     ],
     "feasibility": {
-     "required": "Tyrese Haliburton 실낙찰가 <= $50",
-     "why": "my_max $50 인데 실측 시장은 $54-66 이다. 할인 없이는 c1이 **존재하지 않는다** — B-c1-2의 최소 승률 39.2%도 이 조건부 숫자다.",
-     "selection_threshold": "$48 (기존) — $48~50 구간은 살 수는 있으나 선택하지 않는다",
+     "required": "Tyrese Haliburton 실낙찰가 <= $50 (철수가)",
+     "why": "37차: my_max 를 $50 → **$56** 으로 상향해 실측 시장하단 $54 를 넘겼다 — 평가상으로는 획득 가능해졌다. 다만 `overheat_thresholds` 의 **철수가가 $50** 에 묶여 있어 계획가는 $50 이고, 그 값이 시장하단 $54 보다 낮아 여전히 할인 조건부다. 철수가를 $56 으로 올릴지는 미결(사람 판단) — 올리면 c1 총액 $182 → $188 · 예비비 $12 로 실행 가능해진다.",
+     "selection_threshold": "$48 — $48~50 구간은 살 수는 있으나 코어 1을 우선할 근거는 아니다",
      "on_fail": "c6 (기본값)"
     }
    },
@@ -353,16 +353,10 @@
        "redeploy": {
         "moves": [
          {
-          "player": "Donovan Clingan",
-          "slot": "UTIL",
-          "from": 12,
-          "to": 22
-         },
-         {
-          "player": "Rudy Gobert",
-          "slot": "UTIL",
-          "from": 8,
-          "to": 9
+          "player": "Kon Knueppel",
+          "slot": "SF",
+          "from": 22,
+          "to": 33
          }
         ],
         "total_after": 175,
@@ -378,16 +372,16 @@
        "redeploy": {
         "moves": [
          {
+          "player": "Kon Knueppel",
+          "slot": "SF",
+          "from": 22,
+          "to": 33
+         },
+         {
           "player": "Donovan Clingan",
           "slot": "UTIL",
           "from": 12,
-          "to": 22
-         },
-         {
-          "player": "Rudy Gobert",
-          "slot": "UTIL",
-          "from": 8,
-          "to": 10
+          "to": 13
          }
         ],
         "total_after": 175,
@@ -398,11 +392,11 @@
       }
      ],
      "anchor_plan": {
-      "bid_ceiling": 62,
-      "nominal_margin": 17,
+      "bid_ceiling": 71,
+      "nominal_margin": 26,
       "budget_slack": 18,
-      "effective_headroom": 17,
-      "constraint": "none",
+      "effective_headroom": 18,
+      "constraint": "budget",
       "dual_world_ok": true,
       "substitutes_dual_ok": [
        "Jalen Duren",
@@ -436,10 +430,10 @@
        "redeploy": {
         "moves": [
          {
-          "player": "Karl-Anthony Towns",
-          "slot": "C",
-          "from": 45,
-          "to": 47
+          "player": "Kon Knueppel",
+          "slot": "SF",
+          "from": 22,
+          "to": 24
          }
         ],
         "total_after": 175,
@@ -455,16 +449,16 @@
        "redeploy": {
         "moves": [
          {
+          "player": "Kon Knueppel",
+          "slot": "SF",
+          "from": 22,
+          "to": 33
+         },
+         {
           "player": "Karl-Anthony Towns",
           "slot": "C",
           "from": 45,
-          "to": 55
-         },
-         {
-          "player": "Donovan Clingan",
-          "slot": "UTIL",
-          "from": 12,
-          "to": 21
+          "to": 53
          }
         ],
         "total_after": 175,
@@ -475,12 +469,12 @@
       }
      ],
      "anchor_plan": {
-      "bid_ceiling": 50,
-      "nominal_margin": 0,
+      "bid_ceiling": 56,
+      "nominal_margin": 6,
       "budget_slack": 18,
-      "effective_headroom": 0,
-      "constraint": "my_max",
-      "dual_world_ok": false,
+      "effective_headroom": 6,
+      "constraint": "none",
+      "dual_world_ok": true,
       "substitutes_dual_ok": [
        "Josh Giddey",
        "De'Aaron Fox"
@@ -525,13 +519,13 @@
       {
        "name": "Kon Knueppel",
        "plan_price": 22,
-       "bid_ceiling": 26,
+       "bid_ceiling": 33,
        "expected_cost": 22
       },
       {
        "name": "Desmond Bane",
        "plan_price": 22,
-       "bid_ceiling": 26,
+       "bid_ceiling": 31,
        "expected_cost": 22
       },
       {
@@ -541,7 +535,7 @@
        "expected_cost": 11
       }
      ],
-     "bid_ceiling": 26,
+     "bid_ceiling": 33,
      "expected_cost": 22
     },
     {
@@ -754,28 +748,47 @@
       "out": {
        "name": "Kon Knueppel",
        "plan_price": 22,
-       "bid_ceiling": 26,
+       "bid_ceiling": 33,
        "expected_cost": 22
       },
       "in": {
        "name": "Desmond Bane",
        "plan_price": 22,
-       "bid_ceiling": 26,
+       "bid_ceiling": 31,
        "expected_cost": 22
       },
       "delta": 1,
       "kind": "교체"
+     },
+     {
+      "slot": "C",
+      "out": {
+       "name": "Karl-Anthony Towns",
+       "plan_price": 45,
+       "bid_ceiling": 55,
+       "expected_cost": 45
+      },
+      "in": {
+       "name": "Karl-Anthony Towns",
+       "bid_ceiling": 55,
+       "plan_price": 49,
+       "expected_cost": 49,
+       "overheat_cost": 49
+      },
+      "delta": 4,
+      "kind": "가격 상향 (과열 세계 · 시장 상단)"
      }
     ],
     "final_roster": [
      {
       "slot": "C",
       "name": "Karl-Anthony Towns",
-      "plan_price": 45,
+      "plan_price": 49,
       "role": "앵커 · DD 56 리그 1위",
       "is_anchor": true,
       "bid_ceiling": 55,
-      "expected_cost": 45,
+      "expected_cost": 49,
+      "overheat_cost": 49,
       "alternates": [
        {
         "name": "Jalen Duren",
@@ -843,7 +856,7 @@
         "name": "Josh Giddey",
         "plan_price": 41,
         "dual_world_ok": true,
-        "total_if_used": 165,
+        "total_if_used": 169,
         "bid_ceiling": 42,
         "expected_cost": 41
        },
@@ -851,12 +864,12 @@
         "name": "Derrick White",
         "plan_price": 39,
         "dual_world_ok": true,
-        "total_if_used": 163,
+        "total_if_used": 167,
         "bid_ceiling": 44,
         "expected_cost": 39
        }
       ],
-      "dual_world_ok": false
+      "dual_world_ok": true
      },
      {
       "slot": "PF",
@@ -871,7 +884,7 @@
         "plan_price": 23,
         "bid_ceiling": 30,
         "expected_cost": 23,
-        "total_if_used": 171
+        "total_if_used": 175
        }
       ],
       "dual_world_ok": true
@@ -881,7 +894,7 @@
       "name": "Desmond Bane",
       "plan_price": 22,
       "role": "3PT% 레버리지 2위 · 3PM 3.4",
-      "bid_ceiling": 26,
+      "bid_ceiling": 31,
       "expected_cost": 22,
       "alternates": [
        {
@@ -889,7 +902,7 @@
         "plan_price": 11,
         "bid_ceiling": 14,
         "expected_cost": 11,
-        "total_if_used": 163
+        "total_if_used": 167
        }
       ],
       "dual_world_ok": true
@@ -907,14 +920,14 @@
         "plan_price": 3,
         "bid_ceiling": 8,
         "expected_cost": 3,
-        "total_if_used": 165
+        "total_if_used": 169
        },
        {
         "name": "Cason Wallace",
         "plan_price": 3,
         "bid_ceiling": 8,
         "expected_cost": 3,
-        "total_if_used": 165
+        "total_if_used": 169
        }
       ],
       "dual_world_ok": true
@@ -932,14 +945,14 @@
         "plan_price": 11,
         "bid_ceiling": 16,
         "expected_cost": 11,
-        "total_if_used": 180
+        "total_if_used": 184
        },
        {
         "name": "Mark Williams",
         "plan_price": 7,
         "bid_ceiling": 14,
         "expected_cost": 7,
-        "total_if_used": 176
+        "total_if_used": 180
        }
       ],
       "dual_world_ok": true
@@ -957,7 +970,7 @@
         "plan_price": 11,
         "bid_ceiling": 16,
         "expected_cost": 11,
-        "total_if_used": 178
+        "total_if_used": 182
        }
       ],
       "dual_world_ok": true
@@ -975,14 +988,14 @@
         "plan_price": 2,
         "bid_ceiling": 8,
         "expected_cost": 2,
-        "total_if_used": 171
+        "total_if_used": 175
        },
        {
         "name": "Day'Ron Sharpe",
         "plan_price": 2,
         "bid_ceiling": 5,
         "expected_cost": 2,
-        "total_if_used": 171
+        "total_if_used": 175
        }
       ],
       "dual_world_ok": true
@@ -1000,21 +1013,21 @@
         "plan_price": 2,
         "bid_ceiling": 8,
         "expected_cost": 2,
-        "total_if_used": 174
+        "total_if_used": 178
        },
        {
         "name": "Day'Ron Sharpe",
         "plan_price": 2,
         "bid_ceiling": 5,
         "expected_cost": 2,
-        "total_if_used": 174
+        "total_if_used": 178
        }
       ],
       "dual_world_ok": true
      }
     ],
-    "final_total": 174,
-    "final_big_budget": 83,
+    "final_total": 178,
+    "final_big_budget": 87,
     "final_c_eligible": 4,
     "targeted_cats": [
      "3P%",
@@ -1290,10 +1303,10 @@
       }
      ],
      "anchor_plan": {
-      "bid_ceiling": 44,
-      "nominal_margin": 5,
+      "bid_ceiling": 52,
+      "nominal_margin": 13,
       "budget_slack": 13,
-      "effective_headroom": 5,
+      "effective_headroom": 13,
       "constraint": "none",
       "dual_world_ok": true,
       "substitutes_dual_ok": [
@@ -2004,25 +2017,25 @@
    "big_budget_cap": 85,
    "big_budget_planned": 57,
    "c_eligible_count": 4,
-   "planned_total": 183,
+   "planned_total": 190,
    "slots": [
     {
      "slot": "SG",
      "role": "앵커 (실패 시 코어 전환)",
      "is_anchor": true,
-     "plan_price": 72,
+     "plan_price": 79,
      "candidates": [
       {
        "name": "Shai Gilgeous-Alexander",
-       "plan_price": 72,
-       "bid_ceiling": 72,
-       "expected_cost": 72
+       "plan_price": 79,
+       "bid_ceiling": 79,
+       "expected_cost": 79
       }
      ],
      "anchor_plan": {
-      "bid_ceiling": 72,
+      "bid_ceiling": 79,
       "nominal_margin": 0,
-      "budget_slack": 17,
+      "budget_slack": 10,
       "effective_headroom": 0,
       "constraint": "my_max",
       "dual_world_ok": false,
@@ -2033,8 +2046,8 @@
        "note": "판단표 우선 4 '앵커 실패 시 안전망'이 그대로 목적지"
       }
      },
-     "bid_ceiling": 72,
-     "expected_cost": 72
+     "bid_ceiling": 79,
+     "expected_cost": 79
     },
     {
      "slot": "PF",
@@ -2067,7 +2080,7 @@
       {
        "name": "Amen Thompson",
        "plan_price": 26,
-       "bid_ceiling": 42,
+       "bid_ceiling": 49,
        "expected_cost": 26
       },
       {
@@ -2083,7 +2096,7 @@
        "expected_cost": 5
       }
      ],
-     "bid_ceiling": 42,
+     "bid_ceiling": 49,
      "expected_cost": 26
     },
     {
@@ -2317,7 +2330,7 @@
       "in": {
        "name": "Kon Knueppel",
        "plan_price": 22,
-       "bid_ceiling": 26,
+       "bid_ceiling": 33,
        "expected_cost": 22
       },
       "delta": 19,
@@ -2328,11 +2341,11 @@
      {
       "slot": "SG",
       "name": "Shai Gilgeous-Alexander",
-      "plan_price": 72,
+      "plan_price": 79,
       "role": "앵커 (실패 시 코어 전환)",
       "is_anchor": true,
-      "bid_ceiling": 72,
-      "expected_cost": 72,
+      "bid_ceiling": 79,
+      "expected_cost": 79,
       "dual_world_ok": false
      },
      {
@@ -2348,7 +2361,7 @@
         "plan_price": 23,
         "bid_ceiling": 30,
         "expected_cost": 23,
-        "total_if_used": 186
+        "total_if_used": 193
        }
       ],
       "dual_world_ok": true
@@ -2358,7 +2371,7 @@
       "name": "Amen Thompson",
       "plan_price": 26,
       "role": "가드형 OREB 3.0 · 79G",
-      "bid_ceiling": 42,
+      "bid_ceiling": 49,
       "expected_cost": 26,
       "alternates": [
        {
@@ -2366,14 +2379,14 @@
         "plan_price": 11,
         "bid_ceiling": 14,
         "expected_cost": 11,
-        "total_if_used": 174
+        "total_if_used": 181
        },
        {
         "name": "Jaden McDaniels",
         "plan_price": 5,
         "bid_ceiling": 10,
         "expected_cost": 5,
-        "total_if_used": 168
+        "total_if_used": 175
        }
       ],
       "dual_world_ok": true
@@ -2391,14 +2404,14 @@
         "plan_price": 3,
         "bid_ceiling": 8,
         "expected_cost": 3,
-        "total_if_used": 180
+        "total_if_used": 187
        },
        {
         "name": "Cason Wallace",
         "plan_price": 3,
         "bid_ceiling": 8,
         "expected_cost": 3,
-        "total_if_used": 180
+        "total_if_used": 187
        }
       ],
       "dual_world_ok": true
@@ -2416,14 +2429,14 @@
         "plan_price": 27,
         "bid_ceiling": 34,
         "expected_cost": 27,
-        "total_if_used": 212
+        "total_if_used": 219
        },
        {
         "name": "Rudy Gobert",
         "plan_price": 8,
         "bid_ceiling": 18,
         "expected_cost": 8,
-        "total_if_used": 193
+        "total_if_used": 200
        }
       ],
       "dual_world_ok": true
@@ -2441,14 +2454,14 @@
         "plan_price": 7,
         "bid_ceiling": 14,
         "expected_cost": 7,
-        "total_if_used": 185
+        "total_if_used": 192
        },
        {
         "name": "Nic Claxton",
         "plan_price": 4,
         "bid_ceiling": 12,
         "expected_cost": 4,
-        "total_if_used": 182
+        "total_if_used": 189
        }
       ],
       "dual_world_ok": true
@@ -2466,14 +2479,14 @@
         "plan_price": 7,
         "bid_ceiling": 14,
         "expected_cost": 7,
-        "total_if_used": 194
+        "total_if_used": 201
        },
        {
         "name": "Nic Claxton",
         "plan_price": 4,
         "bid_ceiling": 12,
         "expected_cost": 4,
-        "total_if_used": 191
+        "total_if_used": 198
        }
       ],
       "dual_world_ok": true
@@ -2491,14 +2504,14 @@
         "plan_price": 2,
         "bid_ceiling": 11,
         "expected_cost": 2,
-        "total_if_used": 177
+        "total_if_used": 184
        },
        {
         "name": "Isaiah Joe",
         "plan_price": 2,
         "bid_ceiling": 10,
         "expected_cost": 2,
-        "total_if_used": 177
+        "total_if_used": 184
        }
       ],
       "dual_world_ok": true
@@ -2508,7 +2521,7 @@
       "name": "Kon Knueppel",
       "plan_price": 22,
       "role": "3PT% 레버리지 3위",
-      "bid_ceiling": 26,
+      "bid_ceiling": 33,
       "expected_cost": 22,
       "alternates": [
        {
@@ -2516,20 +2529,20 @@
         "plan_price": 2,
         "bid_ceiling": 11,
         "expected_cost": 2,
-        "total_if_used": 169
+        "total_if_used": 176
        },
        {
         "name": "Isaiah Joe",
         "plan_price": 2,
         "bid_ceiling": 10,
         "expected_cost": 2,
-        "total_if_used": 169
+        "total_if_used": 176
        }
       ],
       "dual_world_ok": true
      }
     ],
-    "final_total": 189,
+    "final_total": 196,
     "final_big_budget": 43,
     "final_c_eligible": 4,
     "targeted_cats": [
@@ -2579,10 +2592,10 @@
      "wins_incl_dd": 10
     }
    },
-   "budget_slack": 17,
+   "budget_slack": 10,
    "conditional_on_discount": {
     "anchor": "Shai Gilgeous-Alexander",
-    "reason": "my_max $72 < 실측 시장하단 $81 — 시장 할인 없이는 확보 불가",
+    "reason": "my_max $79 < 실측 시장하단 $81 — 시장 할인 없이는 확보 불가",
     "on_fail": {
      "action": "switch_core",
      "target": "c4",
@@ -2826,13 +2839,13 @@
       {
        "name": "Kon Knueppel",
        "plan_price": 22,
-       "bid_ceiling": 26,
+       "bid_ceiling": 31,
        "expected_cost": 22
       },
       {
        "name": "Desmond Bane",
        "plan_price": 22,
-       "bid_ceiling": 26,
+       "bid_ceiling": 31,
        "expected_cost": 22
       },
       {
@@ -2842,7 +2855,7 @@
        "expected_cost": 2
       }
      ],
-     "bid_ceiling": 26,
+     "bid_ceiling": 31,
      "expected_cost": 22
     },
     {
@@ -2999,7 +3012,7 @@
       "in": {
        "name": "Desmond Bane",
        "plan_price": 22,
-       "bid_ceiling": 26,
+       "bid_ceiling": 31,
        "expected_cost": 22
       },
       "delta": 10,
@@ -3105,13 +3118,13 @@
       "name": "Kon Knueppel",
       "plan_price": 22,
       "role": "3PT% 레버리지 2위 · 3PM 3.4",
-      "bid_ceiling": 26,
+      "bid_ceiling": 31,
       "expected_cost": 22,
       "alternates": [
        {
         "name": "Desmond Bane",
         "plan_price": 22,
-        "bid_ceiling": 26,
+        "bid_ceiling": 31,
         "expected_cost": 22,
         "total_if_used": 193
        },
@@ -3155,7 +3168,7 @@
       "name": "Desmond Bane",
       "plan_price": 22,
       "role": "OREB 3.9 · 76G",
-      "bid_ceiling": 26,
+      "bid_ceiling": 31,
       "expected_cost": 22,
       "alternates": [
        {
@@ -3444,13 +3457,7 @@
           "player": "Amen Thompson",
           "slot": "SF",
           "from": 26,
-          "to": 42
-         },
-         {
-          "player": "Domantas Sabonis",
-          "slot": "PF",
-          "from": 19,
-          "to": 24
+          "to": 47
          }
         ],
         "total_after": 175,
@@ -3461,12 +3468,12 @@
       }
      ],
      "anchor_plan": {
-      "bid_ceiling": 50,
-      "nominal_margin": 0,
+      "bid_ceiling": 56,
+      "nominal_margin": 6,
       "budget_slack": 20,
-      "effective_headroom": 0,
-      "constraint": "my_max",
-      "dual_world_ok": false,
+      "effective_headroom": 6,
+      "constraint": "none",
+      "dual_world_ok": true,
       "substitutes_dual_ok": [
        "Josh Giddey",
        "De'Aaron Fox"
@@ -3489,7 +3496,7 @@
       {
        "name": "Amen Thompson",
        "plan_price": 26,
-       "bid_ceiling": 42,
+       "bid_ceiling": 49,
        "expected_cost": 26
       },
       {
@@ -3505,7 +3512,7 @@
        "expected_cost": 5
       }
      ],
-     "bid_ceiling": 42,
+     "bid_ceiling": 49,
      "expected_cost": 26
     },
     {
@@ -3539,13 +3546,13 @@
       {
        "name": "Kon Knueppel",
        "plan_price": 22,
-       "bid_ceiling": 26,
+       "bid_ceiling": 33,
        "expected_cost": 22
       },
       {
        "name": "Desmond Bane",
        "plan_price": 22,
-       "bid_ceiling": 26,
+       "bid_ceiling": 31,
        "expected_cost": 22
       },
       {
@@ -3555,7 +3562,7 @@
        "expected_cost": 2
       }
      ],
-     "bid_ceiling": 26,
+     "bid_ceiling": 33,
      "expected_cost": 22
     },
     {
@@ -3753,7 +3760,7 @@
       "out": {
        "name": "Kon Knueppel",
        "plan_price": 22,
-       "bid_ceiling": 26,
+       "bid_ceiling": 33,
        "expected_cost": 22
       },
       "in": {
@@ -3770,13 +3777,13 @@
       "out": {
        "name": "Amen Thompson",
        "plan_price": 26,
-       "bid_ceiling": 42,
+       "bid_ceiling": 49,
        "expected_cost": 26
       },
       "in": {
        "name": "Amen Thompson",
        "plan_price": 26,
-       "bid_ceiling": 42,
+       "bid_ceiling": 49,
        "expected_cost": 26
       },
       "delta": 3,
@@ -3810,14 +3817,14 @@
         "expected_cost": 39
        }
       ],
-      "dual_world_ok": false
+      "dual_world_ok": true
      },
      {
       "slot": "SF",
       "name": "Amen Thompson",
       "plan_price": 26,
       "role": "가드형 OREB 3.0 · 79G",
-      "bid_ceiling": 42,
+      "bid_ceiling": 49,
       "expected_cost": 26,
       "alternates": [
        {
@@ -3873,7 +3880,7 @@
        {
         "name": "Desmond Bane",
         "plan_price": 22,
-        "bid_ceiling": 26,
+        "bid_ceiling": 31,
         "expected_cost": 22,
         "total_if_used": 168
        },
@@ -4152,7 +4159,7 @@
   {
    "id": "c6",
    "name": "코어 6 · A/T 분산 조달 (정상 시장 기본값)",
-   "premise": "A/T 한계기여를 McConnell(+0.261) + DeRozan(+0.152) = +0.413($21)으로 분산 조달. Haliburton 단독(+0.517, $50)의 80%를 42% 가격에 확보하고 절감분으로 KAT 앵커까지 붙인다. ⚠️ 아킬레스 리스크는 없지만 A/T 리스크가 없는 것은 아니다 — McConnell은 Hali·Nembhard 뒤 3번째 가드이고, DeRozan 대체안(Schröder +0.110 / D.Russell +0.017)은 A/T 질이 크게 떨어진다. McConnell을 $6 이내에 못 잡으면 노리는 캣 12개 표기를 즉시 낮춰 읽어야 한다. 빅맨 총액 $113 상한도 생존 조건.",
+   "premise": "A/T 한계기여를 Derrick White(+0.171) + DeRozan(+0.152) = +0.323($47)으로 분산 조달한다. Haliburton 단독(+0.517, $50)의 62%를 조달하면서 아킬레스 복귀 리스크를 지지 않고, 절감분으로 KAT 앵커까지 붙인다. ⚠️ 33차에 PG를 McConnell $4 → Derrick White $39로 바꾼 뒤의 구조다 — 이전 서술('McConnell +0.261 + DeRozan')은 그 교체를 반영하지 못한 낡은 문장이었다(37차 정정). D.White는 A/T 외에 3PM 3.0 · FT% 87.7% · 가드 BLK 1.3을 함께 주므로 빅맨 헤비 빌드의 빈 캣을 한 슬롯에서 메운다. 빅맨 총액 $113 상한이 생존 조건인 것은 그대로다.",
    "targeted_cats": [
     "A/T",
     "AST",
@@ -4228,11 +4235,11 @@
       }
      ],
      "anchor_plan": {
-      "bid_ceiling": 62,
-      "nominal_margin": 17,
+      "bid_ceiling": 71,
+      "nominal_margin": 26,
       "budget_slack": 19,
-      "effective_headroom": 17,
-      "constraint": "none",
+      "effective_headroom": 19,
+      "constraint": "budget",
       "dual_world_ok": true,
       "substitutes_dual_ok": [
        "Jalen Duren",
@@ -4284,7 +4291,7 @@
       {
        "name": "Amen Thompson",
        "plan_price": 26,
-       "bid_ceiling": 42,
+       "bid_ceiling": 49,
        "expected_cost": 26
       },
       {
@@ -4300,7 +4307,7 @@
        "expected_cost": 5
       }
      ],
-     "bid_ceiling": 42,
+     "bid_ceiling": 49,
      "expected_cost": 26
     },
     {
@@ -4318,13 +4325,13 @@
       {
        "name": "Kon Knueppel",
        "plan_price": 22,
-       "bid_ceiling": 26,
+       "bid_ceiling": 33,
        "expected_cost": 22
       },
       {
        "name": "Desmond Bane",
        "plan_price": 22,
-       "bid_ceiling": 26,
+       "bid_ceiling": 31,
        "expected_cost": 22
       }
      ],
@@ -4486,19 +4493,13 @@
           "player": "Amen Thompson",
           "slot": "SF",
           "from": 26,
-          "to": 42
+          "to": 49
          },
          {
           "player": "Karl-Anthony Towns",
           "slot": "C",
           "from": 45,
-          "to": 55
-         },
-         {
-          "player": "Donovan Clingan",
-          "slot": "BN",
-          "from": 12,
-          "to": 17
+          "to": 53
          }
         ],
         "total_after": 175,
@@ -4517,19 +4518,13 @@
           "player": "Amen Thompson",
           "slot": "SF",
           "from": 26,
-          "to": 42
+          "to": 49
          },
          {
           "player": "Karl-Anthony Towns",
           "slot": "C",
           "from": 45,
-          "to": 55
-         },
-         {
-          "player": "Donovan Clingan",
-          "slot": "BN",
-          "from": 12,
-          "to": 17
+          "to": 53
          }
         ],
         "total_after": 175,
@@ -4540,10 +4535,10 @@
       }
      ],
      "anchor_plan": {
-      "bid_ceiling": 44,
-      "nominal_margin": 5,
+      "bid_ceiling": 52,
+      "nominal_margin": 13,
       "budget_slack": 19,
-      "effective_headroom": 5,
+      "effective_headroom": 13,
       "constraint": "none",
       "dual_world_ok": true,
       "substitutes_dual_ok": [
@@ -4583,12 +4578,13 @@
       },
       "in": {
        "name": "Karl-Anthony Towns",
-       "plan_price": 45,
+       "plan_price": 49,
        "bid_ceiling": 55,
-       "expected_cost": 45
+       "expected_cost": 49,
+       "overheat_cost": 49
       },
       "delta": 6,
-      "kind": "가격 상향"
+      "kind": "가격 상향 (과열 세계 · 시장 상단)"
      },
      {
       "slot": "UTIL",
@@ -4599,12 +4595,12 @@
        "expected_cost": 12
       },
       "in": {
-       "name": "Mitchell Robinson",
+       "name": "Onyeka Okongwu",
        "plan_price": 5,
-       "bid_ceiling": 12,
+       "bid_ceiling": 10,
        "expected_cost": 5
       },
-      "delta": -6,
+      "delta": -7,
       "kind": "교체"
      },
      {
@@ -4616,12 +4612,12 @@
        "expected_cost": 8
       },
       "in": {
-       "name": "Sam Merrill",
-       "plan_price": 2,
-       "bid_ceiling": 8,
-       "expected_cost": 2
+       "name": "Josh Hart",
+       "plan_price": 4,
+       "bid_ceiling": 5,
+       "expected_cost": 4
       },
-      "delta": -6,
+      "delta": -4,
       "kind": "교체"
      },
      {
@@ -4633,12 +4629,12 @@
        "expected_cost": 12
       },
       "in": {
-       "name": "Ausar Thompson",
-       "plan_price": 3,
-       "bid_ceiling": 8,
-       "expected_cost": 3
+       "name": "Kon Knueppel",
+       "plan_price": 22,
+       "bid_ceiling": 33,
+       "expected_cost": 22
       },
-      "delta": -9,
+      "delta": 10,
       "kind": "교체"
      },
      {
@@ -4651,28 +4647,30 @@
       },
       "in": {
        "name": "Alperen Şengün",
-       "plan_price": 26,
+       "plan_price": 29,
        "bid_ceiling": 34,
-       "expected_cost": 26
+       "expected_cost": 29,
+       "overheat_cost": 29
       },
       "delta": 3,
-      "kind": "가격 상향"
+      "kind": "가격 상향 (과열 세계 · 시장 상단)"
      }
     ],
     "final_roster": [
      {
       "slot": "C",
       "name": "Karl-Anthony Towns",
-      "plan_price": 45,
+      "plan_price": 49,
       "role": "앵커 · DD 56 리그 1위",
       "is_anchor": true,
       "bid_ceiling": 55,
-      "expected_cost": 45,
+      "expected_cost": 49,
+      "overheat_cost": 49,
       "alternates": [
        {
         "name": "Jalen Duren",
         "plan_price": 27,
-        "total_if_used": 141,
+        "total_if_used": 165,
         "redeploy": {
          "moves": [
           {
@@ -4691,7 +4689,7 @@
        {
         "name": "Alperen Şengün",
         "plan_price": 26,
-        "total_if_used": 140,
+        "total_if_used": 164,
         "redeploy": {
          "moves": [
           {
@@ -4713,24 +4711,25 @@
      {
       "slot": "PF",
       "name": "Alperen Şengün",
-      "plan_price": 26,
+      "plan_price": 29,
       "role": "OREB 3.0 · DD · 빅맨 최상급 AST",
       "bid_ceiling": 34,
-      "expected_cost": 26,
+      "expected_cost": 29,
+      "overheat_cost": 29,
       "alternates": [
        {
         "name": "Evan Mobley",
         "plan_price": 23,
         "bid_ceiling": 30,
         "expected_cost": 23,
-        "total_if_used": 156
+        "total_if_used": 181
        },
        {
         "name": "LeBron James",
         "plan_price": 14,
         "bid_ceiling": 16,
         "expected_cost": 14,
-        "total_if_used": 147
+        "total_if_used": 172
        }
       ],
       "dual_world_ok": true
@@ -4740,7 +4739,7 @@
       "name": "Amen Thompson",
       "plan_price": 26,
       "role": "가드형 OREB 3.0 · 79G",
-      "bid_ceiling": 42,
+      "bid_ceiling": 49,
       "expected_cost": 26,
       "alternates": [
        {
@@ -4748,14 +4747,14 @@
         "plan_price": 11,
         "bid_ceiling": 14,
         "expected_cost": 11,
-        "total_if_used": 144
+        "total_if_used": 172
        },
        {
         "name": "Jaden McDaniels",
         "plan_price": 5,
         "bid_ceiling": 10,
         "expected_cost": 5,
-        "total_if_used": 138
+        "total_if_used": 166
        }
       ],
       "dual_world_ok": true
@@ -4773,42 +4772,49 @@
         "plan_price": 3,
         "bid_ceiling": 8,
         "expected_cost": 3,
-        "total_if_used": 157
+        "total_if_used": 185
        },
        {
         "name": "Cason Wallace",
         "plan_price": 3,
         "bid_ceiling": 8,
         "expected_cost": 3,
-        "total_if_used": 157
+        "total_if_used": 185
        }
       ],
       "dual_world_ok": true
      },
      {
       "slot": "UTIL",
-      "name": "Ausar Thompson",
-      "plan_price": 3,
+      "name": "Kon Knueppel",
+      "plan_price": 22,
       "role": "STL 2.0 리그 공동 1위",
-      "bid_ceiling": 8,
-      "expected_cost": 3,
+      "bid_ceiling": 33,
+      "expected_cost": 22,
       "alternates": [
+       {
+        "name": "Ausar Thompson",
+        "plan_price": 3,
+        "bid_ceiling": 8,
+        "expected_cost": 3,
+        "total_if_used": 168
+       },
        {
         "name": "Cason Wallace",
         "plan_price": 3,
         "bid_ceiling": 8,
         "expected_cost": 3,
-        "total_if_used": 159
+        "total_if_used": 168
        }
       ],
       "dual_world_ok": true
      },
      {
       "slot": "BN",
-      "name": "Mitchell Robinson",
+      "name": "Onyeka Okongwu",
       "plan_price": 5,
       "role": "OREB 4.5 리그 1위 · 77G",
-      "bid_ceiling": 12,
+      "bid_ceiling": 10,
       "expected_cost": 5,
       "alternates": [
        {
@@ -4816,14 +4822,14 @@
         "plan_price": 11,
         "bid_ceiling": 16,
         "expected_cost": 11,
-        "total_if_used": 165
+        "total_if_used": 193
        },
        {
         "name": "Mark Williams",
         "plan_price": 7,
         "bid_ceiling": 14,
         "expected_cost": 7,
-        "total_if_used": 161
+        "total_if_used": 189
        }
       ],
       "dual_world_ok": true
@@ -4840,7 +4846,7 @@
        {
         "name": "Dennis Schröder",
         "plan_price": 5,
-        "total_if_used": 156,
+        "total_if_used": 184,
         "redeploy": null,
         "bid_ceiling": 12,
         "expected_cost": 5
@@ -4848,7 +4854,7 @@
        {
         "name": "D'Angelo Russell",
         "plan_price": 2,
-        "total_if_used": 153,
+        "total_if_used": 181,
         "redeploy": null,
         "bid_ceiling": 8,
         "expected_cost": 2
@@ -4858,25 +4864,25 @@
      },
      {
       "slot": "BN",
-      "name": "Sam Merrill",
-      "plan_price": 2,
+      "name": "Josh Hart",
+      "plan_price": 4,
       "role": "OREB+BLK+DD 빅",
-      "bid_ceiling": 8,
-      "expected_cost": 2,
+      "bid_ceiling": 5,
+      "expected_cost": 4,
       "alternates": [
        {
         "name": "Ivica Zubac",
         "plan_price": 11,
         "bid_ceiling": 16,
         "expected_cost": 11,
-        "total_if_used": 168
+        "total_if_used": 194
        },
        {
         "name": "Mark Williams",
         "plan_price": 7,
         "bid_ceiling": 14,
         "expected_cost": 7,
-        "total_if_used": 164
+        "total_if_used": 190
        }
       ],
       "dual_world_ok": true
@@ -4893,7 +4899,7 @@
        {
         "name": "T.J. McConnell",
         "plan_price": 2,
-        "total_if_used": 122,
+        "total_if_used": 150,
         "redeploy": {
          "moves": [
           {
@@ -4924,7 +4930,7 @@
        {
         "name": "Andrew Nembhard",
         "plan_price": 2,
-        "total_if_used": 122,
+        "total_if_used": 150,
         "redeploy": {
          "moves": [
           {
@@ -4956,54 +4962,54 @@
       "dual_world_ok": true
      }
     ],
-    "final_total": 159,
-    "final_big_budget": 76,
+    "final_total": 187,
+    "final_big_budget": 83,
     "final_c_eligible": 3,
     "targeted_cats": [
+     "3P%",
+     "3PM",
      "A/T",
      "AST",
      "BLK",
      "DD",
      "FG%",
+     "FT%",
      "OREB",
      "PTS",
      "REB",
-     "STL",
-     "TOV"
+     "STL"
     ],
     "punted_cats": [
-     "3P%",
-     "3PM",
-     "FT%"
+     "TOV"
     ],
     "cat_marginals": {
      "starters": 9,
      "PTS": {
-      "sum": 136.5,
-      "marginal": 0.3,
+      "sum": 156.5,
+      "marginal": 23.1,
       "verdict": "확보"
      },
      "TOV": {
-      "sum": 15.4,
-      "marginal": 0.5,
-      "verdict": "확보"
+      "sum": 18.1,
+      "marginal": -2.4,
+      "verdict": "미달"
      },
      "all": {
-      "PTS": 0.3,
-      "REB": 8.2,
-      "OREB": 5.4,
-      "AST": 0.9,
+      "PTS": 23.1,
+      "REB": 16.2,
+      "OREB": 5.5,
+      "AST": 6.9,
       "STL": 1.6,
-      "BLK": 0.7,
-      "TOV": 0.5,
-      "3PM": -2.3,
-      "DD": 0.3,
-      "3P%": -36.1,
-      "FT%": -63.4,
-      "FG%": 14.3,
-      "A/T": 0.134
+      "BLK": 0.6,
+      "TOV": -2.4,
+      "3PM": 1.5,
+      "DD": 0.8,
+      "3P%": 1.4,
+      "FT%": 5.5,
+      "FG%": 0.9,
+      "A/T": 0.124
      },
-     "wins_incl_dd": 10
+     "wins_incl_dd": 12
     }
    },
    "budget_slack": 19,
@@ -5133,10 +5139,10 @@
        "redeploy": {
         "moves": [
          {
-          "player": "Rudy Gobert",
-          "slot": "UTIL",
-          "from": 8,
-          "to": 17
+          "player": "Kon Knueppel",
+          "slot": "SF",
+          "from": 22,
+          "to": 31
          }
         ],
         "total_after": 175,
@@ -5152,16 +5158,16 @@
        "redeploy": {
         "moves": [
          {
+          "player": "Kon Knueppel",
+          "slot": "SF",
+          "from": 22,
+          "to": 33
+         },
+         {
           "player": "Rudy Gobert",
           "slot": "UTIL",
           "from": 8,
-          "to": 18
-         },
-         {
-          "player": "Alperen Şengün",
-          "slot": "PF",
-          "from": 26,
-          "to": 33
+          "to": 14
          }
         ],
         "total_after": 175,
@@ -5173,8 +5179,8 @@
      ],
      "is_anchor": true,
      "anchor_plan": {
-      "bid_ceiling": 62,
-      "nominal_margin": 17,
+      "bid_ceiling": 71,
+      "nominal_margin": 26,
       "budget_slack": 16,
       "effective_headroom": 16,
       "constraint": "budget",
@@ -5227,23 +5233,23 @@
       {
        "name": "Kon Knueppel",
        "plan_price": 22,
-       "bid_ceiling": 26,
+       "bid_ceiling": 33,
        "expected_cost": 22
       },
       {
        "name": "Desmond Bane",
        "plan_price": 22,
-       "bid_ceiling": 26,
+       "bid_ceiling": 31,
        "expected_cost": 22
       },
       {
        "name": "Amen Thompson",
        "plan_price": 26,
-       "bid_ceiling": 42,
+       "bid_ceiling": 49,
        "expected_cost": 26
       }
      ],
-     "bid_ceiling": 26,
+     "bid_ceiling": 33,
      "expected_cost": 22
     },
     {
@@ -5299,25 +5305,25 @@
        "redeploy": {
         "moves": [
          {
-          "player": "Karl-Anthony Towns",
-          "slot": "C",
-          "from": 45,
-          "to": 53
+          "player": "Kon Knueppel",
+          "slot": "SF",
+          "from": 22,
+          "to": 30
          }
         ],
         "total_after": 175,
         "feasible": true
        },
-       "bid_ceiling": 22,
+       "bid_ceiling": 27,
        "expected_cost": 22
       }
      ],
      "is_anchor": true,
      "anchor_plan": {
-      "bid_ceiling": 44,
-      "nominal_margin": 5,
+      "bid_ceiling": 52,
+      "nominal_margin": 13,
       "budget_slack": 16,
-      "effective_headroom": 5,
+      "effective_headroom": 13,
       "constraint": "none",
       "dual_world_ok": true,
       "substitutes_dual_ok": [
@@ -5472,85 +5478,302 @@
        "bid_ceiling": 8,
        "expected_cost": 3
       }
+     },
+     {
+      "slot": "C",
+      "out": {
+       "name": "Karl-Anthony Towns",
+       "plan_price": 45,
+       "bid_ceiling": 55,
+       "expected_cost": 45
+      },
+      "in": {
+       "name": "Karl-Anthony Towns",
+       "bid_ceiling": 55,
+       "plan_price": 49,
+       "expected_cost": 49,
+       "overheat_cost": 49
+      },
+      "delta": 4,
+      "kind": "가격 상향 (과열 세계 · 시장 상단)"
      }
     ],
     "final_roster": [
      {
       "slot": "C",
       "name": "Karl-Anthony Towns",
-      "plan_price": 45,
-      "dual_world_ok": true,
+      "plan_price": 49,
+      "role": "앵커 · DD 56 리그 1위 · OREB 3.1",
+      "is_anchor": true,
       "bid_ceiling": 55,
-      "expected_cost": 45
+      "expected_cost": 49,
+      "overheat_cost": 49,
+      "alternates": [
+       {
+        "name": "Jalen Duren",
+        "plan_price": 27,
+        "total_if_used": 159,
+        "redeploy": {
+         "moves": [
+          {
+           "player": "Kon Knueppel",
+           "slot": "SF",
+           "from": 22,
+           "to": 31
+          }
+         ],
+         "total_after": 175,
+         "feasible": true
+        },
+        "bid_ceiling": 34,
+        "expected_cost": 27
+       },
+       {
+        "name": "Domantas Sabonis",
+        "plan_price": 19,
+        "total_if_used": 151,
+        "redeploy": {
+         "moves": [
+          {
+           "player": "Kon Knueppel",
+           "slot": "SF",
+           "from": 22,
+           "to": 33
+          },
+          {
+           "player": "Rudy Gobert",
+           "slot": "UTIL",
+           "from": 8,
+           "to": 14
+          }
+         ],
+         "total_after": 175,
+         "feasible": true
+        },
+        "bid_ceiling": 34,
+        "expected_cost": 19
+       }
+      ],
+      "dual_world_ok": true
      },
      {
       "slot": "PF",
       "name": "Alperen Şengün",
       "plan_price": 26,
-      "dual_world_ok": true,
+      "role": "OREB 3.0 · DD 34 · 빅맨 최상급 AST",
       "bid_ceiling": 34,
-      "expected_cost": 26
+      "expected_cost": 26,
+      "alternates": [
+       {
+        "name": "Domantas Sabonis",
+        "plan_price": 19,
+        "bid_ceiling": 34,
+        "expected_cost": 19,
+        "total_if_used": 174
+       },
+       {
+        "name": "Pascal Siakam",
+        "plan_price": 25,
+        "bid_ceiling": 26,
+        "expected_cost": 25,
+        "total_if_used": 180
+       }
+      ],
+      "dual_world_ok": true
      },
      {
       "slot": "SF",
       "name": "Kon Knueppel",
       "plan_price": 22,
-      "dual_world_ok": true,
-      "bid_ceiling": 26,
-      "expected_cost": 22
+      "role": "3PT% 레버리지 2위 · 3PM 3.4",
+      "bid_ceiling": 33,
+      "expected_cost": 22,
+      "alternates": [
+       {
+        "name": "Desmond Bane",
+        "plan_price": 22,
+        "bid_ceiling": 31,
+        "expected_cost": 22,
+        "total_if_used": 181
+       },
+       {
+        "name": "Amen Thompson",
+        "plan_price": 26,
+        "bid_ceiling": 49,
+        "expected_cost": 26,
+        "total_if_used": 185
+       }
+      ],
+      "dual_world_ok": true
      },
      {
       "slot": "SG",
       "name": "Dyson Daniels",
       "plan_price": 12,
-      "dual_world_ok": true,
+      "role": "STL 2.0 리그 공동 1위 · OREB 2.4",
       "bid_ceiling": 20,
-      "expected_cost": 12
+      "expected_cost": 12,
+      "alternates": [
+       {
+        "name": "Ausar Thompson",
+        "plan_price": 3,
+        "bid_ceiling": 8,
+        "expected_cost": 3,
+        "total_if_used": 172
+       },
+       {
+        "name": "Cason Wallace",
+        "plan_price": 3,
+        "bid_ceiling": 8,
+        "expected_cost": 3,
+        "total_if_used": 172
+       }
+      ],
+      "dual_world_ok": true
      },
      {
       "slot": "PG",
       "name": "Derrick White",
       "plan_price": 39,
-      "dual_world_ok": true,
+      "role": "앵커 · A/T +0.171 · FT% 90.2% · 가드 BLK 1.3",
+      "is_anchor": true,
       "bid_ceiling": 44,
-      "expected_cost": 39
+      "expected_cost": 39,
+      "alternates": [
+       {
+        "name": "Josh Giddey",
+        "plan_price": 41,
+        "total_if_used": 183,
+        "redeploy": null,
+        "bid_ceiling": 42,
+        "expected_cost": 41
+       },
+       {
+        "name": "Nickeil Alexander-Walker",
+        "plan_price": 22,
+        "total_if_used": 164,
+        "redeploy": {
+         "moves": [
+          {
+           "player": "Kon Knueppel",
+           "slot": "SF",
+           "from": 22,
+           "to": 30
+          }
+         ],
+         "total_after": 175,
+         "feasible": true
+        },
+        "bid_ceiling": 27,
+        "expected_cost": 22
+       }
+      ],
+      "dual_world_ok": true
      },
      {
       "slot": "UTIL",
       "name": "Evan Mobley",
       "plan_price": 23,
-      "dual_world_ok": true,
+      "role": "중가 센터 — OREB 2.4 · BLK 1.7 · DD 27",
       "bid_ceiling": 30,
-      "expected_cost": 23
+      "expected_cost": 23,
+      "alternates": [
+       {
+        "name": "Mitchell Robinson",
+        "plan_price": 5,
+        "bid_ceiling": 12,
+        "expected_cost": 5,
+        "total_if_used": 163
+       },
+       {
+        "name": "Deandre Ayton",
+        "plan_price": 5,
+        "bid_ceiling": 14,
+        "expected_cost": 5,
+        "total_if_used": 163
+       }
+      ],
+      "dual_world_ok": true
      },
      {
       "slot": "UTIL",
       "name": "Ausar Thompson",
       "plan_price": 3,
-      "dual_world_ok": true,
+      "role": "OREB 3.9 · BLK 1.6 · DD 33 · 76G",
       "bid_ceiling": 8,
-      "expected_cost": 3
+      "expected_cost": 3,
+      "alternates": [
+       {
+        "name": "Mitchell Robinson",
+        "plan_price": 5,
+        "bid_ceiling": 12,
+        "expected_cost": 5,
+        "total_if_used": 183
+       },
+       {
+        "name": "Deandre Ayton",
+        "plan_price": 5,
+        "bid_ceiling": 14,
+        "expected_cost": 5,
+        "total_if_used": 183
+       }
+      ],
+      "dual_world_ok": true
      },
      {
       "slot": "BN",
       "name": "Josh Hart",
       "plan_price": 4,
-      "dual_world_ok": true,
+      "role": "다재다능 저가 — 12.7P 8.4R 5.3A",
       "bid_ceiling": 5,
-      "expected_cost": 4
+      "expected_cost": 4,
+      "alternates": [
+       {
+        "name": "Nikola Vučević",
+        "plan_price": 2,
+        "bid_ceiling": 8,
+        "expected_cost": 2,
+        "total_if_used": 179
+       },
+       {
+        "name": "Kel'el Ware",
+        "plan_price": 2,
+        "bid_ceiling": 4,
+        "expected_cost": 2,
+        "total_if_used": 179
+       }
+      ],
+      "dual_world_ok": true
      },
      {
       "slot": "BN",
       "name": "Cason Wallace",
       "plan_price": 3,
-      "dual_world_ok": true,
+      "role": "중가 센터 저가 — OREB+BLK+DD",
       "bid_ceiling": 8,
-      "expected_cost": 3
+      "expected_cost": 3,
+      "alternates": [
+       {
+        "name": "Nikola Vučević",
+        "plan_price": 2,
+        "bid_ceiling": 8,
+        "expected_cost": 2,
+        "total_if_used": 180
+       },
+       {
+        "name": "Kel'el Ware",
+        "plan_price": 2,
+        "bid_ceiling": 4,
+        "expected_cost": 2,
+        "total_if_used": 180
+       }
+      ],
+      "dual_world_ok": true
      }
     ],
     "rationale": "UTIL 센터 2자리(Gobert·Okongwu)를 저가 가드로 바꾸고 절감분을 SG(Daniels 12→15)·SF(Knueppel 22→25) 상향에 쓴다. 중가 센터 축(KAT·Şengün·Mobley)은 유지한다 — 그 축을 버리는 것이 기존 c7의 오류였다.",
-    "final_total": 177,
-    "final_big_budget": 94,
+    "final_total": 181,
+    "final_big_budget": 98,
     "final_c_eligible": 3,
     "targeted_cats": [
      "A/T",
@@ -6771,5 +6994,22 @@
   "loss_pp": 3.3,
   "loss_pp_vs_c6": 2.4,
   "reading": "이 손실폭이 KAT에 추가 지불 가능한 상한의 근거다. 값 해석은 사용자."
+ },
+ "draft_date": {
+  "date": "2026-09-05",
+  "source": "사용자 확인 2026-08-26",
+  "note": "시즌 개막 2026-10-20 보다 6.5주 앞선다. 문서의 '개막 1~2주 전' 가정은 틀렸다."
+ },
+ "league_rules_confirmed": {
+  "nomination_auto_bid_1": {
+   "value": true,
+   "source": "사용자 확인 2026-08-26",
+   "implication": "지명하면 그 선수에게 자동으로 $1 이 걸린다. 따라서 **태우기 지명은 남이 100% 달려들 선수만** 올려야 한다 — 아무도 안 붙으면 내가 $1 에 떠안는다. $1 로스터 한 자리를 버리는 셈이라 로스터 9인 리그에서는 치명적이다."
+  },
+  "sabonis_haliburton": {
+   "value": "정상 복귀 예상",
+   "source": "사용자 판단 2026-08-26",
+   "caveat": "측정이 아니라 기대다. 프리시즌 실경기로 확인되면 근거를 교체할 것."
+  }
  }
 }

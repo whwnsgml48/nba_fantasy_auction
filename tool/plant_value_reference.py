@@ -43,7 +43,14 @@ for n, v in V.items():
     gp = (p.get("measured_source") or {}).get("GP") or 0
     # 26차: GP 보정 기준을 항상 현재 my_max로 통일했다. my_max_basis.prior를 base로 쓰면
     # 26차 사용자 결정(Kessler·Curry·LeBron)의 prior까지 잡혀 엉뚱한 기준이 된다.
-    gp_adj = max(1, round(p["my_max"] * gp / REF)) if gp else None
+    # 🔴 37차 — 이 값은 my_max에서 파생되므로 **상향에 재적용하면 발산한다**.
+    #    GP>64.7 이면 gp_adj > my_max 라, 상향을 적용한 뒤 다시 돌리면 또 그만큼 높은
+    #    값이 나온다(KAT: 62 → 71 → 81 → 92 …). 23차 하향은 GP<55 조건이라 반대 방향으로
+    #    수렴했지만, 37차에 대칭 상향을 적용하면서 이 비대칭이 드러났다.
+    #    → 이미 상향이 적용된 선수는 **고정점(my_max)** 을 보고하고 원값은 raw에 남긴다.
+    gp_raw = max(1, round(p["my_max"] * gp / REF)) if gp else None
+    _applied = "GP 출장 보정 상향" in ((p.get("my_max_basis") or {}).get("revised") or "")
+    gp_adj = p["my_max"] if (_applied and gp_raw and gp_raw > p["my_max"]) else gp_raw
     p["value_reference"] = {
         "model": MODEL,
         "z_total": v["z_total"], "z_by_cat": v["z"], "dollar_naive": v["value"],
@@ -51,7 +58,11 @@ for n, v in V.items():
         "rank_divergence": rm[n] - rz[n],
         "gp": gp, "gp_ref": round(REF, 1),
         "gp_adjusted_my_max": gp_adj,
-        "gp_adjust_basis": ("현재 my_max 기준 · 23차 GP 보정 이미 반영됨"
+        "gp_adjusted_raw": gp_raw,
+        "gp_adjust_applied": _applied,
+        "gp_adjust_basis": ("상향 적용 완료(37차) — 재적용 금지. 원값은 gp_adjusted_raw"
+                            if _applied else
+                            "현재 my_max 기준 · 23차 GP 보정 이미 반영됨"
                             if "GP" in ((p.get("my_max_basis") or {}).get("revised") or "")
                             else "현재 my_max 기준"),
         "caveat": CAVEAT,

@@ -72,7 +72,7 @@ def main(apply=True):
             r = {"slot": slot, "name": src["name"], "plan_price": cost(src)}
             if role:   r["role"] = role
             if anchor: r["is_anchor"] = True
-            for k in ("bid_ceiling", "expected_cost", "dual_world_ok", "is_big"):
+            for k in ("bid_ceiling", "expected_cost", "dual_world_ok", "is_big", "overheat_cost"):
                 if k in src: r[k] = src[k]
             r.setdefault("expected_cost", cost(src))
 

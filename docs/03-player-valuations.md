@@ -67,26 +67,26 @@ DB 174명 중 **171명 매칭**(2시즌 GP 가중 혼합 · 최근 시즌 ×1.5)
 <!-- GEN:surplus — tool/gen_docs03.py 가 생성. 직접 수정하지 마라 -->
 | 잉여 | 시장중간 | 최대가 | 포지션 | 선수 | 실측(BBRef) |
 |---|---|---|---|---|---|
-| +$22 | $12 | $34 | C | **Donovan Clingan** | 10P 10.2R 1.7A 0.6S 1.7B 1.2TO · OREB 4 · FG 52.7% (7.5FGA) · 3P 32.1% (2.3×) 0.8×3PM · FT 64.9% (2.2FTA) · 혼합 GP 73.3 · 24.5MPG · 25-26 63% |
-| +$20 | $26 | $46 | F/C | **Alperen Şengün** | 19.9P 9.5R 5.7A 1.2S 1B 3TO · OREB 3.2 · FG 50.9% (15.4FGA) · 3P 27.5% (1.6×) 0.5×3PM · FT 69.1% (5.4FTA) · 혼합 GP 73.7 · 32.6MPG · 25-26 58% |
-| +$19 | $27 | $46 | C | **Jalen Duren** | 16.2P 10.4R 2.3A 0.8S 0.9B 1.8TO · OREB 3.7 · FG 66.8% (9.6FGA) · 3P — (0×) 0×3PM · FT 71.4% (4.8FTA) · 혼합 GP 73.4 · 27.3MPG · 25-26 57% |
+| +$26 | $45 | $71 | F/C | **Karl-Anthony Towns** | 21.8P 12.3R 3A 0.9S 0.6B 2.6TO · OREB 3 · FG 51.1% (15FGA) · 3P 38.8% (4.3×) 1.7×3PM · FT 84.7% (5.6FTA) · 혼합 GP 73.8 · 32.6MPG · 25-26 61% |
+| +$26 | $26 | $52 | F/C | **Alperen Şengün** | 19.9P 9.5R 5.7A 1.2S 1B 3TO · OREB 3.2 · FG 50.9% (15.4FGA) · 3P 27.5% (1.6×) 0.5×3PM · FT 69.1% (5.4FTA) · 혼합 GP 73.7 · 32.6MPG · 25-26 58% |
+| +$26 | $12 | $38 | C | **Donovan Clingan** | 10P 10.2R 1.7A 0.6S 1.7B 1.2TO · OREB 4 · FG 52.7% (7.5FGA) · 3P 32.1% (2.3×) 0.8×3PM · FT 64.9% (2.2FTA) · 혼합 GP 73.3 · 24.5MPG · 25-26 63% |
+| +$25 | $27 | $52 | C | **Jalen Duren** | 16.2P 10.4R 2.3A 0.8S 0.9B 1.8TO · OREB 3.7 · FG 66.8% (9.6FGA) · 3P — (0×) 0×3PM · FT 71.4% (4.8FTA) · 혼합 GP 73.4 · 27.3MPG · 25-26 57% |
+| +$23 | $26 | $49 | G/F | **Amen Thompson** | 16.8P 7.9R 4.7A 1.5S 0.9B 2.3TO · OREB 2.9 · FG 54.2% (12.1FGA) · 3P 23.8% (1.4×) 0.3×3PM · FT 74.4% (4.4FTA) · 혼합 GP 75.3 · 35.5MPG · 25-26 63% |
+| +$22 | $8 | $30 | C | **Rudy Gobert** | 11.3P 11.3R 1.7A 0.8S 1.5B 1.3TO · OREB 3.8 · FG 67.7% (6.7FGA) · 3P 0.0% (0.1×) 0×3PM · FT 58.3% (3.9FTA) · 혼합 GP 74.5 · 32MPG · 25-26 61% |
 | +$19 | $5 | $12 | C | **Mitchell Robinson** | 5.6P 8.3R 0.9A 0.9S 1.2B 0.7TO · OREB 4 · FG 71.3% (3.4FGA) · 3P — (0×) 0×3PM · FT 45.2% (1.6FTA) · 혼합 GP 53.2 · 19.2MPG · 25-26 84% |
-| +$18 | $8 | $26 | C | **Rudy Gobert** | 11.3P 11.3R 1.7A 0.8S 1.5B 1.3TO · OREB 3.8 · FG 67.7% (6.7FGA) · 3P 0.0% (0.1×) 0×3PM · FT 58.3% (3.9FTA) · 혼합 GP 74.5 · 32MPG · 25-26 61% |
-| +$17 | $45 | $62 | F/C | **Karl-Anthony Towns** | 21.8P 12.3R 3A 0.9S 0.6B 2.6TO · OREB 3 · FG 51.1% (15FGA) · 3P 38.8% (4.3×) 1.7×3PM · FT 84.7% (5.6FTA) · 혼합 GP 73.8 · 32.6MPG · 25-26 61% |
-| +$16 | $26 | $42 | G/F | **Amen Thompson** | 16.8P 7.9R 4.7A 1.5S 0.9B 2.3TO · OREB 2.9 · FG 54.2% (12.1FGA) · 3P 23.8% (1.4×) 0.3×3PM · FT 74.4% (4.4FTA) · 혼합 GP 75.3 · 35.5MPG · 25-26 63% |
 | +$15 | $19 | $34 | F/C | **Domantas Sabonis** | 18.1P 13.2R 5.5A 0.8S 0.3B 2.8TO · OREB 3.7 · FG 57.6% (12.5FGA) · 3P 35.0% (2×) 0.7×3PM · FT 74.6% (4.1FTA) · 혼합 GP 55.2 · 33.3MPG · 25-26 28% |
+| +$13 | $39 | $52 | G | **Derrick White** | 16.5P 4.4R 5.2A 1S 1.2B 1.7TO · OREB 1 · FG 41.3% (13.7FGA) · 3P 35.0% (8.6×) 3×3PM · FT 87.7% (2.4FTA) · 혼합 GP 76.6 · 34MPG · 25-26 60% |
 | +$13 | $23 | $36 | F/C | **Evan Mobley** | 18.3P 9.1R 3.4A 0.8S 1.7B 1.9TO · OREB 2.4 · FG 55.1% (13FGA) · 3P 32.8% (3.2×) 1.1×3PM · FT 65.6% (4.5FTA) · 혼합 GP 67.5 · 31.3MPG · 25-26 57% |
 | +$13 | $5 | $18 | C | **Deandre Ayton** | 13P 8.6R 1A 0.7S 1B 1.3TO · OREB 2.7 · FG 64.3% (9.2FGA) · 3P 18.8% (0.2×) 0.1×3PM · FT 65.1% (1.9FTA) · 혼합 GP 63.4 · 28MPG · 25-26 73% |
 | +$12 | $2 | $14 | G | **T.J. McConnell** | 9.3P 2.3R 4.8A 1S 0.2B 1.2TO · OREB 0.5 · FG 52.9% (8FGA) · 3P 31.3% (0.8×) 0.3×3PM · FT 80.3% (0.7FTA) · 혼합 GP 67.1 · 17.5MPG · 25-26 51% |
 | +$11 | $7 | $18 | C | **Mark Williams** | 12.9P 8.7R 1.5A 0.8S 1B 1.3TO · OREB 3.1 · FG 63.1% (8.3FGA) · 3P 67.2% (0×) 0×3PM · FT 78.2% (3.2FTA) · 혼합 GP 54.7 · 24.6MPG · 25-26 67% |
+| +$11 | $22 | $33 | G/F | **Kon Knueppel** | 18.5P 5.3R 3.4A 0.7S 0.2B 2TO · OREB 1.2 · FG 47.5% (13.4FGA) · 3P 42.5% (7.9×) 3.4×3PM · FT 86.3% (2.8FTA) · 혼합 GP 81 · 31.5MPG · 25-26 100% |
 | +$11 | $2 | $8 | G | **Sam Merrill** | 10.1P 2.4R 2A 0.6S 0.1B 0.7TO · OREB 0.5 · FG 43.5% (7.7FGA) · 3P 39.8% (6.2×) 2.5×3PM · FT 90.8% (0.9FTA) · 혼합 GP 61.1 · 23.3MPG · 25-26 52% |
+| +$9 | $22 | $31 | G/F | **Desmond Bane** | 19.8P 4.8R 4.5A 1.1S 0.5B 2.1TO · OREB 1.1 · FG 48.4% (14.7FGA) · 3P 39.1% (5.5×) 2.1×3PM · FT 90.3% (3.7FTA) · 혼합 GP 77.3 · 33MPG · 25-26 64% |
 | +$9 | $2 | $11 | F/C | **Bobby Portis** | 13.8P 7.1R 1.8A 0.6S 0.3B 1.1TO · OREB 1.5 · FG 48.1% (11.5FGA) · 3P 42.6% (4.1×) 1.8×3PM · FT 74.9% (1.2FTA) · 혼합 GP 61.1 · 24.6MPG · 25-26 67% |
 | +$9 | $2 | $11 | G | **AJ Green** | 9.2P 2.6R 1.7A 0.5S 0.1B 0.8TO · OREB 0.3 · FG 42.6% (7.1FGA) · 3P 42.2% (6.3×) 2.7×3PM · FT 84.0% (0.6FTA) · 혼합 GP 76.1 · 26.6MPG · 25-26 61% |
 | +$8 | $12 | $20 | G | **Dyson Daniels** | 12.8P 6.4R 5.3A 2.4S 0.5B 1.9TO · OREB 2.1 · FG 50.7% (11FGA) · 3P 24.9% (2.1×) 0.6×3PM · FT 60.6% (1.7FTA) · 혼합 GP 76 · 33.4MPG · 25-26 60% |
 | +$8 | $4 | $12 | C | **Nic Claxton** | 11.1P 7.1R 3.1A 0.8S 1.2B 1.3TO · OREB 2.3 · FG 56.8% (8.3FGA) · 3P 19.0% (0.3×) 0×3PM · FT 57.4% (2.9FTA) · 혼합 GP 69.4 · 27.4MPG · 25-26 59% |
-| +$8 | $2 | $10 | G | **Isaiah Joe** | 10.7P 2.5R 1.4A 0.7S 0.2B 0.6TO · OREB 0.5 · FG 44.9% (7.7FGA) · 3P 41.8% (6.1×) 2.5×3PM · FT 86.4% (1.3FTA) · 혼합 GP 72.2 · 21.4MPG · 25-26 59% |
-| +$8 | $2 | $10 | G/F | **Tim Hardaway Jr.** | 12.5P 2.5R 1.5A 0.5S 0.1B 0.5TO · OREB 0.2 · FG 43.1% (9.3FGA) · 3P 39.2% (6.5×) 2.6×3PM · FT 82.8% (2.3FTA) · 혼합 GP 78.8 · 27.1MPG · 25-26 60% |
-| +$8 | $2 | $10 | G | **Collin Sexton** | 16.5P 2.5R 3.6A 0.9S 0.1B 2.3TO · OREB 0.8 · FG 48.3% (12FGA) · 3P 40.3% (4.2×) 1.6×3PM · FT 85.9% (3.9FTA) · 혼합 GP 66.1 · 25.3MPG · 25-26 61% |
 <!-- /GEN:surplus -->
 
 → **잉여 상위 20 중 C 자격이 12명입니다.** 실측 곡선 적용 후 이 편중이 더 커졌습니다 —
@@ -106,29 +106,26 @@ DB 174명 중 **171명 매칭**(2시즌 GP 가중 혼합 · 최근 시즌 ×1.5)
 | $90-102 | $70 | Victor Wembanyama | 64경기(55선발) · 같은 값이면 Jokić 우선 |
 | $93-101 | $88 | Nikola Jokić | 65경기 · TOV 3.7은 포기 |
 | $83-91 | $52 | Luka Dončić | 64경기 · 남이 $80 쓰게 하라 |
-| $81-89 | $72 | Shai Gilgeous-Alexander | ⚠ 득점·FT% 출처 충돌 미해소(기준값 채택) · OKC 로드 매니지먼트 · TOV 실측 미확보 |
+| $81-89 | $79 | Shai Gilgeous-Alexander | ⚠ 득점·FT% 출처 충돌 미해소(기준값 채택) · OKC 로드 매니지먼트 · TOV 실측 미확보 |
 | $80-86 | $60 | Cade Cunningham | 64경기 · 시장가 그대로라 이득 없음 |
 | $72-80 | $40 | Anthony Edwards | 3~4캣 선수 |
 | $66-74 | $44 | Tyrese Maxey | Brown·LeBron 합류로 사용률 하락 |
 | $65-71 | $48 | Jayson Tatum | 시장가가 13캣 실질보다 높음 |
 | $64-70 | $56 | Jalen Johnson | 3PT%·FT%·TOV 미확인 |
-| $64-70 | $44 | Scottie Barnes | $44 이하면 매수 · 3PT%/FT% 확인 권장 |
+| $64-70 | $51 | Scottie Barnes | $44 이하면 매수 · 3PT%/FT% 확인 권장 |
 | $61-69 | $25 | Giannis Antetokounmpo | 36경기 · FT% 65% |
-| $54-66 | $50 | Tyrese Haliburton | 2025-26 전체 결장(아킬레스) · Nembhard 헤지 필수 · ⚠ 가중치 근거가 2024-25(73경기) — 2025-26 전체 결장 |
-| $54-60 | $48 | Donovan Mitchell | 득점·3점·스틸. 클리블랜드 4년 $273M 연장. |
-| $52-58 | $46 | Jamal Murray | 빅맨 캣(OREB·BLK·DD) 기여 없음 |
+| $54-60 | $52 | Donovan Mitchell | 득점·3점·스틸. 클리블랜드 4년 $273M 연장. |
+| $52-58 | $51 | Jamal Murray | 빅맨 캣(OREB·BLK·DD) 기여 없음 |
 | $49-55 | $40 | Chet Holmgren | 69경기 · AST/OREB 빈약 |
 | $45-51 | $26 | Kevin Durant | A/T 최하위권 · 빅맨 캣 전무 |
 | $44-50 | $34 | Cooper Flagg | 캣별 임팩트 미확정 |
 | $41-47 | $32 | Austin Reaves | 레이커스 4년 $180M 연장. |
 | $38-46 | $22 | Kawhi Leonard | GP 리스크 최상급 |
-| $35-43 | $34 | Bam Adebayo | Giannis 합류로 사용률 하락 우려 |
 | $37-43 | $32 | Jalen Brunson | OREB·DD·BLK 기여 0 |
 | $36-42 | $30 | LaMelo Ball | TOV 높음 · GP 리스크 |
 | $34-40 | $26 | Stephen Curry | 43경기 · A/T 1.68 하위권 · 빅맨 캣 전무 |
 | $34-40 | $24 | Deni Avdija | 포틀랜드에 Morant·Lillard·Holiday 동시 합류 — 사용률 대폭 하락 위험 |
 | $32-40 | $17 | Ja Morant | GP 리스크 상습 · FG%·3PT% 약점 |
-| $31-39 | $30 | James Harden | TOV 높고 A/T 평범 · 나이 · Donovan Mitchell과 볼 공유 |
 | $31-37 | $22 | Jaren Jackson Jr. | 48경기 · 무릎 수술 · OREB/DD 기여 0 |
 | $26-32 | $24 | Devin Booker | 빅맨 캣 기여 0 |
 | $20-26 | $16 | Jalen Williams | 33경기 · 3PT% 29.9% 악재 |
@@ -137,7 +134,7 @@ DB 174명 중 **171명 매칭**(2시즌 GP 가중 혼합 · 최근 시즌 ×1.5)
 | $11-17 | $16 | LeBron James | 나이 |
 | $5-11 | $2 | Gary Trent Jr. | 매수 대상 아님 — 코어 후보에서 제외됨 |
 
-총 33명 (`obtainable=false` — 내 최대가 < 시장 하단).
+총 30명 (`obtainable=false` — 내 최대가 < 시장 하단).
 <!-- /GEN:unobtainable -->
 
 ## 태우기 지명 명단 (tag=burn)
@@ -147,10 +144,10 @@ DB 174명 중 **171명 매칭**(2시즌 GP 가중 혼합 · 최근 시즌 ×1.5)
 <!-- GEN:burn — tool/gen_docs03.py 가 생성. 직접 수정하지 마라 -->
 | 시장 | 최대가 | div | 선수 | 실측 |
 |---|---|---|---|---|
-| $83-91 | $52 | -8 | Luka Dončić | 31.7P 7.9R 8.1A 1.7S 0.5B 3.9TO · OREB 0.7 · FG 46.7% (22FGA) · 3P 36.7% (10.4×) 3.8×3PM · FT 78.1% (9.3FTA) · 혼합 GP 59.2 · 35.7MPG · 25-26 65% |
+| $83-91 | $52 | -4 | Luka Dončić | 31.7P 7.9R 8.1A 1.7S 0.5B 3.9TO · OREB 0.7 · FG 46.7% (22FGA) · 3P 36.7% (10.4×) 3.8×3PM · FT 78.1% (9.3FTA) · 혼합 GP 59.2 · 35.7MPG · 25-26 65% |
 | $72-80 | $40 | -12 | Anthony Edwards | 28.2P 5.3R 4.1A 1.3S 0.7B 3TO · OREB 0.7 · FG 46.9% (20.3FGA) · 3P 39.7% (9.3×) 3.7×3PM · FT 81.5% (6.8FTA) · 혼합 GP 69.3 · 35.6MPG · 25-26 53% |
-| $61-69 | $25 | -16 | Giannis Antetokounmpo | 29.2P 11R 6A 0.9S 1B 3.1TO · OREB 2.4 · FG 61.1% (18.3FGA) · 3P 27.2% (1.1×) 0.3×3PM · FT 63.2% (10.3FTA) · 혼합 GP 53.2 · 31.8MPG · 25-26 44% |
-| $45-51 | $26 | +17 | Kevin Durant | 26.2P 5.7R 4.6A 0.8S 1B 3.2TO · OREB 0.5 · FG 52.2% (17.8FGA) · 3P 41.9% (5.9×) 2.5×3PM · FT 86.2% (5.9FTA) · 혼합 GP 72.5 · 36.4MPG · 25-26 65% |
+| $61-69 | $25 | -15 | Giannis Antetokounmpo | 29.2P 11R 6A 0.9S 1B 3.1TO · OREB 2.4 · FG 61.1% (18.3FGA) · 3P 27.2% (1.1×) 0.3×3PM · FT 63.2% (10.3FTA) · 혼합 GP 53.2 · 31.8MPG · 25-26 44% |
+| $45-51 | $26 | +19 | Kevin Durant | 26.2P 5.7R 4.6A 0.8S 1B 3.2TO · OREB 0.5 · FG 52.2% (17.8FGA) · 3P 41.9% (5.9×) 2.5×3PM · FT 86.2% (5.9FTA) · 혼합 GP 72.5 · 36.4MPG · 25-26 65% |
 | $38-46 | $22 | +18 | Kawhi Leonard | 26.1P 6.3R 3.5A 1.8S 0.4B 2TO · OREB 1 · FG 50.3% (18.7FGA) · 3P 39.4% (6.3×) 2.5×3PM · FT 86.9% (5.5FTA) · 혼합 GP 57.3 · 32MPG · 25-26 72% |
 | $31-37 | $22 | -47 | Jaren Jackson Jr. | 20.8P 5.6R 2A 1.2S 1.5B 2.1TO · OREB 1.1 · FG 48.2% (15.7FGA) · 3P 36.6% (5.1×) 1.9×3PM · FT 79.2% (4.8FTA) · 혼합 GP 61.2 · 30MPG · 25-26 49% |
 | $19-25 | $10 | +6 | Anthony Davis | 23.1P 11.4R 3.2A 1.2S 2B 2.2TO · OREB 2.8 · FG 51.2% (17.4FGA) · 3P 27.8% (2.2×) 0.6×3PM · FT 75.8% (6.1FTA) · 혼합 GP 39.5 · 32.7MPG · 25-26 37% |
