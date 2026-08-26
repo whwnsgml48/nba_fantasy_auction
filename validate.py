@@ -908,6 +908,38 @@ else:
                 _r["core"],_lab or "없음",_rul or "없음",_why,_r.get("label"))); warn+=1; _w28+=1
     print("[I28] 판단표 label ↔ cond.rules 금액: %d행 검사 · 불일치 %d건"%(_n28,_w28))
 
+    # ── I29: 슬롯 role 이 **캣 공급 목적**을 선언하면 후보 전원이 그 캣을 줘야 한다 ──
+    # 사용자가 직접 잡은 결함: c6 BN role 이 "3PT 소스 — 3PM 공백을 메운다" 인데
+    # 2순위가 Clingan(3PM 0.8) 이었다. 검사가 없어 조용히 남아 있었다.
+    #
+    # ⚠️ 범위를 좁힌 이유 — 두 넓은 변형을 먼저 재보고 버렸다:
+    #   · "role 에 캣 이름이 있으면 후보 전원 검사" → 92건 중 **52건 발화**. role 은 대개
+    #     1순위의 프로필을 적은 것이라(“OREB 3.0 · DD 34 · AST” = Şengün 설명) 대체 후보가
+    #     다른 프로필인 것이 정상이다.
+    #   · "1순위 본인이 자기 role 의 캣에 약한가" → 18건. 대부분 DD 가중치 척도 문제다
+    #     (DD 34인 Şengün 도 w=1). 텍스트 결함이 아니라 가중치 스케일 문제라 오탐이다.
+    # → **목적 선언 어휘가 있을 때만** 본다. 지금 데이터에서 정확히 1건 발화한다.
+    _PURPOSE=("소스","공급","잠금","전용","메운다")
+    _CATS=["3PM","3P%","FT%","FG%","OREB","REB","AST","STL","BLK","DD","A/T","TOV","PTS"]
+    def _cats_in(t):
+        out=[]; r=t
+        for c in sorted(_CATS,key=len,reverse=True):   # 3P% 가 3PM 로 오인되지 않게 긴 것부터
+            if c in r: out.append(c); r=r.replace(c,"")
+        return out
+    _n29=_w29=0
+    for co in cj["cores"]:
+        for s in co["slots"]:
+            _role=s.get("role") or ""
+            if not any(k in _role for k in _PURPOSE): continue
+            for _c in _cats_in(_role):
+                _n29+=1
+                _weak=[cd["name"] for cd in s["candidates"]
+                       if ((pl.get(cd["name"],{}).get("cat_weights") or {}).get(_c) or 0)<2]
+                if _weak:
+                    print("  △ [I29] %s %s: role 이 '%s' 공급을 선언했는데 후보가 못 준다 — %s\n         role: %s"%(
+                        co["id"],s["slot"],_c,", ".join(_weak),_role)); warn+=1; _w29+=1
+    print("[I29] role 의 캣 공급 선언 ↔ 후보: %d건 검사 · 불일치 %d건"%(_n29,_w29))
+
     _cond=[x["id"] for x in cj["cores"] if x.get("conditional_on_discount")]
     print("앵커 정책: 앵커 %d개 · 피벗/백업 엔트리 %d개 · 조건부 베팅 %s%s"%(
         _nA,_nB,",".join(_cond) or "없음",
