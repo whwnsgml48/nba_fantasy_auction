@@ -26,6 +26,15 @@
   이 스크립트를 처음 쓸 때 `weight < 0.15` 로 걸러서 **투영 3명만 잡고 Trae·Sabonis를
   놓쳤다.** 평가 세션의 목록(23% · 29%)이 맞았고 제 필터가 틀렸다.
 
+  ⚠️ 합이 100 근처가 되는 것은 **저출장 선수에서만**이다 — Trae 22.5+76.0=98.5,
+  Jokić 97.5+70.0=167.5. **하필 감사 대상이 저출장 선수**라 원값이 그대로 정답처럼
+  읽힌다. 함정이 그쪽에만 놓여 있다.
+
+  🔴 그리고 **정규화된 값은 이미 데이터에 있었다** — `measured_source.blend_share_2025_26`
+  (171명 전원 존재 · 원 가중치 재계산과 불일치 0건). 없는 걸 만든 게 아니라
+  **있는 걸 안 쓰고 원값을 손으로 해석한 사고**다. 지금은 필드를 읽고,
+  재계산은 `verify_shares()` 교차검증으로만 남긴다.
+
 무엇을 하지 않는가
   · `data/` 를 쓰지 않는다. 파생 플래그를 **산출만** 한다.
   · 불변식을 만들지 않는다 — 헤지 유무 판단에 사람이 필요하고, 넣을지 여부는
@@ -43,11 +52,38 @@ MIXED_HI  = 0.50    # 절반 미만
 
 
 def measured_share(p):
-    """2025-26 실측이 혼합에서 차지하는 **정규화 비중**. 근거가 없으면 None."""
+    """2025-26 실측이 혼합에서 차지하는 **정규화 비중**.
+
+    🔴 **데이터에 이미 있다** — `measured_source.blend_share_2025_26`.
+    처음엔 원 가중치로 직접 계산했는데, 그건 **있는 필드를 안 쓰고 다시 만든 것**이고
+    이 저장소가 반복해 당한 「같은 값을 두 곳에 두면 갈라진다」의 새 사례가 될 뻔했다
+    (39차에 `tool_embed.py`로 그 형태를 하나 없앤 직후였다).
+    → **필드를 단일 소스로 읽는다.** 직접 계산은 버리지 않고 `verify_shares()` 의
+      교차검증으로만 남긴다 — 필드가 낡으면 그게 잡아준다."""
+    return ((p.get("measured_source") or {}).get("blend_share_2025_26"))
+
+
+def _share_from_weights(p):
+    """원 가중치에서 재계산 — 저장된 필드를 **검증**하는 용도. 판정에 쓰지 말 것.
+    ⚠️ `weight` 는 0~1 비율이 아니라 GP 기반 원값이다(HANDOFF 「퍼센트처럼 보이는 원값」)."""
     ss = (p.get("measured_source") or {}).get("seasons") or {}
     a = (ss.get("2025-26") or {}).get("weight") or 0.0
     b = (ss.get("2024-25") or {}).get("weight") or 0.0
     return (a / (a + b)) if (a + b) > 0 else None
+
+
+def verify_shares(tol=0.005):
+    """저장된 `blend_share_2025_26` 이 원 가중치와 맞는가. (검사수, 불일치목록)"""
+    bad = []
+    n = 0
+    for name, p in PL.items():
+        have, calc = measured_share(p), _share_from_weights(p)
+        if have is None and calc is None:
+            continue
+        n += 1
+        if have is None or calc is None or abs(have - calc) > tol:
+            bad.append((name, have, calc))
+    return n, bad
 
 
 def provenance(p):
@@ -81,6 +117,10 @@ def main():
     print("=" * 92)
     print("GP 출처 감사 — 측정치 vs 투영치")
     print("=" * 92)
+    _n, _bad = verify_shares()
+    print("  blend_share_2025_26 ↔ 원 가중치 교차검증: %d명 · 불일치 %d건%s" % (
+        _n, len(_bad), "" if not _bad else "  🔴 " + ", ".join(x[0] for x in _bad[:5])))
+    print()
     db = [(n, *provenance(p)) for n, p in PL.items()]
     for lab in ("투영", "혼합-저", "혼합"):
         names = [n for n, g, s, _ in db if g == lab]
