@@ -50,6 +50,7 @@ NEEDED = [
     "data/prior_auction_2025_26/proposed_market_refit.json",
     "data/prior_auction_2025_26/results.json",   # I26 실측 산포
     "tool/trigger_audit.py",                     # I26 발동 확률 모델
+    "tool/tool_embed.py",                        # 39차 — 툴 임베드 상수 단일 소스
     "data/stats_2025_26/measured_full.json",
     "tool/auction-console.html",
     "tool/cat_model.py",

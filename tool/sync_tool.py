@@ -7,7 +7,11 @@
 `validate.py`가 이 7종을 cores.json/players.json과 대조하므로,
 데이터를 고치면 반드시 이 스크립트를 돌려야 한다.
 """
-import json, io, os, re
+import json, io, os, re, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+# 39차: 임베드 상수 구조는 tool_embed 가 단일 소스다. validate.py 도 같은 것을 import 해
+# 대조하므로, 여기서 직접 dict를 조립하면 두 파일이 갈라진다(실제로 갈라졌다).
+import tool_embed as TE
 BASE=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 pl=json.load(io.open(f"{BASE}/data/players.json",encoding="utf-8"))
 c=json.load(io.open(f"{BASE}/data/cores.json",encoding="utf-8"))
@@ -15,32 +19,16 @@ by={p["name"]:p for p in pl}
 p=f"{BASE}/tool/auction-console.html"; s=io.open(p,encoding="utf-8").read()
 
 def buildCORES():
-    out=[{"id":"c0","n":"— 코어 미선택 —"}]
-    for co in c["cores"]:
-        plan=[]
-        for sl in co["slots"]:
-            row=[sl["slot"], sl.get("role") or "",
-                 [[x["name"],x["plan_price"]] for x in sl["candidates"]]]
-            if sl.get("is_anchor"):
-                ap=sl["anchor_plan"]; row.append(True)
-                row.append({"ceil":ap["bid_ceiling"],"nom":ap["nominal_margin"],
-                            "eff":ap["effective_headroom"],"con":ap["constraint"],
-                            "act":ap["on_fail"]["action"],"tgt":ap["on_fail"]["target"],
-                            "dual":ap["dual_world_ok"]})
-            plan.append(row)
-        e={"id":co["id"],"n":co["name"],"prem":co.get("premise") or "",
-           "target":co.get("targeted_cats") or [],"punt":co.get("punted_cats") or [],
-           "cap":co.get("single_player_cap"),"bigCap":co["big_budget_cap"],
-           "slack":co["budget_slack"],"plan":plan}
-        if co.get("conditional_on_discount"): e["condDiscount"]=co["conditional_on_discount"]
-        out.append(e)
+    out, problems = TE.build_cores(c)
+    if problems:
+        # 깨진 상수를 툴에 쓰면 안 된다 — 33차에 이 결손이 KeyError로 죽었고,
+        # 조용히 넘기면 툴이 앵커 정보 없는 코어를 표시하게 된다.
+        raise SystemExit("anchor_plan 결손 %d건 — recompute_cores.py 를 먼저 돌리십시오:\n  %s"
+                         % (len(problems), "\n  ".join(problems)))
     return out
-OH=[{"n":t["player"],"tier":t["tier"],"walk":t["threshold"],
-     "exp":t["expected_2026_27"],"oh":t["overheat_at"]} for t in c["overheat_thresholds"]]
-TI={k:{"label":v["label"],"c7":v["counts_toward_core7"],"why":v["why"]}
-    for k,v in c["overheat_tiers"].items() if not k.startswith("_")}
-CONST=[("CORES",buildCORES()),("PIVOTS",{x["id"]:x["pivot_plan"] for x in c["cores"]}),
-       ("OVERHEAT",OH),("OTIERS",TI),("DECISION",c["decision_table"])]
+CONST=[("CORES",buildCORES()),("PIVOTS",TE.build_pivots(c)),
+       ("OVERHEAT",TE.build_overheat(c)),("OTIERS",TE.build_tiers(c)),
+       ("DECISION",c["decision_table"])]
 n=0
 for name,val in CONST:
     m=re.search(r'const %s=(\[|\{).*?(\]|\});\n'%re.escape(name), s, re.S)

@@ -833,21 +833,34 @@ else:
         # I26b: 앵커 트리거는 **엘리트 대조군**(작년 $60+ · n=11) 확률을 함께 표시한다.
         # 게이트가 아니라 표시다 — 대조군이 엘리트에만 정의되므로 불변식에 쓰면
         # "통과"와 "판정 불가"가 구분되지 않고 그게 곧 조용한 통과다(39차 평가 세션 결정).
+        # ⚠️ **행 확률과 선수별 확률을 섞어 읽지 말 것.** 판단표 행은 규칙의 **곱**이다.
+        #    39차에 피어가 이 둘을 같은 것으로 읽고 "I26b가 틀렸다"고 보고했다 —
+        #    trigger_audit 의 c1 행 0.10 = KAT 0.55 × Hali 0.18 이고, I26b 의 0.55는
+        #    KAT 단독이다. 둘 다 맞다. 그래서 행 확률을 함께 찍어 혼동을 없앤다.
         _anchors={s["candidates"][0]["name"] for c in cj["cores"] for s in c["slots"] if s.get("is_anchor")}
         _shown=0
         for _r in cj["decision_table"]:
-            for _x in (_r.get("cond") or {}).get("rules") or []:
-                if _x["player"] not in _anchors or _x["player"] not in pl: continue
+            _rules=[x for x in ((_r.get("cond") or {}).get("rules") or []) if x["player"] in pl]
+            _each=[]
+            for _x in _rules:
+                if _x["player"] not in _anchors: continue
                 _pe3=_TA.p_elite(_x["player"],_x["max"])
                 if _pe3 is None: continue
                 _shown+=1
                 _mk=pl[_x["player"]]
                 _tag="△ 얇음" if _pe3<=0.20 else ""
                 if _tag: warn+=1
-                print("      [I26b] %-24s 임계 $%-3d · 엘리트 대조군 P=%.2f (시장 $%d-%d) %s"%(
-                    _x["player"],_x["max"],_pe3,_mk["market_low"],_mk["market_high"],_tag))
+                _each.append(_pe3)
+                print("      [I26b] %-6s %-24s 임계 $%-3d · 단독 P=%.2f (시장 $%d-%d) %s"%(
+                    _r["core"],_x["player"],_x["max"],_pe3,_mk["market_low"],_mk["market_high"],_tag))
+            if len(_each)>1:
+                _row=1.0
+                for _v in _each: _row*=_v
+                print("      [I26b] %-6s %-24s 행 결합 P=%.2f = %s  ← 판단표가 실제로 열릴 확률"%(
+                    _r["core"],"(위 %d개 조건의 곱)"%len(_each),_row,
+                    " × ".join("%.2f"%v for v in _each)))
         if _shown:
-            print("      ↑ 앵커 트리거 %d건 · 표시 전용(불변식 아님) · n=11 이므로 구간으로만 읽을 것"%_shown)
+            print("      ↑ 앵커 트리거 %d건 · **표시 전용**(불변식 아님) · n=11 이므로 구간으로만 읽을 것"%_shown)
 
         # ── I27: 임계값이 my_max보다 낮은데 근거가 없다 (39차 · 경고) ──────────
         # 진짜 실패 모드는 "임계값 < my_max"가 아니라 **"my_max가 움직였는데 임계값이
@@ -896,12 +909,15 @@ else:
         print("✗ 툴 DECISION이 cores.json.decision_table과 불일치 — 재생성 필요"); err+=1
     if _one!=cj["decision_oneliner"]:
         print("✗ 툴 DECISION_ONELINER 불일치 — 재생성 필요"); err+=1
-    _ohx=[{"n":t["player"],"tier":t["tier"],"walk":t["threshold"],
-           "exp":t["expected_2026_27"],"oh":t["overheat_at"]} for t in cj["overheat_thresholds"]]
+    # 39차: 기대 구조를 tool_embed 에서 가져온다. 이전에는 sync_tool.py 와 **같은 dict를
+    # 각자 조립**하고 있었고, 필드를 하나 늘리려면 두 파일을 같이 고쳐야 했다 —
+    # A가 `binding` 필드를 실었을 때 이쪽만 안 바뀌어 즉시 불일치가 났다.
+    sys.path.insert(0, D+"/tool")
+    import tool_embed as _TE
+    _ohx=_TE.build_overheat(cj)
     if _oh!=_ohx:
         print("✗ 툴 OVERHEAT이 cores.json.overheat_thresholds와 불일치 — 재생성 필요"); err+=1
-    _otx={k:{"label":v["label"],"c7":v["counts_toward_core7"],"why":v["why"]}
-          for k,v in (cj.get("overheat_tiers") or {}).items() if not k.startswith("_")}
+    _otx=_TE.build_tiers(cj)
     if _ot!=_otx:
         print("✗ 툴 OTIERS이 cores.json.overheat_tiers와 불일치 — 재생성 필요"); err+=1
     # 툴이 과열 판정에 철수가를 쓰지 않는지 (계층 분리의 핵심)
@@ -931,36 +947,10 @@ else:
         #     빈 dict가 falsy라 anchor_plan이 생성되지 않고 sync_tool이 KeyError로 죽었다
         #     (docs/04 33차 「구현 중 걸린 것」 3번). 지금 고치는 것은 그 사고의 하류다.
         # 방어하되 **조용히 건너뛰지 않는다** — 없으면 위반으로 올리고 상세 비교만 생략한다.
-        _exp=[{"id":"c0","n":"— 코어 미선택 —"}]
-        _cores_broken=False
-        for _co in cj["cores"]:
-            _plan=[]
-            for _sl in _co["slots"]:
-                _row=[_sl["slot"],_sl.get("role") or "",
-                      [[x["name"],x["plan_price"]] for x in _sl["candidates"]]]
-                if _sl.get("is_anchor"):
-                    _ap=_sl.get("anchor_plan")
-                    _of=(_ap or {}).get("on_fail")
-                    if not _ap or not _of:
-                        print("  ✗ 툴 CORES 대조: %s/%s 앵커 %s에 anchor_plan%s 없음"
-                              " — 상세 비교 생략(뒤쪽 검사는 계속 실행)"%(
-                              _co["id"],_sl["slot"],_sl["candidates"][0]["name"],
-                              "" if not _ap else ".on_fail")); err+=1
-                        _cores_broken=True
-                        _row.append(True)
-                        _plan.append(_row); continue
-                    _row.append(True)
-                    _row.append({"ceil":_ap["bid_ceiling"],"nom":_ap["nominal_margin"],
-                                 "eff":_ap["effective_headroom"],"con":_ap["constraint"],
-                                 "act":_of["action"],"tgt":_of["target"],
-                                 "dual":_ap["dual_world_ok"]})
-                _plan.append(_row)
-            _e={"id":_co["id"],"n":_co["name"],"prem":_co.get("premise") or "",
-                "target":_co.get("targeted_cats") or [],"punt":_co.get("punted_cats") or [],
-                "cap":_co.get("single_player_cap"),"bigCap":_co["big_budget_cap"],
-                "slack":_co["budget_slack"],"plan":_plan}
-            if _co.get("conditional_on_discount"): _e["condDiscount"]=_co["conditional_on_discount"]
-            _exp.append(_e)
+        _exp,_probs=_TE.build_cores(cj)
+        _cores_broken=bool(_probs)
+        for _p in _probs:
+            print("  ✗ 툴 CORES 대조: %s — 상세 비교 생략(뒤쪽 검사는 계속 실행)"%_p); err+=1
         if _cores_broken:
             # 기대값 자체가 결손 데이터로 만들어졌으므로 "재생성 필요"는 오진이다.
             # 위 위반이 이미 err에 가산됐다 — 여기서 중복 가산하지 않고 이유만 남긴다.
@@ -968,7 +958,7 @@ else:
         elif _cs!=_exp:
             print("✗ 툴 CORES가 cores.json과 불일치 — 재생성 필요"); err+=1
     _pv=_const("PIVOTS","{}")
-    if _pv!={x["id"]:x["pivot_plan"] for x in cj["cores"]}:
+    if _pv!=_TE.build_pivots(cj):
         print("✗ 툴 PIVOTS가 cores.json과 불일치 — 재생성 필요"); err+=1
     _hcc=_re.search(r"function hotCenterCount\(\)\{(.*?)\n\}",_ts,_re.S)
     if _hcc and "overheated()" not in _hcc.group(1):
