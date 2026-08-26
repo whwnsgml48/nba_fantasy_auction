@@ -737,6 +737,35 @@ else:
                     elif _nt<175:
                         print("  △ %s %s: 대체 %s 사용 시 총액 $%d — 예비비 $%d 과다"%(
                             co["id"],lbl,an,_nt,200-_nt)); warn+=1
+    # ── I24: 피벗 로스터 == base 1순위 + swaps (37차 신설) ──────────────────
+    # 피벗의 정의가 "base + 트리거 대응 교체"인데 그 관계를 아무도 검사하지 않아
+    # 33·34차 base 변경이 피벗에 전파되지 않았다(7개 중 6개 드리프트).
+    # 증상은 「예비비 과소 편성」으로 나타났다 — 피벗이 옛 base의 싼 선수를 들고 있었다.
+    # 복구 도구: tool/rebuild_pivots.py
+    print("-"*66)
+    _i24=0
+    for co in cj["cores"]:
+        pv=co["pivot_plan"]
+        _bn=[s["candidates"][0]["name"] for s in co["slots"]]
+        _sw={x["out"]["name"]:x["in"]["name"] for x in pv["swaps"]}
+        for _o in _sw:
+            if _o not in _bn:
+                print("  ✗ [I24] %s: swap out '%s' 이 base 1순위에 없다 — stale swap"%(co["id"],_o)); err+=1
+        _exp=[_sw.get(n,n) for n in _bn]
+        _act=[r["name"] for r in pv["final_roster"]]
+        if sorted(_exp)!=sorted(_act):
+            print("  ✗ [I24] %s 피벗: base+swaps 와 final_roster 불일치"%co["id"])
+            print("         빠짐: %s"%(sorted(set(_exp)-set(_act)) or "—"))
+            print("         잉여: %s"%(sorted(set(_act)-set(_exp)) or "—"))
+            err+=1
+        else:
+            _i24+=1
+        # 피벗도 예비비 하한을 본다 — I22는 base만 보므로 여기서 경고한다
+        _pr=200-pv["final_total"]
+        if _pr<8:
+            print("  △ [I24] %s 피벗: 예비비 $%d < $8 — 앵커 한 명이 시장 상단으로 가면 넘친다"%(co["id"],_pr)); warn+=1
+    print("[I24] 피벗 로스터 = base 1순위 + swaps: %d/%d 코어 일치"%(_i24,len(cj["cores"])))
+
     _cond=[x["id"] for x in cj["cores"] if x.get("conditional_on_discount")]
     print("앵커 정책: 앵커 %d개 · 피벗/백업 엔트리 %d개 · 조건부 베팅 %s%s"%(
         _nA,_nB,",".join(_cond) or "없음",

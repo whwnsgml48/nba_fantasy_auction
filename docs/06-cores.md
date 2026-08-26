@@ -170,12 +170,12 @@ $25 초과는 "과소 편성"(로스터가 예산을 못 씀) 경고입니다.
 
 | | 코어 | 계획 | 예비비 | 빅맨/상한 | C자격 | 노리는 캣 | 포기 | 승리 캣 | 피벗 총액 |
 |---|---|---|---|---|---|---|---|---|---|
-| c1 | KAT 앵커 + Haliburton | $182 | $18 | $93/$115 | 5 | 10개 | 3PM, FT%, TOV | **10**/13 | $171 |
-| c2 | Jokić 압축 | $187 | $13 | $134/$153 | 4 | 9개 | 3P%, 3PM, FT%, STL | **9**/13 | $173 |
-| c3 | SGA + 저가 빅 4인 | $183 | $17 | $57/$85 | 4 | 9개 | 3P%, 3PM, FT%, TOV | **9**/13 | $182 |
-| c4 | 무앵커 분산 (상한 $31) | $186 | $14 | $84/$107 | 4 | 8개 | 3P%, 3PM, A/T, FT%, TOV | **8**/13 | $165 |
-| c5 | Sabonis 부상 할인 (조건부 베팅) | $180 | $20 | $70/$96 | 5 | 9개 | 3PM, FT%, PTS, TOV | **9**/13 | $168 |
-| c6 | A/T 분산 조달 (정상 시장 기본값) | $181 | $19 | $91/$113 | 4 | 9개 | 3P%, 3PM, FT%, TOV | **9**/13 | $149 |
+| c1 | KAT 앵커 + Haliburton | $182 | $18 | $93/$115 | 5 | 10개 | 3PM, FT%, TOV | **10**/13 | $174 |
+| c2 | Jokić 압축 | $187 | $13 | $134/$153 | 4 | 9개 | 3P%, 3PM, FT%, STL | **9**/13 | $174 |
+| c3 | SGA + 저가 빅 4인 | $183 | $17 | $57/$85 | 4 | 9개 | 3P%, 3PM, FT%, TOV | **9**/13 | $189 |
+| c4 | 무앵커 분산 (상한 $31) | $186 | $14 | $84/$107 | 4 | 8개 | 3P%, 3PM, A/T, FT%, TOV | **8**/13 | $193 |
+| c5 | Sabonis 부상 할인 (조건부 베팅) | $180 | $20 | $70/$96 | 5 | 9개 | 3PM, FT%, PTS, TOV | **9**/13 | $178 |
+| c6 | A/T 분산 조달 (정상 시장 기본값) | $181 | $19 | $91/$113 | 4 | 9개 | 3P%, 3PM, FT%, TOV | **9**/13 | $159 |
 | c7 | 중가 센터 전환 (센터 인플레 대응) | $184 | $16 | $107/$130 | 5 | 9개 | 3P%, A/T, FT%, TOV | **9**/13 | $177 |
 
 ## 주간 승률 (몬테카를로)
@@ -244,7 +244,7 @@ $25 초과는 "과소 편성"(로스터가 예산을 못 씀) 경고입니다.
 | BN | Moussa Diabaté → **Sam Merrill** | $2 | +4 |
 | SF | Kon Knueppel → **Desmond Bane** | $22 | +1 |
 
-**피벗 최종 9인** — 총액 $171 · 예비비 $29 ⚠️ **과소 편성** (로스터가 예산을 못 씀) · 빅맨 $83 (C자격 4명) · 노리는 캣 `3P% A/T AST DD FG% OREB REB STL TOV` · 포기 `3PM BLK FT% PTS`
+**피벗 최종 9인** — 총액 $174 · 예비비 $26 ⚠️ **과소 편성** (로스터가 예산을 못 씀) · 빅맨 $83 (C자격 4명) · 노리는 캣 `3P% A/T AST DD FG% OREB REB STL TOV` · 포기 `3PM BLK FT% PTS`
 
 | 슬롯 | 선수 | 계획가 | 상한 |
 |---|---|---|---|
@@ -255,7 +255,7 @@ $25 초과는 "과소 편성"(로스터가 예산을 못 씀) 경고입니다.
 | SG | Dyson Daniels | $12 | $20 |
 | UTIL | Mitchell Robinson `C` | $5 | $12 |
 | UTIL | Mark Williams `C` | $7 | $14 |
-| BN | T.J. McConnell | $2 | $14 |
+| BN | VJ Edgecombe | $5 | $9 |
 | BN | Sam Merrill | $2 | $8 |
 
 ---
@@ -298,9 +298,8 @@ $25 초과는 "과소 편성"(로스터가 예산을 못 씀) 경고입니다.
 | UTIL | Rudy Gobert → **AJ Green** | $2 | -8 |
 | PF | Alperen Şengün → **Alperen Şengün** | $26 | +3 |
 | SF | Tim Hardaway Jr. → **Duncan Robinson** | $2 | +2 |
-| BN | Andre Drummond → **Mark Williams** | $7 | +7 |
 
-**피벗 최종 9인** — 총액 $173 · 예비비 $27 ⚠️ **과소 편성** (로스터가 예산을 못 씀) · 빅맨 $126 (C자격 4명) · 노리는 캣 `3P% 3PM A/T AST DD FG% OREB REB TOV` · 포기 `BLK FT% PTS STL`
+**피벗 최종 9인** — 총액 $174 · 예비비 $26 ⚠️ **과소 편성** (로스터가 예산을 못 씀) · 빅맨 $119 (C자격 3명) · 노리는 캣 `3P% 3PM A/T AST DD OREB TOV` · 포기 `BLK FG% FT% PTS REB STL`
 
 | 슬롯 | 선수 | 계획가 | 상한 |
 |---|---|---|---|
@@ -312,7 +311,7 @@ $25 초과는 "과소 편성"(로스터가 예산을 못 씀) 경고입니다.
 | BN | Sam Merrill | $2 | $8 |
 | SF | Duncan Robinson | $2 | $9 |
 | PG | Andrew Nembhard | $2 | $6 |
-| BN | Mark Williams `C` | $7 | $14 |
+| BN | DeMar DeRozan | $8 | $16 |
 
 ---
 
@@ -354,7 +353,7 @@ $25 초과는 "과소 편성"(로스터가 예산을 못 씀) 경고입니다.
 | UTIL | Rudy Gobert → **Neemias Queta** | $2 | -10 |
 | BN | Sam Merrill → **Kon Knueppel** | $22 | +19 |
 
-**피벗 최종 9인** — 총액 $182 · 예비비 $18 · 빅맨 $50 (C자격 5명) · 노리는 캣 `A/T AST BLK DD FG% OREB PTS REB STL` · 포기 `3P% 3PM FT% TOV`
+**피벗 최종 9인** — 총액 $189 · 예비비 $11 · 빅맨 $43 (C자격 4명) · 노리는 캣 `3P% A/T AST BLK DD FG% OREB PTS REB STL` · 포기 `3PM FT% TOV`
 
 | 슬롯 | 선수 | 계획가 | 상한 |
 |---|---|---|---|
@@ -365,7 +364,7 @@ $25 초과는 "과소 편성"(로스터가 예산을 못 씀) 경고입니다.
 | C | Nic Claxton `C` | $4 | $12 |
 | UTIL | Ivica Zubac `C` | $11 | $16 |
 | UTIL | Neemias Queta `C` | $2 | $6 |
-| BN | Mark Williams `C` | $7 | $14 |
+| BN | Damian Lillard | $14 | $14 |
 | BN | Kon Knueppel | $22 | $26 |
 
 ---
@@ -408,7 +407,7 @@ $25 초과는 "과소 편성"(로스터가 예산을 못 씀) 경고입니다.
 | UTIL | Evan Mobley → **Walker Kessler** | $16 | -9 |
 | UTIL | Rudy Gobert → **Desmond Bane** | $22 | +10 |
 
-**피벗 최종 9인** — 총액 $165 · 예비비 $35 ⚠️ **과소 편성** (로스터가 예산을 못 씀) · 빅맨 $69 (C자격 3명) · 노리는 캣 `A/T AST BLK DD FG% OREB PTS REB STL` · 포기 `3P% 3PM FT% TOV`
+**피벗 최종 9인** — 총액 $193 · 예비비 $7 · 빅맨 $69 (C자격 3명) · 노리는 캣 `AST BLK DD FG% OREB PTS REB STL` · 포기 `3P% 3PM A/T FT% TOV`
 
 | 슬롯 | 선수 | 계획가 | 상한 |
 |---|---|---|---|
@@ -417,10 +416,10 @@ $25 초과는 "과소 편성"(로스터가 예산을 못 씀) 경고입니다.
 | SF | Amen Thompson | $26 | $31 |
 | UTIL | Walker Kessler `C` | $16 | $19 |
 | SG | Kon Knueppel | $22 | $26 |
-| PG | Dyson Daniels | $12 | $20 |
-| UTIL | Desmond Bane | $22 | $26 |
+| UTIL | Dyson Daniels | $12 | $20 |
+| BN | Desmond Bane | $22 | $26 |
 | BN | Julius Randle | $12 | $18 |
-| BN | T.J. McConnell | $2 | $14 |
+| PG | Trae Young | $30 | $30 |
 
 ---
 
@@ -463,7 +462,7 @@ $25 초과는 "과소 편성"(로스터가 예산을 못 씀) 경고입니다.
 | SG | Kon Knueppel → **Trey Murphy III** | $32 | +7 |
 | SF | Amen Thompson → **Amen Thompson** | $26 | +3 |
 
-**피벗 최종 9인** — 총액 $168 · 예비비 $32 ⚠️ **과소 편성** (로스터가 예산을 못 씀) · 빅맨 $58 (C자격 5명) · 노리는 캣 `A/T AST BLK DD FG% OREB REB TOV` · 포기 `3P% 3PM FT% PTS STL`
+**피벗 최종 9인** — 총액 $178 · 예비비 $22 · 빅맨 $58 (C자격 5명) · 노리는 캣 `A/T AST BLK DD FG% OREB REB STL TOV` · 포기 `3P% 3PM FT% PTS`
 
 | 슬롯 | 선수 | 계획가 | 상한 |
 |---|---|---|---|
@@ -475,7 +474,7 @@ $25 초과는 "과소 편성"(로스터가 예산을 못 씀) 경고입니다.
 | C | Mark Williams `C` | $7 | $14 |
 | UTIL | Nic Claxton `C` | $4 | $12 |
 | BN | Deandre Ayton `C` | $5 | $14 |
-| BN | T.J. McConnell | $2 | $14 |
+| BN | Dyson Daniels | $12 | $20 |
 
 ---
 
@@ -522,23 +521,21 @@ Edgecombe안이 LeBron안을 **모든 축에서** 지배하고, Şengün안과 m
 | UTIL | Donovan Clingan → **Mitchell Robinson** | $5 | -6 |
 | UTIL | Rudy Gobert → **Sam Merrill** | $2 | -6 |
 | BN | Dyson Daniels → **Ausar Thompson** | $3 | -9 |
-| BN | Kon Knueppel → **Trey Murphy III** | $32 | +7 |
-| PG | T.J. McConnell → **T.J. McConnell** | $2 | +4 |
 | PF | Alperen Şengün → **Alperen Şengün** | $26 | +3 |
 
-**피벗 최종 9인** — 총액 $149 · 예비비 $51 ⚠️ **과소 편성** (로스터가 예산을 못 씀) · 빅맨 $76 (C자격 3명) · 노리는 캣 `A/T DD FG% OREB REB STL TOV` · 포기 `3P% 3PM AST BLK FT% PTS`
+**피벗 최종 9인** — 총액 $159 · 예비비 $41 ⚠️ **과소 편성** (로스터가 예산을 못 씀) · 빅맨 $76 (C자격 3명) · 노리는 캣 `A/T AST BLK DD FG% OREB PTS REB STL TOV` · 포기 `3P% 3PM FT%`
 
 | 슬롯 | 선수 | 계획가 | 상한 |
 |---|---|---|---|
 | C | Karl-Anthony Towns `C` | $45 | $55 |
 | PF | Alperen Şengün `C` | $26 | $34 |
 | SF | Amen Thompson | $26 | $42 |
-| UTIL | Trey Murphy III | $32 | $32 |
-| BN | Ausar Thompson | $3 | $8 |
-| UTIL | Mitchell Robinson `C` | $5 | $12 |
+| UTIL | VJ Edgecombe | $5 | $9 |
+| UTIL | Ausar Thompson | $3 | $8 |
+| BN | Mitchell Robinson `C` | $5 | $12 |
 | SG | DeMar DeRozan | $8 | $16 |
 | BN | Sam Merrill | $2 | $8 |
-| PG | T.J. McConnell | $2 | $14 |
+| PG | Derrick White | $39 | $44 |
 
 ---
 

@@ -1,0 +1,157 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""피벗 로스터의 교체 대상을 재탐색한다 (37차 — 「예비비 과소 편성」 해소용).
+
+배경
+  I24 복구로 피벗이 base+swaps 와 다시 일치하게 됐지만, 교체로 **들어오는 선수**는
+  옛 설계 그대로다. 트리거가 걸린 자리(과열된 저가 센터)를 $2~5짜리로 때우고 끝내서
+  피벗 총액이 낮고 예비비가 남는다 — c6 피벗 $159 · 예비 **$41**.
+
+  34차가 base에 한 것과 같은 작업을 피벗에 한다: **비는 자리에 더 좋은 선수를 넣어
+  예비비를 목표 밴드로 되돌린다.** 가격을 올리는 게 아니라 로스터를 바꾼다
+  (34차 부록에서 재가격은 실패했다 — docs/05 2b-5).
+
+방법
+  1. 피벗에서 **트리거로 빠지는 선수**의 슬롯만 비운다. 나머지는 base 그대로 고정.
+  2. 그 자리에 들어갈 조합을 전수 탐색 — 예비비가 $12~25 밴드에 드는 것만.
+  3. `rebuild_search.evaluate`로 상대 6종 승률을 내고 **maximin**으로 정렬.
+  4. 🔴 상위 후보는 **같은 난수 스트림 고시행으로 재대조**한다. 34차 교훈:
+     900시행 순위는 1~2%p 수준에서 신뢰할 수 없다(승자의 저주).
+
+이 스크립트는 **cores.json을 쓰지 않는다.** 후보만 출력한다 — 채택은 사람이 한다.
+"""
+import json, io, os, sys, random, itertools
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import matchup_sim as MS
+import rebuild_search as RS
+import cat_model as CM
+
+BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PL, CJ = MS.PL, MS.CJ
+BUDGET = 200
+RESERVE_LO, RESERVE_HI = 12, 25
+
+
+def core(cid):
+    return next(c for c in CJ["cores"] if c["id"] == cid)
+
+
+def pivot_state(cid):
+    """피벗에서 (고정 멤버, 비는 슬롯 수, 빠지는 선수) 를 낸다."""
+    co = core(cid)
+    pv = co["pivot_plan"]
+    outs = {sw["out"]["name"] for sw in pv["swaps"] if sw["out"]["name"] != sw["in"]["name"]}
+    keep = [s["candidates"][0]["name"] for s in co["slots"]
+            if s["candidates"][0]["name"] not in outs]
+    return co, pv, keep, sorted(outs)
+
+
+def pool_for(keep, outs, cid):
+    """후보 풀 — 획득 가능 · 부상 제외 아님 · 이미 로스터에 없음 · 트리거 선수 제외.
+
+    트리거로 빠진 선수를 다시 넣으면 피벗의 의미가 없어진다."""
+    trig = {t["player"] for t in core(cid)["pivot_plan"]["triggers"]}
+    used = set(keep) | set(outs) | trig
+    out = []
+    for n, p in PL.items():
+        if n in used or p.get("injury_exclude") or not p.get("obtainable"):
+            continue
+        out.append(n)
+    return out
+
+
+def search(cid, iters=1200, top=12, seed=20261020):
+    co, pv, keep, outs = pivot_state(cid)
+    k = 9 - len(keep)
+    base_cost = sum(RS.cost(n) for n in keep)
+    cand = pool_for(keep, outs, cid)
+    lo = BUDGET - RESERVE_HI - base_cost      # 채워야 할 최소 금액
+    hi = BUDGET - RESERVE_LO - base_cost
+    print(f"[{cid}] 고정 {len(keep)}명 ${base_cost:.0f} · 빈 슬롯 {k}개 · "
+          f"빠지는 선수 {outs}")
+    print(f"      채울 금액대 ${lo:.0f}~${hi:.0f} (예비비 ${RESERVE_LO}~${RESERVE_HI}) · 풀 {len(cand)}명")
+
+    combos = []
+    for c in itertools.combinations(cand, k):
+        s = sum(RS.cost(n) for n in c)
+        if not (lo <= s <= hi):
+            continue
+        names = keep + list(c)
+        if RS.feasible(names, grandfather=tuple(keep)) is None:
+            continue
+        combos.append((c, s))
+    print(f"      실행 가능 조합 {len(combos)}개")
+    if not combos:
+        return []
+
+    # ── 1단계 프리필터 (결정적·빠름) ────────────────────────────────
+    # 조합 수천 개를 전부 시뮬하면 몇 시간이 걸린다. cat_model의 팀 한계기여로
+    # 먼저 줄인다 — 이기는 캣 수, 동수면 마진 합. 시뮬은 상위 PRE개만 돌린다.
+    # ⚠️ 캣별 한계기여는 척도가 제각각이다(FG% 130.9 vs A/T 0.116) — 그냥 더하면 안 된다.
+    #    29차가 지적한 그 문제다. 이기는 캣 수를 1순위로, 동수면 rel_margin 합으로 가른다.
+    B = CM.baselines()
+    def score(names):
+        marg, wins, _w, _l = CM.evaluate(names, B)
+        rel = 0.0
+        for cat, v in marg.items():
+            if v is None or v <= 0:
+                continue
+            r = CM.rel_margin(cat, v, B, names)
+            if r: rel += r
+        return (wins, rel)
+    ranked = sorted(combos, key=lambda cs: score(keep + list(cs[0])), reverse=True)
+    PRE = min(30, len(ranked))
+    print(f"      프리필터(cat_model 한계기여) 상위 {PRE}개만 시뮬")
+
+    rng = random.Random(seed)
+    opps = MS.build_opponents(rng)
+    rows = []
+    for c, s in ranked[:PRE]:
+        names = keep + list(c)
+        r = RS.evaluate(names, random.Random(seed), iters, opps)
+        r["fill"] = list(c)
+        r["total"] = round(base_cost + s)
+        r["reserve"] = BUDGET - r["total"]
+        rows.append(r)
+    rows.sort(key=lambda r: -r["min_win_rate"])
+    return rows[:top]
+
+
+def confirm(cid, rows, iters=6000, seed=20261020, n=4):
+    """🔴 34차 교훈 — 상위 후보를 같은 스트림 고시행으로 재대조한다."""
+    co, pv, keep, outs = pivot_state(cid)
+    rng = random.Random(seed)
+    opps = MS.build_opponents(rng)
+    out = []
+    cur = [r["name"] for r in pv["final_roster"]]
+    for r in rows[:n]:
+        names = keep + r["fill"]
+        rr = RS.evaluate(names, random.Random(seed), iters, opps)
+        rr["fill"] = r["fill"]; rr["total"] = r["total"]; rr["reserve"] = r["reserve"]
+        out.append(rr)
+    rr = RS.evaluate(cur, random.Random(seed), iters, opps)
+    rr["fill"] = ["(현행 피벗)"]; rr["total"] = pv["final_total"]
+    rr["reserve"] = BUDGET - pv["final_total"]
+    out.append(rr)
+    out.sort(key=lambda r: -r["min_win_rate"])
+    return out
+
+
+def show(title, rows):
+    print(f"\n{title}")
+    print("  %-46s %5s %5s %7s %7s %7s" % ("채우는 선수", "총액", "예비", "최소승률", "보수", "빅5붕괴"))
+    for r in rows:
+        mx = RS.mixmax(r)
+        print("  %-46s $%-4d $%-4d %6.1f%% %6.1f%% %6.1f%%" % (
+            " · ".join(r["fill"])[:46], r["total"], r["reserve"],
+            r["min_win_rate"]*100, (r.get("mixture") or {}).get("보수", 0)*100,
+            mx["p_big5_collapse"]*100))
+
+
+if __name__ == "__main__":
+    cid = sys.argv[1] if len(sys.argv) > 1 else "c6"
+    rows = search(cid)
+    if rows:
+        show(f"[{cid}] 1차 탐색 (1200시행 · maximin 상위)", rows)
+        show(f"[{cid}] 🔴 재대조 (6000시행 · 같은 스트림 · 현행 포함)", confirm(cid, rows))
