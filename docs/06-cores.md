@@ -166,7 +166,7 @@ $25 초과는 "과소 편성"(로스터가 예산을 못 씀) 경고입니다.
 | c4 | 무앵커 분산 (상한 $31) | $186 | $14 | $84/$107 | 4 | 8개 | 3P%, 3PM, A/T, FT%, TOV | **8**/13 | $193 |
 | c5 | Sabonis 부상 할인 (조건부 베팅) | $186 | $14 | $70/$96 | 5 | 9개 | 3PM, FT%, PTS, TOV | **9**/13 | $184 |
 | c6 | A/T 분산 조달 (정상 시장 기본값) | $181 | $19 | $91/$113 | 4 | 9개 | 3P%, 3PM, FT%, TOV | **9**/13 | $187 |
-| c7 | 중가 센터 전환 (센터 인플레 대응) | $184 | $16 | $107/$130 | 5 | 9개 | 3P%, A/T, FT%, TOV | **9**/13 | $181 |
+| c7 | 중가 센터 전환 (센터 인플레 대응) | $184 | $16 | $107/$130 | 5 | 9개 | 3P%, A/T, FT%, TOV | **9**/13 | $185 |
 
 ## 주간 승률 (몬테카를로)
 
@@ -563,11 +563,11 @@ Edgecombe안이 LeBron안을 **모든 축에서** 지배하고, Şengün안과 m
 
 | 슬롯 | 변경 | 계획가 | 증감 |
 |---|---|---|---|
-| UTIL | Rudy Gobert → **Ausar Thompson** | $3 | -5 |
-| BN | Onyeka Okongwu → **Cason Wallace** | $3 | -2 |
+| UTIL | Rudy Gobert → **Nikola Vučević** | $2 | -6 |
+| BN | Onyeka Okongwu → **DeMar DeRozan** | $8 | +3 |
 | C | Karl-Anthony Towns → **Karl-Anthony Towns** | $49 | +4 |
 
-**피벗 최종 9인** — 총액 $181 · 예비비 $19 · 빅맨 $98 (C자격 3명) · 노리는 캣 `A/T AST BLK DD FG% OREB PTS REB STL` · 포기 `3P% 3PM FT% TOV`
+**피벗 최종 9인** — 총액 $185 · 예비비 $15 · 빅맨 $100 (C자격 4명) · 노리는 캣 `3P% 3PM A/T AST BLK DD FG% OREB PTS REB STL` · 포기 `FT% TOV`
 
 | 슬롯 | 선수 | 계획가 | 상한 |
 |---|---|---|---|
@@ -577,9 +577,9 @@ Edgecombe안이 LeBron안을 **모든 축에서** 지배하고, Şengün안과 m
 | SG | Dyson Daniels | $12 | $20 |
 | PG | Derrick White | $39 | $44 |
 | UTIL | Evan Mobley `C` | $23 | $30 |
-| UTIL | Ausar Thompson | $3 | $8 |
+| UTIL | Nikola Vučević `C` | $2 | $8 |
 | BN | Josh Hart | $4 | $5 |
-| BN | Cason Wallace | $3 | $8 |
+| BN | DeMar DeRozan | $8 | $16 |
 
 ---
 

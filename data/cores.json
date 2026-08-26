@@ -5449,10 +5449,10 @@
        "expected_cost": 8
       },
       "in": {
-       "name": "Ausar Thompson",
-       "plan_price": 3,
+       "name": "Nikola Vučević",
+       "plan_price": 2,
        "bid_ceiling": 8,
-       "expected_cost": 3
+       "expected_cost": 2
       }
      },
      {
@@ -5463,10 +5463,10 @@
        "expected_cost": 5
       },
       "in": {
-       "name": "Cason Wallace",
-       "plan_price": 3,
-       "bid_ceiling": 8,
-       "expected_cost": 3
+       "name": "DeMar DeRozan",
+       "plan_price": 8,
+       "bid_ceiling": 16,
+       "expected_cost": 8
       }
      },
      {
@@ -5502,7 +5502,7 @@
        {
         "name": "Jalen Duren",
         "plan_price": 27,
-        "total_if_used": 159,
+        "total_if_used": 163,
         "redeploy": {
          "moves": [
           {
@@ -5521,7 +5521,7 @@
        {
         "name": "Domantas Sabonis",
         "plan_price": 19,
-        "total_if_used": 151,
+        "total_if_used": 155,
         "redeploy": {
          "moves": [
           {
@@ -5559,14 +5559,14 @@
         "plan_price": 19,
         "bid_ceiling": 34,
         "expected_cost": 19,
-        "total_if_used": 174
+        "total_if_used": 178
        },
        {
         "name": "Pascal Siakam",
         "plan_price": 25,
         "bid_ceiling": 26,
         "expected_cost": 25,
-        "total_if_used": 180
+        "total_if_used": 184
        }
       ],
       "dual_world_ok": true
@@ -5584,14 +5584,14 @@
         "plan_price": 22,
         "bid_ceiling": 31,
         "expected_cost": 22,
-        "total_if_used": 181
+        "total_if_used": 185
        },
        {
         "name": "Amen Thompson",
         "plan_price": 26,
         "bid_ceiling": 49,
         "expected_cost": 26,
-        "total_if_used": 185
+        "total_if_used": 189
        }
       ],
       "dual_world_ok": true
@@ -5609,14 +5609,14 @@
         "plan_price": 3,
         "bid_ceiling": 8,
         "expected_cost": 3,
-        "total_if_used": 172
+        "total_if_used": 176
        },
        {
         "name": "Cason Wallace",
         "plan_price": 3,
         "bid_ceiling": 8,
         "expected_cost": 3,
-        "total_if_used": 172
+        "total_if_used": 176
        }
       ],
       "dual_world_ok": true
@@ -5633,7 +5633,7 @@
        {
         "name": "Josh Giddey",
         "plan_price": 41,
-        "total_if_used": 183,
+        "total_if_used": 187,
         "redeploy": null,
         "bid_ceiling": 42,
         "expected_cost": 41
@@ -5641,7 +5641,7 @@
        {
         "name": "Nickeil Alexander-Walker",
         "plan_price": 22,
-        "total_if_used": 164,
+        "total_if_used": 168,
         "redeploy": {
          "moves": [
           {
@@ -5673,42 +5673,43 @@
         "plan_price": 5,
         "bid_ceiling": 12,
         "expected_cost": 5,
-        "total_if_used": 163
+        "total_if_used": 167
        },
        {
         "name": "Deandre Ayton",
         "plan_price": 5,
         "bid_ceiling": 14,
         "expected_cost": 5,
-        "total_if_used": 163
+        "total_if_used": 167
        }
       ],
       "dual_world_ok": true
      },
      {
       "slot": "UTIL",
-      "name": "Ausar Thompson",
-      "plan_price": 3,
-      "role": "OREB 3.9 · BLK 1.6 · DD 33 · 76G",
+      "name": "Nikola Vučević",
+      "plan_price": 2,
+      "role": "중가 센터 전환 — 최저가 C 볼륨",
       "bid_ceiling": 8,
-      "expected_cost": 3,
+      "expected_cost": 2,
       "alternates": [
+       {
+        "name": "Ausar Thompson",
+        "plan_price": 3,
+        "bid_ceiling": 8,
+        "expected_cost": 3,
+        "total_if_used": 186
+       },
        {
         "name": "Mitchell Robinson",
         "plan_price": 5,
         "bid_ceiling": 12,
         "expected_cost": 5,
-        "total_if_used": 183
-       },
-       {
-        "name": "Deandre Ayton",
-        "plan_price": 5,
-        "bid_ceiling": 14,
-        "expected_cost": 5,
-        "total_if_used": 183
+        "total_if_used": 188
        }
       ],
-      "dual_world_ok": true
+      "dual_world_ok": true,
+      "overheat_cost": 2
      },
      {
       "slot": "BN",
@@ -5723,49 +5724,52 @@
         "plan_price": 2,
         "bid_ceiling": 8,
         "expected_cost": 2,
-        "total_if_used": 179
+        "total_if_used": 183
        },
        {
         "name": "Kel'el Ware",
         "plan_price": 2,
         "bid_ceiling": 4,
         "expected_cost": 2,
-        "total_if_used": 179
+        "total_if_used": 183
        }
       ],
       "dual_world_ok": true
      },
      {
       "slot": "BN",
-      "name": "Cason Wallace",
-      "plan_price": 3,
-      "role": "중가 센터 저가 — OREB+BLK+DD",
-      "bid_ceiling": 8,
-      "expected_cost": 3,
+      "name": "DeMar DeRozan",
+      "plan_price": 8,
+      "role": "FT%·A/T 공급 (c7에서 유일)",
+      "bid_ceiling": 16,
+      "expected_cost": 8,
       "alternates": [
+       {
+        "name": "Cason Wallace",
+        "plan_price": 3,
+        "bid_ceiling": 8,
+        "expected_cost": 3,
+        "total_if_used": 180
+       },
        {
         "name": "Nikola Vučević",
         "plan_price": 2,
         "bid_ceiling": 8,
         "expected_cost": 2,
-        "total_if_used": 180
-       },
-       {
-        "name": "Kel'el Ware",
-        "plan_price": 2,
-        "bid_ceiling": 4,
-        "expected_cost": 2,
-        "total_if_used": 180
+        "total_if_used": 179
        }
       ],
-      "dual_world_ok": true
+      "dual_world_ok": true,
+      "overheat_cost": 8
      }
     ],
     "rationale": "UTIL 센터 2자리(Gobert·Okongwu)를 저가 가드로 바꾸고 절감분을 SG(Daniels 12→15)·SF(Knueppel 22→25) 상향에 쓴다. 중가 센터 축(KAT·Şengün·Mobley)은 유지한다 — 그 축을 버리는 것이 기존 c7의 오류였다.",
-    "final_total": 181,
-    "final_big_budget": 98,
-    "final_c_eligible": 3,
+    "final_total": 185,
+    "final_big_budget": 100,
+    "final_c_eligible": 4,
     "targeted_cats": [
+     "3P%",
+     "3PM",
      "A/T",
      "AST",
      "BLK",
@@ -5777,39 +5781,37 @@
      "STL"
     ],
     "punted_cats": [
-     "3P%",
-     "3PM",
      "FT%",
      "TOV"
     ],
     "cat_marginals": {
      "starters": 9,
      "PTS": {
-      "sum": 138.9,
-      "marginal": 4.2,
+      "sum": 156.9,
+      "marginal": 20.7,
       "verdict": "확보"
      },
      "TOV": {
-      "sum": 17.4,
-      "marginal": -1.5,
+      "sum": 17.7,
+      "marginal": -1.9,
       "verdict": "미달"
      },
      "all": {
-      "PTS": 4.2,
-      "REB": 14.3,
-      "OREB": 5.1,
-      "AST": 4.6,
-      "STL": 3.4,
-      "BLK": 1.0,
-      "TOV": -1.5,
-      "3PM": 0.0,
-      "DD": 0.7,
-      "3P%": -4.9,
-      "FT%": -125.5,
-      "FG%": 61.6,
-      "A/T": 0.101
+      "PTS": 20.7,
+      "REB": 17.5,
+      "OREB": 4.9,
+      "AST": 6.7,
+      "STL": 1.5,
+      "BLK": 0.8,
+      "TOV": -1.9,
+      "3PM": 1.0,
+      "DD": 1.0,
+      "3P%": 0.7,
+      "FT%": -46.1,
+      "FG%": 87.3,
+      "A/T": 0.186
      },
-     "wins_incl_dd": 9
+     "wins_incl_dd": 11
     },
     "triggers": [
      {
@@ -5820,7 +5822,21 @@
       "player": "Donovan Clingan",
       "rule": "> $22"
      }
-    ]
+    ],
+    "redesign_39": {
+     "at": "39차 · 실제 12팀 목적함수로 재탐색 (tool/pivot_search.py)",
+     "was": [
+      "Ausar Thompson",
+      "Cason Wallace"
+     ],
+     "now": [
+      "Nikola Vučević",
+      "DeMar DeRozan"
+     ],
+     "measured": "8000시행 · 시드 3종 재대조: 현행 80.5/80.6/80.6% → 후보 88.0/87.4/87.7% (+6.8~7.5%p · 3/3 시드 우세). 최저 승률도 59% → 71%. 총액·예비비 불변($181/$19).",
+     "why_not_maximin": "탐색 정렬을 maximin에서 실제 12팀 평균으로 바꿨다 — maximin의 최소값이 7코어 전부 value_max 하나에서 나오고 그 상대는 우리 z모델의 자기 최적해다(39차 A).",
+     "caveat": "Vučević·DeRozan은 평가 세션의 c2 재설계안에도 들어 있다. 옥션에서 한 명만 잡으면 둘 중 하나는 못 쓴다 — c2 재탐색 때 겹침을 제약에 넣을 것."
+    }
    },
    "planned_total": 184,
    "budget_slack": 16,
