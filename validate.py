@@ -117,8 +117,15 @@ for c in cj["cores"]:
     for t in pv["triggers"]:
         if t["player"] not in TH: print("  ✗ 트리거가 임계값 소스에 없음: %s"%t["player"]); err+=1
         elif t["rule"]!="> $%d"%TH[t["player"]]: print("  ✗ 트리거 규칙 불일치: %s"%t["player"]); err+=1
-    if not pv.get("targeted_cats") or not pv.get("punted_cats"):
-        print("  ✗ 피벗에 노리는 캣/포기 캣 미명시"); err+=1
+    # 두 필드가 **선언돼 있는지**를 본다. 13캣을 전부 이기면 punted가 빈 리스트인 게 정상이고
+    # (37차 c3 피벗이 실제로 그랬다), 그걸 미명시로 잡으면 좋아진 로스터가 위반이 된다.
+    _tg, _pt = pv.get("targeted_cats"), pv.get("punted_cats")
+    if _tg is None or _pt is None:
+        print("  ✗ 피벗에 노리는 캣/포기 캣 필드 없음"); err+=1
+    elif not _tg:
+        print("  ✗ 피벗이 노리는 캣 0개 — 이길 캣이 없는 플랜"); err+=1
+    elif len(_tg)+len(_pt)!=13:
+        print("  ✗ 피벗 캣 선언 합계 %d ≠ 13"%(len(_tg)+len(_pt))); err+=1
     fb=pv.get("fallback")
     if fb:
         fr=[(r["slot"],r["name"],r["plan_price"]) for r in fb["final_roster"]]
@@ -760,10 +767,30 @@ else:
             err+=1
         else:
             _i24+=1
-        # 피벗도 예비비 하한을 본다 — I22는 base만 보므로 여기서 경고한다
+        # 트리거 선수가 피벗 로스터에 남아 있으면 안 된다 — 트리거가 걸린 세계에서
+        # 그 계획가는 존재하지 않는다(c3가 `Zubac > $16` 트리거인데 Zubac을 $11에 샀다).
+        _trg={t["player"] for t in pv["triggers"]}&{r["name"] for r in pv["final_roster"]}
+        if _trg:
+            print("  ✗ [I24] %s 피벗: 트리거 선수가 로스터에 잔류 — %s"%(co["id"],", ".join(sorted(_trg)))); err+=1
+        # 피벗 예비비 — I22는 base만 본다. 임계값은 상수가 아니라 **실제 노출액**으로 낸다:
+        # 로스터에서 한 명이 자기 상한까지 올라갈 때 필요한 최대 추가액.
+        # (처음엔 $8 상수로 뒀는데 c4는 무앵커 코어라 "앵커가 상단으로 가면"이라는
+        #  전제 자체가 성립하지 않았다 — 37차 정정)
+        # 노출은 **앵커**에 대해서만 센다. 비앵커는 대체후보가 있어 값이 뛰면 갈아타면 되고,
+        # 상한(bid_ceiling)은 my_max에서 오므로 "누구든 상한까지 갈 수 있다"로 재면
+        # my_max를 올릴 때마다 경고가 늘어난다(37차에 실제로 4개 피벗이 한꺼번에 걸렸다).
+        # I22의 원래 근거대로 "앵커가 **시장 상단**까지 갈 때 얼마가 더 필요한가"로 잰다.
         _pr=200-pv["final_total"]
-        if _pr<8:
-            print("  △ [I24] %s 피벗: 예비비 $%d < $8 — 앵커 한 명이 시장 상단으로 가면 넘친다"%(co["id"],_pr)); warn+=1
+        _anc=[r for r in pv["final_roster"] if r.get("is_anchor")]
+        _exp=0; _who=None
+        for r in _anc:
+            n=r["name"]
+            if n not in pl: continue
+            need=min(pl[n]["market_high"], r.get("bid_ceiling") or r["plan_price"])-r["plan_price"]
+            if need>_exp: _exp, _who = need, r
+        if _who and _pr<_exp:
+            print("  △ [I24] %s 피벗: 예비비 $%d < 앵커 노출 $%d (%s $%d → 시장 상단 $%d)"%(
+                co["id"],_pr,_exp,_who["name"],_who["plan_price"],pl[_who["name"]]["market_high"])); warn+=1
     print("[I24] 피벗 로스터 = base 1순위 + swaps: %d/%d 코어 일치"%(_i24,len(cj["cores"])))
 
     _cond=[x["id"] for x in cj["cores"] if x.get("conditional_on_discount")]

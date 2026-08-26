@@ -2277,7 +2277,7 @@
       "rule": "> $16"
      }
     ],
-    "rationale": "이미 빅맨 예산 최저($77)인 코어. 최저가 빅맨으로 내리고 절감분 전부를 3PM·3P% 고볼륨(Knueppel)으로.",
+    "rationale": "저가 센터 3명(Clingan·Gobert·Zubac)이 전부 과열되면 '저가 빅 4인' 전제가 무너진다. 센터 자리를 **최저가 3명**(Vučević $2 · Myles Turner $14 · Jay Huff $2)으로 갈아타 REB·BLK·FG%의 바닥만 지키고, 남는 돈은 SGA 앵커($79)를 지키는 데 쓴다. ⚠️ 37차 정정: 이전 피벗은 **트리거 선수인 Zubac을 $11에 그대로 사고 있었다** — 트리거가 걸린 세계에 존재하지 않는 가격이다. 함께 총액도 $196(예비 $4)이라 앵커가 흔들리면 대응 여력이 없었다. 재탐색(실행 가능 조합 1,577,375개 중 프리필터 상위 30개 시뮬 · 6000시행 재대조) 결과 최소 승률 32.1% → **34.9%** · 빅5 동시붕괴 68.1% → **66.0%** · 예비비 $4 → 밴드 내로 개선됐다.",
     "swaps": [
      {
       "slot": "C",
@@ -2288,12 +2288,29 @@
        "expected_cost": 12
       },
       "in": {
-       "name": "Nic Claxton",
-       "plan_price": 4,
-       "bid_ceiling": 12,
-       "expected_cost": 4
+       "name": "Nikola Vučević",
+       "plan_price": 2,
+       "expected_cost": 2,
+       "bid_ceiling": 8
       },
-      "delta": -8,
+      "delta": -10,
+      "kind": "교체"
+     },
+     {
+      "slot": "UTIL",
+      "out": {
+       "name": "Ivica Zubac",
+       "plan_price": 11,
+       "bid_ceiling": 16,
+       "expected_cost": 11
+      },
+      "in": {
+       "name": "Myles Turner",
+       "plan_price": 14,
+       "expected_cost": 14,
+       "bid_ceiling": 18
+      },
+      "delta": 3,
       "kind": "교체"
      },
      {
@@ -2305,12 +2322,12 @@
        "expected_cost": 8
       },
       "in": {
-       "name": "Neemias Queta",
+       "name": "Jay Huff",
        "plan_price": 2,
-       "bid_ceiling": 6,
-       "expected_cost": 2
+       "expected_cost": 2,
+       "bid_ceiling": 4
       },
-      "delta": -10,
+      "delta": -6,
       "kind": "교체"
      },
      {
@@ -2322,12 +2339,12 @@
        "expected_cost": 2
       },
       "in": {
-       "name": "Kon Knueppel",
-       "plan_price": 22,
-       "bid_ceiling": 33,
-       "expected_cost": 22
+       "name": "Isaiah Joe",
+       "plan_price": 2,
+       "expected_cost": 2,
+       "bid_ceiling": 10
       },
-      "delta": 19,
+      "delta": 0,
       "kind": "교체"
      }
     ],
@@ -2355,7 +2372,7 @@
         "plan_price": 23,
         "bid_ceiling": 30,
         "expected_cost": 23,
-        "total_if_used": 193
+        "total_if_used": 174
        }
       ],
       "dual_world_ok": true
@@ -2373,14 +2390,14 @@
         "plan_price": 11,
         "bid_ceiling": 14,
         "expected_cost": 11,
-        "total_if_used": 181
+        "total_if_used": 162
        },
        {
         "name": "Jaden McDaniels",
         "plan_price": 5,
         "bid_ceiling": 10,
         "expected_cost": 5,
-        "total_if_used": 175
+        "total_if_used": 156
        }
       ],
       "dual_world_ok": true
@@ -2398,74 +2415,73 @@
         "plan_price": 3,
         "bid_ceiling": 8,
         "expected_cost": 3,
-        "total_if_used": 187
+        "total_if_used": 168
        },
        {
         "name": "Cason Wallace",
         "plan_price": 3,
         "bid_ceiling": 8,
         "expected_cost": 3,
-        "total_if_used": 187
+        "total_if_used": 168
        }
       ],
       "dual_world_ok": true
      },
      {
       "slot": "C",
-      "name": "Nic Claxton",
-      "plan_price": 4,
+      "name": "Nikola Vučević",
+      "plan_price": 2,
       "role": "OREB 4.5 리그 1위 · 77G",
-      "bid_ceiling": 12,
-      "expected_cost": 4,
+      "expected_cost": 2,
       "alternates": [
        {
         "name": "Jalen Duren",
         "plan_price": 27,
         "bid_ceiling": 34,
         "expected_cost": 27,
-        "total_if_used": 219
+        "total_if_used": 202
        },
        {
         "name": "Rudy Gobert",
         "plan_price": 8,
         "bid_ceiling": 18,
         "expected_cost": 8,
-        "total_if_used": 200
+        "total_if_used": 183
        }
       ],
+      "bid_ceiling": 8,
       "dual_world_ok": true
      },
      {
       "slot": "UTIL",
-      "name": "Ivica Zubac",
-      "plan_price": 11,
+      "name": "Myles Turner",
+      "plan_price": 14,
       "role": "DD 24 · 롤맨 빅",
-      "bid_ceiling": 16,
-      "expected_cost": 11,
+      "expected_cost": 14,
       "alternates": [
        {
         "name": "Mark Williams",
         "plan_price": 7,
         "bid_ceiling": 14,
         "expected_cost": 7,
-        "total_if_used": 192
+        "total_if_used": 170
        },
        {
         "name": "Nic Claxton",
         "plan_price": 4,
         "bid_ceiling": 12,
         "expected_cost": 4,
-        "total_if_used": 189
+        "total_if_used": 167
        }
       ],
+      "bid_ceiling": 18,
       "dual_world_ok": true
      },
      {
       "slot": "UTIL",
-      "name": "Neemias Queta",
+      "name": "Jay Huff",
       "plan_price": 2,
       "role": "OREB 3.9 · BLK 1.6 · 76G",
-      "bid_ceiling": 6,
       "expected_cost": 2,
       "alternates": [
        {
@@ -2473,16 +2489,17 @@
         "plan_price": 7,
         "bid_ceiling": 14,
         "expected_cost": 7,
-        "total_if_used": 201
+        "total_if_used": 182
        },
        {
         "name": "Nic Claxton",
         "plan_price": 4,
         "bid_ceiling": 12,
         "expected_cost": 4,
-        "total_if_used": 198
+        "total_if_used": 179
        }
       ],
+      "bid_ceiling": 4,
       "dual_world_ok": true
      },
      {
@@ -2498,92 +2515,84 @@
         "plan_price": 2,
         "bid_ceiling": 11,
         "expected_cost": 2,
-        "total_if_used": 184
+        "total_if_used": 165
        },
        {
         "name": "Isaiah Joe",
         "plan_price": 2,
         "bid_ceiling": 10,
         "expected_cost": 2,
-        "total_if_used": 184
+        "total_if_used": 165
        }
       ],
       "dual_world_ok": true
      },
      {
       "slot": "BN",
-      "name": "Kon Knueppel",
-      "plan_price": 22,
+      "name": "Isaiah Joe",
+      "plan_price": 2,
       "role": "3PT% 레버리지 3위",
-      "bid_ceiling": 33,
-      "expected_cost": 22,
+      "expected_cost": 2,
       "alternates": [
        {
         "name": "AJ Green",
         "plan_price": 2,
         "bid_ceiling": 11,
         "expected_cost": 2,
-        "total_if_used": 176
-       },
-       {
-        "name": "Isaiah Joe",
-        "plan_price": 2,
-        "bid_ceiling": 10,
-        "expected_cost": 2,
-        "total_if_used": 176
+        "total_if_used": 177
        }
       ],
+      "bid_ceiling": 10,
       "dual_world_ok": true
      }
     ],
-    "final_total": 196,
-    "final_big_budget": 43,
+    "final_total": 177,
+    "final_big_budget": 44,
     "final_c_eligible": 4,
     "targeted_cats": [
      "3P%",
+     "3PM",
      "A/T",
      "AST",
      "BLK",
      "DD",
      "FG%",
+     "FT%",
      "OREB",
      "PTS",
      "REB",
-     "STL"
-    ],
-    "punted_cats": [
-     "3PM",
-     "FT%",
+     "STL",
      "TOV"
     ],
+    "punted_cats": [],
     "cat_marginals": {
      "starters": 9,
      "PTS": {
-      "sum": 159.6,
-      "marginal": 16.8,
+      "sum": 155.4,
+      "marginal": 12.4,
       "verdict": "확보"
      },
      "TOV": {
-      "sum": 18.0,
-      "marginal": -1.5,
-      "verdict": "미달"
+      "sum": 16.3,
+      "marginal": 0.1,
+      "verdict": "확보"
      },
      "all": {
-      "PTS": 16.8,
-      "REB": 12.7,
-      "OREB": 6.1,
-      "AST": 5.8,
-      "STL": 1.7,
-      "BLK": 1.1,
-      "TOV": -1.5,
-      "3PM": -3.2,
-      "DD": 0.5,
-      "3P%": 3.8,
-      "FT%": -50.1,
-      "FG%": 381.8,
-      "A/T": 0.179
+      "PTS": 12.4,
+      "REB": 4.2,
+      "OREB": 2.0,
+      "AST": 3.2,
+      "STL": 1.6,
+      "BLK": 1.8,
+      "TOV": 0.1,
+      "3PM": 0.3,
+      "DD": 0.2,
+      "3P%": 3.6,
+      "FT%": 26.4,
+      "FG%": 126.7,
+      "A/T": 0.237
      },
-     "wins_incl_dd": 10
+     "wins_incl_dd": 13
     }
    },
    "budget_slack": 10,

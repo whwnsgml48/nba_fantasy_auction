@@ -172,7 +172,7 @@ $25 초과는 "과소 편성"(로스터가 예산을 못 씀) 경고입니다.
 |---|---|---|---|---|---|---|---|---|---|
 | c1 | KAT 앵커 + Haliburton | $188 | $12 | $93/$115 | 5 | 10개 | 3PM, FT%, TOV | **10**/13 | $184 |
 | c2 | Jokić 압축 | $187 | $13 | $134/$153 | 4 | 9개 | 3P%, 3PM, FT%, STL | **9**/13 | $174 |
-| c3 | SGA + 저가 빅 4인 | $190 | $10 | $57/$85 | 4 | 9개 | 3P%, 3PM, FT%, TOV | **9**/13 | $196 |
+| c3 | SGA + 저가 빅 4인 | $190 | $10 | $57/$85 | 4 | 9개 | 3P%, 3PM, FT%, TOV | **9**/13 | $177 |
 | c4 | 무앵커 분산 (상한 $31) | $186 | $14 | $84/$107 | 4 | 8개 | 3P%, 3PM, A/T, FT%, TOV | **8**/13 | $193 |
 | c5 | Sabonis 부상 할인 (조건부 베팅) | $186 | $14 | $70/$96 | 5 | 9개 | 3PM, FT%, PTS, TOV | **9**/13 | $184 |
 | c6 | A/T 분산 조달 (정상 시장 기본값) | $181 | $19 | $91/$113 | 4 | 9개 | 3P%, 3PM, FT%, TOV | **9**/13 | $187 |
@@ -346,15 +346,16 @@ $25 초과는 "과소 편성"(로스터가 예산을 못 씀) 경고입니다.
 
 **트리거**: `Donovan Clingan > $22` · `Rudy Gobert > $18` · `Ivica Zubac > $16`
 
-> 이미 빅맨 예산 최저($77)인 코어. 최저가 빅맨으로 내리고 절감분 전부를 3PM·3P% 고볼륨(Knueppel)으로.
+> 저가 센터 3명(Clingan·Gobert·Zubac)이 전부 과열되면 '저가 빅 4인' 전제가 무너진다. 센터 자리를 **최저가 3명**(Vučević $2 · Myles Turner $14 · Jay Huff $2)으로 갈아타 REB·BLK·FG%의 바닥만 지키고, 남는 돈은 SGA 앵커($79)를 지키는 데 쓴다. ⚠️ 37차 정정: 이전 피벗은 **트리거 선수인 Zubac을 $11에 그대로 사고 있었다** — 트리거가 걸린 세계에 존재하지 않는 가격이다. 함께 총액도 $196(예비 $4)이라 앵커가 흔들리면 대응 여력이 없었다. 재탐색(실행 가능 조합 1,577,375개 중 프리필터 상위 30개 시뮬 · 6000시행 재대조) 결과 최소 승률 32.1% → **34.9%** · 빅5 동시붕괴 68.1% → **66.0%** · 예비비 $4 → 밴드 내로 개선됐다.
 
 | 슬롯 | 변경 | 계획가 | 증감 |
 |---|---|---|---|
-| C | Donovan Clingan → **Nic Claxton** | $4 | -8 |
-| UTIL | Rudy Gobert → **Neemias Queta** | $2 | -10 |
-| BN | Sam Merrill → **Kon Knueppel** | $22 | +19 |
+| C | Donovan Clingan → **Nikola Vučević** | $2 | -10 |
+| UTIL | Ivica Zubac → **Myles Turner** | $14 | +3 |
+| UTIL | Rudy Gobert → **Jay Huff** | $2 | -6 |
+| BN | Sam Merrill → **Isaiah Joe** | $2 | +0 |
 
-**피벗 최종 9인** — 총액 $196 · 예비비 $4 · 빅맨 $43 (C자격 4명) · 노리는 캣 `3P% A/T AST BLK DD FG% OREB PTS REB STL` · 포기 `3PM FT% TOV`
+**피벗 최종 9인** — 총액 $177 · 예비비 $23 · 빅맨 $44 (C자격 4명) · 노리는 캣 `3P% 3PM A/T AST BLK DD FG% FT% OREB PTS REB STL TOV` · 포기 `—`
 
 | 슬롯 | 선수 | 계획가 | 상한 |
 |---|---|---|---|
@@ -362,11 +363,11 @@ $25 초과는 "과소 편성"(로스터가 예산을 못 씀) 경고입니다.
 | PF | Alperen Şengün `C` | $26 | $34 |
 | SF | Amen Thompson | $26 | $49 |
 | PG | Dyson Daniels | $12 | $20 |
-| C | Nic Claxton `C` | $4 | $12 |
-| UTIL | Ivica Zubac `C` | $11 | $16 |
-| UTIL | Neemias Queta `C` | $2 | $6 |
+| C | Nikola Vučević `C` | $2 | $8 |
+| UTIL | Myles Turner `C` | $14 | $18 |
+| UTIL | Jay Huff `C` | $2 | $4 |
 | BN | Damian Lillard | $14 | $14 |
-| BN | Kon Knueppel | $22 | $33 |
+| BN | Isaiah Joe | $2 | $10 |
 
 ---
 

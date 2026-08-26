@@ -42,6 +42,11 @@ def pivot_state(cid):
     co = core(cid)
     pv = co["pivot_plan"]
     outs = {sw["out"]["name"] for sw in pv["swaps"] if sw["out"]["name"] != sw["in"]["name"]}
+    # 🔴 37차: 트리거 선수는 **무조건** 비운다. c3는 `Ivica Zubac > $16`이 트리거인데
+    #    피벗 로스터가 Zubac을 $11에 그대로 사고 있었다 — 트리거가 걸린 세계에서
+    #    그 가격은 존재하지 않는다. 트리거의 정의상 그 선수는 포기 대상이다.
+    base_names = {s["candidates"][0]["name"] for s in co["slots"]}
+    outs |= {t["player"] for t in pv["triggers"]} & base_names
     keep = [s["candidates"][0]["name"] for s in co["slots"]
             if s["candidates"][0]["name"] not in outs]
     return co, pv, keep, sorted(outs)
