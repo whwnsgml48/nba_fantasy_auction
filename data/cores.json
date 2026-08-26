@@ -171,10 +171,10 @@
    "rule": "> $58",
    "threshold": 58,
    "tier": "anchor",
-   "expected_2026_27": null,
+   "expected_2026_27": 67,
    "overheat_at": null,
    "overheat_rule": null,
-   "basis": "포워드. 코어 7 앵커 확보 가능성 판정용 — 센터 시장 온도와 무관",
+   "basis": "우리 시장 중간값 $67 (39차 ③안). **작년 실낙찰가 × 1.117을 쓰지 않는다** — 작년 가격은 프리시즌 기대치라 개별 선수 가격 판정에 쓰면 '기대 vs 결과'를 재게 된다(docs/08 §0). 계층 판정(docs/08 ③ 이봉분포)에는 여전히 유효하다.",
    "walk_away": 58,
    "walk_away_rule": "> $58"
   },
@@ -183,10 +183,10 @@
    "rule": "> $22",
    "threshold": 22,
    "tier": "low_cost_center",
-   "expected_2026_27": 14,
-   "overheat_at": 20,
-   "overheat_rule": "> $20",
-   "basis": "작년 미지명 · 비교군 Kessler $15 · M.Williams $14 · Duren $11 기준 추정",
+   "expected_2026_27": 12,
+   "overheat_at": 15,
+   "overheat_rule": "> $15",
+   "basis": "우리 시장 중간값 $12 (39차 ③안). **작년 실낙찰가 × 1.117을 쓰지 않는다** — 작년 가격은 프리시즌 기대치라 개별 선수 가격 판정에 쓰면 '기대 vs 결과'를 재게 된다(docs/08 §0). 계층 판정(docs/08 ③ 이봉분포)에는 여전히 유효하다.",
    "walk_away": 22,
    "walk_away_rule": "> $22"
   },
@@ -195,10 +195,10 @@
    "rule": "> $18",
    "threshold": 18,
    "tier": "low_cost_center",
-   "expected_2026_27": 9,
-   "overheat_at": 13,
-   "overheat_rule": "> $13",
-   "basis": "작년 실측 $8 × 1.117 = $9",
+   "expected_2026_27": 8,
+   "overheat_at": 10,
+   "overheat_rule": "> $10",
+   "basis": "우리 시장 중간값 $8 (39차 ③안). **작년 실낙찰가 × 1.117을 쓰지 않는다** — 작년 가격은 프리시즌 기대치라 개별 선수 가격 판정에 쓰면 '기대 vs 결과'를 재게 된다(docs/08 §0). 계층 판정(docs/08 ③ 이봉분포)에는 여전히 유효하다.",
    "walk_away": 18,
    "walk_away_rule": "> $18",
    "binding": false,
@@ -209,10 +209,10 @@
    "rule": "> $34",
    "threshold": 34,
    "tier": "low_cost_center",
-   "expected_2026_27": 11,
-   "overheat_at": 15,
-   "overheat_rule": "> $15",
-   "basis": "작년 실측 $10 × 1.117 = $11",
+   "expected_2026_27": 27,
+   "overheat_at": 34,
+   "overheat_rule": "> $34",
+   "basis": "우리 시장 중간값 $27 (39차 ③안). **작년 실낙찰가 × 1.117을 쓰지 않는다** — 작년 가격은 프리시즌 기대치라 개별 선수 가격 판정에 쓰면 '기대 vs 결과'를 재게 된다(docs/08 §0). 계층 판정(docs/08 ③ 이봉분포)에는 여전히 유효하다.",
    "walk_away": 34,
    "walk_away_rule": "> $34"
   },
@@ -221,10 +221,10 @@
    "rule": "> $30",
    "threshold": 30,
    "tier": "name_big",
-   "expected_2026_27": 48,
-   "overheat_at": 60,
-   "overheat_rule": "> $60",
-   "basis": "작년 실측 $43 × 1.117 = $48",
+   "expected_2026_27": 23,
+   "overheat_at": 29,
+   "overheat_rule": "> $29",
+   "basis": "우리 시장 중간값 $23 (39차 ③안). **작년 실낙찰가 × 1.117을 쓰지 않는다** — 작년 가격은 프리시즌 기대치라 개별 선수 가격 판정에 쓰면 '기대 vs 결과'를 재게 된다(docs/08 §0). 계층 판정(docs/08 ③ 이봉분포)에는 여전히 유효하다.",
    "walk_away": 30,
    "walk_away_rule": "> $30"
   },
@@ -233,10 +233,10 @@
    "rule": "> $16",
    "threshold": 16,
    "tier": "name_big",
-   "expected_2026_27": 39,
-   "overheat_at": 49,
-   "overheat_rule": "> $49",
-   "basis": "작년 실측 $35 × 1.117 = $39",
+   "expected_2026_27": 11,
+   "overheat_at": 14,
+   "overheat_rule": "> $14",
+   "basis": "우리 시장 중간값 $11 (39차 ③안). **작년 실낙찰가 × 1.117을 쓰지 않는다** — 작년 가격은 프리시즌 기대치라 개별 선수 가격 판정에 쓰면 '기대 vs 결과'를 재게 된다(docs/08 §0). 계층 판정(docs/08 ③ 이봉분포)에는 여전히 유효하다.",
    "walk_away": 16,
    "walk_away_rule": "> $16"
   },
@@ -245,10 +245,10 @@
    "rule": "> $16",
    "threshold": 16,
    "tier": "low_cost_center",
-   "expected_2026_27": 6,
-   "overheat_at": 9,
-   "overheat_rule": "> $9",
-   "basis": "작년 미지명 · 비교군 Poeltl $4 · Claxton $3 · Okongwu $7 기준 추정",
+   "expected_2026_27": 5,
+   "overheat_at": 6,
+   "overheat_rule": "> $6",
+   "basis": "우리 시장 중간값 $5 (39차 ③안). **작년 실낙찰가 × 1.117을 쓰지 않는다** — 작년 가격은 프리시즌 기대치라 개별 선수 가격 판정에 쓰면 '기대 vs 결과'를 재게 된다(docs/08 §0). 계층 판정(docs/08 ③ 이봉분포)에는 여전히 유효하다.",
    "walk_away": 16,
    "walk_away_rule": "> $16"
   },
@@ -258,9 +258,9 @@
    "threshold": 14,
    "tier": "low_cost_center",
    "expected_2026_27": 5,
-   "overheat_at": 8,
-   "overheat_rule": "> $8",
-   "basis": "작년 실측 $5 × 1.117 = $5",
+   "overheat_at": 6,
+   "overheat_rule": "> $6",
+   "basis": "우리 시장 중간값 $5 (39차 ③안). **작년 실낙찰가 × 1.117을 쓰지 않는다** — 작년 가격은 프리시즌 기대치라 개별 선수 가격 판정에 쓰면 '기대 vs 결과'를 재게 된다(docs/08 §0). 계층 판정(docs/08 ③ 이봉분포)에는 여전히 유효하다.",
    "walk_away": 14,
    "walk_away_rule": "> $14"
   },
@@ -269,10 +269,10 @@
    "rule": "> $14",
    "threshold": 14,
    "tier": "low_cost_center",
-   "expected_2026_27": 14,
-   "overheat_at": 20,
-   "overheat_rule": "> $20",
-   "basis": "작년 실측 $13 × 1.117 = $14",
+   "expected_2026_27": 7,
+   "overheat_at": 9,
+   "overheat_rule": "> $9",
+   "basis": "우리 시장 중간값 $7 (39차 ③안). **작년 실낙찰가 × 1.117을 쓰지 않는다** — 작년 가격은 프리시즌 기대치라 개별 선수 가격 판정에 쓰면 '기대 vs 결과'를 재게 된다(docs/08 §0). 계층 판정(docs/08 ③ 이봉분포)에는 여전히 유효하다.",
    "walk_away": 14,
    "walk_away_rule": "> $14"
   },
@@ -281,10 +281,10 @@
    "rule": "> $34",
    "threshold": 34,
    "tier": "name_big",
-   "expected_2026_27": 67,
-   "overheat_at": 84,
-   "overheat_rule": "> $84",
-   "basis": "작년 실측 $60 × 1.117 = $67 · 네임밸류 빅 11명 평균 $56.9",
+   "expected_2026_27": 26,
+   "overheat_at": 32,
+   "overheat_rule": "> $32",
+   "basis": "우리 시장 중간값 $26 (39차 ③안). **작년 실낙찰가 × 1.117을 쓰지 않는다** — 작년 가격은 프리시즌 기대치라 개별 선수 가격 판정에 쓰면 '기대 vs 결과'를 재게 된다(docs/08 §0). 계층 판정(docs/08 ③ 이봉분포)에는 여전히 유효하다.",
    "walk_away": 34,
    "walk_away_rule": "> $34"
   },
@@ -293,10 +293,10 @@
    "rule": "> $56",
    "threshold": 56,
    "tier": "anchor",
-   "expected_2026_27": null,
+   "expected_2026_27": 60,
    "overheat_at": null,
    "overheat_rule": null,
-   "basis": "가드. 코어 1·5 앵커 확보 가능성 판정용 — 센터 시장 온도와 무관. 37차: my_max 상향($50→$56)에 맞춰 철수가도 $50→$56 (사용자 결정 2026-08-26). $50에 묶어두면 계획가가 시장하단 $54를 밑돌아 my_max 상향이 c1에서 무효였다.",
+   "basis": "우리 시장 중간값 $60 (39차 ③안). **작년 실낙찰가 × 1.117을 쓰지 않는다** — 작년 가격은 프리시즌 기대치라 개별 선수 가격 판정에 쓰면 '기대 vs 결과'를 재게 된다(docs/08 §0). 계층 판정(docs/08 ③ 이봉분포)에는 여전히 유효하다.",
    "walk_away": 56,
    "walk_away_rule": "> $56"
   },
@@ -305,20 +305,20 @@
    "rule": "> $44",
    "threshold": 44,
    "tier": "anchor",
-   "expected_2026_27": null,
+   "expected_2026_27": 39,
    "overheat_at": null,
    "overheat_rule": null,
-   "basis": "가드. c7 피벗의 Haliburton 대체 1순위 — 백업 발동 조건에 필요. 센터 시장 온도와 무관",
+   "basis": "우리 시장 중간값 $39 (39차 ③안). **작년 실낙찰가 × 1.117을 쓰지 않는다** — 작년 가격은 프리시즌 기대치라 개별 선수 가격 판정에 쓰면 '기대 vs 결과'를 재게 된다(docs/08 §0). 계층 판정(docs/08 ③ 이봉분포)에는 여전히 유효하다.",
    "walk_away": 44,
    "walk_away_rule": "> $44"
   },
   {
    "player": "Karl-Anthony Towns",
    "tier": "anchor",
-   "expected_2026_27": null,
+   "expected_2026_27": 45,
    "overheat_at": null,
    "walk_away": 55,
-   "basis": "34차 · 승률 시뮬로 산출. **가격이 로스터를 바꾸지 않는 구간에서는 승률이 수학적으로 동일하다**(같은 9명 → 같은 분포). 신 c6의 KAT 제외 8칸 원가 $141 기준:\n  KAT $p → 총액 $141+p · 예비비 $59-p\n  p<=$47 예비비>=$12(목표) · p<=$51 >=$8(I22 경고) · p<=$55 >=$4(I22 위반선)=**철수가** · p<=$59 총액<=$200(조립 한계) · p>=$61 8칸 다운그레이드 강제(Okongwu 교체 관측)\n즉 **승률 기준이 아니라 예산 기준이 먼저 구속한다.** KAT 제외 손실 3.3%p(보유 최고 38.5% vs 제외 최고 35.1%)에 도달하기 전에 I22가 걸린다. $49~$58 최소승률 변동 33.7~36.3%는 1200시행 노이즈(±1.3%p)이고 로스터가 동일하므로 실제 변화가 아니다. 시장 상단은 $49 — 그 초과가 과열 신호지만 anchor 계층은 overheat_at을 두지 않는 스키마이므로 여기 근거로만 남긴다.",
+   "basis": "우리 시장 중간값 $45 (39차 ③안). **작년 실낙찰가 × 1.117을 쓰지 않는다** — 작년 가격은 프리시즌 기대치라 개별 선수 가격 판정에 쓰면 '기대 vs 결과'를 재게 된다(docs/08 §0). 계층 판정(docs/08 ③ 이봉분포)에는 여전히 유효하다.",
    "counts_toward_core7": false,
    "note": "tier=anchor. 저가 센터 계층과 달리 코어 7 전환 판정에는 세지 않는다.",
    "rule": "> $55",
@@ -7096,5 +7096,145 @@
    "source": "사용자 판단 2026-08-26",
    "caveat": "측정이 아니라 기대다. 프리시즌 실경기로 확인되면 근거를 교체할 것."
   }
+ },
+ "overheat_recalc_39": {
+  "at": "39차 · 평가 세션 ③안 채택",
+  "rule": "expected_2026_27 = 우리 시장 중간값 · overheat_at = round(expected × 1.25)",
+  "why": "종전 기대치는 `작년 실낙찰가 × 1.117`이었다. 그건 **개별 선수 가격을 그대로 옮기는 것**이고 docs/08 §0이 금지한 쪽이다. market_mid는 작년 곡선의 **순위 보존 재적합**이라 작년 데이터를 형태(계층·사다리)로만 쓴다 — 허용된 쪽이다. 이제 overheat_at은 '시장이 우리 예상보다 25% 더 냈다'는 깨끗한 정의가 된다.",
+  "defect_found": "🔴 Jalen Duren의 과열선이 $15인데 그의 시장 하단이 $24였다 — **우리 자신의 추정으로도 항상 과열**이었다. 우선 0은 '저가 센터 6명 중 2명 이상'인데 1명이 상시 점등돼 있었으니 **실질 문턱이 1명**이었다. 설계의 절반이다. 원인은 basis가 '작년 실측 $10 × 1.117 = $11'인데 Duren이 그 사이 올라온 선수라는 것 — 오염된 추론이 기대치를 바닥에 붙였고 과열선이 따라 내려갔다.",
+  "threshold_unchanged": "철수가(threshold)는 **바꾸지 않았다.** 그건 시장 기대치가 아니라 '얼마까지 낼 것인가'라는 예산선이고, 전부 I11(철수가 ≥ 최대 계획가)을 이미 만족한다. 바꾸면 피벗 트리거(I9)까지 연쇄한다 — 별건으로 둔다.",
+  "changes": {
+   "Jalen Johnson": {
+    "expected": [
+     null,
+     67
+    ],
+    "overheat_at": [
+     null,
+     null
+    ]
+   },
+   "Donovan Clingan": {
+    "expected": [
+     14,
+     12
+    ],
+    "overheat_at": [
+     20,
+     15
+    ]
+   },
+   "Rudy Gobert": {
+    "expected": [
+     9,
+     8
+    ],
+    "overheat_at": [
+     13,
+     10
+    ]
+   },
+   "Jalen Duren": {
+    "expected": [
+     11,
+     27
+    ],
+    "overheat_at": [
+     15,
+     34
+    ]
+   },
+   "Evan Mobley": {
+    "expected": [
+     48,
+     23
+    ],
+    "overheat_at": [
+     60,
+     29
+    ]
+   },
+   "Ivica Zubac": {
+    "expected": [
+     39,
+     11
+    ],
+    "overheat_at": [
+     49,
+     14
+    ]
+   },
+   "Mitchell Robinson": {
+    "expected": [
+     6,
+     5
+    ],
+    "overheat_at": [
+     9,
+     6
+    ]
+   },
+   "Deandre Ayton": {
+    "expected": [
+     5,
+     5
+    ],
+    "overheat_at": [
+     8,
+     6
+    ]
+   },
+   "Mark Williams": {
+    "expected": [
+     14,
+     7
+    ],
+    "overheat_at": [
+     20,
+     9
+    ]
+   },
+   "Alperen Şengün": {
+    "expected": [
+     67,
+     26
+    ],
+    "overheat_at": [
+     84,
+     32
+    ]
+   },
+   "Tyrese Haliburton": {
+    "expected": [
+     null,
+     60
+    ],
+    "overheat_at": [
+     null,
+     null
+    ]
+   },
+   "Derrick White": {
+    "expected": [
+     null,
+     39
+    ],
+    "overheat_at": [
+     null,
+     null
+    ]
+   },
+   "Karl-Anthony Towns": {
+    "expected": [
+     null,
+     45
+    ],
+    "overheat_at": [
+     null,
+     null
+    ]
+   }
+  },
+  "gate_impact": "우선 0 발동 문턱이 **실질 1명 → 설계대로 2명**으로 복원된다. 재산정 후 저가 센터 6명 중 상시 점등은 0명이다. ⚠️ 드래프트 당일 이 문턱이 바뀐 것을 모르면 안 된다."
  }
 }
