@@ -258,6 +258,28 @@ grep -c '\.premise\b' /tmp/js.txt                                # 0 = 렌더 �
 - ⚠️ `git checkout tool/auction-console.html`은 **커밋에 들어간 파손도 되살립니다.**
   파손을 되돌릴 때 checkout으로 되돌아가지 말고 원인을 고치고 재생성하십시오.
 
+#### ✅ 지우지 말 것 — `my_max_basis.auto` 의 자동 무효화가 한 라운드에 **3번** 작동했습니다
+
+28차에 `tool/close_unused_ceilings.py`가 만든 auto basis는 생성 당시의 `core_hits`·
+`obtainable`을 `conditions`에 함께 적어둡니다. `divergence_rules.has_any_basis()`가 현재값과
+대조해서, **등장이 0→1 이상으로 바뀌면 basis를 무효로 보고 M6 위반으로 다시 띄웁니다.**
+
+39차에 그것이 정확히 세 번 발동했습니다 — 셋 다 제가 새 플랜에 선수를 넣은 순간입니다:
+
+| 선수 | 계기 | 발동 | 처리 |
+|---|---|---|---|
+| Immanuel Quickley | c2 base 편입 | div +74 | 천장 $5 유지 · 근거 기록 |
+| Jarrett Allen | c5 피벗 편입 | **노출 $28**(div +27) | 천장 $16 유지 · 근거 기록 |
+| Bennedict Mathurin | c2 대체후보 편입 | div −103 | 후보에서 제외(OG Anunoby로 교체) |
+
+🔴 **이 필드는 평소에 조용합니다.** 아무 일도 안 하는 것처럼 보여서 다음 사람이 "왜 있나"로
+지울 수 있습니다. 지우면 **미사용이던 천장이 사용되기 시작하는 순간을 아무도 모릅니다.**
+그 순간이 바로 값이 틀렸는지 물어야 하는 유일한 시점입니다.
+
+⚠️ 연쇄를 조심하십시오 — 대체후보를 하나 넣으면 그 선수의 `core_hits`가 올라가
+**넣기 전에 통과하던 사람이 넣은 뒤에 위반**이 됩니다(Mathurin이 그랬습니다).
+대체후보를 고를 때는 **넣은 뒤에 다시 `validate.py`를 돌려야** 합니다.
+
 ---
 
 ## 이어받을 때 먼저 할 것
