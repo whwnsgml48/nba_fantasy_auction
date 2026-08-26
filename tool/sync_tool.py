@@ -13,6 +13,11 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 # 대조하므로, 여기서 직접 dict를 조립하면 두 파일이 갈라진다(실제로 갈라졌다).
 import tool_embed as TE
 BASE=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# 39차 갈래 1: 판단표 각 행에 실제 12팀 강도를 얹는다(cores.json엔 안 넣는다 · 32차).
+try:
+    SIM=json.load(io.open(f"{BASE}/data/matchup_sim.json",encoding="utf-8"))
+except Exception:
+    SIM=None
 pl=json.load(io.open(f"{BASE}/data/players.json",encoding="utf-8"))
 c=json.load(io.open(f"{BASE}/data/cores.json",encoding="utf-8"))
 by={p["name"]:p for p in pl}
@@ -28,6 +33,9 @@ def buildCORES():
     return out
 CONST=[("CORES",buildCORES()),("PIVOTS",TE.build_pivots(c)),
        ("OVERHEAT",TE.build_overheat(c)),("OTIERS",TE.build_tiers(c)),
+       # ⏸ 39차 갈래 1: TE.build_decision(c,SIM) 로 바꾸면 판단표에 실제 12팀 강도가 실린다.
+       #    validate 가 DECISION 을 cores.json.decision_table 원본과 직접 대조하므로
+       #    그쪽도 같은 함수를 쓰도록 바뀌기 전까지 보류한다 (B 요청 중).
        ("DECISION",c["decision_table"])]
 n=0
 for name,val in CONST:

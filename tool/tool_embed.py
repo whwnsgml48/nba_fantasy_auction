@@ -43,6 +43,31 @@ def build_overheat(cj):
     return out
 
 
+def build_decision(cj, sim=None):
+    """판단표 상수. `sim`(data/matchup_sim.json)을 주면 각 행에 **강도**를 얹는다.
+
+    39차 갈래 1: 판단표는 **도달 가능성 순**이지 강도 순이 아니다. 그 사실이 화면에
+    없어서 우선순위가 강도로 오독됐다. 각 행에 실제 12팀 평균/최저 승률을 실어
+    **방 안에서 사람이 거래를 보고 고르게** 한다.
+
+    ⚠️ 강도는 `cores.json`에 넣지 않는다 — 32차 원칙(시뮬 산출물을 계획 파일에 쓰지
+    말 것). 여기서 **툴 상수를 만들 때만** 합친다. `validate`도 같은 함수를 쓰면
+    이중 구현이 안 생긴다.
+    """
+    out = []
+    for d in cj["decision_table"]:
+        e = dict(d)
+        c = (sim or {}).get("cores", {}).get(d["core"]) if sim else None
+        if c and c.get("real_mean_win_rate") is not None:
+            e["str"] = {"mean": c["real_mean_win_rate"], "min": c.get("real_min_win_rate"),
+                        "n": (sim or {}).get("iterations")}
+        note = (cj.get("decision_strength_notes") or {}).get(d["core"])
+        if note:
+            e["snote"] = note
+        out.append(e)
+    return out
+
+
 def build_tiers(cj):
     """툴 `OTIERS` 상수."""
     return {k: {"label": v["label"], "c7": v["counts_toward_core7"], "why": v["why"]}
