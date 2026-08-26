@@ -52,6 +52,16 @@
   선수들)에서만 잔차비를 뽑는다. 표본이 작으므로 확률은 소수 2자리가 아니라
   **구간 판정**으로만 읽어야 한다.
 
+  🔴 **`docs/08` §0 경고를 피하지 못한다** (39차 평가 세션 지적 · 수용):
+    > "작년 낙찰가는 **2025-26 프리시즌 기대치**이고 `my_max`는 **2025-26 실측 성적**이다.
+    >  두 값을 선수별로 직접 비교하면 '우리 추정이 틀렸다'가 아니라
+    >  **'기대 vs 결과'의 차이**를 재게 된다."
+    사다리로 분모를 바꿔 *순환*은 끊었지만 이 오염은 그대로다. 잔차의 상당 부분이
+    가격 산포가 아니라 **시즌 중 성적 변화**다 — Jamal Murray 0.26 · Barnes·Maxey 등은
+    작년 프리시즌에 싸게 팔리고 시즌 중 올라온 선수들이고, **올해 드래프트에서
+    재현되지 않는다.** 순위 일치도로 조건화해도 그 집단에 브레이크아웃이 그대로 남는다.
+    → 그래서 ③ 엘리트 대조군을 별도로 낸다. 세 모델을 **통합하지 않는다.**
+
   ⚠️ 남는 편향 2종:
     · S는 **현재 우리 DB(174명)에 있는 선수만**이다(작년 지명 120 중 92). 지금 우리가
       평가하지 않는 선수는 대체로 가치가 떨어진 쪽이라 하방 꼬리가 과소 표현될 수 있다.
@@ -147,6 +157,46 @@ def last_year_scaled(name):
     return None if name not in LAST else LAST[name] * MONEY_SCALE
 
 
+# ── ③ 엘리트 대조군 (39차 평가 세션 제안) ──────────────────────────
+# 작년에 **이미 비쌌던** 선수($60+ 스케일 후)로 좁힌다. 시장이 이미 알고 있던 선수라
+# 브레이크아웃 아티팩트가 없다. 비율 = 작년 실낙찰가(스케일) ÷ 올해 우리 추정 중간값.
+#
+# 관측: 진짜 엘리트는 0.81~1.01에 촘촘히 모이고 **위쪽 꼬리는 전부 하락한 선수**다
+# (Giannis 1.31 · KAT 1.64 · Trae 1.90 · Şengün 2.58 · Sabonis 3.59).
+# 즉 **엘리트는 기대보다 싸지는 일이 거의 없다.**
+#
+# ⚠️ 이 모델의 고유 한계 3종 — 숫자만 떼어 쓰지 말 것:
+#   · **n = 11.** 확정 주장이 불가능한 크기다. 한 명이 들고 나면 P가 0.09씩 움직인다.
+#   · **위쪽 꼬리는 시장 노이즈가 아니라 우리 자신의 재평가다.** Sabonis 3.59 는
+#     "작년 $68짜리를 우리가 올해 $19로 본다"는 뜻이고, 그 재평가가 맞으면 실제가는
+#     우리 추정 쪽에 붙는다. 이걸 '추정 오차 표본'으로 쓰면 상방으로 보수적이 된다.
+#   · **엘리트에만 정의된다.** 저가 선수에는 대조군이 없다.
+ELITE_MIN = 60.0
+
+
+def elite_ratios():
+    out = []
+    for n, price in LAST.items():
+        sc = price * MONEY_SCALE
+        if sc >= ELITE_MIN and mid(PL[n]) > 0:
+            out.append((n, sc, mid(PL[n]), sc / mid(PL[n])))
+    out.sort(key=lambda x: x[3])
+    return out
+
+
+ELITE = elite_ratios()
+ELITE_R = sorted(r for *_, r in ELITE)
+
+
+def p_elite(name, thr):
+    """엘리트 대조군 기준 P(실낙찰가 <= thr). 대조군이 없으면 None."""
+    if not ELITE_R: return None
+    m = mid(PL[name])
+    if m <= 0: return None
+    t = thr / m
+    return sum(1 for r in ELITE_R if r <= t) / float(len(ELITE_R))
+
+
 def q(v):
     if not RATIOS:
         return None
@@ -216,9 +266,12 @@ def main():
     print("금액 스케일 %.3f (proposed_market_refit.money_scale · 총액비 1.167이 아님 — 인원도 120→126)"
           " · 같은 선수 작년 기록 %d명" % (MONEY_SCALE, len(LAST)))
     print()
-    hdr = "%-8s %-24s %-30s %7s %7s %11s  %s" % (
-        "출처", "조건", "선수 · 시장", "균등P", "국소P", "작년실적", "판정")
-    print(hdr); print("-" * 100)
+    print("엘리트 대조군: 작년 $%d+ (스케일 후) **%d명** · 비율 %.2f~%.2f — 위쪽 꼬리는 하락 선수" % (
+        ELITE_MIN, len(ELITE), ELITE_R[0], ELITE_R[-1]))
+    print()
+    hdr = "%-7s %-22s %-27s %6s %6s %6s %10s  %s" % (
+        "출처", "조건", "선수 · 시장", "균등P", "국소P", "엘리트", "작년실적", "판정")
+    print(hdr); print("-" * 108)
     flagged = []
     for src, label, rules in conditions():
         if not rules:
@@ -245,10 +298,16 @@ def main():
                 ly = "$%.0f %s" % (sc, "✓" if hit else "✗")
             else:
                 ly = "미지명"
+        pel = 1.0
+        for name, thr, d in rules:
+            e3 = p_elite(name, thr)
+            if e3 is None: pel = None; break
+            pel *= (1.0 - e3) if d == "gt" else e3
         g = grade(pe if pe is not None else pu)
-        print("%-8s %-24s %-30s %7.2f %7s %11s  %s" % (
-            src, label[:24], " + ".join(desc)[:30], pu,
-            "—" if pe is None else "%.2f" % pe, ly, g))
+        print("%-7s %-22s %-27s %6.2f %6s %6s %10s  %s" % (
+            src, label[:22], " + ".join(desc)[:27], pu,
+            "—" if pe is None else "%.2f" % pe,
+            "—" if pel is None else "%.2f" % pel, ly, g))
         if g:
             flagged.append((src, label, " + ".join(desc), pu, pe, g))
     print("-" * 96)
