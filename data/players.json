@@ -2503,7 +2503,7 @@
   "volume_leverage": null,
   "at_marginal_lift": "AST 5.7 / TOV 3 → 팀 A/T 한계 기여 -0.023 (2시즌 혼합 · GP 73.7)",
   "verdict": "OREB 3.0 · DD 34 · 72경기 + 빅맨 최상급 어시스트로 A/T까지 방어. Jokić의 저가 버전이라 불러도 될 프로필.",
-  "flag": null,
+  "flag": "⚠ 드래프트 당일 야후 F(PF) 자격 확인 — c3 선발이 여기 걸린다",
   "market_source": "refit_v2_measured_2025_26_league_auction",
   "market_prior_estimate": {
    "low": 26,
@@ -2689,7 +2689,7 @@
   "volume_leverage": null,
   "at_marginal_lift": "AST 4.7 / TOV 2.3 → 팀 A/T 한계 기여 +0.008 (2시즌 혼합 · GP 75.3)",
   "verdict": "가드가 OREB 3.0을 잡는 유일한 유형. STL 1.5 · DD 20 · 79경기 · G/F 자격. Barnes의 절반 가격에 OREB까지 주는 상위 호환.",
-  "flag": "FT%·3PT% 약점",
+  "flag": "FT%·3PT% 약점 · ⚠ 드래프트 당일 야후 F(SF) 자격 확인 — c3 선발이 여기 걸린다",
   "market_source": "refit_v2_measured_2025_26_league_auction",
   "market_prior_estimate": {
    "low": 26,
@@ -3028,7 +3028,7 @@
   "volume_leverage": null,
   "at_marginal_lift": "AST 4.5 / TOV 2.1 → 팀 A/T 한계 기여 +0.025 (2시즌 혼합 · GP 77.3)",
   "verdict": "3PT% 엘리트 주장은 실측으로 반증됐습니다. FT% 리그 3위는 검증됨.",
-  "flag": "3PT% 39.1% (3PA 5.5) — 레버리지 상위권 아님 · 채택 근거는 3PT가 아니다(비고 참조)",
+  "flag": "3PT% 39.1% (3PA 5.5) — 레버리지 상위권 아님 · 채택 근거는 3PT가 아니다(비고 참조) · ⚠ 드래프트 당일 야후 F(SF) 자격 확인 — c2 선발이 여기 걸린다",
   "market_source": "refit_v2_measured_2025_26_league_auction",
   "market_prior_estimate": {
    "low": 24,
@@ -24770,7 +24770,7 @@
   "volume_leverage": null,
   "at_marginal_lift": "AST 2.8 / TOV 1.5 → 팀 A/T 한계 기여 -0.017 (2시즌 혼합 · GP 74)",
   "verdict": null,
-  "flag": "OREB top-25 밖",
+  "flag": "OREB top-25 밖 · ⚠ 드래프트 당일 야후 F(PF) 자격 확인 — c2 선발이 여기 걸린다",
   "market_source": "refit_v2_measured_2025_26_league_auction",
   "market_prior_estimate": {
    "low": 6,
