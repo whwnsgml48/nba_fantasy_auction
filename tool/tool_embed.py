@@ -103,8 +103,11 @@ def build_kat_branch(cj):
     if not b:
         return None
     return {"n": b["player"], "ceil": b["ceilings"],
+            # 39차 후반: $57 갈래는 Jokić 게이트에 따라 c2/c4 2갈래다. 하위 분기를
+            # 함께 실어서 툴이 Jokić 실낙찰가로 어느 쪽인지 점등한다.
             "steps": [{"over": s["over"], "go": s["go"], "label": s["label"],
-                       "str": s.get("strength")} for s in b["steps"]]}
+                       "str": s.get("strength"), "br": s.get("branch")}
+                      for s in b["steps"]]}
 
 
 def build_tiers(cj):

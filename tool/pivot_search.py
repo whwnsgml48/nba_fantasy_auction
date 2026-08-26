@@ -151,7 +151,16 @@ def confirm(cid, rows, iters=6000, seed=20261020, n=4):
         out.append(rr)
     rr = RS.evaluate(cur, random.Random(seed), iters, opps)
     rr["real_mean"] = real_mean(cur, iters, seed)
-    rr["fill"] = ["(현행 피벗)"]; rr["total"] = pv["final_total"]
+    # 🔴 39차: 현행 피벗에 **트리거 선수가 아직 남아 있으면**(I24 위반) 그 행은 피벗으로
+    #    쓸 수 없는 자리표시자다. 실제로 c2 재설계 중 그 행이 88.9%로 1위에 찍혀
+    #    "피벗이 base보다 좋은데 왜 바꾸나"로 읽힐 자리가 됐다. 문서 각주는 스크립트
+    #    출력을 따라오지 못하므로 **행 자체에 표시한다**(평가 세션 지적).
+    _trig = {t["player"] for t in pv["triggers"]}
+    _stuck = sorted(_trig & set(cur))
+    rr["fill"] = (["(현행 피벗 · 🔴 비교 불가 — 트리거 잔류 %s · I24 위반 자리표시자)" % ", ".join(_stuck)]
+                  if _stuck else ["(현행 피벗)"])
+    rr["placeholder"] = bool(_stuck)
+    rr["total"] = pv["final_total"]
     rr["reserve"] = BUDGET - pv["final_total"]; rr["names"] = cur
     out.append(rr)
     out.sort(key=lambda r: -r["real_mean"])   # 1차 지표로 정렬 (39차)
