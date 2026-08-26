@@ -697,6 +697,11 @@ function decideStatus(d){
   }
   return "미정";
 }
+// 🔴 39차: 충족 행이 2개 이상일 수 있다. `hot_bigs`(c7)는 **내가 뭘 샀는지와 무관**하게
+//    타팀 낙찰가만 보므로, 「저가 센터 2명 과열 + 내가 Jokić $95 보유」 같은 상태가
+//    **예산을 깨지 않고** 도달 가능하다. 그때 표 순서상 첫 행(c7)을 자동으로 고르면
+//    조립 불가능한 코어를 권하게 된다(실측: c7 계획여유 -$34 · c2 +$10).
+function satisfiedRows(){ return DECISION.filter(function(d){return decideStatus(d)==="충족";}); }
 function activePriority(){
   for(const d of DECISION){ const st=decideStatus(d);
     if(st==="충족") return d; }
@@ -727,8 +732,8 @@ const owned=id=>S.mine.some(m=>m.id===id);
 //
 // ⚠️ 예비비를 따로 더하지 않는다 — 예비비 = 예산 − 계획총액 이므로 이미 잔액에
 //    포함돼 있다. 더하면 이중 계산이 된다.
-function openRows(){
-  const c=activeCore(); if(!c.plan) return [];
+function openRows(co){
+  const c=co||activeCore(); if(!c.plan) return [];
   return c.plan.map(function(r,idx){
     const slot=r[0], sameBefore=c.plan.slice(0,idx).filter(function(x){return x[0]===slot;}).length;
     // 슬롯 이름 중복(UTIL×2·BN×2)은 등장 순서로 짝짓는다 — renderCore 와 같은 규칙.
@@ -738,9 +743,11 @@ function openRows(){
   }).filter(function(o){return !o.filled;});
 }
 // 계획 여유 = 잔액 − 남은 계획가 합. 시작값이 예비비고, 음수면 계획을 못 맞춘다.
-function planSlack(){
-  const c=activeCore(); if(!c.plan) return null;
-  return remaining()-openRows().reduce(function(a,o){return a+o.plan;},0);
+function planSlack(co){
+  const c=co||activeCore(); if(!c.plan) return null;
+  // ⚠️ 선택 코어가 아니라 **임의 코어**에도 적용된다(39차) — 판단표에서 충족 행이
+  //    2개일 때 각 후보가 조립 가능한지 그 자리에서 보여주기 위해서다.
+  return remaining()-openRows(c).reduce(function(a,o){return a+o.plan;},0);
 }
 // 이 슬롯의 실질 상한 = min(슬롯 상한, 계획가 + 계획여유).
 function effCeil(o,sk){
@@ -991,7 +998,7 @@ function renderTrig(){
   const act=activePriority(), hc=hotCenterCount();
   let h='';
   DECISION.forEach(d=>{
-    const st=decideStatus(d), on=act&&act.core===d.core;
+    const st=decideStatus(d), on=(st==="충족")||(act&&act.core===d.core);
     const rules=(d.cond.rules||[]).map(r=>shortName(r.player)+" ≤ $"+r.max).join(" + ");
     let cond=d.label;
     if(d.cond.type==="hot_bigs") cond=((OTIERS[d.cond.tier]||{}).label||d.cond.tier)+" 과열 "+d.cond.n+"명 이상 ("+hc+"/"+(d.cond.players||[]).length+"명 감지)";
@@ -1066,7 +1073,7 @@ function renderDecide(){
     +'<span class="prem">판정은 '+((OTIERS[DECISION[0].cond.tier]||{}).label||'')+' 계층의 과열선(실측 기대치 기반)만 셉니다.</span></div>';
   h+='<div class="rulebody" style="padding:0">';
   DECISION.forEach(d=>{
-    const st=decideStatus(d), on=act&&act.core===d.core;
+    const st=decideStatus(d), on=(st==="충족")||(act&&act.core===d.core);
     const col=st==="충족"?"var(--ok)":st==="불가"?"var(--ink-3)":st==="기본값"?"var(--accent)":"var(--ink-2)";
     h+='<div style="'+(on?'background:var(--ok-bg);margin:0 -6px;padding:5px 6px;border-radius:2px;':'')+'">'
       +'<span style="color:'+col+'">'+d.prio+'. '+d.label+'</span>'
@@ -1131,7 +1138,33 @@ function renderDecide(){
     +'<b>강도 순이 아니라 도달 가능성 순</b>이다. <b>선택</b>=실제 12팀 평균(1차) · '
     +'<b>견고</b>=12팀 중 최저(2차). 두 값이 1위를 다르게 가리킬 수 있다 — '
     +'<b>고를 때는 선택 값을 본다.</b> ⚠ 표시는 아래 <b>코어 전환 트리거</b>에 사유가 있다.</p>';
-  if(act) h+='<p class="prem" style="font-size:12px;margin-top:9px"><b>현재 권장: '+act.core.toUpperCase()+'</b> — '+act.note+'</p>';
+  // 🔴 39차: 충족이 2행 이상이면 **하나를 고르지 않는다.** 표 순서상 첫 행을 자동으로
+  //    권하면 조립 불가능한 코어를 권할 수 있다(c7 충족 + 내가 Jokić 보유 → c7 -$34).
+  //    강도 순으로 둘 다 보여주고 각 행에 **그 코어의 계획 여유**를 붙여
+  //    「조립 불가」를 그 자리에서 판별하게 한다. 고르는 것은 사람이다.
+  const sat=satisfiedRows();
+  if(sat.length>=2){
+    const rows=sat.map(function(d){
+      const co=coreById(d.core), sk=co&&co.plan?planSlack(co):null;
+      return {d:d, sk:sk, mean:(d.str&&d.str.mean)||0, min:(d.str&&d.str.min)||0};
+    }).sort(function(x,y){return y.mean-x.mean;});
+    h+='<p class="prem" style="font-size:12px;margin-top:9px"><b>현재 권장: 충족 '+sat.length
+      +'건 — 직접 고르십시오.</b> 서로 다른 조건이 동시에 열렸습니다. '
+      +'자동으로 하나를 고르면 <b>조립 불가능한 코어</b>를 권할 수 있어 고르지 않습니다.</p>';
+    rows.forEach(function(r){
+      const bad=r.sk!==null&&r.sk<0;
+      h+='<div style="display:flex;justify-content:space-between;gap:8px;font-size:11.5px;'
+        +'padding:3px 0 3px 8px;border-left:2px solid '+(bad?'var(--crit)':'var(--ok)')+';margin-top:4px">'
+        +'<span><b style="font-family:var(--mono)">'+r.d.core.toUpperCase()+'</b> '
+        +(r.d.prio!=null?String(r.d.prio):'')+' · '+r.d.label+'</span>'
+        +'<b style="font-family:var(--mono);font-size:10.5px;white-space:nowrap;'
+        +(bad?'color:var(--crit)':'color:var(--ink-3)')+'">'
+        +(r.mean*100).toFixed(1)+' / '+(r.min*100).toFixed(1)
+        +(r.sk===null?'':(bad?' · 조립 불가 (계획 여유 -$'+(-r.sk)+')':' · 여유 $'+r.sk+''))
+        +'</b></div>';
+    });
+  }
+  else if(act) h+='<p class="prem" style="font-size:12px;margin-top:9px"><b>현재 권장: '+act.core.toUpperCase()+'</b> — '+act.note+'</p>';
   h+='<details class="rules" style="margin-top:8px;border:0"><summary style="padding:6px 0">한 줄 요약</summary>'
     +'<p class="prem" style="font-size:12px;padding:0 0 6px">'+DECISION_ONELINER+'</p></details>';
   box.innerHTML=h;

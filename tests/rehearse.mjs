@@ -120,3 +120,23 @@ for(const core of ['c1','c4','c7']){
   const badc=[...new Set((ci.match(/undefined|NaN|\[object|\d+차(?!원|선)/g)||[]))].filter(x=>!['1차','2차'].includes(x));
   console.log('   코어 카드: '+(badc.length?'🔴 '+badc.join(','):'✅ 이상 없음'));
 }
+
+// ── ⑥b 🔴 hot_bigs 는 내 보유와 무관하다 — 충족 2건이 예산을 안 깨고 도달 가능하다 ──
+//    이 조합이 39차에 실제 결함을 드러냈다: 표 순서상 첫 행(c7)을 자동으로 권했는데
+//    c7 은 계획여유 -$34 로 조립 불가였고, 옆의 c2 는 +$10 이었다.
+{
+  const block=()=>{const t=txt(nodes['decide'].innerHTML); const i=t.indexOf('현재 권장');
+    const j=t.indexOf('한 줄 요약');
+    return i<0?'(권장 없음)':t.slice(i, j>i?j:i+400);};
+  const cases=[
+    ['A 충족 2건 (저가센터 2명 과열 + 내 Jokić $95)', ()=>{
+      reset('c6'); sold('Donovan Clingan',25); sold('Rudy Gobert',20); buy('Nikola Jokić',95,'C');}],
+    ['B 충족 1건 (내 Jokić $95 만)', ()=>{reset('c6'); buy('Nikola Jokić',95,'C');}],
+    ['C 충족 0건 (정상 시장)', ()=>{reset('c6');}],
+    ['D 앵커 2개 보유(깨진 상태)', ()=>{
+      reset('c6'); buy('Nikola Jokić',95,'C'); buy('Shai Gilgeous-Alexander',80,'PG');}],
+  ];
+  console.log('\n════ ⑥b 충족 행이 2개일 때 — 자동 선택하지 않는가');
+  for(const [lbl,setup] of cases){ setup(); R();
+    console.log('   ['+lbl+']\n      '+block().trim()); }
+}
