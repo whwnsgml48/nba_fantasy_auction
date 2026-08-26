@@ -568,6 +568,7 @@ python3 tool/recompute_cores.py     # cores.json 파생 필드
 python3 tool/sync_tool.py           # 툴 임베드 상수 + P 배열
 python3 tool/plant_value_reference.py   # my_max 참고선 (M5·M5b 판정 근거)
 python3 tool/gen_docs03.py          # docs/03 표 생성 (26차 — 손으로 유지하면 낡는다)
+python3 tool/gen_players_csv.py     # players.csv 재생성 (38차 — I25가 대조)
 python3 tool/gen_docs06.py          # docs/06 전량 생성 (36차 — 그전엔 생성기가 없어 5차수 낡았다)
 python3 tool/matchup_sim.py 20261020 4000   # 승률 판정 → data/matchup_sim.json (30·32차)
 python3 validate.py                 # 위반 0건 확인
@@ -757,6 +758,12 @@ cores[]
     **>$25는 "과소 편성" 경고**. 근거: 앵커 1명이 시장 상단으로 가면 예산이 넘습니다
 23. **가격 3필드 정합** (I23 · 35차 · 361 엔트리) — `bid_ceiling ≤ my_max` ·
     `expected_cost ≤ bid_ceiling` · `plan_price == expected_cost` · `expected_cost ≤ 시장 상단`
+24. **피벗 로스터 = base 1순위 + swaps** (I24 · 37차) — stale swap 차단
+25. **`players.csv` = 생성기 출력** (I25 · 38차) — `tool/gen_players_csv.py`의 `build()`를
+    직접 불러 대조합니다(규칙 이중 구현 금지 · 27차 사고와 같은 이유).
+    ⚠️ 도입 시점에 **174행 전부 불일치**였습니다 — `cats`는 13차 재산정 미반영,
+    스탯은 20차 2시즌 혼합 미반영, `*_lift`는 옛 기준선. 손으로 유지되는 미러였습니다.
+    `players.json`을 고치면 **재생성해야 하고, 안 하면 exit 1**입니다
 
 **M1~M6** (`tool/divergence_rules.py` 단일 소스 · 선수 평가층):
 M1 단조성 · M2 한계기여 ≤0인데 가중치 부여 금지 · M3 `GP<40`은 `weights_data_verified:false` ·
@@ -790,7 +797,16 @@ M4 서술문(`flag`/`verdict`)↔가중치 정면 충돌 금지 · **M5** tag �
 판단표(7차) · 전환 트리거 패널(8차) · **툴 DECISION 상수(10차)**.
 **새 안내를 추가할 때 정적 HTML/문장으로 쓰지 말 것.**
 
-### 같은 값을 두 곳에 두면 반드시 갈라진다 — 11차에서 2건 더
+### 같은 값을 두 곳에 두면 반드시 갈라진다 — 11차에서 2건 더 · 38차에 2건 더
+
+38차에 같은 형태를 두 건 더 찾았습니다.
+- **`players.csv`** — README가 "같은 데이터 표 형식"이라 적었지만 생성기가 없는 손 미러였고
+  **174행 전부** 갈라져 있었습니다(`tool/gen_players_csv.py` 신설 · I25가 검사)
+- **주간 경기수 3.5** — `matchup_sim`·`gen_docs03`·`rate_cat_leverage` 세 파일에 각각
+  하드코딩. `cat_model.GAMES_PER_WEEK`로 모았습니다(값도 3.299로 정정)
+
+**"생성물이라고 문서에 적어놓고 생성기가 없는 것"이 이 저장소의 반복 패턴입니다** —
+`docs/06`(37차) · `players.csv`(38차)가 연달아 같은 형태였습니다.
 - `slots[].plan_price` vs `candidates[0].plan_price` — 검증기는 전자를 쓰는데 후자만
   고쳐서 총액이 조용히 옛 값으로 계산됐습니다(8건)
 - `planned_total`·`big_budget_planned`·`c_eligible_count` — 파생 합계인데 따로 저장돼 낡음(4코어)

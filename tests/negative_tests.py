@@ -35,7 +35,7 @@
   python3 tests/negative_tests.py I23      # id에 문자열이 포함된 것만
 위반이 잡히지 않은 테스트가 있으면 exit 1.
 """
-import io, json, os, shutil, subprocess, sys, tempfile
+import io, json, os, re, shutil, subprocess, sys, tempfile
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -52,6 +52,8 @@ NEEDED = [
     "tool/auction-console.html",
     "tool/cat_model.py",
     "tool/divergence_rules.py",
+    "tool/gen_players_csv.py",
+    "data/players.csv",
 ]
 
 TESTS = []
@@ -123,6 +125,11 @@ class Box:
         tot = sum(s["plan_price"] for s in co["slots"])
         co["planned_total"] = tot
         co["budget_slack"] = 200 - tot
+
+    def csv(self, fn):
+        p = self.root + "/data/players.csv"
+        s = io.open(p, encoding="utf-8").read()
+        io.open(p, "w", encoding="utf-8").write(fn(s))
 
     def html(self, fn):
         p = self.root + "/tool/auction-console.html"
@@ -358,6 +365,16 @@ def _(b):
             sw[0]["out"]["name"] = "존재하지 않는 선수"; return
     raise AssertionError("swaps 없음")
 
+@test("I25a", "players.csv 값이 players.json과 갈라졌다", ("[I25]", "재생성 필요"),
+      after=TAIL)
+def _(b):
+    # 손으로 유지되던 미러가 갈라지는 것이 실제 사고였다(도입 시 174행 전부 불일치).
+    b.csv(lambda s: s.replace("Nikola Jokić,DEN", "Nikola Jokić,LAL", 1))
+
+@test("I25b", "players.csv에서 한 행이 사라졌다", ("[I25]", "재생성 필요"), after=TAIL)
+def _(b):
+    b.csv(lambda s: "\n".join(l for l in s.split("\n") if not l.startswith("Rudy Gobert,")))
+
 @test("M3", "GP<40인데 weights_data_verified가 true다", "[M3]")
 def _(b):
     for p in b.players:
@@ -422,9 +439,18 @@ def main():
         if selftest:
             vp = pristine + "/validate.py"
             src = io.open(vp, encoding="utf-8").read()
-            n = src.count("err+=1") + src.count("err+=len")
-            src = src.replace("err+=1", "err+=0").replace("err+=len", "err+=0*len")
+            # ⚠️ 공백 변형에 걸리면 안 된다. 38차에 I25를 `err += 1`(공백 있음)으로
+            # 써서 무력화를 빠져나갔고, 11개 테스트가 검출과 무관하게 초록이었다.
+            # 문자열 매칭 대신 정규식으로 모든 형태를 잡는다.
+            src, n1 = re.subn(r"\berr\s*\+=\s*1\b", "err+=0", src)
+            src, n2 = re.subn(r"\berr\s*\+=\s*len", "err+=0*len", src)
+            n = n1 + n2
             io.open(vp, "w", encoding="utf-8").write(src)
+            leftover = re.findall(r"\berr\s*\+=\s*(?!0)\S+", src)
+            if leftover:
+                print("[--selftest] ✗ 무력화 못 한 err 가산 %d곳: %s"
+                      % (len(leftover), ", ".join(sorted(set(leftover))[:5])))
+                return 1
             print("[--selftest] validate.py의 err 가산 %d곳 무력화 — "
                   "모든 테스트가 빨개져야 정상이다.\n" % n)
 

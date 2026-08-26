@@ -1000,6 +1000,36 @@ else:
     if ids-seen: print("  ✗ 판단표에 누락된 코어: %s"%", ".join(sorted(ids-seen))); err+=1
     if dt[0]["core"]!="c7": print("  ✗ 우선순위 0이 코어 7이 아님"); err+=1
     print("판단 순서: %d행 · 우선 0 = %s (센터 붕괴 시 최우선)"%(len(dt),dt[0]["core"]))
+print("-"*66)
+# ── I25 (38차 신설): data/players.csv == 생성기 출력 ─────────────────────
+# README는 players.csv를 "같은 데이터 표 형식"이라고 적어놨지만 **생성기가 없었고
+# 손으로 유지되는 미러**였다. 그래서 갈라졌다 — 도입 시점에 174행 전부가 달랐다
+# (cats는 13차 재산정 미반영 · 스탯은 20차 2시즌 혼합 미반영 · lift는 옛 기준선).
+# 38차의 DeRozan 소속 정정도 두 파일을 각각 고쳐야 했다.
+# 이 프로젝트의 「같은 값을 두 곳에 두면 반드시 갈라진다」 형태이므로 툴 임베드 상수
+# (I12·I15·I20)와 같은 방식으로 **상시 대조**한다. 규칙을 두 번 구현하지 않기 위해
+# 생성기의 build()를 그대로 불러 쓴다(27차 M5·M6 이중 구현 사고와 같은 이유).
+try:
+    import sys as _s25; _s25.path.insert(0, D+"/tool")
+    import gen_players_csv as _GC
+    _csv_new = _GC.build()
+    _csv_old = io.open(D+"/data/players.csv", encoding="utf-8").read()
+    if _csv_new != _csv_old:
+        _o, _n = _csv_old.split("\n"), _csv_new.split("\n")
+        _bad = [k for k in range(max(len(_o), len(_n)))
+                if (_o[k] if k < len(_o) else None) != (_n[k] if k < len(_n) else None)]
+        print("✗ [I25] players.csv가 생성기 출력과 불일치 — 다른 줄 %d개 · 재생성 필요"
+              % len(_bad)); err+=1
+        for _k in _bad[:3]:
+            _nm = (_n[_k] if _k < len(_n) else _o[_k]).split(",")[0]
+            print("             %d행 %s" % (_k+1, _nm or "(헤더)"))
+        print("             → python3 tool/gen_players_csv.py")
+    else:
+        print("[I25] players.csv = 생성기 출력 일치 (%d행 · %d열)"
+              % (_csv_new.count("\n")-1, len(_GC.COLS)))
+except Exception as _ex25:
+    print("✗ [I25] players.csv 대조 실패: %r" % (_ex25,)); err+=1
+
 print("장기 부상 제외 대상: %s"%(", ".join(sorted(INJ)) or "없음"))
 print("총 위반: %d건%s"%(err, " · 치환필요 %d건(치명 아님)"%warn if warn else ""))
 sys.exit(1 if err else 0)

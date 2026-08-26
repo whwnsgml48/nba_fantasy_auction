@@ -82,7 +82,7 @@ docs/
   08-prior-auction-calibration.md  ★ 작년 옥션 실측 보정 (곡선 검증·센터 이봉분포·임계값 백테스트)
 data/
   players.json              선수 174명 (기계 판독용)
-  players.csv               같은 데이터 표 형식
+  players.csv               같은 데이터 표 형식 (**생성물** — gen_players_csv.py)
   cores.json                코어 7종 + 피벗 + 판단표 + 과열 임계값 + 앵커정책
   league_settings.json      리그 규칙 · 캣 목록
   stats_2025_26/            ★ 평가의 모든 원본 근거
@@ -100,6 +100,7 @@ tool/
   value_model.py            z-score 평가 참고선 (my_max 대조용 · 순위 비교 전용)
   recompute_cores.py        cores.json 파생 필드 전체 재계산
   sync_tool.py              auction-console.html 임베드 상수 7종 재생성
+  gen_players_csv.py        players.csv 생성 (37열 · I25가 드리프트 상시 검사 · 38차)
   snapshot_data.py          data/ 스냅샷 + 구조적 diff (커밋 전 필드 단위 요약)
   gen_docs03.py             docs/03 표를 players.json에서 생성 (26차 전환)
   gen_docs06.py             docs/06을 cores.json에서 **전량** 생성 (36차 — 그전엔 생성기가 없었다)
@@ -173,6 +174,7 @@ python3 tool/recompute_cores.py     # cores.json 파생 필드
 python3 tool/sync_tool.py           # 툴 임베드 상수
 python3 tool/plant_value_reference.py   # my_max 참고선 (M5·M5b가 이 값을 검사)
 python3 tool/gen_docs03.py          # docs/03 표 생성 (산문은 수기 유지)
+python3 tool/gen_players_csv.py     # players.csv 재생성 (I25가 대조)
 python3 tool/gen_docs06.py          # docs/06 전량 생성 (코어·피벗·판단표·임계값)
 python3 tool/matchup_sim.py 20261020 4000   # 승률 판정 → data/matchup_sim.json
 python3 validate.py                 # 위반 0건 확인
