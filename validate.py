@@ -793,6 +793,45 @@ else:
                 co["id"],_pr,_exp,_who["name"],_who["plan_price"],pl[_who["name"]]["market_high"])); warn+=1
     print("[I24] 피벗 로스터 = base 1순위 + swaps: %d/%d 코어 일치"%(_i24,len(cj["cores"])))
 
+    # ── I26: 가격 조건이 발동 가능한 사건인가 (39차 신설) ─────────────────────
+    # 트리거가 임계값 소스와 일치하는지는 봤지만 **그 조건이 일어날 수 있는가**는
+    # 아무도 안 봤다. 도달 불가능한 분기는 드래프트 당일 영원히 거짓이고 조용히 산다.
+    #
+    # ⚠️ 판정에 **균등 가정을 단독으로 쓰지 않는다.** market_low/high 는 추정 구간이지
+    #    지지집합이 아니다. 균등만 쓰면 18건이 "항상 거짓"으로 잡히는데, 같은 선수의
+    #    작년 실낙찰가가 그중 여럿을 직접 반증한다(예: Mobley 철수가 >$30 은 균등 P=0
+    #    인데 작년 실제 $50(스케일 후)에 팔렸다). 그래서 **균등 AND 실측 국소** 두 모델이
+    #    모두 불가라고 할 때만 잡는다. 근거·모델 설명은 tool/trigger_audit.py.
+    print("-"*66)
+    try:
+        sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "tool"))
+        import trigger_audit as _TA
+        _n26=_dead=_nb=0
+        for _src,_lbl,_rules in _TA.conditions():
+            if not _rules: continue
+            _pu=_pe=1.0
+            for _nm,_thr,_d in _rules:
+                _u=_TA.p_uniform(_nm,_thr); _e=_TA.p_empirical(_nm,_thr)
+                if _d=="gt":
+                    _u=1.0-_u; _e=None if _e is None else 1.0-_e
+                _pu*=_u; _pe=None if (_pe is None or _e is None) else _pe*_e
+            _n26+=1
+            if _pe is None: continue
+            _both_never = _pu<=_TA.NEVER and _pe<=_TA.NEVER
+            _both_always= _pu>=_TA.ALWAYS and _pe>=_TA.ALWAYS
+            if _src=="판단표" and (_both_never or _both_always):
+                print("  ✗ [I26] %s: 가격 조건이 %s — 균등 %.2f · 실측 %.2f (%s)"%(
+                    _lbl, "절대 발동 불가" if _both_never else "항상 참이라 게이트 역할 없음",
+                    _pu,_pe,_TA.conditions and "죽은 분기"))
+                err+=1; _dead+=1
+            elif _src!="판단표" and _both_never:
+                print("  △ [I26] %s %s: 이 선 아래로는 아무 일도 일어나지 않는다 — 균등 %.2f · 실측 %.2f"%(
+                    _src,_lbl,_pu,_pe)); warn+=1; _nb+=1
+        print("[I26] 가격 조건 발동 가능성: %d건 검사 · 죽은 분기 %d · 비구속 임계값 %d"%(_n26,_dead,_nb))
+        print("      균등(구간 내 균등) **AND** 실측(작년 120건 · 순위 국소 잔차비) 둘 다 불가일 때만 위반")
+    except Exception as _ex:
+        print("[I26] 건너뜀 — %s: %s"%(type(_ex).__name__,_ex))
+
     _cond=[x["id"] for x in cj["cores"] if x.get("conditional_on_discount")]
     print("앵커 정책: 앵커 %d개 · 피벗/백업 엔트리 %d개 · 조건부 베팅 %s%s"%(
         _nA,_nB,",".join(_cond) or "없음",

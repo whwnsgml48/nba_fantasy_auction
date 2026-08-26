@@ -48,6 +48,8 @@ NEEDED = [
     "data/divergence_state.json",
     "data/matchup_sim.json",
     "data/prior_auction_2025_26/proposed_market_refit.json",
+    "data/prior_auction_2025_26/results.json",   # I26 실측 산포
+    "tool/trigger_audit.py",                     # I26 발동 확률 모델
     "data/stats_2025_26/measured_full.json",
     "tool/auction-console.html",
     "tool/cat_model.py",
@@ -390,6 +392,33 @@ def _(b):
         if vr and "rank_divergence" in vr and not p.get("tag_basis") and not p.get("my_max_basis"):
             vr["rank_divergence"] = 120; return
     raise AssertionError("대상 선수 없음")
+
+
+@test("I26a", "판단표 가격 조건이 절대 발동할 수 없다", ("[I26]", "절대 발동 불가"), after=TAIL)
+def _(b):
+    # Jokić <= $1 — 시장 $93-101 이고 작년 실적으로도 불가. 균등·실측 둘 다 0.
+    for r in b.cj["decision_table"]:
+        for rule in (r.get("cond") or {}).get("rules") or []:
+            if rule["player"] in b.pl:
+                rule["max"] = 1
+                return
+    raise AssertionError("가격 규칙을 가진 판단표 행이 없음")
+
+
+@test("I26b", "판단표 가격 조건이 항상 참이라 게이트 역할이 없다",
+      ("[I26]", "게이트 역할 없음"), after=TAIL)
+def _(b):
+    # my_max 를 함께 올려야 한다 — I10이 `임계값 <= my_max` 를 요구하므로 임계값만
+    # 올리면 그쪽이 먼저 걸리고, my_max 안에서는 실측 P가 1.0까지 안 올라간다.
+    # ⚠️ 규칙이 2개인 행(c1: KAT + Hali)을 고르면 안 된다 — 결합 확률이 곱이라
+    #    한쪽만 1.0으로 만들어도 다른 쪽(Hali 0.33)이 곱해져 발화하지 않는다.
+    for r in b.cj["decision_table"]:
+        rules = (r.get("cond") or {}).get("rules") or []
+        if len(rules) == 1 and rules[0]["player"] in b.pl:
+            b.pl[rules[0]["player"]]["my_max"] = 999
+            rules[0]["max"] = 999
+            return
+    raise AssertionError("가격 규칙이 정확히 1개인 판단표 행이 없음")
 
 
 # ══════════════════════════════════════════════════════════════════════
