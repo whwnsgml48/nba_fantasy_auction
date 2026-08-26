@@ -160,7 +160,7 @@ $25 초과는 "과소 편성"(로스터가 예산을 못 씀) 경고입니다.
 
 | | 코어 | 계획 | 예비비 | 빅맨/상한 | C자격 | 노리는 캣 | 포기 | 승리 캣 | 피벗 총액 |
 |---|---|---|---|---|---|---|---|---|---|
-| c1 | KAT 앵커 + Haliburton | $188 | $12 | $93/$115 | 5 | 10개 | 3PM, FT%, TOV | **10**/13 | $184 |
+| c1 | KAT 앵커 + Haliburton | $188 | $12 | $93/$115 | 5 | 10개 | 3PM, FT%, TOV | **10**/13 | $180 |
 | c2 | Jokić 압축 | $196 | $4 | $143/$153 | 4 | 9개 | 3P%, 3PM, FT%, STL | **9**/13 | $183 |
 | c3 | SGA + 저가 빅 4인 | $196 | $4 | $57/$85 | 4 | 9개 | 3P%, 3PM, FT%, TOV | **9**/13 | $183 |
 | c4 | 무앵커 분산 (상한 $31) | $186 | $14 | $84/$107 | 4 | 8개 | 3P%, 3PM, A/T, FT%, TOV | **8**/13 | $193 |
@@ -229,25 +229,25 @@ $25 초과는 "과소 편성"(로스터가 예산을 못 씀) 경고입니다.
 
 | 슬롯 | 변경 | 계획가 | 증감 |
 |---|---|---|---|
-| UTIL | Donovan Clingan → **Mitchell Robinson** | $5 | -6 |
-| UTIL | Rudy Gobert → **Mark Williams** | $7 | -3 |
-| BN | Moussa Diabaté → **Sam Merrill** | $2 | +4 |
-| SF | Kon Knueppel → **Desmond Bane** | $22 | +1 |
+| UTIL | Donovan Clingan → **Nikola Vučević** | $2 | -10 |
+| UTIL | Rudy Gobert → **Onyeka Okongwu** | $5 | -3 |
+| BN | Moussa Diabaté → **Cameron Johnson** | $7 | +5 |
+| SF | Kon Knueppel → **Desmond Bane** | $22 | +0 |
 | C | Karl-Anthony Towns → **Karl-Anthony Towns** | $49 | +4 |
 
-**피벗 최종 9인** — 총액 $184 · 예비비 $16 · 빅맨 $87 (C자격 4명) · 노리는 캣 `3P% A/T AST DD FG% OREB REB STL TOV` · 포기 `3PM BLK FT% PTS`
+**피벗 최종 9인** — 총액 $180 · 예비비 $20 · 빅맨 $78 (C자격 4명) · 노리는 캣 `3P% 3PM A/T AST BLK DD FG% FT% OREB PTS REB STL` · 포기 `TOV`
 
 | 슬롯 | 선수 | 계획가 | 상한 |
 |---|---|---|---|
-| C | Karl-Anthony Towns `C` | $49 | $55 |
+| C | Karl-Anthony Towns `C` | $45 | $55 |
 | PG | Tyrese Haliburton | $56 | $56 |
 | PF | Alperen Şengün `C` | $26 | $34 |
 | SF | Desmond Bane | $22 | $31 |
 | SG | Dyson Daniels | $12 | $20 |
-| UTIL | Mitchell Robinson `C` | $5 | $12 |
-| UTIL | Mark Williams `C` | $7 | $14 |
+| UTIL | Nikola Vučević `C` | $2 | $8 |
+| UTIL | Onyeka Okongwu `C` | $5 | $10 |
 | BN | VJ Edgecombe | $5 | $9 |
-| BN | Sam Merrill | $2 | $8 |
+| BN | Cameron Johnson | $7 | $10 |
 
 ---
 
