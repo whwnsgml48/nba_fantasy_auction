@@ -128,9 +128,9 @@
 | C3 | SG | Shai Gilgeous-Alexander | $85 | $85 | $0 | **$0** | `my_max` | **코어 전환 → C4** | 획득 가능 |
 | C5 | PG | Tyrese Haliburton | $56 | $56 | $0 | **$0** | `my_max` | 치환 → Josh Giddey | 획득 가능 |
 | C5 | PF | Domantas Sabonis | $19 | $34 | $15 | **$14** | `budget` | **코어 전환 → C6** | 획득 가능 |
-| C6 | C | Karl-Anthony Towns | $45 | $71 | $26 | **$19** | `budget` | 치환 → Jalen Duren | 획득 가능 |
+| C6 | C | Karl-Anthony Towns | $45 | $71 | $26 | **$9** | `budget` | 치환 → Jalen Duren | 획득 가능 |
 | C6 | SG | DeMar DeRozan | $8 | $16 | $8 | **$8** | `none` | 치환 → Dennis Schröder | 획득 가능 |
-| C6 | PG | Derrick White | $39 | $52 | $13 | **$13** | `none` | 치환 → T.J. McConnell | 획득 가능 |
+| C6 | PG | Derrick White | $39 | $52 | $13 | **$9** | `budget` | 치환 → T.J. McConnell | 획득 가능 |
 | C7 | C | Karl-Anthony Towns | $45 | $71 | $26 | **$16** | `budget` | 치환 → Jalen Duren | 획득 가능 |
 | C7 | PG | Derrick White | $39 | $52 | $13 | **$13** | `none` | 치환 → Josh Giddey | 획득 가능 |
 
@@ -165,7 +165,7 @@ $25 초과는 "과소 편성"(로스터가 예산을 못 씀) 경고입니다.
 | c3 | SGA + 저가 빅 4인 | $196 | $4 | $57/$85 | 4 | 9개 | 3P%, 3PM, FT%, TOV | **9**/13 | $183 |
 | c4 | 무앵커 분산 (상한 $31) | $186 | $14 | $84/$107 | 4 | 8개 | 3P%, 3PM, A/T, FT%, TOV | **8**/13 | $193 |
 | c5 | Sabonis 부상 할인 (조건부 베팅) | $186 | $14 | $70/$96 | 5 | 9개 | 3PM, FT%, PTS, TOV | **9**/13 | $184 |
-| c6 | A/T 분산 조달 (정상 시장 기본값) | $181 | $19 | $91/$113 | 4 | 9개 | 3P%, 3PM, FT%, TOV | **9**/13 | $187 |
+| c6 | A/T 분산 조달 (정상 시장 기본값) | $191 | $9 | $79/$113 | 3 | 9개 | 3P%, 3PM, FT%, TOV | **9**/13 | $188 |
 | c7 | 중가 센터 전환 (센터 인플레 대응) | $184 | $16 | $107/$130 | 5 | 9개 | 3P%, A/T, FT%, TOV | **9**/13 | $185 |
 
 ## 주간 승률 (몬테카를로)
@@ -476,7 +476,7 @@ $25 초과는 "과소 편성"(로스터가 예산을 못 씀) 경고입니다.
 
 > A/T 한계기여를 Derrick White(+0.171) + DeRozan(+0.152) = +0.323($47)으로 분산 조달한다. Haliburton 단독(+0.517, $50)의 62%를 조달하면서 아킬레스 복귀 리스크를 지지 않고, 절감분으로 KAT 앵커까지 붙인다. ⚠️ 33차에 PG를 McConnell $4 → Derrick White $39로 바꾼 뒤의 구조다 — 이전 서술('McConnell +0.261 + DeRozan')은 그 교체를 반영하지 못한 낡은 문장이었다(37차 정정). D.White는 A/T 외에 3PM 3.0 · FT% 87.7% · 가드 BLK 1.3을 함께 주므로 빅맨 헤비 빌드의 빈 캣을 한 슬롯에서 메운다. 빅맨 총액 $113 상한이 생존 조건인 것은 그대로다.
 
-**계획 $181** · 예비비 **$19** · 빅맨 $91/$113 (C자격 4명) · 노리는 캣 9개 `A/T AST BLK DD FG% OREB PTS REB STL` · 포기 `3P% 3PM FT% TOV`
+**계획 $191** · 예비비 **$9** · 빅맨 $79/$113 (C자격 3명) · 노리는 캣 9개 `A/T AST BLK DD FG% OREB PTS REB STL` · 포기 `3P% 3PM FT% TOV`
 
 **주간 승률** 최소 **36.1%** (vs 가치최대) · 빅5 동시붕괴 38.0% · 기대 승리 캣 8.67
 
@@ -491,42 +491,38 @@ Edgecombe안이 LeBron안을 **모든 축에서** 지배하고, Şengün안과 m
 
 | 슬롯 | 계획가 | 상한 | 여력 | 역할 | 1순위 | 대체 ① | 대체 ② |
 |---|---|---|---|---|---|---|---|
-| **C** `앵커` | $45 | $55 | **$19** (실패→치환 Jalen Duren) | 앵커 · DD 56 리그 1위 | **Karl-Anthony Towns** `C` | Jalen Duren $27 | Alperen Şengün $26 |
+| **C** `앵커` | $45 | $55 | **$9** (실패→치환 Jalen Duren) | 앵커 · DD 56 리그 1위 | **Karl-Anthony Towns** `C` | Jalen Duren $27 | Alperen Şengün $26 |
 | **PF** | $26 | $34 | — | OREB 3.0 · DD · 빅맨 최상급 AST | **Alperen Şengün** `C` | Evan Mobley $23 | LeBron James $14 |
 | **SF** | $26 | $49 | — | 가드형 OREB 3.0 · 79G | **Amen Thompson** | Toumani Camara $11 | Jaden McDaniels $5 |
 | **UTIL** | $5 | $9 | — | 34차 예비비 재구성 — Knueppel 대체 | **VJ Edgecombe** | Kon Knueppel $22 | Desmond Bane $22 |
 | **UTIL** | $12 | $20 | — | STL 2.0 리그 공동 1위 | **Dyson Daniels** | Ausar Thompson $3 | Cason Wallace $3 |
-| **BN** | $12 | $22 | — | OREB 4.5 리그 1위 · 77G | **Donovan Clingan** `C` | Rudy Gobert $8 | Mitchell Robinson $5 |
+| **BN** | $22 | $31 | — | 3PT 소스 — c6의 3PM 공백을 메운다 (39차) | **Desmond Bane** | Donovan Clingan $12 | Kon Knueppel $22 |
 | **SG** `앵커` | $8 | $16 | **$8** (실패→치환 Dennis Schröder) | A/T +0.152 · TOV 1.2 · FT% 86.8% | **DeMar DeRozan** | Dennis Schröder $5 | D'Angelo Russell $2 |
 | **BN** | $8 | $18 | — | OREB+BLK+DD 빅 | **Rudy Gobert** `C` | Ivica Zubac $11 | Mark Williams $7 |
-| **PG** `앵커` | $39 | $44 | **$13** (실패→치환 T.J. McConnell) | A/T +0.171 · FT% 90.2% · 3PM3 · BLK 1.3 (가드가 BLK) | **Derrick White** | T.J. McConnell $2 | Andrew Nembhard $2 |
+| **PG** `앵커` | $39 | $44 | **$9** (실패→치환 T.J. McConnell) | A/T +0.171 · FT% 90.2% · 3PM3 · BLK 1.3 (가드가 BLK) | **Derrick White** | T.J. McConnell $2 | Andrew Nembhard $2 |
 
 ### 과열 피벗
 
-**트리거**: `Donovan Clingan > $22` · `Rudy Gobert > $18`
+**트리거**: `Rudy Gobert > $18`
 
 > ⚠ 정상 시장 기본값 코어의 생존 분기. 빅맨을 4명→3명($96)으로 줄이고 앵커 KAT 지불을 $56까지 올린다(최대 $62). 벤치 두 칸은 Daniels→Ausar Thompson(STL 2.0 동일, $9 절감) / Knueppel→Trey Murphy III(3PM+FT% 88.6+STL 1.5). 저가 빅 3명 이상이 과열되면 피벗이 아니라 코어 7로 전환. ⚠️ 18차 정정: Trey Murphy III($32)를 벤치에 두면 3P%·FT%가 무너져 6캣(패배)이었다. Merrill($6)과 교환해 선발로 올려 7캣 확보 · 벤치 지출 $38→$12.
 
 | 슬롯 | 변경 | 계획가 | 증감 |
 |---|---|---|---|
-| C | Karl-Anthony Towns → **Karl-Anthony Towns** | $49 | +6 |
-| UTIL | Donovan Clingan → **Onyeka Okongwu** | $5 | -7 |
-| UTIL | Rudy Gobert → **Josh Hart** | $4 | -4 |
-| BN | Dyson Daniels → **Kon Knueppel** | $22 | +10 |
-| PF | Alperen Şengün → **Alperen Şengün** | $29 | +3 |
+| BN | Rudy Gobert → **Onyeka Okongwu** | $5 | -3 |
 
-**피벗 최종 9인** — 총액 $187 · 예비비 $13 · 빅맨 $83 (C자격 3명) · 노리는 캣 `3P% 3PM A/T AST BLK DD FG% FT% OREB PTS REB STL` · 포기 `TOV`
+**피벗 최종 9인** — 총액 $188 · 예비비 $12 · 빅맨 $76 (C자격 3명) · 노리는 캣 `A/T AST BLK DD FG% FT% OREB PTS REB STL` · 포기 `3P% 3PM TOV`
 
 | 슬롯 | 선수 | 계획가 | 상한 |
 |---|---|---|---|
-| C | Karl-Anthony Towns `C` | $49 | $55 |
-| PF | Alperen Şengün `C` | $29 | $34 |
+| C | Karl-Anthony Towns `C` | $45 | $55 |
+| PF | Alperen Şengün `C` | $26 | $34 |
 | SF | Amen Thompson | $26 | $49 |
 | UTIL | VJ Edgecombe | $5 | $9 |
-| UTIL | Kon Knueppel | $22 | $33 |
-| BN | Onyeka Okongwu `C` | $5 | $10 |
+| UTIL | Dyson Daniels | $12 | $20 |
+| BN | Desmond Bane | $22 | $31 |
 | SG | DeMar DeRozan | $8 | $16 |
-| BN | Josh Hart | $4 | $5 |
+| BN | Onyeka Okongwu `C` | $5 | $10 |
 | PG | Derrick White | $39 | $44 |
 
 ---
