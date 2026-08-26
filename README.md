@@ -175,7 +175,8 @@ python3 tool/matchup_sim.py 20261020 4000   # 승률 판정 → data/matchup_sim
 python3 validate.py                 # 위반 0건 확인
 python3 tool/track_divergence.py    # M5·M6 진입/이탈 기준선 갱신 (검증기는 읽기만)
 python3 tool/snapshot_data.py diff  # 변경 요약
-git add -A && git commit            # ← 마지막. 검증 통과 후에만 커밋
+git status                          # 내가 만들지 않은 변경이 있는지 먼저 확인
+git add <바뀐 파일들> && git commit  # ← 마지막. 검증 통과 후에만 · **-A/-a 금지**
 ```
 
 ⚠️ **가격 두 필드를 섞지 마십시오** (35차 분리):
