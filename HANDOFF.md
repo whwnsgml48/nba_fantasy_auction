@@ -280,6 +280,32 @@ grep -c '\.premise\b' /tmp/js.txt                                # 0 = 렌더 �
 - ⚠️ `git checkout tool/auction-console.html`은 **커밋에 들어간 파손도 되살립니다.**
   파손을 되돌릴 때 checkout으로 되돌아가지 말고 원인을 고치고 재생성하십시오.
 
+#### 🔴 소스 키로 grep하지 말 것 — **임베드에서 키 이름이 바뀝니다** (39차 · 두 세션이 함께 틀렸습니다)
+
+> **소스 키로 grep하지 말고 렌더 코드가 읽는 속성명으로 grep하라.** 임베드 과정에서 키 이름이
+> 바뀐다(`premise` → `prem`). 39차에 평가 세션과 대상 세션이 **둘 다** 소스 키로 확인하고
+> "화면에 안 뜬다"는 오판에 합의했다.
+
+```
+tool_embed:   "prem": co.get("premise")        ← 여기서 이름이 바뀐다
+renderCore:   '<p class="prem">'+c.prem+'</p>'  ← 화면에 뜬다
+grep '\.premise\b'  → 0건   (그래서 "안 뜬다"고 결론냈다)
+grep '\.prem\b'     → 있음  (실제로는 뜬다)
+```
+
+**올바른 방법** — 소스가 아니라 **렌더 코드가 읽는 속성명을 먼저 전수로 뽑고** 그 집합에
+드는 필드만 검사한다:
+
+```bash
+awk 'NR>700' tool/auction-console.html > /tmp/js.txt        # 상수 블록 뒤 = 렌더 코드
+grep -oE '\.[A-Za-z_][A-Za-z0-9_]*' /tmp/js.txt | sort -u   # 읽는 속성명 집합
+```
+그 다음 임베드 상수를 순회하며 **키가 그 집합에 있고** 값이 문자열인 것만 본다.
+`tests/rehearse.mjs` 가 이 방식으로 검사한다.
+
+같은 방식으로 렌더되는 것이 확인된 필드: `prem` · `rationale` · `note` · `snote` ·
+`flag` · `lev` · `atlev` · `chg` · `label` · `role`.
+
 #### ✅ 지우지 말 것 — `my_max_basis.auto` 의 자동 무효화가 한 라운드에 **3번** 작동했습니다
 
 28차에 `tool/close_unused_ceilings.py`가 만든 auto basis는 생성 당시의 `core_hits`·
