@@ -829,6 +829,42 @@ else:
                     _src,_lbl,_pu,_pe)); warn+=1; _nb+=1
         print("[I26] 가격 조건 발동 가능성: %d건 검사 · 죽은 분기 %d · 비구속 임계값 %d"%(_n26,_dead,_nb))
         print("      균등(구간 내 균등) **AND** 실측(작년 120건 · 순위 국소 잔차비) 둘 다 불가일 때만 위반")
+
+        # I26b: 앵커 트리거는 **엘리트 대조군**(작년 $60+ · n=11) 확률을 함께 표시한다.
+        # 게이트가 아니라 표시다 — 대조군이 엘리트에만 정의되므로 불변식에 쓰면
+        # "통과"와 "판정 불가"가 구분되지 않고 그게 곧 조용한 통과다(39차 평가 세션 결정).
+        _anchors={s["candidates"][0]["name"] for c in cj["cores"] for s in c["slots"] if s.get("is_anchor")}
+        _shown=0
+        for _r in cj["decision_table"]:
+            for _x in (_r.get("cond") or {}).get("rules") or []:
+                if _x["player"] not in _anchors or _x["player"] not in pl: continue
+                _pe3=_TA.p_elite(_x["player"],_x["max"])
+                if _pe3 is None: continue
+                _shown+=1
+                _mk=pl[_x["player"]]
+                _tag="△ 얇음" if _pe3<=0.20 else ""
+                if _tag: warn+=1
+                print("      [I26b] %-24s 임계 $%-3d · 엘리트 대조군 P=%.2f (시장 $%d-%d) %s"%(
+                    _x["player"],_x["max"],_pe3,_mk["market_low"],_mk["market_high"],_tag))
+        if _shown:
+            print("      ↑ 앵커 트리거 %d건 · 표시 전용(불변식 아님) · n=11 이므로 구간으로만 읽을 것"%_shown)
+
+        # ── I27: 임계값이 my_max보다 낮은데 근거가 없다 (39차 · 경고) ──────────
+        # 진짜 실패 모드는 "임계값 < my_max"가 아니라 **"my_max가 움직였는데 임계값이
+        # 안 따라간 것"**이다. c3가 그 사례다(37차에 SGA 72→79인데 판단표는 $72 그대로).
+        # 의도적 보수성(c1 Hali $48 vs my_max $50)까지 금지하면 안 되므로,
+        # `threshold_basis` 필드가 있으면 통과시킨다 — 낡음과 의도를 사람이 구분해 적는다.
+        _n27=_w27=0
+        for _r in cj["decision_table"]:
+            for _x in (_r.get("cond") or {}).get("rules") or []:
+                if _x["player"] not in pl: continue
+                _n27+=1
+                _mm=pl[_x["player"]]["my_max"]
+                if _x["max"]<_mm and not _x.get("threshold_basis"):
+                    print("  △ [I27] %s %s: 임계값 $%d < my_max $%d 인데 threshold_basis 없음"
+                          " — my_max가 움직인 뒤 판단표가 안 따라왔을 수 있다"%(
+                        _r["core"],_x["player"],_x["max"],_mm)); warn+=1; _w27+=1
+        print("[I27] 판단표 임계값 vs my_max: %d건 검사 · 근거 없는 하향 %d건"%(_n27,_w27))
     except Exception as _ex:
         print("[I26] 건너뜀 — %s: %s"%(type(_ex).__name__,_ex))
 

@@ -61,14 +61,18 @@ NEEDED = [
 TESTS = []
 
 
-def test(iid, desc, expect, after=()):
+def test(iid, desc, expect, after=(), warn=False):
     """expect: `✗` 줄에 있어야 하는 문자열(하나 또는 튜플).
     after:  **전체 출력**에 있어야 하는 문자열 — 그 지점 이후의 검사가 실제로 실행됐다는
-            증거다. 중단(crash)도 exit 1을 내므로 마커만으로는 절단을 구분할 수 없다."""
+            증거다. 중단(crash)도 exit 1을 내므로 마커만으로는 절단을 구분할 수 없다.
+    warn:   **경고 등급 검사**용(39차 신설). 경고는 err에 가산하지 않으므로 exit 0이고,
+            위반 전제(exit 1 + `✗` 줄)로는 검사할 수 없다. 이 프로젝트에는 경고 등급이
+            여럿인데(I21·I22·I24 예비비·I26 비구속·I27) **테스트가 하나도 없었다.**
+            warn=True 면 마커를 `△` 줄에서 찾고 exit 0을 정상으로 본다."""
     def deco(fn):
         TESTS.append((iid, desc, fn,
                       (expect,) if isinstance(expect, str) else tuple(expect),
-                      (after,) if isinstance(after, str) else tuple(after)))
+                      (after,) if isinstance(after, str) else tuple(after), warn))
         return fn
     return deco
 
@@ -394,6 +398,22 @@ def _(b):
     raise AssertionError("대상 선수 없음")
 
 
+@test("I27", "판단표 임계값이 my_max보다 낮은데 threshold_basis가 없다",
+      ("[I27]", "Nikola Jokić", "threshold_basis 없음"), after=TAIL, warn=True)
+def _(b):
+    # my_max만 올리고 임계값을 그대로 두는 상황 = 37차 c3가 실제로 그랬던 형태.
+    # ⚠️ **무결 상태에서 이미 경고가 뜨는 선수를 고르면 안 된다** — c1 KAT·c5 Sabonis는
+    #    지금도 I27에 걸려 있어서, 그들을 대상으로 삼으면 주입 없이도 마커가 잡힌다
+    #    (하네스 0.5단계가 이걸 잡아줬다). 임계값 == my_max 인 Jokić를 쓴다.
+    for r in b.cj["decision_table"]:
+        for rule in (r.get("cond") or {}).get("rules") or []:
+            if rule["player"] == "Nikola Jokić":
+                b.pl["Nikola Jokić"]["my_max"] = rule["max"] + 20
+                rule.pop("threshold_basis", None)
+                return
+    raise AssertionError("Jokić 가격 규칙이 없음")
+
+
 @test("I26a", "판단표 가격 조건이 절대 발동할 수 없다", ("[I26]", "절대 발동 불가"), after=TAIL)
 def _(b):
     # Jokić <= $1 — 시장 $93-101 이고 작년 실적으로도 불가. 균등·실측 둘 다 0.
@@ -434,6 +454,10 @@ def build_pristine(dst):
 
 def violations(out):
     return [l.strip() for l in out.splitlines() if "✗" in l]
+
+
+def cautions(out):
+    return [l.strip() for l in out.splitlines() if "△" in l]
 
 
 def crash_at(out):
@@ -494,7 +518,7 @@ def main():
         # 판정은 `✗` 줄로 한정하므로 아래 항목도 정상 동작한다. 다만 누군가 매칭을
         # 전체 출력으로 되돌리면 **그 테스트는 위반을 주입하지 않아도 통과한다.**
         # 작성 당시 I22가 정확히 그 상태였다 — 경고로 상시 노출해 재발을 막는다.
-        amb = [(i, d, e) for i, d, _, e, _a in TESTS if all(m in out for m in e)]
+        amb = [(i, d, e) for i, d, _, e, _a, _w in TESTS if all(m in out for m in e)]
         print("무결 샌드박스: exit 0 · 테스트 %d개" % len(TESTS))
         if amb:
             print("△ 무결 출력에도 나타나는 마커 %d건 — `✗` 줄 한정 매칭이 이걸 막는다:" % len(amb))
@@ -504,7 +528,7 @@ def main():
 
         # ── 1단계: 위반 주입 ─────────────────────────────────────────
         fails, skips = [], []
-        for iid, desc, fn, expect, after in TESTS:
+        for iid, desc, fn, expect, after, wmode in TESTS:
             if filt and filt not in iid:
                 continue
             work = tmp + "/w"
@@ -518,10 +542,27 @@ def main():
                 print("  ⊘ %-6s %s — 주입 불가 (%s)" % (iid, desc, ex))
                 continue
             code, out = b.run()
-            v = violations(out)
+            v = cautions(out) if wmode else violations(out)
             vtext = "\n".join(v)
             hit = all(m in vtext for m in expect)
             crashed = "Traceback" in out
+            if wmode:
+                # 경고 등급 — exit code는 판정에 쓰지 않는다(err 미가산이라 0이 정상).
+                if crashed:
+                    print("  ✗ %-6s %s\n        검증기 중단(%s)" % (iid, desc, crash_at(out)))
+                    fails.append((iid, desc, "중단")); continue
+                if hit and not [m for m in after if m not in out]:
+                    print("  ✓ %-6s %s  (경고 등급)" % (iid, desc))
+                    if verbose:
+                        for l in v[:3]: print("        %s" % l[:150])
+                else:
+                    why = ("경고가 뜨지 않았다" if not hit
+                           else "뒤쪽 검사 미실행: %s" % ", ".join(m for m in after if m not in out))
+                    print("  ✗ %-6s %s\n        %s\n        기대 마커: %s"
+                          % (iid, desc, why, " + ".join(expect)))
+                    for l in v[:4]: print("        실제: %s" % l[:150])
+                    fails.append((iid, desc, why))
+                continue
             if selftest and crashed:
                 # 중단은 검출이 아니다 — err 가산을 껐는데도 exit 1이 나온 것은
                 # 검사가 살아 있기 때문이 아니라 검증기가 죽었기 때문이다.
@@ -553,7 +594,7 @@ def main():
                 fails.append((iid, desc, why))
 
         # ── 요약 ────────────────────────────────────────────────────
-        ran = sum(1 for i, _, _, _, _a in TESTS if not filt or filt in i)
+        ran = sum(1 for i, _, _, _, _a, _w in TESTS if not filt or filt in i)
         print("\n" + "-" * 66)
         print("실행 %d · 통과 %d · 실패 %d · 주입불가 %d"
               % (ran, ran - len(fails) - len(skips), len(fails), len(skips)))
@@ -562,9 +603,17 @@ def main():
         for iid, desc, why in skips:
             print("  ⊘ %s %s — %s" % (iid, desc, why))
         if selftest:
-            ok = len(fails) == ran and not skips
+            # 경고 등급 테스트는 `err` 가산을 쓰지 않으므로 무력화해도 빨개지지 않는다.
+            # 기대 대상에서 빼야 한다 — 안 그러면 정상 동작이 실패로 보고된다(39차).
+            nwarn = sum(1 for i, _, _, _, _a, w in TESTS
+                        if w and (not filt or filt in i))
+            expect_red = ran - nwarn
+            ok = len(fails) == expect_red and not skips
             print("[--selftest] %s — 검출 팔이 살아 있는 테스트 %d/%d"
-                  % ("통과" if ok else "✗ 실패", len(fails), ran))
+                  % ("통과" if ok else "✗ 실패", len(fails), expect_red))
+            if nwarn:
+                print("            경고 등급 %d건은 err 무력화와 무관하므로 제외했다"
+                      " (경고는 exit code를 바꾸지 않는다)." % nwarn)
             if not ok:
                 print("            초록으로 남은 테스트는 검출과 무관하게 통과하고 있다.")
             return 0 if ok else 1
