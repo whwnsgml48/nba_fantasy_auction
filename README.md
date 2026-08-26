@@ -80,7 +80,7 @@ docs/
 data/
   players.json              선수 174명 (기계 판독용)
   players.csv               같은 데이터 표 형식
-  cores.json                코어 7종 + 피벗 + 백업 + 판단표 + 과열 임계값
+  cores.json                코어 7종 + 피벗 + 판단표 + 과열 임계값 + 앵커정책
   league_settings.json      리그 규칙 · 캣 목록
   stats_2025_26/            ★ 평가의 모든 원본 근거
     README.md               커버리지 · 데이터 공백 4종
@@ -97,17 +97,19 @@ tool/
   value_model.py            z-score 평가 참고선 (my_max 대조용 · 순위 비교 전용)
   recompute_cores.py        cores.json 파생 필드 전체 재계산
   sync_tool.py              auction-console.html 임베드 상수 7종 재생성
-  snapshot_data.py          data/ 스냅샷 + 구조적 diff (git 대체)
+  snapshot_data.py          data/ 스냅샷 + 구조적 diff (커밋 전 필드 단위 요약)
   gen_docs03.py             docs/03 표를 players.json에서 생성 (26차 전환)
+  gen_docs06.py             docs/06을 cores.json에서 **전량** 생성 (36차 — 그전엔 생성기가 없었다)
   plant_value_reference.py  value_reference 재산정 (M5·M6 판정 근거)
   divergence_rules.py       M5·M6 판정 규칙 + core_hits 단일 소스
   close_unused_ceilings.py  미사용 천장 기계 종결 (조건 대조로 자동 무효화)
   matchup_sim.py            주간 맞대결 몬테카를로 → data/matchup_sim.json
                             (상대 6종 · 5캣 동시붕괴 P · 최소 승률 maximin)
   track_divergence.py       임계 진입/이탈 비교용 상태 스냅샷
-validate.py                 기본 코어 + 피벗 + 백업 통합 검증기
+validate.py                 기본 코어 + 피벗 통합 검증기 (불변식 I1~I23 · M1~M6)
 HANDOFF.md                  다음 작업자용 인수인계 (여기서 시작)
 SOURCES.md                  출처 전체
+.gitignore                  __pycache__ · .venv · .DS_Store · data-snapshots
 ```
 
 ## 드래프트 중 판단 순서
@@ -116,10 +118,21 @@ SOURCES.md                  출처 전체
 
 상세 표와 실시간 판정: `docs/06-cores.md` · 툴 우측 `판단 순서` 카드
 
-## data/ 수정 규칙 — 스냅샷 먼저
+## 버전 관리 — git + 스냅샷 2층 (2026-08-26 전환)
 
-**이 프로젝트는 git 저장소가 아닙니다.** `players.json`(650KB·174명)과 `cores.json`은
-스크립트로 대량 재기록되므로, 잘못된 일괄 변경을 되돌릴 수단이 따로 필요합니다.
+저장소: **https://github.com/whwnsgml48/nba_fantasy_auction** (`main`)
+
+2026-08-26에 git 저장소로 전환했습니다. **그 전까지는 저장소가 아니었고
+`snapshot_data.py`가 유일한 되돌리기 수단이었습니다.** 이제 역할이 나뉩니다 —
+스냅샷 규칙은 폐지된 게 아니라 **적용 구간이 좁아졌습니다.**
+
+| 층 | 수단 | 역할 |
+|---|---|---|
+| 영구 이력 | `git` | 커밋 단위 되돌리기 · 원격 백업 · 차수 간 비교 |
+| 작업 중 | `tool/snapshot_data.py` | **필드 단위 변경 요약** · 커밋 전 셀프 리뷰 |
+
+`players.json`(743KB·174명)과 `cores.json`은 스크립트로 대량 재기록되므로,
+커밋하기 전에 **무엇이 바뀌었는지 필드 단위로 확인**해야 합니다.
 `data/` 를 건드리기 **전에** 스냅샷을 만들고, 끝나면 diff 요약을 냅니다.
 
 ```bash
@@ -130,13 +143,18 @@ python3 tool/snapshot_data.py diff            # 수정 후 요약
 python3 tool/snapshot_data.py list            # 스냅샷 목록
 ```
 
-`diff -r`을 쓰지 않는 이유: indent=1 JSON은 한 필드가 바뀌어도 텍스트 diff가 수백 줄을
-뱉고, 배열 재정렬을 전부 변경으로 잡습니다. 이 스크립트는 경로 단위로 평탄화해
-`[*].my_max  10건 (변경 10)` 처럼 **필드별로 묶어** 냅니다.
-`players.json`은 배열 인덱스가 아니라 선수 이름으로 키를 잡아 재정렬에 면역입니다.
+**`git diff`가 이 스크립트를 대체하지 못하는 이유** (`diff -r`을 쓰지 않았던 이유와 같습니다):
+indent=1 JSON은 한 필드가 바뀌어도 텍스트 diff가 수백 줄을 뱉고, 배열 재정렬을 전부
+변경으로 잡습니다. 이 스크립트는 경로 단위로 평탄화해 `[*].my_max  10건 (변경 10)` 처럼
+**필드별로 묶어** 냅니다. `players.json`은 배열 인덱스가 아니라 선수 이름으로 키를 잡아
+재정렬에 면역입니다.
 
-⚠️ scratchpad는 세션 전용입니다 — 스냅샷은 **세션 내 되돌리기** 수단이고 영구 백업이 아닙니다.
-영구 보관이 필요하면 `SNAPSHOT_ROOT`를 프로젝트 밖 고정 경로로 지정하십시오.
+⚠️ scratchpad는 세션 전용입니다 — 스냅샷은 **세션 내** 되돌리기이고, 영구 이력은 이제
+git이 담당합니다. **작업이 끝나면 커밋하십시오.** 커밋하지 않고 세션을 닫으면
+그 세션의 되돌리기 수단이 함께 사라집니다.
+
+추적 정책: `data/stats_2025_26/bbref/`의 원본 HTML 4.5MB는 **의도적으로 추적합니다** —
+`build_measured.py`의 입력이자 평가 사슬의 재현 근거이므로 제외하지 않습니다.
 
 ## 재계산 파이프라인
 
@@ -152,10 +170,12 @@ python3 tool/recompute_cores.py     # cores.json 파생 필드
 python3 tool/sync_tool.py           # 툴 임베드 상수
 python3 tool/plant_value_reference.py   # my_max 참고선 (M5·M5b가 이 값을 검사)
 python3 tool/gen_docs03.py          # docs/03 표 생성 (산문은 수기 유지)
+python3 tool/gen_docs06.py          # docs/06 전량 생성 (코어·피벗·판단표·임계값)
 python3 tool/matchup_sim.py 20261020 4000   # 승률 판정 → data/matchup_sim.json
 python3 validate.py                 # 위반 0건 확인
 python3 tool/track_divergence.py    # M5·M6 진입/이탈 기준선 갱신 (검증기는 읽기만)
 python3 tool/snapshot_data.py diff  # 변경 요약
+git add -A && git commit            # ← 마지막. 검증 통과 후에만 커밋
 ```
 
 ⚠️ **가격 두 필드를 섞지 마십시오** (35차 분리):
@@ -185,12 +205,13 @@ python3 tool/snapshot_data.py diff  # 변경 요약
 ## 검증
 
 ```bash
-python3 validate.py     # 기본 코어 7종 + 피벗 7종 + 백업 1종 = 15개 플랜 검증. 위반 0건이면 exit 0
+python3 validate.py     # 기본 코어 7종 + 피벗 7종 = 14개 플랜 검증. 위반 0건이면 exit 0
 ```
 검사 항목: 계획가 범위(`market_low ≤ plan_price ≤ my_max`) · 9슬롯 완성 · 포지션 자격 ·
 총액 ≤$200 · 빅맨 예산 상한 · 비앵커 대체안 2명 · 선수 중복 · **장기 부상 제외 준수** ·
 피벗의 노리는 캣/포기 캣 명시 · 피벗 트리거의 임계값 소스 일치.
-**기본 코어 7종 + 과열 피벗 7종 + 백업 규칙 1종 = 15개 플랜, 대체 후보까지 전부 검사합니다.**
+**기본 코어 7종 + 과열 피벗 7종 = 14개 플랜, 대체 후보까지 전부 검사합니다.**
+백업 로스터는 33차에 c7을 전면 교체하면서 사라졌습니다(구 c7의 백업 · `cores.json.c7_old`에 함께 보존).
 
 ## 툴 실행
 
@@ -222,4 +243,4 @@ https://claude.ai/code/artifact/e75e441d-63ce-4c8c-a504-9f0ced805dca
 | 획득 가능 | **141명** (내 최대가 ≥ 시장 하단) |
 | 획득 불가 | **35명** — Wemby·Luka·Cade·Giannis·Tatum·Lillard 등 시장 상단 대부분 |
 | 잉여(내 최대가>시장 중간값) | **122명** · 상위 20 중 **12명이 C 자격** |
-| 코어 | **7종** · 계획액 $189~200 · 각 코어에 구조화 과열 피벗 |
+| 코어 | **7종** · 계획액 $180~187 · 예비비 $13~20 · 각 코어에 구조화 과열 피벗 |

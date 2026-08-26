@@ -3419,3 +3419,70 @@ c5 $168/$32 · **c6 $149/$51**) — 34차에 발견한 "피벗이 예산을 못 
 탐색의 `feasible()`은 벤치를 '최저가 2명'으로 판정해 통과시켰지만 슬롯 라벨은 그대로였습니다.
 Trae Young(G) → PG · Daniels → UTIL · 최저가 2명(Gobert $8 · Randle $12)을 BN으로
 재배치했습니다. 로스터·총액 불변($186) · 벤치 $20.
+
+---
+
+# 36차 — git 저장소 전환 (2026-08-26)
+
+감사가 아니라 인프라 전환입니다. 사용자 지시: *"지금 코드 내용을 깃에 옮기고 싶어."*
+
+## 한 것
+
+- `nba_fantasy_auction_2026/` 안에서 `git init -b main` — **상위 `personal_work/`가 아니라
+  프로젝트 디렉터리에서** 초기화했습니다. 상위에서 하면 옆 폴더 `eonjebot/`의 `.env`가
+  같이 스테이징됩니다(실제로 `find`가 그 파일을 먼저 잡았습니다).
+- `.gitignore`: `__pycache__/` · `*.py[cod]` · `.venv/` · `.DS_Store` · `data-snapshots/`
+- 초기 커밋 1건 · **56파일** (`tool/__pycache__` 7개만 제외)
+- `origin` = https://github.com/whwnsgml48/nba_fantasy_auction · `main` 푸시 완료
+
+푸시 전에 `git ls-remote`로 **원격에 ref가 0개**(빈 저장소)임을 확인했습니다 —
+덮어쓴 이력은 없습니다.
+
+## 추적 정책 — bbref 원본 HTML을 제외하지 않는다
+
+`data/stats_2025_26/bbref/NBA_2026_per_game.html`(2.3MB)과 `NBA_2025_per_game.html`(2.2MB)은
+**의도적으로 추적합니다.** `build_measured.py`의 입력이고, README 「평가자에게」 0번이
+"`data/stats_2025_26/`가 원본 근거 전체"라고 명시한 재현 사슬의 시작점입니다.
+저장소 총 7.2MB로 git이 감당할 크기이므로 재현성을 택했습니다.
+
+## 문서에 반영한 것 — "git 대체"라는 서술이 낡았다
+
+이 프로젝트에는 **「정적으로 적어둔 안내는 반드시 낡는다」** 라는 자체 규칙이 있고,
+git 전환이 정확히 그 규칙에 걸리는 사건이었습니다. `snapshot_data.py`를 *"git 대체"*로
+설명한 문장과 *"이 프로젝트는 git 저장소가 아닙니다"* 라는 전제가 세 곳에 있었습니다.
+
+| 위치 | 낡은 서술 | 갱신 |
+|---|---|---|
+| `README.md` 파일 구조 | `snapshot_data.py … (git 대체)` | `(커밋 전 필드 단위 요약)` |
+| `README.md` 절 제목 | 「data/ 수정 규칙 — 스냅샷 먼저」 · **"git 저장소가 아닙니다"** | 「버전 관리 — git + 스냅샷 2층」 · 역할 분담 표 · 저장소 URL |
+| `README.md` 파이프라인 | `snapshot diff`로 종료 | `git add -A && git commit` 단계 추가 |
+| `HANDOFF.md` 2a-1 | **"git 저장소가 아닙니다"** | "36차부터 git 저장소" + 규칙 유효 근거 |
+| `HANDOFF.md` 오리엔테이션 | 저장소 행 없음 | `origin` URL 행 추가 |
+| `HANDOFF.md` 이어받을 때 | `validate.py`부터 | `git status` 선행 |
+
+## 스냅샷 규칙은 폐지하지 않았다 — 적용 구간이 좁아졌다
+
+git이 있으니 `snapshot_data.py`가 불필요해진 것처럼 보이지만 **아닙니다.**
+`git diff`는 `players.json`(indent=1 · 27,987행)에서 한 필드 변경에 수백 줄을 뱉고
+배열 재정렬을 전부 변경으로 잡습니다 — 4차에 `diff -r`을 버린 이유와 **같은 이유로**
+`git diff`도 검토 수단이 못 됩니다. 역할을 이렇게 나눴습니다.
+
+| 층 | 수단 | 역할 |
+|---|---|---|
+| 영구 이력 | `git` | 커밋 단위 되돌리기 · 원격 백업 · 차수 간 비교 |
+| 작업 중 | `tool/snapshot_data.py` | 필드 단위 변경 요약 · **커밋 전 셀프 리뷰** |
+
+바뀐 것은 하나입니다: 23차 사고(`cat_baselines` PTS·TOV 소실 → 추론 복원)의 근거였던
+*"scratchpad가 사라지면 되돌릴 수 없다"* 가 이제 **커밋하면 해소**됩니다.
+그래서 HANDOFF 2a-1에 **"세션이 끝나기 전에 커밋하라"** 를 규칙으로 넣었습니다.
+
+## 데이터·판정은 건드리지 않았다
+
+`players.json` · `cores.json` · `matchup_sim.json` 무변경. `validate.py` 위반 0건 유지.
+이 차수는 문서 6곳과 `.gitignore` 신설만입니다.
+
+## 남은 것 (사용자 결정 대기)
+
+**저장소가 public입니다** — 익명 `ls-remote`가 통했습니다. `cores.json`에는 선수별
+철수 가격·입찰 상한과 태우기 지명 명단이 전부 들어 있어, 같은 리그 참가자가 보면
+전략이 노출됩니다. private 전환 여부는 사용자 판단입니다.
