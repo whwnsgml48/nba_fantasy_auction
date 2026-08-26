@@ -68,6 +68,30 @@ def build_decision(cj, sim=None):
     return out
 
 
+PRICE_CLAUSE = None   # 지연 컴파일 (re import를 모듈 상단에 두지 않기 위해)
+
+
+def label_price_clauses(label):
+    """라벨 문장에서 `… ≤ $NN` 가격절의 **금액**을 뽑는다.
+
+    왜 '생성 후 문자열 비교'가 아닌가 (39차)
+      라벨은 사람이 읽는 문장이고 **사람 약칭**을 쓴다 — `KAT` · `Hali` · `SGA`.
+      툴의 `renderTrig()` 는 `shortName()`(성)으로 화면 문자열을 **따로 만든다**:
+      `Towns ≤ $50 + Haliburton ≤ $56`. 즉 툴은 `label` 의 가격 부분을 **쓰지 않는다.**
+      그래서 라벨을 생성해 통째로 비교하면 `KAT` vs `Towns` 에서 즉시 깨지고,
+      맞추려면 약칭 사전을 새로 유지해야 한다 — 그게 또 하나의 드리프트 원이다.
+
+      대신 **금액만** 대조한다. 실제로 갈라졌던 3건이 전부 금액 불일치였다:
+        c3 라벨 $72 ↔ rules 85 · c2 라벨 $88 ↔ rules 97 · c5 가격절 잔존 ↔ rules 없음
+      약칭 어휘를 만들지 않고 드리프트를 잡는다.
+    """
+    global PRICE_CLAUSE
+    if PRICE_CLAUSE is None:
+        import re
+        PRICE_CLAUSE = re.compile(r"[<≤]=?\s*\$(\d+)")
+    return [int(x) for x in PRICE_CLAUSE.findall(label or "")]
+
+
 def build_tiers(cj):
     """툴 `OTIERS` 상수."""
     return {k: {"label": v["label"], "c7": v["counts_toward_core7"], "why": v["why"]}

@@ -4,6 +4,12 @@
 위반이 1건이라도 있으면 exit 1. 사용: python3 validate.py"""
 import io,json,sys,os
 D=os.path.dirname(os.path.abspath(__file__))
+# 39차: 툴 임베드 상수 구조의 단일 소스. 세 곳(DECISION 대조 · OVERHEAT/OTIERS/CORES
+# 대조 · I28 라벨 검사)에서 쓰므로 **상단에서 한 번만** import 한다.
+# 처음엔 사용 지점마다 지역 import 했다가 I28 자리에서 NameError 로 검증기가 **중단**됐고,
+# 그건 38차에 잡은 바로 그 실패(뒤쪽 검사가 통째로 안 도는 조용한 절단)의 재현이었다.
+sys.path.insert(0, D+"/tool")
+import tool_embed as _TE
 pl={p["name"]:p for p in json.load(io.open(D+"/data/players.json",encoding="utf-8"))}
 cj=json.load(io.open(D+"/data/cores.json",encoding="utf-8"))
 TH={t["player"]:t["threshold"] for t in cj["overheat_thresholds"]}   # 철수 가격(피벗 트리거)
@@ -881,6 +887,27 @@ else:
     except Exception as _ex:
         print("[I26] 건너뜀 — %s: %s"%(type(_ex).__name__,_ex))
 
+    # ── I28: 판단표 `label` 문장이 `cond.rules` 와 어긋나지 않는가 (39차 · 경고) ──
+    # A가 rules 만 고치고 label 을 안 고쳐 셋이 낡아 있었다(c3 $72↔85 · c2 $88↔97 ·
+    # c5 가격 게이트를 제거했는데 문장에 잔존). **툴은 rules 에서 화면 문자열을 따로
+    # 만들기 때문에 화면은 맞았고 데이터만 갈라져** 아무도 못 봤다 —
+    # 「정적으로 적어둔 안내는 반드시 낡는다」의 가장 안 보이는 형태다.
+    #
+    # 라벨 전체를 생성해 비교하지 않는 이유는 tool_embed.label_price_clauses 주석 참조
+    # (라벨은 사람 약칭 KAT·Hali·SGA 를 쓰고 툴은 성을 쓴다 — 약칭 사전을 만들면 그게
+    #  또 하나의 드리프트 원이 된다). **금액만** 대조한다.
+    _n28=_w28=0
+    for _r in cj["decision_table"]:
+        _lab=sorted(_TE.label_price_clauses(_r.get("label") or ""))
+        _rul=sorted(x["max"] for x in ((_r.get("cond") or {}).get("rules") or []))
+        _n28+=1
+        if _lab!=_rul:
+            _why=("가격 게이트가 없는데 라벨에 금액이 남아 있다" if not _rul else
+                  "라벨에 금액이 없다" if not _lab else "금액 불일치")
+            print("  △ [I28] %s: label %s ↔ rules %s — %s\n         label: %s"%(
+                _r["core"],_lab or "없음",_rul or "없음",_why,_r.get("label"))); warn+=1; _w28+=1
+    print("[I28] 판단표 label ↔ cond.rules 금액: %d행 검사 · 불일치 %d건"%(_n28,_w28))
+
     _cond=[x["id"] for x in cj["cores"] if x.get("conditional_on_discount")]
     print("앵커 정책: 앵커 %d개 · 피벗/백업 엔트리 %d개 · 조건부 베팅 %s%s"%(
         _nA,_nB,",".join(_cond) or "없음",
@@ -905,15 +932,21 @@ else:
     _ot=_const("OTIERS","{}")
     _m1=_re.search(r'const DECISION_ONELINER="(.*?)";\n',_ts,_re.S)
     _one=_m1.group(1) if _m1 else None
-    if _dec!=cj["decision_table"]:
+    # 39차: DECISION 만 원본과 직접 대조하고 있었다(OVERHEAT·OTIERS·CORES·PIVOTS는 이미
+    # tool_embed 경유). A가 판단표에 **실제 12팀 강도**를 얹으려 하자 같은 벽에 막혔다 —
+    # 강도는 32차 원칙상 cores.json 에 넣을 수 없어 툴 상수 생성 시점에만 합쳐지는데,
+    # 검증기가 원본과 비교하면 그 순간 불일치가 된다.
+    try:
+        _simj=json.load(io.open(D+"/data/matchup_sim.json",encoding="utf-8"))
+    except Exception:
+        _simj=None
+    if _dec!=_TE.build_decision(cj,_simj):
         print("✗ 툴 DECISION이 cores.json.decision_table과 불일치 — 재생성 필요"); err+=1
     if _one!=cj["decision_oneliner"]:
         print("✗ 툴 DECISION_ONELINER 불일치 — 재생성 필요"); err+=1
     # 39차: 기대 구조를 tool_embed 에서 가져온다. 이전에는 sync_tool.py 와 **같은 dict를
     # 각자 조립**하고 있었고, 필드를 하나 늘리려면 두 파일을 같이 고쳐야 했다 —
     # A가 `binding` 필드를 실었을 때 이쪽만 안 바뀌어 즉시 불일치가 났다.
-    sys.path.insert(0, D+"/tool")
-    import tool_embed as _TE
     _ohx=_TE.build_overheat(cj)
     if _oh!=_ohx:
         print("✗ 툴 OVERHEAT이 cores.json.overheat_thresholds와 불일치 — 재생성 필요"); err+=1

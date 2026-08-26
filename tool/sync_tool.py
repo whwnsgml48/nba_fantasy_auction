@@ -13,6 +13,10 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 # 대조하므로, 여기서 직접 dict를 조립하면 두 파일이 갈라진다(실제로 갈라졌다).
 import tool_embed as TE
 BASE=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+try:
+    SIM=json.load(io.open(f"{BASE}/data/matchup_sim.json",encoding="utf-8"))
+except Exception:
+    SIM=None   # 시뮬 파일이 없으면 강도 없이 생성한다(검증기도 같은 폴백을 쓴다)
 # 39차 갈래 1: 판단표 각 행에 실제 12팀 강도를 얹는다(cores.json엔 안 넣는다 · 32차).
 try:
     SIM=json.load(io.open(f"{BASE}/data/matchup_sim.json",encoding="utf-8"))
@@ -33,10 +37,10 @@ def buildCORES():
     return out
 CONST=[("CORES",buildCORES()),("PIVOTS",TE.build_pivots(c)),
        ("OVERHEAT",TE.build_overheat(c)),("OTIERS",TE.build_tiers(c)),
-       # ⏸ 39차 갈래 1: TE.build_decision(c,SIM) 로 바꾸면 판단표에 실제 12팀 강도가 실린다.
-       #    validate 가 DECISION 을 cores.json.decision_table 원본과 직접 대조하므로
-       #    그쪽도 같은 함수를 쓰도록 바뀌기 전까지 보류한다 (B 요청 중).
-       ("DECISION",c["decision_table"])]
+       # 39차 갈래 1: 판단표에 **실제 12팀 강도**를 싣는다. 강도는 32차 원칙상
+       # cores.json 에 넣지 않고 **여기서 툴 상수를 만들 때만** 합친다.
+       # validate 도 같은 TE.build_decision(cj, sim) 을 쓰므로 이중 구현이 안 생긴다.
+       ("DECISION",TE.build_decision(c,SIM))]
 n=0
 for name,val in CONST:
     m=re.search(r'const %s=(\[|\{).*?(\]|\});\n'%re.escape(name), s, re.S)

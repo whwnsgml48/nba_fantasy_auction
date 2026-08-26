@@ -415,6 +415,20 @@ def _(b):
     raise AssertionError("Jokić 가격 규칙이 없음")
 
 
+@test("I28", "판단표 label 금액이 cond.rules와 갈라졌다",
+      ("[I28]", "금액 불일치"), after=TAIL, warn=True)
+def _(b):
+    # A가 5d75250 에서 실제로 낸 형태: rules 만 고치고 label 을 안 고쳤다.
+    # 툴은 rules 에서 화면 문자열을 따로 만들어 **화면은 맞고 데이터만 갈라진다**.
+    for r in b.cj["decision_table"]:
+        rules = (r.get("cond") or {}).get("rules") or []
+        if len(rules) == 1 and ("$%d" % rules[0]["max"]) in (r.get("label") or ""):
+            r["label"] = r["label"].replace("$%d" % rules[0]["max"],
+                                            "$%d" % (rules[0]["max"] - 9))
+            return
+    raise AssertionError("label에 금액이 든 단일 규칙 행이 없음")
+
+
 @test("I26a", "판단표 가격 조건이 절대 발동할 수 없다", ("[I26]", "절대 발동 불가"), after=TAIL)
 def _(b):
     # Jokić <= $1 — 시장 $93-101 이고 작년 실적으로도 불가. 균등·실측 둘 다 0.
