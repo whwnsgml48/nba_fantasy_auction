@@ -848,18 +848,36 @@ else:
     if _cs is None:
         print("✗ 툴 CORES 상수 파싱 실패"); err+=1
     else:
+        # ⚠️ 38차: 이 블록은 `_sl["anchor_plan"]`과 그 하위 키를 **전부 직접 인덱싱**했다.
+        # 앵커 슬롯에 anchor_plan이 없으면 KeyError로 **검증기가 여기서 죽고**, 뒤쪽 검사
+        # (I20 P 배열 · 과열 계층 · 판단표)가 한 건도 실행되지 않았다. 조용한 통과가 아니라
+        # 조용한 **절단**이다. `tests/negative_tests.py` I13이 이걸 잡아냈다.
+        #   · 33차에 같은 형태가 이미 터졌다 — recompute_cores의 `if not ap: continue`에서
+        #     빈 dict가 falsy라 anchor_plan이 생성되지 않고 sync_tool이 KeyError로 죽었다
+        #     (docs/04 33차 「구현 중 걸린 것」 3번). 지금 고치는 것은 그 사고의 하류다.
+        # 방어하되 **조용히 건너뛰지 않는다** — 없으면 위반으로 올리고 상세 비교만 생략한다.
         _exp=[{"id":"c0","n":"— 코어 미선택 —"}]
+        _cores_broken=False
         for _co in cj["cores"]:
             _plan=[]
             for _sl in _co["slots"]:
                 _row=[_sl["slot"],_sl.get("role") or "",
                       [[x["name"],x["plan_price"]] for x in _sl["candidates"]]]
                 if _sl.get("is_anchor"):
-                    _ap=_sl["anchor_plan"]
+                    _ap=_sl.get("anchor_plan")
+                    _of=(_ap or {}).get("on_fail")
+                    if not _ap or not _of:
+                        print("  ✗ 툴 CORES 대조: %s/%s 앵커 %s에 anchor_plan%s 없음"
+                              " — 상세 비교 생략(뒤쪽 검사는 계속 실행)"%(
+                              _co["id"],_sl["slot"],_sl["candidates"][0]["name"],
+                              "" if not _ap else ".on_fail")); err+=1
+                        _cores_broken=True
+                        _row.append(True)
+                        _plan.append(_row); continue
                     _row.append(True)
                     _row.append({"ceil":_ap["bid_ceiling"],"nom":_ap["nominal_margin"],
                                  "eff":_ap["effective_headroom"],"con":_ap["constraint"],
-                                 "act":_ap["on_fail"]["action"],"tgt":_ap["on_fail"]["target"],
+                                 "act":_of["action"],"tgt":_of["target"],
                                  "dual":_ap["dual_world_ok"]})
                 _plan.append(_row)
             _e={"id":_co["id"],"n":_co["name"],"prem":_co.get("premise") or "",
@@ -868,7 +886,11 @@ else:
                 "slack":_co["budget_slack"],"plan":_plan}
             if _co.get("conditional_on_discount"): _e["condDiscount"]=_co["conditional_on_discount"]
             _exp.append(_e)
-        if _cs!=_exp:
+        if _cores_broken:
+            # 기대값 자체가 결손 데이터로 만들어졌으므로 "재생성 필요"는 오진이다.
+            # 위 위반이 이미 err에 가산됐다 — 여기서 중복 가산하지 않고 이유만 남긴다.
+            print("  △ 툴 CORES 상세 대조 생략 — anchor_plan 결손 때문(위 위반 참조)")
+        elif _cs!=_exp:
             print("✗ 툴 CORES가 cores.json과 불일치 — 재생성 필요"); err+=1
     _pv=_const("PIVOTS","{}")
     if _pv!={x["id"]:x["pivot_plan"] for x in cj["cores"]}:

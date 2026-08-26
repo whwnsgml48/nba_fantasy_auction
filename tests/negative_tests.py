@@ -57,12 +57,20 @@ NEEDED = [
 TESTS = []
 
 
-def test(iid, desc, expect):
-    """expect: 문자열 하나 또는 튜플(전부 포함돼야 함)."""
+def test(iid, desc, expect, after=()):
+    """expect: `✗` 줄에 있어야 하는 문자열(하나 또는 튜플).
+    after:  **전체 출력**에 있어야 하는 문자열 — 그 지점 이후의 검사가 실제로 실행됐다는
+            증거다. 중단(crash)도 exit 1을 내므로 마커만으로는 절단을 구분할 수 없다."""
     def deco(fn):
-        TESTS.append((iid, desc, fn, (expect,) if isinstance(expect, str) else expect))
+        TESTS.append((iid, desc, fn,
+                      (expect,) if isinstance(expect, str) else tuple(expect),
+                      (after,) if isinstance(after, str) else tuple(after)))
         return fn
     return deco
+
+
+# 검증기 뒷부분 섹션이 실행됐는지 보는 표지. 위반 유무와 무관하게 항상 찍히는 줄들이다.
+TAIL = ("P 배열", "과열 임계값:", "판단 순서:")
 
 
 class Box:
@@ -274,7 +282,8 @@ def _(b):
     b.html(lambda s: re.sub(r"function hotCenterCount\(\)\{.*?\n\}",
                             "function hotCenterCount(){\n  return hotBigs().length;\n}", s, count=1, flags=re.S))
 
-@test("I13", "앵커 슬롯에 anchor_plan이 없다", "에 anchor_plan 없음")
+@test("I13", "anchor_plan 결손 — 크래시 없이 위반으로 잡히고 뒤쪽 검사가 계속되는가",
+      "anchor_plan", after=TAIL)
 def _(b):
     for c in b.cj["cores"]:
         for s in c["slots"]:
@@ -430,7 +439,7 @@ def main():
         # 판정은 `✗` 줄로 한정하므로 아래 항목도 정상 동작한다. 다만 누군가 매칭을
         # 전체 출력으로 되돌리면 **그 테스트는 위반을 주입하지 않아도 통과한다.**
         # 작성 당시 I22가 정확히 그 상태였다 — 경고로 상시 노출해 재발을 막는다.
-        amb = [(i, d, e) for i, d, _, e in TESTS if all(m in out for m in e)]
+        amb = [(i, d, e) for i, d, _, e, _a in TESTS if all(m in out for m in e)]
         print("무결 샌드박스: exit 0 · 테스트 %d개" % len(TESTS))
         if amb:
             print("△ 무결 출력에도 나타나는 마커 %d건 — `✗` 줄 한정 매칭이 이걸 막는다:" % len(amb))
@@ -439,8 +448,8 @@ def main():
         print()
 
         # ── 1단계: 위반 주입 ─────────────────────────────────────────
-        fails, skips, aborts = [], [], []
-        for iid, desc, fn, expect in TESTS:
+        fails, skips = [], []
+        for iid, desc, fn, expect, after in TESTS:
             if filt and filt not in iid:
                 continue
             work = tmp + "/w"
@@ -462,33 +471,37 @@ def main():
                 # 중단은 검출이 아니다 — err 가산을 껐는데도 exit 1이 나온 것은
                 # 검사가 살아 있기 때문이 아니라 검증기가 죽었기 때문이다.
                 hit = False
-            if code != 0 and hit:
-                if crashed:
-                    aborts.append((iid, desc, crash_at(out)))
-                    print("  ⚠ %-6s %s\n        검출은 됐으나 **검증기가 중단**됨 — %s"
-                          % (iid, desc, crash_at(out)))
-                else:
-                    print("  ✓ %-6s %s" % (iid, desc))
+            missing_after = [m for m in after if m not in out]
+            if code != 0 and hit and not crashed and not missing_after:
+                print("  ✓ %-6s %s" % (iid, desc))
                 if verbose:
                     for l in v[:3]:
                         print("        %s" % l[:150])
                     if len(v) > 3:
                         print("        … 동시 발화 %d건" % len(v))
             else:
-                why = ("exit 0 — 위반이 통과했다" if code == 0
-                       else "exit 1이지만 마커 없음 — **다른 검사가 대신 잡았다**")
+                # 크래시는 실패다 — 38차에 anchor_plan 결손이 검증기를 죽여 뒤쪽 검사
+                # (I20·I11·I10)가 통째로 안 돌았고, exit 1이라 "잡았다"로 보였다.
+                if crashed:
+                    why = ("검증기가 **중단**됨(%s) — 조용한 통과가 아니라 조용한 **절단**"
+                           % crash_at(out))
+                elif code == 0:
+                    why = "exit 0 — 위반이 통과했다"
+                elif missing_after:
+                    why = ("exit 1인데 **뒤쪽 검사가 실행되지 않았다** — 없는 표지: %s"
+                           % ", ".join(missing_after))
+                else:
+                    why = "exit 1이지만 마커 없음 — **다른 검사가 대신 잡았다**"
                 print("  ✗ %-6s %s\n        %s\n        기대 마커: %s" % (iid, desc, why, " + ".join(expect)))
                 for l in v[:4]:
                     print("        실제: %s" % l[:150])
                 fails.append((iid, desc, why))
 
         # ── 요약 ────────────────────────────────────────────────────
-        ran = sum(1 for i, _, _, _ in TESTS if not filt or filt in i)
+        ran = sum(1 for i, _, _, _, _a in TESTS if not filt or filt in i)
         print("\n" + "-" * 66)
-        print("실행 %d · 통과 %d (그중 검증기 중단 %d) · 실패 %d · 주입불가 %d"
-              % (ran, ran - len(fails) - len(skips), len(aborts), len(fails), len(skips)))
-        for iid, desc, where in aborts:
-            print("  ⚠ %s %s — 검증기가 %s 에서 중단: 이후 검사가 실행되지 않는다" % (iid, desc, where))
+        print("실행 %d · 통과 %d · 실패 %d · 주입불가 %d"
+              % (ran, ran - len(fails) - len(skips), len(fails), len(skips)))
         for iid, desc, why in fails:
             print("  ✗ %s %s — %s" % (iid, desc, why))
         for iid, desc, why in skips:
