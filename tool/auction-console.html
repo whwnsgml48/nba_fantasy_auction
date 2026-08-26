@@ -1025,8 +1025,20 @@ function renderDecide(){
     h+='<div style="'+(on?'background:var(--ok-bg);margin:0 -6px;padding:5px 6px;border-radius:2px;':'')+'">'
       +'<span style="color:'+col+'">'+d.prio+'. '+d.label+'</span>'
       +'<b style="color:'+col+'">'+d.core.toUpperCase()+' · '+st+(on?" ◀":"")+'</b></div>';
+    // 🔴 39차: 강도를 여기(항상 보이는 카드)에 띄운다. 처음엔 #trig(접힌 details)에만
+    //    넣었는데, 10초 안에 접힌 패널을 펼칠 수는 없다(docs/02 §4). 상세 설명은
+    //    #trigbox에 두고 카드에는 숫자 + ⚠ 마커만 — 카드가 좁다.
+    if(d.str) h+='<div style="display:flex;justify-content:space-between;gap:6px;'
+      +'font-family:var(--mono);font-size:9.5px;color:var(--ink-3);padding:0 0 3px 10px">'
+      +'<span>선택 <b style="color:var(--ink-2)">'+(d.str.mean*100).toFixed(1)+'</b>'
+      +(d.str.min!=null?' · 견고 '+(d.str.min*100).toFixed(1):'')+'</span>'
+      +(d.snote?'<span style="color:var(--warn)">⚠</span>':'<span></span>')+'</div>';
   });
   h+='</div>';
+  h+='<p class="prem" style="font-size:10.5px;color:var(--ink-3);margin-top:7px;line-height:1.4">'
+    +'<b>강도 순이 아니라 도달 가능성 순</b>이다. <b>선택</b>=실제 12팀 평균(1차) · '
+    +'<b>견고</b>=12팀 중 최저(2차). 두 값이 1위를 다르게 가리킬 수 있다 — '
+    +'<b>고를 때는 선택 값을 본다.</b> ⚠ 표시는 아래 <b>코어 전환 트리거</b>에 사유가 있다.</p>';
   if(act) h+='<p class="prem" style="font-size:12px;margin-top:9px"><b>현재 권장: '+act.core.toUpperCase()+'</b> — '+act.note+'</p>';
   h+='<details class="rules" style="margin-top:8px;border:0"><summary style="padding:6px 0">한 줄 요약</summary>'
     +'<p class="prem" style="font-size:12px;padding:0 0 6px">'+DECISION_ONELINER+'</p></details>';
