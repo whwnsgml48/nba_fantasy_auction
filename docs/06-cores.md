@@ -14,7 +14,7 @@
 | 우선 | 조건 | 선택 | 근거 |
 |---|---|---|---|
 | **0** | 저가 센터 계층 과열 2명 이상 | **C7** — 중가 센터 전환 (센터 인플레 대응) | ⚠ 코어 6·4의 과열 피벗보다 **먼저** 코어 7로 전환. 센터 시장이 붕괴하면 피벗으로는 부족하다. 판정은 `low_cost_center` 계층의 `overheat_at`(실측 기대치 기반)으로만 한다 — 네임밸류 빅(Şengün·Mobley·Zubac)이 $30~60에 팔리는 것은 정상가이므로 세지 않는다. |
-| **1** | 센터 정상가 + KAT ≤ $50 + Hali ≤ $56 | **C1** — KAT 앵커 + Haliburton | Hali가 정말 할인되면 코어 1의 천장이 가장 높다. 임계 $48은 내 최대가 $50보다 낮게 잡은 '선택 기준'이다 — $48~50은 살 수는 있으나 코어 1을 우선할 근거는 아니다. ⚠️ 33차: 실행가능성 조건을 cond.feasibility에 명시. Haliburton 할인이 없으면 이 행은 발동하지 않는다. **실행 조건: Tyrese Haliburton 실낙찰가 <= $56 (철수가)** (실패 시 → c6 (기본값)) |
+| **1** | 센터 정상가 + KAT ≤ $50 + Hali ≤ $56 | **C1** — KAT 앵커 + Haliburton | Hali가 정말 할인되면 코어 1의 천장이 가장 높다. 임계 $56은 철수가와 같은 값이고, 실측 시장이 $54-66이라 **중간값 아래에서 잡아야** 성립한다 — 할인이 없으면 이 행은 발동하지 않고 기본값 c6로 간다. **실행 조건: Tyrese Haliburton 실낙찰가 <= $56 (철수가)** (실패 시 → c6 (기본값)) |
 | **2** | 센터 정상가 + Hali 불확실/비쌈 | **C6** — A/T 분산 조달 (정상 시장 기본값) | 정상 시장의 기본값. Hali가 기대만큼 안 싸거나 아킬레스 복귀 리스크를 피하고 싶으면 여기. |
 | **3** | 센터가 조금 비싸지만 SGA ≤ $85 | **C3** — SGA + 저가 빅 4인 | 빅맨 예산 $77(39%)로 7개 코어 중 최저 — 센터가 약간 비싸지는 정도라면 코어 4보다 먼저. |
 | **4** | 앵커를 못 잡았지만 센터는 정상가 | **C4** — 무앵커 분산 (상한 $31) | 앵커 실패 시의 안전망. **센터 과열 대응책이 아니다** — 센터가 깨졌으면 코어 7. |
@@ -225,7 +225,7 @@ $25 초과는 "과소 편성"(로스터가 예산을 못 씀) 경고입니다.
 
 **트리거**: `Donovan Clingan > $22` · `Rudy Gobert > $18`
 
-> 저가 OREB 경로가 막히면 OREB 완전 장악을 포기하고 REB·DD만 지킨다. 빅맨을 5명→4명($96)으로 줄이고 절감분을 3P%·FT% 윙으로 옮긴다. 두 명 이상 과열이면 코어 7로 전환.
+> 저가 OREB 경로가 막히면 OREB 완전 장악을 포기하고 REB·DD만 지킨다. 빅맨을 5명→4명($78)으로 줄이고 절감분을 3P%·FT% 윙으로 옮긴다. 두 명 이상 과열이면 코어 7로 전환.
 
 | 슬롯 | 변경 | 계획가 | 증감 |
 |---|---|---|---|
@@ -286,7 +286,7 @@ $25 초과는 "과소 편성"(로스터가 예산을 못 씀) 경고입니다.
 | **BN** | $2 | $8 | — | 3PT% 레버리지 3위 · 3PM 3.0 | **Sam Merrill** | AJ Green $2 | Miles McBride $2 |
 | **SF** | $2 | $10 | — | 3PM 고볼륨 저가 | **Tim Hardaway Jr.** | Duncan Robinson $2 | Royce O'Neale $2 |
 | **PG** | $2 | $6 | — | A/T 다트 | **Andrew Nembhard** | Cam Spencer $2 | Davion Mitchell $2 |
-| **BN** | $8 | $16 | — | 34차 예비비 재구성 — Andre Drummond 대체 | **DeMar DeRozan** | Moussa Diabaté $2 | Ryan Kalkbrenner $2 |
+| **BN** | $8 | $16 | — | A/T +0.142 · FT% 엘리트 — $8 저가 가드 | **DeMar DeRozan** | Moussa Diabaté $2 | Ryan Kalkbrenner $2 |
 
 ### 과열 피벗
 
@@ -340,14 +340,14 @@ $25 초과는 "과소 편성"(로스터가 예산을 못 씀) 경고입니다.
 | **C** | $12 | $22 | — | OREB 4.5 리그 1위 · 77G | **Donovan Clingan** `C` | Jalen Duren $27 | Rudy Gobert $8 |
 | **UTIL** | $11 | $16 | — | DD 24 · 롤맨 빅 | **Ivica Zubac** `C` | Mitchell Robinson $5 | Deandre Ayton $5 |
 | **UTIL** | $8 | $18 | — | OREB 3.9 · BLK 1.6 · 76G | **Rudy Gobert** `C` | Mark Williams $7 | Nic Claxton $4 |
-| **BN** | $14 | $14 | — | 34차 예비비 재구성 — Mark Williams 대체 | **Damian Lillard** | Deandre Ayton $5 | Neemias Queta $2 |
+| **BN** | $14 | $14 | — | 3PM·FT%·AST 3종 엘리트 — ⚠ 아킬레스 복귀 · 가중치 근거는 2024-25 · 대체는 저가 센터라 이 3종을 잃고 OREB·FG%로 바뀐다 | **Damian Lillard** | Deandre Ayton $5 | Neemias Queta $2 |
 | **BN** | $2 | $8 | — | 3PT% 레버리지 3위 | **Sam Merrill** | AJ Green $2 | Isaiah Joe $2 |
 
 ### 과열 피벗
 
 **트리거**: `Donovan Clingan > $22` · `Rudy Gobert > $18` · `Ivica Zubac > $16`
 
-> 저가 센터 3명(Clingan·Gobert·Zubac)이 전부 과열되면 '저가 빅 4인' 전제가 무너진다. 센터 자리를 **최저가 3명**(Vučević $2 · Myles Turner $14 · Jay Huff $2)으로 갈아타 REB·BLK·FG%의 바닥만 지키고, 남는 돈은 SGA 앵커($79)를 지키는 데 쓴다. ⚠️ 37차 정정: 이전 피벗은 **트리거 선수인 Zubac을 $11에 그대로 사고 있었다** — 트리거가 걸린 세계에 존재하지 않는 가격이다. 함께 총액도 $196(예비 $4)이라 앵커가 흔들리면 대응 여력이 없었다. 재탐색(실행 가능 조합 1,577,375개 중 프리필터 상위 30개 시뮬 · 6000시행 재대조) 결과 최소 승률 32.1% → **34.9%** · 빅5 동시붕괴 68.1% → **66.0%** · 예비비 $4 → 밴드 내로 개선됐다.
+> 저가 센터 3명(Clingan·Gobert·Zubac)이 전부 과열되면 '저가 빅 4인' 전제가 무너진다. 센터 자리를 **최저가 3명**(Vučević $2 · Myles Turner $14 · Jay Huff $2)으로 갈아타 REB·BLK·FG%의 바닥만 지키고, 남는 돈은 SGA 앵커($79)를 지키는 데 쓴다. ⚠️ 이전 피벗은 **트리거 선수인 Zubac을 $11에 그대로 사고 있었다** — 트리거가 걸린 세계에 존재하지 않는 가격이다. 함께 총액도 $196(예비 $4)이라 앵커가 흔들리면 대응 여력이 없었다. 재탐색(실행 가능 조합 1,577,375개 중 프리필터 상위 30개 시뮬 · 6000시행 재대조) 결과 최소 승률 32.1% → **34.9%** · 빅5 동시붕괴 68.1% → **66.0%** · 예비비 $4 → 밴드 내로 개선됐다.
 
 | 슬롯 | 변경 | 계획가 | 증감 |
 |---|---|---|---|
@@ -376,7 +376,7 @@ $25 초과는 "과소 편성"(로스터가 예산을 못 씀) 경고입니다.
 
 **우선 4** — 앵커를 못 잡았지만 센터는 정상가
 
-> 잉여가 $8~31 구간에 몰려 있으므로 그 구간만으로 9칸을 채운다. 최고가 $31로 결장 리스크가 분산되고 앵커 실패에 면역 — 가장 현실적인 기본 플랜. ⚠️ PTS·TOV 포기가 실제로 나머지 7캣 승리로 이어지는지는 검증되지 않았습니다. ⚠️ 21차: 19차에 'Gobert $16 → Quickley $5'로 바꿨다가 되돌렸다. 그 변경은 '선발 7명만 집계'라는 잘못된 전제로 계산됐고, 정정 모델(9명 전원 · GP 가중)에서는 Gobert의 BLK 1.6이 BLK 캣을 지탱하고 있어 9캣 → 8캣 악화였다.
+> 잉여가 $8~31 구간에 몰려 있으므로 그 구간만으로 9칸을 채운다. 최고가 $31로 결장 리스크가 분산되고 앵커 실패에 면역 — 앵커를 못 잡았을 때의 안전망이다. ⚠️ PTS·TOV 포기가 실제로 나머지 7캣 승리로 이어지는지는 검증되지 않았다.
 
 **계획 $186** · 예비비 **$14** · 빅맨 $84/$107 (C자격 4명) · 노리는 캣 8개 `AST BLK DD FG% OREB PTS REB STL` · 포기 `3P% 3PM A/T FT% TOV`
 
@@ -397,7 +397,7 @@ $25 초과는 "과소 편성"(로스터가 예산을 못 씀) 경고입니다.
 | **UTIL** | $12 | $20 | — | STL 2.0 리그 공동 1위 | **Dyson Daniels** | Ausar Thompson $3 | Cason Wallace $3 |
 | **BN** | $8 | $18 | — | OREB 3.9 · 76G | **Rudy Gobert** `C` | Mark Williams $7 | Mitchell Robinson $5 |
 | **BN** | $12 | $18 | — | PTS+REB+DD 포워드 | **Julius Randle** | Paul George $8 | Josh Hart $4 |
-| **PG** | $30 | $30 | — | 34차 예비비 재구성 — T.J. McConnell 대체 | **Trae Young** | Dennis Schröder $5 | Andrew Nembhard $2 |
+| **PG** | $30 | $30 | — | AST 10.8 · A/T +0.169 · FT% 엘리트 PG — 대체(Schröder·Nembhard)는 FT%가 w1로 내려간다 | **Trae Young** | Dennis Schröder $5 | Andrew Nembhard $2 |
 
 ### 과열 피벗
 
@@ -450,7 +450,7 @@ $25 초과는 "과소 편성"(로스터가 예산을 못 씀) 경고입니다.
 | **C** | $12 | $22 | — | Sabonis 헤지 빅 ② (필수) | **Donovan Clingan** `C` | Jalen Duren $27 | Rudy Gobert $8 |
 | **UTIL** | $11 | $16 | — | DD 24 · Hali 픽앤롤 시너지 | **Ivica Zubac** `C` | Mitchell Robinson $5 | Mark Williams $7 |
 | **BN** | $5 | $14 | — | OREB 2.6 · DD 22 | **Deandre Ayton** `C` | Nic Claxton $4 | Neemias Queta $2 |
-| **BN** | $12 | $20 | — | 34차 예비비 재구성 — T.J. McConnell 대체 | **Dyson Daniels** | Andrew Nembhard $2 | Davion Mitchell $2 |
+| **BN** | $12 | $20 | — | STL 2.0 리그 공동 1위 · 가드 OREB 2.1 | **Dyson Daniels** | Andrew Nembhard $2 | Davion Mitchell $2 |
 
 ### 과열 피벗
 
@@ -486,7 +486,7 @@ $25 초과는 "과소 편성"(로스터가 예산을 못 씀) 경고입니다.
 **우선 2** — 센터 정상가 + Hali 불확실/비쌈
 
 > A/T 한계기여를 Derrick White(+0.171) + DeRozan(+0.152) = +0.323으로 분산 조달한다 — Haliburton 단독(+0.517)의 62%를 조달하면서 아킬레스 복귀 리스크를 지지 않고, 절감분으로 KAT 앵커를 붙인다.
-🔄 **39차 변경: 센터 헤비가 아니다.** Clingan $12 → Bane $22로 C자격이 4 → 3이 되고 빅맨 예산이 $79/$113($34 여유)로 줄었다. 저가 센터를 쓸어담는 축이 아니라 **전방위 윙으로 슬롯 효율을 사는 축**이다 — 과열 판정 시 이 점을 전제로 대응할 것. 그 대신 3P%가 −80.5 → 개선되고 실제 12팀 평균이 84.5% → **87.5%(전 코어 1위)** 가 됐다.
+🔄 **센터 헤비가 아니다.** Clingan $12 → Bane $22로 C자격이 4 → 3이 되고 빅맨 예산이 $79/$113($34 여유)로 줄었다. 저가 센터를 쓸어담는 축이 아니라 **전방위 윙으로 슬롯 효율을 사는 축**이다 — 과열 판정 시 이 점을 전제로 대응할 것. 그 대신 3P%가 −80.5 → 개선되고 실제 12팀 평균이 84.5% → **87.5%(전 코어 1위)** 가 됐다.
 
 **계획 $191** · 예비비 **$9** · 빅맨 $79/$113 (C자격 3명) · 노리는 캣 9개 `A/T AST BLK DD FG% OREB PTS REB STL` · 포기 `3P% 3PM FT% TOV`
 
@@ -506,9 +506,9 @@ Edgecombe안이 LeBron안을 **모든 축에서** 지배하고, Şengün안과 m
 | **C** `앵커` | $45 | $55 | **$9** (실패→치환 Jalen Duren) | 앵커 · DD 56 리그 1위 | **Karl-Anthony Towns** `C` | Jalen Duren $27 | Alperen Şengün $26 |
 | **PF** | $26 | $34 | — | OREB 3.0 · DD · 빅맨 최상급 AST | **Alperen Şengün** `C` | Evan Mobley $23 | LeBron James $14 |
 | **SF** | $26 | $49 | — | 가드형 OREB 3.0 · 79G | **Amen Thompson** | Toumani Camara $11 | Jaden McDaniels $5 |
-| **UTIL** | $5 | $9 | — | 34차 예비비 재구성 — Knueppel 대체 | **VJ Edgecombe** | Kon Knueppel $22 | Desmond Bane $22 |
+| **UTIL** | $5 | $9 | — | STL 보조 $5 다트 — 예비비 확보용 | **VJ Edgecombe** | Kon Knueppel $22 | Desmond Bane $22 |
 | **UTIL** | $12 | $20 | — | STL 2.0 리그 공동 1위 | **Dyson Daniels** | Ausar Thompson $3 | Cason Wallace $3 |
-| **BN** | $22 | $31 | — | 3PT 소스 — c6의 3PM 공백을 메운다 (39차) | **Desmond Bane** | Donovan Clingan $12 | Kon Knueppel $22 |
+| **BN** | $22 | $31 | — | 전방위 저가 윙 — FT% 엘리트 · 후보 21명 실측 1위 | **Desmond Bane** | Josh Hart $4 | Nikola Vučević $2 |
 | **SG** `앵커` | $8 | $16 | **$8** (실패→치환 Dennis Schröder) | A/T +0.152 · TOV 1.2 · FT% 86.8% | **DeMar DeRozan** | Dennis Schröder $5 | D'Angelo Russell $2 |
 | **BN** | $8 | $18 | — | OREB+BLK+DD 빅 | **Rudy Gobert** `C` | Ivica Zubac $11 | Mark Williams $7 |
 | **PG** `앵커` | $39 | $44 | **$9** (실패→치환 T.J. McConnell) | A/T +0.171 · FT% 90.2% · 3PM3 · BLK 1.3 (가드가 BLK) | **Derrick White** | T.J. McConnell $2 | Andrew Nembhard $2 |
@@ -517,7 +517,7 @@ Edgecombe안이 LeBron안을 **모든 축에서** 지배하고, Şengün안과 m
 
 **트리거**: `Rudy Gobert > $18`
 
-> ⚠ 정상 시장 기본값 코어의 생존 분기. 빅맨을 4명→3명($96)으로 줄이고 앵커 KAT 지불을 $56까지 올린다(최대 $62). 벤치 두 칸은 Daniels→Ausar Thompson(STL 2.0 동일, $9 절감) / Knueppel→Trey Murphy III(3PM+FT% 88.6+STL 1.5). 저가 빅 3명 이상이 과열되면 피벗이 아니라 코어 7로 전환. ⚠️ 18차 정정: Trey Murphy III($32)를 벤치에 두면 3P%·FT%가 무너져 6캣(패배)이었다. Merrill($6)과 교환해 선발로 올려 7캣 확보 · 벤치 지출 $38→$12.
+> 정상 시장 기본값 코어의 생존 분기. 저가 센터가 과열되면 **Gobert $8 → Okongwu $5** 하나만 바꿔 빅맨을 $76로 낮추고 나머지 8칸은 그대로 둔다 — 이 코어는 저가 센터를 쓸어담는 축이 아니라 전방위 윙으로 슬롯 효율을 사는 축이라 센터 과열에 노출이 작다. 저가 빅 3명 이상이 과열되면 피벗이 아니라 코어 7로 전환한다.
 
 | 슬롯 | 변경 | 계획가 | 증감 |
 |---|---|---|---|
@@ -543,7 +543,7 @@ Edgecombe안이 LeBron안을 **모든 축에서** 지배하고, Şengün안과 m
 
 **우선 0** — 저가 센터 계층 과열 2명 이상
 
-> 33차 재설계: 기존 c7의 '반센터 전환' 전제를 폐기했다. 센터 인플레의 답은 센터를 버리는 것이 아니라 **중가 센터(Mobley·Okongwu)로 갈아타는 것**이다. A1 후보 채택.
+> 센터 인플레의 답은 센터를 버리는 것이 아니라 **중가 센터로 갈아타는 것**이다 — 저가 센터(Clingan·Gobert 계층)가 과열되면 Mobley $23 · Okongwu $5 로 옮겨 OREB·BLK·FG%의 바닥을 지키고 KAT·D.White 축은 그대로 둔다. 저가 센터 노출이 Gobert 한 명뿐이라 **과열 세계에서도 예산 안에 조립된다** (강제 매수 시 $189 · 예비비 $11) — 그것이 이 코어가 우선 0인 이유다.
 
 **계획 $184** · 예비비 **$16** · 빅맨 $107/$130 (C자격 5명) · 노리는 캣 9개 `3PM AST BLK DD FG% OREB PTS REB STL` · 포기 `3P% A/T FT% TOV`
 

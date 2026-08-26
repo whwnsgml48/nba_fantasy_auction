@@ -78,7 +78,7 @@
      "on_fail": "c6 (기본값)"
     }
    },
-   "note": "Hali가 정말 할인되면 코어 1의 천장이 가장 높다. 임계 $48은 내 최대가 $50보다 낮게 잡은 '선택 기준'이다 — $48~50은 살 수는 있으나 코어 1을 우선할 근거는 아니다. ⚠️ 33차: 실행가능성 조건을 cond.feasibility에 명시. Haliburton 할인이 없으면 이 행은 발동하지 않는다."
+   "note": "Hali가 정말 할인되면 코어 1의 천장이 가장 높다. 임계 $56은 철수가와 같은 값이고, 실측 시장이 $54-66이라 **중간값 아래에서 잡아야** 성립한다 — 할인이 없으면 이 행은 발동하지 않고 기본값 c6로 간다."
   },
   {
    "prio": "2",
@@ -706,7 +706,7 @@
       "rule": "> $18"
      }
     ],
-    "rationale": "저가 OREB 경로가 막히면 OREB 완전 장악을 포기하고 REB·DD만 지킨다. 빅맨을 5명→4명($96)으로 줄이고 절감분을 3P%·FT% 윙으로 옮긴다. 두 명 이상 과열이면 코어 7로 전환.",
+    "rationale": "저가 OREB 경로가 막히면 OREB 완전 장악을 포기하고 REB·DD만 지킨다. 빅맨을 5명→4명($78)으로 줄이고 절감분을 3P%·FT% 윙으로 옮긴다. 두 명 이상 과열이면 코어 7로 전환.",
     "swaps": [
      {
       "slot": "UTIL",
@@ -1546,7 +1546,7 @@
     },
     {
      "slot": "BN",
-     "role": "34차 예비비 재구성 — Andre Drummond 대체",
+     "role": "A/T +0.142 · FT% 엘리트 — $8 저가 가드",
      "is_anchor": false,
      "plan_price": 8,
      "candidates": [
@@ -1868,7 +1868,7 @@
       "slot": "BN",
       "name": "DeMar DeRozan",
       "plan_price": 8,
-      "role": "34차 예비비 재구성 — Andre Drummond 대체",
+      "role": "A/T +0.142 · FT% 엘리트 — $8 저가 가드",
       "bid_ceiling": 16,
       "expected_cost": 8,
       "alternates": [
@@ -2292,7 +2292,7 @@
     },
     {
      "slot": "BN",
-     "role": "34차 예비비 재구성 — Mark Williams 대체",
+     "role": "3PM·FT%·AST 3종 엘리트 — ⚠ 아킬레스 복귀 · 가중치 근거는 2024-25 · 대체는 저가 센터라 이 3종을 잃고 OREB·FG%로 바뀐다",
      "is_anchor": false,
      "plan_price": 14,
      "candidates": [
@@ -2362,7 +2362,7 @@
       "rule": "> $16"
      }
     ],
-    "rationale": "저가 센터 3명(Clingan·Gobert·Zubac)이 전부 과열되면 '저가 빅 4인' 전제가 무너진다. 센터 자리를 **최저가 3명**(Vučević $2 · Myles Turner $14 · Jay Huff $2)으로 갈아타 REB·BLK·FG%의 바닥만 지키고, 남는 돈은 SGA 앵커($79)를 지키는 데 쓴다. ⚠️ 37차 정정: 이전 피벗은 **트리거 선수인 Zubac을 $11에 그대로 사고 있었다** — 트리거가 걸린 세계에 존재하지 않는 가격이다. 함께 총액도 $196(예비 $4)이라 앵커가 흔들리면 대응 여력이 없었다. 재탐색(실행 가능 조합 1,577,375개 중 프리필터 상위 30개 시뮬 · 6000시행 재대조) 결과 최소 승률 32.1% → **34.9%** · 빅5 동시붕괴 68.1% → **66.0%** · 예비비 $4 → 밴드 내로 개선됐다.",
+    "rationale": "저가 센터 3명(Clingan·Gobert·Zubac)이 전부 과열되면 '저가 빅 4인' 전제가 무너진다. 센터 자리를 **최저가 3명**(Vučević $2 · Myles Turner $14 · Jay Huff $2)으로 갈아타 REB·BLK·FG%의 바닥만 지키고, 남는 돈은 SGA 앵커($79)를 지키는 데 쓴다. ⚠️ 이전 피벗은 **트리거 선수인 Zubac을 $11에 그대로 사고 있었다** — 트리거가 걸린 세계에 존재하지 않는 가격이다. 함께 총액도 $196(예비 $4)이라 앵커가 흔들리면 대응 여력이 없었다. 재탐색(실행 가능 조합 1,577,375개 중 프리필터 상위 30개 시뮬 · 6000시행 재대조) 결과 최소 승률 32.1% → **34.9%** · 빅5 동시붕괴 68.1% → **66.0%** · 예비비 $4 → 밴드 내로 개선됐다.",
     "swaps": [
      {
       "slot": "C",
@@ -2591,7 +2591,7 @@
       "slot": "BN",
       "name": "Damian Lillard",
       "plan_price": 14,
-      "role": "34차 예비비 재구성 — Mark Williams 대체",
+      "role": "3PM·FT%·AST 3종 엘리트 — ⚠ 아킬레스 복귀 · 가중치 근거는 2024-25 · 대체는 저가 센터라 이 3종을 잃고 OREB·FG%로 바뀐다",
       "bid_ceiling": 14,
       "expected_cost": 14,
       "alternates": [
@@ -2785,7 +2785,7 @@
   {
    "id": "c4",
    "name": "코어 4 · 무앵커 분산 (상한 $31)",
-   "premise": "잉여가 $8~31 구간에 몰려 있으므로 그 구간만으로 9칸을 채운다. 최고가 $31로 결장 리스크가 분산되고 앵커 실패에 면역 — 가장 현실적인 기본 플랜. ⚠️ PTS·TOV 포기가 실제로 나머지 7캣 승리로 이어지는지는 검증되지 않았습니다. ⚠️ 21차: 19차에 'Gobert $16 → Quickley $5'로 바꿨다가 되돌렸다. 그 변경은 '선발 7명만 집계'라는 잘못된 전제로 계산됐고, 정정 모델(9명 전원 · GP 가중)에서는 Gobert의 BLK 1.6이 BLK 캣을 지탱하고 있어 9캣 → 8캣 악화였다.",
+   "premise": "잉여가 $8~31 구간에 몰려 있으므로 그 구간만으로 9칸을 채운다. 최고가 $31로 결장 리스크가 분산되고 앵커 실패에 면역 — 앵커를 못 잡았을 때의 안전망이다. ⚠️ PTS·TOV 포기가 실제로 나머지 7캣 승리로 이어지는지는 검증되지 않았다.",
    "targeted_cats": [
     "AST",
     "BLK",
@@ -3023,7 +3023,7 @@
     },
     {
      "slot": "PG",
-     "role": "34차 예비비 재구성 — T.J. McConnell 대체",
+     "role": "AST 10.8 · A/T +0.169 · FT% 엘리트 PG — 대체(Schröder·Nembhard)는 FT%가 w1로 내려간다",
      "is_anchor": false,
      "plan_price": 30,
      "candidates": [
@@ -3296,7 +3296,7 @@
       "slot": "PG",
       "name": "Trae Young",
       "plan_price": 30,
-      "role": "34차 예비비 재구성 — T.J. McConnell 대체",
+      "role": "AST 10.8 · A/T +0.169 · FT% 엘리트 PG — 대체(Schröder·Nembhard)는 FT%가 w1로 내려간다",
       "bid_ceiling": 30,
       "expected_cost": 30,
       "alternates": [
@@ -3760,7 +3760,7 @@
     },
     {
      "slot": "BN",
-     "role": "34차 예비비 재구성 — T.J. McConnell 대체",
+     "role": "STL 2.0 리그 공동 1위 · 가드 OREB 2.1",
      "is_anchor": false,
      "plan_price": 12,
      "candidates": [
@@ -4062,7 +4062,7 @@
       "slot": "BN",
       "name": "Dyson Daniels",
       "plan_price": 12,
-      "role": "34차 예비비 재구성 — T.J. McConnell 대체",
+      "role": "STL 2.0 리그 공동 1위 · 가드 OREB 2.1",
       "bid_ceiling": 20,
       "expected_cost": 12,
       "alternates": [
@@ -4238,7 +4238,7 @@
   {
    "id": "c6",
    "name": "코어 6 · A/T 분산 조달 (정상 시장 기본값)",
-   "premise": "A/T 한계기여를 Derrick White(+0.171) + DeRozan(+0.152) = +0.323으로 분산 조달한다 — Haliburton 단독(+0.517)의 62%를 조달하면서 아킬레스 복귀 리스크를 지지 않고, 절감분으로 KAT 앵커를 붙인다.\n🔄 **39차 변경: 센터 헤비가 아니다.** Clingan $12 → Bane $22로 C자격이 4 → 3이 되고 빅맨 예산이 $79/$113($34 여유)로 줄었다. 저가 센터를 쓸어담는 축이 아니라 **전방위 윙으로 슬롯 효율을 사는 축**이다 — 과열 판정 시 이 점을 전제로 대응할 것. 그 대신 3P%가 −80.5 → 개선되고 실제 12팀 평균이 84.5% → **87.5%(전 코어 1위)** 가 됐다.",
+   "premise": "A/T 한계기여를 Derrick White(+0.171) + DeRozan(+0.152) = +0.323으로 분산 조달한다 — Haliburton 단독(+0.517)의 62%를 조달하면서 아킬레스 복귀 리스크를 지지 않고, 절감분으로 KAT 앵커를 붙인다.\n🔄 **센터 헤비가 아니다.** Clingan $12 → Bane $22로 C자격이 4 → 3이 되고 빅맨 예산이 $79/$113($34 여유)로 줄었다. 저가 센터를 쓸어담는 축이 아니라 **전방위 윙으로 슬롯 효율을 사는 축**이다 — 과열 판정 시 이 점을 전제로 대응할 것. 그 대신 3P%가 −80.5 → 개선되고 실제 12팀 평균이 84.5% → **87.5%(전 코어 1위)** 가 됐다.",
    "targeted_cats": [
     "A/T",
     "AST",
@@ -4391,7 +4391,7 @@
     },
     {
      "slot": "UTIL",
-     "role": "34차 예비비 재구성 — Knueppel 대체",
+     "role": "STL 보조 $5 다트 — 예비비 확보용",
      "is_anchor": false,
      "plan_price": 5,
      "candidates": [
@@ -4447,7 +4447,7 @@
     },
     {
      "slot": "BN",
-     "role": "3PT 소스 — c6의 3PM 공백을 메운다 (39차)",
+     "role": "전방위 저가 윙 — FT% 엘리트 · 후보 21명 실측 1위",
      "is_anchor": false,
      "plan_price": 22,
      "candidates": [
@@ -4458,16 +4458,16 @@
        "expected_cost": 22
       },
       {
-       "name": "Donovan Clingan",
-       "plan_price": 12,
-       "bid_ceiling": 22,
-       "expected_cost": 12
+       "name": "Josh Hart",
+       "plan_price": 4,
+       "bid_ceiling": 5,
+       "expected_cost": 4
       },
       {
-       "name": "Kon Knueppel",
-       "plan_price": 22,
-       "bid_ceiling": 33,
-       "expected_cost": 22
+       "name": "Nikola Vučević",
+       "plan_price": 2,
+       "bid_ceiling": 8,
+       "expected_cost": 2
       }
      ],
      "bid_ceiling": 31,
@@ -4629,7 +4629,7 @@
       "rule": "> $18"
      }
     ],
-    "rationale": "⚠ 정상 시장 기본값 코어의 생존 분기. 빅맨을 4명→3명($96)으로 줄이고 앵커 KAT 지불을 $56까지 올린다(최대 $62). 벤치 두 칸은 Daniels→Ausar Thompson(STL 2.0 동일, $9 절감) / Knueppel→Trey Murphy III(3PM+FT% 88.6+STL 1.5). 저가 빅 3명 이상이 과열되면 피벗이 아니라 코어 7로 전환. ⚠️ 18차 정정: Trey Murphy III($32)를 벤치에 두면 3P%·FT%가 무너져 6캣(패배)이었다. Merrill($6)과 교환해 선발로 올려 7캣 확보 · 벤치 지출 $38→$12.",
+    "rationale": "정상 시장 기본값 코어의 생존 분기. 저가 센터가 과열되면 **Gobert $8 → Okongwu $5** 하나만 바꿔 빅맨을 $76로 낮추고 나머지 8칸은 그대로 둔다 — 이 코어는 저가 센터를 쓸어담는 축이 아니라 전방위 윙으로 슬롯 효율을 사는 축이라 센터 과열에 노출이 작다. 저가 빅 3명 이상이 과열되면 피벗이 아니라 코어 7로 전환한다.",
     "swaps": [
      {
       "slot": "BN",
@@ -4737,7 +4737,7 @@
       "bid_ceiling": 9,
       "expected_cost": 5,
       "overheat_cost": 5,
-      "role": "34차 예비비 재구성 — Knueppel 대체",
+      "role": "STL 보조 $5 다트 — 예비비 확보용",
       "alternates": [
        {
         "name": "Kon Knueppel",
@@ -4789,7 +4789,7 @@
       "bid_ceiling": 31,
       "expected_cost": 22,
       "overheat_cost": 22,
-      "role": "3PT 소스 — c6의 3PM 공백을 메운다 (39차)",
+      "role": "전방위 저가 윙 — FT% 엘리트 · 후보 21명 실측 1위",
       "alternates": [
        {
         "name": "Donovan Clingan",
@@ -5066,7 +5066,7 @@
   {
    "id": "c7",
    "name": "코어 7 — 중가 센터 전환 (센터 인플레 대응)",
-   "premise": "33차 재설계: 기존 c7의 '반센터 전환' 전제를 폐기했다. 센터 인플레의 답은 센터를 버리는 것이 아니라 **중가 센터(Mobley·Okongwu)로 갈아타는 것**이다. A1 후보 채택.",
+   "premise": "센터 인플레의 답은 센터를 버리는 것이 아니라 **중가 센터로 갈아타는 것**이다 — 저가 센터(Clingan·Gobert 계층)가 과열되면 Mobley $23 · Okongwu $5 로 옮겨 OREB·BLK·FG%의 바닥을 지키고 KAT·D.White 축은 그대로 둔다. 저가 센터 노출이 Gobert 한 명뿐이라 **과열 세계에서도 예산 안에 조립된다** (강제 매수 시 $189 · 예비비 $11) — 그것이 이 코어가 우선 0인 이유다.",
    "single_player_cap": null,
    "big_budget_cap": 130,
    "slots": [
