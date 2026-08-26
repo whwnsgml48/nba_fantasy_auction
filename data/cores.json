@@ -98,11 +98,20 @@
     "rules": [
      {
       "player": "Shai Gilgeous-Alexander",
-      "max": 72
+      "max": 85
      }
     ]
    },
-   "note": "빅맨 예산 $77(39%)로 7개 코어 중 최저 — 센터가 약간 비싸지는 정도라면 코어 4보다 먼저."
+   "note": "빅맨 예산 $77(39%)로 7개 코어 중 최저 — 센터가 약간 비싸지는 정도라면 코어 4보다 먼저.",
+   "threshold_history": [
+    {
+     "at": "39차",
+     "player": "Shai Gilgeous-Alexander",
+     "from": 72,
+     "to": 85,
+     "why": "my_max 상향(중간안)에 맞춰 트리거를 시장 중간값으로. 사용자 결정 2026-08-26"
+    }
+   ]
   },
   {
    "prio": "4",
@@ -122,11 +131,20 @@
     "rules": [
      {
       "player": "Nikola Jokić",
-      "max": 88
+      "max": 97
      }
     ]
    },
-   "note": "스타 집중형. 예산이 Jokić·D.White에 잠기므로 조건 충족 시에만 진입."
+   "note": "스타 집중형. 예산이 Jokić·D.White에 잠기므로 조건 충족 시에만 진입.",
+   "threshold_history": [
+    {
+     "at": "39차",
+     "player": "Nikola Jokić",
+     "from": 88,
+     "to": 97,
+     "why": "my_max 상향(중간안)에 맞춰 트리거를 시장 중간값으로. 사용자 결정 2026-08-26"
+    }
+   ]
   },
   {
    "prio": "격리",
@@ -1199,30 +1217,30 @@
    ],
    "single_player_cap": null,
    "big_budget_cap": 153,
-   "big_budget_planned": 134,
+   "big_budget_planned": 143,
    "c_eligible_count": 4,
-   "planned_total": 187,
+   "planned_total": 196,
    "slots": [
     {
      "slot": "C",
      "role": "앵커 (실패 시 코어 전환)",
      "is_anchor": true,
-     "plan_price": 88,
+     "plan_price": 97,
      "candidates": [
       {
        "name": "Nikola Jokić",
-       "plan_price": 88,
-       "bid_ceiling": 88,
-       "expected_cost": 88
+       "plan_price": 97,
+       "bid_ceiling": 97,
+       "expected_cost": 97
       }
      ],
      "anchor_plan": {
-      "bid_ceiling": 88,
+      "bid_ceiling": 97,
       "nominal_margin": 0,
-      "budget_slack": 13,
+      "budget_slack": 4,
       "effective_headroom": 0,
       "constraint": "my_max",
-      "dual_world_ok": false,
+      "dual_world_ok": true,
       "substitutes_dual_ok": [],
       "on_fail": {
        "action": "switch_core",
@@ -1230,8 +1248,8 @@
        "note": "Jokić를 못 잡으면 스타 집중 전제 자체가 없어진다 → 정상시장 기본값"
       }
      },
-     "bid_ceiling": 88,
-     "expected_cost": 88
+     "bid_ceiling": 97,
+     "expected_cost": 97
     },
     {
      "slot": "SG",
@@ -1248,26 +1266,15 @@
       {
        "name": "De'Aaron Fox",
        "plan_price": 24,
-       "total_if_used": 172,
-       "redeploy": {
-        "moves": [
-         {
-          "player": "Donovan Clingan",
-          "slot": "UTIL",
-          "from": 12,
-          "to": 15
-         }
-        ],
-        "total_after": 175,
-        "feasible": true
-       },
+       "total_if_used": 181,
+       "redeploy": null,
        "bid_ceiling": 24,
        "expected_cost": 24
       },
       {
        "name": "Dennis Schröder",
        "plan_price": 5,
-       "total_if_used": 153,
+       "total_if_used": 162,
        "redeploy": {
         "moves": [
          {
@@ -1275,12 +1282,6 @@
           "slot": "UTIL",
           "from": 12,
           "to": 22
-         },
-         {
-          "player": "Rudy Gobert",
-          "slot": "UTIL",
-          "from": 8,
-          "to": 17
          },
          {
           "player": "Tim Hardaway Jr.",
@@ -1299,9 +1300,9 @@
      "anchor_plan": {
       "bid_ceiling": 52,
       "nominal_margin": 13,
-      "budget_slack": 13,
-      "effective_headroom": 13,
-      "constraint": "none",
+      "budget_slack": 4,
+      "effective_headroom": 4,
+      "constraint": "budget",
       "dual_world_ok": true,
       "substitutes_dual_ok": [
        "De'Aaron Fox",
@@ -1593,12 +1594,12 @@
      {
       "slot": "C",
       "name": "Nikola Jokić",
-      "plan_price": 88,
+      "plan_price": 97,
       "role": "앵커 (실패 시 코어 전환)",
       "is_anchor": true,
-      "bid_ceiling": 88,
-      "expected_cost": 88,
-      "dual_world_ok": false
+      "bid_ceiling": 97,
+      "expected_cost": 97,
+      "dual_world_ok": true
      },
      {
       "slot": "SG",
@@ -1612,7 +1613,7 @@
        {
         "name": "De'Aaron Fox",
         "plan_price": 24,
-        "total_if_used": 159,
+        "total_if_used": 168,
         "redeploy": {
          "moves": [
           {
@@ -1631,7 +1632,7 @@
        {
         "name": "Dennis Schröder",
         "plan_price": 5,
-        "total_if_used": 140,
+        "total_if_used": 149,
         "redeploy": {
          "moves": [
           {
@@ -1675,7 +1676,7 @@
         "plan_price": 23,
         "bid_ceiling": 30,
         "expected_cost": 23,
-        "total_if_used": 171
+        "total_if_used": 180
        }
       ],
       "dual_world_ok": true
@@ -1693,14 +1694,14 @@
         "plan_price": 11,
         "bid_ceiling": 16,
         "expected_cost": 11,
-        "total_if_used": 180
+        "total_if_used": 189
        },
        {
         "name": "Mark Williams",
         "plan_price": 7,
         "bid_ceiling": 14,
         "expected_cost": 7,
-        "total_if_used": 176
+        "total_if_used": 185
        }
       ],
       "dual_world_ok": true
@@ -1718,14 +1719,14 @@
         "plan_price": 11,
         "bid_ceiling": 16,
         "expected_cost": 11,
-        "total_if_used": 183
+        "total_if_used": 192
        },
        {
         "name": "Mark Williams",
         "plan_price": 7,
         "bid_ceiling": 14,
         "expected_cost": 7,
-        "total_if_used": 179
+        "total_if_used": 188
        }
       ],
       "dual_world_ok": true
@@ -1743,14 +1744,14 @@
         "plan_price": 2,
         "bid_ceiling": 6,
         "expected_cost": 2,
-        "total_if_used": 174
+        "total_if_used": 183
        },
        {
         "name": "Ryan Kalkbrenner",
         "plan_price": 2,
         "bid_ceiling": 8,
         "expected_cost": 2,
-        "total_if_used": 174
+        "total_if_used": 183
        }
       ],
       "dual_world_ok": true
@@ -1768,7 +1769,7 @@
         "plan_price": 2,
         "bid_ceiling": 8,
         "expected_cost": 2,
-        "total_if_used": 174
+        "total_if_used": 183
        }
       ],
       "dual_world_ok": true
@@ -1786,14 +1787,14 @@
         "plan_price": 2,
         "bid_ceiling": 6,
         "expected_cost": 2,
-        "total_if_used": 174
+        "total_if_used": 183
        },
        {
         "name": "Davion Mitchell",
         "plan_price": 2,
         "bid_ceiling": 4,
         "expected_cost": 2,
-        "total_if_used": 174
+        "total_if_used": 183
        }
       ],
       "dual_world_ok": true
@@ -1811,21 +1812,21 @@
         "plan_price": 2,
         "bid_ceiling": 6,
         "expected_cost": 2,
-        "total_if_used": 168
+        "total_if_used": 177
        },
        {
         "name": "Ryan Kalkbrenner",
         "plan_price": 2,
         "bid_ceiling": 8,
         "expected_cost": 2,
-        "total_if_used": 168
+        "total_if_used": 177
        }
       ],
       "dual_world_ok": true
      }
     ],
-    "final_total": 174,
-    "final_big_budget": 119,
+    "final_total": 183,
+    "final_big_budget": 128,
     "final_c_eligible": 3,
     "targeted_cats": [
      "3P%",
@@ -1874,16 +1875,7 @@
      "wins_incl_dd": 7
     }
    },
-   "budget_slack": 13,
-   "conditional_on_discount": {
-    "anchor": "Nikola Jokić",
-    "reason": "my_max $88 < 실측 시장하단 $93 — 시장 할인 없이는 확보 불가",
-    "on_fail": {
-     "action": "switch_core",
-     "target": "c6",
-     "note": "Jokić를 못 잡으면 스타 집중 전제 자체가 없어진다 → 정상시장 기본값"
-    }
-   },
+   "budget_slack": 4,
    "cat_weight_sums": {
     "PTS": 5,
     "FG%": 11,
@@ -2011,28 +2003,28 @@
    "big_budget_cap": 85,
    "big_budget_planned": 57,
    "c_eligible_count": 4,
-   "planned_total": 190,
+   "planned_total": 196,
    "slots": [
     {
      "slot": "SG",
      "role": "앵커 (실패 시 코어 전환)",
      "is_anchor": true,
-     "plan_price": 79,
+     "plan_price": 85,
      "candidates": [
       {
        "name": "Shai Gilgeous-Alexander",
-       "plan_price": 79,
-       "bid_ceiling": 79,
-       "expected_cost": 79
+       "plan_price": 85,
+       "bid_ceiling": 85,
+       "expected_cost": 85
       }
      ],
      "anchor_plan": {
-      "bid_ceiling": 79,
+      "bid_ceiling": 85,
       "nominal_margin": 0,
-      "budget_slack": 10,
+      "budget_slack": 4,
       "effective_headroom": 0,
       "constraint": "my_max",
-      "dual_world_ok": false,
+      "dual_world_ok": true,
       "substitutes_dual_ok": [],
       "on_fail": {
        "action": "switch_core",
@@ -2040,8 +2032,8 @@
        "note": "판단표 우선 4 '앵커 실패 시 안전망'이 그대로 목적지"
       }
      },
-     "bid_ceiling": 79,
-     "expected_cost": 79
+     "bid_ceiling": 85,
+     "expected_cost": 85
     },
     {
      "slot": "PF",
@@ -2352,12 +2344,12 @@
      {
       "slot": "SG",
       "name": "Shai Gilgeous-Alexander",
-      "plan_price": 79,
+      "plan_price": 85,
       "role": "앵커 (실패 시 코어 전환)",
       "is_anchor": true,
-      "bid_ceiling": 79,
-      "expected_cost": 79,
-      "dual_world_ok": false
+      "bid_ceiling": 85,
+      "expected_cost": 85,
+      "dual_world_ok": true
      },
      {
       "slot": "PF",
@@ -2372,7 +2364,7 @@
         "plan_price": 23,
         "bid_ceiling": 30,
         "expected_cost": 23,
-        "total_if_used": 174
+        "total_if_used": 180
        }
       ],
       "dual_world_ok": true
@@ -2390,14 +2382,14 @@
         "plan_price": 11,
         "bid_ceiling": 14,
         "expected_cost": 11,
-        "total_if_used": 162
+        "total_if_used": 168
        },
        {
         "name": "Jaden McDaniels",
         "plan_price": 5,
         "bid_ceiling": 10,
         "expected_cost": 5,
-        "total_if_used": 156
+        "total_if_used": 162
        }
       ],
       "dual_world_ok": true
@@ -2415,14 +2407,14 @@
         "plan_price": 3,
         "bid_ceiling": 8,
         "expected_cost": 3,
-        "total_if_used": 168
+        "total_if_used": 174
        },
        {
         "name": "Cason Wallace",
         "plan_price": 3,
         "bid_ceiling": 8,
         "expected_cost": 3,
-        "total_if_used": 168
+        "total_if_used": 174
        }
       ],
       "dual_world_ok": true
@@ -2439,14 +2431,14 @@
         "plan_price": 27,
         "bid_ceiling": 34,
         "expected_cost": 27,
-        "total_if_used": 202
+        "total_if_used": 208
        },
        {
         "name": "Rudy Gobert",
         "plan_price": 8,
         "bid_ceiling": 18,
         "expected_cost": 8,
-        "total_if_used": 183
+        "total_if_used": 189
        }
       ],
       "bid_ceiling": 8,
@@ -2464,14 +2456,14 @@
         "plan_price": 7,
         "bid_ceiling": 14,
         "expected_cost": 7,
-        "total_if_used": 170
+        "total_if_used": 176
        },
        {
         "name": "Nic Claxton",
         "plan_price": 4,
         "bid_ceiling": 12,
         "expected_cost": 4,
-        "total_if_used": 167
+        "total_if_used": 173
        }
       ],
       "bid_ceiling": 18,
@@ -2489,14 +2481,14 @@
         "plan_price": 7,
         "bid_ceiling": 14,
         "expected_cost": 7,
-        "total_if_used": 182
+        "total_if_used": 188
        },
        {
         "name": "Nic Claxton",
         "plan_price": 4,
         "bid_ceiling": 12,
         "expected_cost": 4,
-        "total_if_used": 179
+        "total_if_used": 185
        }
       ],
       "bid_ceiling": 4,
@@ -2515,14 +2507,14 @@
         "plan_price": 2,
         "bid_ceiling": 11,
         "expected_cost": 2,
-        "total_if_used": 165
+        "total_if_used": 171
        },
        {
         "name": "Isaiah Joe",
         "plan_price": 2,
         "bid_ceiling": 10,
         "expected_cost": 2,
-        "total_if_used": 165
+        "total_if_used": 171
        }
       ],
       "dual_world_ok": true
@@ -2539,14 +2531,14 @@
         "plan_price": 2,
         "bid_ceiling": 11,
         "expected_cost": 2,
-        "total_if_used": 177
+        "total_if_used": 183
        }
       ],
       "bid_ceiling": 10,
       "dual_world_ok": true
      }
     ],
-    "final_total": 177,
+    "final_total": 183,
     "final_big_budget": 44,
     "final_c_eligible": 4,
     "targeted_cats": [
@@ -2595,16 +2587,7 @@
      "wins_incl_dd": 13
     }
    },
-   "budget_slack": 10,
-   "conditional_on_discount": {
-    "anchor": "Shai Gilgeous-Alexander",
-    "reason": "my_max $79 < 실측 시장하단 $81 — 시장 할인 없이는 확보 불가",
-    "on_fail": {
-     "action": "switch_core",
-     "target": "c4",
-     "note": "판단표 우선 4 '앵커 실패 시 안전망'이 그대로 목적지"
-    }
-   },
+   "budget_slack": 4,
    "cat_weight_sums": {
     "PTS": 7,
     "FG%": 16,
