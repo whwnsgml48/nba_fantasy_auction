@@ -1,0 +1,45 @@
+{
+ "league": {
+  "teams": 14,
+  "budget": 200,
+  "roster_slots": 9,
+  "starters": 7,
+  "bench": 2,
+  "il_plus": 1,
+  "format": "H2H 13-category"
+ },
+ "categories": [
+  "PTS",
+  "FG%",
+  "3PM",
+  "3P%",
+  "FT%",
+  "REB",
+  "OREB",
+  "AST",
+  "STL",
+  "BLK",
+  "DD",
+  "A/T",
+  "TOV"
+ ],
+ "roster_slots": [
+  "PG",
+  "SG",
+  "SF",
+  "PF",
+  "C",
+  "UTIL",
+  "UTIL",
+  "BN",
+  "BN"
+ ],
+ "auction_rules": {
+  "min_bid": 1,
+  "auto_close_seconds": 10,
+  "nominator": "직전 낙찰자",
+  "ends_when": "전원 9명 낙찰"
+ },
+ "max_bid_formula": "남은 예산 - (남은 슬롯 - 1)",
+ "players_drafted_leaguewide": 126
+}

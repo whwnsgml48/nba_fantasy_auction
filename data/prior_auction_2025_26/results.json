@@ -1,0 +1,845 @@
+{
+ "meta": {
+  "source": "사용자 제공 스프레드시트 사진 (fantasy draft results.xlsx, 2026-08-20 수신)",
+  "season": "2025-26",
+  "note": "작년 실제 옥션 결과. market_low/high 추정 곡선을 실측으로 대체·보정하기 위한 유일한 리그 내부 근거.",
+  "league_last_year": {
+   "teams": 12,
+   "budget": 200,
+   "roster_slots": 10,
+   "total_money": 2400,
+   "players_drafted": 120,
+   "il_plus_drafted": false
+  },
+  "league_this_year": {
+   "teams": 14,
+   "budget": 200,
+   "roster_slots": 9,
+   "total_money": 2800,
+   "players_drafted": 126,
+   "il_plus_drafted": false,
+   "note": "사용자 확인(2026-08-20): IL+는 드래프트에서 채우지 않음. 로스터가 작년 10 → 올해 9로 축소."
+  },
+  "validation": "팀별 낙찰가 합 + 잔액 = $200, 12팀 전부 일치 (판독 검산 통과)",
+  "caveats": [
+   "선수명은 한글 약칭이라 일부는 추정. read_confidence 필드로 표기.",
+   "낙찰 순서·지명자는 사진에 없음. 곡선(가격 분포)만 복원 가능.",
+   "리그 세팅 변경: 작년 12팀·로스터10 → 올해 14팀·로스터9. 슬롯당 예산 $20.0 → $22.2로 상승."
+  ],
+  "draft_time_injury_note": "드래프트 시점 결장으로 가격이 눌린 케이스. 곡선 형태(분포) 추정에는 **포함**해야 하고(매 시즌 부상자가 최저가 구간을 채우므로), 선수별 가격 판독에는 **제외**해야 한다. docs/08 2절 ③ 및 5절 참조."
+ },
+ "teams": [
+  {
+   "manager": "윤범",
+   "leftover": 1,
+   "spent": 199,
+   "players": [
+    {
+     "name_kr": "르브론",
+     "name_en": "LeBron James",
+     "price": 31,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "하든",
+     "name_en": "James Harden",
+     "price": 33,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "화이트",
+     "name_en": "Derrick White",
+     "price": 20,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "아멘 탐슨",
+     "name_en": "Amen Thompson",
+     "price": 31,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "반즈",
+     "name_en": "Scottie Barnes",
+     "price": 38,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "밀러",
+     "name_en": "Brandon Miller",
+     "price": 7,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "터너",
+     "name_en": "Myles Turner",
+     "price": 11,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "어사르",
+     "name_en": "Ausar Thompson",
+     "price": 11,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "퍼들",
+     "name_en": "Jakob Poeltl",
+     "price": 4,
+     "read_confidence": "med"
+    },
+    {
+     "name_kr": "막윌",
+     "name_en": "Mark Williams",
+     "price": 13,
+     "read_confidence": "med"
+    }
+   ]
+  },
+  {
+   "manager": "수현",
+   "leftover": 1,
+   "spent": 199,
+   "players": [
+    {
+     "name_kr": "사보니스",
+     "name_en": "Domantas Sabonis",
+     "price": 61,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "AD",
+     "name_en": "Anthony Davis",
+     "price": 48,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "미첼",
+     "name_en": "Donovan Mitchell",
+     "price": 27,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "바그너",
+     "name_en": "Franz Wagner",
+     "price": 24,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "머레이",
+     "name_en": "Jamal Murray",
+     "price": 20,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "폴 조지",
+     "name_en": "Paul George",
+     "price": 7,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "맥컬럼",
+     "name_en": "CJ McCollum",
+     "price": 1,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "부젤리스",
+     "name_en": "Matas Buzelis",
+     "price": 3,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "나즈 리드",
+     "name_en": "Naz Reid",
+     "price": 1,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "쿠밍가",
+     "name_en": "Jonathan Kuminga",
+     "price": 7,
+     "read_confidence": "high"
+    }
+   ]
+  },
+  {
+   "manager": "철웅",
+   "leftover": 9,
+   "spent": 191,
+   "players": [
+    {
+     "name_kr": "앤트",
+     "name_en": "Anthony Edwards",
+     "price": 62,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "플래그",
+     "name_en": "Cooper Flagg",
+     "price": 23,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "모란트",
+     "name_en": "Ja Morant",
+     "price": 14,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "주바치",
+     "name_en": "Ivica Zubac",
+     "price": 35,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "자이언",
+     "name_en": "Zion Williamson",
+     "price": 11,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "하텐슈타인",
+     "name_en": "Isaiah Hartenstein",
+     "price": 10,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "트머삼",
+     "name_en": "Trey Murphy III",
+     "price": 11,
+     "read_confidence": "med"
+    },
+    {
+     "name_kr": "잭 라빈",
+     "name_en": "Zach LaVine",
+     "price": 14,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "마포주",
+     "name_en": "Michael Porter Jr.",
+     "price": 10,
+     "read_confidence": "med"
+    },
+    {
+     "name_kr": "탐슨",
+     "name_en": "Klay Thompson",
+     "price": 1,
+     "read_confidence": "med"
+    }
+   ]
+  },
+  {
+   "manager": "두현",
+   "leftover": 1,
+   "spent": 199,
+   "players": [
+    {
+     "name_kr": "모블리",
+     "name_en": "Evan Mobley",
+     "price": 43,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "부커",
+     "name_en": "Devin Booker",
+     "price": 50,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "시아캄",
+     "name_en": "Pascal Siakam",
+     "price": 23,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "브런슨",
+     "name_en": "Jalen Brunson",
+     "price": 21,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "포르징기스",
+     "name_en": "Kristaps Porzingis",
+     "price": 6,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "코비 화이트",
+     "name_en": "Coby White",
+     "price": 14,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "에이튼",
+     "name_en": "Deandre Ayton",
+     "price": 5,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "캠 토마스",
+     "name_en": "Cam Thomas",
+     "price": 10,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "크. 브라운",
+     "name_en": "Christian Braun",
+     "price": 13,
+     "read_confidence": "med"
+    },
+    {
+     "name_kr": "그라임스",
+     "name_en": "Quentin Grimes",
+     "price": 14,
+     "read_confidence": "high"
+    }
+   ]
+  },
+  {
+   "manager": "진빈",
+   "leftover": 1,
+   "spent": 199,
+   "players": [
+    {
+     "name_kr": "돈치치",
+     "name_en": "Luka Doncic",
+     "price": 77,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "제존",
+     "name_en": "Jalen Johnson",
+     "price": 42,
+     "read_confidence": "med"
+    },
+    {
+     "name_kr": "맥시",
+     "name_en": "Tyrese Maxey",
+     "price": 40,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "라멜로 볼",
+     "name_en": "LaMelo Ball",
+     "price": 20,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "히로",
+     "name_en": "Tyler Herro",
+     "price": 6,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "클랙스턴",
+     "name_en": "Nic Claxton",
+     "price": 3,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "쿨리발리",
+     "name_en": "Bilal Coulibaly",
+     "price": 1,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "이디",
+     "name_en": "Zach Edey",
+     "price": 1,
+     "read_confidence": "med"
+    },
+    {
+     "name_kr": "석스",
+     "name_en": "Jalen Suggs",
+     "price": 7,
+     "read_confidence": "med"
+    },
+    {
+     "name_kr": "오비 토핀",
+     "name_en": "Obi Toppin",
+     "price": 2,
+     "read_confidence": "high"
+    }
+   ]
+  },
+  {
+   "manager": "원준",
+   "leftover": 13,
+   "spent": 187,
+   "players": [
+    {
+     "name_kr": "반케로",
+     "name_en": "Paolo Banchero",
+     "price": 52,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "트레영",
+     "name_en": "Trae Young",
+     "price": 56,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "엠비드",
+     "name_en": "Joel Embiid",
+     "price": 5,
+     "read_confidence": "high",
+     "draft_time_injury": {
+      "level": "confirmed",
+      "note": "무릎 부상으로 드래프트 시점 결장/불확실. 사용자 확인(2026-08-20)"
+     }
+    },
+    {
+     "name_kr": "버들러",
+     "name_en": "Jimmy Butler III",
+     "price": 16,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "앨런",
+     "name_en": "Jarrett Allen",
+     "price": 22,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "넴하드",
+     "name_en": "Andrew Nembhard",
+     "price": 12,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "캠 존슨",
+     "name_en": "Cameron Johnson",
+     "price": 5,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "케슬러",
+     "name_en": "Walker Kessler",
+     "price": 13,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "파월",
+     "name_en": "Norman Powell",
+     "price": 5,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "샤프",
+     "name_en": "Shaedon Sharpe",
+     "price": 1,
+     "read_confidence": "high"
+    }
+   ]
+  },
+  {
+   "manager": "단열",
+   "leftover": 1,
+   "spent": 199,
+   "players": [
+    {
+     "name_kr": "KAT",
+     "name_en": "Karl-Anthony Towns",
+     "price": 66,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "팍스",
+     "name_en": "De'Aaron Fox",
+     "price": 36,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "제이덥",
+     "name_en": "Jalen Williams",
+     "price": 41,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "자잭주",
+     "name_en": "Jaren Jackson Jr.",
+     "price": 24,
+     "read_confidence": "med"
+    },
+    {
+     "name_kr": "듀렌",
+     "name_en": "Jalen Duren",
+     "price": 10,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "사이먼스",
+     "name_en": "Anfernee Simons",
+     "price": 3,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "매써린",
+     "name_en": "Bennedict Mathurin",
+     "price": 6,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "맥다니엘스",
+     "name_en": "Jaden McDaniels",
+     "price": 6,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "바셀",
+     "name_en": "Devin Vassell",
+     "price": 2,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "크리스 폴",
+     "name_en": "Chris Paul",
+     "price": 5,
+     "read_confidence": "high"
+    }
+   ]
+  },
+  {
+   "manager": "지원",
+   "leftover": 1,
+   "spent": 199,
+   "players": [
+    {
+     "name_kr": "커닝햄",
+     "name_en": "Cade Cunningham",
+     "price": 60,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "센군",
+     "name_en": "Alperen Sengun",
+     "price": 60,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "홈그렌",
+     "name_en": "Chet Holmgren",
+     "price": 35,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "카와이",
+     "name_en": "Kawhi Leonard",
+     "price": 20,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "갈랜드",
+     "name_en": "Darius Garland",
+     "price": 11,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "위긴스",
+     "name_en": "Andrew Wiggins",
+     "price": 6,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "캐슬",
+     "name_en": "Stephon Castle",
+     "price": 1,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "우브레",
+     "name_en": "Kelly Oubre Jr.",
+     "price": 1,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "클락슨",
+     "name_en": "Jordan Clarkson",
+     "price": 1,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "디종테",
+     "name_en": "Dejounte Murray",
+     "price": 4,
+     "read_confidence": "high",
+     "draft_time_injury": {
+      "level": "confirmed",
+      "note": "2025-01 아킬레스 파열 → 2025-26 시즌 초반 결장. 사용자 확인(2026-08-20)"
+     }
+    }
+   ]
+  },
+  {
+   "manager": "정명",
+   "leftover": 1,
+   "spent": 199,
+   "players": [
+    {
+     "name_kr": "SGA",
+     "name_en": "Shai Gilgeous-Alexander",
+     "price": 74,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "베인",
+     "name_en": "Desmond Bane",
+     "price": 16,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "KD",
+     "name_en": "Kevin Durant",
+     "price": 33,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "하트",
+     "name_en": "Josh Hart",
+     "price": 23,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "리브스",
+     "name_en": "Austin Reaves",
+     "price": 13,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "부세비치",
+     "name_en": "Nikola Vucevic",
+     "price": 21,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "제일런 그린",
+     "name_en": "Jalen Green",
+     "price": 7,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "존 콜린스",
+     "name_en": "John Collins",
+     "price": 1,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "오쿵우",
+     "name_en": "Onyeka Okongwu",
+     "price": 6,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "양한센",
+     "name_en": "Yang Hansen",
+     "price": 5,
+     "read_confidence": "high"
+    }
+   ]
+  },
+  {
+   "manager": "준희",
+   "leftover": 1,
+   "spent": 199,
+   "players": [
+    {
+     "name_kr": "요키치",
+     "name_en": "Nikola Jokic",
+     "price": 86,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "커리",
+     "name_en": "Stephen Curry",
+     "price": 35,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "조던 풀",
+     "name_en": "Jordan Poole",
+     "price": 6,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "아데바요",
+     "name_en": "Bam Adebayo",
+     "price": 29,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "마. 브리지스",
+     "name_en": "Miles Bridges",
+     "price": 6,
+     "read_confidence": "med"
+    },
+    {
+     "name_kr": "잉그램",
+     "name_en": "Brandon Ingram",
+     "price": 5,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "프리차드",
+     "name_en": "Payton Pritchard",
+     "price": 5,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "미칼",
+     "name_en": "Mikal Bridges",
+     "price": 20,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "사르",
+     "name_en": "Alexandre Sarr",
+     "price": 6,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "빌",
+     "name_en": "Bradley Beal",
+     "price": 1,
+     "read_confidence": "high"
+    }
+   ]
+  },
+  {
+   "manager": "병욱",
+   "leftover": 1,
+   "spent": 199,
+   "players": [
+    {
+     "name_kr": "웸비",
+     "name_en": "Victor Wembanyama",
+     "price": 87,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "다이슨",
+     "name_en": "Dyson Daniels",
+     "price": 32,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "고베어",
+     "name_en": "Rudy Gobert",
+     "price": 8,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "아누노비",
+     "name_en": "OG Anunoby",
+     "price": 13,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "브라운",
+     "name_en": "Jaylen Brown",
+     "price": 25,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "배럿",
+     "name_en": "RJ Barrett",
+     "price": 5,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "드로잔",
+     "name_en": "DeMar DeRozan",
+     "price": 9,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "밴블릿",
+     "name_en": "Fred VanVleet",
+     "price": 13,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "토비",
+     "name_en": "Tobias Harris",
+     "price": 1,
+     "read_confidence": "med"
+    },
+    {
+     "name_kr": "콜리어",
+     "name_en": "Isaiah Collier",
+     "price": 6,
+     "read_confidence": "high"
+    }
+   ]
+  },
+  {
+   "manager": "경찬",
+   "leftover": 1,
+   "spent": 199,
+   "players": [
+    {
+     "name_kr": "아테토쿰보",
+     "name_en": "Giannis Antetokounmpo",
+     "price": 76,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "기디",
+     "name_en": "Josh Giddey",
+     "price": 37,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "마카넨",
+     "name_en": "Lauri Markkanen",
+     "price": 23,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "아브디야",
+     "name_en": "Deni Avdija",
+     "price": 30,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "랜들",
+     "name_en": "Julius Randle",
+     "price": 10,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "웨어",
+     "name_en": "Kel'el Ware",
+     "price": 4,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "퀴클리",
+     "name_en": "Immanuel Quickley",
+     "price": 9,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "자스주",
+     "name_en": "Jabari Smith Jr.",
+     "price": 7,
+     "read_confidence": "med"
+    },
+    {
+     "name_kr": "아이비",
+     "name_en": "Jaden Ivey",
+     "price": 1,
+     "read_confidence": "high"
+    },
+    {
+     "name_kr": "카마라",
+     "name_en": "Toumani Camara",
+     "price": 2,
+     "read_confidence": "high"
+    }
+   ]
+  }
+ ]
+}

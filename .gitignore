@@ -1,0 +1,11 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# macOS
+.DS_Store
+
+# 세션 전용 스냅샷 (snapshot_data.py · SNAPSHOT_ROOT 기본값이 프로젝트 안일 때)
+data-snapshots/

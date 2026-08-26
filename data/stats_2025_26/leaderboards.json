@@ -1,0 +1,1245 @@
+{
+ "blocks_per_game": {
+  "stat": "BLK/G",
+  "n": 25,
+  "source": "StatMuse blocks per game leaders 2025-26 top 30",
+  "note": "1위 Wembanyama 3.1. 26~30위는 출처에서 미제공.",
+  "rows": [
+   [
+    "Victor Wembanyama",
+    "SAS",
+    3.1
+   ],
+   [
+    "Chet Holmgren",
+    "OKC",
+    1.9
+   ],
+   [
+    "Jay Huff",
+    "IND",
+    1.9
+   ],
+   [
+    "Evan Mobley",
+    "CLE",
+    1.7
+   ],
+   [
+    "Donovan Clingan",
+    "POR",
+    1.7
+   ],
+   [
+    "Rudy Gobert",
+    "MIN",
+    1.6
+   ],
+   [
+    "Myles Turner",
+    "MIL",
+    1.6
+   ],
+   [
+    "Isaiah Stewart",
+    "DET",
+    1.6
+   ],
+   [
+    "Yves Missi",
+    "NOP",
+    1.5
+   ],
+   [
+    "Matas Buzelis",
+    "CHI",
+    1.5
+   ],
+   [
+    "Robert Williams III",
+    "POR",
+    1.5
+   ],
+   [
+    "Ryan Kalkbrenner",
+    "CHA",
+    1.5
+   ],
+   [
+    "Scottie Barnes",
+    "TOR",
+    1.5
+   ],
+   [
+    "Neemias Queta",
+    "BOS",
+    1.3
+   ],
+   [
+    "Derrick White",
+    "BOS",
+    1.3
+   ],
+   [
+    "Mitchell Robinson",
+    "NYK",
+    1.2
+   ],
+   [
+    "Brook Lopez",
+    "LAC",
+    1.2
+   ],
+   [
+    "Adem Bona",
+    "PHI",
+    1.2
+   ],
+   [
+    "Nic Claxton",
+    "BKN",
+    1.1
+   ],
+   [
+    "Kel'el Ware",
+    "MIA",
+    1.1
+   ],
+   [
+    "Alperen Sengun",
+    "HOU",
+    1.1
+   ],
+   [
+    "Onyeka Okongwu",
+    "ATL",
+    1.1
+   ],
+   [
+    "Andrew Wiggins",
+    "MIA",
+    1.0
+   ],
+   [
+    "Naz Reid",
+    "MIN",
+    1.0
+   ],
+   [
+    "Jaden McDaniels",
+    "MIN",
+    1.0
+   ]
+  ]
+ },
+ "steals_per_game": {
+  "stat": "STL/G",
+  "n": 25,
+  "source": "StatMuse steals per game leaders 2025-26 top 30",
+  "note": "⚠️ 두 차례 조회에서 Cason Wallace가 2.0과 1.9로 다르게 반환됨(반올림 차이). 아래는 top-30 조회 기준.",
+  "rows": [
+   [
+    "Ausar Thompson",
+    "DET",
+    2.0
+   ],
+   [
+    "Dyson Daniels",
+    "ATL",
+    2.0
+   ],
+   [
+    "Cason Wallace",
+    "OKC",
+    1.9
+   ],
+   [
+    "Kawhi Leonard",
+    "LAC",
+    1.9
+   ],
+   [
+    "Tyrese Maxey",
+    "PHI",
+    1.9
+   ],
+   [
+    "Luka Doncic",
+    "LAL",
+    1.6
+   ],
+   [
+    "Kris Dunn",
+    "LAC",
+    1.6
+   ],
+   [
+    "OG Anunoby",
+    "NYK",
+    1.6
+   ],
+   [
+    "Jordan Goodwin",
+    "PHX",
+    1.5
+   ],
+   [
+    "Amen Thompson",
+    "HOU",
+    1.5
+   ],
+   [
+    "Trey Murphy III",
+    "NOP",
+    1.5
+   ],
+   [
+    "Reed Sheppard",
+    "HOU",
+    1.5
+   ],
+   [
+    "Ryan Rollins",
+    "MIL",
+    1.5
+   ],
+   [
+    "Donovan Mitchell",
+    "CLE",
+    1.5
+   ],
+   [
+    "Cade Cunningham",
+    "DET",
+    1.4
+   ],
+   [
+    "Dru Smith",
+    "MIA",
+    1.4
+   ],
+   [
+    "VJ Edgecombe",
+    "PHI",
+    1.4
+   ],
+   [
+    "Scottie Barnes",
+    "TOR",
+    1.4
+   ],
+   [
+    "Anthony Black",
+    "ORL",
+    1.4
+   ],
+   [
+    "Nikola Jokic",
+    "DEN",
+    1.4
+   ],
+   [
+    "Marcus Smart",
+    "LAL",
+    1.4
+   ],
+   [
+    "Shai Gilgeous-Alexander",
+    "OKC",
+    1.4
+   ],
+   [
+    "Anthony Edwards",
+    "MIN",
+    1.4
+   ],
+   [
+    "Immanuel Quickley",
+    "TOR",
+    1.3
+   ],
+   [
+    "Nickeil Alexander-Walker",
+    "ATL",
+    1.3
+   ]
+  ]
+ },
+ "offensive_rebounds_per_game": {
+  "stat": "OREB/G",
+  "n": 25,
+  "source": "StatMuse offensive rebounds per game leaders 2025-26 top 50",
+  "note": "26~50위는 출처에서 미제공. 팀 표기는 2025-26 시즌 기준(오프시즌 이적 미반영).",
+  "rows": [
+   [
+    "Donovan Clingan",
+    "POR",
+    4.5
+   ],
+   [
+    "Mitchell Robinson",
+    "NYK",
+    4.2
+   ],
+   [
+    "Rudy Gobert",
+    "MIN",
+    3.9
+   ],
+   [
+    "Jalen Duren",
+    "DET",
+    3.8
+   ],
+   [
+    "Moussa Diabate",
+    "CHA",
+    3.7
+   ],
+   [
+    "Andre Drummond",
+    "PHI",
+    3.2
+   ],
+   [
+    "Karl-Anthony Towns",
+    "NYK",
+    3.1
+   ],
+   [
+    "Mark Williams",
+    "PHX",
+    3.1
+   ],
+   [
+    "Neemias Queta",
+    "BOS",
+    3.0
+   ],
+   [
+    "Alperen Sengun",
+    "HOU",
+    3.0
+   ],
+   [
+    "Amen Thompson",
+    "HOU",
+    3.0
+   ],
+   [
+    "Nikola Jokic",
+    "DEN",
+    3.0
+   ],
+   [
+    "Kel'el Ware",
+    "MIA",
+    2.8
+   ],
+   [
+    "Yves Missi",
+    "NOP",
+    2.8
+   ],
+   [
+    "Day'Ron Sharpe",
+    "BKN",
+    2.8
+   ],
+   [
+    "Jock Landale",
+    "TOT",
+    2.7
+   ],
+   [
+    "Luke Kornet",
+    "SAS",
+    2.7
+   ],
+   [
+    "Deandre Ayton",
+    "LAL",
+    2.6
+   ],
+   [
+    "Marvin Bagley III",
+    "TOT",
+    2.5
+   ],
+   [
+    "Nic Claxton",
+    "BKN",
+    2.4
+   ],
+   [
+    "Precious Achiuwa",
+    "SAC",
+    2.4
+   ],
+   [
+    "Dyson Daniels",
+    "ATL",
+    2.4
+   ],
+   [
+    "Ryan Kalkbrenner",
+    "CHA",
+    2.4
+   ],
+   [
+    "Evan Mobley",
+    "CLE",
+    2.4
+   ],
+   [
+    "Robert Williams III",
+    "POR",
+    2.4
+   ]
+  ]
+ },
+ "three_point_pct": {
+  "stat": "3P%",
+  "n": 25,
+  "source": "StatMuse highest three point percentage 2025-26 qualified",
+  "note": "자격 기준: 82팀경기당 3PM 82개 이상. 3PM/3PA 동반 제공 → 볼륨 레버리지 계산의 근거.",
+  "cols": [
+   "player",
+   "3P%",
+   "3PM/G",
+   "3PA/G"
+  ],
+  "rows": [
+   [
+    "Luke Kennard",
+    47.8,
+    1.5,
+    3.1
+   ],
+   [
+    "Bobby Portis",
+    45.6,
+    2.0,
+    4.4
+   ],
+   [
+    "Cam Spencer",
+    44.9,
+    2.0,
+    4.5
+   ],
+   [
+    "Jaylon Tyson",
+    44.6,
+    2.0,
+    4.5
+   ],
+   [
+    "Rui Hachimura",
+    44.3,
+    1.7,
+    3.9
+   ],
+   [
+    "Ayo Dosunmu",
+    43.9,
+    1.8,
+    4.1
+   ],
+   [
+    "Jamal Murray",
+    43.5,
+    3.3,
+    7.5
+   ],
+   [
+    "Cameron Johnson",
+    43.0,
+    2.0,
+    4.7
+   ],
+   [
+    "Kon Knueppel",
+    42.5,
+    3.4,
+    7.9
+   ],
+   [
+    "Isaiah Joe",
+    42.3,
+    2.5,
+    6.0
+   ],
+   [
+    "Sam Merrill",
+    42.1,
+    3.0,
+    7.2
+   ],
+   [
+    "AJ Green",
+    41.9,
+    3.0,
+    7.1
+   ],
+   [
+    "Andrew Wiggins",
+    41.4,
+    2.0,
+    4.9
+   ],
+   [
+    "Kevin Durant",
+    41.3,
+    2.4,
+    5.8
+   ],
+   [
+    "Miles McBride",
+    41.3,
+    2.7,
+    6.6
+   ],
+   [
+    "Josh Hart",
+    41.3,
+    1.5,
+    3.7
+   ],
+   [
+    "Jaden McDaniels",
+    41.2,
+    1.4,
+    3.4
+   ],
+   [
+    "Duncan Robinson",
+    41.0,
+    2.9,
+    7.0
+   ],
+   [
+    "Ja'Kobe Walter",
+    40.9,
+    1.5,
+    3.7
+   ],
+   [
+    "Svi Mykhailiuk",
+    40.8,
+    2.0,
+    4.8
+   ],
+   [
+    "Bub Carrington",
+    40.8,
+    2.1,
+    5.0
+   ],
+   [
+    "Royce O'Neale",
+    40.8,
+    2.7,
+    6.7
+   ],
+   [
+    "Tim Hardaway Jr.",
+    40.7,
+    2.8,
+    6.9
+   ],
+   [
+    "John Collins",
+    40.6,
+    1.3,
+    3.2
+   ],
+   [
+    "Ryan Rollins",
+    40.6,
+    2.5,
+    6.1
+   ]
+  ]
+ },
+ "free_throw_pct": {
+  "stat": "FT%",
+  "n": 25,
+  "source": "StatMuse free throw percentage leaders 2025-26 qualified",
+  "note": "시도량(FTA) 미제공 — 이 때문에 FT% 볼륨 레버리지는 계산하지 못했음(한계 문서 5번).",
+  "rows": [
+   [
+    "Cam Spencer",
+    "-",
+    94.0
+   ],
+   [
+    "Stephen Curry",
+    "GSW",
+    92.3
+   ],
+   [
+    "Desmond Bane",
+    "ORL",
+    90.8
+   ],
+   [
+    "Nickeil Alexander-Walker",
+    "ATL",
+    90.2
+   ],
+   [
+    "Derrick White",
+    "BOS",
+    90.2
+   ],
+   [
+    "LaMelo Ball",
+    "CHA",
+    89.9
+   ],
+   [
+    "Max Christie",
+    "DAL",
+    89.9
+   ],
+   [
+    "Lauri Markkanen",
+    "UTA",
+    89.6
+   ],
+   [
+    "Brandon Miller",
+    "CHA",
+    89.2
+   ],
+   [
+    "Tyrese Maxey",
+    "PHI",
+    89.2
+   ],
+   [
+    "Kawhi Leonard",
+    "LAC",
+    89.2
+   ],
+   [
+    "Keyonte George",
+    "UTA",
+    89.2
+   ],
+   [
+    "Jamal Murray",
+    "DEN",
+    88.7
+   ],
+   [
+    "Trey Murphy III",
+    "NOP",
+    88.6
+   ],
+   [
+    "James Harden",
+    "-",
+    88.4
+   ],
+   [
+    "Zach LaVine",
+    "-",
+    88.0
+   ],
+   [
+    "Shai Gilgeous-Alexander",
+    "OKC",
+    87.9
+   ],
+   [
+    "Kevin Porter Jr.",
+    "-",
+    87.8
+   ],
+   [
+    "Ayo Dosunmu",
+    "CHI",
+    87.6
+   ],
+   [
+    "Kevin Durant",
+    "HOU",
+    87.4
+   ],
+   [
+    "Devin Booker",
+    "PHX",
+    87.3
+   ],
+   [
+    "Austin Reaves",
+    "LAL",
+    87.1
+   ],
+   [
+    "Ajay Mitchell",
+    "OKC",
+    87.0
+   ],
+   [
+    "Bennedict Mathurin",
+    "IND",
+    86.9
+   ],
+   [
+    "DeMar DeRozan",
+    "-",
+    86.8
+   ]
+  ]
+ },
+ "assist_turnover_ratio": {
+  "stat": "A/T",
+  "n": 25,
+  "source": "StatMuse assist to turnover ratio 2025-26, min 4 APG",
+  "note": "4+ APG 자격을 충족하는 선수는 리그에 25명뿐. 정렬은 출처 순서 그대로(비율순 아님).",
+  "cols": [
+   "player",
+   "AST/G",
+   "TOV/G",
+   "A/T"
+  ],
+  "rows": [
+   [
+    "Giannis Antetokounmpo",
+    5.4,
+    3.2,
+    1.69
+   ],
+   [
+    "Jimmy Butler III",
+    4.9,
+    1.6,
+    3.06
+   ],
+   [
+    "Stephen Curry",
+    4.7,
+    2.8,
+    1.68
+   ],
+   [
+    "DeMar DeRozan",
+    4.1,
+    1.2,
+    3.42
+   ],
+   [
+    "Kevin Durant",
+    4.8,
+    3.2,
+    1.5
+   ],
+   [
+    "Draymond Green",
+    5.5,
+    2.7,
+    2.04
+   ],
+   [
+    "James Harden",
+    8.0,
+    3.5,
+    2.29
+   ],
+   [
+    "Jrue Holiday",
+    6.1,
+    2.8,
+    2.18
+   ],
+   [
+    "LeBron James",
+    7.2,
+    3.0,
+    2.4
+   ],
+   [
+    "Dennis Schroder",
+    4.9,
+    1.8,
+    2.72
+   ],
+   [
+    "Russell Westbrook",
+    6.7,
+    3.3,
+    2.03
+   ],
+   [
+    "Julius Randle",
+    5.0,
+    2.7,
+    1.85
+   ],
+   [
+    "Jusuf Nurkic",
+    4.8,
+    2.5,
+    1.92
+   ],
+   [
+    "Nikola Jokic",
+    10.7,
+    3.7,
+    2.89
+   ],
+   [
+    "D'Angelo Russell",
+    4.0,
+    1.9,
+    2.11
+   ],
+   [
+    "Devin Booker",
+    6.0,
+    3.1,
+    1.94
+   ],
+   [
+    "T.J. McConnell",
+    5.1,
+    1.1,
+    4.64
+   ],
+   [
+    "Jaylen Brown",
+    5.1,
+    3.6,
+    1.42
+   ],
+   [
+    "Jamal Murray",
+    7.1,
+    2.3,
+    3.09
+   ],
+   [
+    "Domantas Sabonis",
+    4.1,
+    2.7,
+    1.52
+   ],
+   [
+    "Dejounte Murray",
+    6.4,
+    3.4,
+    1.88
+   ],
+   [
+    "Jayson Tatum",
+    5.3,
+    2.4,
+    2.21
+   ],
+   [
+    "De'Aaron Fox",
+    6.2,
+    2.3,
+    2.7
+   ],
+   [
+    "Donovan Mitchell",
+    5.7,
+    2.8,
+    2.04
+   ],
+   [
+    "Derrick White",
+    5.4,
+    1.7,
+    3.18
+   ]
+  ]
+ },
+ "assist_turnover_supplementary": {
+  "stat": "A/T (별도 조회)",
+  "n": 11,
+  "source": "StatMuse 개별/보조 조회 — 4+APG 리더보드에 미포함된 값 포함",
+  "note": "저볼륨 선수가 A/T 상위에 오르는 현상의 근거(Dean Wade·Kornet 등).",
+  "cols": [
+   "player",
+   "AST/G",
+   "TOV/G",
+   "A/T"
+  ],
+  "rows": [
+   [
+    "Cade Cunningham",
+    9.9,
+    3.7,
+    2.69
+   ],
+   [
+    "Josh Giddey",
+    9.1,
+    3.6,
+    2.52
+   ],
+   [
+    "Luka Doncic",
+    8.3,
+    4.0,
+    2.08
+   ],
+   [
+    "Ja Morant",
+    8.1,
+    3.6,
+    2.27
+   ],
+   [
+    "Tyrese Haliburton (2024-25)",
+    9.2,
+    1.6,
+    5.75
+   ],
+   [
+    "Trae Young",
+    null,
+    null,
+    3.08
+   ],
+   [
+    "Andrew Nembhard",
+    null,
+    null,
+    3.19
+   ],
+   [
+    "Luke Kornet",
+    null,
+    null,
+    4.5
+   ],
+   [
+    "Davion Mitchell",
+    null,
+    null,
+    4.2
+   ],
+   [
+    "Immanuel Quickley",
+    null,
+    null,
+    4.1
+   ],
+   [
+    "Dean Wade",
+    null,
+    null,
+    5.5
+   ],
+   [
+    "Cam Spencer",
+    null,
+    null,
+    4.3
+   ]
+  ]
+ },
+ "points_per_game": {
+  "stat": "PTS/G",
+  "n": 25,
+  "source": "StatMuse points per game leaders 2025-26 top 60",
+  "note": "26~60위는 출처에서 미제공. ⚠️ SGA는 다른 출처(Yahoo 티어 기사)에서 27.6으로 표기 — 불일치 미해소.",
+  "rows": [
+   [
+    "Luka Doncic",
+    "LAL",
+    33.5
+   ],
+   [
+    "Shai Gilgeous-Alexander",
+    "OKC",
+    31.1
+   ],
+   [
+    "Anthony Edwards",
+    "MIN",
+    28.8
+   ],
+   [
+    "Jaylen Brown",
+    "BOS",
+    28.7
+   ],
+   [
+    "Tyrese Maxey",
+    "PHI",
+    28.3
+   ],
+   [
+    "Kawhi Leonard",
+    "LAC",
+    27.9
+   ],
+   [
+    "Donovan Mitchell",
+    "CLE",
+    27.9
+   ],
+   [
+    "Nikola Jokic",
+    "DEN",
+    27.7
+   ],
+   [
+    "Devin Booker",
+    "PHX",
+    26.1
+   ],
+   [
+    "Jalen Brunson",
+    "NYK",
+    26.0
+   ],
+   [
+    "Kevin Durant",
+    "HOU",
+    26.0
+   ],
+   [
+    "Jamal Murray",
+    "DEN",
+    25.4
+   ],
+   [
+    "Victor Wembanyama",
+    "SAS",
+    25.0
+   ],
+   [
+    "Deni Avdija",
+    "POR",
+    24.2
+   ],
+   [
+    "Pascal Siakam",
+    "IND",
+    24.0
+   ],
+   [
+    "Cade Cunningham",
+    "DET",
+    23.9
+   ],
+   [
+    "James Harden",
+    "TOT",
+    23.6
+   ],
+   [
+    "Jalen Johnson",
+    "ATL",
+    22.5
+   ],
+   [
+    "Paolo Banchero",
+    "ORL",
+    22.2
+   ],
+   [
+    "Norman Powell",
+    "MIA",
+    21.7
+   ],
+   [
+    "Trey Murphy III",
+    "NOP",
+    21.5
+   ],
+   [
+    "Brandon Ingram",
+    "TOR",
+    21.5
+   ],
+   [
+    "Julius Randle",
+    "MIN",
+    21.1
+   ],
+   [
+    "Cooper Flagg",
+    "DAL",
+    21.0
+   ],
+   [
+    "Zion Williamson",
+    "NOP",
+    21.0
+   ]
+  ]
+ },
+ "double_doubles": {
+  "stat": "DD (시즌 합계)",
+  "n": 25,
+  "source": "landofbasketball 2025-26 double-doubles",
+  "note": "리그 전체 1,917개. 경기수 동반 → 출장 리스크 판단의 근거.",
+  "cols": [
+   "player",
+   "team",
+   "DD",
+   "GP"
+  ],
+  "rows": [
+   [
+    "Karl-Anthony Towns",
+    "NYK",
+    56,
+    75
+   ],
+   [
+    "Nikola Jokic",
+    "DEN",
+    55,
+    65
+   ],
+   [
+    "Jalen Johnson",
+    "ATL",
+    49,
+    72
+   ],
+   [
+    "Victor Wembanyama",
+    "SAS",
+    42,
+    64
+   ],
+   [
+    "Jalen Duren",
+    "DET",
+    41,
+    70
+   ],
+   [
+    "Cade Cunningham",
+    "DET",
+    38,
+    64
+   ],
+   [
+    "Donovan Clingan",
+    "POR",
+    37,
+    77
+   ],
+   [
+    "Bam Adebayo",
+    "MIA",
+    35,
+    73
+   ],
+   [
+    "Luka Doncic",
+    "LAL",
+    34,
+    64
+   ],
+   [
+    "Alperen Sengun",
+    "HOU",
+    34,
+    72
+   ],
+   [
+    "Rudy Gobert",
+    "MIN",
+    33,
+    76
+   ],
+   [
+    "Scottie Barnes",
+    "TOR",
+    30,
+    80
+   ],
+   [
+    "Josh Giddey",
+    "CHI",
+    28,
+    54
+   ],
+   [
+    "Evan Mobley",
+    "CLE",
+    27,
+    65
+   ],
+   [
+    "Paolo Banchero",
+    "ORL",
+    26,
+    72
+   ],
+   [
+    "Chet Holmgren",
+    "OKC",
+    25,
+    69
+   ],
+   [
+    "Kel'el Ware",
+    "MIA",
+    24,
+    77
+   ],
+   [
+    "Ivica Zubac",
+    "TOT",
+    24,
+    48
+   ],
+   [
+    "Nikola Vucevic",
+    "TOT",
+    23,
+    64
+   ],
+   [
+    "Deandre Ayton",
+    "LAL",
+    22,
+    72
+   ],
+   [
+    "Jarrett Allen",
+    "CLE",
+    20,
+    56
+   ],
+   [
+    "Moussa Diabate",
+    "CHA",
+    20,
+    73
+   ],
+   [
+    "James Harden",
+    "TOT",
+    20,
+    70
+   ],
+   [
+    "Amen Thompson",
+    "HOU",
+    20,
+    79
+   ],
+   [
+    "Giannis Antetokounmpo",
+    "MIL",
+    19,
+    36
+   ]
+  ]
+ }
+}

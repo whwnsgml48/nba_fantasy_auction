@@ -1,0 +1,847 @@
+{
+ "seats": {
+  "보수": {
+   "random": 4,
+   "value_max": 2,
+   "big_stack": 4,
+   "guard_stack": 3,
+   "baseline": 0,
+   "benchmark": 0
+  },
+  "중립": {
+   "random": 4,
+   "value_max": 2,
+   "big_stack": 1,
+   "guard_stack": 4,
+   "baseline": 2,
+   "benchmark": 0
+  }
+ },
+ "cost_basis": "시장 중간값 (A는 low_cost_center에 overheat_at 하한)",
+ "overheat_opponent": {
+  "overheat_big": [
+   "Donovan Clingan",
+   "Rudy Gobert",
+   "Jalen Duren",
+   "Mitchell Robinson",
+   "Deandre Ayton",
+   "Mark Williams",
+   "Scottie Barnes",
+   "Ivica Zubac",
+   "Amen Thompson"
+  ],
+  "cost": 189.0
+ },
+ "search": {
+  "A": [
+   "start0 step1 min=16.7%",
+   "start0 step2 min=24.2%",
+   "start0 step3 min=27.5%",
+   "start0 step4 min=31.7%",
+   "start0 step5 min=39.2%",
+   "start1 step1 min=28.3%",
+   "start1 step2 min=29.2%",
+   "start1 step3 min=34.2%",
+   "start1 step4 min=40.8%",
+   "start2 step1 min=24.2%",
+   "start2 step2 min=29.2%",
+   "start2 step3 min=33.3%",
+   "start2 step4 min=41.7%",
+   "start3 step1 min=15.0%",
+   "start3 step2 min=20.8%",
+   "start3 step3 min=26.7%",
+   "start3 step4 min=29.2%",
+   "start3 step5 min=30.0%",
+   "start4 step1 min=16.7%",
+   "start4 step2 min=17.5%",
+   "start4 step3 min=20.0%",
+   "start4 step4 min=24.2%",
+   "start4 step5 min=30.0%"
+  ],
+  "c6_stage1": 20,
+  "c1_stage1_strict": 0,
+  "c1_stage1_grandfathered": 282
+ },
+ "rows": [
+  {
+   "id": "c1",
+   "kind": "기존",
+   "note": "비교 기준",
+   "roster": [
+    "Karl-Anthony Towns",
+    "Tyrese Haliburton",
+    "Alperen Şengün",
+    "Kon Knueppel",
+    "Dyson Daniels",
+    "Donovan Clingan",
+    "Rudy Gobert",
+    "T.J. McConnell",
+    "Moussa Diabaté"
+   ],
+   "mid_sum": 189,
+   "high_sum": 218,
+   "win_rate": {
+    "random": 0.9073,
+    "value_max": 0.3187,
+    "big_stack": 0.4085,
+    "guard_stack": 0.5228,
+    "baseline": 0.893,
+    "benchmark": 0.4397,
+    "overheat_big": 0.7105
+   },
+   "min_win_rate": 0.3187,
+   "min_win_rate_vs": [
+    "value_max"
+   ],
+   "p_big5_collapse": {
+    "random": 0.0005,
+    "value_max": 0.2895,
+    "big_stack": 0.4908,
+    "guard_stack": 0.0,
+    "baseline": 0.0,
+    "benchmark": 0.0362,
+    "overheat_big": 0.3468
+   },
+   "p_cats_won_le4": {
+    "random": 0.0083,
+    "value_max": 0.314,
+    "big_stack": 0.1772,
+    "guard_stack": 0.0352,
+    "baseline": 0.0077,
+    "benchmark": 0.187,
+    "overheat_big": 0.0227
+   },
+   "cats_won_sd": {
+    "random": 1.618,
+    "value_max": 2.043,
+    "big_stack": 1.733,
+    "guard_stack": 1.293,
+    "baseline": 1.584,
+    "benchmark": 1.999,
+    "overheat_big": 1.433
+   },
+   "feasible_strict": null,
+   "feasible_grandfathered": 189.0,
+   "mixture": {
+    "보수": 0.5745,
+    "중립": 0.6579
+   },
+   "min_win_rate_6": 0.3187
+  },
+  {
+   "id": "c6",
+   "kind": "기존",
+   "note": "비교 기준",
+   "roster": [
+    "Karl-Anthony Towns",
+    "Alperen Şengün",
+    "Amen Thompson",
+    "Kon Knueppel",
+    "Dyson Daniels",
+    "Donovan Clingan",
+    "DeMar DeRozan",
+    "Rudy Gobert",
+    "T.J. McConnell"
+   ],
+   "mid_sum": 161,
+   "high_sum": 190,
+   "win_rate": {
+    "random": 0.8895,
+    "value_max": 0.2672,
+    "big_stack": 0.3685,
+    "guard_stack": 0.5367,
+    "baseline": 0.8615,
+    "benchmark": 0.4005,
+    "overheat_big": 0.713
+   },
+   "min_win_rate": 0.2672,
+   "min_win_rate_vs": [
+    "value_max"
+   ],
+   "p_big5_collapse": {
+    "random": 0.0005,
+    "value_max": 0.3125,
+    "big_stack": 0.5625,
+    "guard_stack": 0.0,
+    "baseline": 0.0,
+    "benchmark": 0.0455,
+    "overheat_big": 0.378
+   },
+   "p_cats_won_le4": {
+    "random": 0.009,
+    "value_max": 0.372,
+    "big_stack": 0.1852,
+    "guard_stack": 0.0375,
+    "baseline": 0.0095,
+    "benchmark": 0.2372,
+    "overheat_big": 0.0138
+   },
+   "cats_won_sd": {
+    "random": 1.602,
+    "value_max": 2.021,
+    "big_stack": 1.691,
+    "guard_stack": 1.254,
+    "baseline": 1.609,
+    "benchmark": 2.047,
+    "overheat_big": 1.372
+   },
+   "feasible_strict": null,
+   "feasible_grandfathered": null,
+   "mixture": {
+    "보수": 0.552,
+    "중립": 0.6408
+   },
+   "min_win_rate_6": 0.2672
+  },
+  {
+   "id": "c7",
+   "kind": "기존",
+   "note": "비교 기준",
+   "roster": [
+    "Jalen Johnson",
+    "De'Aaron Fox",
+    "Kon Knueppel",
+    "Nickeil Alexander-Walker",
+    "Myles Turner",
+    "DeMar DeRozan",
+    "Dyson Daniels",
+    "Naz Reid",
+    "T.J. McConnell"
+   ],
+   "mid_sum": 181,
+   "high_sum": 208,
+   "win_rate": {
+    "random": 0.6857,
+    "value_max": 0.2517,
+    "big_stack": 0.3663,
+    "guard_stack": 0.25,
+    "baseline": 0.6655,
+    "benchmark": 0.2152,
+    "overheat_big": 0.66
+   },
+   "min_win_rate": 0.2152,
+   "min_win_rate_vs": [
+    "benchmark"
+   ],
+   "p_big5_collapse": {
+    "random": 0.1143,
+    "value_max": 0.8237,
+    "big_stack": 0.9317,
+    "guard_stack": 0.02,
+    "baseline": 0.0615,
+    "benchmark": 0.572,
+    "overheat_big": 0.9313
+   },
+   "p_cats_won_le4": {
+    "random": 0.0638,
+    "value_max": 0.2687,
+    "big_stack": 0.119,
+    "guard_stack": 0.3315,
+    "baseline": 0.0865,
+    "benchmark": 0.317,
+    "overheat_big": 0.0095
+   },
+   "cats_won_sd": {
+    "random": 1.935,
+    "value_max": 1.518,
+    "big_stack": 1.275,
+    "guard_stack": 1.844,
+    "baseline": 2.079,
+    "benchmark": 1.634,
+    "overheat_big": 0.803
+   },
+   "feasible_strict": null,
+   "feasible_grandfathered": 181.0,
+   "mixture": {
+    "보수": 0.4201,
+    "중립": 0.4572
+   },
+   "min_win_rate_6": 0.2152
+  },
+  {
+   "id": "A1",
+   "kind": "A · 과열세계 maximin",
+   "roster": [
+    "Evan Mobley",
+    "Alperen Şengün",
+    "Josh Hart",
+    "Onyeka Okongwu",
+    "Kon Knueppel",
+    "Rudy Gobert",
+    "Dyson Daniels",
+    "Derrick White",
+    "Karl-Anthony Towns"
+   ],
+   "note": "low_cost_center 6명 취득가 = max(중간, overheat_at)",
+   "mid_sum": 184,
+   "high_sum": 213,
+   "win_rate": {
+    "random": 0.924,
+    "value_max": 0.3583,
+    "big_stack": 0.4295,
+    "guard_stack": 0.5363,
+    "baseline": 0.9095,
+    "benchmark": 0.5215,
+    "overheat_big": 0.7718
+   },
+   "min_win_rate": 0.3583,
+   "min_win_rate_vs": [
+    "value_max"
+   ],
+   "p_big5_collapse": {
+    "random": 0.0005,
+    "value_max": 0.2632,
+    "big_stack": 0.4083,
+    "guard_stack": 0.0,
+    "baseline": 0.0,
+    "benchmark": 0.0288,
+    "overheat_big": 0.2457
+   },
+   "p_cats_won_le4": {
+    "random": 0.0055,
+    "value_max": 0.2677,
+    "big_stack": 0.1595,
+    "guard_stack": 0.0272,
+    "baseline": 0.0095,
+    "benchmark": 0.1685,
+    "overheat_big": 0.0118
+   },
+   "cats_won_sd": {
+    "random": 1.56,
+    "value_max": 1.995,
+    "big_stack": 1.715,
+    "guard_stack": 1.259,
+    "baseline": 1.611,
+    "benchmark": 2.167,
+    "overheat_big": 1.393
+   },
+   "feasible_strict": 184.0,
+   "feasible_grandfathered": 184.0,
+   "mixture": {
+    "보수": 0.5953,
+    "중립": 0.6774
+   },
+   "min_win_rate_6": 0.3583
+  },
+  {
+   "id": "A2",
+   "kind": "A · 과열세계 maximin",
+   "roster": [
+    "Dyson Daniels",
+    "Nikola Vučević",
+    "Josh Giddey",
+    "Amen Thompson",
+    "Karl-Anthony Towns",
+    "Evan Mobley",
+    "Josh Hart",
+    "Onyeka Okongwu",
+    "Derrick White"
+   ],
+   "note": "low_cost_center 6명 취득가 = max(중간, overheat_at)",
+   "mid_sum": 197,
+   "high_sum": 223,
+   "win_rate": {
+    "random": 0.918,
+    "value_max": 0.3468,
+    "big_stack": 0.4365,
+    "guard_stack": 0.5557,
+    "baseline": 0.9097,
+    "benchmark": 0.4507,
+    "overheat_big": 0.774
+   },
+   "min_win_rate": 0.3468,
+   "min_win_rate_vs": [
+    "value_max"
+   ],
+   "p_big5_collapse": {
+    "random": 0.0013,
+    "value_max": 0.3807,
+    "big_stack": 0.5162,
+    "guard_stack": 0.0,
+    "baseline": 0.0,
+    "benchmark": 0.056,
+    "overheat_big": 0.2955
+   },
+   "p_cats_won_le4": {
+    "random": 0.0057,
+    "value_max": 0.2532,
+    "big_stack": 0.1192,
+    "guard_stack": 0.0385,
+    "baseline": 0.009,
+    "benchmark": 0.1835,
+    "overheat_big": 0.0075
+   },
+   "cats_won_sd": {
+    "random": 1.595,
+    "value_max": 1.898,
+    "big_stack": 1.528,
+    "guard_stack": 1.388,
+    "baseline": 1.651,
+    "benchmark": 2.019,
+    "overheat_big": 1.255
+   },
+   "feasible_strict": 197.0,
+   "feasible_grandfathered": 197.0,
+   "mixture": {
+    "보수": 0.5984,
+    "중립": 0.6803
+   },
+   "min_win_rate_6": 0.3468
+  },
+  {
+   "id": "A3",
+   "kind": "A · 과열세계 maximin",
+   "roster": [
+    "DeMar DeRozan",
+    "Isaiah Hartenstein",
+    "Karl-Anthony Towns",
+    "Derrick White",
+    "Alperen Şengün",
+    "Desmond Bane",
+    "Dyson Daniels",
+    "Onyeka Okongwu",
+    "Donovan Clingan"
+   ],
+   "note": "low_cost_center 6명 취득가 = max(중간, overheat_at)",
+   "mid_sum": 180,
+   "high_sum": 210,
+   "win_rate": {
+    "random": 0.8932,
+    "value_max": 0.3113,
+    "big_stack": 0.437,
+    "guard_stack": 0.506,
+    "baseline": 0.8815,
+    "benchmark": 0.3782,
+    "overheat_big": 0.7282
+   },
+   "min_win_rate": 0.3113,
+   "min_win_rate_vs": [
+    "value_max"
+   ],
+   "p_big5_collapse": {
+    "random": 0.0032,
+    "value_max": 0.4062,
+    "big_stack": 0.566,
+    "guard_stack": 0.0,
+    "baseline": 0.0003,
+    "benchmark": 0.101,
+    "overheat_big": 0.4778
+   },
+   "p_cats_won_le4": {
+    "random": 0.009,
+    "value_max": 0.2928,
+    "big_stack": 0.1343,
+    "guard_stack": 0.0535,
+    "baseline": 0.0132,
+    "benchmark": 0.251,
+    "overheat_big": 0.01
+   },
+   "cats_won_sd": {
+    "random": 1.685,
+    "value_max": 1.865,
+    "big_stack": 1.555,
+    "guard_stack": 1.357,
+    "baseline": 1.724,
+    "benchmark": 2.12,
+    "overheat_big": 1.244
+   },
+   "feasible_strict": 180.0,
+   "feasible_grandfathered": 180.0,
+   "mixture": {
+    "보수": 0.574,
+    "중립": 0.6476
+   },
+   "min_win_rate_6": 0.3113
+  },
+  {
+   "id": "B-c6-1",
+   "kind": "B · c6 1슬롯 교체",
+   "roster": [
+    "Karl-Anthony Towns",
+    "Alperen Şengün",
+    "Amen Thompson",
+    "Kon Knueppel",
+    "Dyson Daniels",
+    "Donovan Clingan",
+    "DeMar DeRozan",
+    "Rudy Gobert",
+    "Derrick White"
+   ],
+   "note": "OUT T.J. McConnell → IN Derrick White",
+   "mid_sum": 198,
+   "high_sum": 229,
+   "win_rate": {
+    "random": 0.9275,
+    "value_max": 0.3725,
+    "big_stack": 0.4813,
+    "guard_stack": 0.5465,
+    "baseline": 0.906,
+    "benchmark": 0.5105,
+    "overheat_big": 0.7585
+   },
+   "min_win_rate": 0.3725,
+   "min_win_rate_vs": [
+    "value_max"
+   ],
+   "p_big5_collapse": {
+    "random": 0.0008,
+    "value_max": 0.2645,
+    "big_stack": 0.4268,
+    "guard_stack": 0.0,
+    "baseline": 0.0,
+    "benchmark": 0.04,
+    "overheat_big": 0.3345
+   },
+   "p_cats_won_le4": {
+    "random": 0.0047,
+    "value_max": 0.2537,
+    "big_stack": 0.116,
+    "guard_stack": 0.0375,
+    "baseline": 0.0073,
+    "benchmark": 0.1725,
+    "overheat_big": 0.0105
+   },
+   "cats_won_sd": {
+    "random": 1.533,
+    "value_max": 1.984,
+    "big_stack": 1.613,
+    "guard_stack": 1.284,
+    "baseline": 1.631,
+    "benchmark": 2.126,
+    "overheat_big": 1.367
+   },
+   "feasible_strict": 198.0,
+   "feasible_grandfathered": 198.0,
+   "mixture": {
+    "보수": 0.6169,
+    "중립": 0.6873
+   },
+   "min_win_rate_6": 0.3725
+  },
+  {
+   "id": "B-c6-2",
+   "kind": "B · c6 1슬롯 교체",
+   "roster": [
+    "Karl-Anthony Towns",
+    "Alperen Şengün",
+    "Amen Thompson",
+    "Kon Knueppel",
+    "Dyson Daniels",
+    "Donovan Clingan",
+    "DeMar DeRozan",
+    "Rudy Gobert",
+    "Evan Mobley"
+   ],
+   "note": "OUT T.J. McConnell → IN Evan Mobley",
+   "mid_sum": 182,
+   "high_sum": 213,
+   "win_rate": {
+    "random": 0.9028,
+    "value_max": 0.33,
+    "big_stack": 0.4535,
+    "guard_stack": 0.568,
+    "baseline": 0.8935,
+    "benchmark": 0.521,
+    "overheat_big": 0.7943
+   },
+   "min_win_rate": 0.33,
+   "min_win_rate_vs": [
+    "value_max"
+   ],
+   "p_big5_collapse": {
+    "random": 0.0003,
+    "value_max": 0.162,
+    "big_stack": 0.3297,
+    "guard_stack": 0.0,
+    "baseline": 0.0,
+    "benchmark": 0.0165,
+    "overheat_big": 0.2117
+   },
+   "p_cats_won_le4": {
+    "random": 0.0053,
+    "value_max": 0.309,
+    "big_stack": 0.173,
+    "guard_stack": 0.019,
+    "baseline": 0.006,
+    "benchmark": 0.1645,
+    "overheat_big": 0.01
+   },
+   "cats_won_sd": {
+    "random": 1.532,
+    "value_max": 2.092,
+    "big_stack": 1.831,
+    "guard_stack": 1.125,
+    "baseline": 1.501,
+    "benchmark": 2.067,
+    "overheat_big": 1.47
+   },
+   "feasible_strict": 182.0,
+   "feasible_grandfathered": 182.0,
+   "mixture": {
+    "보수": 0.5992,
+    "중립": 0.6757
+   },
+   "min_win_rate_6": 0.33
+  },
+  {
+   "id": "B-c6-3",
+   "kind": "B · c6 1슬롯 교체",
+   "roster": [
+    "Karl-Anthony Towns",
+    "Alperen Şengün",
+    "Amen Thompson",
+    "Kon Knueppel",
+    "Dyson Daniels",
+    "Donovan Clingan",
+    "DeMar DeRozan",
+    "Rudy Gobert",
+    "Josh Giddey"
+   ],
+   "note": "OUT T.J. McConnell → IN Josh Giddey",
+   "mid_sum": 200,
+   "high_sum": 231,
+   "win_rate": {
+    "random": 0.9107,
+    "value_max": 0.3385,
+    "big_stack": 0.4382,
+    "guard_stack": 0.5483,
+    "baseline": 0.8832,
+    "benchmark": 0.5078,
+    "overheat_big": 0.7742
+   },
+   "min_win_rate": 0.3385,
+   "min_win_rate_vs": [
+    "value_max"
+   ],
+   "p_big5_collapse": {
+    "random": 0.001,
+    "value_max": 0.2812,
+    "big_stack": 0.4345,
+    "guard_stack": 0.0,
+    "baseline": 0.0,
+    "benchmark": 0.028,
+    "overheat_big": 0.2642
+   },
+   "p_cats_won_le4": {
+    "random": 0.006,
+    "value_max": 0.303,
+    "big_stack": 0.1512,
+    "guard_stack": 0.0293,
+    "baseline": 0.008,
+    "benchmark": 0.1708,
+    "overheat_big": 0.0123
+   },
+   "cats_won_sd": {
+    "random": 1.554,
+    "value_max": 2.081,
+    "big_stack": 1.74,
+    "guard_stack": 1.241,
+    "baseline": 1.545,
+    "benchmark": 2.061,
+    "overheat_big": 1.421
+   },
+   "feasible_strict": 200.0,
+   "feasible_grandfathered": 200.0,
+   "mixture": {
+    "보수": 0.5937,
+    "중립": 0.6706
+   },
+   "min_win_rate_6": 0.3385
+  },
+  {
+   "id": "B-c1-1",
+   "kind": "B · c1 1슬롯 교체(기존멤버 면제)",
+   "roster": [
+    "Karl-Anthony Towns",
+    "Tyrese Haliburton",
+    "Alperen Şengün",
+    "Kon Knueppel",
+    "Dyson Daniels",
+    "Donovan Clingan",
+    "Rudy Gobert",
+    "Julius Randle",
+    "Moussa Diabaté"
+   ],
+   "note": "OUT T.J. McConnell → IN Julius Randle · 기존 Haliburton my_max 미달 면제",
+   "mid_sum": 199,
+   "high_sum": 230,
+   "win_rate": {
+    "random": 0.9187,
+    "value_max": 0.368,
+    "big_stack": 0.4492,
+    "guard_stack": 0.5445,
+    "baseline": 0.8998,
+    "benchmark": 0.5238,
+    "overheat_big": 0.7798
+   },
+   "min_win_rate": 0.368,
+   "min_win_rate_vs": [
+    "value_max"
+   ],
+   "p_big5_collapse": {
+    "random": 0.0005,
+    "value_max": 0.2627,
+    "big_stack": 0.4185,
+    "guard_stack": 0.0,
+    "baseline": 0.0,
+    "benchmark": 0.0265,
+    "overheat_big": 0.252
+   },
+   "p_cats_won_le4": {
+    "random": 0.0075,
+    "value_max": 0.275,
+    "big_stack": 0.1525,
+    "guard_stack": 0.0305,
+    "baseline": 0.01,
+    "benchmark": 0.1537,
+    "overheat_big": 0.017
+   },
+   "cats_won_sd": {
+    "random": 1.606,
+    "value_max": 2.07,
+    "big_stack": 1.781,
+    "guard_stack": 1.298,
+    "baseline": 1.616,
+    "benchmark": 2.077,
+    "overheat_big": 1.463
+   },
+   "feasible_strict": null,
+   "feasible_grandfathered": 199.0,
+   "mixture": {
+    "보수": 0.6032,
+    "중립": 0.6798
+   },
+   "min_win_rate_6": 0.368
+  },
+  {
+   "id": "B-c1-2",
+   "kind": "B · c1 1슬롯 교체(기존멤버 면제)",
+   "roster": [
+    "Karl-Anthony Towns",
+    "Tyrese Haliburton",
+    "Alperen Şengün",
+    "Kon Knueppel",
+    "Dyson Daniels",
+    "Donovan Clingan",
+    "Rudy Gobert",
+    "VJ Edgecombe",
+    "Moussa Diabaté"
+   ],
+   "note": "OUT T.J. McConnell → IN VJ Edgecombe · 기존 Haliburton my_max 미달 면제",
+   "mid_sum": 192,
+   "high_sum": 223,
+   "win_rate": {
+    "random": 0.9295,
+    "value_max": 0.3917,
+    "big_stack": 0.4607,
+    "guard_stack": 0.5603,
+    "baseline": 0.9058,
+    "benchmark": 0.5437,
+    "overheat_big": 0.7768
+   },
+   "min_win_rate": 0.3917,
+   "min_win_rate_vs": [
+    "value_max"
+   ],
+   "p_big5_collapse": {
+    "random": 0.0003,
+    "value_max": 0.2677,
+    "big_stack": 0.4278,
+    "guard_stack": 0.0,
+    "baseline": 0.0,
+    "benchmark": 0.0302,
+    "overheat_big": 0.287
+   },
+   "p_cats_won_le4": {
+    "random": 0.0057,
+    "value_max": 0.2482,
+    "big_stack": 0.142,
+    "guard_stack": 0.0328,
+    "baseline": 0.0055,
+    "benchmark": 0.146,
+    "overheat_big": 0.0138
+   },
+   "cats_won_sd": {
+    "random": 1.586,
+    "value_max": 2.022,
+    "big_stack": 1.717,
+    "guard_stack": 1.309,
+    "baseline": 1.642,
+    "benchmark": 2.098,
+    "overheat_big": 1.432
+   },
+   "feasible_strict": null,
+   "feasible_grandfathered": 192.0,
+   "mixture": {
+    "보수": 0.6173,
+    "중립": 0.6935
+   },
+   "min_win_rate_6": 0.3917
+  },
+  {
+   "id": "B-c1-3",
+   "kind": "B · c1 1슬롯 교체(기존멤버 면제)",
+   "roster": [
+    "Karl-Anthony Towns",
+    "Tyrese Haliburton",
+    "Alperen Şengün",
+    "Kon Knueppel",
+    "Dyson Daniels",
+    "Donovan Clingan",
+    "Rudy Gobert",
+    "Josh Hart",
+    "Moussa Diabaté"
+   ],
+   "note": "OUT T.J. McConnell → IN Josh Hart · 기존 Haliburton my_max 미달 면제",
+   "mid_sum": 191,
+   "high_sum": 222,
+   "win_rate": {
+    "random": 0.9255,
+    "value_max": 0.385,
+    "big_stack": 0.4602,
+    "guard_stack": 0.5515,
+    "baseline": 0.8992,
+    "benchmark": 0.5475,
+    "overheat_big": 0.7748
+   },
+   "min_win_rate": 0.385,
+   "min_win_rate_vs": [
+    "value_max"
+   ],
+   "p_big5_collapse": {
+    "random": 0.0,
+    "value_max": 0.2352,
+    "big_stack": 0.3942,
+    "guard_stack": 0.0,
+    "baseline": 0.0,
+    "benchmark": 0.0203,
+    "overheat_big": 0.2445
+   },
+   "p_cats_won_le4": {
+    "random": 0.0057,
+    "value_max": 0.2605,
+    "big_stack": 0.1398,
+    "guard_stack": 0.0305,
+    "baseline": 0.006,
+    "benchmark": 0.1375,
+    "overheat_big": 0.0158
+   },
+   "cats_won_sd": {
+    "random": 1.578,
+    "value_max": 2.114,
+    "big_stack": 1.764,
+    "guard_stack": 1.314,
+    "baseline": 1.621,
+    "benchmark": 2.046,
+    "overheat_big": 1.511
+   },
+   "feasible_strict": null,
+   "feasible_grandfathered": 191.0,
+   "mixture": {
+    "보수": 0.6129,
+    "중립": 0.6874
+   },
+   "min_win_rate_6": 0.385
+  }
+ ]
+}

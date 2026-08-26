@@ -1,0 +1,1224 @@
+<title>13캣 옥션 콘솔 — 14팀 / $200 / 9명</title>
+
+<style>
+:root{
+  --barh:86px;   /* JS가 상단 바 실측 높이로 덮어쓴다 */
+  --ground:#F1F4F0; --surface:#FFFFFF; --surface-2:#E7EDE6; --raised:#FBFCFA;
+  --ink:#101B16; --ink-2:#3E4C45; --ink-3:#6C7B73;
+  --line:#C9D4C7; --line-2:#DCE3DA;
+  --accent:#B2400E; --accent-2:#8E330B; --accent-soft:#F4E2D8;
+  --ok:#2C6A4A; --ok-bg:#DFECE3; --warn:#8E5F16; --warn-bg:#F5EAD5; --crit:#9C1F1F; --crit-bg:#F6E0DE;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,"Helvetica Neue",Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#0E1813; --surface:#17231D; --surface-2:#1E2C25; --raised:#1B2821;
+    --ink:#E6EDE4; --ink-2:#AEBCB3; --ink-3:#7C8B82;
+    --line:#2B3A32; --line-2:#223028;
+    --accent:#E8763C; --accent-2:#F28E58; --accent-soft:#38231A;
+    --ok:#5EBE8B; --ok-bg:#152F1E; --warn:#DBA23F; --warn-bg:#322513; --crit:#E4776B; --crit-bg:#351A17;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0E1813; --surface:#17231D; --surface-2:#1E2C25; --raised:#1B2821;
+  --ink:#E6EDE4; --ink-2:#AEBCB3; --ink-3:#7C8B82;
+  --line:#2B3A32; --line-2:#223028;
+  --accent:#E8763C; --accent-2:#F28E58; --accent-soft:#38231A;
+  --ok:#5EBE8B; --ok-bg:#152F1E; --warn:#DBA23F; --warn-bg:#322513; --crit:#E4776B; --crit-bg:#351A17;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--ground); color:var(--ink);
+  font-family:var(--sans); font-size:15px; line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1280px;margin:0 auto;padding:0 16px 64px}
+
+/* ---------- sticky bid ceiling ---------- */
+.bar{
+  position:sticky; top:0; z-index:40;
+  background:var(--surface); border-bottom:1px solid var(--line);
+  box-shadow:0 1px 0 var(--line-2), 0 8px 24px -20px rgba(0,0,0,.5);
+}
+.bar-in{
+  max-width:1280px;margin:0 auto;padding:10px 16px;
+  display:flex; align-items:center; gap:20px; flex-wrap:wrap;
+}
+.ceil{display:flex;align-items:baseline;gap:10px;margin-right:auto}
+.ceil .lab{
+  font-family:var(--mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--ink-3);writing-mode:horizontal-tb;
+}
+.ceil .val{
+  font-family:var(--mono);font-size:40px;font-weight:700;line-height:1;
+  letter-spacing:-.02em;color:var(--accent);font-variant-numeric:tabular-nums;
+}
+.mets{display:flex;gap:0;border:1px solid var(--line);border-radius:3px;overflow:hidden}
+.met{padding:6px 14px;background:var(--raised);border-right:1px solid var(--line-2);min-width:78px}
+.met:last-child{border-right:0}
+.met .k{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+.met .v{font-family:var(--mono);font-size:19px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1.25}
+.met.hot .v{color:var(--crit)}
+.met.mid .v{color:var(--warn)}
+
+/* ---------- masthead ---------- */
+header.mast{padding:26px 0 18px;border-bottom:2px solid var(--ink)}
+.eyebrow{
+  font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--accent);margin:0 0 8px
+}
+h1{
+  font-family:var(--mono);font-size:clamp(21px,3.4vw,30px);font-weight:700;
+  letter-spacing:-.015em;margin:0 0 8px;text-wrap:balance
+}
+.sub{color:var(--ink-2);font-size:14px;max-width:66ch;margin:0}
+
+/* ---------- layout ---------- */
+.cols{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:24px;margin-top:22px;align-items:start}
+@media (max-width:980px){.cols{grid-template-columns:1fr}}
+@media (min-width:1500px){.cols{grid-template-columns:minmax(0,1fr) 404px}}
+
+/* ---------- controls ---------- */
+.ctrl{display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
+.searchrow{display:flex;gap:8px}
+#q{
+  flex:1;font-family:var(--mono);font-size:17px;padding:11px 13px;
+  background:var(--surface);color:var(--ink);
+  border:1px solid var(--line);border-radius:3px
+}
+#q:focus{outline:2px solid var(--accent);outline-offset:-1px;border-color:var(--accent)}
+#q::placeholder{color:var(--ink-3)}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{
+  font-family:var(--mono);font-size:11px;letter-spacing:.04em;
+  padding:5px 9px;border:1px solid var(--line);border-radius:2px;
+  background:var(--raised);color:var(--ink-2);cursor:pointer
+}
+.chip:hover{border-color:var(--accent);color:var(--accent)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.chip:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+
+/* ---------- player rows ---------- */
+.list{display:flex;flex-direction:column;gap:0;border:1px solid var(--line);border-radius:3px;overflow:hidden;background:var(--surface)}
+.row{border-bottom:1px solid var(--line-2);position:relative}
+.row:last-child{border-bottom:0}
+.row.gone{opacity:.36}
+.row.own{background:var(--ok-bg)}
+.rhead{
+  display:grid;grid-template-columns:4px minmax(0,1fr) 74px 88px 62px;
+  align-items:center;gap:10px;padding:0;cursor:pointer;
+  background:none;border:0;width:100%;text-align:left;color:inherit;font:inherit
+}
+.rhead:hover{background:var(--surface-2)}
+.rhead:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.stripe{height:100%;min-height:52px;background:transparent}
+.row.t-buy .stripe{background:var(--ok)}
+.row.t-burn .stripe{background:var(--crit)}
+.row.t-dart .stripe{background:var(--warn)}
+.nm{padding:9px 0;min-width:0}
+.nm .n{font-weight:600;font-size:14.5px;letter-spacing:-.005em}
+.row.gone .nm .n{text-decoration:line-through}
+.nm .meta{font-family:var(--mono);font-size:10.5px;color:var(--ink-3);letter-spacing:.03em;margin-top:2px}
+.mkt,.mx,.ed{font-family:var(--mono);font-variant-numeric:tabular-nums;text-align:right}
+.mkt{font-size:12px;color:var(--ink-3);padding-right:2px}
+.mx{font-size:22px;font-weight:700;color:var(--accent);letter-spacing:-.02em}
+.ed{font-size:12px;font-weight:600;padding-right:11px}
+.ed.p{color:var(--ok)}
+.ed.n{color:var(--ink-3)}
+.colhead{
+  display:grid;grid-template-columns:4px minmax(0,1fr) 74px 88px 62px;gap:10px;
+  padding:7px 0;background:var(--surface-2);border-bottom:1px solid var(--line);
+  font-family:var(--mono);font-size:9px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3)
+}
+.colhead span:nth-child(3),.colhead span:nth-child(4),.colhead span:nth-child(5){text-align:right}
+.colhead span:nth-child(5){padding-right:11px}
+
+/* expanded */
+.detail{padding:0 12px 14px 14px;border-top:1px dashed var(--line);background:var(--raised)}
+.detail p{margin:10px 0;font-size:13.5px;color:var(--ink-2);max-width:70ch}
+.catrow{display:flex;flex-wrap:wrap;gap:4px;margin:10px 0}
+.cc{
+  font-family:var(--mono);font-size:10px;letter-spacing:.04em;padding:2px 6px;border-radius:2px;
+  border:1px solid var(--line)
+}
+.cc.w3{background:var(--accent);color:#fff;border-color:var(--accent)}
+.cc.w2{background:var(--accent-soft);color:var(--accent);border-color:var(--accent-soft)}
+.cc.w1{color:var(--ink-3)}
+.acts{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:12px}
+button.b{
+  font-family:var(--mono);font-size:12px;letter-spacing:.05em;padding:8px 13px;
+  border-radius:2px;border:1px solid var(--ink);background:var(--ink);color:var(--ground);cursor:pointer
+}
+button.b.sec{background:transparent;color:var(--ink-2);border-color:var(--line)}
+button.b.sec:hover{border-color:var(--ink-2);color:var(--ink)}
+button.b:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+button.b:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.winform{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px}
+.winform input,.winform select{
+  font-family:var(--mono);font-size:14px;padding:7px 9px;background:var(--surface);
+  color:var(--ink);border:1px solid var(--line);border-radius:2px
+}
+.winform input{width:84px}
+.winform input:focus,.winform select:focus{outline:2px solid var(--accent);outline-offset:-1px}
+.flag{font-family:var(--mono);font-size:10.5px;color:var(--warn);letter-spacing:.02em;margin-top:6px}
+
+/* ---------- rail ---------- */
+/* 레일은 자기 스크롤 컨테이너다. sticky만 걸면(이전 구현) 내용이 뷰포트보다 높을 때
+   상단이 고정된 채 하단은 페이지를 끝까지 내려야 드러난다 — tall sticky sidebar 문제.
+   --barh는 JS가 상단 바의 실측 높이로 채운다(바가 wrap되면 높이가 변하므로 하드코딩 금지). */
+.rail{display:flex;flex-direction:column;gap:14px;
+  position:sticky;top:calc(var(--barh) + 12px);
+  max-height:calc(100vh - var(--barh) - 24px);
+  overflow-y:auto;overscroll-behavior:contain;
+  padding-right:9px;margin-right:-9px;      /* 스크롤바가 카드 테두리를 덮지 않게 */
+  scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+.rail::-webkit-scrollbar{width:10px}
+.rail::-webkit-scrollbar-track{background:transparent}
+.rail::-webkit-scrollbar-thumb{
+  background:var(--line);border-radius:6px;
+  border:2px solid transparent;background-clip:padding-box}
+.rail::-webkit-scrollbar-thumb:hover{background:var(--ink-3);background-clip:padding-box}
+@media (max-width:980px){
+  .rail{position:static;max-height:none;overflow:visible;padding-right:0;margin-right:0}
+}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:3px;padding:13px 14px}
+/* 레일 카드 8개를 340px 열에 세로로 쌓으면 독립 스크롤이어도 굴릴 양이 많다.
+   제목 클릭으로 접고, 상태는 localStorage에 남긴다(드래프트 중 매번 다시 접지 않게). */
+.rail .card>h2{cursor:pointer;user-select:none}
+.rail .card>h2::before{
+  content:"▾";display:inline-block;width:11px;margin-right:5px;
+  font-size:9px;color:var(--ink-3);transition:transform .15s ease}
+.rail .card.fold>h2::before{transform:rotate(-90deg)}
+.rail .card.fold>h2{margin-bottom:0}
+.rail .card.fold{padding-bottom:11px}
+.rail .card.fold>*:not(h2){display:none!important}
+.card h2{
+  font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--ink-3);margin:0 0 10px;padding-bottom:8px;border-bottom:1px solid var(--line-2)
+}
+.slots{display:flex;flex-direction:column;gap:1px}
+.slot{display:grid;grid-template-columns:44px minmax(0,1fr) 46px 22px;gap:6px;align-items:center;padding:5px 0;border-bottom:1px solid var(--line-2)}
+.slot:last-child{border-bottom:0}
+.slot .sk{font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--ink-3)}
+.slot .sn{font-size:13px;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.slot .sn.empty{color:var(--ink-3);font-style:italic;font-weight:400}
+.slot .sp{font-family:var(--mono);font-size:12px;font-variant-numeric:tabular-nums;text-align:right;color:var(--ink-2)}
+.slot .sx{background:none;border:0;color:var(--ink-3);cursor:pointer;font-size:14px;line-height:1;padding:2px}
+.slot .sx:hover{color:var(--crit)}
+.slot .sx:focus-visible{outline:1px solid var(--accent)}
+
+.cats{display:grid;grid-template-columns:repeat(2,1fr);gap:4px 12px}
+.cat{display:grid;grid-template-columns:42px 1fr 16px;gap:6px;align-items:center}
+.cat .cn{font-family:var(--mono);font-size:10px;color:var(--ink-2);letter-spacing:.02em}
+.cat .bar-t{height:5px;background:var(--surface-2);border-radius:1px;overflow:hidden}
+.cat .fill{height:100%;width:0;background:var(--ink-3);transition:width .18s ease}
+.cat.l3 .fill{background:var(--ok)}
+.cat.l2 .fill{background:var(--accent)}
+.cat.l1 .fill{background:var(--warn)}
+.cat.l0 .fill{background:var(--crit);width:100%!important;opacity:.28}
+.cat .cv{font-family:var(--mono);font-size:9px;color:var(--ink-3);text-align:right;font-variant-numeric:tabular-nums}
+@media (prefers-reduced-motion:reduce){.cat .fill{transition:none}}
+
+.alerts{display:flex;flex-direction:column;gap:6px}
+.alert{
+  font-size:12.5px;padding:8px 10px;border-radius:2px;border-left:3px solid;
+  font-family:var(--sans)
+}
+.alert.c{background:var(--crit-bg);border-color:var(--crit);color:var(--ink)}
+.alert.w{background:var(--warn-bg);border-color:var(--warn);color:var(--ink)}
+.alert.o{background:var(--ok-bg);border-color:var(--ok);color:var(--ink)}
+.alert b{font-family:var(--mono);font-size:11px;letter-spacing:.06em;display:block;margin-bottom:2px}
+
+.burn{display:flex;flex-direction:column;gap:3px}
+.burn div{font-family:var(--mono);font-size:12px;color:var(--ink-2);display:flex;justify-content:space-between;gap:8px}
+.burn div.done{opacity:.35;text-decoration:line-through}
+.burn span:last-child{color:var(--crit)}
+
+details.rules{background:var(--surface);border:1px solid var(--line);border-radius:3px}
+details.rules>summary{
+  font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--ink-3);padding:13px 14px;cursor:pointer;list-style:none
+}
+details.rules>summary::-webkit-details-marker{display:none}
+details.rules>summary::after{content:" ▾";color:var(--accent)}
+details.rules[open]>summary::after{content:" ▴"}
+details.rules>summary:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.rulebody{padding:0 14px 14px}
+.rulebody div{
+  font-family:var(--mono);font-size:11.5px;padding:5px 0;border-bottom:1px solid var(--line-2);
+  display:flex;justify-content:space-between;gap:10px;color:var(--ink-2)
+}
+.rulebody div:last-child{border-bottom:0}
+.rulebody div b{color:var(--accent);font-weight:600;white-space:nowrap}
+
+footer.fin{margin-top:30px;padding-top:16px;border-top:1px solid var(--line);color:var(--ink-3);font-size:12px;max-width:78ch}
+footer.fin p{margin:6px 0}
+.tools{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.empty-note{padding:24px 14px;text-align:center;color:var(--ink-3);font-family:var(--mono);font-size:12px}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;font-family:var(--mono);font-size:10px;color:var(--ink-3);letter-spacing:.04em}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:1px;margin-right:4px;vertical-align:middle}
+
+/* core plan */
+.coresel{width:100%;font-family:var(--mono);font-size:12.5px;padding:9px 10px;background:var(--surface);
+  color:var(--ink);border:1px solid var(--line);border-radius:2px}
+.coresel:focus{outline:2px solid var(--accent);outline-offset:-1px}
+.prem{font-size:12.5px;color:var(--ink-2);margin:10px 0 0;line-height:1.45}
+.plansum{display:flex;gap:0;margin-top:11px;border:1px solid var(--line);border-radius:2px;overflow:hidden}
+.plansum div{flex:1;padding:5px 8px;background:var(--raised);border-right:1px solid var(--line-2)}
+.plansum div:last-child{border-right:0}
+.plansum .k{font-family:var(--mono);font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.plansum .v{font-family:var(--mono);font-size:15px;font-weight:600;font-variant-numeric:tabular-nums}
+.plansum .v.over{color:var(--crit)}
+.plansum .v.ok{color:var(--ok)}
+.plan{display:flex;flex-direction:column;gap:0;margin-top:11px}
+.prow{padding:7px 0;border-bottom:1px solid var(--line-2)}
+.prow:last-child{border-bottom:0}
+.prow.filled{background:var(--ok-bg);margin:0 -8px;padding:7px 8px;border-radius:2px}
+.ptop{display:grid;grid-template-columns:40px minmax(0,1fr) 40px 38px;gap:6px;align-items:baseline}
+.ptop .ps{font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--ink-3)}
+.ptop .pr{font-size:11.5px;color:var(--ink-2)}
+.ptop .pb{font-family:var(--mono);font-size:12px;font-variant-numeric:tabular-nums;text-align:right;color:var(--accent);font-weight:600}
+.ptop .pa{font-family:var(--mono);font-size:11px;font-variant-numeric:tabular-nums;text-align:right}
+.ptop .pa.d{color:var(--ok)}.ptop .pa.u{color:var(--crit)}.ptop .pa.e{color:var(--ink-3)}
+.pcand{display:flex;flex-wrap:wrap;gap:3px;margin-top:4px;padding-left:46px}
+.pcand button{font-family:var(--mono);font-size:10px;padding:2px 5px;border-radius:2px;cursor:pointer;
+  border:1px solid var(--line);background:transparent;color:var(--ink-2)}
+.pcand button:hover{border-color:var(--accent);color:var(--accent)}
+.pcand button.taken{opacity:.34;text-decoration:line-through}
+.pcand button.got{background:var(--ok);border-color:var(--ok);color:#fff;text-decoration:none;opacity:1}
+.pcand button:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.cat.punt{opacity:.4}
+.cat.punt .cn{text-decoration:line-through}
+.cat.punt .fill{background:var(--ink-3)!important}
+.row.cand .nm .n::after{content:" ◉";color:var(--accent);font-size:10px;vertical-align:2px}
+button.b.armed{background:var(--crit);border-color:var(--crit);color:#fff}
+button.b.armed:hover{background:var(--crit);border-color:var(--crit)}
+
+.dblk{display:grid;grid-template-columns:64px minmax(0,1fr);gap:8px;padding:6px 0;border-bottom:1px solid var(--line-2);align-items:baseline}
+.dlab{font-family:var(--mono);font-size:9px;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3)}
+.dval{font-size:12.5px;color:var(--ink-2);line-height:1.45}
+.dblk.meas .dval{font-family:var(--mono);font-size:12px;color:var(--ink);font-variant-numeric:tabular-nums}
+.dblk.est .dval{color:var(--warn);font-size:12px}
+.dblk.chg .dval{color:var(--ink-2)}
+.nm .meta{font-family:var(--mono);font-size:10.5px;color:var(--ink-3);letter-spacing:.02em;margin-top:2px;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:block}
+em.injb{font-style:normal;font-family:var(--mono);font-size:9px;letter-spacing:.04em;color:var(--crit);border:1px solid var(--crit);border-radius:2px;padding:0 3px;vertical-align:1px}
+em.noest{font-style:normal;font-family:var(--mono);font-size:9px;letter-spacing:.06em;color:var(--warn);
+  border:1px solid var(--warn);border-radius:2px;padding:0 3px;vertical-align:1px}
+.dblk.alt .dval{font-family:var(--mono);font-size:11px;color:var(--ink-2);line-height:1.6}
+.dblk.alt .dval b{color:var(--accent);font-weight:600}
+.dblk.lev .dval{font-family:var(--mono);font-size:11px;color:var(--ink);line-height:1.55}
+
+.calbig{font-family:var(--mono);font-size:30px;font-weight:700;line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.calbig.ok{color:var(--ok)}.calbig.warn{color:var(--warn)}.calbig.crit{color:var(--crit)}
+b.anch{font-family:var(--mono);font-size:8px;letter-spacing:.06em;color:var(--accent);
+  border:1px solid var(--accent);border-radius:2px;padding:0 2px;margin-left:3px;vertical-align:1px;font-weight:600}
+.pcand button b{font-weight:700;color:var(--accent)}
+.pcand button.got b,.pcand button.taken b{color:inherit}
+.anote{font-family:var(--mono);font-size:9.5px;color:var(--warn);align-self:center}
+
+.mkt.caladj{color:var(--accent);font-weight:600}
+em.unob{font-style:normal;font-family:var(--mono);font-size:8.5px;color:var(--crit);
+  border:1px solid var(--crit);border-radius:2px;padding:0 2px;margin-left:3px}
+
+.pvhead{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-3);border:1px solid var(--line);border-radius:2px;padding:4px 8px;display:inline-block}
+.pvhead.armed{color:#fff;background:var(--crit);border-color:var(--crit)}
+em.bigmk{font-style:normal;font-family:var(--mono);font-size:8.5px;color:var(--accent);
+  border:1px solid var(--accent);border-radius:2px;padding:0 2px;margin-left:3px}
+</style>
+
+<div class="bar">
+  <div class="bar-in">
+    <div class="ceil">
+      <span class="lab">입찰 한도</span>
+      <span class="val" id="ceil">$192</span>
+    </div>
+    <div class="mets">
+      <div class="met"><div class="k">잔액</div><div class="v" id="m-rem">200</div></div>
+      <div class="met"><div class="k">남은 슬롯</div><div class="v" id="m-slot">9</div></div>
+      <div class="met" id="m-per-box"><div class="k">슬롯당</div><div class="v" id="m-per">22</div></div>
+      <div class="met"><div class="k">C 자격</div><div class="v" id="m-c">0</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <header class="mast">
+    <p class="eyebrow">14팀 · $200 · 로스터 9 · H2H 13캣</p>
+    <h1>옥션 콘솔</h1>
+    <p class="sub">10초 안에 결정하기 위한 도구. 이름 세 글자를 치면 <b>내 최대가</b>가 나옵니다. 그 위로는 지르지 않습니다.</p>
+  </header>
+
+  <div class="cols">
+    <main>
+      <div class="ctrl">
+        <div class="searchrow">
+          <input id="q" type="search" placeholder="이름 검색 —  cling / kat / gob …" autocomplete="off" spellcheck="false" />
+        </div>
+        <div class="chips" id="chips"></div>
+      </div>
+
+      <div class="list">
+        <div class="colhead"><span></span><span>선수</span><span>시장가</span><span>내 최대가</span><span>차익</span></div>
+        <div id="rows"></div>
+      </div>
+
+      <div class="legend">
+        <span><i style="background:var(--ok)"></i>매수 타겟</span>
+        <span><i style="background:var(--warn)"></i>$1~8 특화 다트</span>
+        <span><i style="background:var(--crit)"></i>태우기 대상</span>
+        <span>차익 = 내 최대가 − 시장 상단</span>
+      </div>
+
+      <footer class="fin">
+        <p id="vstat"></p>
+        <p><b>수치 출처:</b> 2025-26 NBA 실적(OREB·DD·BLK·STL·A/T 리더보드), 2026 오프시즌 이적, Yahoo 9캣 top-50 랭킹. Haliburton은 2025-26 전체 결장이라 2024-25 기준.</p>
+        <p><b>“내 최대가”는 제 추정치입니다</b> — 공개 밸류표가 아니라 13캣(OREB·DD·3PT%·A/T 추가) 기준으로 재산정한 값입니다. 포지션 자격은 랭킹 출처 기준이라 드래프트 전 야후에서 실제 자격을 확인하세요.</p>
+        <p><b>지명 시 자동 $1 입찰</b> 룰이 걸려 있는지 커미셔너에게 확인하세요. 걸려 있으면 태우기 지명은 남이 100% 달려들 선수만 올려야 합니다.</p>
+        <div class="tools">
+          <button class="b sec" id="reset">전체 초기화</button>
+          <button class="b sec" id="theme">테마 전환</button>
+        </div>
+      </footer>
+    </main>
+
+    <aside class="rail">
+      <div class="card">
+        <h2>판단 순서</h2>
+        <div id="decide"></div>
+      </div>
+
+      <div class="card">
+        <h2>코어 플랜</h2>
+        <select class="coresel" id="coresel" aria-label="코어 선택"></select>
+        <div id="coreinfo"></div>
+      </div>
+
+      <div class="card">
+        <h2>내 로스터</h2>
+        <div class="slots" id="slots"></div>
+      </div>
+
+      <div class="card">
+        <h2>13캣 커버리지</h2>
+        <div class="cats" id="catgrid"></div>
+      </div>
+
+      <div class="card">
+        <h2>경고</h2>
+        <div class="alerts" id="alerts"></div>
+      </div>
+
+      <div class="card">
+        <h2>시장가 보정</h2>
+        <div id="calib"></div>
+        <div class="acts" style="margin-top:10px">
+          <button class="b sec" id="usecal">보정 적용: 끔</button>
+          <button class="b sec" id="posov">자격 강제 해제: 끔</button>
+        </div>
+        <div id="calimpact"></div>
+      </div>
+
+      <div class="card">
+        <h2>과열 피벗</h2>
+        <div id="pivot"></div>
+      </div>
+
+      <details class="rules" id="trigbox">
+        <summary>코어 전환 트리거 (판단표 자동 생성)</summary>
+        <div class="rulebody" id="trig"></div>
+      </details>
+
+      <details class="rules">
+        <summary>공통 필수 요소</summary>
+        <div class="rulebody">
+          <div><span>저가 OREB 빅</span><b>3명 이상</b></div>
+          <div><span>A/T 공급원</span><b>1명 이상</b></div>
+          <div><span>C 자격</span><b>2명 이상</b></div>
+          <div><span>$1~4 다트</span><b>2개</b></div>
+        </div>
+      </details>
+
+      <div class="card">
+        <h2>태우기 지명 순서</h2>
+        <div class="burn" id="burn"></div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<script>
+(function(){
+"use strict";
+
+const CATS=["PTS","FG%","3PM","3P%","FT%","REB","OREB","AST","STL","BLK","DD","A/T","TOV"];
+const SLOTS=["PG","SG","SF","PF","C","UTIL","UTIL","BN","BN"];
+const BUDGET=200;
+
+/* c 문법: "OREB3 DD3 BLK2"  — 3=엘리트 2=플러스 1=소폭. TOV는 양수=턴오버 적음 */
+const P=[
+{n:"Nikola Jokić",t:"DEN",p:"C",mk:[93,101],mx:88,tag:"buy",gp:67,s:"28.5P 12.8R 10.5A 1.6S 0.7B 3.5TO · OREB 3 · FG 57.2% (18.3FGA) · 3P 39.6% (4.6×) 1.8×3PM · FT 81.8% (7FTA) · 혼합 GP 67.1 · 35.6MPG · 25-26 58%",atlev:"AST 10.7 / TOV 3.7 → 팀 A/T 한계 기여 +0.241 (리그 3위)",c:"PTS3 FG%3 REB3 OREB3 AST3 A/T3 DD3 FT%1 STL3 BLK1 3P%2 3PM1",note:"빅맨 캣과 가드 캣을 한 슬롯에서 동시 공급하는 유일한 선수. DD 55 · OREB 3.0 · A/T 2.87(고볼륨 1위). 진짜 가치는 PG 슬롯을 $14로 때울 수 있다는 점 — 실질 절감 $35~50.",flag:"65경기 · TOV 3.7은 포기"},
+{n:"Victor Wembanyama",t:"SAS",p:"F/C",mk:[90,102],mx:70,gp:58,s:"24.8P 11.3R 3.3A 1S 3.3B 2.7TO · OREB 1.9 · FG 50.0% (17.5FGA) · 3P 35.0% (6.6×) 2.3×3PM · FT 83.0% (6.1FTA) · 혼합 GP 58.2 · 30.5MPG · 25-26 67%",c:"PTS3 FG%1 3PM1 REB3 BLK3 DD3 FT%2 OREB2",note:"BLK 3.1은 혼자 캣 하나를 잠그는 수치. 25.0/11.5/3.1blk/3.1ast. 문제는 AST 3.1에 턴오버가 있어 A/T를 오히려 깎는 점 — PG에 $42+ 별도 지출이 강제됨. OREB도 리그 25위 밖.",flag:"64경기(55선발) · 같은 값이면 Jokić 우선"},
+{n:"Shai Gilgeous-Alexander",t:"OKC",p:"G",mk:[81,89],mx:72,tag:"buy",s:"31.8P 4.6R 6.5A 1.5S 0.9B 2.3TO · OREB 0.7 · FG 53.8% (20.4FGA) · 3P 38.1% (5×) 1.9×3PM · FT 88.7% (8.9FTA) · 혼합 GP 71.4 · 33.6MPG · 25-26 57%",gp:71,c:"PTS3 FG%3 FT%3 AST3 STL3 A/T3 BLK2 3P%1 3PM1",atlev:"AST 7.9 · TOV 실측 미확보 → A/T 한계기여 계산 불가",note:"기준값은 StatMuse 리더보드(31.1P · FT% 87.9%)로 확정했습니다. 다른 출처(Yahoo 티어 기사)는 27.6P · FT% 89.2%로 표기하는데, 어느 쪽이 맞는지 확인하지 못해 리더보드값을 채택했습니다. 두 값 중 무엇이든 FG% 55.1% · FT% 87~89%는 가드로서 최상급이라 코어 3의 효율 앵커 전제는 유지됩니다.",flag:"⚠ 득점·FT% 출처 충돌 미해소(기준값 채택) · OKC 로드 매니지먼트 · TOV 실측 미확보"},
+{n:"Karl-Anthony Towns",t:"NYK",p:"F/C",mk:[41,49],mx:62,tag:"buy",gp:74,s:"21.8P 12.3R 3A 0.9S 0.6B 2.6TO · OREB 3 · FG 51.1% (15FGA) · 3P 38.8% (4.3×) 1.7×3PM · FT 84.7% (5.6FTA) · 혼합 GP 73.8 · 32.6MPG · 25-26 61%",chg:"뉴욕 유지. Mitchell Robinson이 보스턴으로 떠나 리바운드 경쟁 완화 → OREB·DD 상승 요인",c:"PTS2 FG%2 FT%2 REB3 OREB3 DD3 3P%2 3PM1",note:"이 리그 최대 아비트라지. DD 56개 리그 1위 + OREB 3.1 + FT%/3PTM까지 = 7캣 기여. 9캣 시장은 #19로 평가하는데 13캣 실질은 top-5. 75경기로 내구성까지.",flag:""},
+{n:"Cade Cunningham",t:"DET",p:"G",mk:[80,86],mx:60,tag:"buy",gp:66,s:"24.8P 5.8R 9.6A 1.2S 0.8B 4TO · OREB 0.9 · FG 46.4% (19.5FGA) · 3P 34.8% (5.8×) 2×3PM · FT 82.6% (5.7FTA) · 혼합 GP 66.5 · 34.4MPG · 25-26 57%",atlev:"AST 9.9 / TOV 3.7 → 팀 A/T 한계 기여 +0.182 (리그 5위)",c:"PTS3 AST3 A/T2 DD2 FT%2 3PM1 STL2 BLK1",note:"9.9 AST / A/T 2.69 / DD 38 — 가드가 DD 38개는 유니크. Haliburton과 달리 아킬레스 복귀 리스크가 없음. Şengün과 붙이면 팀 DD 142개.",flag:"64경기 · 시장가 그대로라 이득 없음"},
+{n:"Tyrese Haliburton",t:"IND",p:"G",mk:[54,66],mx:50,tag:"buy",gp:73,s:"18.6P 3.5R 9.2A 1.4S 0.7B 1.6TO · OREB 0.6 · FG 47.3% (13.8FGA) · 3P 38.8% (7.7×) 3×3PM · FT 85.1% (3FTA) · 혼합 GP 73 · 33.6MPG · 25-26 0%",chg:"아킬레스 재활 후 복귀. Zubac 영입으로 롤맨 확보, Mathurin 이탈로 볼 점유 증가",atlev:"AST 9.2 / TOV 1.6 → 팀 A/T 한계 기여 +0.517 — 리그 1위, 2위(McConnell +0.261)의 2.0배",c:"AST3 A/T3 3P%2 FT%2 STL3 3PM3 BLK1 PTS1 TOV1 DD1",note:"A/T 5.75가 아니라 '고어시스트 + 저턴오버'의 조합이 가치의 실체입니다. 한계 기여 +0.517은 2위의 2배이고, 저가 A/T 다트(+0.08~0.16)의 3~6배입니다. TOV 캣도 동시에 이깁니다. 못하는 4캣이 정확히 REB·OREB·BLK·DD라 빅맨 빌드와 완전 상보.",flag:"2025-26 전체 결장(아킬레스) · Nembhard 헤지 필수"},
+{n:"Jalen Johnson",t:"ATL",p:"F",mk:[64,70],mx:56,tag:"buy",gp:63,s:"21.6P 10.2R 7.2A 1.3S 0.6B 3.3TO · OREB 1.5 · FG 49.2% (16.6FGA) · 3P 34.2% (4.5×) 1.6×3PM · FT 77.7% (4.8FTA) · 혼합 GP 63 · 35.3MPG · 25-26 75%",c:"PTS2 REB3 AST3 DD2 STL2 FG%1 A/T2 OREB1",note:"22.5/10.3/7.9ast/1.2stl/1.7 3pm · DD 49(리그 3위). 같은 가격대 Barnes보다 DD +19, REB +2.8, AST +2.0으로 명확히 우위. $50대에서 이 티어를 산다면 1순위.",flag:"3PT%·FT%·TOV 미확인"},
+{n:"Scottie Barnes",t:"TOR",p:"G/F",mk:[64,70],mx:44,gp:75,s:"18.5P 7.6R 5.9A 1.4S 1.3B 2.7TO · OREB 1.8 · FG 48.6% (14.8FGA) · 3P 29.2% (3.3×) 1×3PM · FT 79.4% (4FTA) · 혼합 GP 74.7 · 33.3MPG · 25-26 64%",chg:"Kawhi 합류로 사용률 소폭 하락 가능",c:"REB2 AST2 STL3 BLK3 DD1 OREB1 PTS1 A/T1",note:"18.1/7.5/5.9ast/1.5blk/1.4stl/FG% 50.7%(커리어 최고) · DD 30 · 80경기(DD 상위 25명 중 최다). G/F 자격이라 플렉스 없는 리그에서 유연성 큼. 다만 빅맨 빌드가 이미 확보한 캣을 중복 보강하고, 부족한 3PT%·FT%는 오히려 깎음.",flag:"$44 이하면 매수 · 3PT%/FT% 확인 권장"},
+{n:"Josh Giddey",t:"CHI",p:"G/F",mk:[38,44],mx:42,tag:"buy",gp:61,s:"15.9P 8.2R 8.2A 1.1S 0.5B 3.3TO · OREB 1.5 · FG 45.6% (12.4FGA) · 3P 37.0% (4.6×) 1.7×3PM · FT 77.1% (3.7FTA) · 혼합 GP 61.4 · 31.2MPG · 25-26 53%",atlev:"AST 9.1 / TOV 3.6 → 팀 A/T 한계 기여 +0.140 (리그 9위)",c:"AST3 A/T2 DD1 REB2 3P%1 OREB1 STL1 3PM1",note:"9.1 AST / A/T 2.52 / DD 28(54경기뿐). Haliburton을 놓쳤을 때 최선의 대안 — Trae보다 A/T가 좋고 DD까지 줌.",flag:"54경기"},
+{n:"Chet Holmgren",t:"OKC",p:"F/C",mk:[49,55],mx:40,gp:60,s:"16.6P 8.7R 1.8A 0.6S 2B 1.6TO · OREB 1.8 · FG 54.1% (11.2FGA) · 3P 36.6% (3.5×) 1.3×3PM · FT 78.3% (4.1FTA) · 혼합 GP 60.3 · 28.5MPG · 25-26 76%",c:"BLK3 DD1 REB2 FG%2 OREB1 TOV1 3P%1",note:"BLK 1.9(리그 2위) · DD 25. 블록과 3점을 동시에 주는 빅.",flag:"69경기 · AST/OREB 빈약"},
+{n:"Derrick White",t:"BOS",p:"G",mk:[36,42],mx:44,tag:"buy",gp:77,s:"16.5P 4.4R 5.2A 1S 1.2B 1.7TO · OREB 1 · FG 41.3% (13.7FGA) · 3P 35.0% (8.6×) 3×3PM · FT 87.7% (2.4FTA) · 혼합 GP 76.6 · 34MPG · 25-26 60%",atlev:"AST 5.4 / TOV 1.7 → 팀 A/T 한계 기여 +0.171 (리그 6위)",c:"3PM3 BLK3 FT%2 A/T3 AST2 TOV1",note:"검증 결과 제 초기 평가보다 더 좋습니다. A/T 3.18과 FT% 90.2%가 확인되고 가드가 BLK 1.3까지 줍니다 — 빅맨 헤비 빌드가 비어 있는 3PTM·FT%·A/T를 한 슬롯에서 메웁니다.",flag:""},
+{n:"Bam Adebayo",t:"MIA",p:"F/C",mk:[35,43],mx:34,gp:75,s:"19.3P 9.8R 3.7A 1.2S 0.7B 1.8TO · OREB 2.2 · FG 46.0% (15.1FGA) · 3P 33.4% (4.4×) 1.4×3PM · FT 77.3% (5.1FTA) · 혼합 GP 75.1 · 33.2MPG · 25-26 58%",c:"DD1 REB3 STL2 PTS1 OREB2 BLK1 TOV1 A/T1",note:"DD 35 · 73경기 · 빅맨 중 FT% 양호하고 어시스트도 있어 A/T 방어에 도움.",flag:"Giannis 합류로 사용률 하락 우려"},
+{n:"Trey Murphy III",t:"NOR",p:"G/F",mk:[32,38],mx:32,tag:"buy",gp:62,s:"21.4P 5.5R 3.7A 1.4S 0.5B 1.8TO · OREB 1 · FG 46.4% (15.9FGA) · 3P 37.3% (8.5×) 3.1×3PM · FT 88.6% (3.9FTA) · 혼합 GP 61.5 · 35.3MPG · 25-26 65%",c:"PTS2 FT%2 STL2 3PM3 3P%1 TOV1 A/T1",note:"제가 3PT% 엘리트로 분류했으나 실측 top-25 밖입니다. 대신 FT% 88.6%와 STL 1.5가 검증되어 그 두 캣으로 가치가 성립합니다.",flag:"3PT% 엘리트 아님 — 근거 수정됨"},
+{n:"Jalen Duren",t:"DET",p:"C",mk:[24,30],mx:46,tag:"buy",gp:73,s:"16.2P 10.4R 2.3A 0.8S 0.9B 1.8TO · OREB 3.7 · FG 66.8% (9.6FGA) · 3P — (0×) 0×3PM · FT 71.4% (4.8FTA) · 혼합 GP 73.4 · 27.3MPG · 25-26 57%",chg:"John Collins 합류로 리바운드 일부 분산 가능",c:"OREB3 DD2 REB3 FG%3 BLK2 TOV1",note:"OREB 3.8 · DD 41 · 70경기. 9캣 #33 가격에 13캣 #15급 생산. FT%만 감안하면 순수 이득.",flag:""},
+{n:"Alperen Şengün",t:"HOU",p:"F/C",mk:[23,29],mx:46,tag:"buy",gp:74,s:"19.9P 9.5R 5.7A 1.2S 1B 3TO · OREB 3.2 · FG 50.9% (15.4FGA) · 3P 27.5% (1.6×) 0.5×3PM · FT 69.1% (5.4FTA) · 혼합 GP 73.7 · 32.6MPG · 25-26 58%",c:"OREB3 DD1 REB3 FG%2 AST2 PTS1 BLK2 STL1",note:"OREB 3.0 · DD 34 · 72경기 + 빅맨 최상급 어시스트로 A/T까지 방어. Jokić의 저가 버전이라 불러도 될 프로필.",flag:""},
+{n:"Amen Thompson",t:"HOU",p:"G/F",mk:[23,29],mx:42,tag:"buy",gp:75,s:"16.8P 7.9R 4.7A 1.5S 0.9B 2.3TO · OREB 2.9 · FG 54.2% (12.1FGA) · 3P 23.8% (1.4×) 0.3×3PM · FT 74.4% (4.4FTA) · 혼합 GP 75.3 · 35.5MPG · 25-26 63%",c:"OREB3 STL3 DD1 REB2 AST1 FG%2 A/T1 BLK2",note:"가드가 OREB 3.0을 잡는 유일한 유형. STL 1.5 · DD 20 · 79경기 · G/F 자격. Barnes의 절반 가격에 OREB까지 주는 상위 호환.",flag:"FT%·3PT% 약점"},
+{n:"Evan Mobley",t:"CLE",p:"F/C",mk:[20,26],mx:36,tag:"buy",gp:68,s:"18.3P 9.1R 3.4A 0.8S 1.7B 1.9TO · OREB 2.4 · FG 55.1% (13FGA) · 3P 32.8% (3.2×) 1.1×3PM · FT 65.6% (4.5FTA) · 혼합 GP 67.5 · 31.3MPG · 25-26 57%",c:"OREB2 BLK3 DD1 REB3 FG%2 PTS1 TOV1",note:"OREB 2.4 · BLK 1.7 · DD 27. PF 슬롯의 표준 해답.",flag:"65경기"},
+{n:"Desmond Bane",t:"ORL",p:"G/F",mk:[19,25],mx:26,tag:"buy",gp:77,s:"19.8P 4.8R 4.5A 1.1S 0.5B 2.1TO · OREB 1.1 · FG 48.4% (14.7FGA) · 3P 39.1% (5.5×) 2.1×3PM · FT 90.3% (3.7FTA) · 혼합 GP 77.3 · 33MPG · 25-26 64%",c:"FT%3 3PM1 PTS1 3P%2 AST1 A/T1 STL1",note:"3PT% 엘리트 주장은 실측으로 반증됐습니다. FT% 리그 3위는 검증됨.",flag:"3PT% 엘리트 아님 — 근거 수정됨"},
+{n:"Dyson Daniels",t:"ATL",p:"G",mk:[9,15],mx:20,tag:"buy",gp:76,s:"12.8P 6.4R 5.3A 2.4S 0.5B 1.9TO · OREB 2.1 · FG 50.7% (11FGA) · 3P 24.9% (2.1×) 0.6×3PM · FT 60.6% (1.7FTA) · 혼합 GP 76 · 33.4MPG · 25-26 60%",c:"STL3 OREB2 REB1 AST2 FG%1 TOV1 A/T3",note:"STL 2.0 리그 공동 1위 + 가드가 OREB 2.4. STL 캣을 혼자 잠그는 저가 카드.",flag:"3PT%·FT% 악화 요인"},
+{n:"Walker Kessler",t:"LAL",p:"C",mk:[13,19],mx:19,tag:"burn",gp:52,chg:"유타→레이커스 sign-and-trade. 유타 C 자리 공백은 JJJ·Jaxson Hayes로",s:"11.5P 12R 1.8A 0.7S 2.3B 1.7TO · OREB 4.6 · FG 66.8% (7.2FGA) · 3P 24.2% (0.7×) 0.2×3PM · FT 54.1% (2.8FTA) · 혼합 GP 51.9 · 30.1MPG · 25-26 11%",c:"OREB3 FG%3 REB3 BLK3 TOV1 DD1",note:"블록 + OREB + FG%. 레이커스 이적(유타 sign-and-trade)으로 역할 재확인 필요하나 13캣 프로필은 상승.",flag:"제가 BLK 엘리트로 오분류 — 실측 top-25 진입 실패. 역할·출장 직접 확인 필요"},
+{n:"Donovan Clingan",t:"POR",p:"C",mk:[8,16],mx:34,tag:"buy",gp:73,s:"10P 10.2R 1.7A 0.6S 1.7B 1.2TO · OREB 4 · FG 52.7% (7.5FGA) · 3P 32.1% (2.3×) 0.8×3PM · FT 64.9% (2.2FTA) · 혼합 GP 73.3 · 24.5MPG · 25-26 63%",chg:"Ja Morant 합류로 픽앤롤 공급 증가. Robert Williams III 연장이나 상습 결장",c:"OREB3 BLK3 DD1 REB3 FG%2 TOV1",note:"OREB 4.5 리그 1위 · BLK 1.7 · DD 37 · 77경기. 9캣이 FT%/3점 없다고 top-50 밖으로 밀어놓은 선수가 13캣에서는 5캣 공급원. 이 리그 최고의 달러당 효율.",flag:"Robert Williams III와 경쟁(상습 결장이라 실질 위협 낮음)"},
+{n:"Rudy Gobert",t:"MIN",p:"C",mk:[4,12],mx:26,tag:"buy",gp:74,s:"11.3P 11.3R 1.7A 0.8S 1.5B 1.3TO · OREB 3.8 · FG 67.7% (6.7FGA) · 3P 0.0% (0.1×) 0×3PM · FT 58.3% (3.9FTA) · 혼합 GP 74.5 · 32MPG · 25-26 61%",chg:"LaMelo 합류로 팀 페이스 상승 → 리바운드 기회 증가. Naz Reid 이탈로 빅맨 경쟁 완화",c:"OREB3 BLK3 DD1 REB3 FG%3 TOV1",note:"OREB 3.9 · BLK 1.6 · DD 33 · 76경기. 주전 확정에 내구성까지 갖춘 가장 안전한 저가 빅. LaMelo 합류로 페이스가 오르면 리바운드 기회 증가.",flag:"FT% 심각 · $14까지는 무조건"},
+{n:"Mitchell Robinson",t:"BOS",p:"C",mk:[1,9],mx:12,tag:"buy",gp:53,s:"5.6P 8.3R 0.9A 0.9S 1.2B 0.7TO · OREB 4 · FG 71.3% (3.4FGA) · 3P — (0×) 0×3PM · FT 45.2% (1.6FTA) · 혼합 GP 53.2 · 19.2MPG · 25-26 84%",chg:"뉴욕→보스턴 3년 $47M = 주전 계약. Queta와 로테이션",c:"OREB3 REB2 FG%2 BLK2 TOV3",note:"OREB 4.2 리그 2위. 보스턴 3년 $47M = 주전 계약.",flag:"Neemias Queta와 로테이션 · FT% 심각"},
+{n:"Deandre Ayton",t:"WAS",p:"C",mk:[3,7],mx:18,tag:"buy",gp:63,s:"13P 8.6R 1A 0.7S 1B 1.3TO · OREB 2.7 · FG 64.3% (9.2FGA) · 3P 18.8% (0.2×) 0.1×3PM · FT 65.1% (1.9FTA) · 혼합 GP 63.4 · 28MPG · 25-26 73%",chg:"레이커스→워싱턴 주전 C. Anthony Davis와 프론트코트 공유",c:"OREB2 DD1 REB2 FG%3 TOV1 BLK2",note:"OREB 2.6 · DD 22 · 72경기. 리빌딩팀 주전 C = 볼륨 확보. 레이커스→위저즈 이적.",flag:"Anthony Davis와 겹침"},
+{n:"Mark Williams",t:"PHX",p:"C",mk:[4,10],mx:18,tag:"buy",gp:55,s:"12.9P 8.7R 1.5A 0.8S 1B 1.3TO · OREB 3.1 · FG 63.1% (8.3FGA) · 3P 67.2% (0×) 0×3PM · FT 78.2% (3.2FTA) · 혼합 GP 54.7 · 24.6MPG · 25-26 67%",chg:"피닉스 연장 = 주전 C",c:"OREB3 REB2 FG%3 DD1 TOV1 BLK2 3P%1",note:"OREB 3.1 + 피닉스 연장 계약 = 주전 C.",flag:"출장 이력 확인 권장"},
+{n:"Jarrett Allen",t:"CLE",p:"C",mk:[9,15],mx:16,gp:69,s:"14.5P 9.1R 1.8A 1S 0.8B 1.3TO · OREB 2.6 · FG 67.2% (8.6FGA) · 3P 5.1% (0.2×) 0×3PM · FT 71.3% (4.1FTA) · 혼합 GP 68.8 · 27.5MPG · 25-26 50%",c:"OREB2 REB2 FG%3 DD1 BLK2 TOV1",note:"DD 20(56경기). Mobley와 프론트코트 공유.",flag:"56경기"},
+{n:"Nic Claxton",t:"CHI",p:"C",mk:[2,6],mx:12,tag:"buy",gp:69,s:"11.1P 7.1R 3.1A 0.8S 1.2B 1.3TO · OREB 2.3 · FG 56.8% (8.3FGA) · 3P 19.0% (0.3×) 0×3PM · FT 57.4% (2.9FTA) · 혼합 GP 69.4 · 27.4MPG · 25-26 59%",chg:"브루클린→시카고 주전 C",c:"OREB2 BLK3 REB2 FG%2 TOV1 A/T1",note:"OREB 2.4 + 블록. 브루클린→시카고 이적으로 주전 C.",flag:"FT% 악화 · BLK는 엘리트 아님"},
+{n:"Nikola Vučević",t:"ORL",p:"C",mk:[1,3],mx:8,tag:"dart",gp:68,s:"16.6P 9.1R 3.4A 0.7S 0.6B 1.4TO · OREB 2.2 · FG 50.9% (13.2FGA) · 3P 38.3% (4.3×) 1.7×3PM · FT 81.8% (1.7FTA) · 혼합 GP 67.9 · 29.6MPG · 25-26 56%",c:"DD1 REB3 FT%1 TOV1 OREB2 3P%1 FG%2 A/T1 3PM1",note:"DD 23(64경기). 올랜도 1년 $3.9M — 백업 가능성.",flag:"역할 미확정"},
+{n:"Myles Turner",t:"MIL",p:"C",mk:[11,17],mx:18,tag:"burn",gp:71,s:"13.4P 5.8R 1.5A 0.7S 1.8B 1.4TO · OREB 1.2 · FG 45.7% (10FGA) · 3P 38.8% (5.4×) 2.1×3PM · FT 75.3% (2.8FTA) · 혼합 GP 71.4 · 28.2MPG · 25-26 59%",chg:"Giannis 이탈로 득점 상승 여지. 다만 리바운드는 원래 안 하는 유형",c:"BLK3 3PM1 3P%2 TOV1",note:"밀워키 주전 C 확정(4년 $108M). 하지만 REB 5.3은 센터로서 최악급이고 OREB 낮고 DD 사실상 0 — 9캣에서 13캣으로 오면서 가치가 오히려 하락하는 대표 사례.",flag:"이름값 대비 OREB·DD 기여 0"},
+{n:"Kel'el Ware",t:"MIL",p:"C",mk:[1,3],mx:4,tag:"dart",gp:72,s:"10.5P 8.4R 0.8A 0.7S 1.1B 0.8TO · OREB 2.4 · FG 53.9% (8FGA) · 3P 36.6% (2.5×) 1×3PM · FT 72.1% (1.1FTA) · 혼합 GP 72.4 · 22.1MPG · 25-26 64%",chg:"마이애미→밀워키. Myles Turner(4년 $108M)가 주전이라 백업 고정",c:"OREB2 DD1 REB2 BLK2 TOV2 3P%1 FG%2",note:"22.1분에 9.0 REB / 1.1 BLK — 분당 생산 최상급. Turner 부상 시 폭발하는 업사이드 스태시.",flag:"Turner 뒤 백업 확정 · $5 넘으면 포기"},
+{n:"Moussa Diabaté",t:"CHA",p:"C",mk:[1,3],mx:6,tag:"dart",gp:72,s:"7P 7.7R 1.5A 0.7S 0.8B 1TO · OREB 3.3 · FG 61.7% (4.6FGA) · 3P 30.3% (0×) 0×3PM · FT 63.4% (2.1FTA) · 혼합 GP 72.2 · 22.7MPG · 25-26 60%",chg:"Naz Reid·Kalkbrenner와 C 로테이션 혼잡 → 출장 하락 위험",c:"OREB3 REB2 FG%2 TOV2 BLK2",note:"OREB 3.7 · DD 20 · 73경기. $2로 OREB 캣 하나를 사는 셈 — $86 Jokić보다 OREB를 더 많이 잡습니다.",flag:"Naz Reid 영입으로 C 로테이션 혼잡 · $3 이하만"},
+{n:"Andre Drummond",t:"NYK",p:"C",mk:[1,3],mx:8,tag:"dart",gp:56,s:"6.7P 8.2R 1.2A 0.7S 0.7B 1.1TO · OREB 3.1 · FG 48.0% (5.5FGA) · 3P 29.5% (1.1×) 0.4×3PM · FT 62.8% (1.6FTA) · 혼합 GP 56.2 · 19.3MPG · 25-26 70%",chg:"뉴욕 합류. KAT 뒤 백업이나 Mitchell Robinson 이탈로 백업 C 자리 확보",c:"OREB3 REB2 TOV2 BLK1",note:"OREB 3.2. 분당 생산은 최상급.",flag:"KAT 뒤 백업"},
+{n:"Jay Huff",t:"IND",p:"C",mk:[1,3],mx:4,tag:"dart",gp:76,s:"8.6P 3.3R 1.2A 0.4S 1.6B 0.8TO · OREB 0.8 · FG 48.9% (6.6FGA) · 3P 34.8% (4×) 1.4×3PM · FT 81.4% (1.1FTA) · 혼합 GP 75.8 · 17.8MPG · 25-26 65%",chg:"인디애나. Zubac 합류로 백업 고정",c:"BLK3 TOV3 FT%1 FG%1",note:"BLK 1.9 리그 3위. 블록 전용 $1 다트.",flag:"Zubac 합류로 백업 고정 · 출장 변동 큼"},
+{n:"Luke Kornet",t:"SAS",p:"C",mk:[1,3],mx:4,tag:"dart",gp:70,s:"6.3P 5.8R 1.8A 0.5S 1B 0.4TO · OREB 2.7 · FG 65.3% (3.9FGA) · 3P 0.0% (0×) 0×3PM · FT 76.9% (1.5FTA) · 혼합 GP 70.1 · 20MPG · 25-26 58%",atlev:"A/T 4.5이나 백업 센터로 AST 볼륨이 매우 낮음 → 한계 기여 추정 +0.08 (Haliburton의 1/6)",c:"OREB2 A/T2 FG%2 TOV3 BLK2",note:"OREB 2.7은 실측 확인. 다만 A/T는 비율만 높고 어시스트 볼륨이 없어 팀 비율을 거의 못 움직입니다 — 3PT% 저볼륨 문제와 동일 구조.",flag:"A/T 기여 과대평가 금지 · AST 볼륨 미확보"},
+{n:"Andrew Nembhard",t:"IND",p:"G",mk:[1,3],mx:6,tag:"dart",gp:60,s:"13.9P 3R 6.5A 1S 0.1B 2.1TO · OREB 0.4 · FG 44.9% (11.1FGA) · 3P 33.1% (4.1×) 1.4×3PM · FT 81.2% (3.2FTA) · 혼합 GP 60.5 · 30.3MPG · 25-26 56%",atlev:"A/T 3.19이나 AST 볼륨 미확보(4.0 미달) → 한계 기여 추정 +0.06~0.10",c:"A/T3 AST3 FT%1",note:"Haliburton 헤지로서의 가치(같은 팀, 결장 시 직접 수혜)가 A/T 기여보다 큽니다.",flag:"Hali 복귀 시 역할 축소"},
+{n:"Yves Missi",t:"NOP",p:"C",mk:[1,3],mx:8,tag:"dart",gp:69,s:"7.1P 6.8R 1.3A 0.4S 1.4B 0.9TO · OREB 3.1 · FG 54.5% (5.4FGA) · 3P 0.0% (0×) 0×3PM · FT 58.6% (2.1FTA) · 혼합 GP 69 · 22.7MPG · 25-26 57%",c:"OREB3 BLK3 TOV2 FG%2 REB2",note:"OREB 2.8 + BLK 1.5.",flag:""},
+{n:"Day'Ron Sharpe",t:"BKN",p:"C",mk:[1,3],mx:5,tag:"dart",gp:58,s:"8.4P 6.7R 2.1A 1S 0.5B 1.6TO · OREB 2.9 · FG 57.3% (5.9FGA) · 3P 23.5% (0.7×) 0.1×3PM · FT 70.6% (2.2FTA) · 혼합 GP 57.8 · 18.5MPG · 25-26 65%",c:"OREB3 REB1 FG%2 TOV1",note:"OREB 2.8.",flag:"출장 변동"},
+{n:"Ryan Kalkbrenner",t:"CHA",p:"C",mk:[1,3],mx:8,tag:"dart",gp:69,s:"7.6P 5.5R 0.8A 0.5S 1.5B 0.9TO · OREB 2.4 · FG 75.3% (4.2FGA) · 3P 0.0% (0.1×) 0×3PM · FT 71.6% (1.7FTA) · 혼합 GP 69 · 21.4MPG · 25-26 100%",c:"OREB2 BLK3 FG%3 TOV2",note:"OREB 2.4.",flag:"Naz Reid·Diabaté와 경쟁"},
+{n:"Neemias Queta",t:"BOS",p:"C",mk:[1,3],mx:6,tag:"dart",gp:71,s:"8.4P 6.8R 1.3A 0.6S 1.1B 0.9TO · OREB 2.4 · FG 65.2% (5.4FGA) · 3P 8.1% (0.1×) 0×3PM · FT 72.1% (1.8FTA) · 혼합 GP 71.1 · 21.3MPG · 25-26 64%",c:"OREB2 REB2 FG%3 BLK2 TOV2",note:"OREB 3.0. 보스턴 연장.",flag:"Mitchell Robinson 뒤"},
+{n:"Robert Williams III",t:"POR",p:"C",mk:[1,3],mx:4,tag:"dart",gp:52,s:"6.5P 6.8R 1A 0.6S 1.5B 0.8TO · OREB 2.3 · FG 69.6% (4.1FGA) · 3P 38.0% (0.4×) 0.2×3PM · FT 64.9% (1FTA) · 혼합 GP 51.8 · 17.2MPG · 25-26 81%",c:"OREB2 BLK3 FG%3 TOV2 REB2 3P%1",note:"OREB 2.4 + 블록. 포틀랜드 연장.",flag:"상습 결장"},
+{n:"Isaiah Stewart",t:"MEM",p:"F/C",mk:[1,3],mx:8,tag:"dart",gp:64,s:"8.2P 5.2R 1.4A 0.3S 1.5B 1.1TO · OREB 1.7 · FG 55.4% (5.8FGA) · 3P 32.8% (1.5×) 0.5×3PM · FT 75.7% (1.8FTA) · 혼합 GP 64.3 · 21.4MPG · 25-26 54%",chg:"디트로이트→멤피스. 리빌딩팀에서 출장 확대 여지",c:"BLK3 OREB1 TOV2 FG%2",note:"BLK 1.6. 디트로이트→멤피스 이적, 리빌딩팀에서 출장 확보 가능.",flag:""},
+{n:"Davion Mitchell",t:"MIA",p:"G",mk:[1,3],mx:4,tag:"dart",gp:72,s:"8.7P 2.5R 5.8A 1S 0.2B 1.6TO · OREB 0.5 · FG 48.1% (7.1FGA) · 3P 39.6% (3.1×) 1.2×3PM · FT 66.4% (1FTA) · 혼합 GP 71.7 · 28.1MPG · 25-26 58%",atlev:"A/T 4.2이나 AST 볼륨 미확보(4.0 미달) → 한계 기여 추정 +0.08~0.15",c:"A/T3 TOV1 AST2 3P%1",note:"A/T 4.2. A/T 전용 다트.",flag:"AST 볼륨 미확보"},
+{n:"Immanuel Quickley",t:"TOR",p:"G",mk:[1,3],mx:5,tag:"dart",gp:61,s:"16.6P 3.9R 5.9A 1.2S 0.1B 1.6TO · OREB 0.5 · FG 43.8% (13FGA) · 3P 37.5% (6.8×) 2.5×3PM · FT 83.2% (3.2FTA) · 혼합 GP 61.2 · 30.9MPG · 25-26 76%",atlev:"A/T 4.1이나 AST 볼륨 미확보(4.0 미달) → 한계 기여 추정 +0.08~0.14",c:"A/T3 STL1 3PM2 FT%1 TOV1 AST2 3P%1",note:"A/T 4.1.",flag:""},
+{n:"Ausar Thompson",t:"DET",p:"G/F",mk:[1,5],mx:8,tag:"dart",gp:68,s:"10P 5.5R 2.8A 1.9S 0.8B 1.5TO · OREB 2 · FG 52.8% (7.9FGA) · 3P 24.1% (0.5×) 0.1×3PM · FT 59.6% (2.5FTA) · 혼합 GP 68.1 · 24.8MPG · 25-26 65%",c:"STL3 OREB2 TOV1 BLK1 FG%2",note:"STL 2.0 리그 공동 1위.",flag:"FT%·3PT% 심각"},
+{n:"Cason Wallace",t:"OKC",p:"G",mk:[1,5],mx:8,tag:"dart",gp:74,s:"8.5P 3.2R 2.6A 1.9S 0.4B 0.9TO · OREB 0.9 · FG 44.8% (7.5FGA) · 3P 35.3% (3.5×) 1.2×3PM · FT 81.0% (0.8FTA) · 혼합 GP 73.7 · 27MPG · 25-26 62%",c:"STL3 TOV2 FT%1 A/T2",note:"STL 2.0 리그 공동 1위 + 효율.",flag:"볼륨 낮음"},
+{n:"Kris Dunn",t:"LAC",p:"G",mk:[1,3],mx:5,tag:"dart",gp:79,s:"7P 3.3R 3.3A 1.6S 0.3B 1.2TO · OREB 0.7 · FG 46.2% (5.8FGA) · 3P 35.9% (2.8×) 1×3PM · FT 73.4% (0.7FTA) · 혼합 GP 79 · 26MPG · 25-26 62%",c:"STL3 TOV1 A/T2",note:"STL 1.6.",flag:"공격 기여 미미"},
+{n:"Jordan Goodwin",t:"PHX",p:"G",mk:[1,3],mx:4,tag:"dart",gp:61,s:"8P 4.7R 2A 1.4S 0.2B 1TO · OREB 1.8 · FG 41.8% (7.3FGA) · 3P 37.3% (3.9×) 1.4×3PM · FT 72.2% (0.7FTA) · 혼합 GP 61.1 · 21.7MPG · 25-26 78%",c:"STL2 TOV2 OREB2 3P%1 A/T1",note:"STL 1.5. 피닉스 다년 계약.",flag:""},
+{n:"Matas Buzelis",t:"CHI",p:"F",mk:[2,8],mx:10,tag:"dart",gp:78,s:"13.1P 4.9R 1.6A 0.6S 1.3B 1.6TO · OREB 0.9 · FG 45.9% (10.2FGA) · 3P 35.4% (5.1×) 1.8×3PM · FT 79.8% (2.4FTA) · 혼합 GP 78.2 · 25MPG · 25-26 59%",c:"BLK3 TOV1 3PM1",note:"BLK 1.5 + 3점.",flag:""},
+{n:"OG Anunoby",t:"NYK",p:"F",mk:[11,17],mx:18,gp:70,s:"17.3P 5R 2.2A 1.6S 0.8B 1.6TO · OREB 1.3 · FG 48.1% (12.8FGA) · 3P 38.0% (6.1×) 2.3×3PM · FT 82.0% (3.2FTA) · 혼합 GP 70 · 34.6MPG · 25-26 57%",c:"STL3 3PM1 3P%1 BLK1 FT%1 TOV1 PTS1",note:"STL 1.6 + 3점 효율.",flag:""},
+{n:"Nickeil Alexander-Walker",t:"ATL",p:"G/F",mk:[19,25],mx:22,gp:80,s:"16.1P 3.3R 3.3A 1S 0.5B 1.7TO · OREB 0.7 · FG 45.0% (12.1FGA) · 3P 39.2% (6.6×) 2.6×3PM · FT 85.2% (2.9FTA) · 혼합 GP 79.6 · 30.1MPG · 25-26 58%",c:"FT%2 3PM2 3P%2 TOV1",note:"3PT% + 스틸. 빅맨 빌드의 SG 슬롯 저가 해답.",flag:"3PT% 엘리트 아님 — 근거 수정됨"},
+{n:"Luka Dončić",t:"LAL",p:"G",mk:[83,91],mx:52,tag:"burn",gp:59,s:"31.7P 7.9R 8.1A 1.7S 0.5B 3.9TO · OREB 0.7 · FG 46.7% (22FGA) · 3P 36.7% (10.4×) 3.8×3PM · FT 78.1% (9.3FTA) · 혼합 GP 59.2 · 35.7MPG · 25-26 65%",atlev:"AST 8.3 / TOV 4.0 → 팀 A/T 한계 기여 +0.021 — 어시스트 8.3개가 턴오버 4.0개에 거의 전부 상쇄됨",c:"PTS3 AST3 REB2 DD2 STL3 3PM3 3P%1 A/T1",note:"33.4 PTS / 8.3 AST / 7.9 REB지만 TOV 4.0 리그 최악급 + A/T 2.08(엘리트 PG 중 최하). 2캣 확정 손실이고 OREB·BLK도 빈약. 이름값 최상급이라 최우선 태우기 대상.",flag:"64경기 · 남이 $80 쓰게 하라"},
+{n:"Anthony Edwards",t:"MIN",p:"G/F",mk:[72,80],mx:40,tag:"burn",gp:69,s:"28.2P 5.3R 4.1A 1.3S 0.7B 3TO · OREB 0.7 · FG 46.9% (20.3FGA) · 3P 39.7% (9.3×) 3.7×3PM · FT 81.5% (6.8FTA) · 혼합 GP 69.3 · 35.6MPG · 25-26 53%",c:"PTS3 3PM3 STL2 BLK1 3P%3 FT%1 AST1",note:"29.5 PTS / 3.4 3PM. 13캣에 추가된 OREB·DD·3PT%·A/T 네 캣에 기여가 사실상 0인데 top-7 가격.",flag:"3~4캣 선수"},
+{n:"Giannis Antetokounmpo",t:"MIA",p:"F/C",mk:[61,69],mx:25,tag:"burn",gp:53,s:"29.2P 11R 6A 0.9S 1B 3.1TO · OREB 2.4 · FG 61.1% (18.3FGA) · 3P 27.2% (1.1×) 0.3×3PM · FT 63.2% (10.3FTA) · 혼합 GP 53.2 · 31.8MPG · 25-26 44%",chg:"밀워키→마이애미. Bam과 프론트코트 공유로 리바운드 분산 가능",atlev:"AST 5.4 / TOV 3.2 → 팀 A/T 한계 기여 −0.076 (마이너스)",c:"PTS3 FG%3 REB3 DD3 BLK2 AST2 OREB2",note:"27.6/9.8이지만 2025-26 36경기 · FT% 65%. 벤치 2칸 리그에서 결장 리스크가 치명적. 마이애미 이적.",flag:"36경기 · FT% 65%"},
+{n:"Kevin Durant",t:"HOU",p:"G/F",mk:[45,51],mx:26,tag:"burn",gp:72,s:"26.2P 5.7R 4.6A 0.8S 1B 3.2TO · OREB 0.5 · FG 52.2% (17.8FGA) · 3P 41.9% (5.9×) 2.5×3PM · FT 86.2% (5.9FTA) · 혼합 GP 72.5 · 36.4MPG · 25-26 65%",atlev:"AST 4.8 / TOV 3.2 → 팀 A/T 한계 기여 −0.121 (하위 2위)",c:"PTS3 FG%2 FT%3 3PM2 3P%3 AST1 BLK2",note:"효율 3캣(FG%·FT%·3PT%)은 실측으로 확인됩니다. 다만 A/T 1.50은 4+어시스트 그룹 최하위권이고 OREB·DD·BLK·STL 기여가 없어 13캣 가치는 시장가 이하입니다.",flag:"A/T 최하위권 · 빅맨 캣 전무"},
+{n:"Kawhi Leonard",t:"TOR",p:"F",mk:[38,46],mx:22,tag:"burn",gp:57,s:"26.1P 6.3R 3.5A 1.8S 0.4B 2TO · OREB 1 · FG 50.3% (18.7FGA) · 3P 39.4% (6.3×) 2.5×3PM · FT 86.9% (5.5FTA) · 혼합 GP 57.3 · 32MPG · 25-26 72%",chg:"클리퍼스→토론토. Barnes와 사용률 공유",c:"PTS3 FG%2 STL3 FT%3 3P%2 REB1 3PM2 TOV1",note:"STL 1.9 + 효율. 하지만 결장 리스크가 크고 벤치 2칸으로 커버 불가. 클리퍼스→토론토 이적.",flag:"GP 리스크 최상급"},
+{n:"Stephen Curry",t:"GSW",p:"G",mk:[34,40],mx:26,tag:"burn",gp:57,s:"25.5P 4R 5.4A 1.1S 0.4B 2.9TO · OREB 0.5 · FG 45.8% (18.3FGA) · 3P 39.5% (11.2×) 4.4×3PM · FT 92.8% (4.7FTA) · 혼합 GP 57.1 · 31.6MPG · 25-26 48%",atlev:"AST 4.7 / TOV 2.8 → 팀 A/T 한계 기여 −0.070 (마이너스)",c:"3PM3 FT%3 PTS3 AST2 3P%3 STL1",note:"3PT% 엘리트 주장이 실측으로 반증됐고 A/T 1.68은 4+어시스트 그룹에서 하위권입니다. 빅맨 캣 전무 + 나이까지 겹쳐 태우기 대상 유지.",flag:"3PT% 엘리트 아님 · A/T 나쁨"},
+{n:"Jaren Jackson Jr.",t:"UTA",p:"F/C",mk:[31,37],mx:22,tag:"burn",gp:61,s:"20.8P 5.6R 2A 1.2S 1.5B 2.1TO · OREB 1.1 · FG 48.2% (15.7FGA) · 3P 36.6% (5.1×) 1.9×3PM · FT 79.2% (4.8FTA) · 혼합 GP 61.2 · 30MPG · 25-26 49%",chg:"멤피스→유타(데드라인). Kessler 이탈로 C 출장 확대 여지이나 무릎 수술 이력",c:"BLK3 PTS2 STL1 3PM1 3P%1",note:"19.4/5.6reb/1.4blk/2.0ast. REB 5.6이라 OREB·DD 기여 0이고 AST 2.0으로 A/T도 마이너스. 멤피스→유타 이적 후 3경기 뛰고 무릎 수술로 시즌 아웃.",flag:"48경기 · 무릎 수술 · OREB/DD 기여 0"},
+{n:"LeBron James",t:"PHI",p:"F",mk:[11,17],mx:16,tag:"burn",gp:64,chg:"필라델피아 2년 $8M. Maxey·Brown과 사용률 3분할",s:"22.4P 6.8R 7.6A 1.1S 0.6B 3.3TO · OREB 0.8 · FG 51.4% (16.5FGA) · 3P 34.3% (4.8×) 1.6×3PM · FT 75.7% (5FTA) · 혼합 GP 64.4 · 33.9MPG · 25-26 56%",c:"PTS2 AST3 REB2 DD1 A/T2 STL1 FG%2",note:"필라델피아 FA 계약(2년 $8M). 나이 + Brown·Maxey와 사용률 분산.",flag:"나이"},
+{n:"Anthony Davis",t:"WAS",p:"F/C",mk:[19,25],mx:10,gp:40,chg:"워싱턴. Ayton과 프론트코트 공유",tag:"burn",s:"23.1P 11.4R 3.2A 1.2S 2B 2.2TO · OREB 2.8 · FG 51.2% (17.4FGA) · 3P 27.8% (2.2×) 0.6×3PM · FT 75.8% (6.1FTA) · 혼합 GP 39.5 · 32.7MPG · 25-26 37%",c:"REB3 DD2 FG%2 PTS2 BLK3 OREB2 STL2",note:"블록·리바운드는 여전. 워싱턴 이적.",flag:"제가 BLK 엘리트로 오분류 · GP 리스크 · Ayton과 겹침"},
+{n:"Trae Young",t:"WAS",p:"G",mk:[30,36],mx:30,gp:62,s:"22.8P 2.8R 10.8A 1.1S 0.2B 4.2TO · OREB 0.5 · FG 42.2% (16.7FGA) · 3P 34.0% (7.7×) 2.6×3PM · FT 86.4% (7.2FTA) · 혼합 GP 62.1 · 33.6MPG · 25-26 22%",chg:"워싱턴 4년 $212M 연장. Anthony Davis·Ayton·Dybantsa·Middleton과 사용률 혼잡",atlev:"A/T 3.08이나 어시스트 볼륨 실측 미확보 — 한계 기여 추정 +0.10 내외",c:"AST3 A/T3 FT%3 3PM2 PTS2 STL1 DD2",note:"A/T 3.08은 고볼륨 중 최상급이고 AST·FT%·3PTM까지. 단 FG% 약 41%로 능동적 손실이 크고 3PT%도 약함 — 빅맨 4명 이상으로 FG%를 이미 확보한 빌드에서만 성립.",flag:"A/T 볼륨 미검증 · FG% 약 41% 능동적 손실 · 워싱턴 사용률 혼잡"},
+{n:"Tyrese Maxey",t:"PHI",p:"G",mk:[66,74],mx:44,gp:64,s:"27.6P 3.8R 6.4A 1.9S 0.7B 2.4TO · OREB 0.3 · FG 45.4% (21.3FGA) · 3P 35.7% (8.8×) 3.1×3PM · FT 88.8% (5.9FTA) · 혼합 GP 64 · 37.9MPG · 25-26 66%",chg:"제일런 브라운·LeBron 합류 → 사용률 하락, 효율은 상승 여지",c:"PTS3 3PM3 STL3 FT%3 AST2 A/T3",note:"STL 1.9 + 3점 볼륨 + FT%.",flag:"Brown·LeBron 합류로 사용률 하락"},
+{n:"Jayson Tatum",t:"BOS",p:"F",mk:[65,71],mx:48,gp:58,s:"25.6P 9R 5.8A 1.2S 0.4B 2.8TO · OREB 0.7 · FG 44.2% (19.7FGA) · 3P 34.0% (9.8×) 3.4×3PM · FT 81.6% (5.8FTA) · 혼합 GP 58 · 35.5MPG · 25-26 25%",chg:"제일런 브라운이 필라델피아로 이탈 → 사용률 대폭 상승 자리. Paul George 합류",c:"PTS3 REB2 3PM3 FT%1 DD1 AST2 A/T1 STL2",note:"A/T 리더보드에 2025-26 기록이 남아 있어 상당 경기를 소화한 것이 확인됩니다. 제일런 브라운 이탈로 사용률이 크게 오를 자리입니다. 다만 OREB·BLK 기여가 0이고 추가 4캣 중 DD만 부분 기여합니다.",flag:"시장가가 13캣 실질보다 높음"},
+{n:"Donovan Mitchell",t:"CLE",p:"G",mk:[54,60],mx:48,gp:70,tag:"buy",s:"26.3P 4.5R 5.4A 1.4S 0.3B 2.5TO · OREB 0.7 · FG 46.7% (19.4FGA) · 3P 36.6% (8.8×) 3.2×3PM · FT 84.8% (5.7FTA) · 혼합 GP 70.4 · 32.7MPG · 25-26 59%",atlev:"AST 5.7 / TOV 2.8 → 팀 A/T 한계 기여 +0.008 (사실상 중립)",c:"PTS3 3PM3 STL3 FT%2 AST2 A/T1 3P%1",note:"득점·3점·스틸. 클리블랜드 4년 $273M 연장.",flag:""},
+{n:"Jamal Murray",t:"DEN",p:"G",mk:[52,58],mx:46,gp:72,tag:"buy",s:"23.9P 4.2R 6.7A 1.1S 0.4B 2.2TO · OREB 0.5 · FG 48.0% (17.6FGA) · 3P 41.9% (6.9×) 2.9×3PM · FT 88.7% (4.6FTA) · 혼합 GP 72 · 35.7MPG · 25-26 62%",lev:"3PA 7.5/G · 주간 26시도 · 팀 지분 19.4% → 3PT% 기여 +1.46pp (그룹 1위) · 변동성 ±9.7pp",atlev:"AST 7.1 / TOV 2.3 → 팀 A/T 한계 기여 +0.203 (리그 4위)",c:"PTS2 3PM3 3P%3 FT%3 AST3 A/T3 STL1",note:"전수 검사에서 가장 크게 상향된 선수입니다. 3PT%·FT%·A/T·AST·3PTM·PTS 6캣이 모두 실측으로 검증되고, 특히 A/T 3.09는 고볼륨 가드 중 최상위권입니다. Jokić와 같은 팀이라 중복 구매 시 효율은 떨어집니다.",flag:"빅맨 캣(OREB·BLK·DD) 기여 없음"},
+{n:"Jalen Brunson",t:"NYK",p:"G",mk:[37,43],mx:32,gp:71,s:"26P 3.2R 7A 0.8S 0.1B 2.4TO · OREB 0.4 · FG 47.5% (19.4FGA) · 3P 37.4% (6.7×) 2.5×3PM · FT 83.4% (6.1FTA) · 혼합 GP 70.7 · 35.1MPG · 25-26 63%",c:"PTS3 AST3 FT%2 3PM2 3P%1 A/T3 DD1",note:"",flag:"OREB·DD·BLK 기여 0"},
+{n:"LaMelo Ball",t:"MIN",p:"G",mk:[36,42],mx:30,gp:64,chg:"샬럿→미네소타. Gobert와 결합, Dosunmu 볼 점유 감소",s:"21.6P 4.8R 7.2A 1.2S 0.2B 3TO · OREB 0.9 · FG 40.6% (18.5FGA) · 3P 35.9% (10.6×) 3.8×3PM · FT 88.2% (3.2FTA) · 혼합 GP 64.4 · 29.2MPG · 25-26 69%",c:"AST3 PTS2 3PM3 STL2 FT%2 A/T2 DD1",note:"샬럿→미네소타 이적.",flag:"TOV 높음 · GP 리스크"},
+{n:"Cooper Flagg",t:"DAL",p:"G/F",mk:[44,50],mx:34,gp:70,s:"21P 6.7R 4.5A 1.2S 0.9B 2.3TO · OREB 1.2 · FG 46.8% (17.1FGA) · 3P 29.5% (3.5×) 1×3PM · FT 82.7% (4.9FTA) · 혼합 GP 70 · 33.5MPG · 25-26 100%",c:"PTS2 REB1 STL2 BLK2 FT%2 AST1",note:"다방면 기여형 2년차.",flag:"캣별 임팩트 미확정"},
+{n:"Austin Reaves",t:"LAL",p:"G/F",mk:[41,47],mx:32,gp:62,s:"21.8P 4.6R 5.6A 1.1S 0.4B 2.7TO · OREB 0.7 · FG 47.5% (14.6FGA) · 3P 36.8% (6.8×) 2.5×3PM · FT 87.4% (6.2FTA) · 혼합 GP 61.7 · 34.7MPG · 25-26 51%",c:"PTS2 AST2 FT%3 3PM2 3P%1 A/T1 STL1",note:"레이커스 4년 $180M 연장.",flag:""},
+{n:"Lauri Markkanen",t:"UTA",p:"F",mk:[28,34],mx:19,gp:44,s:"23.4P 6.5R 1.8A 0.9S 0.5B 1.5TO · OREB 1.8 · FG 45.4% (17.4FGA) · 3P 35.1% (8×) 2.8×3PM · FT 88.7% (5.3FTA) · 혼합 GP 44.1 · 33.1MPG · 25-26 57%",c:"PTS2 3PM2 REB1 FT%3 TOV1 OREB1",note:"",flag:"OREB·DD·AST 기여 낮음"},
+{n:"Pascal Siakam",t:"IND",p:"F/C",mk:[22,28],mx:26,gp:69,s:"22.3P 6.7R 3.6A 1S 0.4B 1.8TO · OREB 1.5 · FG 50.0% (17FGA) · 3P 37.2% (4.5×) 1.7×3PM · FT 71.2% (5.1FTA) · 혼합 GP 69.3 · 33MPG · 25-26 54%",c:"PTS2 REB2 OREB1 TOV1 3P%1 FG%1",note:"",flag:"Hali 복귀로 사용률 조정"},
+{n:"Deni Avdija",t:"POR",p:"G/F",mk:[34,40],mx:24,gp:68,chg:"Ja Morant 합류로 사용률 하락",s:"21.1P 7.1R 5.5A 0.9S 0.6B 3.3TO · OREB 1.3 · FG 46.8% (14.2FGA) · 3P 33.8% (5.5×) 1.8×3PM · FT 79.3% (7.5FTA) · 혼합 GP 68.5 · 31.9MPG · 25-26 57%",c:"PTS2 REB2 AST2 3PM1 DD1",note:"",flag:"포틀랜드에 Morant·Lillard·Holiday 동시 합류 — 사용률 대폭 하락 위험"},
+{n:"Devin Booker",t:"PHO",p:"G",mk:[26,32],mx:24,gp:69,s:"25.9P 4R 6.5A 0.8S 0.3B 3TO · OREB 0.9 · FG 45.8% (18.8FGA) · 3P 33.1% (6.5×) 2.1×3PM · FT 88.2% (7.4FTA) · 혼합 GP 68.8 · 35.2MPG · 25-26 56%",c:"PTS3 FT%3 3PM1 AST3 A/T1",note:"",flag:"빅맨 캣 기여 0"},
+{n:"Brandon Miller",t:"CHA",p:"G/F",mk:[21,27],mx:26,gp:57,s:"20.4P 4.9R 3.4A 1S 0.7B 2.6TO · OREB 1.1 · FG 42.8% (16.6FGA) · 3P 37.7% (8.8×) 3.3×3PM · FT 88.5% (3.3FTA) · 혼합 GP 56.8 · 31.1MPG · 25-26 78%",c:"PTS2 3PM3 FT%2 BLK1 3P%2",note:"",flag:""},
+{n:"Jalen Williams",t:"OKC",p:"G/F",mk:[20,26],mx:16,gp:54,s:"19.7P 5R 5.3A 1.4S 0.5B 2.1TO · OREB 0.9 · FG 48.4% (15.5FGA) · 3P 33.7% (3.8×) 1.3×3PM · FT 80.9% (4.1FTA) · 혼합 GP 54 · 30.7MPG · 25-26 41%",c:"PTS1 AST2 A/T2 STL3 FT%1",note:"A/T 2.89는 우수하나 3PT% 29.9%는 캣을 능동적으로 깎고 3PTM 0.7개는 기여가 없습니다. 33경기 출장이 결정적 감점.",flag:"33경기 · 3PT% 29.9% 악재"},
+{n:"Domantas Sabonis",t:"SAC",p:"F/C",mk:[15,23],mx:34,tag:"buy",gp:55,s:"18.1P 13.2R 5.5A 0.8S 0.3B 2.8TO · OREB 3.7 · FG 57.6% (12.5FGA) · 3P 35.0% (2×) 0.7×3PM · FT 74.6% (4.1FTA) · 혼합 GP 55.2 · 33.3MPG · 25-26 28%",chg:"2026-02 수술 → 개막까지 8개월 회복. 반월판은 복귀 후 기량 저하 사례가 적은 부상",atlev:"AST 4.1 / TOV 2.7 → 팀 A/T 한계 기여 −0.102 (마이너스)",c:"REB3 OREB3 AST2 DD3 FG%3 PTS1",note:"건강하면 REB·OREB·DD·FG%·PTS를 엘리트급으로 주는 건 유지되나, 제가 주장한 'A/T 방어' 근거는 실측 1.52로 반증됐습니다. 어시스트 4.1도 엘리트가 아닙니다. 그만큼 최대가를 낮췄습니다.",flag:"A/T를 능동적으로 깎음 · 무릎 수술 이력 · 실출장 ~20G"},
+{n:"Ivica Zubac",t:"IND",p:"C",mk:[8,14],mx:18,tag:"buy",gp:65,s:"15.5P 11.7R 2.5A 0.6S 1B 1.7TO · OREB 3.6 · FG 61.4% (10.9FGA) · 3P — (0×) 0×3PM · FT 68.5% (3FTA) · 혼합 GP 64.8 · 31.5MPG · 25-26 47%",chg:"클리퍼스→인디애나(2026 데드라인). Haliburton 복귀로 A/T 5.75급 패서와 결합 → DD 상승",c:"OREB3 REB3 FG%3 DD2 BLK2 TOV1",note:"2026 데드라인에 클리퍼스→인디애나. DD 24를 48경기에 기록(분당 생산 최상급)한 선수가 주전 C 자리를 잡았고, 여기에 Haliburton 복귀로 A/T 5.75급 패서가 붙습니다. 롤맨 빅에게 최상의 환경.",flag:"48경기 · FT% 악화 요인"},
+{n:"Naz Reid",t:"CHA",p:"F/C",mk:[5,11],mx:12,gp:78,chg:"미네소타→샬럿. Diabaté 출장 잠식 요인",s:"13.8P 6.1R 2.2A 0.9S 1B 1.5TO · OREB 1.2 · FG 45.9% (11.4FGA) · 3P 36.9% (5.8×) 2.1×3PM · FT 75.0% (1.7FTA) · 혼합 GP 78.2 · 26.7MPG · 25-26 59%",c:"3PM1 BLK2 TOV1 3P%1 REB1",note:"77경기 내구성이 강점. BLK 1.0은 리그 24위권. OREB 1.2는 낮아 OREB 공급원은 아닙니다.",flag:"FT% 73.2% 악재 · OREB 기여 낮음"},
+{n:"Julius Randle",t:"BKN",p:"F",mk:[9,15],mx:18,gp:75,chg:"미네소타→브루클린. 사용률 상승 여지",s:"20.2P 6.8R 4.9A 1S 0.2B 2.7TO · OREB 1.8 · FG 48.2% (14.7FGA) · 3P 32.6% (4.5×) 1.5×3PM · FT 80.3% (5.8FTA) · 혼합 GP 75.3 · 32.7MPG · 25-26 63%",atlev:"AST 5.0 / TOV 2.7 → 팀 A/T 한계 기여 −0.031 (마이너스)",c:"PTS2 REB2 AST1 DD1 OREB2 FT%1",note:"미네소타→브루클린 이적, 사용률 상승 가능.",flag:"TOV 높음"},
+{n:"Tyler Herro",t:"MIL",p:"G",mk:[14,20],mx:16,gp:60,chg:"마이애미→밀워키. Giannis 부재로 사용률 상승",s:"22.6P 5R 5A 0.8S 0.3B 2.3TO · OREB 0.5 · FG 47.5% (17FGA) · 3P 37.6% (7.9×) 3×3PM · FT 89.3% (3.8FTA) · 혼합 GP 59.8 · 33.8MPG · 25-26 39%",c:"PTS2 FT%3 3PM3 AST1 A/T1 3P%1",note:"FT% 91.7%는 리그 최상위급 수치입니다(출장 부족으로 공식 리더보드에는 미등재). Giannis 이탈로 사용률은 오릅니다.",flag:"33경기 — 최대 리스크"},
+{n:"AJ Dybantsa",t:"WAS",p:"G/F",mk:[10,18],mx:14,gp:null,s:"2026 드래프트 1순위 — 2025-26 NBA 실적 없음(검증 불가)",c:"PTS2 REB1 STL1",note:"2026 드래프트 1순위. 즉시 20득점 기대되나 캣 프로필은 미검증.",flag:"루키 · 워싱턴 사용률 혼잡 · 최대가는 순수 추정"},
+{n:"Darryn Peterson",t:"UTA",p:"G",mk:[4,12],mx:10,gp:null,s:"1.8P 1.6R 0.4A 0.3S 0.1B 0.2TO · OREB 0.4 · FG 33.8% (1.9FGA) · 3P 29.0% (1.5×) 0.4×3PM · FT 70.4% (0.4FTA) · 혼합 GP 20 · 8.3MPG · 25-26 26%",c:"PTS2 AST1 STL1",note:"2026 드래프트 2순위.",flag:"루키 · 최대가는 순수 추정"},
+{n:"Cameron Boozer",t:"MEM",p:"F",mk:[4,12],mx:12,gp:null,s:"2026 드래프트 3순위 — 2025-26 NBA 실적 없음(검증 불가)",c:"PTS2 REB2 DD1",note:"2026 드래프트 3순위. 멤피스 리빌딩으로 출장 확보 가능.",flag:"루키 · 멤피스 리빌딩으로 출장은 확보 가능 · 최대가는 순수 추정"},
+{n:"Reed Sheppard",t:"HOU",p:"G",mk:[5,11],mx:6,s:"10.8P 2.5R 2.8A 1.3S 0.6B 1.3TO · OREB 0.3 · FG 40.6% (9.4FGA) · 3P 37.7% (5.7×) 2.2×3PM · FT 80.5% (0.8FTA) · 혼합 GP 73.1 · 22.2MPG · 25-26 70%",chg:"휴스턴 유지. Amen Thompson·Tari Eason·Bogdanović·Smart와 백코트 경쟁",gp:73,c:"STL2 3PM1 3P%1 TOV1 A/T1 FT%1",note:"STL 1.5는 실측 상위권이나 같은 STL 1.5를 Ryan Rollins $9 · Jordan Goodwin $4로, 더 좋은 STL 2.0을 Ausar Thompson $8 · Cason Wallace $8로 살 수 있습니다. 3PT% 39.4%는 리그 top-25 밖이라 엘리트 가중치를 철회했고, FG% 43%는 FG% 캣을 능동적으로 깎습니다. 13.5득점 벤치 롤(6MOY 6위)로는 다른 캣을 메울 볼륨도 없습니다.",flag:"제 이전 $26/$20 평가는 Athlon 기사 한 줄에만 근거한 과대평가였습니다 · FG% 43% 마이너스"},
+{n:"Kon Knueppel",t:"CHA",p:"G/F",mk:[19,25],mx:26,tag:"buy",s:"18.5P 5.3R 3.4A 0.7S 0.2B 2TO · OREB 1.2 · FG 47.5% (13.4FGA) · 3P 42.5% (7.9×) 3.4×3PM · FT 86.3% (2.8FTA) · 혼합 GP 81 · 31.5MPG · 25-26 100%",lev:"3PA 7.9/G · 주간 28시도 · 팀 지분 20.5% → 3PT% 기여 +1.33pp (그룹 2위) · 변동성 ±9.4pp (그룹 최저)",gp:81,c:"3PM3 3P%3 FT%2 PTS1 TOV1",note:"레버리지 2위 + 변동성 최저 + 3PTM 3.4개. 이 그룹에서 3PT%와 3PTM을 동시에 가장 확실히 주는 선수입니다.",flag:"빅맨 캣 기여 0"},
+{n:"Luke Kennard",t:"PHX",p:"G",mk:[1,4],mx:5,tag:"buy",chg:"피닉스 합류",s:"8.6P 2.5R 2.6A 0.7S 0.1B 0.9TO · OREB 0.5 · FG 51.3% (6FGA) · 3P 46.2% (3.4×) 1.6×3PM · FT 90.7% (0.9FTA) · 혼합 GP 73.4 · 22MPG · 25-26 64%",lev:"3PA 3.1/G · 주간 11시도 · 팀 지분 8.0% → 3PT% 기여 +0.95pp (그룹 8위) · 주간 변동성 ±15.2pp (그룹 최악)",gp:73,c:"3P%3 FT%1 TOV2 FG%1 A/T2",note:"rate는 리그 1위(47.8%)지만 비율 캣은 팀 합계 기준이라 시도 지분만큼만 레버리지가 생깁니다. 주간 11시도로는 팀 3PT%를 +0.95pp만 밀어올리는데, 이는 42% 고볼륨 슈터보다 낮습니다. 게다가 시도가 적어 주간 변동성이 ±15.2pp로 그룹 최악 — 한 경기 0/4면 그 주 비율이 무너지고 볼륨으로 상쇄할 수도 없습니다.",flag:"제 이전 $14 평가는 rate만 보고 볼륨을 무시한 오류입니다"},
+{n:"Grayson Allen",t:"CHA",p:"G",mk:[1,5],mx:5,tag:"dart",chg:"피닉스→샬럿",s:"13.8P 3R 3A 1.1S 0.3B 1.4TO · OREB 0.6 · FG 42.3% (10.6FGA) · 3P 38.4% (7.4×) 2.7×3PM · FT 83.8% (2.6FTA) · 혼합 GP 56.9 · 26.7MPG · 25-26 54%",gp:57,c:"3PM2 FT%1 STL1 TOV1 A/T1 3P%2",note:"3PT% 특화. 피닉스→샬럿 이적(Miles Bridges 반대급부).",flag:"3PT% 엘리트 아님 — 근거 수정됨"},
+{n:"Gary Trent Jr.",t:"MIL",p:"G",mk:[5,11],mx:2,chg:"밀워키 4년 $64M 연장. Giannis 이탈로 3점 볼륨 상승 여지",tag:"burn",s:"9.4P 1.6R 1.2A 0.7S 0B 0.6TO · OREB 0.2 · FG 40.6% (8FGA) · 3P 38.4% (5.6×) 2.1×3PM · FT 80.3% (1FTA) · 혼합 GP 68.9 · 23.1MPG · 25-26 56%",gp:69,c:"3PM1 TOV3 3P%2 FT%1",note:"제가 3PTM 엘리트로 분류한 게 큰 오류였습니다. 8.1득점 1.9×3P 1.0리바운드로 13캣 어느 항목에도 의미 있는 기여가 없습니다. 4년 $64M 연장은 판타지 가치와 무관합니다.",flag:"매수 대상 아님 — 코어 후보에서 제외됨"},
+{n:"Norman Powell",t:"CHI",p:"G",mk:[8,14],mx:16,s:"21.7P 3.4R 2.3A 1.1S 0.2B 1.9TO · OREB 0.4 · FG 47.6% (15.6FGA) · 3P 39.6% (7.1×) 2.8×3PM · FT 81.8% (5.1FTA) · 혼합 GP 58.8 · 30.8MPG · 25-26 59%",chg:"마이애미→시카고 2년 $45M",gp:59,c:"PTS2 3PM2 FT%1 3P%2 STL1 TOV1",note:"시카고 2년 $45M.",flag:""},
+{n:"Bogdan Bogdanović",t:"HOU",p:"G",mk:[1,4],mx:4,tag:"dart",s:"9.5P 2.8R 2.5A 0.6S 0.2B 1.3TO · OREB 0.4 · FG 41.2% (8.1FGA) · 3P 35.7% (4.9×) 1.7×3PM · FT 84.8% (1.2FTA) · 혼합 GP 41.9 · 22.9MPG · 25-26 39%",gp:42,c:"TOV1 FT%1 3PM1",note:"휴스턴 이적. 3PT% 저가 조달.",flag:"3PT% 엘리트 아님 — 근거 수정됨"},
+{n:"Isaiah Joe",t:"DET",p:"G",mk:[1,3],mx:10,tag:"buy",s:"10.7P 2.5R 1.4A 0.7S 0.2B 0.6TO · OREB 0.5 · FG 44.9% (7.7FGA) · 3P 41.8% (6.1×) 2.5×3PM · FT 86.4% (1.3FTA) · 혼합 GP 72.2 · 21.4MPG · 25-26 59%",chg:"OKC→디트로이트",gp:72,c:"3P%3 3PM2 TOV3 FT%1 A/T1",note:"OKC→디트로이트. 3PT% 전용 다트.",flag:"볼륨 낮음"},
+{n:"Quentin Grimes",t:"LAL",p:"G",mk:[4,10],mx:7,s:"13.9P 3.9R 3.2A 0.9S 0.4B 1.8TO · OREB 0.7 · FG 45.7% (10.5FGA) · 3P 35.4% (5.3×) 1.9×3PM · FT 80.7% (3.1FTA) · 혼합 GP 75 · 28.4MPG · 25-26 60%",gp:75,c:"FT%1 TOV1 3PM1",note:"제가 3PTM 볼륨형으로 분류했으나 1.7개에 3PT% 33.4%로 두 캣 모두 기여가 없거나 마이너스입니다.",flag:"3PT% 33.4% 악재 — 근거 수정됨"},
+{n:"Tim Hardaway Jr.",t:"MIA",p:"G/F",mk:[1,3],mx:10,tag:"buy",s:"12.5P 2.5R 1.5A 0.5S 0.1B 0.5TO · OREB 0.2 · FG 43.1% (9.3FGA) · 3P 39.2% (6.5×) 2.6×3PM · FT 82.8% (2.3FTA) · 혼합 GP 78.8 · 27.1MPG · 25-26 60%",lev:"3PA 6.9/G · 주간 24시도 · 지분 17.9% → 기여 +0.84pp (그룹 11위) · 변동성 ±10.0pp",gp:79,c:"3P%2 3PM2 TOV3 FT%1 A/T1",note:"레버리지는 중위권이지만 3PTM 2.8개 볼륨이 확실하고 $1~4 구간이라 가성비는 유지됩니다.",flag:"출장 변동"},
+{n:"Luguentz Dort",t:"ATL",p:"G/F",mk:[4,10],mx:4,tag:"burn",s:"9P 3.8R 1.4A 1S 0.4B 0.8TO · OREB 1 · FG 40.5% (7.9FGA) · 3P 37.2% (5.6×) 2.1×3PM · FT 74.2% (0.7FTA) · 혼합 GP 69.8 · 27.8MPG · 25-26 59%",chg:"OKC→애틀랜타. 팀 변경으로 볼륨 상승 여지는 있으나 실측 기반이 약함",gp:70,c:"3PM1 TOV3 3P%1",note:"제가 STL 엘리트로 잘못 분류한 선수. 실측 STL 0.9는 리그 상위권이 아니고(top-10 컷 1.5), 8.3득점에 FG% 38.5% 커리어 최저라 FG% 캣을 능동적으로 깎습니다. 2024-25에 3P 41.2%를 찍었지만 FG%가 무너진 시즌이라 3PT%도 하락 가능. 온볼 수비 가치는 판타지 스탯으로 잡히지 않습니다.",flag:"매수 대상 아님 · 이름값에 남이 지르게 두세요"},
+{n:"CJ McCollum",t:"ATL",p:"G",mk:[4,10],mx:12,s:"19.5P 3.5R 4A 0.8S 0.5B 1.8TO · OREB 0.8 · FG 45.1% (16.1FGA) · 3P 37.4% (7.2×) 2.7×3PM · FT 75.4% (3.1FTA) · 혼합 GP 69.4 · 30.8MPG · 25-26 67%",gp:69,c:"PTS1 3PM2 A/T1 3P%1 TOV1",note:"76경기 전 경기 출장급 내구성.",flag:"FT% 77.2%는 플러스 아님 · 빅맨 캣 전무"},
+{n:"Kelly Oubre Jr.",t:"IND",p:"G/F",mk:[1,4],mx:8,s:"14.5P 5.5R 1.7A 1.4S 0.5B 1.4TO · OREB 1.3 · FG 46.8% (11.6FGA) · 3P 33.0% (4.4×) 1.5×3PM · FT 75.9% (3FTA) · 혼합 GP 54.4 · 32.9MPG · 25-26 55%",gp:54,c:"STL3 TOV1",note:"인디애나 2년 $17M.",flag:"50경기 · 어시스트 1.6으로 A/T 마이너스"},
+{n:"Jordan Clarkson",t:"NYK",p:"G",mk:[1,3],mx:1,tag:"dart",s:"10.5P 2.2R 1.9A 0.5S 0.1B 1.3TO · OREB 0.8 · FG 44.0% (8.8FGA) · 3P 33.6% (3.8×) 1.3×3PM · FT 82.2% (2FTA) · 혼합 GP 63.1 · 19.9MPG · 25-26 74%",gp:63,c:"TOV1 FT%1",note:"뉴욕 합류.",flag:"13캣 기여 사실상 없음"},
+{n:"Khris Middleton",t:"WAS",p:"G/F",mk:[1,3],mx:6,s:"10.7P 3.7R 3.2A 0.8S 0.1B 1.6TO · OREB 0.7 · FG 43.5% (8.7FGA) · 3P 36.0% (3.2×) 1.2×3PM · FT 87.0% (2.2FTA) · 혼합 GP 55.7 · 22.8MPG · 25-26 71%",gp:56,c:"FT%2 TOV1",note:"FT% 87.5%만 유효한 기여. 63경기지만 출장 시간이 짧습니다.",flag:"10.2득점·22.8분으로 FT 시도량이 적어 팀 FT% 기여 제한적"},
+{n:"Keyonte George",t:"UTA",p:"G",mk:[13,19],mx:22,chg:"유타 유망주 노선. Darryn Peterson(2순위) 합류로 볼 점유 경쟁",s:"20.5P 3.7R 5.9A 0.9S 0.2B 2.9TO · OREB 0.4 · FG 42.7% (15.1FGA) · 3P 35.8% (7.1×) 2.5×3PM · FT 85.9% (5.8FTA) · 혼합 GP 59.9 · 32.4MPG · 25-26 54%",gp:60,c:"AST2 3PM2 FT%2 PTS2 A/T1",note:"유타 유망주 노선의 수혜자. 어시스트 볼륨 상승 기대.",flag:"TOV 높음 · Darryn Peterson 합류"},
+{n:"Jaylen Brown",t:"PHI",p:"G/F",mk:[19,25],mx:26,chg:"보스턴→필라델피아. Maxey·LeBron과 사용률 3분할",s:"26.3P 6.5R 4.9A 1.1S 0.4B 3.2TO · OREB 1.2 · FG 47.2% (20.2FGA) · 3P 33.9% (5.7×) 1.9×3PM · FT 78.3% (6.6FTA) · 혼합 GP 68 · 34.4MPG · 25-26 62%",atlev:"AST 5.1 / TOV 3.6 → 팀 A/T 한계 기여 −0.154 — 검증 대상 중 최악",gp:68,c:"PTS3 REB1 AST1 3PM1 STL1",note:"득점 리그 4위가 확인되어 PTS 캣 기여는 확실합니다. 다만 A/T 1.42는 최하위권이고 3PT%·FT%가 top-25 밖입니다.",flag:"A/T 최하위권"},
+{n:"Kyrie Irving",t:"DAL",p:"G",mk:[12,18],mx:10,s:"24.7P 4.8R 4.6A 1.3S 0.5B 2.2TO · OREB 1.2 · FG 47.3% (18.9FGA) · 3P 40.1% (7.2×) 2.9×3PM · FT 91.6% (4.3FTA) · 혼합 GP 50 · 36.1MPG · 25-26 0%",gp:50,c:"PTS2 FT%3 AST1 3P%3 STL2 3PM3 A/T1",note:"효율 캣(FG%·FT%·3PT%) 세 개를 동시에 올리는 유형.",flag:"3PT% 엘리트 아님 · 부상 이력"},
+{n:"Tyus Jones",t:"DEN",p:"G",mk:[1,3],mx:6,tag:"dart",chg:"덴버 1년 계약. Jamal Murray 뒤 백업",s:"6.2P 1.7R 3.7A 0.7S 0B 0.7TO · OREB 0.3 · FG 39.3% (5.6FGA) · 3P 34.6% (3.3×) 1.2×3PM · FT 83.0% (0.4FTA) · 혼합 GP 73.2 · 20MPG · 25-26 55%",atlev:"A/T 실측 미확보 — 4+APG 리더보드 미포함(AST 4.0 미달)",gp:73,c:"A/T3 TOV3 FT%1",note:"커리어 A/T가 리그 최상위권인 대표적 저턴오버 패서. A/T와 TOV 두 캣을 $4로 동시 지원 — 빅맨 헤비 빌드의 구조적 약점을 가장 싸게 메우는 카드.",flag:"커리어 A/T는 높으나 2025-26 볼륨 미검증 · 덴버 백업"},
+{n:"Dennis Schröder",t:"CHA",p:"G",mk:[2,8],mx:12,tag:"dart",chg:"클리블랜드→샬럿",s:"11.8P 2.7R 5.1A 0.8S 0.2B 1.8TO · OREB 0.5 · FG 40.5% (9.8FGA) · 3P 33.4% (4×) 1.4×3PM · FT 83.6% (2.9FTA) · 혼합 GP 72.1 · 25.8MPG · 25-26 58%",atlev:"AST 4.9 / TOV 1.8 → 팀 A/T 한계 기여 +0.110 (리그 11위)",gp:72,c:"AST2 A/T2 FT%1 TOV1",note:"클리블랜드→샬럿(Tre Mann 반대급부). 어시스트 볼륨 + A/T.",flag:""},
+{n:"Collin Gillespie",t:"PHX",p:"G",mk:[1,3],mx:4,tag:"dart",s:"11.2P 3.7R 4.1A 1.1S 0.2B 1.4TO · OREB 1 · FG 42.1% (9.3FGA) · 3P 40.8% (6.2×) 2.5×3PM · FT 87.2% (1FTA) · 혼합 GP 69.9 · 25.4MPG · 25-26 78%",atlev:"A/T 실측 미확보 — 4+APG 리더보드 미포함",gp:70,c:"A/T2 3PM2 3P%3 FT%1 TOV1 AST1 STL1",note:"피닉스 연장. A/T 특화 다트.",flag:"A/T 근거 없음"},
+{n:"Marcus Smart",t:"HOU",p:"G",mk:[1,3],mx:6,tag:"dart",s:"9.2P 2.6R 3.1A 1.3S 0.4B 1.5TO · OREB 0.6 · FG 39.5% (7.7FGA) · 3P 33.6% (4.5×) 1.5×3PM · FT 80.6% (2.1FTA) · 혼합 GP 54.5 · 26.2MPG · 25-26 73%",chg:"레이커스→휴스턴 이적",gp:54,c:"STL2 TOV1 FT%1",note:"휴스턴 합류. 스틸 전용.",flag:"공격 기여 미미"},
+{n:"Ayo Dosunmu",t:"MIN",p:"G",mk:[2,8],mx:10,chg:"미네소타 5년 $112M 연장. LaMelo 합류로 볼 점유 감소",tag:"buy",s:"14P 3.4R 3.9A 0.8S 0.3B 1.4TO · OREB 0.7 · FG 50.9% (10.5FGA) · 3P 40.5% (4.1×) 1.6×3PM · FT 84.8% (2FTA) · 혼합 GP 61.9 · 28.2MPG · 25-26 69%",lev:"3PA 4.1/G · 주간 14시도 · 지분 10.6% → 기여 +0.84pp (그룹 12위) · 변동성 ±13.1pp",gp:62,c:"3P%2 FT%1 FG%1 A/T2 TOV1",note:"미네소타 5년 $112M 연장.",flag:"볼륨 중하위 · LaMelo 합류로 볼 점유 감소"},
+{n:"Coby White",t:"CHA",p:"G",mk:[8,14],mx:10,chg:"샬럿 3년 $74M 연장",s:"18.9P 3.5R 4.2A 0.7S 0.1B 2.5TO · OREB 0.3 · FG 45.0% (13.8FGA) · 3P 36.6% (7.1×) 2.6×3PM · FT 85.9% (4.5FTA) · 혼합 GP 61.9 · 29MPG · 25-26 50%",gp:62,c:"3PM2 FT%2 PTS1 3P%1 AST1",note:"샬럿 3년 $74M 연장.",flag:"50경기 · A/T 1.54 부진 · 빅맨 캣 전무"},
+{n:"D'Angelo Russell",t:"MEM",p:"G",mk:[1,3],mx:8,chg:"멤피스 합류. Morant 이탈로 볼 점유 확보",s:"11.6P 2.6R 4.7A 0.8S 0.3B 1.9TO · OREB 0.3 · FG 39.6% (10.2FGA) · 3P 30.6% (5.4×) 1.7×3PM · FT 78.7% (2.4FTA) · 혼합 GP 45.1 · 22.9MPG · 25-26 40%",gp:45,c:"AST1 A/T2 TOV1",note:"멤피스 합류. Morant 이탈로 볼 점유 확보.",flag:"FG% 악화 · TOV"},
+{n:"Collin Sexton",t:"LAL",p:"G",mk:[1,3],mx:10,tag:"dart",s:"16.5P 2.5R 3.6A 0.9S 0.1B 2.3TO · OREB 0.8 · FG 48.3% (12FGA) · 3P 40.3% (4.2×) 1.6×3PM · FT 85.9% (3.9FTA) · 혼합 GP 66.1 · 25.3MPG · 25-26 61%",gp:66,c:"FT%2 3P%2",note:"검증 결과 제 초기 평가보다 좋습니다. FG% 48.5% / 3PT% 40.1% / FT% 85.5%로 효율 3캣을 전부 소폭 밀어올리고 68경기 내구성까지. $2~6 구간에서 좋은 효율 다트.",flag:"어시스트·수비 스탯 미미"},
+{n:"Josh Okogie",t:"UTA",p:"G/F",mk:[1,3],mx:2,tag:"dart",s:"5.2P 2.7R 0.9A 0.9S 0.3B 0.6TO · OREB 1 · FG 43.0% (4.2FGA) · 3P 37.6% (2.2×) 0.8×3PM · FT 63.1% (1.2FTA) · 혼합 GP 68.3 · 16.9MPG · 25-26 74%",gp:68,c:"TOV3 3P%1",note:"유타 합류. 스틸 전용 $1 다트.",flag:"STL 엘리트 아님 — 근거 수정됨"},
+{n:"Toumani Camara",t:"POR",p:"F",mk:[8,14],mx:14,s:"12.6P 5.4R 2.4A 1.3S 0.5B 1.6TO · OREB 1.8 · FG 44.7% (10.2FGA) · 3P 37.2% (6.2×) 2.3×3PM · FT 71.3% (1.7FTA) · 혼합 GP 80.4 · 33.1MPG · 25-26 61%",chg:"포틀랜드 4년 $82M 연장(2029-30까지). Jerami Grant 이탈로 포워드 출장 안정",gp:80,c:"3PM2 STL2 OREB1 3P%1 TOV1",note:"포틀랜드 4년 $82M 연장으로 소속·역할 확정(2029-30까지). NBA 올디펜시브 세컨드팀. 13.1 PTS / 5.4 REB / 2.6 AST / STL 1.0에 3점 2.6개 — 스틸 특화가 아니라 3PTM 공급원으로 봐야 합니다. Jerami Grant가 Morant 트레이드로 빠져 포워드 출장은 안정적.",flag:"3PT% 미확인 · STL 1.0은 리그 상위권 아님"},
+{n:"Tari Eason",t:"HOU",p:"F",mk:[8,14],mx:10,chg:"휴스턴 5년 $81.5M 연장 = 역할 보장",s:"11.1P 6.3R 1.5A 1.4S 0.7B 1.3TO · OREB 2.1 · FG 44.4% (9.7FGA) · 3P 35.2% (3.9×) 1.4×3PM · FT 77.0% (1.4FTA) · 혼합 GP 58.8 · 25.5MPG · 25-26 61%",gp:59,c:"STL2 OREB2 REB1 TOV1",note:"제가 STL 엘리트로 분류했으나 실측 top-25 밖입니다. 휴스턴 5년 $81.5M 연장으로 역할은 보장되나 13캣 기여 근거가 약합니다.",flag:"STL 엘리트 아님 — 매수 태그 철회"},
+{n:"Zaccharie Risacher",t:"DAL",p:"G/F",mk:[4,10],mx:4,s:"10.9P 3.7R 1.1A 0.8S 0.5B 1TO · OREB 1.1 · FG 45.6% (9FGA) · 3P 36.2% (4.2×) 1.5×3PM · FT 67.3% (1.6FTA) · 혼합 GP 70.4 · 23.3MPG · 25-26 57%",gp:70,c:"TOV2",note:"9.6득점에 FT% 64.4%로 FT% 캣을 크게 깎습니다. 13캣 기여 근거가 거의 없습니다.",flag:"FT% 64.4% 심각 — 코어 후보에서 제외됨"},
+{n:"Shaedon Sharpe",t:"POR",p:"G",mk:[4,10],mx:9,chg:"Ja Morant 합류로 사용률 하락",s:"19.7P 4.4R 2.7A 1.2S 0.1B 2.5TO · OREB 1 · FG 45.2% (16.4FGA) · 3P 32.4% (6.3×) 2.1×3PM · FT 78.6% (3.7FTA) · 혼합 GP 60.8 · 30.3MPG · 25-26 51%",gp:61,c:"PTS1 3PM1 STL1",note:"득점은 20.8로 확실하나 A/T 0.90은 검증 대상 전체에서 최악 수준입니다 — TOV와 A/T 두 캣을 동시에 깎습니다.",flag:"A/T 0.90 최악 · 50경기 · 포틀랜드 가드 6명 경합(Morant·Lillard·Holiday)"},
+{n:"Scoot Henderson",t:"POR",p:"G",mk:[1,3],mx:3,chg:"Ja Morant 합류로 역할 축소",s:"13.3P 2.9R 4.5A 1S 0.2B 2.6TO · OREB 0.7 · FG 41.9% (10.8FGA) · 3P 35.3% (4.9×) 1.7×3PM · FT 79.7% (3.2FTA) · 혼합 GP 51.4 · 26MPG · 25-26 40%",gp:51,c:"AST1 3PM1",note:"",flag:"30경기 · FG% 41.8% 악재 · 포틀랜드에 Morant·Lillard·Holiday 합류로 역할 소멸 위험"},
+{n:"Isaiah Hartenstein",t:"OKC",p:"C",mk:[8,14],mx:12,chg:"OKC 3년 $75.5M 연장 = 주전 확정",s:"10.1P 10R 3.6A 0.9S 0.9B 1.7TO · OREB 3.1 · FG 60.4% (7.2FGA) · 3P 0.0% (0.2×) 0×3PM · FT 63.9% (2.2FTA) · 혼합 GP 51.5 · 25.9MPG · 25-26 55%",gp:52,c:"REB3 FG%3 DD1 OREB3 BLK2 TOV1 A/T1",note:"제가 OREB 엘리트로 분류했으나 실측 top-25 밖입니다. OKC 3년 $75.5M 연장으로 주전은 확정.",flag:"OREB 엘리트 아님 — 매수 태그 철회"},
+{n:"John Collins",t:"DET",p:"F/C",mk:[4,10],mx:10,tag:"buy",chg:"디트로이트 3년 $51M. Duren과 프론트코트 공유, Stewart는 멤피스로 이탈",s:"15.1P 6.1R 1.3A 0.9S 0.8B 1.7TO · OREB 1.8 · FG 54.5% (10.6FGA) · 3P 40.4% (3.3×) 1.4×3PM · FT 78.9% (2.7FTA) · 혼합 GP 60.9 · 28MPG · 25-26 72%",lev:"3PA 3.2/G · 주간 11시도 · 지분 8.3% → 기여 +0.38pp (그룹 최하위) · 변동성 ±14.7pp",gp:61,c:"FG%2 BLK1 OREB1 3P%2 TOV1 REB1",note:"디트로이트 3년 $51M. OREB·FG%와 3점을 동시에 주는 드문 빅 — FT% 펀트 없이도 담을 수 있음.",flag:"3PT%·OREB 모두 엘리트 아님 — 가치는 FG%·REB·BLK·DD에서 나옴"},
+{n:"Kristaps Porziņģis",t:"GSW",p:"F/C",mk:[7,13],mx:7,chg:"골든스테이트 연장",s:"18P 5.9R 2.3A 0.6S 1.3B 1.3TO · OREB 1.4 · FG 46.3% (12.8FGA) · 3P 37.2% (5.5×) 2.1×3PM · FT 82.7% (4.8FTA) · 혼합 GP 36.7 · 26.2MPG · 25-26 53%",gp:37,c:"3PM2 FT%1 PTS1 REB2 BLK3 OREB1 TOV1 3P%2",note:"골든스테이트 연장. 블록 + 3점 + FT%.",flag:"제가 BLK 엘리트로 오분류 · GP 리스크 상습"},
+{n:"Draymond Green",t:"GSW",p:"F/C",mk:[3,9],mx:9,tag:"dart",chg:"골든스테이트 1년 $27.7M",s:"8.6P 5.7R 5.5A 1.1S 0.8B 2.7TO · OREB 0.9 · FG 42.0% (7.3FGA) · 3P 32.6% (4.2×) 1.4×3PM · FT 69.6% (1.6FTA) · 혼합 GP 68 · 28.2MPG · 25-26 60%",atlev:"AST 5.5 / TOV 2.7 → 팀 A/T 한계 기여 +0.008 (사실상 중립)",gp:68,c:"AST2 A/T1 STL1 BLK1",note:"골든스테이트 1년 $27.7M. 득점 없이 STL·BLK·AST·A/T·REB 다섯 캣을 지원하는 유형 — 13캣에서만 가치가 성립.",flag:"STL 엘리트 아님 · A/T도 평범"},
+{n:"Bobby Portis",t:"MIA",p:"F/C",mk:[1,3],mx:11,tag:"buy",chg:"밀워키→마이애미(Giannis 동행)",s:"13.8P 7.1R 1.8A 0.6S 0.3B 1.1TO · OREB 1.5 · FG 48.1% (11.5FGA) · 3P 42.6% (4.1×) 1.8×3PM · FT 74.9% (1.2FTA) · 혼합 GP 61.1 · 24.6MPG · 25-26 67%",lev:"3PA 4.4/G · 주간 15시도 · 지분 11.4% → 기여 +1.10pp (그룹 4위) · 변동성 ±12.7pp",gp:61,c:"3P%3 REB2 TOV2 3PM1",note:"rate 리그 2위(45.6%)로 레버리지 4위. 다만 볼륨이 중간이라 변동성 ±12.7pp는 감안해야 합니다. OREB 기대는 실측 1.2로 반증됐습니다.",flag:"OREB 엘리트 아님 · 벤치 롤"},
+{n:"Moritz Wagner",t:"BKN",p:"C",mk:[1,3],mx:5,tag:"dart",chg:"브루클린 2년 $19M. Claxton 이탈로 출장 확대 여지",s:"9P 3.8R 1A 0.5S 0.2B 0.9TO · OREB 1 · FG 47.5% (6.4FGA) · 3P 33.0% (2.1×) 0.7×3PM · FT 78.3% (2.6FTA) · 혼합 GP 33.9 · 14.4MPG · 25-26 64%",gp:34,c:"FG%2 PTS2 OREB1",note:"브루클린 2년 $19M.",flag:"OREB 엘리트 아님"},
+{n:"DeAndre Jordan",t:"NOP",p:"C",mk:[1,3],mx:2,tag:"dart",s:"3.9P 5.4R 0.9A 0.3S 0.6B 0.7TO · OREB 1.7 · FG 65.1% (2.5FGA) · 3P — (0×) 0×3PM · FT 47.7% (1.2FTA) · 혼합 GP 45.3 · 13.3MPG · 25-26 24%",gp:45,c:"FG%2 OREB1 TOV3",note:"뉴올리언스 2년 $8M. 분당 OREB·FG%만 필요할 때.",flag:"OREB 엘리트 아님 · 출장 매우 적음"},
+{n:"Jaxson Hayes",t:"UTA",p:"C",mk:[1,3],mx:4,tag:"dart",chg:"유타 합류. Kessler 이탈로 C 출장 여지, JJJ와 경쟁",s:"7.2P 4.4R 0.9A 0.5S 0.8B 0.6TO · OREB 1.5 · FG 74.4% (4FGA) · 3P 63.9% (0×) 0×3PM · FT 64.2% (2.1FTA) · 혼합 GP 62.4 · 18.7MPG · 25-26 63%",gp:62,c:"FG%3 BLK2 TOV3 3P%1",note:"유타 합류. Kessler 이탈로 C 출장 확보 여지.",flag:"OREB 엘리트 아님"},
+{n:"Thomas Bryant",t:"CLE",p:"C",mk:[1,3],mx:2,tag:"dart",s:"6.3P 3.6R 0.7A 0.3S 0.5B 0.5TO · OREB 1.1 · FG 50.7% (4.7FGA) · 3P 34.4% (2.2×) 0.8×3PM · FT 82.7% (1.1FTA) · 혼합 GP 62.5 · 13.2MPG · 25-26 57%",gp:62,c:"FG%1 TOV3 FT%1",note:"클리블랜드 재계약.",flag:"Allen·Mobley 뒤"},
+{n:"Larry Nance Jr.",t:"IND",p:"F/C",mk:[1,3],mx:3,tag:"dart",chg:"인디애나 합류. Zubac 뒤 백업",s:"5.2P 3.2R 1.2A 0.7S 0.3B 0.6TO · OREB 0.9 · FG 44.9% (4.4FGA) · 3P 36.9% (2.2×) 0.9×3PM · FT 53.4% (0.4FTA) · 혼합 GP 31.5 · 14.8MPG · 25-26 68%",gp:32,c:"FG%2 STL1 OREB1",note:"인디애나 합류.",flag:"Zubac 뒤 백업"},
+{n:"Paul George",t:"BOS",p:"F",mk:[6,12],mx:8,chg:"필라델피아→보스턴",s:"16.8P 5.3R 3.9A 1.7S 0.4B 2.1TO · OREB 0.5 · FG 43.5% (13.9FGA) · 3P 37.8% (6.7×) 2.5×3PM · FT 81.8% (2.7FTA) · 혼합 GP 38.7 · 31.5MPG · 25-26 57%",gp:39,c:"STL3 3PM1 AST1 FT%1",note:"STL 1.7과 3PTM 2.7개는 비율상 상위권입니다(37경기라 공식 리더보드 미등재). 순수 레이트로는 저평가 자산.",flag:"37경기 — 레이트는 좋지만 출장이 치명적"},
+{n:"Brandon Ingram",t:"LAC",p:"F",mk:[11,17],mx:20,chg:"토론토→클리퍼스. Harden·Zubac 이탈로 사용률 상승 여지",s:"21.6P 5.6R 3.9A 0.8S 0.7B 2.6TO · OREB 0.8 · FG 47.5% (16.9FGA) · 3P 38.1% (4.8×) 1.9×3PM · FT 82.5% (4.4FTA) · 혼합 GP 69 · 33.7MPG · 25-26 86%",gp:69,c:"PTS2 FT%1 3P%1 3PM1",note:"토론토→클리퍼스(Kawhi 반대급부). Harden·Zubac 이탈로 사용률 상승 여지.",flag:"3PT% 약점 · GP 리스크"},
+{n:"Tobias Harris",t:"SAS",p:"F",mk:[1,3],mx:8,s:"13.5P 5.4R 2.4A 0.9S 0.6B 1.1TO · OREB 0.9 · FG 47.2% (10.7FGA) · 3P 35.8% (3.5×) 1.3×3PM · FT 86.4% (2.4FTA) · 혼합 GP 67.4 · 29.4MPG · 25-26 56%",gp:67,c:"FT%2 A/T1 TOV2",note:"턴오버 1.0개로 A/T 2.50 — 포워드로서 우수합니다. FT% 86.6%도 플러스. 저가 안정형.",flag:"FT% 86.6%지만 시도량이 중간 — 레버리지 제한적"},
+{n:"Jerami Grant",t:"MEM",p:"F",mk:[1,3],mx:10,chg:"포틀랜드→멤피스",tag:"dart",s:"17.1P 3.5R 2.1A 0.8S 0.7B 1.9TO · OREB 0.9 · FG 42.5% (12.6FGA) · 3P 38.1% (6.2×) 2.4×3PM · FT 82.6% (4.9FTA) · 혼합 GP 53.5 · 30.7MPG · 25-26 64%",gp:54,c:"3PM2 3P%1 FT%1 BLK1 TOV1",note:"18.6득점에 3PT% 38.9%로 제 초기 평가보다 좋습니다. 멤피스 리빌딩에서 볼륨 확보 가능.",flag:"57경기 · 어시스트 2.1로 A/T 마이너스"},
+{n:"Santi Aldama",t:"DAL",p:"F/C",mk:[1,3],mx:5,tag:"dart",s:"13.2P 6.5R 2.9A 0.8S 0.5B 1.2TO · OREB 1.5 · FG 48.1% (10.5FGA) · 3P 35.9% (4.9×) 1.7×3PM · FT 67.9% (2FTA) · 혼합 GP 54 · 26.7MPG · 25-26 49%",gp:54,c:"REB1 TOV1 OREB1 A/T1 3PM1",note:"멤피스→댈러스.",flag:"출장 변동"},
+{n:"Ja Morant",t:"POR",p:"G",mk:[32,40],mx:17,s:"21.8P 3.8R 7.6A 1.1S 0.2B 3.7TO · OREB 0.6 · FG 43.8% (17.2FGA) · 3P 28.1% (5.2×) 1.5×3PM · FT 85.1% (6.2FTA) · 혼합 GP 38.8 · 29.7MPG · 25-26 37%",chg:"멤피스→포틀랜드(Jerami Grant·Kris Murray 반대급부). Clingan에 픽앤롤 공급, Sharpe·Avdija·Scoot 사용률 잠식",atlev:"AST 8.1 / TOV 3.6 → 팀 A/T 한계 기여 +0.066 (미미)",gp:39,c:"AST3 PTS2 FT%2 DD2 STL2 3PM1",note:"A/T 2.27은 엘리트 PG 중 중하위권이고 TOV가 많아 두 캣 모두 손해. 3점 효율도 약해 13캣 프로필이 시장가에 못 미칩니다.",flag:"GP 리스크 상습 · FG%·3PT% 약점"},
+{n:"Miles Bridges",t:"PHX",p:"F",mk:[4,10],mx:12,chg:"샬럿→피닉스(Grayson Allen·Royce O'Neale 반대급부)",s:"18.2P 6.4R 3.4A 0.6S 0.5B 1.6TO · OREB 1 · FG 45.0% (14.7FGA) · 3P 32.6% (6.2×) 2×3PM · FT 83.9% (3.5FTA) · 혼합 GP 72.4 · 31.2MPG · 25-26 64%",gp:72,c:"A/T1 FT%2 3PM1 TOV1 PTS1 REB1",note:"77경기 내구성 + A/T 2.29는 포워드로서 준수. 3PT% 33.3%는 마이너스.",flag:"3PT% 악재 · OREB·BLK·DD 기여 없음"},
+{n:"James Harden",t:"CLE",p:"G",mk:[31,39],mx:30,gp:74,s:"23.3P 5.2R 8.3A 1.3S 0.5B 3.8TO · OREB 0.6 · FG 42.4% (16.2FGA) · 3P 36.5% (8.3×) 3.1×3PM · FT 88.0% (7.4FTA) · 혼합 GP 73.9 · 35MPG · 25-26 57%",chg:"클리퍼스→클리블랜드. Darius Garland 이탈로 주전 PG 확보, Mitchell과 볼 공유",atlev:"AST 8.0 / TOV 3.5 → 팀 A/T 한계 기여 +0.074 — 어시스트 볼륨은 크나 턴오버가 상쇄",c:"AST3 3PM3 FT%3 PTS2 STL2 DD1 A/T1 3P%1",note:"2026 데드라인에 클리퍼스→클리블랜드(Darius Garland 반대급부). Garland가 떠났으니 캐브스 주전 PG. DD 20을 70경기에 기록 — 득점+어시스트 조합 DD라 가드 중 드문 프로필.",flag:"TOV 높고 A/T 평범 · 나이 · Donovan Mitchell과 볼 공유"},
+{n:"Darius Garland",t:"LAC",p:"G",mk:[22,30],mx:24,gp:61,chg:"클리블랜드→클리퍼스. Harden·Zubac 동시 이탈로 볼 독점 → 사용률 대폭 상승",s:"19.7P 2.7R 6.7A 1.1S 0.1B 2.7TO · OREB 0.5 · FG 46.6% (15.3FGA) · 3P 39.9% (7×) 2.8×3PM · FT 87.0% (3.1FTA) · 혼합 GP 60.8 · 30.3MPG · 25-26 47%",c:"PTS1 AST3 A/T2 3PM2 3P%2 FT%2 STL1",note:"클리블랜드→클리퍼스(Harden 반대급부). Harden·Zubac이 동시에 빠진 클리퍼스에서 볼을 독점할 자리 — 사용률 대폭 상승 여지. FT%·3PT% 효율에 A/T도 준수.",flag:"45경기만 출장 — 벤치 2칸 리그에서 큰 리스크 · 빅맨 캣 전무"},
+{n:"Bennedict Mathurin",t:"LAC",p:"G/F",mk:[10,16],mx:20,gp:62,chg:"인디애나→클리퍼스. Harden·Zubac 이탈로 득점 기회 확대",s:"16.9P 5.4R 2.2A 0.8S 0.2B 2.1TO · OREB 1.1 · FG 44.3% (12.2FGA) · 3P 32.7% (4.2×) 1.4×3PM · FT 85.1% (5.4FTA) · 혼합 GP 62.5 · 29.9MPG · 25-26 52%",c:"FT%2",note:"인디애나→클리퍼스(Zubac 반대급부). 득점 기회 확대.",flag:"OREB·DD·A/T 기여 0"},
+{n:"Isaiah Jackson",t:"LAC",p:"C",mk:[1,3],mx:3,tag:"dart",gp:52,s:"6.7P 5.3R 0.9A 0.7S 0.9B 1.1TO · OREB 2.1 · FG 63.5% (4.3FGA) · 3P 0.0% (0.1×) 0×3PM · FT 63.9% (2FTA) · 혼합 GP 52.1 · 16.5MPG · 25-26 94%",c:"OREB2 FG%2 BLK2 TOV2",note:"인디애나→클리퍼스. Zubac이 떠난 클리퍼스 프론트코트에서 출장 확보 가능한 블록·OREB 다트.",flag:"제가 BLK 엘리트로 오분류 · 출장 매우 적음"},
+{n:"Paolo Banchero",t:"ORL",p:"F/C",mk:[24,30],mx:22,s:"23.3P 8.1R 5.1A 0.7S 0.6B 3.1TO · OREB 1.2 · FG 45.7% (17.1FGA) · 3P 30.9% (4.4×) 1.4×3PM · FT 76.1% (8.3FTA) · 혼합 GP 64.2 · 34.7MPG · 25-26 70%",gp:64,c:"PTS2 REB2 DD1 AST2",note:"제가 아예 빠뜨린 선수. 득점·리바운드·DD를 동시에 주고 72경기 내구성까지 확보.",flag:"OREB·BLK 기여 낮음"},
+{n:"T.J. McConnell",t:"IND",p:"G",mk:[1,3],mx:14,tag:"dart",s:"9.3P 2.3R 4.8A 1S 0.2B 1.2TO · OREB 0.5 · FG 52.9% (8FGA) · 3P 31.3% (0.8×) 0.3×3PM · FT 80.3% (0.7FTA) · 혼합 GP 67.1 · 17.5MPG · 25-26 51%",atlev:"AST 5.1 / TOV 1.1 → 팀 A/T 한계 기여 +0.261 — 리그 2위",gp:67,c:"A/T3 TOV1 AST1 FG%2 STL1 FT%1",note:"재검수 최대 발견. 한계 기여가 Jokić($88, +0.241)·Derrick White($44, +0.171)보다 높은데 시장가는 $1~4입니다. A/T와 TOV를 동시에 이기는 두 번째 선수.",flag:"Hali·Nembhard 뒤 3번째 가드 — 출장 리스크가 유일한 감점"},
+{n:"De'Aaron Fox",t:"SAS",p:"G",mk:[22,30],mx:24,s:"20.4P 4.2R 6.2A 1.3S 0.3B 2.5TO · OREB 0.7 · FG 47.8% (16.1FGA) · 3P 32.4% (5.7×) 1.8×3PM · FT 78.4% (4FTA) · 혼합 GP 68.4 · 32.9MPG · 25-26 63%",atlev:"AST 6.2 / TOV 2.3 → 팀 A/T 한계 기여 +0.130 (리그 10위)",gp:68,c:"AST2 A/T2 STL2 PTS2 3PM1",note:"A/T 2.70이 실측으로 확인된 고볼륨 패서. Wemby와 같은 팀이라 조합 시 시너지.",flag:"3PT% 약점 · GP 이력"},
+{n:"Jimmy Butler III",t:"GSW",p:"F",mk:[12,20],mx:14,injOut:true,s:"18.8P 5.5R 5.1A 1.4S 0.2B 1.5TO · OREB 2.3 · FG 51.2% (11.6FGA) · 3P 34.3% (2.1×) 0.7×3PM · FT 85.3% (7.4FTA) · 혼합 GP 46.3 · 31.4MPG · 25-26 50%",atlev:"AST 4.9 / TOV 1.6 → 팀 A/T 한계기여 +0.147 (리그 8위)",chg:"2026-01-19 ACL 파열. 골든스테이트는 개막을 그 없이 준비 중 — 최단 크리스마스, 최장 올스타 브레이크 복귀 전망",gp:46,c:"STL3 A/T3 FT%3 PTS1 TOV1 OREB2 AST2 FG%1",note:"A/T +0.147은 유효하지만 개막 후 2개월 이상 결장이 예상되고 복귀 일정이 불확실해 코어 자산으로 쓸 수 없습니다. 코어·대체후보·피벗에서 전면 제외됩니다.",flag:"🚑 장기 부상 제외 — ACL 파열, 복귀 12월 이후 불확실. 드래프트 직전 일정이 앞당겨지면 수동 해제"},
+{n:"Cam Spencer",t:"MEM",p:"G",mk:[1,3],mx:6,tag:"dart",s:"9.8P 2.3R 4.8A 0.6S 0.2B 1.1TO · OREB 0.6 · FG 46.2% (6.9FGA) · 3P 43.3% (4×) 1.8×3PM · FT 95.1% (1.7FTA) · 혼합 GP 63.2 · 21.2MPG · 25-26 81%",lev:"3PA 4.5/G · 주간 16시도 · 지분 11.7% → 3PT% 기여 +1.04pp (그룹 6위) · 변동성 ±12.5pp",atlev:"A/T 4.3이나 AST 볼륨 미확보(4.0 미달) → 한계 기여 추정 +0.08~0.15",gp:63,c:"3P%3 FT%2 A/T3 TOV2 AST1 3PM1",note:"3PT% 레버리지는 6위로 양호. 단 FT% 94.0%는 시도량이 매우 적어 팀 FT%를 거의 움직이지 못하므로 엘리트 가중치를 철회했습니다.",flag:"A/T·FT% 모두 볼륨 미확보 — 비율만 높음 · 출장 변동"},
+{n:"Sam Merrill",t:"CLE",p:"G",mk:[1,3],mx:8,tag:"buy",s:"10.1P 2.4R 2A 0.6S 0.1B 0.7TO · OREB 0.5 · FG 43.5% (7.7FGA) · 3P 39.8% (6.2×) 2.5×3PM · FT 90.8% (0.9FTA) · 혼합 GP 61.1 · 23.3MPG · 25-26 52%",lev:"3PA 7.2/G · 주간 25시도 · 팀 지분 18.7% → 3PT% 기여 +1.14pp (그룹 3위) · 변동성 ±9.8pp",gp:61,c:"3P%2 3PM2 TOV3 FT%1 A/T2",note:"레버리지 기준 3위. 고볼륨(7.2시도)이라 변동성도 낮고 3PTM 3.0개까지 동시에 줍니다 — 비율과 누적을 한 슬롯에서."},
+{n:"AJ Green",t:"MIL",p:"G",mk:[1,3],mx:11,tag:"buy",s:"9.2P 2.6R 1.7A 0.5S 0.1B 0.8TO · OREB 0.3 · FG 42.6% (7.1FGA) · 3P 42.2% (6.3×) 2.7×3PM · FT 84.0% (0.6FTA) · 혼합 GP 76.1 · 26.6MPG · 25-26 61%",lev:"3PA 7.1/G · 주간 25시도 · 팀 지분 18.4% → 3PT% 기여 +1.09pp (그룹 5위) · 변동성 ±9.9pp",note:"고볼륨 고효율. 3PTM 3.0개 동시 기여.",gp:76,c:"3P%3 3PM2 TOV2 FT%1 A/T1"},
+{n:"Duncan Robinson",t:"DET",p:"G/F",mk:[1,3],mx:9,tag:"dart",s:"11.7P 2.5R 2.2A 0.6S 0.2B 0.9TO · OREB 0.3 · FG 44.9% (9.1FGA) · 3P 40.3% (6.8×) 2.8×3PM · FT 80.6% (1.1FTA) · 혼합 GP 75.8 · 26.1MPG · 25-26 60%",lev:"3PA 7.0/G · 주간 24시도 · 지분 18.1% → 기여 +0.91pp (그룹 9위) · 변동성 ±9.9pp",gp:76,c:"3P%3 3PM2 TOV2 A/T1 FT%1",flag:"소속 재확인 권장"},
+{n:"Miles McBride",t:"NYK",p:"G",mk:[1,3],mx:9,tag:"dart",s:"10.7P 2.5R 2.8A 1S 0.3B 0.7TO · OREB 0.7 · FG 41.4% (9.2FGA) · 3P 39.1% (5.7×) 2.2×3PM · FT 80.0% (1FTA) · 혼합 GP 52.7 · 25.6MPG · 25-26 49%",lev:"3PA 6.6/G · 주간 23시도 · 지분 17.1% → 기여 +0.91pp (그룹 10위) · 변동성 ±10.2pp",gp:53,c:"3P%2 3PM1 TOV3 A/T2 FT%1"},
+{n:"Royce O'Neale",t:"CHA",p:"F",mk:[1,3],mx:8,tag:"dart",s:"9.5P 4.8R 2.5A 1S 0.4B 1.1TO · OREB 0.8 · FG 42.2% (7.8FGA) · 3P 40.7% (6.4×) 2.6×3PM · FT 71.9% (0.4FTA) · 혼합 GP 76.8 · 26.9MPG · 25-26 60%",lev:"3PA 6.7/G · 주간 23시도 · 지분 17.4% → 기여 +0.83pp (그룹 14위) · 변동성 ±10.1pp",gp:77,c:"3P%3 3PM2 TOV2 A/T1",chg:"피닉스→샬럿"},
+{n:"Rui Hachimura",t:"LAC",p:"F",mk:[1,3],mx:4,tag:"dart",s:"12.1P 3.9R 1A 0.7S 0.3B 0.7TO · OREB 0.9 · FG 51.2% (9.2FGA) · 3P 43.2% (4×) 1.7×3PM · FT 72.2% (1.4FTA) · 혼합 GP 64.7 · 29.5MPG · 25-26 63%",lev:"3PA 3.9/G · 주간 14시도 · 지분 10.1% → 기여 +0.84pp (그룹 13위) · 변동성 ±13.4pp",flag:"저볼륨 — 변동성 큼",gp:65,c:"3P%3 FG%1 TOV3 3PM1",chg:"레이커스→클리퍼스 2년 $28M"},
+{n:"Jaylon Tyson",t:"CLE",p:"G/F",mk:[1,3],mx:5,tag:"dart",s:"10.1P 4.1R 1.8A 0.6S 0.3B 1.2TO · OREB 1.5 · FG 47.3% (7.9FGA) · 3P 41.3% (3.4×) 1.5×3PM · FT 75.5% (1.2FTA) · 혼합 GP 59.9 · 21.3MPG · 25-26 67%",lev:"3PA 4.5/G · 주간 16시도 · 지분 11.7% → 기여 +1.00pp (그룹 7위) · 변동성 ±12.5pp",gp:60,c:"3P%2 TOV1 OREB1"},
+{n:"Ryan Rollins",t:"MIL",p:"G",mk:[2,8],mx:9,tag:"dart",s:"13.6P 3.7R 4.4A 1.3S 0.4B 2.1TO · OREB 0.6 · FG 47.7% (10.8FGA) · 3P 40.7% (4.8×) 2×3PM · FT 79.7% (1.7FTA) · 혼합 GP 68 · 26.2MPG · 25-26 66%",gp:68,c:"3P%2 STL2 3PM1 A/T1 AST1",note:"3PT%와 STL을 동시에 주는 저가 카드. 둘 다 실측 확인."},
+{n:"Andrew Wiggins",t:"MIA",p:"G/F",mk:[1,3],mx:6,tag:"dart",s:"16.4P 4.7R 2.7A 1.1S 0.9B 1.6TO · OREB 1.6 · FG 46.5% (12.8FGA) · 3P 39.9% (5.2×) 2.1×3PM · FT 77.6% (3.1FTA) · 혼합 GP 65 · 30.4MPG · 25-26 63%",lev:"3PA 4.9/G · 주간 17시도 · 지분 12.7% → 기여 +0.69pp (그룹 15위) · 변동성 ±11.9pp",flag:"3PT% 레버리지 하위 — 엘리트 가중치 철회",gp:65,c:"3P%2 BLK2 TOV1 OREB1 3PM1 STL1"},
+{n:"Jaden McDaniels",t:"MIN",p:"F",mk:[2,8],mx:10,s:"13.7P 4.8R 2.4A 1.2S 1B 1.5TO · OREB 1.3 · FG 49.9% (10.7FGA) · 3P 37.7% (3.5×) 1.3×3PM · FT 82.6% (2.1FTA) · 혼합 GP 76.9 · 31.8MPG · 25-26 57%",gp:77,c:"3P%1 BLK2 STL2 FT%1 FG%1 TOV1"},
+{n:"Josh Hart",t:"NYK",p:"G/F",mk:[1,7],mx:5,s:"12.7P 8.4R 5.3A 1.3S 0.3B 2TO · OREB 1.7 · FG 51.5% (9.4FGA) · 3P 37.8% (3.5×) 1.3×3PM · FT 74.5% (2.2FTA) · 혼합 GP 70.8 · 33.4MPG · 25-26 56%",lev:"3PA 3.7/G · 주간 13시도 · 지분 9.6% → 기여 +0.51pp (그룹 16위) · 변동성 ±13.7pp",flag:"3PT% 레버리지 하위 — 엘리트 가중치 철회",gp:71,c:"3P%1 REB2 AST2 STL2 FG%1 A/T2 OREB1 TOV1 DD1"},
+{n:"Onyeka Okongwu",t:"ATL",p:"F/C",mk:[2,8],mx:10,s:"14.5P 8.1R 2.8A 1S 1B 1.5TO · OREB 2.3 · FG 51.5% (10.6FGA) · 3P 35.5% (3.9×) 1.4×3PM · FT 75.8% (2.8FTA) · 혼합 GP 74 · 29.8MPG · 25-26 60%",gp:74,c:"BLK2 REB2 OREB2 TOV1 FG%2 DD1",flag:"OREB top-25 밖"},
+{n:"Brook Lopez",t:"LAC",p:"C",mk:[1,3],mx:6,tag:"dart",s:"10.4P 4.2R 1.5A 0.6S 1.5B 0.9TO · OREB 0.9 · FG 46.2% (8.2FGA) · 3P 36.5% (4.4×) 1.6×3PM · FT 78.6% (1.3FTA) · 혼합 GP 77.1 · 26MPG · 25-26 58%",gp:77,c:"BLK3 TOV2 3P%1",flag:"리바운드 매우 낮음"},
+{n:"Adem Bona",t:"PHI",p:"C",mk:[1,3],mx:3,tag:"dart",s:"5.2P 4.3R 0.5A 0.4S 1.2B 0.9TO · OREB 1.7 · FG 63.3% (3.2FGA) · 3P 21.6% (0.1×) 0×3PM · FT 69.5% (1.6FTA) · 혼합 GP 66.4 · 16.8MPG · 25-26 64%",gp:66,c:"BLK2 FG%2 TOV2 OREB1"},
+{n:"VJ Edgecombe",t:"PHI",p:"G",mk:[2,8],mx:9,s:"16P 5.6R 4.2A 1.4S 0.5B 1.8TO · OREB 1.6 · FG 43.8% (13.7FGA) · 3P 35.4% (5.6×) 2×3PM · FT 81.8% (2.4FTA) · 혼합 GP 75 · 35MPG · 25-26 100%",gp:75,c:"STL3 OREB1 3PM1 FT%1 TOV1 A/T2 AST1",flag:"루키 시즌 이후 역할 변동"},
+{n:"Anthony Black",t:"ORL",p:"G",mk:[1,3],mx:7,tag:"dart",s:"12.5P 3.4R 3.4A 1.3S 0.7B 2TO · OREB 0.7 · FG 43.6% (10.2FGA) · 3P 32.6% (3.7×) 1.2×3PM · FT 74.5% (3.1FTA) · 혼합 GP 70.3 · 27.3MPG · 25-26 55%",gp:70,c:"STL2 TOV1"},
+{n:"Dru Smith",t:"MIA",p:"G",mk:[1,3],mx:3,tag:"dart",s:"5.7P 2.5R 2.5A 1.4S 0.3B 0.8TO · OREB 0.9 · FG 42.6% (4.6FGA) · 3P 32.3% (1.8×) 0.6×3PM · FT 82.0% (1.4FTA) · 혼합 GP 63.4 · 16.6MPG · 25-26 88%",gp:63,c:"STL3 TOV2 FT%1 A/T2",flag:"출장 매우 적음"},
+{n:"Precious Achiuwa",t:"SAC",p:"F/C",mk:[1,3],mx:4,tag:"dart",s:"8.9P 6.3R 1.3A 0.9S 0.7B 0.9TO · OREB 2.2 · FG 51.9% (7.3FGA) · 3P 27.8% (1.1×) 0.3×3PM · FT 56.8% (1.7FTA) · 혼합 GP 67.5 · 22.7MPG · 25-26 65%",gp:68,c:"OREB2 REB1 FG%1 TOV2 BLK1"},
+{n:"Jock Landale",t:"UTA",p:"C",mk:[1,3],mx:4,tag:"dart",s:"8.9P 5R 1.5A 0.4S 0.4B 0.8TO · OREB 2.3 · FG 52.0% (6.8FGA) · 3P 39.5% (2.2×) 0.9×3PM · FT 64.7% (1.6FTA) · 혼합 GP 60.4 · 19.1MPG · 25-26 70%",gp:60,c:"OREB2 FG%1 TOV3 3P%1",flag:"출장 변동"},
+{n:"Zion Williamson",t:"NOP",p:"F",mk:[11,17],mx:16,s:"21.9P 6.1R 3.7A 1S 0.6B 2.2TO · OREB 2.1 · FG 59.2% (14FGA) · 3P 24.5% (0.2×) 0×3PM · FT 70.1% (7.6FTA) · 혼합 GP 54.2 · 29.4MPG · 25-26 75%",gp:54,c:"PTS2 FG%3 OREB2 REB1 STL1",flag:"GP 리스크 최상급 · FT%·3점 약점"},
+{n:"Max Christie",t:"DAL",p:"G",mk:[1,3],mx:3,tag:"dart",s:"11.2P 3.2R 2A 0.7S 0.4B 1.2TO · OREB 0.3 · FG 43.5% (8.7FGA) · 3P 38.9% (5.1×) 2×3PM · FT 88.1% (1.8FTA) · 혼합 GP 77.4 · 28.4MPG · 25-26 59%",flag:"FT% 시도량 미미 — 팀 FT%를 거의 움직이지 못함",gp:77,c:"FT%2 3PM1 TOV2 3P%2"},
+{n:"Ajay Mitchell",t:"OKC",p:"G",mk:[1,3],mx:3,tag:"dart",s:"11.5P 2.9R 3.1A 1.1S 0.2B 1.2TO · OREB 0.6 · FG 48.8% (8.8FGA) · 3P 35.8% (2.7×) 1×3PM · FT 85.8% (2.3FTA) · 혼합 GP 50.8 · 23.1MPG · 25-26 70%",flag:"FT% 시도량 미미 — 팀 FT%를 거의 움직이지 못함",gp:51,c:"FT%1 TOV1 A/T2 FG%1 STL1"},
+{n:"DeMar DeRozan",t:"GSW",p:"G/F",mk:[4,12],mx:16,tag:"buy",s:"19.9P 3.3R 4.2A 0.9S 0.3B 1.3TO · OREB 0.5 · FG 48.9% (14.7FGA) · 3P 32.3% (2.5×) 0.8×3PM · FT 86.4% (5.6FTA) · 혼합 GP 77 · 33.1MPG · 25-26 60%",chg:"새크라멘토 방출(2026-07) → 골든스테이트 계약",atlev:"AST 4.1 / TOV 1.2 → 팀 A/T 한계 기여 +0.152 (리그 7위)",gp:77,c:"A/T3 TOV1 FT%3 FG%1 PTS1 AST1",note:"TOV 1.2개가 핵심입니다. 한계 기여 +0.152로 Giddey($42, +0.140)·Harden($30, +0.074)을 상회. A/T와 TOV를 동시에 주는 유형이 이 포맷에서 구조적으로 귀합니다.",flag:"나이 · GSW 사용률 분산(Curry·Butler·Draymond·Porzingis) · 소속 재확인 권장"},
+{n:"Damian Lillard",t:"POR",p:"G",mk:[14,22],mx:14,s:"24.9P 4.7R 7.1A 1.2S 0.2B 2.8TO · OREB 0.5 · FG 44.8% (17.1FGA) · 3P 37.6% (9×) 3.4×3PM · FT 92.1% (6.8FTA) · 혼합 GP 58 · 36.1MPG · 25-26 0%",chg:"밀워키→포틀랜드 3년 $42M 복귀. 역할은 주전 가드 겸 세컨더리 크리에이터",gp:58,c:"3PM3 FT%3 AST3 PTS3 A/T2 STL2 3P%2 DD1",note:"제가 완전히 빠뜨린 선수. 다만 이 포맷 기준으로는 매수 대상이 아닙니다 — 아킬레스 복귀 + 나이에, 포틀랜드 가드진이 Morant·Holiday·Sharpe·Scoot·Avdija·Camara로 6명 경합이라 사용률이 크게 분할됩니다. 실측 근거도 없습니다.",flag:"아킬레스 복귀 · 실측 없음 · 포틀랜드 가드 6명 경합 — 최대가는 추정"},
+{n:"Zach LaVine",t:"SAC",p:"G",mk:[9,15],mx:12,s:"21.5P 3.6R 3.4A 0.8S 0.2B 2.4TO · OREB 0.3 · FG 49.7% (15.4FGA) · 3P 42.1% (6.9×) 2.9×3PM · FT 84.9% (3.8FTA) · 혼합 GP 58.5 · 33.5MPG · 25-26 44%",chg:"새크라멘토 잔류($49M 플레이어 옵션 행사). 시즌 중 트레이드 가능성 언급",gp:58,c:"PTS2 3PM2 FT%2 3P%3 FG%1",note:"FT% 외 캣 실측을 확보하지 못해 최대가는 부분 추정입니다.",flag:"실측 FT%만 확보 · 데드라인 트레이드 리스크 · 빅맨 캣 전무"},
+{n:"Cameron Johnson",t:"DEN",p:"F",mk:[4,10],mx:10,s:"14.9P 4R 2.8A 0.8S 0.4B 1.2TO · OREB 0.8 · FG 47.8% (10.6FGA) · 3P 41.3% (5.7×) 2.3×3PM · FT 86.1% (2.8FTA) · 혼합 GP 55.2 · 31MPG · 25-26 58%",lev:"3PA 4.7/G · 주간 16시도 · 팀 지분 12.2% → 3PT% 기여 +0.85pp · 변동성 ±12.3pp",gp:55,c:"3P%3 3PM2 TOV1 FT%2 A/T1",note:"3PT% 리그 8위지만 볼륨이 중간이라 레버리지는 +0.85pp. 엘리트 가중치는 부여하지 않았습니다.",flag:"덴버 2nd apron 이슈로 트레이드 가능성 언급"},
+{n:"Jrue Holiday",t:"POR",p:"G",mk:[1,7],mx:6,s:"14P 4.5R 5.1A 1S 0.2B 2.1TO · OREB 1.3 · FG 44.8% (11.6FGA) · 3P 36.7% (6×) 2.2×3PM · FT 86.9% (1.6FTA) · 혼합 GP 56.9 · 29.9MPG · 25-26 56%",chg:"포틀랜드. 바이아웃 계획 없음 — Lillard·Morant와 가드 경합",atlev:"AST 6.1 / TOV 2.8 → 팀 A/T 한계 기여 +0.039 (미미)",gp:57,c:"AST2 A/T2 3PM1 3P%1 FT%1",note:"A/T 2.18은 평범하고 포틀랜드 가드 과밀로 출장 리스크가 큽니다.",flag:"포틀랜드 가드 6명 경합"},
+{n:"Dejounte Murray",t:"NOP",p:"G",mk:[4,10],mx:3,s:"17.2P 6.1R 7A 1.8S 0.3B 3.4TO · OREB 0.4 · FG 43.0% (14.7FGA) · 3P 30.2% (5.1×) 1.6×3PM · FT 84.1% (3.7FTA) · 혼합 GP 24.1 · 30.7MPG · 25-26 40%",atlev:"AST 6.4 / TOV 3.4 → 팀 A/T 한계 기여 −0.030 (마이너스)",gp:24,c:"AST3 PTS2 STL2",note:"어시스트 볼륨은 있으나 턴오버가 많아 A/T를 깎습니다. AST 캣만 기대할 선수.",flag:"A/T 하위 · 부상 이력"},
+{n:"Jusuf Nurkic",t:"UTA",p:"C",mk:[1,3],mx:5,s:"10P 9.2R 3.7A 1.1S 0.6B 2.2TO · OREB 2.2 · FG 49.1% (7.9FGA) · 3P 33.1% (1.9×) 0.6×3PM · FT 60.1% (2.7FTA) · 혼합 GP 45.5 · 23.9MPG · 25-26 54%",chg:"유타 잔류. JJJ·Jaxson Hayes와 C 경합",atlev:"AST 4.8 / TOV 2.5 → 팀 A/T 한계 기여 −0.016 (소폭 마이너스)",gp:46,c:"REB3 FG%1 OREB2 STL1 DD1",note:"빅맨이 어시스트 4.8개는 드물지만 턴오버 2.5개가 상쇄해 팀 A/T를 소폭 깎습니다. 제 초기 '희석을 덜 시킴' 판단은 틀렸습니다.",flag:"A/T 소폭 마이너스 · 유타 C 로테이션 혼잡 · OREB 엘리트 아님"},
+{n:"Kevin Porter Jr.",t:"MIL",p:"G",mk:[1,3],mx:4,tag:"dart",s:"13.4P 4.3R 5.1A 1.6S 0.3B 2.3TO · OREB 0.7 · FG 45.6% (10.8FGA) · 3P 31.6% (3×) 0.9×3PM · FT 81.6% (3.1FTA) · 혼합 GP 59 · 25.6MPG · 25-26 43%",chg:"밀워키 잔류($5.39M 플레이어 옵션)",gp:59,c:"STL3 AST2 FT%1 A/T2",flag:"실측 FT%만 확보 · 벤치 롤"},
+{n:"Bub Carrington",t:"WAS",p:"G",mk:[1,3],mx:5,tag:"dart",s:"10.3P 3.7R 4.5A 0.6S 0.2B 2.1TO · OREB 0.4 · FG 41.5% (9FGA) · 3P 38.0% (5×) 1.9×3PM · FT 76.3% (1.2FTA) · 혼합 GP 82 · 28.6MPG · 25-26 60%",lev:"3PA 5.0/G · 주간 18시도 · 팀 지분 13.0% → 3PT% 기여 +0.62pp · 변동성 ±11.7pp",gp:82,c:"3P%1 3PM1 AST1 A/T1",flag:"소속 재확인 권장(2025-26 워싱턴) · 워싱턴 사용률 혼잡"},
+{n:"Svi Mykhailiuk",t:"—",p:"G/F",mk:[1,3],mx:3,tag:"dart",s:"9.2P 2.5R 1.9A 0.5S 0.1B 1TO · OREB 0.7 · FG 44.9% (7.4FGA) · 3P 38.7% (5×) 1.9×3PM · FT 86.2% (0.7FTA) · 혼합 GP 46 · 22.1MPG · 25-26 66%",gp:46,c:"3P%2 3PM1 TOV2 FT%1",flag:"2026-27 소속 미확인"},
+{n:"Ja'Kobe Walter",t:"TOR",p:"G",mk:[1,3],mx:3,tag:"dart",s:"7.9P 2.8R 1.3A 0.9S 0.2B 0.7TO · OREB 0.9 · FG 43.3% (6.2FGA) · 3P 39.0% (3.7×) 1.4×3PM · FT 79.1% (1.4FTA) · 혼합 GP 65.5 · 20.7MPG · 25-26 67%",gp:66,c:"3P%1 TOV3",note:"3PT%는 상위권이나 주간 13시도로 레버리지가 낮고 변동성이 큽니다(Kennard와 동일 문제).",flag:"저볼륨 · 소속 재확인 권장"},
+{n:"Russell Westbrook",t:"—",p:"G",mk:[1,3],mx:4,s:"14.4P 5.2R 6.4A 1.3S 0.3B 3.3TO · OREB 1.3 · FG 43.7% (12.2FGA) · 3P 33.1% (5×) 1.7×3PM · FT 67.9% (3FTA) · 혼합 GP 68.8 · 28.5MPG · 25-26 56%",atlev:"AST 6.7 / TOV 3.3 → 팀 A/T 한계 기여 +0.008 (사실상 중립)",gp:69,c:"AST2 STL2 3PM1",flag:"2026-27 소속 미확인(새크라멘토 재합류 루머) · A/T 하위 · FG%·FT% 악재"}
+];
+P.forEach((p,i)=>{p.id=i; p.cw={}; p.c.split(/\s+/).filter(Boolean).forEach(tk=>{p.cw[tk.slice(0,-1)]=+tk.slice(-1);}); p.edge=p.mx-p.mk[1];});
+
+const FILTERS=[
+ {k:"all",l:"전체"},{k:"core",l:"◉ 코어 후보"},{k:"meas",l:"✓ 실측 확인"},{k:"inj",l:"🚑 장기부상"},{k:"buy",l:"★ 매수 타겟"},{k:"burn",l:"■ 태우기"},{k:"dart",l:"◆ $1~8 다트"},
+ {k:"OREB",l:"OREB"},{k:"DD",l:"DD"},{k:"BLK",l:"BLK"},{k:"STL",l:"STL"},{k:"A/T",l:"A/T"},{k:"3P%",l:"3P%"},{k:"FT%",l:"FT%"},
+ {k:"edge",l:"차익 +"},{k:"cheap",l:"≤ $6"}
+];
+
+
+const CORES=[{"id": "c0", "n": "— 코어 미선택 —"}, {"id": "c1", "n": "코어 1 · KAT 앵커 + Haliburton", "prem": "잉여가 $50 이상 구간에서 시장을 앞서는 선수는 KAT 하나뿐(+$16). A/T는 Haliburton 단독(한계기여 +0.517, 리그 1위)으로 조달. 아킬레스 복귀 리스크를 감수하는 조건부 플랜이며, 회피하려면 코어 6.", "target": ["3P%", "A/T", "AST", "BLK", "DD", "FG%", "OREB", "PTS", "REB", "STL"], "punt": ["3PM", "FT%", "TOV"], "cap": null, "bigCap": 115, "slack": 18, "plan": [["C", "앵커 · DD 56 리그 1위", [["Karl-Anthony Towns", 45], ["Jalen Duren", 27], ["Alperen Şengün", 26]], true, {"ceil": 62, "nom": 17, "eff": 17, "con": "none", "act": "substitute", "tgt": "Jalen Duren", "dual": true}], ["PG", "A/T +0.517 리그 1위 · TOV 동시", [["Tyrese Haliburton", 50], ["Josh Giddey", 41], ["De'Aaron Fox", 24]], true, {"ceil": 50, "nom": 0, "eff": 0, "con": "my_max", "act": "substitute", "tgt": "Josh Giddey", "dual": false}], ["PF", "OREB 3.0 · DD 34 · AST", [["Alperen Şengün", 26], ["Evan Mobley", 23]]], ["SF", "3PT% 레버리지 2위 · 3PM 3.4", [["Kon Knueppel", 22], ["Desmond Bane", 22], ["Toumani Camara", 11]]], ["SG", "STL 2.0 리그 공동 1위", [["Dyson Daniels", 12], ["Ausar Thompson", 3], ["Cason Wallace", 3]]], ["UTIL", "OREB 4.5 리그 1위 · 77G", [["Donovan Clingan", 12], ["Rudy Gobert", 8], ["Mitchell Robinson", 5]]], ["UTIL", "OREB+BLK+DD 빅", [["Rudy Gobert", 8], ["Ivica Zubac", 11], ["Mark Williams", 7]]], ["BN", "B-c1-2 채택 — 저가 다트 교체 (McConnell 대체)", [["VJ Edgecombe", 5], ["T.J. McConnell", 2], ["Andrew Nembhard", 2]]], ["BN", "OREB 3.7 다트", [["Moussa Diabaté", 2], ["Andre Drummond", 2], ["Day'Ron Sharpe", 2]]]]}, {"id": "c2", "n": "코어 2 · Jokić 압축", "prem": "Jokić가 AST·A/T(+0.241)를 공급하므로 PG를 최저가로 때우고 Derrick White(A/T +0.171 · FT% 90.2% · BLK 1.3)를 붙인다. 잉여가 +$4뿐이라 시장가를 지불하는 플랜 — 앵커를 시장가 이하로 잡았을 때만 발동하는 조건부.", "target": ["A/T", "AST", "BLK", "DD", "FG%", "OREB", "PTS", "REB", "TOV"], "punt": ["3P%", "3PM", "FT%", "STL"], "cap": null, "bigCap": 153, "slack": 13, "plan": [["C", "앵커 (실패 시 코어 전환)", [["Nikola Jokić", 88]], true, {"ceil": 88, "nom": 0, "eff": 0, "con": "my_max", "act": "switch_core", "tgt": "c6", "dual": false}], ["SG", "A/T +0.171 · FT% 90.2% · BLK 1.3", [["Derrick White", 39], ["De'Aaron Fox", 24], ["Dennis Schröder", 5]], true, {"ceil": 44, "nom": 5, "eff": 5, "con": "none", "act": "substitute", "tgt": "De'Aaron Fox", "dual": true}], ["PF", "OREB 3.0 · DD 34 · AST", [["Alperen Şengün", 26], ["Evan Mobley", 23]]], ["UTIL", "OREB 4.5 리그 1위", [["Donovan Clingan", 12], ["Rudy Gobert", 8], ["Mitchell Robinson", 5]]], ["UTIL", "OREB+BLK+DD 빅", [["Rudy Gobert", 8], ["Ivica Zubac", 11], ["Mark Williams", 7]]], ["BN", "3PT% 레버리지 3위 · 3PM 3.0", [["Sam Merrill", 2], ["AJ Green", 2], ["Miles McBride", 2]]], ["SF", "3PM 고볼륨 저가", [["Tim Hardaway Jr.", 2], ["Duncan Robinson", 2], ["Royce O'Neale", 2]]], ["PG", "A/T 다트", [["Andrew Nembhard", 2], ["Cam Spencer", 2], ["Davion Mitchell", 2]]], ["BN", "34차 예비비 재구성 — Andre Drummond 대체", [["DeMar DeRozan", 8], ["Moussa Diabaté", 2], ["Ryan Kalkbrenner", 2]]]], "condDiscount": {"anchor": "Nikola Jokić", "reason": "my_max $88 < 실측 시장하단 $93 — 시장 할인 없이는 확보 불가", "on_fail": {"action": "switch_core", "target": "c6", "note": "Jokić를 못 잡으면 스타 집중 전제 자체가 없어진다 → 정상시장 기본값"}}}, {"id": "c3", "n": "코어 3 · SGA + 저가 빅 4인", "prem": "가드가 FG% 55.1% + FT% 87.9%. 빅맨 예산 $77(계획 총액의 39%)로 6개 코어 중 최저 — 빅맨 시장 과열에 가장 강하다. ⚠️ 'SGA의 FT%가 빅맨 FT% 붕괴를 상쇄한다'는 주장은 FTA 볼륨 데이터가 없어 검증되지 않았습니다. SGA 득점은 출처 충돌(StatMuse 31.1 / Yahoo 27.6)이 있어 리더보드값을 채택했습니다.", "target": ["A/T", "AST", "BLK", "DD", "FG%", "OREB", "PTS", "REB", "STL"], "punt": ["3P%", "3PM", "FT%", "TOV"], "cap": null, "bigCap": 85, "slack": 17, "plan": [["SG", "앵커 (실패 시 코어 전환)", [["Shai Gilgeous-Alexander", 72]], true, {"ceil": 72, "nom": 0, "eff": 0, "con": "my_max", "act": "switch_core", "tgt": "c4", "dual": false}], ["PF", "OREB 3.0 · DD 34 · AST", [["Alperen Şengün", 26], ["Evan Mobley", 23]]], ["SF", "가드형 OREB 3.0 · 79G", [["Amen Thompson", 26], ["Toumani Camara", 11], ["Jaden McDaniels", 5]]], ["PG", "STL 2.0 리그 공동 1위", [["Dyson Daniels", 12], ["Ausar Thompson", 3], ["Cason Wallace", 3]]], ["C", "OREB 4.5 리그 1위 · 77G", [["Donovan Clingan", 12], ["Jalen Duren", 27], ["Rudy Gobert", 8]]], ["UTIL", "DD 24 · 롤맨 빅", [["Ivica Zubac", 11], ["Mitchell Robinson", 5], ["Deandre Ayton", 5]]], ["UTIL", "OREB 3.9 · BLK 1.6 · 76G", [["Rudy Gobert", 8], ["Mark Williams", 7], ["Nic Claxton", 4]]], ["BN", "34차 예비비 재구성 — Mark Williams 대체", [["Damian Lillard", 14], ["Deandre Ayton", 5], ["Neemias Queta", 2]]], ["BN", "3PT% 레버리지 3위", [["Sam Merrill", 2], ["AJ Green", 2], ["Isaiah Joe", 2]]]], "condDiscount": {"anchor": "Shai Gilgeous-Alexander", "reason": "my_max $72 < 실측 시장하단 $81 — 시장 할인 없이는 확보 불가", "on_fail": {"action": "switch_core", "target": "c4", "note": "판단표 우선 4 '앵커 실패 시 안전망'이 그대로 목적지"}}}, {"id": "c4", "n": "코어 4 · 무앵커 분산 (상한 $31)", "prem": "잉여가 $8~31 구간에 몰려 있으므로 그 구간만으로 9칸을 채운다. 최고가 $31로 결장 리스크가 분산되고 앵커 실패에 면역 — 가장 현실적인 기본 플랜. ⚠️ PTS·TOV 포기가 실제로 나머지 7캣 승리로 이어지는지는 검증되지 않았습니다. ⚠️ 21차: 19차에 'Gobert $16 → Quickley $5'로 바꿨다가 되돌렸다. 그 변경은 '선발 7명만 집계'라는 잘못된 전제로 계산됐고, 정정 모델(9명 전원 · GP 가중)에서는 Gobert의 BLK 1.6이 BLK 캣을 지탱하고 있어 9캣 → 8캣 악화였다.", "target": ["AST", "BLK", "DD", "FG%", "OREB", "PTS", "REB", "STL"], "punt": ["3P%", "3PM", "A/T", "FT%", "TOV"], "cap": 31, "bigCap": 107, "slack": 14, "plan": [["C", "OREB 3.8 · DD 41 · 70G", [["Jalen Duren", 27], ["Donovan Clingan", 12], ["Ivica Zubac", 11]]], ["PF", "OREB 3.0 · DD 34 · AST", [["Alperen Şengün", 26], ["Evan Mobley", 23]]], ["SF", "가드형 OREB 3.0 · 79G", [["Amen Thompson", 26], ["Toumani Camara", 11], ["Jaden McDaniels", 5]]], ["UTIL", "OREB+BLK+DD", [["Evan Mobley", 23], ["Walker Kessler", 16]]], ["SG", "3PT% 레버리지 2위 · 3PM 3.4", [["Kon Knueppel", 22], ["Desmond Bane", 22], ["Sam Merrill", 2]]], ["UTIL", "STL 2.0 리그 공동 1위", [["Dyson Daniels", 12], ["Ausar Thompson", 3], ["Cason Wallace", 3]]], ["BN", "OREB 3.9 · 76G", [["Rudy Gobert", 8], ["Mark Williams", 7], ["Mitchell Robinson", 5]]], ["BN", "PTS+REB+DD 포워드", [["Julius Randle", 12], ["Paul George", 8], ["Josh Hart", 4]]], ["PG", "34차 예비비 재구성 — T.J. McConnell 대체", [["Trae Young", 30], ["Dennis Schröder", 5], ["Andrew Nembhard", 2]]]]}, {"id": "c5", "n": "코어 5 · Sabonis 부상 할인 (조건부 베팅)", "prem": "⚠️ 격리된 별도 베팅안. Sabonis 건강이 프리시즌에 확인될 때만 발동. 실출장 ~20경기이고 A/T 한계기여는 −0.102로 마이너스 — 정상 복귀를 기본값으로 두면 위험합니다. 헤지 빅 2명을 필수로 붙입니다.", "target": ["3P%", "A/T", "AST", "BLK", "DD", "FG%", "OREB", "REB", "STL"], "punt": ["3PM", "FT%", "PTS", "TOV"], "cap": null, "bigCap": 96, "slack": 20, "plan": [["PG", "A/T +0.517 리그 1위", [["Tyrese Haliburton", 50], ["Josh Giddey", 41], ["De'Aaron Fox", 24]], true, {"ceil": 50, "nom": 0, "eff": 0, "con": "my_max", "act": "substitute", "tgt": "Josh Giddey", "dual": false}], ["SF", "가드형 OREB 3.0 · 79G", [["Amen Thompson", 26], ["Toumani Camara", 11], ["Jaden McDaniels", 5]]], ["UTIL", "Sabonis 헤지 빅 ①", [["Evan Mobley", 23], ["Walker Kessler", 16]]], ["SG", "3PT% 레버리지 2위", [["Kon Knueppel", 22], ["Desmond Bane", 22], ["Sam Merrill", 2]]], ["PF", "앵커 (부상 할인 · 실패 시 코어 전환)", [["Domantas Sabonis", 19]], true, {"ceil": 34, "nom": 15, "eff": 15, "con": "none", "act": "switch_core", "tgt": "c6", "dual": true}], ["C", "Sabonis 헤지 빅 ② (필수)", [["Donovan Clingan", 12], ["Jalen Duren", 27], ["Rudy Gobert", 8]]], ["UTIL", "DD 24 · Hali 픽앤롤 시너지", [["Ivica Zubac", 11], ["Mitchell Robinson", 5], ["Mark Williams", 7]]], ["BN", "OREB 2.6 · DD 22", [["Deandre Ayton", 5], ["Nic Claxton", 4], ["Neemias Queta", 2]]], ["BN", "34차 예비비 재구성 — T.J. McConnell 대체", [["Dyson Daniels", 12], ["Andrew Nembhard", 2], ["Davion Mitchell", 2]]]]}, {"id": "c6", "n": "코어 6 · A/T 분산 조달 (정상 시장 기본값)", "prem": "A/T 한계기여를 McConnell(+0.261) + DeRozan(+0.152) = +0.413($21)으로 분산 조달. Haliburton 단독(+0.517, $50)의 80%를 42% 가격에 확보하고 절감분으로 KAT 앵커까지 붙인다. ⚠️ 아킬레스 리스크는 없지만 A/T 리스크가 없는 것은 아니다 — McConnell은 Hali·Nembhard 뒤 3번째 가드이고, DeRozan 대체안(Schröder +0.110 / D.Russell +0.017)은 A/T 질이 크게 떨어진다. McConnell을 $6 이내에 못 잡으면 노리는 캣 12개 표기를 즉시 낮춰 읽어야 한다. 빅맨 총액 $113 상한도 생존 조건.", "target": ["A/T", "AST", "BLK", "DD", "FG%", "OREB", "PTS", "REB", "STL"], "punt": ["3P%", "3PM", "FT%", "TOV"], "cap": null, "bigCap": 113, "slack": 19, "plan": [["C", "앵커 · DD 56 리그 1위", [["Karl-Anthony Towns", 45], ["Jalen Duren", 27], ["Alperen Şengün", 26]], true, {"ceil": 62, "nom": 17, "eff": 17, "con": "none", "act": "substitute", "tgt": "Jalen Duren", "dual": true}], ["PF", "OREB 3.0 · DD · 빅맨 최상급 AST", [["Alperen Şengün", 26], ["Evan Mobley", 23], ["LeBron James", 14]]], ["SF", "가드형 OREB 3.0 · 79G", [["Amen Thompson", 26], ["Toumani Camara", 11], ["Jaden McDaniels", 5]]], ["UTIL", "34차 예비비 재구성 — Knueppel 대체", [["VJ Edgecombe", 5], ["Kon Knueppel", 22], ["Desmond Bane", 22]]], ["UTIL", "STL 2.0 리그 공동 1위", [["Dyson Daniels", 12], ["Ausar Thompson", 3], ["Cason Wallace", 3]]], ["BN", "OREB 4.5 리그 1위 · 77G", [["Donovan Clingan", 12], ["Rudy Gobert", 8], ["Mitchell Robinson", 5]]], ["SG", "A/T +0.152 · TOV 1.2 · FT% 86.8%", [["DeMar DeRozan", 8], ["Dennis Schröder", 5], ["D'Angelo Russell", 2]], true, {"ceil": 16, "nom": 8, "eff": 8, "con": "none", "act": "substitute", "tgt": "Dennis Schröder", "dual": true}], ["BN", "OREB+BLK+DD 빅", [["Rudy Gobert", 8], ["Ivica Zubac", 11], ["Mark Williams", 7]]], ["PG", "A/T +0.171 · FT% 90.2% · 3PM3 · BLK 1.3 (가드가 BLK)", [["Derrick White", 39], ["T.J. McConnell", 2], ["Andrew Nembhard", 2]], true, {"ceil": 44, "nom": 5, "eff": 5, "con": "none", "act": "substitute", "tgt": "T.J. McConnell", "dual": true}]]}, {"id": "c7", "n": "코어 7 — 중가 센터 전환 (센터 인플레 대응)", "prem": "33차 재설계: 기존 c7의 '반센터 전환' 전제를 폐기했다. 센터 인플레의 답은 센터를 버리는 것이 아니라 **중가 센터(Mobley·Okongwu)로 갈아타는 것**이다. A1 후보 채택.", "target": ["3PM", "AST", "BLK", "DD", "FG%", "OREB", "PTS", "REB", "STL"], "punt": ["3P%", "A/T", "FT%", "TOV"], "cap": null, "bigCap": 130, "slack": 16, "plan": [["C", "앵커 · DD 56 리그 1위 · OREB 3.1", [["Karl-Anthony Towns", 45], ["Jalen Duren", 27], ["Domantas Sabonis", 19]], true, {"ceil": 62, "nom": 17, "eff": 16, "con": "budget", "act": "substitute", "tgt": "Jalen Duren", "dual": true}], ["PF", "OREB 3.0 · DD 34 · 빅맨 최상급 AST", [["Alperen Şengün", 26], ["Domantas Sabonis", 19], ["Pascal Siakam", 25]]], ["SF", "3PT% 레버리지 2위 · 3PM 3.4", [["Kon Knueppel", 22], ["Desmond Bane", 22], ["Amen Thompson", 26]]], ["SG", "STL 2.0 리그 공동 1위 · OREB 2.4", [["Dyson Daniels", 12], ["Ausar Thompson", 3], ["Cason Wallace", 3]]], ["PG", "앵커 · A/T +0.171 · FT% 90.2% · 가드 BLK 1.3", [["Derrick White", 39], ["Josh Giddey", 41], ["Nickeil Alexander-Walker", 22]], true, {"ceil": 44, "nom": 5, "eff": 5, "con": "none", "act": "substitute", "tgt": "Josh Giddey", "dual": true}], ["UTIL", "중가 센터 — OREB 2.4 · BLK 1.7 · DD 27", [["Evan Mobley", 23], ["Ivica Zubac", 11], ["Mark Williams", 7]]], ["UTIL", "OREB 3.9 · BLK 1.6 · DD 33 · 76G", [["Rudy Gobert", 8], ["Mitchell Robinson", 5], ["Deandre Ayton", 5]]], ["BN", "다재다능 저가 — 12.7P 8.4R 5.3A", [["Josh Hart", 4], ["Neemias Queta", 2], ["Moussa Diabaté", 2]]], ["BN", "중가 센터 저가 — OREB+BLK+DD", [["Onyeka Okongwu", 5], ["Nikola Vučević", 2], ["Kel'el Ware", 2]]]]}];
+const OVERHEAT=[{"n": "Jalen Johnson", "tier": "anchor", "walk": 58, "exp": null, "oh": null}, {"n": "Donovan Clingan", "tier": "low_cost_center", "walk": 22, "exp": 14, "oh": 20}, {"n": "Rudy Gobert", "tier": "low_cost_center", "walk": 18, "exp": 9, "oh": 13}, {"n": "Jalen Duren", "tier": "low_cost_center", "walk": 34, "exp": 11, "oh": 15}, {"n": "Evan Mobley", "tier": "name_big", "walk": 30, "exp": 48, "oh": 60}, {"n": "Ivica Zubac", "tier": "name_big", "walk": 16, "exp": 39, "oh": 49}, {"n": "Mitchell Robinson", "tier": "low_cost_center", "walk": 16, "exp": 6, "oh": 9}, {"n": "Deandre Ayton", "tier": "low_cost_center", "walk": 14, "exp": 5, "oh": 8}, {"n": "Mark Williams", "tier": "low_cost_center", "walk": 14, "exp": 14, "oh": 20}, {"n": "Alperen Şengün", "tier": "name_big", "walk": 34, "exp": 67, "oh": 84}, {"n": "Tyrese Haliburton", "tier": "anchor", "walk": 50, "exp": null, "oh": null}, {"n": "Derrick White", "tier": "anchor", "walk": 44, "exp": null, "oh": null}, {"n": "Karl-Anthony Towns", "tier": "anchor", "walk": 55, "exp": null, "oh": null}];
+const OTIERS={"name_big": {"label": "네임밸류 빅", "c7": false, "why": "이 계층에서 $30~60은 과열이 아니라 정상가다. 코어 7은 '저가 센터 시장 붕괴' 대응책이므로 이 계층의 가격 상승은 전환 근거가 아니다."}, "low_cost_center": {"label": "그 외 센터 (저가 계층)", "c7": true, "why": "코어 7의 전제는 '이름값 없는 생산형 센터를 $10 안쪽에 쓸어담는다'다. 그 경로가 막히는 것이 곧 전환 조건이므로 코어 7 조건은 이 계층에서만 센다."}, "anchor": {"label": "앵커 (센터 아님)", "c7": false, "why": "이 두 명은 '시장이 뜨거운가'가 아니라 '앵커를 확보할 수 있는가'를 판정한다. overheat_at 개념 비적용(null)."}};
+const PIVOTS={"c1": {"triggers": [{"player": "Donovan Clingan", "rule": "> $22"}, {"player": "Rudy Gobert", "rule": "> $18"}], "rationale": "저가 OREB 경로가 막히면 OREB 완전 장악을 포기하고 REB·DD만 지킨다. 빅맨을 5명→4명($96)으로 줄이고 절감분을 3P%·FT% 윙으로 옮긴다. 두 명 이상 과열이면 코어 7로 전환.", "swaps": [{"slot": "UTIL", "out": {"name": "Donovan Clingan", "plan_price": 12, "bid_ceiling": 22, "expected_cost": 12}, "in": {"name": "Mitchell Robinson", "plan_price": 5, "bid_ceiling": 12, "expected_cost": 5}, "delta": -6, "kind": "교체"}, {"slot": "UTIL", "out": {"name": "Rudy Gobert", "plan_price": 8, "bid_ceiling": 18, "expected_cost": 8}, "in": {"name": "Mark Williams", "plan_price": 7, "bid_ceiling": 14, "expected_cost": 7}, "delta": -3, "kind": "교체"}, {"slot": "BN", "out": {"name": "Moussa Diabaté", "plan_price": 2, "bid_ceiling": 6, "expected_cost": 2}, "in": {"name": "Sam Merrill", "plan_price": 2, "bid_ceiling": 8, "expected_cost": 2}, "delta": 4, "kind": "교체"}, {"slot": "SF", "out": {"name": "Kon Knueppel", "plan_price": 22, "bid_ceiling": 26, "expected_cost": 22}, "in": {"name": "Desmond Bane", "plan_price": 22, "bid_ceiling": 26, "expected_cost": 22}, "delta": 1, "kind": "교체"}], "final_roster": [{"slot": "C", "role": "앵커 · DD 56 리그 1위", "name": "Karl-Anthony Towns", "plan_price": 45, "is_big": true, "dual_world_ok": true, "bid_ceiling": 55, "expected_cost": 45}, {"slot": "PG", "role": "A/T +0.517 리그 1위 · TOV 동시", "name": "Tyrese Haliburton", "plan_price": 50, "is_big": false, "alternates": [{"name": "Josh Giddey", "plan_price": 41, "dual_world_ok": true, "total_if_used": 162, "bid_ceiling": 42, "expected_cost": 41}, {"name": "Derrick White", "plan_price": 39, "dual_world_ok": true, "total_if_used": 160, "bid_ceiling": 44, "expected_cost": 39}], "dual_world_ok": false, "bid_ceiling": 50, "expected_cost": 50}, {"slot": "PF", "role": "OREB 3.0 · DD 34 · AST", "name": "Alperen Şengün", "plan_price": 26, "is_big": true, "dual_world_ok": true, "bid_ceiling": 34, "expected_cost": 26}, {"slot": "SF", "role": "3PT% 레버리지 2위 · 3PM 3.4", "name": "Desmond Bane", "plan_price": 22, "is_big": false, "dual_world_ok": true, "bid_ceiling": 26, "expected_cost": 22}, {"slot": "SG", "role": "STL 2.0 리그 공동 1위", "name": "Dyson Daniels", "plan_price": 12, "is_big": false, "dual_world_ok": true, "bid_ceiling": 20, "expected_cost": 12}, {"slot": "UTIL", "role": "OREB 4.5 리그 1위 · 77G", "name": "Mitchell Robinson", "plan_price": 5, "is_big": true, "dual_world_ok": true, "bid_ceiling": 12, "expected_cost": 5}, {"slot": "UTIL", "role": "OREB+BLK+DD 빅", "name": "Mark Williams", "plan_price": 7, "is_big": true, "dual_world_ok": true, "bid_ceiling": 14, "expected_cost": 7}, {"slot": "BN", "role": "A/T +0.261 리그 2위", "name": "T.J. McConnell", "plan_price": 2, "is_big": false, "dual_world_ok": true, "bid_ceiling": 14, "expected_cost": 2}, {"slot": "BN", "role": "OREB 3.7 다트", "name": "Sam Merrill", "plan_price": 2, "is_big": false, "dual_world_ok": true, "bid_ceiling": 8, "expected_cost": 2}], "final_total": 171, "final_big_budget": 83, "final_c_eligible": 4, "targeted_cats": ["3P%", "A/T", "AST", "DD", "FG%", "OREB", "REB", "STL", "TOV"], "punted_cats": ["3PM", "BLK", "FT%", "PTS"], "cat_marginals": {"starters": 9, "PTS": {"sum": 130.7, "marginal": -8.9, "verdict": "미달"}, "TOV": {"sum": 15.0, "marginal": 1.1, "verdict": "확보"}, "all": {"PTS": -8.9, "REB": 5.3, "OREB": 4.0, "AST": 3.8, "STL": 1.5, "BLK": -0.2, "TOV": 1.1, "3PM": -2.6, "DD": 0.6, "3P%": 17.0, "FT%": -37.7, "FG%": 185.1, "A/T": 0.471}, "wins_incl_dd": 9}}, "c2": {"triggers": [{"player": "Donovan Clingan", "rule": "> $22"}, {"player": "Rudy Gobert", "rule": "> $18"}], "rationale": "Jokić가 REB·OREB·DD를 혼자 상당 부분 커버하므로 빅맨 수를 줄이는 여지가 가장 크다. UTIL 한 칸을 3P% 윙(AJ Green)으로 전환.", "swaps": [{"slot": "UTIL", "out": {"name": "Donovan Clingan", "plan_price": 12, "bid_ceiling": 22, "expected_cost": 12}, "in": {"name": "Mitchell Robinson", "plan_price": 5, "bid_ceiling": 12, "expected_cost": 5}, "delta": -6, "kind": "교체"}, {"slot": "UTIL", "out": {"name": "Rudy Gobert", "plan_price": 8, "bid_ceiling": 18, "expected_cost": 8}, "in": {"name": "AJ Green", "plan_price": 2, "bid_ceiling": 11, "expected_cost": 2}, "delta": -8, "kind": "교체"}, {"slot": "PF", "out": {"name": "Alperen Şengün", "plan_price": 26, "bid_ceiling": 34, "expected_cost": 26}, "in": {"name": "Alperen Şengün", "plan_price": 26, "bid_ceiling": 34, "expected_cost": 26}, "delta": 3, "kind": "가격 상향"}, {"slot": "SF", "out": {"name": "Tim Hardaway Jr.", "plan_price": 2, "bid_ceiling": 10, "expected_cost": 2}, "in": {"name": "Duncan Robinson", "plan_price": 2, "bid_ceiling": 9, "expected_cost": 2}, "delta": 2, "kind": "교체"}, {"slot": "BN", "out": {"name": "Andre Drummond", "plan_price": 2, "bid_ceiling": 8, "expected_cost": 2}, "in": {"name": "Mark Williams", "plan_price": 7, "bid_ceiling": 14, "expected_cost": 7}, "delta": 7, "kind": "교체"}], "final_roster": [{"slot": "C", "role": "앵커 (실패 시 코어 전환)", "name": "Nikola Jokić", "plan_price": 88, "is_big": true, "dual_world_ok": false, "bid_ceiling": 88, "expected_cost": 88}, {"slot": "SG", "role": "A/T +0.171 · FT% 90.2% · BLK 1.3", "name": "Derrick White", "plan_price": 39, "is_big": false, "dual_world_ok": true, "bid_ceiling": 44, "expected_cost": 39}, {"slot": "PF", "role": "OREB 3.0 · DD 34 · AST", "name": "Alperen Şengün", "plan_price": 26, "is_big": true, "dual_world_ok": true, "bid_ceiling": 34, "expected_cost": 26}, {"slot": "UTIL", "role": "OREB 4.5 리그 1위", "name": "Mitchell Robinson", "plan_price": 5, "is_big": true, "dual_world_ok": true, "bid_ceiling": 12, "expected_cost": 5}, {"slot": "UTIL", "role": "OREB+BLK+DD 빅", "name": "AJ Green", "plan_price": 2, "is_big": false, "dual_world_ok": true, "bid_ceiling": 11, "expected_cost": 2}, {"slot": "BN", "role": "3PT% 레버리지 3위 · 3PM 3.0", "name": "Sam Merrill", "plan_price": 2, "is_big": false, "dual_world_ok": true, "bid_ceiling": 8, "expected_cost": 2}, {"slot": "SF", "role": "3PM 고볼륨 저가", "name": "Duncan Robinson", "plan_price": 2, "is_big": false, "dual_world_ok": true, "bid_ceiling": 9, "expected_cost": 2}, {"slot": "PG", "role": "A/T 다트", "name": "Andrew Nembhard", "plan_price": 2, "is_big": false, "dual_world_ok": true, "bid_ceiling": 6, "expected_cost": 2}, {"slot": "BN", "role": "OREB 다트", "name": "Mark Williams", "plan_price": 7, "is_big": true, "dual_world_ok": true, "bid_ceiling": 14, "expected_cost": 7}], "final_total": 173, "final_big_budget": 126, "final_c_eligible": 4, "targeted_cats": ["3P%", "3PM", "A/T", "AST", "DD", "FG%", "OREB", "REB", "TOV"], "punted_cats": ["BLK", "FT%", "PTS", "STL"], "cat_marginals": {"starters": 9, "PTS": {"sum": 128.3, "marginal": -14.7, "verdict": "미달"}, "TOV": {"sum": 14.6, "marginal": 2.1, "verdict": "확보"}, "all": {"PTS": -14.7, "REB": 0.4, "OREB": 1.7, "AST": 1.7, "STL": -0.8, "BLK": -0.4, "TOV": 2.1, "3PM": 0.8, "DD": 0.3, "3P%": 51.2, "FT%": -47.9, "FG%": 55.5, "A/T": 0.486}, "wins_incl_dd": 9}}, "c3": {"triggers": [{"player": "Donovan Clingan", "rule": "> $22"}, {"player": "Rudy Gobert", "rule": "> $18"}, {"player": "Ivica Zubac", "rule": "> $16"}], "rationale": "이미 빅맨 예산 최저($77)인 코어. 최저가 빅맨으로 내리고 절감분 전부를 3PM·3P% 고볼륨(Knueppel)으로.", "swaps": [{"slot": "C", "out": {"name": "Donovan Clingan", "plan_price": 12, "bid_ceiling": 22, "expected_cost": 12}, "in": {"name": "Nic Claxton", "plan_price": 4, "bid_ceiling": 12, "expected_cost": 4}, "delta": -8, "kind": "교체"}, {"slot": "UTIL", "out": {"name": "Rudy Gobert", "plan_price": 8, "bid_ceiling": 18, "expected_cost": 8}, "in": {"name": "Neemias Queta", "plan_price": 2, "bid_ceiling": 6, "expected_cost": 2}, "delta": -10, "kind": "교체"}, {"slot": "BN", "out": {"name": "Sam Merrill", "plan_price": 2, "bid_ceiling": 8, "expected_cost": 2}, "in": {"name": "Kon Knueppel", "plan_price": 22, "bid_ceiling": 26, "expected_cost": 22}, "delta": 19, "kind": "교체"}], "final_roster": [{"slot": "SG", "role": "앵커 (실패 시 코어 전환)", "name": "Shai Gilgeous-Alexander", "plan_price": 72, "is_big": false, "dual_world_ok": false, "bid_ceiling": 72, "expected_cost": 72}, {"slot": "PF", "role": "OREB 3.0 · DD 34 · AST", "name": "Alperen Şengün", "plan_price": 26, "is_big": true, "dual_world_ok": true, "bid_ceiling": 34, "expected_cost": 26}, {"slot": "SF", "role": "가드형 OREB 3.0 · 79G", "name": "Amen Thompson", "plan_price": 26, "is_big": false, "dual_world_ok": true, "bid_ceiling": 42, "expected_cost": 26}, {"slot": "PG", "role": "STL 2.0 리그 공동 1위", "name": "Dyson Daniels", "plan_price": 12, "is_big": false, "dual_world_ok": true, "bid_ceiling": 20, "expected_cost": 12}, {"slot": "C", "role": "OREB 4.5 리그 1위 · 77G", "name": "Nic Claxton", "plan_price": 4, "is_big": true, "dual_world_ok": true, "bid_ceiling": 12, "expected_cost": 4}, {"slot": "UTIL", "role": "DD 24 · 롤맨 빅", "name": "Ivica Zubac", "plan_price": 11, "is_big": true, "dual_world_ok": true, "bid_ceiling": 16, "expected_cost": 11}, {"slot": "UTIL", "role": "OREB 3.9 · BLK 1.6 · 76G", "name": "Neemias Queta", "plan_price": 2, "is_big": true, "dual_world_ok": true, "bid_ceiling": 6, "expected_cost": 2}, {"slot": "BN", "role": "OREB 3.1 주전 C", "name": "Mark Williams", "plan_price": 7, "is_big": true, "dual_world_ok": true, "bid_ceiling": 14, "expected_cost": 7}, {"slot": "BN", "role": "3PT% 레버리지 3위", "name": "Kon Knueppel", "plan_price": 22, "is_big": false, "dual_world_ok": true, "bid_ceiling": 26, "expected_cost": 22}], "final_total": 182, "final_big_budget": 50, "final_c_eligible": 5, "targeted_cats": ["A/T", "AST", "BLK", "DD", "FG%", "OREB", "PTS", "REB", "STL"], "punted_cats": ["3P%", "3PM", "FT%", "TOV"], "cat_marginals": {"starters": 9, "PTS": {"sum": 147.6, "marginal": 7.8, "verdict": "확보"}, "TOV": {"sum": 16.5, "marginal": -0.4, "verdict": "미달"}, "all": {"PTS": 7.8, "REB": 15.2, "OREB": 7.8, "AST": 1.8, "STL": 1.4, "BLK": 1.6, "TOV": -0.4, "3PM": -5.6, "DD": 0.6, "3P%": -2.9, "FT%": -112.7, "FG%": 508.4, "A/T": 0.073}, "wins_incl_dd": 9}}, "c4": {"triggers": [{"player": "Evan Mobley", "rule": "> $30"}, {"player": "Rudy Gobert", "rule": "> $18"}], "rationale": "상한 $31을 유지한 채 UTIL 한 칸을 빅맨에서 윙(Bane)으로 전환. Duren이 $34를 넘으면 피벗이 아니라 코어 전환(→ 코어 7).", "swaps": [{"slot": "UTIL", "out": {"name": "Evan Mobley", "plan_price": 23, "bid_ceiling": 30, "expected_cost": 23}, "in": {"name": "Walker Kessler", "plan_price": 16, "bid_ceiling": 19, "expected_cost": 16}, "delta": -9, "kind": "교체"}, {"slot": "UTIL", "out": {"name": "Rudy Gobert", "plan_price": 8, "bid_ceiling": 18, "expected_cost": 8}, "in": {"name": "Desmond Bane", "plan_price": 22, "bid_ceiling": 26, "expected_cost": 22}, "delta": 10, "kind": "교체"}], "final_roster": [{"slot": "C", "role": "OREB 3.8 · DD 41 · 70G", "name": "Jalen Duren", "plan_price": 27, "is_big": true, "dual_world_ok": true, "bid_ceiling": 31, "expected_cost": 27}, {"slot": "PF", "role": "OREB 3.0 · DD 34 · AST", "name": "Alperen Şengün", "plan_price": 26, "is_big": true, "dual_world_ok": true, "bid_ceiling": 31, "expected_cost": 26}, {"slot": "SF", "role": "가드형 OREB 3.0 · 79G", "name": "Amen Thompson", "plan_price": 26, "is_big": false, "dual_world_ok": true, "bid_ceiling": 31, "expected_cost": 26}, {"slot": "UTIL", "role": "OREB+BLK+DD", "name": "Walker Kessler", "plan_price": 16, "is_big": true, "dual_world_ok": true, "bid_ceiling": 19, "expected_cost": 16}, {"slot": "SG", "role": "3PT% 레버리지 2위 · 3PM 3.4", "name": "Kon Knueppel", "plan_price": 22, "is_big": false, "dual_world_ok": true, "bid_ceiling": 26, "expected_cost": 22}, {"slot": "PG", "role": "STL 2.0 리그 공동 1위", "name": "Dyson Daniels", "plan_price": 12, "is_big": false, "dual_world_ok": true, "bid_ceiling": 20, "expected_cost": 12}, {"slot": "UTIL", "role": "OREB 3.9 · 76G", "name": "Desmond Bane", "plan_price": 22, "is_big": false, "dual_world_ok": true, "bid_ceiling": 26, "expected_cost": 22}, {"slot": "BN", "role": "PTS+REB+DD 포워드", "name": "Julius Randle", "plan_price": 12, "is_big": false, "dual_world_ok": true, "bid_ceiling": 18, "expected_cost": 12}, {"slot": "BN", "role": "A/T +0.261 리그 2위", "name": "T.J. McConnell", "plan_price": 2, "is_big": false, "dual_world_ok": true, "bid_ceiling": 14, "expected_cost": 2}], "final_total": 165, "final_big_budget": 69, "final_c_eligible": 3, "targeted_cats": ["A/T", "AST", "BLK", "DD", "FG%", "OREB", "PTS", "REB", "STL"], "punted_cats": ["3P%", "3PM", "FT%", "TOV"], "cat_marginals": {"starters": 9, "PTS": {"sum": 144.8, "marginal": 9.2, "verdict": "확보"}, "TOV": {"sum": 18.7, "marginal": -2.6, "verdict": "미달"}, "all": {"PTS": 9.2, "REB": 13.9, "OREB": 7.6, "AST": 5.3, "STL": 1.8, "BLK": 0.5, "TOV": -2.6, "3PM": -3.5, "DD": 0.6, "3P%": -15.4, "FT%": -126.3, "FG%": 348.1, "A/T": 0.005}, "wins_incl_dd": 9}}, "c5": {"triggers": [{"player": "Donovan Clingan", "rule": "> $22"}, {"player": "Ivica Zubac", "rule": "> $16"}], "rationale": "Sabonis 자체가 부상 할인 자산이라 빅맨 과열 영향이 가장 작다. 헤지 빅을 최저가로 내리고 절감분을 3PM·FT%·STL 윙(Murphy)으로.", "swaps": [{"slot": "C", "out": {"name": "Donovan Clingan", "plan_price": 12, "bid_ceiling": 22, "expected_cost": 12}, "in": {"name": "Mark Williams", "plan_price": 7, "bid_ceiling": 14, "expected_cost": 7}, "delta": -5, "kind": "교체"}, {"slot": "UTIL", "out": {"name": "Ivica Zubac", "plan_price": 11, "bid_ceiling": 16, "expected_cost": 11}, "in": {"name": "Nic Claxton", "plan_price": 4, "bid_ceiling": 12, "expected_cost": 4}, "delta": -7, "kind": "교체"}, {"slot": "SG", "out": {"name": "Kon Knueppel", "plan_price": 22, "bid_ceiling": 26, "expected_cost": 22}, "in": {"name": "Trey Murphy III", "plan_price": 32, "bid_ceiling": 32, "expected_cost": 32}, "delta": 7, "kind": "교체"}, {"slot": "SF", "out": {"name": "Amen Thompson", "plan_price": 26, "bid_ceiling": 42, "expected_cost": 26}, "in": {"name": "Amen Thompson", "plan_price": 26, "bid_ceiling": 42, "expected_cost": 26}, "delta": 3, "kind": "가격 상향"}], "final_roster": [{"slot": "PG", "role": "A/T +0.517 리그 1위", "name": "Tyrese Haliburton", "plan_price": 50, "is_big": false, "alternates": [{"name": "Josh Giddey", "plan_price": 41, "dual_world_ok": true, "total_if_used": 159, "bid_ceiling": 42, "expected_cost": 41}, {"name": "Derrick White", "plan_price": 39, "dual_world_ok": true, "total_if_used": 157, "bid_ceiling": 44, "expected_cost": 39}], "dual_world_ok": false, "bid_ceiling": 50, "expected_cost": 50}, {"slot": "SF", "role": "가드형 OREB 3.0 · 79G", "name": "Amen Thompson", "plan_price": 26, "is_big": false, "dual_world_ok": true, "bid_ceiling": 42, "expected_cost": 26}, {"slot": "UTIL", "role": "Sabonis 헤지 빅 ①", "name": "Evan Mobley", "plan_price": 23, "is_big": true, "dual_world_ok": true, "bid_ceiling": 30, "expected_cost": 23}, {"slot": "SG", "role": "3PT% 레버리지 2위", "name": "Trey Murphy III", "plan_price": 32, "is_big": false, "dual_world_ok": true, "bid_ceiling": 32, "expected_cost": 32}, {"slot": "PF", "role": "앵커 (부상 할인 · 실패 시 코어 전환)", "name": "Domantas Sabonis", "plan_price": 19, "is_big": true, "dual_world_ok": true, "bid_ceiling": 34, "expected_cost": 19}, {"slot": "C", "role": "Sabonis 헤지 빅 ② (필수)", "name": "Mark Williams", "plan_price": 7, "is_big": true, "dual_world_ok": true, "bid_ceiling": 14, "expected_cost": 7}, {"slot": "UTIL", "role": "DD 24 · Hali 픽앤롤 시너지", "name": "Nic Claxton", "plan_price": 4, "is_big": true, "dual_world_ok": true, "bid_ceiling": 12, "expected_cost": 4}, {"slot": "BN", "role": "OREB 2.6 · DD 22", "name": "Deandre Ayton", "plan_price": 5, "is_big": true, "dual_world_ok": true, "bid_ceiling": 14, "expected_cost": 5}, {"slot": "BN", "role": "A/T 다트", "name": "T.J. McConnell", "plan_price": 2, "is_big": false, "dual_world_ok": true, "bid_ceiling": 14, "expected_cost": 2}], "final_total": 168, "final_big_budget": 58, "final_c_eligible": 5, "targeted_cats": ["A/T", "AST", "BLK", "DD", "FG%", "OREB", "REB", "TOV"], "punted_cats": ["3P%", "3PM", "FT%", "PTS", "STL"], "cat_marginals": {"starters": 9, "PTS": {"sum": 139.5, "marginal": -9.8, "verdict": "미달"}, "TOV": {"sum": 15.6, "marginal": 1.7, "verdict": "확보"}, "all": {"PTS": -9.8, "REB": 8.5, "OREB": 4.4, "AST": 1.8, "STL": -0.1, "BLK": 1.1, "TOV": 1.7, "3PM": -4.9, "DD": 0.8, "3P%": -16.7, "FT%": -126.8, "FG%": 431.2, "A/T": 0.421}, "wins_incl_dd": 8}}, "c6": {"triggers": [{"player": "Donovan Clingan", "rule": "> $22"}, {"player": "Rudy Gobert", "rule": "> $18"}], "rationale": "⚠ 정상 시장 기본값 코어의 생존 분기. 빅맨을 4명→3명($96)으로 줄이고 앵커 KAT 지불을 $56까지 올린다(최대 $62). 벤치 두 칸은 Daniels→Ausar Thompson(STL 2.0 동일, $9 절감) / Knueppel→Trey Murphy III(3PM+FT% 88.6+STL 1.5). 저가 빅 3명 이상이 과열되면 피벗이 아니라 코어 7로 전환. ⚠️ 18차 정정: Trey Murphy III($32)를 벤치에 두면 3P%·FT%가 무너져 6캣(패배)이었다. Merrill($6)과 교환해 선발로 올려 7캣 확보 · 벤치 지출 $38→$12.", "swaps": [{"slot": "C", "out": {"name": "Karl-Anthony Towns", "plan_price": 45, "bid_ceiling": 55, "expected_cost": 45}, "in": {"name": "Karl-Anthony Towns", "plan_price": 45, "bid_ceiling": 55, "expected_cost": 45}, "delta": 6, "kind": "가격 상향"}, {"slot": "UTIL", "out": {"name": "Donovan Clingan", "plan_price": 12, "bid_ceiling": 22, "expected_cost": 12}, "in": {"name": "Mitchell Robinson", "plan_price": 5, "bid_ceiling": 12, "expected_cost": 5}, "delta": -6, "kind": "교체"}, {"slot": "UTIL", "out": {"name": "Rudy Gobert", "plan_price": 8, "bid_ceiling": 18, "expected_cost": 8}, "in": {"name": "Sam Merrill", "plan_price": 2, "bid_ceiling": 8, "expected_cost": 2}, "delta": -6, "kind": "교체"}, {"slot": "BN", "out": {"name": "Dyson Daniels", "plan_price": 12, "bid_ceiling": 20, "expected_cost": 12}, "in": {"name": "Ausar Thompson", "plan_price": 3, "bid_ceiling": 8, "expected_cost": 3}, "delta": -9, "kind": "교체"}, {"slot": "BN", "out": {"name": "Kon Knueppel", "plan_price": 22, "bid_ceiling": 26, "expected_cost": 22}, "in": {"name": "Trey Murphy III", "plan_price": 32, "bid_ceiling": 32, "expected_cost": 32}, "delta": 7, "kind": "교체"}, {"slot": "PG", "out": {"name": "T.J. McConnell", "plan_price": 2, "bid_ceiling": 14, "expected_cost": 2}, "in": {"name": "T.J. McConnell", "plan_price": 2, "bid_ceiling": 14, "expected_cost": 2}, "delta": 4, "kind": "가격 상향"}, {"slot": "PF", "out": {"name": "Alperen Şengün", "plan_price": 26, "bid_ceiling": 34, "expected_cost": 26}, "in": {"name": "Alperen Şengün", "plan_price": 26, "bid_ceiling": 34, "expected_cost": 26}, "delta": 3, "kind": "가격 상향"}], "final_roster": [{"slot": "C", "role": "앵커 · DD 56 리그 1위", "name": "Karl-Anthony Towns", "plan_price": 45, "is_big": true, "dual_world_ok": true, "bid_ceiling": 55, "expected_cost": 45}, {"slot": "PF", "role": "OREB 3.0 · DD 34 · AST", "name": "Alperen Şengün", "plan_price": 26, "is_big": true, "dual_world_ok": true, "bid_ceiling": 34, "expected_cost": 26}, {"slot": "SF", "role": "가드형 OREB 3.0 · 79G", "name": "Amen Thompson", "plan_price": 26, "is_big": false, "dual_world_ok": true, "bid_ceiling": 42, "expected_cost": 26}, {"slot": "UTIL", "role": "3PT% 레버리지 2위 · 3PM 3.4", "name": "Trey Murphy III", "plan_price": 32, "is_big": false, "dual_world_ok": true, "bid_ceiling": 32, "expected_cost": 32}, {"slot": "BN", "role": "STL 2.0 리그 공동 1위", "name": "Ausar Thompson", "plan_price": 3, "is_big": false, "dual_world_ok": true, "bid_ceiling": 8, "expected_cost": 3}, {"slot": "UTIL", "role": "OREB 4.5 리그 1위 · 77G", "name": "Mitchell Robinson", "plan_price": 5, "is_big": true, "dual_world_ok": true, "bid_ceiling": 12, "expected_cost": 5}, {"slot": "SG", "role": "A/T +0.152 · TOV 1.2 · FT% 86.8%", "name": "DeMar DeRozan", "plan_price": 8, "is_big": false, "dual_world_ok": true, "bid_ceiling": 16, "expected_cost": 8}, {"slot": "BN", "role": "OREB+BLK+DD 빅", "name": "Sam Merrill", "plan_price": 2, "is_big": false, "dual_world_ok": true, "bid_ceiling": 8, "expected_cost": 2}, {"slot": "PG", "role": "A/T +0.261 리그 2위 · TOV 1.1", "name": "T.J. McConnell", "plan_price": 2, "is_big": false, "dual_world_ok": true, "bid_ceiling": 14, "expected_cost": 2}], "final_total": 149, "final_big_budget": 76, "final_c_eligible": 3, "targeted_cats": ["A/T", "DD", "FG%", "OREB", "REB", "STL", "TOV"], "punted_cats": ["3P%", "3PM", "AST", "BLK", "FT%", "PTS"], "cat_marginals": {"starters": 9, "PTS": {"sum": 134.7, "marginal": -6.1, "verdict": "미달"}, "TOV": {"sum": 14.9, "marginal": 1.3, "verdict": "확보"}, "all": {"PTS": -6.1, "REB": 4.9, "OREB": 4.1, "AST": -1.1, "STL": 1.2, "BLK": -0.3, "TOV": 1.3, "3PM": -4.4, "DD": 0.2, "3P%": -16.7, "FT%": -59.4, "FG%": 170.9, "A/T": 0.118}, "wins_incl_dd": 7}}, "c7": {"trigger": "low_cost_center 계층 2명 이상이 overheat_at 초과 — 중가 센터까지 밀려 올라갈 때", "swaps": [{"out": {"name": "Rudy Gobert", "plan_price": 8, "bid_ceiling": 18, "expected_cost": 8}, "in": {"name": "Ausar Thompson", "plan_price": 3, "bid_ceiling": 8, "expected_cost": 3}}, {"out": {"name": "Onyeka Okongwu", "plan_price": 5, "bid_ceiling": 10, "expected_cost": 5}, "in": {"name": "Cason Wallace", "plan_price": 3, "bid_ceiling": 8, "expected_cost": 3}}], "final_roster": [{"slot": "C", "name": "Karl-Anthony Towns", "plan_price": 45, "dual_world_ok": true, "bid_ceiling": 55, "expected_cost": 45}, {"slot": "PF", "name": "Alperen Şengün", "plan_price": 26, "dual_world_ok": true, "bid_ceiling": 34, "expected_cost": 26}, {"slot": "SF", "name": "Kon Knueppel", "plan_price": 22, "dual_world_ok": true, "bid_ceiling": 26, "expected_cost": 22}, {"slot": "SG", "name": "Dyson Daniels", "plan_price": 12, "dual_world_ok": true, "bid_ceiling": 20, "expected_cost": 12}, {"slot": "PG", "name": "Derrick White", "plan_price": 39, "dual_world_ok": true, "bid_ceiling": 44, "expected_cost": 39}, {"slot": "UTIL", "name": "Evan Mobley", "plan_price": 23, "dual_world_ok": true, "bid_ceiling": 30, "expected_cost": 23}, {"slot": "UTIL", "name": "Ausar Thompson", "plan_price": 3, "dual_world_ok": true, "bid_ceiling": 8, "expected_cost": 3}, {"slot": "BN", "name": "Josh Hart", "plan_price": 4, "dual_world_ok": true, "bid_ceiling": 5, "expected_cost": 4}, {"slot": "BN", "name": "Cason Wallace", "plan_price": 3, "dual_world_ok": true, "bid_ceiling": 8, "expected_cost": 3}], "rationale": "UTIL 센터 2자리(Gobert·Okongwu)를 저가 가드로 바꾸고 절감분을 SG(Daniels 12→15)·SF(Knueppel 22→25) 상향에 쓴다. 중가 센터 축(KAT·Şengün·Mobley)은 유지한다 — 그 축을 버리는 것이 기존 c7의 오류였다.", "final_total": 177, "final_big_budget": 94, "final_c_eligible": 3, "targeted_cats": ["A/T", "AST", "BLK", "DD", "FG%", "OREB", "PTS", "REB", "STL"], "punted_cats": ["3P%", "3PM", "FT%", "TOV"], "cat_marginals": {"starters": 9, "PTS": {"sum": 138.9, "marginal": 4.2, "verdict": "확보"}, "TOV": {"sum": 17.4, "marginal": -1.5, "verdict": "미달"}, "all": {"PTS": 4.2, "REB": 14.3, "OREB": 5.1, "AST": 4.6, "STL": 3.4, "BLK": 1.0, "TOV": -1.5, "3PM": 0.0, "DD": 0.7, "3P%": -4.9, "FT%": -125.5, "FG%": 61.6, "A/T": 0.101}, "wins_incl_dd": 9}, "triggers": [{"player": "Rudy Gobert", "rule": "> $18"}, {"player": "Donovan Clingan", "rule": "> $22"}]}};
+const ohOf=n=>OVERHEAT.find(x=>x.n===n)||null;
+const overTh=n=>{const r=ohOf(n);return r?r.walk:null;};        // 철수 가격(피벗 트리거)
+// 철수가 초과 — 해당 코어의 과열 피벗 트리거용
+function hotBigs(){const out=[];OVERHEAT.forEach(o=>{const p=P.find(x=>x.n===o.n);
+  if(!p)return;const a=(S.actual||{})[p.id];
+  if(a&&a>o.walk)out.push({n:o.n,th:o.walk,a,tier:o.tier});});return out;}
+// 과열 신호 초과 — 코어 7 전환 판정용. low_cost_center 계층만, overheat_at 기준
+function overheated(){const out=[];OVERHEAT.forEach(o=>{
+  if(o.oh==null||!(OTIERS[o.tier]||{}).c7)return;
+  const p=P.find(x=>x.n===o.n);if(!p)return;const a=(S.actual||{})[p.id];
+  if(a&&a>o.oh)out.push({n:o.n,oh:o.oh,exp:o.exp,a,tier:o.tier});});return out;}
+function pivotOf(id){return PIVOTS[id]||null;}
+function pivotArmed(){const c=activeCore();const pv=pivotOf(c.id);if(!pv)return false;
+  const hot=hotBigs().map(x=>x.n);return pv.triggers.some(t=>hot.includes(t.player));}
+const DECISION=[{"prio": "0", "core": "c7", "label": "저가 센터 계층 과열 2명 이상", "cond": {"type": "hot_bigs", "n": 2, "tier": "low_cost_center", "signal": "overheat_at", "players": ["Donovan Clingan", "Rudy Gobert", "Jalen Duren", "Mitchell Robinson", "Deandre Ayton", "Mark Williams"]}, "note": "⚠ 코어 6·4의 과열 피벗보다 **먼저** 코어 7로 전환. 센터 시장이 붕괴하면 피벗으로는 부족하다. 판정은 `low_cost_center` 계층의 `overheat_at`(실측 기대치 기반)으로만 한다 — 네임밸류 빅(Şengün·Mobley·Zubac)이 $30~60에 팔리는 것은 정상가이므로 세지 않는다.", "target_note": "33차: 목적지 c7은 이제 A1(중가 센터 전환)이다. 기존 c7(반센터)은 c7_old에 보존.", "priority_analysis": {"measured": "33차 승률 시뮬 4000시행 · 같은 난수 스트림", "c7_A1": {"random": 0.9235, "value_max": 0.3438, "big_stack": 0.4243, "guard_stack": 0.5495, "baseline": 0.9055, "benchmark": 0.5258, "overheat_big": 0.7668}, "c6_new": {"random": 0.9283, "value_max": 0.375, "big_stack": 0.4865, "guard_stack": 0.5415, "baseline": 0.909, "benchmark": 0.5165, "overheat_big": 0.7682}, "trigger_world_overheat_big": {"c7_A1": 0.7668, "c6_new": 0.7682}, "min_win_rate": {"c7_A1": 0.3438, "c6_new": 0.375}, "proposal": "**우선 0을 c6로 옮길 것을 제안한다.** B-c6-1 채택 후 신 c6이 발동 세계에서도 76.8% vs 76.7%로 동등하고(사실상 동률), 최소 승률은 37.5% vs 34.4%로 3.1%p 앞선다. 6개 상대 중 c6이 5개(무작위·가치최대·빅스택·기준선·과열빅)에서 우위이고 c7이 앞서는 것은 가드스택(54.9 vs 54.1)·벤치마크(52.6 vs 51.6) 2개다. 즉 '센터 과열 전용 최우선 계획'이라는 별도 분기의 근거가 측정으로 사라졌다. 결정은 사용자.", "not_applied": "우선순위는 바꾸지 않았다 — 제안만 기록한다"}}, {"prio": "1", "core": "c1", "label": "센터 정상가 + KAT ≤ $50 + Hali ≤ $48", "cond": {"type": "prices", "market": "normal", "rules": [{"player": "Karl-Anthony Towns", "max": 50}, {"player": "Tyrese Haliburton", "max": 48}], "feasibility": {"required": "Tyrese Haliburton 실낙찰가 <= $50", "why": "my_max $50 인데 실측 시장은 $54-66 이다. 할인 없이는 c1이 **존재하지 않는다** — B-c1-2의 최소 승률 39.2%도 이 조건부 숫자다.", "selection_threshold": "$48 (기존) — $48~50 구간은 살 수는 있으나 선택하지 않는다", "on_fail": "c6 (기본값)"}}, "note": "Hali가 정말 할인되면 코어 1의 천장이 가장 높다. 임계 $48은 내 최대가 $50보다 낮게 잡은 '선택 기준'이다 — $48~50은 살 수는 있으나 코어 1을 우선할 근거는 아니다. ⚠️ 33차: 실행가능성 조건을 cond.feasibility에 명시. Haliburton 할인이 없으면 이 행은 발동하지 않는다."}, {"prio": "2", "core": "c6", "label": "센터 정상가 + Hali 불확실/비쌈", "cond": {"type": "default_normal"}, "note": "정상 시장의 기본값. Hali가 기대만큼 안 싸거나 아킬레스 복귀 리스크를 피하고 싶으면 여기."}, {"prio": "3", "core": "c3", "label": "센터가 조금 비싸지만 SGA ≤ $72", "cond": {"type": "prices", "market": "slightly_hot", "rules": [{"player": "Shai Gilgeous-Alexander", "max": 72}]}, "note": "빅맨 예산 $77(39%)로 7개 코어 중 최저 — 센터가 약간 비싸지는 정도라면 코어 4보다 먼저."}, {"prio": "4", "core": "c4", "label": "앵커를 못 잡았지만 센터는 정상가", "cond": {"type": "anchor_fail"}, "note": "앵커 실패 시의 안전망. **센터 과열 대응책이 아니다** — 센터가 깨졌으면 코어 7."}, {"prio": "조건부", "core": "c2", "label": "Jokić ≤ $88", "cond": {"type": "prices", "rules": [{"player": "Nikola Jokić", "max": 88}]}, "note": "스타 집중형. 예산이 Jokić·D.White에 잠기므로 조건 충족 시에만 진입."}, {"prio": "격리", "core": "c5", "label": "Sabonis 건강 확인 + ≤ $26", "cond": {"type": "manual", "desc": "프리시즌에 Sabonis 정상 복귀가 확인되고 $26 이하", "rules": [{"player": "Domantas Sabonis", "max": 26}]}, "note": "별도 베팅안. 정상 복귀를 기본값으로 두지 않는다."}];
+const DECISION_ONELINER="정상 시장: 코어 6 기본 → Hali 할인 시 코어 1 → SGA 할인 시 코어 3 → 앵커 실패 시 코어 4. 저가 센터 2명 이상 과열: 즉시 코어 7. Jokić·Sabonis는 조건 충족 시에만 별도 진입.";
+function hotCenterCount(){
+  const d=DECISION[0].cond, set=new Set(d.players||[]);
+  return overheated().filter(x=>set.has(x.n)).length;
+}
+function priceStatus(nm,mx){          // 충족 / 불가 / 미정
+  const p=P.find(x=>x.n===nm); if(!p) return "미정";
+  const mine=S.mine.find(m=>m.id===p.id);
+  if(mine) return mine.price<=mx?"충족":"불가";
+  const a=(S.actual||{})[p.id];
+  if(a!==undefined) return "불가";     // 타팀이 가져갔으면 이 경로는 막힘
+  return "미정";
+}
+function decideStatus(d){
+  if(d.cond.type==="hot_bigs") return hotCenterCount()>=d.cond.n?"충족":"미정";
+  if(d.cond.type==="prices"||d.cond.type==="manual"){
+    const rs=d.cond.rules||[]; const st=rs.map(r=>priceStatus(r.player,r.max));
+    if(st.includes("불가")) return "불가";
+    if(st.every(x=>x==="충족")) return d.cond.type==="manual"?"수동확인":"충족";
+    return "미정";
+  }
+  if(d.cond.type==="default_normal") return hotCenterCount()>=2?"불가":"기본값";
+  if(d.cond.type==="anchor_fail"){
+    const anch=["Karl-Anthony Towns","Nikola Jokić","Shai Gilgeous-Alexander","Tyrese Haliburton"];
+    const gone=anch.filter(n=>{const p=P.find(x=>x.n===n);return p&&(S.gone.includes(p.id)&&!owned(p.id));});
+    return gone.length>=3?"충족":"미정";
+  }
+  return "미정";
+}
+function activePriority(){
+  for(const d of DECISION){ const st=decideStatus(d);
+    if(st==="충족") return d; }
+  const dn=DECISION.find(d=>d.cond.type==="default_normal");
+  return decideStatus(dn)==="기본값"?dn:null;
+}
+const coreById=id=>CORES.find(c=>c.id===id)||CORES[0];
+function activeCore(){return coreById(S.core||"c0");}
+function coreCands(){const c=activeCore();if(!c.plan)return null;const set=new Set();c.plan.forEach(r=>r[2].forEach(x=>{const p=P.find(y=>y.n===x[0]);if(p&&!p.injOut)set.add(x[0]);}));return set;}
+
+const KEY="auction13cat_v9";
+let S={mine:[],gone:[],core:"c6",actual:{},posOverride:false,useCal:false};
+try{const r=localStorage.getItem(KEY); if(r) S=Object.assign(S,JSON.parse(r));}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}};
+
+let filter="all", query="", openId=null, winId=null;
+
+const $=s=>document.querySelector(s);
+const spent=()=>S.mine.reduce((a,m)=>a+m.price,0);
+const slotsLeft=()=>SLOTS.length-S.mine.length;
+const remaining=()=>BUDGET-spent();
+const maxBid=()=>{const sl=slotsLeft(); return sl<=0?0:Math.max(0,remaining()-(sl-1));};
+const owned=id=>S.mine.some(m=>m.id===id);
+const cCount=()=>S.mine.filter(m=>P[m.id].p.includes("C")).length;
+
+function catTotals(){
+  const t={}; CATS.forEach(c=>t[c]=0);
+  S.mine.forEach(m=>{const w=P[m.id].cw; for(const k in w) if(k in t) t[k]+=w[k];});
+  return t;
+}
+
+function renderBar(){
+  const mb=maxBid(), sl=slotsLeft(), rem=remaining();
+  $("#ceil").textContent="$"+mb;
+  $("#m-rem").textContent=rem;
+  $("#m-slot").textContent=sl;
+  const per=sl>0?Math.round(rem/sl):0;
+  $("#m-per").textContent=sl>0?per:"—";
+  const box=$("#m-per-box");
+  box.className="met"+(sl>0&&per<8?" hot":(sl>0&&sl<=4&&per>36?" mid":""));
+  const cn=cCount(); const cb=$("#m-c"); cb.textContent=cn;
+  cb.parentElement.className="met"+(cn<2&&S.mine.length>=4?" mid":"");
+}
+
+function adj(p){          // 보정 계수 적용된 시장가 · 잉여 · 획득가능
+  const c=calib();
+  if(!S.useCal||c.f===null) return {lo:p.mk[0],hi:p.mk[1],mid:Math.round((p.mk[0]+p.mk[1])/2),cal:false};
+  const lo=Math.max(1,Math.round(p.mk[0]*c.f)), hi=Math.max(lo,Math.round(p.mk[1]*c.f));
+  return {lo,hi,mid:Math.round((lo+hi)/2),cal:true};
+}
+function renderRows(){
+  const box=$("#rows"); const q=query.trim().toLowerCase();
+  let list=P.slice();
+  if(q) list=list.filter(p=>(p.n+" "+p.t).toLowerCase().includes(q));
+  if(filter!=="all"){
+    if(filter==="buy"||filter==="burn"||filter==="dart") list=list.filter(p=>p.tag===filter);
+    else if(filter==="edge") list=list.filter(p=>p.mx-adj(p).mid>0);
+    else if(filter==="cheap") list=list.filter(p=>p.mx<=6);
+    else if(filter==="meas") list=list.filter(p=>!!p.s);
+    else if(filter==="inj") list=list.filter(p=>!!p.injOut);
+    else if(filter==="core"){const cd=coreCands(); list=cd?list.filter(p=>cd.has(p.n)):[];}
+    else list=list.filter(p=>(p.cw[filter]||0)>=2);
+  }
+  list.sort((a,b)=>{
+    const ag=S.gone.includes(a.id)||owned(a.id), bg=S.gone.includes(b.id)||owned(b.id);
+    if(ag!==bg) return ag?1:-1;
+    if(filter==="edge") return (b.mx-adj(b).mid)-(a.mx-adj(a).mid);
+    return b.mx-a.mx;
+  });
+
+  if(!list.length){box.innerHTML='<div class="empty-note">해당 조건에 맞는 선수가 없습니다</div>';return;}
+
+  const cd=coreCands();
+  box.innerHTML=list.map(p=>{
+    const own=owned(p.id), gone=S.gone.includes(p.id);
+    const isCand=cd&&cd.has(p.n);
+    const mine=S.mine.find(m=>m.id===p.id);
+    const cls="row"+(p.tag?" t-"+p.tag:"")+(gone?" gone":"")+(own?" own":"")+(isCand?" cand":"");
+    const A=adj(p), ed=p.mx-A.mid, unob=p.mx<A.lo;
+    const edgeTxt=(ed>0?"+":"")+ed;
+    let d="";
+    if(openId===p.id){
+      const chips=CATS.filter(c=>p.cw[c]).sort((a,b)=>p.cw[b]-p.cw[a])
+        .map(c=>'<span class="cc w'+p.cw[c]+'">'+c+'</span>').join("");
+      let acts;
+      if(own){
+        acts='<div class="acts"><span style="font-family:var(--mono);font-size:12px;color:var(--ok)">보유중 · $'+mine.price+' · '+mine.slot+'</span>'
+            +'<button class="b sec" data-undo="'+p.id+'">취소</button></div>';
+      } else if(gone){
+        const rec=(S.actual||{})[p.id];
+        acts='<div class="acts"><span style="font-family:var(--mono);font-size:12px;color:var(--ink-3)">타팀 낙찰'
+            +(rec?' $'+rec:'')+'</span>'
+            +'<button class="b sec" data-ungone="'+p.id+'">되돌리기</button></div>'
+            +'<div class="winform"><input id="ap'+p.id+'" type="number" min="1" max="200" placeholder="실낙찰가" value="'+(rec||"")+'" style="width:96px" />'
+            +'<button class="b sec" data-actual="'+p.id+'">시장가 기록</button>'
+            +'<span style="font-family:var(--mono);font-size:10.5px;color:var(--ink-3)">내 추정 $'+p.mk[0]+'–'+p.mk[1]+'</span></div>';
+      } else if(winId===p.id){
+        const open=SLOTS.map((s,i)=>({s,i})).filter(o=>!S.mine.some(m=>m.slotIdx===o.i));
+        const ok=open.filter(o=>slotOK(p,o.s)), no=open.filter(o=>!slotOK(p,o.s));
+        acts='<div class="winform"><input id="wp" type="number" min="1" max="200" value="'+Math.min(p.mx,maxBid())+'" aria-label="낙찰가" />'
+            +'<select id="ws" aria-label="슬롯">'
+            +ok.map(o=>'<option value="'+o.i+'">'+o.s+'</option>').join("")
+            +(no.length&&S.posOverride?'<optgroup label="자격 밖(강제)">'+no.map(o=>'<option value="'+o.i+'">'+o.s+' ⚠</option>').join("")+'</optgroup>':"")
+            +'</select>'
+            +'<button class="b" data-confirm="'+p.id+'">확정</button>'
+            +'<button class="b sec" data-cancelwin="1">취소</button></div>'
+            +'<div class="flag">자격 '+p.p+' → 가능 슬롯: '+(ok.map(o=>o.s).join(" ")||"없음")
+            +(no.length?' · 차단: '+no.map(o=>o.s).join(" "):"")+'</div>';
+        if(!ok.length&&!S.posOverride) acts+='<div class="flag">⚠ 가능한 슬롯이 없습니다. 야후 실제 자격이 다르면 하단 <b>자격 강제 해제</b>를 켜세요.</div>';
+      } else {
+        acts=(p.injOut?'<div class="flag">🚑 장기 부상 — 코어 자산으로 계산되지 않습니다. 복귀 일정이 확인된 경우에만 매수하세요.</div>':"")
+            +'<div class="acts"><button class="b" data-win="'+p.id+'">내가 낙찰</button>'
+            +'<button class="b sec" data-gone="'+p.id+'">타팀이 가져감</button></div>'
+            +'<div class="winform"><input id="ap'+p.id+'" type="number" min="1" max="200" placeholder="타팀 낙찰가" style="width:110px" />'
+            +'<button class="b sec" data-actual="'+p.id+'">기록하고 제외</button></div>';
+      }
+      const blk=(lab,txt,cls)=>'<div class="dblk '+(cls||"")+'"><span class="dlab">'+lab+'</span><span class="dval">'+txt+'</span></div>';
+      d='<div class="detail">'
+        +(p.s?blk("실측 25-26",p.s,"meas"):blk("실측","2025-26 실측 미확인 — 아키타입 추정치이므로 최대가를 그대로 믿지 마세요","est"))
+        +(p.chg?blk("팀 변화",p.chg,"chg"):"")
+        +(p.lev?blk("볼륨 레버리지",p.lev,"lev"):"")
+        +(p.atlev?blk("A/T 한계기여",p.atlev,"lev"):"")
+        +((function(){const alt=cheaperAlts(p);return alt?blk("더 싼 대체",alt,"alt"):"";})())
+        +'<div class="catrow">'+chips+'</div>'
+        +(p.note?'<p>'+p.note+'</p>':"")
+        +(p.flag?'<div class="flag">⚠ '+p.flag+'</div>':"")
+        +acts+'</div>';
+    }
+    return '<div class="'+cls+'">'
+      +'<button class="rhead" data-open="'+p.id+'" aria-expanded="'+(openId===p.id)+'">'
+      +'<span class="stripe"></span>'
+      +'<span class="nm"><span class="n">'+p.n+(p.injOut?' <em class="injb">장기부상</em>':'')+(p.s?'':' <em class="noest">추정</em>')+'</span><span class="meta">'+p.t+' · '+p.p+(p.s?' · '+p.s:'')+'</span></span>'
+      +'<span class="mkt'+(A.cal?" caladj":"")+'">$'+A.lo+'–'+A.hi+(unob?'<em class="unob">불가</em>':'')+'</span>'
+      +'<span class="mx">$'+p.mx+'</span>'
+      +'<span class="ed '+(ed>0?"p":"n")+'">'+edgeTxt+'</span>'
+      +'</button>'+d+'</div>';
+  }).join("");
+}
+
+function renderSlots(){
+  $("#slots").innerHTML=SLOTS.map((s,i)=>{
+    const m=S.mine.find(x=>x.slotIdx===i);
+    return '<div class="slot"><span class="sk">'+s+'</span>'
+      +(m?'<span class="sn">'+P[m.id].n+'</span><span class="sp">$'+m.price+'</span><button class="sx" data-undo="'+m.id+'" aria-label="'+P[m.id].n+' 취소">×</button>'
+         :'<span class="sn empty">비어 있음</span><span class="sp">—</span><span></span>')
+      +'</div>';
+  }).join("")+'<div class="slot"><span class="sk">IL+</span><span class="sn empty">O · GTD · INJ 수납 가능</span><span class="sp">—</span><span></span></div>';
+}
+
+function renderCats(){
+  const t=catTotals();
+  $("#catgrid").innerHTML=CATS.map(c=>{
+    const v=t[c]; const lvl=v>=6?3:v>=3?2:v>=1?1:0;
+    const pct=Math.min(100,Math.round(v/8*100));
+    const punt=(activeCore().punt||[]).includes(c);
+    return '<div class="cat l'+lvl+(punt?" punt":"")+'"><span class="cn">'+c+'</span>'
+      +'<span class="bar-t"><span class="fill" style="width:'+pct+'%"></span></span>'
+      +'<span class="cv">'+v+'</span></div>';
+  }).join("");
+}
+
+function renderAlerts(){
+  const a=[]; const sl=slotsLeft(), rem=remaining(), t=catTotals(), n=S.mine.length;
+  const per=sl>0?rem/sl:0;
+  if(sl>=5&&rem<30) a.push(["c","예산 소진 과다","슬롯 "+sl+"개에 $"+rem+" — 선발 다수가 대체선수급이 됩니다. 13캣에서 회복이 어렵습니다."]);
+  if(sl>0&&sl<=2&&rem>60) a.push(["c","예산 미소진","슬롯 "+sl+"개에 $"+rem+" — 잔여 선수 풀에 쓸 곳이 없습니다. 지금 최고가 타겟에 지르세요."]);
+  if(sl>0&&sl<=4&&per>36) a.push(["w","지출 지연","슬롯당 $"+Math.round(per)+". 중반 $10~30 구간을 놓치고 있습니다."]);
+  if(n>=4&&cCount()<2) a.push(["c","C 자격 부족","현재 "+cCount()+"명. 플렉스 슬롯이 없어 C 결장 시 슬롯이 그냥 빕니다. 최소 2명."]);
+  if(n>=4&&t["A/T"]<3) a.push(["w","A/T 공급원 없음","Nembhard($4) · Kornet($2) · Davion Mitchell($3) 중 하나로 즉시 보강하세요."]);
+  if(n>=5&&t["OREB"]<6) a.push(["w","OREB 확보 미달","이 리그 최대 아비트라지 캣입니다. Clingan · Gobert · M.Robinson · Diabaté 중 확보하세요."]);
+  if(S.mine.some(m=>P[m.id].n.startsWith("Tyrese Hali"))&&!S.mine.some(m=>P[m.id].n.startsWith("Andrew Nembhard")))
+    a.push(["w","Haliburton 헤지 없음","Nembhard($4)를 붙이세요. 같은 팀이라 결장 시 직접 수혜이고, Hali 하나에 5캣이 걸려 있습니다."]);
+  const inj=S.mine.filter(m=>P[m.id].injOut);
+  if(inj.length) a.push(["c","🚑 장기 부상 보유",inj.map(m=>P[m.id].n+" $"+m.price).join(", ")+" — 개막 후 장기 결장이 예상되는 선수입니다. 코어 캣 계산에서 제외해 읽으세요."]);
+  const co=activeCore();
+  if(co.cap){const bad=S.mine.filter(m=>m.price>co.cap);
+    if(bad.length) a.push(["c","코어 상한 위반","이 코어는 단일 선수 $"+co.cap+" 상한이 전제입니다. 초과: "+bad.map(m=>P[m.id].n+" $"+m.price).join(", ")+". 분산 논리가 깨졌으니 코어 1·3·5로 전환을 검토하세요."]);}
+  if(co.bigCap){const bs=S.mine.filter(m=>P[m.id].p.indexOf("C")>=0).reduce((x,m)=>x+m.price,0);
+    if(bs>co.bigCap) a.push(["c","빅맨 예산 초과","C 자격 선수에 $"+bs+" (계획 $"+co.bigCap+"). "+(co.pivot||"")]);
+    else if(bs>co.bigCap-14&&S.mine.length>=3) a.push(["w","빅맨 예산 임계","C 자격에 $"+bs+" / 상한 $"+co.bigCap+". 남은 빅맨 슬롯은 저가로 채우세요."]);}
+  // 과열 감지 — 철수가(피벗)와 과열신호(코어 7)를 분리. 임계값은 OVERHEAT/OTIERS 단일 소스
+  (function(){const brk=hotBigs(), hot=overheated(); if(!brk.length&&!hot.length)return;
+   const armed=pivotArmed(), hc=hotCenterCount();
+   if(hc>=2){
+     a.push(["c","저가 센터 계층 붕괴 ("+hc+"명 과열)",
+       hot.map(x=>shortName(x.n)+" $"+x.a+" (기대 $"+x.exp+" · 과열선 >$"+x.oh+")").join(" · ")
+       +" — <b>피벗이 아니라 코어 7로 전환하세요.</b>"]);
+   }else if(hot.length){
+     a.push(["w","저가 센터 과열 "+hot.length+"명 (전환까지 "+(2-hot.length)+"명)",
+       hot.map(x=>shortName(x.n)+" $"+x.a+" (기대 $"+x.exp+" · 과열선 >$"+x.oh+")").join(" · ")
+       +" — 아직 코어 7 전환 조건은 아닙니다."]);
+   }
+   if(brk.length){
+     const byTier={};brk.forEach(x=>{(byTier[x.tier]=byTier[x.tier]||[]).push(x);});
+     const parts=Object.keys(byTier).map(t=>((OTIERS[t]||{}).label||t)+": "
+       +byTier[t].map(x=>shortName(x.n)+" $"+x.a+" (철수 >$"+x.th+")").join(", "));
+     a.push([armed?"c":"w","철수가 초과 "+brk.length+"명",parts.join(" · ")
+       +(armed?" — 이 코어의 피벗 트리거가 발동했습니다. 우측 <b>과열 피벗</b>을 실행하세요."
+              :" — 현재 코어의 트리거 선수는 아닙니다.")
+       +(byTier.name_big?' <span class="prem">네임밸류 빅의 철수가 초과는 코어 7 근거가 아닙니다 — 정상가 구간입니다.</span>':"")]);
+   }})();
+  if(co.plan){const need=(co.target||[]).filter(c=>t[c]<3&&S.mine.length>=5);
+    if(need.length) a.push(["w","코어가 노리는 캣 미달","이 코어가 겨냥한 캣 중 "+need.join(" · ")+" 이(가) 비어 있습니다."]);}
+  const strong=CATS.filter(c=>t[c]>=6).length;
+  if(n>=7) a.push([strong>=7?"o":"w","가중치 6+ 캣 "+strong+"개","⚠ 이 수치는 가중치 합계이고 승리 예측이 아닙니다. 커버리지에서 0~2인 캣을 보강하세요."]);
+  if(!a.length) a.push(["o","정상","페이스에 이상이 없습니다. 입찰 한도를 넘기지 마세요."]);
+  $("#alerts").innerHTML=a.map(x=>'<div class="alert '+x[0]+'"><b>'+x[1]+'</b>'+x[2]+'</div>').join("");
+}
+
+function renderBurn(){
+  const b=P.filter(p=>p.tag==="burn").sort((a,c)=>c.mk[1]-a.mk[1]);
+  $("#burn").innerHTML=b.map(p=>{
+    const done=S.gone.includes(p.id)||owned(p.id);
+    return '<div'+(done?' class="done"':"")+'><span>'+p.n+'</span><span>$'+p.mk[0]+'–'+p.mk[1]+'</span></div>';
+  }).join("");
+}
+
+function renderChips(){
+  $("#chips").innerHTML=FILTERS.map(f=>'<button class="chip" data-f="'+f.k+'" aria-pressed="'+(filter===f.k)+'">'+f.l+'</button>').join("");
+}
+
+
+function shortName(nm){
+  const p=nm.split(" "); let i=p.length-1;
+  if(/^(Jr\.?|Sr\.?|I{2,3}|IV)$/.test(p[i]) && p.length>2) i--;
+  return p.slice(i).join(" ");
+}
+function cheaperAlts(p){
+  const SC=["OREB","DD","BLK","STL","A/T","3P%","FT%","3PM"];
+  const mine=SC.filter(c=>p.cw[c]>=3);
+  if(!mine.length) return "";
+  const out=[];
+  mine.forEach(c=>{
+    const alt=P.filter(q=>q.n!==p.n && (q.cw[c]||0)>=2 && q.mx<p.mx && !S.gone.includes(q.id))
+      .sort((x,y)=>x.mx-y.mx).slice(0,3);
+    if(alt.length) out.push('<b>'+c+'</b> '+alt.map(q=>shortName(q.n)+' $'+q.mx).join(" · "));
+  });
+  return out.length?out.join("<br>"):"";
+}
+function calib(){
+  const A=S.actual||{}; const r=[];
+  for(const id in A){const p=P[+id]; if(!p)continue;
+    const mid=Math.round((p.mk[0]+p.mk[1])/2); if(mid>0) r.push(A[id]/mid);}
+  if(r.length<3) return {n:r.length,f:null};
+  r.sort((a,b)=>a-b);
+  const med=r.length%2?r[(r.length-1)/2]:(r[r.length/2-1]+r[r.length/2])/2;
+  return {n:r.length,f:med};
+}
+function renderTrig(){
+  const box=$("#trig"); if(!box) return;
+  const act=activePriority(), hc=hotCenterCount();
+  let h='';
+  DECISION.forEach(d=>{
+    const st=decideStatus(d), on=act&&act.core===d.core;
+    const rules=(d.cond.rules||[]).map(r=>shortName(r.player)+" ≤ $"+r.max).join(" + ");
+    let cond=d.label;
+    if(d.cond.type==="hot_bigs") cond=((OTIERS[d.cond.tier]||{}).label||d.cond.tier)+" 과열 "+d.cond.n+"명 이상 ("+hc+"/"+(d.cond.players||[]).length+"명 감지)";
+    else if(rules) cond=(d.cond.market==="normal"?"센터 정상가 + ":d.cond.market==="slightly_hot"?"센터 약간 비쌈 + ":"")+rules;
+    else if(d.cond.type==="default_normal") cond="센터 정상가 · Hali 불확실/비쌈";
+    else if(d.cond.type==="anchor_fail") cond="앵커 실패 + 센터 정상가";
+    const col=st==="충족"?"var(--ok)":st==="불가"?"var(--ink-3)":st==="기본값"?"var(--accent)":"var(--ink-2)";
+    h+='<div style="'+(on?'background:var(--ok-bg);margin:0 -6px;padding:5px 6px;border-radius:2px;':'')+'">'
+      +'<span style="color:'+col+'">'+d.prio+'. '+cond+'</span>'
+      +'<b style="color:'+col+'">'+d.core.toUpperCase()+(on?" ◀":"")+'</b></div>';
+  });
+  h+='<div style="border-top:1px solid var(--line);margin-top:5px;padding-top:5px">'
+    +'<span>저가 계층 1명만 과열</span><b>해당 코어 과열 피벗</b></div>';
+  h+='<div><span>획득 불가 '+P.filter(p=>p.mx<p.mk[0]).length+'명</span><b>참전 안 함</b></div>';
+  const ij=P.filter(p=>p.injOut);
+  if(ij.length) h+='<div><span>장기 부상 '+ij.length+'명</span><b>코어 제외</b></div>';
+  // 과열 임계값 2계층 — OVERHEAT/OTIERS에서 생성 (정적 텍스트 금지)
+  h+='<div style="border-top:1px solid var(--line);margin-top:7px;padding-top:6px">'
+    +'<b style="color:var(--ink-2)">과열 임계값 · 2계층</b></div>';
+  Object.keys(OTIERS).forEach(tk=>{
+    const ti=OTIERS[tk], mem=OVERHEAT.filter(o=>o.tier===tk);
+    if(!mem.length)return;
+    h+='<div style="margin-top:4px"><span style="color:'+(ti.c7?"var(--crit)":"var(--ink-3)")+'">'
+      +ti.label+' ('+mem.length+'명)</span><b style="color:'+(ti.c7?"var(--crit)":"var(--ink-3)")+'">'
+      +(ti.c7?"코어 7 판정":"코어 7 무관")+'</b></div>';
+    mem.forEach(o=>{
+      const pl=P.find(x=>x.n===o.n), a=pl?(S.actual||{})[pl.id]:null;
+      const brk=a&&a>o.walk, hotx=a&&o.oh!=null&&a>o.oh;
+      h+='<div style="padding-left:8px;font-size:11px"><span style="color:'
+        +(hotx?"var(--crit)":brk?"var(--warn)":"var(--ink-3)")+'">'+shortName(o.n)
+        +(a?" 낙찰 $"+a:"")+'</span><b style="color:var(--ink-3)">철수 >$'+o.walk
+        +(o.oh!=null?" · 과열 >$"+o.oh+" (기대 $"+o.exp+")":" · 과열선 없음")+'</b></div>';
+    });
+  });
+  box.innerHTML=h;
+  const sb=document.querySelector("#trigbox > summary");
+  if(sb) sb.innerHTML="코어 전환 트리거"+(hc>=2?' <b style="color:var(--crit)">· 센터 붕괴 → C7</b>':"");
+}
+function renderDecide(){
+  const box=$("#decide"), act=activePriority(), hc=hotCenterCount();
+  let h='';
+  if(hc>=2) h+='<div class="alert c" style="margin-bottom:9px"><b>저가 센터 계층 붕괴 ('+hc+'명 과열)</b>'
+    +'즉시 <b>코어 7</b>로 전환하세요. 코어 6·4의 과열 피벗보다 먼저입니다. '
+    +'<span class="prem">판정은 '+((OTIERS[DECISION[0].cond.tier]||{}).label||'')+' 계층의 과열선(실측 기대치 기반)만 셉니다.</span></div>';
+  h+='<div class="rulebody" style="padding:0">';
+  DECISION.forEach(d=>{
+    const st=decideStatus(d), on=act&&act.core===d.core;
+    const col=st==="충족"?"var(--ok)":st==="불가"?"var(--ink-3)":st==="기본값"?"var(--accent)":"var(--ink-2)";
+    h+='<div style="'+(on?'background:var(--ok-bg);margin:0 -6px;padding:5px 6px;border-radius:2px;':'')+'">'
+      +'<span style="color:'+col+'">'+d.prio+'. '+d.label+'</span>'
+      +'<b style="color:'+col+'">'+d.core.toUpperCase()+' · '+st+(on?" ◀":"")+'</b></div>';
+  });
+  h+='</div>';
+  if(act) h+='<p class="prem" style="font-size:12px;margin-top:9px"><b>현재 권장: '+act.core.toUpperCase()+'</b> — '+act.note+'</p>';
+  h+='<details class="rules" style="margin-top:8px;border:0"><summary style="padding:6px 0">한 줄 요약</summary>'
+    +'<p class="prem" style="font-size:12px;padding:0 0 6px">'+DECISION_ONELINER+'</p></details>';
+  box.innerHTML=h;
+}
+function renderPivot(){
+  const c=activeCore(), pv=pivotOf(c.id), box=$("#pivot");
+  if(!pv){box.innerHTML='<p class="prem" style="font-size:12px">코어를 선택하면 센터 과열 시 전환 플랜이 표시됩니다.</p>';return;}
+  const armed=pivotArmed(), hot=hotBigs().map(x=>x.n);
+  let h='<div class="pvhead '+(armed?"armed":"")+'">'+(armed?"⚠ 트리거 발동":"대기")+'</div>';
+  if(hotCenterCount()>=2&&c.id!=="c7") h+='<div class="alert c" style="margin-top:8px"><b>피벗 대신 코어 7</b>'
+    +'저가 센터 계층에서 2명 이상 과열됐습니다(과열선 = 실측 기대치 기반). 이 피벗을 실행하는 것보다 코어 7로 전환하는 것이 우선입니다.</div>';
+  h+='<p class="prem" style="font-size:12px">'+pv.rationale+'</p>';
+  h+='<div class="rulebody" style="padding:0;margin-top:8px">';
+  pv.triggers.forEach(t=>{const on=hot.includes(t.player);
+    h+='<div'+(on?' style="color:var(--crit)"':'')+'><span>'+shortName(t.player)+'</span><b>'+t.rule+(on?" ✔":"")+'</b></div>';});
+  h+='</div>';
+  h+='<div class="plan" style="margin-top:10px">';
+  pv.swaps.forEach(w=>{
+    h+='<div class="prow"><div class="ptop"><span class="ps">'+w.slot+'</span>'
+      +'<span class="pr" style="font-size:11px">'+(w.kind==="교체"
+        ? shortName(w.out.name)+' → <b>'+shortName(w.in.name)+'</b>'
+        : shortName(w.in.name)+' 지불 상향')+'</span>'
+      +'<span class="pb">$'+w.in.plan_price+'</span>'
+      +'<span class="pa '+(w.delta>0?"u":"d")+'">'+(w.delta>0?"+":"")+w.delta+'</span></div></div>';});
+  h+='</div>';
+  h+='<div class="plansum" style="margin-top:10px">'
+    +'<div><div class="k">피벗 총액</div><div class="v">$'+pv.final_total+'</div></div>'
+    +'<div><div class="k">빅맨 예산</div><div class="v">$'+pv.final_big_budget+'</div></div>'
+    +'<div><div class="k">C 자격</div><div class="v">'+pv.final_c_eligible+'</div></div>'
+    +'</div>';
+  if(pv.fallback){const fb=pv.fallback;
+    h+='<details class="rules" style="margin-top:9px;border:0"><summary style="padding:8px 0">⚠ 백업 규칙 (1차 피벗 실행 불가 시)</summary><div class="rulebody" style="padding:0">'
+      +'<div style="display:block;color:var(--crit);font-family:var(--mono);font-size:11px;padding:4px 0"><b>'
+        +fb.condition_rules.map(r=>shortName(r.player)+" "+r.rule).join(" "+fb.condition_logic+" ")+'</b></div>'
+      +'<div style="display:block;color:var(--ink-2);font-family:var(--sans);font-size:12px;line-height:1.5;padding:4px 0">'+fb.rationale+'</div>'
+      +fb.swaps.map(w=>'<div><span>'+w.slot+' · '+shortName(w.out.name)+' → '+shortName(w.in.name)+'</span><b>$'+w.in.plan_price+'</b></div>').join("")
+      +'<div><span>총액 / 빅맨</span><b>$'+fb.final_total+' / $'+fb.final_big_budget+'</b></div>'
+      +'<div><span>포기 캣</span><b>'+fb.punted_cats.join(" ")+'</b></div>'
+      +'</div></details>';}
+  h+='<details class="rules" style="margin-top:9px;border:0"><summary style="padding:8px 0">피벗 최종 9인 로스터</summary><div class="rulebody" style="padding:0">'
+    +pv.final_roster.map(r=>'<div><span>'+r.slot+' · '+shortName(r.name)+(r.is_big?' <em class="bigmk">C</em>':'')+'</span><b>$'+r.plan_price+'</b></div>').join("")
+    +'</div></details>';
+  box.innerHTML=h;
+}
+function renderCalImpact(){
+  const box=$("#calimpact"); const c=calib();
+  $("#usecal").textContent="보정 적용: "+(S.useCal?"켬":"끔");
+  if(c.f===null||!S.useCal){box.innerHTML="";return;}
+  const co=activeCore(); if(!co.plan){box.innerHTML="";return;}
+  const lost=[],kept=[];
+  co.plan.forEach(r=>r[2].forEach(([nm,pv])=>{
+    const p=P.find(x=>x.n===nm); if(!p)return;
+    const lo=Math.max(1,Math.round(p.mk[0]*c.f));
+    if(p.mx<lo) lost.push(shortName(nm)); else if(pv<lo) kept.push(shortName(nm)+" $"+pv+"→$"+lo);
+  }));
+  let h="";
+  if(lost.length) h+='<div class="alert c" style="margin-top:9px"><b>보정 후 획득 불가</b>'+lost.join(", ")+'</div>';
+  if(kept.length) h+='<div class="alert w" style="margin-top:6px"><b>계획가 상향 필요</b>'+kept.slice(0,8).join(" · ")+'</div>';
+  if(!h) h='<div class="alert o" style="margin-top:9px"><b>영향 없음</b>현재 코어 후보는 보정 후에도 전원 획득 가능합니다.</div>';
+  box.innerHTML=h;
+}
+function renderCalib(){
+  const c=calib(), box=$("#calib");
+  if(c.f===null){
+    box.innerHTML='<p class="prem" style="font-size:12px">타팀 낙찰가를 <b>3명 이상</b> 기록하면 내 시장 추정치 대비 보정 계수가 계산됩니다. '
+      +'현재 '+c.n+'명 기록됨. <b>시장가는 전부 제 추정이라 이 산출물의 최대 병목입니다</b> — 초반 5~10명을 기록해 곡선을 보정하세요.</p>';
+  } else {
+    const pct=Math.round((c.f-1)*100);
+    const cls=Math.abs(pct)>=20?"crit":(Math.abs(pct)>=10?"warn":"ok");
+    box.innerHTML='<div class="calbig '+cls+'">×'+c.f.toFixed(2)+'</div>'
+      +'<p class="prem" style="font-size:12px">'+c.n+'명 기록 기준 중앙값. 실제 시장이 내 추정보다 <b>'
+      +(pct>=0?pct+'% 높습니다':(-pct)+'% 낮습니다')+'</b>. '
+      +'<b>보정 적용</b>을 켜면 목록의 시장가·잉여·획득가능 판정이 이 계수로 재계산됩니다.</p>';
+  }
+}
+function slotOK(p,slot){
+  if(S.posOverride) return true;
+  if(slot==="UTIL"||slot==="BN") return true;
+  const e={G:p.p.indexOf("G")>=0,F:p.p.indexOf("F")>=0,C:p.p.indexOf("C")>=0};
+  if(slot==="PG"||slot==="SG") return e.G;
+  if(slot==="SF"||slot==="PF") return e.F;
+  if(slot==="C") return e.C;
+  return true;
+}
+function renderCore(){
+  const c=activeCore(); const box=$("#coreinfo");
+  $("#coresel").innerHTML=CORES.map(x=>'<option value="'+x.id+'"'+(x.id===c.id?' selected':'')+'>'+x.n+'</option>').join("");
+  if(!c.plan){box.innerHTML='<p class="prem">코어를 고르면 슬롯별 후보와 <b>후보별 계획가</b>가 표시됩니다. 계획가는 전부 내 최대가 이하로 검증돼 있습니다.</p>';return;}
+  const target=c.plan.reduce((a,r)=>a+r[2][0][1],0), sp=spent();
+  let h='<p class="prem">'+c.prem+'</p>';
+  h+='<div class="plansum">'
+    +'<div><div class="k">계획 총액</div><div class="v">$'+target+'</div></div>'
+    +'<div><div class="k">현재 지출</div><div class="v '+(sp>target?"over":"")+'">$'+sp+'</div></div>'
+    +'<div><div class="k">노리는 캣</div><div class="v">'+c.target.length+'</div></div>'
+    +'<div><div class="k">포기</div><div class="v" style="font-size:11px">'+(c.punt||[]).join(" ")+'</div></div>'
+    +'</div>';
+  h+='<div class="plan">'+c.plan.map((r,idx)=>{
+    const [slot,role,cands,anchor,ah]=r, bud=cands[0][1];
+    const sameBefore=c.plan.slice(0,idx).filter(x=>x[0]===slot).length;
+    const m=S.mine.filter(x=>x.slot===slot)[sameBefore];
+    let actCls="e",actTxt="—";
+    if(m){const d=m.price-bud; actCls=d>0?"u":"d"; actTxt=(d>0?"+":"")+d;}
+    let row='<div class="prow'+(m?" filled":"")+'">'
+      +'<div class="ptop"><span class="ps">'+slot+(anchor?'<b class="anch" title="'
+        +(ah?('입찰상한 $'+ah.ceil+' · 명목여유 $'+ah.nom+' · 실효여력 $'+ah.eff
+             +' · 제약 '+ah.con+' · 실패시 '+ah.act+':'+ah.tgt):'')+'">앵커'
+        +(ah?' <span style="font-weight:400;opacity:.75">↕$'+ah.eff+'</span>':'')+'</b>':'')+'</span>'
+      +'<span class="pr">'+(m?P[m.id].n:role)+'</span>'
+      +'<span class="pb">$'+bud+'</span><span class="pa '+actCls+'">'+(m?"$"+m.price:actTxt)+'</span></div>';
+    if(!m){
+      row+='<div class="pcand">'+cands.map(([nm,pv])=>{
+        const p=P.find(x=>x.n===nm); if(!p) return "";
+        const tk=S.gone.includes(p.id), gt=owned(p.id);
+        return '<button data-jump="'+p.id+'" class="'+(gt?"got":(tk?"taken":""))+'" title="'+nm+' · 계획 $'+pv+' · 내 최대 $'+p.mx+'">'
+          +shortName(nm)+' <b>$'+pv+'</b></button>';
+      }).join("")+(anchor&&ah?('<span class="anote">'
+        +(ah.eff>0?('여력 $'+ah.eff+' (상한 $'+ah.ceil+')'):('여력 없음 — 상한 $'+ah.ceil+' 초과 시 즉시 '))
+        +(ah.act==="switch_core"?('코어 전환 → '+ah.tgt.toUpperCase()):
+          ah.act==="pivot"?'과열 피벗 실행':('치환 → '+shortName(ah.tgt)))
+        +(ah.dual?'':' · 실측곡선에선 획득 불가')+'</span>'):"")+'</div>';
+    }
+    return row+'</div>';
+  }).join("")+'</div>';
+  h+='<p class="prem" style="font-size:11.5px;color:var(--ink-3);margin-top:10px">'
+    +'<b>노리는 캣</b>은 이 빌드가 겨냥하는 캣 목록이며 승리 예측이 아닙니다. 실제 주간 총량·시도량·경기수를 넣지 않은 지표입니다.</p>';
+  box.innerHTML=h;
+}
+
+function renderAll(){renderBar();renderDecide();renderTrig();renderCalib();renderCalImpact();renderPivot();renderCore();renderRows();renderSlots();renderCats();renderAlerts();renderBurn();renderChips();}
+
+document.addEventListener("click",e=>{
+  const t=e.target.closest("[data-open],[data-win],[data-gone],[data-undo],[data-ungone],[data-confirm],[data-cancelwin],[data-f],[data-jump],[data-actual]");
+  if(!t) return;
+  if(t.dataset.f!==undefined){filter=t.dataset.f;renderAll();return;}
+  if(t.dataset.jump!==undefined){const id=+t.dataset.jump;query="";$("#q").value="";filter="all";openId=id;winId=null;
+    renderAll();const el=document.querySelector('[data-open="'+id+'"]');if(el){el.scrollIntoView({block:"center",behavior:"smooth"});el.focus();}return;}
+  if(t.dataset.open!==undefined){const id=+t.dataset.open;openId=(openId===id?null:id);winId=null;renderRows();return;}
+  if(t.dataset.win!==undefined){winId=+t.dataset.win;renderRows();
+    const el=document.getElementById("wp"); if(el){el.focus();el.select();} return;}
+  if(t.dataset.cancelwin!==undefined){winId=null;renderRows();return;}
+  if(t.dataset.confirm!==undefined){
+    const id=+t.dataset.confirm;
+    const price=Math.max(1,Math.min(200,parseInt(document.getElementById("wp").value,10)||1));
+    const slotIdx=+document.getElementById("ws").value;
+    S.mine.push({id,price,slotIdx,slot:SLOTS[slotIdx]});
+    S.gone=S.gone.filter(x=>x!==id); winId=null; openId=null; save(); renderAll(); return;
+  }
+  if(t.dataset.actual!==undefined){const id=+t.dataset.actual;
+    const el=document.getElementById("ap"+id); const v=parseInt(el&&el.value,10);
+    S.actual=S.actual||{};
+    if(v>0) S.actual[id]=Math.min(200,v); else delete S.actual[id];
+    if(!S.gone.includes(id)&&!owned(id)) S.gone.push(id);
+    save(); renderAll(); return;}
+  if(t.dataset.gone!==undefined){const id=+t.dataset.gone; if(!S.gone.includes(id))S.gone.push(id); openId=null; save(); renderAll(); return;}
+  if(t.dataset.ungone!==undefined){const id=+t.dataset.ungone; S.gone=S.gone.filter(x=>x!==id); save(); renderAll(); return;}
+  if(t.dataset.undo!==undefined){const id=+t.dataset.undo; S.mine=S.mine.filter(m=>m.id!==id); save(); renderAll(); return;}
+});
+
+document.addEventListener("change",e=>{
+  if(e.target.id==="coresel"){S.core=e.target.value;save();renderAll();}
+});
+$("#q").addEventListener("input",e=>{query=e.target.value;openId=null;winId=null;renderRows();});
+$("#q").addEventListener("keydown",e=>{
+  if(e.key==="Enter"){const first=$("#rows .rhead"); if(first){first.click();first.focus();}}
+});
+let resetArm=null;
+function disarmReset(){const b=$("#reset");if(resetArm){clearTimeout(resetArm);resetArm=null;}b.textContent="전체 초기화";b.classList.remove("armed");}
+$("#reset").addEventListener("click",()=>{
+  const b=$("#reset");
+  if(resetArm){disarmReset();S={mine:[],gone:[],core:S.core,actual:{},posOverride:S.posOverride,useCal:false};save();renderAll();return;}
+  b.textContent="한 번 더 누르면 삭제";b.classList.add("armed");
+  resetArm=setTimeout(disarmReset,4000);
+});
+$("#usecal").addEventListener("click",()=>{
+  S.useCal=!S.useCal; save(); renderAll();
+});
+$("#posov").addEventListener("click",()=>{
+  S.posOverride=!S.posOverride; save(); renderAll();
+  $("#posov").textContent="자격 강제 해제: "+(S.posOverride?"켬 ⚠":"끔");
+});
+$("#theme").addEventListener("click",()=>{
+  const cur=document.documentElement.getAttribute("data-theme");
+  const dark=cur?cur==="dark":matchMedia("(prefers-color-scheme: dark)").matches;
+  document.documentElement.setAttribute("data-theme",dark?"light":"dark");
+});
+
+renderAll();
+$("#posov").textContent="자격 강제 해제: "+(S.posOverride?"켬 ⚠":"끔");
+
+/* 레일 카드 접기 — 제목 클릭 토글 · 상태 저장 */
+(function(){
+  const KEY="auction13cat_v9_fold";
+  let fold={}; try{fold=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){fold={};}
+  document.querySelectorAll(".rail > .card").forEach((card,i)=>{
+    const h=card.querySelector("h2"); if(!h||h.parentElement!==card) return;
+    const id=(h.textContent||"").trim()||("card"+i);
+    if(fold[id]) card.classList.add("fold");
+    h.title="클릭하면 접기/펴기";
+    h.addEventListener("click",()=>{
+      fold[id]=card.classList.toggle("fold");
+      try{localStorage.setItem(KEY,JSON.stringify(fold));}catch(e){}
+    });
+  });
+})();
+
+/* 상단 바 실측 높이를 --barh에 반영 — 레일의 sticky top·max-height가 여기에 걸린다.
+   바는 flex-wrap이라 창 폭에 따라 높이가 바뀌므로 고정값(86px)이면 레일이 잘리거나 뜬다. */
+(function(){
+  const bar=$(".bar"); if(!bar) return;
+  const set=()=>document.documentElement.style.setProperty("--barh",bar.offsetHeight+"px");
+  set();
+  if(window.ResizeObserver) new ResizeObserver(set).observe(bar);
+  else addEventListener("resize",set);
+})();
+(function(){const v=P.filter(x=>x.s).length;
+ $("#vstat").innerHTML='<b>선수 '+P.length+'명 전수 검증 완료 — 실측 근거 '+v+'명.</b> '
+ +'미검증은 2026 드래프트 루키 3명뿐이며(2025-26 NBA 실적이 없어 검증 불가) 해당 항목은 최대가가 순수 추정임을 명시했습니다. '
+ +'각 선수 행을 펼치면 <b>실측 25-26 → 팀 변화 → 13캣 판정</b> 순서로 근거가 나옵니다. '
+ +'<b>비율 캣(FG%·FT%·3PT%·A-T)은 팀 합계 기준</b>이라 rate가 아니라 <b>시도량 지분</b>만큼 레버리지가 생깁니다. 저볼륨 고효율 선수는 기여가 작고 주간 변동성도 커서, 해당 선수에는 <b>볼륨 레버리지</b> 계산(선발 7명·주간 3.5경기·팀 3PA 135 가정)을 병기했습니다. '+'검증 기준은 2025-26 리그 리더보드 7종(3PT%·FT%·STL·BLK·OREB·A/T·PTS) 대조 + 개별 시즌 스탯 조회입니다.';})();
+$("#q").focus();
+})();
+</script>

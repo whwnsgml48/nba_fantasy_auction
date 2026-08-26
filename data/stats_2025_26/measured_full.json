@@ -1,0 +1,6874 @@
+{
+ "meta": {
+  "source": "basketball-reference per-game (tool/fetch_bbref.py)",
+  "method": "2025-26과 2024-25를 GP 가중 혼합 (2025-26에 ×1.5 최근 가중). GP도 같은 가중으로 혼합해 '작년 5경기' 같은 출장 리스크가 남는다.",
+  "recency_multiplier": 1.5,
+  "matched": 171,
+  "db_players": 174,
+  "blend_note": "players[].seasons에 시즌별 GP와 가중치, blend_share_2025_26에 최근 시즌 반영 비율.",
+  "unmatched": [
+   "AJ Dybantsa",
+   "Darryn Peterson",
+   "Cameron Boozer"
+  ],
+  "cats_covered": [
+   "PTS",
+   "REB",
+   "OREB",
+   "AST",
+   "STL",
+   "BLK",
+   "TOV",
+   "FG%",
+   "3PM",
+   "3P%",
+   "FT%",
+   "A/T",
+   "DD"
+  ],
+  "cats_not_covered": [],
+  "note": "DD는 BBRef 미집계라 per-game PTS·REB·AST 정규근사로 **추정**한다(cat_model.dd_game_prob · σ=c√μ · c=PTS 1.50/REB 1.10/AST 1.05 · 연속성 보정). DD 필드는 경기당 확률, DD_est_season은 ×GP. 실측 25명(리더보드) 검증: 절대오차 중앙값 2.13 DD · 평균오차 -0.65 · 23/25명 오차 6 이내. 실측값으로 덮어쓰지 않는다 — 실측은 2025-26 단일 시즌이고 다른 12캣은 2시즌 혼합이라 기준이 섞인다. 실측은 dd_actual_2025_26에 기록만 남긴다."
+ },
+ "players": {
+  "Nikola Jokić": {
+   "season": "blend",
+   "bbref_name": "Nikola Jokić",
+   "team": "DEN",
+   "pos": "C",
+   "GP": 67.1,
+   "GS": 65,
+   "MPG": 35.594,
+   "PTS": 28.494,
+   "REB": 12.8164,
+   "OREB": 2.9582,
+   "DREB": 9.9,
+   "AST": 10.491,
+   "STL": 1.5672,
+   "BLK": 0.7164,
+   "TOV": 3.5328,
+   "FG%": 0.5719,
+   "3PM": 1.8254,
+   "3P%": 0.3955,
+   "FT%": 0.818,
+   "FGA": 18.2776,
+   "FTA": 6.9821,
+   "3PA": 4.5836,
+   "A/T": 2.97,
+   "DD": 0.9192,
+   "DD_est_season": 61.7,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.253,
+   "seasons": {
+    "2025-26": {
+     "GP": 65,
+     "weight": 97.5
+    },
+    "2024-25": {
+     "GP": 70,
+     "weight": 70
+    }
+   },
+   "blend_share_2025_26": 0.582
+  },
+  "Victor Wembanyama": {
+   "season": "blend",
+   "bbref_name": "Victor Wembanyama",
+   "team": "SAS",
+   "pos": "C",
+   "GP": 58.2,
+   "GS": 55,
+   "MPG": 30.4958,
+   "PTS": 24.7732,
+   "REB": 11.338,
+   "OREB": 1.9352,
+   "DREB": 9.4028,
+   "AST": 3.2944,
+   "STL": 1.0324,
+   "BLK": 3.3268,
+   "TOV": 2.6592,
+   "FG%": 0.5003,
+   "3PM": 2.2887,
+   "3P%": 0.35,
+   "FT%": 0.8299,
+   "FGA": 17.4507,
+   "FTA": 6.0606,
+   "3PA": 6.569,
+   "A/T": 1.24,
+   "DD": 0.6762,
+   "DD_est_season": 39.4,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.16,
+   "seasons": {
+    "2025-26": {
+     "GP": 64,
+     "weight": 96.0
+    },
+    "2024-25": {
+     "GP": 46,
+     "weight": 46
+    }
+   },
+   "blend_share_2025_26": 0.676
+  },
+  "Shai Gilgeous-Alexander": {
+   "season": "blend",
+   "bbref_name": "Shai Gilgeous-Alexander",
+   "team": "OKC",
+   "pos": "PG",
+   "GP": 71.4,
+   "GS": 68,
+   "MPG": 33.627,
+   "PTS": 31.7831,
+   "REB": 4.5989,
+   "OREB": 0.7281,
+   "DREB": 3.8708,
+   "AST": 6.5146,
+   "STL": 1.5281,
+   "BLK": 0.8854,
+   "TOV": 2.2854,
+   "FG%": 0.5385,
+   "3PM": 1.8708,
+   "3P%": 0.3813,
+   "FT%": 0.8871,
+   "FGA": 20.4247,
+   "FTA": 8.9146,
+   "3PA": 4.9551,
+   "A/T": 2.85,
+   "DD": 0.1484,
+   "DD_est_season": 10.6,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.158,
+   "seasons": {
+    "2025-26": {
+     "GP": 68,
+     "weight": 102.0
+    },
+    "2024-25": {
+     "GP": 76,
+     "weight": 76
+    }
+   },
+   "blend_share_2025_26": 0.573
+  },
+  "Karl-Anthony Towns": {
+   "season": "blend",
+   "bbref_name": "Karl-Anthony Towns",
+   "team": "NYK",
+   "pos": "C",
+   "GP": 73.8,
+   "GS": 75,
+   "MPG": 32.561,
+   "PTS": 21.778,
+   "REB": 12.2512,
+   "OREB": 3.022,
+   "DREB": 9.1293,
+   "AST": 3.039,
+   "STL": 0.939,
+   "BLK": 0.578,
+   "TOV": 2.578,
+   "FG%": 0.5108,
+   "3PM": 1.6951,
+   "3P%": 0.3883,
+   "FT%": 0.8467,
+   "FGA": 15.0098,
+   "FTA": 5.578,
+   "3PA": 4.3341,
+   "A/T": 1.18,
+   "DD": 0.7323,
+   "DD_est_season": 54.0,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.168,
+   "seasons": {
+    "2025-26": {
+     "GP": 75,
+     "weight": 112.5
+    },
+    "2024-25": {
+     "GP": 72,
+     "weight": 72
+    }
+   },
+   "blend_share_2025_26": 0.61
+  },
+  "Cade Cunningham": {
+   "season": "blend",
+   "bbref_name": "Cade Cunningham",
+   "team": "DET",
+   "pos": "PG",
+   "GP": 66.5,
+   "GS": 64,
+   "MPG": 34.3639,
+   "PTS": 24.8277,
+   "REB": 5.753,
+   "OREB": 0.8578,
+   "DREB": 4.953,
+   "AST": 9.5627,
+   "STL": 1.2313,
+   "BLK": 0.8,
+   "TOV": 3.9952,
+   "FG%": 0.4644,
+   "3PM": 2.0422,
+   "3P%": 0.3479,
+   "FT%": 0.8263,
+   "FGA": 19.5277,
+   "FTA": 5.7048,
+   "3PA": 5.8265,
+   "A/T": 2.39,
+   "DD": 0.5358,
+   "DD_est_season": 35.6,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.112,
+   "seasons": {
+    "2025-26": {
+     "GP": 64,
+     "weight": 96.0
+    },
+    "2024-25": {
+     "GP": 70,
+     "weight": 70
+    }
+   },
+   "blend_share_2025_26": 0.578
+  },
+  "Tyrese Haliburton": {
+   "season": "blend",
+   "bbref_name": "Tyrese Haliburton",
+   "team": "IND",
+   "pos": "PG",
+   "GP": 73.0,
+   "GS": 73,
+   "MPG": 33.6,
+   "PTS": 18.6,
+   "REB": 3.5,
+   "OREB": 0.6,
+   "DREB": 3.0,
+   "AST": 9.2,
+   "STL": 1.4,
+   "BLK": 0.7,
+   "TOV": 1.6,
+   "FG%": 0.473,
+   "3PM": 3.0,
+   "3P%": 0.388,
+   "FT%": 0.851,
+   "FGA": 13.8,
+   "FTA": 3.0,
+   "3PA": 7.7,
+   "A/T": 5.75,
+   "DD": 0.4265,
+   "DD_est_season": 31.1,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.517,
+   "seasons": {
+    "2025-26": {
+     "GP": null,
+     "weight": 0.0
+    },
+    "2024-25": {
+     "GP": 73,
+     "weight": 73
+    }
+   },
+   "blend_share_2025_26": 0.0
+  },
+  "Jalen Johnson": {
+   "season": "blend",
+   "bbref_name": "Jalen Johnson",
+   "team": "ATL",
+   "pos": "SF",
+   "GP": 63.0,
+   "GS": 72,
+   "MPG": 35.325,
+   "PTS": 21.6,
+   "REB": 10.225,
+   "OREB": 1.475,
+   "DREB": 8.75,
+   "AST": 7.175,
+   "STL": 1.3,
+   "BLK": 0.55,
+   "TOV": 3.275,
+   "FG%": 0.4917,
+   "3PM": 1.575,
+   "3P%": 0.342,
+   "FT%": 0.7775,
+   "FGA": 16.6,
+   "FTA": 4.85,
+   "3PA": 4.5,
+   "A/T": 2.19,
+   "DD": 0.6444,
+   "DD_est_season": 40.6,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.047,
+   "seasons": {
+    "2025-26": {
+     "GP": 72,
+     "weight": 108.0
+    },
+    "2024-25": {
+     "GP": 36,
+     "weight": 36
+    }
+   },
+   "blend_share_2025_26": 0.75
+  },
+  "Scottie Barnes": {
+   "season": "blend",
+   "bbref_name": "Scottie Barnes",
+   "team": "TOR",
+   "pos": "PF",
+   "GP": 74.7,
+   "GS": 80,
+   "MPG": 33.2541,
+   "PTS": 18.5216,
+   "REB": 7.5703,
+   "OREB": 1.8297,
+   "DREB": 5.7405,
+   "AST": 5.8649,
+   "STL": 1.4,
+   "BLK": 1.3243,
+   "TOV": 2.6703,
+   "FG%": 0.4856,
+   "3PM": 1.0054,
+   "3P%": 0.2924,
+   "FT%": 0.7939,
+   "FGA": 14.8432,
+   "FTA": 4.0162,
+   "3PA": 3.327,
+   "A/T": 2.2,
+   "DD": 0.2941,
+   "DD_est_season": 22.0,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.041,
+   "seasons": {
+    "2025-26": {
+     "GP": 80,
+     "weight": 120.0
+    },
+    "2024-25": {
+     "GP": 65,
+     "weight": 65
+    }
+   },
+   "blend_share_2025_26": 0.649
+  },
+  "Josh Giddey": {
+   "season": "blend",
+   "bbref_name": "Josh Giddey",
+   "team": "CHI",
+   "pos": "PG",
+   "GP": 61.4,
+   "GS": 51,
+   "MPG": 31.2192,
+   "PTS": 15.8874,
+   "REB": 8.2073,
+   "OREB": 1.4781,
+   "DREB": 6.7291,
+   "AST": 8.2192,
+   "STL": 1.0927,
+   "BLK": 0.5464,
+   "TOV": 3.2755,
+   "FG%": 0.4559,
+   "3PM": 1.7146,
+   "3P%": 0.3705,
+   "FT%": 0.7713,
+   "FGA": 12.4192,
+   "FTA": 3.7364,
+   "3PA": 4.6437,
+   "A/T": 2.51,
+   "DD": 0.498,
+   "DD_est_season": 30.6,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.126,
+   "seasons": {
+    "2025-26": {
+     "GP": 54,
+     "weight": 81.0
+    },
+    "2024-25": {
+     "GP": 70,
+     "weight": 70
+    }
+   },
+   "blend_share_2025_26": 0.536
+  },
+  "Chet Holmgren": {
+   "season": "blend",
+   "bbref_name": "Chet Holmgren",
+   "team": "OKC",
+   "pos": "PF",
+   "GP": 60.3,
+   "GS": 69,
+   "MPG": 28.5458,
+   "PTS": 16.6041,
+   "REB": 8.6875,
+   "OREB": 1.8055,
+   "DREB": 6.8819,
+   "AST": 1.7708,
+   "STL": 0.6236,
+   "BLK": 1.9708,
+   "TOV": 1.6472,
+   "FG%": 0.5412,
+   "3PM": 1.3236,
+   "3P%": 0.366,
+   "FT%": 0.783,
+   "FGA": 11.1583,
+   "FTA": 4.1236,
+   "3PA": 3.5236,
+   "A/T": 1.08,
+   "DD": 0.3519,
+   "DD_est_season": 21.2,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.131,
+   "seasons": {
+    "2025-26": {
+     "GP": 69,
+     "weight": 103.5
+    },
+    "2024-25": {
+     "GP": 32,
+     "weight": 32
+    }
+   },
+   "blend_share_2025_26": 0.764
+  },
+  "Derrick White": {
+   "season": "blend",
+   "bbref_name": "Derrick White",
+   "team": "BOS",
+   "pos": "SG",
+   "GP": 76.6,
+   "GS": 77,
+   "MPG": 34.0206,
+   "PTS": 16.4603,
+   "REB": 4.4397,
+   "OREB": 1.0206,
+   "DREB": 3.4191,
+   "AST": 5.1619,
+   "STL": 1.0206,
+   "BLK": 1.2206,
+   "TOV": 1.7,
+   "FG%": 0.413,
+   "3PM": 3.0175,
+   "3P%": 0.3496,
+   "FT%": 0.877,
+   "FGA": 13.6856,
+   "FTA": 2.4016,
+   "3PA": 8.6175,
+   "A/T": 3.04,
+   "DD": 0.0424,
+   "DD_est_season": 3.3,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.151,
+   "seasons": {
+    "2025-26": {
+     "GP": 77,
+     "weight": 115.5
+    },
+    "2024-25": {
+     "GP": 76,
+     "weight": 76
+    }
+   },
+   "blend_share_2025_26": 0.603
+  },
+  "Bam Adebayo": {
+   "season": "blend",
+   "bbref_name": "Bam Adebayo",
+   "team": "MIA",
+   "pos": "C",
+   "GP": 75.1,
+   "GS": 73,
+   "MPG": 33.1904,
+   "PTS": 19.268,
+   "REB": 9.8336,
+   "OREB": 2.1664,
+   "DREB": 7.6672,
+   "AST": 3.6576,
+   "STL": 1.2416,
+   "BLK": 0.7,
+   "TOV": 1.808,
+   "FG%": 0.4599,
+   "3PM": 1.4088,
+   "3P%": 0.3342,
+   "FT%": 0.7726,
+   "FGA": 15.1176,
+   "FTA": 5.1344,
+   "3PA": 4.3768,
+   "A/T": 2.02,
+   "DD": 0.5022,
+   "DD_est_season": 37.7,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.004,
+   "seasons": {
+    "2025-26": {
+     "GP": 73,
+     "weight": 109.5
+    },
+    "2024-25": {
+     "GP": 78,
+     "weight": 78
+    }
+   },
+   "blend_share_2025_26": 0.584
+  },
+  "Trey Murphy III": {
+   "season": "blend",
+   "bbref_name": "Trey Murphy III",
+   "team": "NOP",
+   "pos": "SF",
+   "GP": 61.5,
+   "GS": 66,
+   "MPG": 35.3257,
+   "PTS": 21.3954,
+   "REB": 5.4908,
+   "OREB": 0.9651,
+   "DREB": 4.5908,
+   "AST": 3.6954,
+   "STL": 1.3605,
+   "BLK": 0.5046,
+   "TOV": 1.8349,
+   "FG%": 0.4644,
+   "3PM": 3.1303,
+   "3P%": 0.3727,
+   "FT%": 0.8863,
+   "FGA": 15.8651,
+   "FTA": 3.9092,
+   "3PA": 8.4954,
+   "A/T": 2.01,
+   "DD": 0.0592,
+   "DD_est_season": 3.6,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.002,
+   "seasons": {
+    "2025-26": {
+     "GP": 66,
+     "weight": 99.0
+    },
+    "2024-25": {
+     "GP": 53,
+     "weight": 53
+    }
+   },
+   "blend_share_2025_26": 0.651
+  },
+  "Jalen Duren": {
+   "season": "blend",
+   "bbref_name": "Jalen Duren",
+   "team": "DET",
+   "pos": "C",
+   "GP": 73.4,
+   "GS": 70,
+   "MPG": 27.3049,
+   "PTS": 16.218,
+   "REB": 10.4148,
+   "OREB": 3.7148,
+   "DREB": 6.7426,
+   "AST": 2.2984,
+   "STL": 0.7574,
+   "BLK": 0.9279,
+   "TOV": 1.8148,
+   "FG%": 0.6679,
+   "3PM": 0.0,
+   "3P%": null,
+   "FT%": 0.7138,
+   "FGA": 9.582,
+   "FTA": 4.8213,
+   "3PA": 0.0,
+   "A/T": 1.27,
+   "DD": 0.5216,
+   "DD_est_season": 38.3,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.113,
+   "seasons": {
+    "2025-26": {
+     "GP": 70,
+     "weight": 105.0
+    },
+    "2024-25": {
+     "GP": 78,
+     "weight": 78
+    }
+   },
+   "blend_share_2025_26": 0.574
+  },
+  "Alperen Şengün": {
+   "season": "blend",
+   "bbref_name": "Alperen Şengün",
+   "team": "HOU",
+   "pos": "C",
+   "GP": 73.7,
+   "GS": 72,
+   "MPG": 32.5565,
+   "PTS": 19.863,
+   "REB": 9.4783,
+   "OREB": 3.1652,
+   "DREB": 6.313,
+   "AST": 5.663,
+   "STL": 1.1587,
+   "BLK": 0.9761,
+   "TOV": 2.9522,
+   "FG%": 0.5095,
+   "3PM": 0.4761,
+   "3P%": 0.2753,
+   "FT%": 0.6914,
+   "FGA": 15.3522,
+   "FTA": 5.3652,
+   "3PA": 1.5522,
+   "A/T": 1.92,
+   "DD": 0.4986,
+   "DD_est_season": 36.7,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.019,
+   "seasons": {
+    "2025-26": {
+     "GP": 72,
+     "weight": 108.0
+    },
+    "2024-25": {
+     "GP": 76,
+     "weight": 76
+    }
+   },
+   "blend_share_2025_26": 0.587
+  },
+  "Amen Thompson": {
+   "season": "blend",
+   "bbref_name": "Amen Thompson",
+   "team": "HOU",
+   "pos": "PG",
+   "GP": 75.3,
+   "GS": 79,
+   "MPG": 35.4864,
+   "PTS": 16.7544,
+   "REB": 7.9472,
+   "OREB": 2.9264,
+   "DREB": 5.0208,
+   "AST": 4.748,
+   "STL": 1.4632,
+   "BLK": 0.8576,
+   "TOV": 2.2528,
+   "FG%": 0.5425,
+   "3PM": 0.3368,
+   "3P%": 0.2377,
+   "FT%": 0.744,
+   "FGA": 12.0592,
+   "FTA": 4.4216,
+   "3PA": 1.4264,
+   "A/T": 2.11,
+   "DD": 0.2839,
+   "DD_est_season": 21.4,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.02,
+   "seasons": {
+    "2025-26": {
+     "GP": 79,
+     "weight": 118.5
+    },
+    "2024-25": {
+     "GP": 69,
+     "weight": 69
+    }
+   },
+   "blend_share_2025_26": 0.632
+  },
+  "Evan Mobley": {
+   "season": "blend",
+   "bbref_name": "Evan Mobley",
+   "team": "CLE",
+   "pos": "PF",
+   "GP": 67.5,
+   "GS": 63,
+   "MPG": 31.3101,
+   "PTS": 18.3264,
+   "REB": 9.1264,
+   "OREB": 2.3579,
+   "DREB": 6.7685,
+   "AST": 3.4315,
+   "STL": 0.7843,
+   "BLK": 1.6579,
+   "TOV": 1.9421,
+   "FG%": 0.5506,
+   "3PM": 1.0843,
+   "3P%": 0.3278,
+   "FT%": 0.6561,
+   "FGA": 13.0315,
+   "FTA": 4.4736,
+   "3PA": 3.2,
+   "A/T": 1.77,
+   "DD": 0.4172,
+   "DD_est_season": 28.2,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.038,
+   "seasons": {
+    "2025-26": {
+     "GP": 65,
+     "weight": 97.5
+    },
+    "2024-25": {
+     "GP": 71,
+     "weight": 71
+    }
+   },
+   "blend_share_2025_26": 0.579
+  },
+  "Desmond Bane": {
+   "season": "blend",
+   "bbref_name": "Desmond Bane",
+   "team": "ORL",
+   "pos": "SG",
+   "GP": 77.3,
+   "GS": 82,
+   "MPG": 33.025,
+   "PTS": 19.7766,
+   "REB": 4.8187,
+   "OREB": 1.0922,
+   "DREB": 3.7266,
+   "AST": 4.5312,
+   "STL": 1.0719,
+   "BLK": 0.4641,
+   "TOV": 2.1438,
+   "FG%": 0.484,
+   "3PM": 2.1438,
+   "3P%": 0.3914,
+   "FT%": 0.903,
+   "FGA": 14.7359,
+   "FTA": 3.7328,
+   "3PA": 5.5234,
+   "A/T": 2.11,
+   "DD": 0.0366,
+   "DD_est_season": 2.8,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.02,
+   "seasons": {
+    "2025-26": {
+     "GP": 82,
+     "weight": 123.0
+    },
+    "2024-25": {
+     "GP": 69,
+     "weight": 69
+    }
+   },
+   "blend_share_2025_26": 0.641
+  },
+  "Dyson Daniels": {
+   "season": "blend",
+   "bbref_name": "Dyson Daniels",
+   "team": "ATL",
+   "pos": "SG",
+   "GP": 76.0,
+   "GS": 76,
+   "MPG": 33.44,
+   "PTS": 12.78,
+   "REB": 6.44,
+   "OREB": 2.08,
+   "DREB": 4.36,
+   "AST": 5.3,
+   "STL": 2.4,
+   "BLK": 0.52,
+   "TOV": 1.88,
+   "FG%": 0.5074,
+   "3PM": 0.62,
+   "3P%": 0.2488,
+   "FT%": 0.6062,
+   "FGA": 10.96,
+   "FTA": 1.68,
+   "3PA": 2.14,
+   "A/T": 2.82,
+   "DD": 0.127,
+   "DD_est_season": 9.7,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.13,
+   "seasons": {
+    "2025-26": {
+     "GP": 76,
+     "weight": 114.0
+    },
+    "2024-25": {
+     "GP": 76,
+     "weight": 76
+    }
+   },
+   "blend_share_2025_26": 0.6
+  },
+  "Walker Kessler": {
+   "season": "blend",
+   "bbref_name": "Walker Kessler",
+   "team": "UTA",
+   "pos": "C",
+   "GP": 51.9,
+   "GS": 5,
+   "MPG": 30.0916,
+   "PTS": 11.4779,
+   "REB": 12.0397,
+   "OREB": 4.6,
+   "DREB": 7.4397,
+   "AST": 1.8489,
+   "STL": 0.6916,
+   "BLK": 2.3313,
+   "TOV": 1.6947,
+   "FG%": 0.6676,
+   "3PM": 0.226,
+   "3P%": 0.2417,
+   "FT%": 0.5406,
+   "FGA": 7.2229,
+   "FTA": 2.7603,
+   "3PA": 0.7145,
+   "A/T": 1.09,
+   "DD": 0.4867,
+   "DD_est_season": 25.3,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.132,
+   "seasons": {
+    "2025-26": {
+     "GP": 5,
+     "weight": 7.5
+    },
+    "2024-25": {
+     "GP": 58,
+     "weight": 58
+    }
+   },
+   "blend_share_2025_26": 0.115
+  },
+  "Donovan Clingan": {
+   "season": "blend",
+   "bbref_name": "Donovan Clingan",
+   "team": "POR",
+   "pos": "C",
+   "GP": 73.3,
+   "GS": 77,
+   "MPG": 24.4833,
+   "PTS": 10.0441,
+   "REB": 10.2416,
+   "OREB": 4.0227,
+   "DREB": 6.1822,
+   "AST": 1.7329,
+   "STL": 0.5633,
+   "BLK": 1.6633,
+   "TOV": 1.1633,
+   "FG%": 0.527,
+   "3PM": 0.7696,
+   "3P%": 0.3208,
+   "FT%": 0.6492,
+   "FGA": 7.4682,
+   "FTA": 2.2329,
+   "3PA": 2.2822,
+   "A/T": 1.49,
+   "DD": 0.3183,
+   "DD_est_season": 23.3,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.053,
+   "seasons": {
+    "2025-26": {
+     "GP": 77,
+     "weight": 115.5
+    },
+    "2024-25": {
+     "GP": 67,
+     "weight": 67
+    }
+   },
+   "blend_share_2025_26": 0.633
+  },
+  "Rudy Gobert": {
+   "season": "blend",
+   "bbref_name": "Rudy Gobert",
+   "team": "MIN",
+   "pos": "C",
+   "GP": 74.5,
+   "GS": 76,
+   "MPG": 32.0355,
+   "PTS": 11.3258,
+   "REB": 11.2677,
+   "OREB": 3.8226,
+   "DREB": 7.3839,
+   "AST": 1.7387,
+   "STL": 0.8,
+   "BLK": 1.5226,
+   "TOV": 1.3226,
+   "FG%": 0.677,
+   "3PM": 0.0,
+   "3P%": 0.0,
+   "FT%": 0.5833,
+   "FGA": 6.7323,
+   "FTA": 3.9226,
+   "3PA": 0.0613,
+   "A/T": 1.31,
+   "DD": 0.4385,
+   "DD_est_season": 32.7,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.08,
+   "seasons": {
+    "2025-26": {
+     "GP": 76,
+     "weight": 114.0
+    },
+    "2024-25": {
+     "GP": 72,
+     "weight": 72
+    }
+   },
+   "blend_share_2025_26": 0.613
+  },
+  "Mitchell Robinson": {
+   "season": "blend",
+   "bbref_name": "Mitchell Robinson",
+   "team": "NYK",
+   "pos": "C",
+   "GP": 53.2,
+   "GS": 16,
+   "MPG": 19.2028,
+   "PTS": 5.6047,
+   "REB": 8.3393,
+   "OREB": 4.0252,
+   "DREB": 4.3299,
+   "AST": 0.8841,
+   "STL": 0.9,
+   "BLK": 1.1841,
+   "TOV": 0.6841,
+   "FG%": 0.7131,
+   "3PM": 0.0,
+   "3P%": null,
+   "FT%": 0.4519,
+   "FGA": 3.3841,
+   "FTA": 1.6047,
+   "3PA": 0.0,
+   "A/T": 1.29,
+   "DD": 0.0487,
+   "DD_est_season": 2.6,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.045,
+   "seasons": {
+    "2025-26": {
+     "GP": 60,
+     "weight": 90.0
+    },
+    "2024-25": {
+     "GP": 17,
+     "weight": 17
+    }
+   },
+   "blend_share_2025_26": 0.841
+  },
+  "Deandre Ayton": {
+   "season": "blend",
+   "bbref_name": "Deandre Ayton",
+   "team": "LAL",
+   "pos": "C",
+   "GP": 63.4,
+   "GS": 72,
+   "MPG": 28.0108,
+   "PTS": 13.0135,
+   "REB": 8.5946,
+   "OREB": 2.7351,
+   "DREB": 5.8595,
+   "AST": 1.0162,
+   "STL": 0.6541,
+   "BLK": 1.0,
+   "TOV": 1.3351,
+   "FG%": 0.6426,
+   "3PM": 0.0541,
+   "3P%": 0.188,
+   "FT%": 0.6509,
+   "FGA": 9.2189,
+   "FTA": 1.8649,
+   "3PA": 0.2162,
+   "A/T": 0.76,
+   "DD": 0.2889,
+   "DD_est_season": 18.3,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.146,
+   "seasons": {
+    "2025-26": {
+     "GP": 72,
+     "weight": 108.0
+    },
+    "2024-25": {
+     "GP": 40,
+     "weight": 40
+    }
+   },
+   "blend_share_2025_26": 0.73
+  },
+  "Mark Williams": {
+   "season": "blend",
+   "bbref_name": "Mark Williams",
+   "team": "PHO",
+   "pos": "C",
+   "GP": 54.7,
+   "GS": 55,
+   "MPG": 24.5851,
+   "PTS": 12.8821,
+   "REB": 8.7224,
+   "OREB": 3.0672,
+   "DREB": 5.6552,
+   "AST": 1.4925,
+   "STL": 0.8343,
+   "BLK": 0.9985,
+   "TOV": 1.2642,
+   "FG%": 0.6309,
+   "3PM": 0.0,
+   "3P%": 0.6716,
+   "FT%": 0.7818,
+   "FGA": 8.2522,
+   "FTA": 3.1627,
+   "3PA": 0.0328,
+   "A/T": 1.18,
+   "DD": 0.298,
+   "DD_est_season": 16.3,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.092,
+   "seasons": {
+    "2025-26": {
+     "GP": 60,
+     "weight": 90.0
+    },
+    "2024-25": {
+     "GP": 44,
+     "weight": 44
+    }
+   },
+   "blend_share_2025_26": 0.672
+  },
+  "Jarrett Allen": {
+   "season": "blend",
+   "bbref_name": "Jarrett Allen",
+   "team": "CLE",
+   "pos": "C",
+   "GP": 68.8,
+   "GS": 56,
+   "MPG": 27.5446,
+   "PTS": 14.4614,
+   "REB": 9.0928,
+   "OREB": 2.6,
+   "DREB": 6.4928,
+   "AST": 1.8494,
+   "STL": 0.9506,
+   "BLK": 0.8494,
+   "TOV": 1.2506,
+   "FG%": 0.6716,
+   "3PM": 0.0,
+   "3P%": 0.0506,
+   "FT%": 0.7134,
+   "FGA": 8.6096,
+   "FTA": 4.0578,
+   "3PA": 0.1506,
+   "A/T": 1.48,
+   "DD": 0.3644,
+   "DD_est_season": 25.1,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.058,
+   "seasons": {
+    "2025-26": {
+     "GP": 56,
+     "weight": 84.0
+    },
+    "2024-25": {
+     "GP": 82,
+     "weight": 82
+    }
+   },
+   "blend_share_2025_26": 0.506
+  },
+  "Nic Claxton": {
+   "season": "blend",
+   "bbref_name": "Nic Claxton",
+   "team": "BRK",
+   "pos": "C",
+   "GP": 69.4,
+   "GS": 68,
+   "MPG": 27.4369,
+   "PTS": 11.1352,
+   "REB": 7.1017,
+   "OREB": 2.3193,
+   "DREB": 4.7421,
+   "AST": 3.0948,
+   "STL": 0.7807,
+   "BLK": 1.221,
+   "TOV": 1.3193,
+   "FG%": 0.5678,
+   "3PM": 0.0403,
+   "3P%": 0.1903,
+   "FT%": 0.5744,
+   "FGA": 8.279,
+   "FTA": 2.8562,
+   "3PA": 0.3,
+   "A/T": 2.35,
+   "DD": 0.1299,
+   "DD_est_season": 9.0,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.04,
+   "seasons": {
+    "2025-26": {
+     "GP": 69,
+     "weight": 103.5
+    },
+    "2024-25": {
+     "GP": 70,
+     "weight": 70
+    }
+   },
+   "blend_share_2025_26": 0.597
+  },
+  "Nikola Vučević": {
+   "season": "blend",
+   "bbref_name": "Nikola Vučević",
+   "team": "2TM",
+   "pos": "C",
+   "GP": 67.9,
+   "GS": 49,
+   "MPG": 29.6095,
+   "PTS": 16.5686,
+   "REB": 9.1343,
+   "OREB": 2.1728,
+   "DREB": 6.9183,
+   "AST": 3.3864,
+   "STL": 0.6864,
+   "BLK": 0.6432,
+   "TOV": 1.4296,
+   "FG%": 0.509,
+   "3PM": 1.6864,
+   "3P%": 0.3833,
+   "FT%": 0.8181,
+   "FGA": 13.2343,
+   "FTA": 1.716,
+   "3PA": 4.2864,
+   "A/T": 2.37,
+   "DD": 0.4003,
+   "DD_est_season": 27.2,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.046,
+   "seasons": {
+    "2025-26": {
+     "GP": 64,
+     "weight": 96.0
+    },
+    "2024-25": {
+     "GP": 73,
+     "weight": 73
+    }
+   },
+   "blend_share_2025_26": 0.568
+  },
+  "Myles Turner": {
+   "season": "blend",
+   "bbref_name": "Myles Turner",
+   "team": "MIL",
+   "pos": "C",
+   "GP": 71.4,
+   "GS": 71,
+   "MPG": 28.2311,
+   "PTS": 13.3924,
+   "REB": 5.784,
+   "OREB": 1.1807,
+   "DREB": 4.7034,
+   "AST": 1.5,
+   "STL": 0.7403,
+   "BLK": 1.7613,
+   "TOV": 1.4017,
+   "FG%": 0.4565,
+   "3PM": 2.1403,
+   "3P%": 0.3882,
+   "FT%": 0.7533,
+   "FGA": 9.9874,
+   "FTA": 2.8227,
+   "3PA": 5.4403,
+   "A/T": 1.07,
+   "DD": 0.0609,
+   "DD_est_season": 4.3,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.114,
+   "seasons": {
+    "2025-26": {
+     "GP": 71,
+     "weight": 106.5
+    },
+    "2024-25": {
+     "GP": 72,
+     "weight": 72
+    }
+   },
+   "blend_share_2025_26": 0.597
+  },
+  "Kel'el Ware": {
+   "season": "blend",
+   "bbref_name": "Kel'el Ware",
+   "team": "MIA",
+   "pos": "C",
+   "GP": 72.4,
+   "GS": 34,
+   "MPG": 22.1357,
+   "PTS": 10.4582,
+   "REB": 8.4295,
+   "OREB": 2.4435,
+   "DREB": 5.9861,
+   "AST": 0.7713,
+   "STL": 0.7287,
+   "BLK": 1.1,
+   "TOV": 0.8357,
+   "FG%": 0.5386,
+   "3PM": 0.9504,
+   "3P%": 0.3665,
+   "FT%": 0.7211,
+   "FGA": 8.0078,
+   "FTA": 1.1287,
+   "3PA": 2.5365,
+   "A/T": 0.92,
+   "DD": 0.2132,
+   "DD_est_season": 15.4,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.083,
+   "seasons": {
+    "2025-26": {
+     "GP": 77,
+     "weight": 115.5
+    },
+    "2024-25": {
+     "GP": 64,
+     "weight": 64
+    }
+   },
+   "blend_share_2025_26": 0.643
+  },
+  "Moussa Diabaté": {
+   "season": "blend",
+   "bbref_name": "Moussa Diabaté",
+   "team": "CHO",
+   "pos": "C",
+   "GP": 72.2,
+   "GS": 47,
+   "MPG": 22.6565,
+   "PTS": 7.0346,
+   "REB": 7.7166,
+   "OREB": 3.2673,
+   "DREB": 4.41,
+   "AST": 1.4673,
+   "STL": 0.7213,
+   "BLK": 0.8427,
+   "TOV": 0.9607,
+   "FG%": 0.6172,
+   "3PM": 0.0,
+   "3P%": 0.3033,
+   "FT%": 0.6338,
+   "FGA": 4.5673,
+   "FTA": 2.0853,
+   "3PA": 0.0393,
+   "A/T": 1.53,
+   "DD": 0.0749,
+   "DD_est_season": 5.4,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.041,
+   "seasons": {
+    "2025-26": {
+     "GP": 73,
+     "weight": 109.5
+    },
+    "2024-25": {
+     "GP": 71,
+     "weight": 71
+    }
+   },
+   "blend_share_2025_26": 0.607
+  },
+  "Andre Drummond": {
+   "season": "blend",
+   "bbref_name": "Andre Drummond",
+   "team": "PHI",
+   "pos": "C",
+   "GP": 56.2,
+   "GS": 25,
+   "MPG": 19.2918,
+   "PTS": 6.6677,
+   "REB": 8.2216,
+   "OREB": 3.0513,
+   "DREB": 5.2108,
+   "AST": 1.181,
+   "STL": 0.719,
+   "BLK": 0.7108,
+   "TOV": 1.119,
+   "FG%": 0.4803,
+   "3PM": 0.381,
+   "3P%": 0.2947,
+   "FT%": 0.6283,
+   "FGA": 5.4784,
+   "FTA": 1.5974,
+   "3PA": 1.1323,
+   "A/T": 1.06,
+   "DD": 0.0796,
+   "DD_est_season": 4.5,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.095,
+   "seasons": {
+    "2025-26": {
+     "GP": 63,
+     "weight": 94.5
+    },
+    "2024-25": {
+     "GP": 40,
+     "weight": 40
+    }
+   },
+   "blend_share_2025_26": 0.703
+  },
+  "Jay Huff": {
+   "season": "blend",
+   "bbref_name": "Jay Huff",
+   "team": "IND",
+   "pos": "C",
+   "GP": 75.8,
+   "GS": 47,
+   "MPG": 17.8171,
+   "PTS": 8.6102,
+   "REB": 3.3155,
+   "OREB": 0.7631,
+   "DREB": 2.5524,
+   "AST": 1.192,
+   "STL": 0.4316,
+   "BLK": 1.5578,
+   "TOV": 0.7631,
+   "FG%": 0.4893,
+   "3PM": 1.4316,
+   "3P%": 0.3484,
+   "FT%": 0.8136,
+   "FGA": 6.5759,
+   "FTA": 1.0973,
+   "3PA": 4.0209,
+   "A/T": 1.56,
+   "DD": 0.0004,
+   "DD_est_season": 0.0,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.031,
+   "seasons": {
+    "2025-26": {
+     "GP": 82,
+     "weight": 123.0
+    },
+    "2024-25": {
+     "GP": 64,
+     "weight": 64
+    }
+   },
+   "blend_share_2025_26": 0.658
+  },
+  "Luke Kornet": {
+   "season": "blend",
+   "bbref_name": "Luke Kornet",
+   "team": "SAS",
+   "pos": "C",
+   "GP": 70.1,
+   "GS": 25,
+   "MPG": 19.9989,
+   "PTS": 6.2914,
+   "REB": 5.7663,
+   "OREB": 2.6583,
+   "DREB": 3.108,
+   "AST": 1.7749,
+   "STL": 0.5,
+   "BLK": 1.0,
+   "TOV": 0.4,
+   "FG%": 0.6534,
+   "3PM": 0.0,
+   "3P%": 0.0,
+   "FT%": 0.7691,
+   "FGA": 3.9166,
+   "FTA": 1.5331,
+   "3PA": 0.0,
+   "A/T": 4.44,
+   "DD": 0.0155,
+   "DD_est_season": 1.1,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.094,
+   "seasons": {
+    "2025-26": {
+     "GP": 68,
+     "weight": 102.0
+    },
+    "2024-25": {
+     "GP": 73,
+     "weight": 73
+    }
+   },
+   "blend_share_2025_26": 0.583
+  },
+  "Andrew Nembhard": {
+   "season": "blend",
+   "bbref_name": "Andrew Nembhard",
+   "team": "IND",
+   "pos": "PG",
+   "GP": 60.5,
+   "GS": 57,
+   "MPG": 30.2635,
+   "PTS": 13.9199,
+   "REB": 3.0159,
+   "OREB": 0.4432,
+   "DREB": 2.5728,
+   "AST": 6.5339,
+   "STL": 1.0296,
+   "BLK": 0.1432,
+   "TOV": 2.0977,
+   "FG%": 0.4489,
+   "3PM": 1.4249,
+   "3P%": 0.3308,
+   "FT%": 0.8116,
+   "FGA": 11.0837,
+   "FTA": 3.2362,
+   "3PA": 4.1203,
+   "A/T": 3.11,
+   "DD": 0.1059,
+   "DD_est_season": 6.4,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.193,
+   "seasons": {
+    "2025-26": {
+     "GP": 57,
+     "weight": 85.5
+    },
+    "2024-25": {
+     "GP": 65,
+     "weight": 65
+    }
+   },
+   "blend_share_2025_26": 0.568
+  },
+  "Yves Missi": {
+   "season": "blend",
+   "bbref_name": "Yves Missi",
+   "team": "NOP",
+   "pos": "C",
+   "GP": 69.0,
+   "GS": 14,
+   "MPG": 22.7134,
+   "PTS": 7.143,
+   "REB": 6.8186,
+   "OREB": 3.0971,
+   "DREB": 3.7791,
+   "AST": 1.3424,
+   "STL": 0.3849,
+   "BLK": 1.4151,
+   "TOV": 0.9273,
+   "FG%": 0.5453,
+   "3PM": 0.0,
+   "3P%": 0.0,
+   "FT%": 0.5862,
+   "FGA": 5.4337,
+   "FTA": 2.0517,
+   "3PA": 0.0,
+   "A/T": 1.45,
+   "DD": 0.0488,
+   "DD_est_season": 3.4,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.047,
+   "seasons": {
+    "2025-26": {
+     "GP": 66,
+     "weight": 99.0
+    },
+    "2024-25": {
+     "GP": 73,
+     "weight": 73
+    }
+   },
+   "blend_share_2025_26": 0.576
+  },
+  "Day'Ron Sharpe": {
+   "season": "blend",
+   "bbref_name": "Day'Ron Sharpe",
+   "team": "BRK",
+   "pos": "C",
+   "GP": 57.8,
+   "GS": 7,
+   "MPG": 18.5252,
+   "PTS": 8.4203,
+   "REB": 6.665,
+   "OREB": 2.8699,
+   "DREB": 3.7951,
+   "AST": 2.1252,
+   "STL": 0.9951,
+   "BLK": 0.5399,
+   "TOV": 1.5601,
+   "FG%": 0.573,
+   "3PM": 0.135,
+   "3P%": 0.2355,
+   "FT%": 0.7056,
+   "FGA": 5.9098,
+   "FTA": 2.1503,
+   "3PA": 0.7049,
+   "A/T": 1.36,
+   "DD": 0.064,
+   "DD_est_season": 3.7,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.086,
+   "seasons": {
+    "2025-26": {
+     "GP": 62,
+     "weight": 93.0
+    },
+    "2024-25": {
+     "GP": 50,
+     "weight": 50
+    }
+   },
+   "blend_share_2025_26": 0.65
+  },
+  "Ryan Kalkbrenner": {
+   "season": "blend",
+   "bbref_name": "Ryan Kalkbrenner",
+   "team": "CHO",
+   "pos": "C",
+   "GP": 69.0,
+   "GS": 31,
+   "MPG": 21.4,
+   "PTS": 7.6,
+   "REB": 5.5,
+   "OREB": 2.4,
+   "DREB": 3.0,
+   "AST": 0.8,
+   "STL": 0.5,
+   "BLK": 1.5,
+   "TOV": 0.9,
+   "FG%": 0.753,
+   "3PM": 0.0,
+   "3P%": 0.0,
+   "FT%": 0.716,
+   "FGA": 4.2,
+   "FTA": 1.7,
+   "3PA": 0.1,
+   "A/T": 0.89,
+   "DD": 0.0195,
+   "DD_est_season": 1.3,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.092,
+   "seasons": {
+    "2025-26": {
+     "GP": 69,
+     "weight": 103.5
+    },
+    "2024-25": {
+     "GP": null,
+     "weight": 0.0
+    }
+   },
+   "blend_share_2025_26": 1.0
+  },
+  "Neemias Queta": {
+   "season": "blend",
+   "bbref_name": "Neemias Queta",
+   "team": "BOS",
+   "pos": "C",
+   "GP": 71.1,
+   "GS": 75,
+   "MPG": 21.2841,
+   "PTS": 8.3682,
+   "REB": 6.7795,
+   "OREB": 2.4364,
+   "DREB": 4.2784,
+   "AST": 1.3477,
+   "STL": 0.6239,
+   "BLK": 1.0886,
+   "TOV": 0.8591,
+   "FG%": 0.6519,
+   "3PM": 0.0,
+   "3P%": 0.081,
+   "FT%": 0.721,
+   "FGA": 5.4375,
+   "FTA": 1.842,
+   "3PA": 0.0648,
+   "A/T": 1.57,
+   "DD": 0.0679,
+   "DD_est_season": 4.8,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.034,
+   "seasons": {
+    "2025-26": {
+     "GP": 76,
+     "weight": 114.0
+    },
+    "2024-25": {
+     "GP": 62,
+     "weight": 62
+    }
+   },
+   "blend_share_2025_26": 0.648
+  },
+  "Robert Williams III": {
+   "season": "blend",
+   "bbref_name": "Robert Williams",
+   "team": "POR",
+   "pos": "C",
+   "GP": 51.8,
+   "GS": 1,
+   "MPG": 17.1922,
+   "PTS": 6.5341,
+   "REB": 6.7972,
+   "OREB": 2.2894,
+   "DREB": 4.5263,
+   "AST": 1.0184,
+   "STL": 0.6184,
+   "BLK": 1.5369,
+   "TOV": 0.8184,
+   "FG%": 0.6956,
+   "3PM": 0.1816,
+   "3P%": 0.3803,
+   "FT%": 0.6487,
+   "FGA": 4.1447,
+   "FTA": 0.9816,
+   "3PA": 0.3631,
+   "A/T": 1.24,
+   "DD": 0.038,
+   "DD_est_season": 2.0,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.057,
+   "seasons": {
+    "2025-26": {
+     "GP": 59,
+     "weight": 88.5
+    },
+    "2024-25": {
+     "GP": 20,
+     "weight": 20
+    }
+   },
+   "blend_share_2025_26": 0.816
+  },
+  "Isaiah Stewart": {
+   "season": "blend",
+   "bbref_name": "Isaiah Stewart",
+   "team": "DET",
+   "pos": "C",
+   "GP": 64.3,
+   "GS": 13,
+   "MPG": 21.4321,
+   "PTS": 8.1887,
+   "REB": 5.2264,
+   "OREB": 1.7453,
+   "DREB": 3.4811,
+   "AST": 1.3717,
+   "STL": 0.3453,
+   "BLK": 1.5094,
+   "TOV": 1.0642,
+   "FG%": 0.5541,
+   "3PM": 0.4736,
+   "3P%": 0.3276,
+   "FT%": 0.7574,
+   "FGA": 5.7679,
+   "FTA": 1.8019,
+   "3PA": 1.466,
+   "A/T": 1.29,
+   "DD": 0.017,
+   "DD_est_season": 1.1,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.068,
+   "seasons": {
+    "2025-26": {
+     "GP": 58,
+     "weight": 87.0
+    },
+    "2024-25": {
+     "GP": 72,
+     "weight": 72
+    }
+   },
+   "blend_share_2025_26": 0.547
+  },
+  "Davion Mitchell": {
+   "season": "blend",
+   "bbref_name": "Davion Mitchell",
+   "team": "MIA",
+   "pos": "PG",
+   "GP": 71.7,
+   "GS": 70,
+   "MPG": 28.1039,
+   "PTS": 8.7212,
+   "REB": 2.5346,
+   "OREB": 0.5,
+   "DREB": 2.0346,
+   "AST": 5.8385,
+   "STL": 1.0,
+   "BLK": 0.2,
+   "TOV": 1.5827,
+   "FG%": 0.4809,
+   "3PM": 1.2173,
+   "3P%": 0.3962,
+   "FT%": 0.6642,
+   "FGA": 7.1039,
+   "FTA": 0.9827,
+   "3PA": 3.1346,
+   "A/T": 3.69,
+   "DD": 0.0321,
+   "DD_est_season": 2.3,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.231,
+   "seasons": {
+    "2025-26": {
+     "GP": 70,
+     "weight": 105.0
+    },
+    "2024-25": {
+     "GP": 74,
+     "weight": 74
+    }
+   },
+   "blend_share_2025_26": 0.587
+  },
+  "Immanuel Quickley": {
+   "season": "blend",
+   "bbref_name": "Immanuel Quickley",
+   "team": "TOR",
+   "pos": "PG",
+   "GP": 61.2,
+   "GS": 70,
+   "MPG": 30.9196,
+   "PTS": 16.5674,
+   "REB": 3.8804,
+   "OREB": 0.5,
+   "DREB": 3.4043,
+   "AST": 5.8761,
+   "STL": 1.1565,
+   "BLK": 0.1,
+   "TOV": 1.5717,
+   "FG%": 0.4375,
+   "3PM": 2.5239,
+   "3P%": 0.375,
+   "FT%": 0.832,
+   "FGA": 12.9957,
+   "FTA": 3.2152,
+   "3PA": 6.8,
+   "A/T": 3.74,
+   "DD": 0.0716,
+   "DD_est_season": 4.4,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.236,
+   "seasons": {
+    "2025-26": {
+     "GP": 70,
+     "weight": 105.0
+    },
+    "2024-25": {
+     "GP": 33,
+     "weight": 33
+    }
+   },
+   "blend_share_2025_26": 0.761
+  },
+  "Ausar Thompson": {
+   "season": "blend",
+   "bbref_name": "Ausar Thompson",
+   "team": "DET",
+   "pos": "SF",
+   "GP": 68.1,
+   "GS": 72,
+   "MPG": 24.7745,
+   "PTS": 9.97,
+   "REB": 5.4899,
+   "OREB": 2.03,
+   "DREB": 3.5599,
+   "AST": 2.8199,
+   "STL": 1.895,
+   "BLK": 0.83,
+   "TOV": 1.465,
+   "FG%": 0.5285,
+   "3PM": 0.135,
+   "3P%": 0.2409,
+   "FT%": 0.5955,
+   "FGA": 7.865,
+   "FTA": 2.53,
+   "3PA": 0.4751,
+   "A/T": 1.92,
+   "DD": 0.0323,
+   "DD_est_season": 2.2,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.01,
+   "seasons": {
+    "2025-26": {
+     "GP": 73,
+     "weight": 109.5
+    },
+    "2024-25": {
+     "GP": 59,
+     "weight": 59
+    }
+   },
+   "blend_share_2025_26": 0.65
+  },
+  "Cason Wallace": {
+   "season": "blend",
+   "bbref_name": "Cason Wallace",
+   "team": "OKC",
+   "pos": "SG",
+   "GP": 73.7,
+   "GS": 58,
+   "MPG": 26.9706,
+   "PTS": 8.5259,
+   "REB": 3.2112,
+   "OREB": 0.8741,
+   "DREB": 2.3,
+   "AST": 2.5629,
+   "STL": 1.8629,
+   "BLK": 0.4371,
+   "TOV": 0.9,
+   "FG%": 0.4476,
+   "3PM": 1.2259,
+   "3P%": 0.3529,
+   "FT%": 0.8097,
+   "FGA": 7.4518,
+   "FTA": 0.7518,
+   "3PA": 3.4777,
+   "A/T": 2.85,
+   "DD": 0.0003,
+   "DD_est_season": 0.0,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.07,
+   "seasons": {
+    "2025-26": {
+     "GP": 77,
+     "weight": 115.5
+    },
+    "2024-25": {
+     "GP": 68,
+     "weight": 68
+    }
+   },
+   "blend_share_2025_26": 0.629
+  },
+  "Kris Dunn": {
+   "season": "blend",
+   "bbref_name": "Kris Dunn",
+   "team": "LAC",
+   "pos": "PG",
+   "GP": 79.0,
+   "GS": 68,
+   "MPG": 26.0355,
+   "PTS": 6.9619,
+   "REB": 3.3376,
+   "OREB": 0.7,
+   "DREB": 2.6376,
+   "AST": 3.2995,
+   "STL": 1.6376,
+   "BLK": 0.2751,
+   "TOV": 1.2497,
+   "FG%": 0.4621,
+   "3PM": 1.0,
+   "3P%": 0.3594,
+   "FT%": 0.7338,
+   "FGA": 5.8376,
+   "FTA": 0.7371,
+   "3PA": 2.7503,
+   "A/T": 2.64,
+   "DD": 0.0004,
+   "DD_est_season": 0.0,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.071,
+   "seasons": {
+    "2025-26": {
+     "GP": 82,
+     "weight": 123.0
+    },
+    "2024-25": {
+     "GP": 74,
+     "weight": 74
+    }
+   },
+   "blend_share_2025_26": 0.624
+  },
+  "Jordan Goodwin": {
+   "season": "blend",
+   "bbref_name": "Jordan Goodwin",
+   "team": "PHO",
+   "pos": "PG",
+   "GP": 61.1,
+   "GS": 10,
+   "MPG": 21.6776,
+   "PTS": 8.0291,
+   "REB": 4.6836,
+   "OREB": 1.8485,
+   "DREB": 2.8351,
+   "AST": 2.0269,
+   "STL": 1.3918,
+   "BLK": 0.2433,
+   "TOV": 0.9784,
+   "FG%": 0.4184,
+   "3PM": 1.4485,
+   "3P%": 0.3734,
+   "FT%": 0.7224,
+   "FGA": 7.2724,
+   "FTA": 0.7134,
+   "3PA": 3.8672,
+   "A/T": 2.07,
+   "DD": 0.0078,
+   "DD_est_season": 0.5,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.006,
+   "seasons": {
+    "2025-26": {
+     "GP": 70,
+     "weight": 105.0
+    },
+    "2024-25": {
+     "GP": 29,
+     "weight": 29
+    }
+   },
+   "blend_share_2025_26": 0.784
+  },
+  "Matas Buzelis": {
+   "season": "blend",
+   "bbref_name": "Matas Buzelis",
+   "team": "CHI",
+   "pos": "PF",
+   "GP": 78.2,
+   "GS": 77,
+   "MPG": 24.9852,
+   "PTS": 13.1491,
+   "REB": 4.8588,
+   "OREB": 0.8772,
+   "DREB": 3.9816,
+   "AST": 1.6499,
+   "STL": 0.5772,
+   "BLK": 1.2545,
+   "TOV": 1.609,
+   "FG%": 0.4593,
+   "3PM": 1.7908,
+   "3P%": 0.3539,
+   "FT%": 0.7979,
+   "FGA": 10.2084,
+   "FTA": 2.4043,
+   "3PA": 5.1315,
+   "A/T": 1.03,
+   "DD": 0.0208,
+   "DD_est_season": 1.6,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.135,
+   "seasons": {
+    "2025-26": {
+     "GP": 77,
+     "weight": 115.5
+    },
+    "2024-25": {
+     "GP": 80,
+     "weight": 80
+    }
+   },
+   "blend_share_2025_26": 0.591
+  },
+  "OG Anunoby": {
+   "season": "blend",
+   "bbref_name": "OG Anunoby",
+   "team": "NYK",
+   "pos": "PF",
+   "GP": 70.0,
+   "GS": 67,
+   "MPG": 34.6418,
+   "PTS": 17.2513,
+   "REB": 5.0304,
+   "OREB": 1.3,
+   "DREB": 3.788,
+   "AST": 2.2,
+   "STL": 1.5576,
+   "BLK": 0.7848,
+   "TOV": 1.6304,
+   "FG%": 0.4806,
+   "3PM": 2.3,
+   "3P%": 0.3801,
+   "FT%": 0.8204,
+   "FGA": 12.8057,
+   "FTA": 3.2152,
+   "3PA": 6.1424,
+   "A/T": 1.35,
+   "DD": 0.0313,
+   "DD_est_season": 2.2,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.091,
+   "seasons": {
+    "2025-26": {
+     "GP": 67,
+     "weight": 100.5
+    },
+    "2024-25": {
+     "GP": 74,
+     "weight": 74
+    }
+   },
+   "blend_share_2025_26": 0.576
+  },
+  "Nickeil Alexander-Walker": {
+   "season": "blend",
+   "bbref_name": "Nickeil Alexander-Walker",
+   "team": "ATL",
+   "pos": "SG",
+   "GP": 79.6,
+   "GS": 71,
+   "MPG": 30.0623,
+   "PTS": 16.1025,
+   "REB": 3.3176,
+   "OREB": 0.7,
+   "DREB": 2.7176,
+   "AST": 3.2879,
+   "STL": 1.0116,
+   "BLK": 0.4588,
+   "TOV": 1.7291,
+   "FG%": 0.4503,
+   "3PM": 2.5819,
+   "3P%": 0.3916,
+   "FT%": 0.8517,
+   "FGA": 12.0859,
+   "FTA": 2.8698,
+   "3PA": 6.6166,
+   "A/T": 1.9,
+   "DD": 0.0014,
+   "DD_est_season": 0.1,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.015,
+   "seasons": {
+    "2025-26": {
+     "GP": 78,
+     "weight": 117.0
+    },
+    "2024-25": {
+     "GP": 82,
+     "weight": 82
+    }
+   },
+   "blend_share_2025_26": 0.588
+  },
+  "Luka Dončić": {
+   "season": "blend",
+   "bbref_name": "Luka Dončić",
+   "team": "LAL",
+   "pos": "PG",
+   "GP": 59.2,
+   "GS": 64,
+   "MPG": 35.663,
+   "PTS": 31.6849,
+   "REB": 7.8712,
+   "OREB": 0.6685,
+   "DREB": 7.2027,
+   "AST": 8.0945,
+   "STL": 1.6685,
+   "BLK": 0.4658,
+   "TOV": 3.863,
+   "FG%": 0.4671,
+   "3PM": 3.8288,
+   "3P%": 0.3667,
+   "FT%": 0.7807,
+   "FGA": 22.0123,
+   "FTA": 9.3466,
+   "3PA": 10.389,
+   "A/T": 2.1,
+   "DD": 0.5207,
+   "DD_est_season": 30.8,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.027,
+   "seasons": {
+    "2025-26": {
+     "GP": 64,
+     "weight": 96.0
+    },
+    "2024-25": {
+     "GP": 50,
+     "weight": 50
+    }
+   },
+   "blend_share_2025_26": 0.658
+  },
+  "Anthony Edwards": {
+   "season": "blend",
+   "bbref_name": "Anthony Edwards",
+   "team": "MIN",
+   "pos": "SG",
+   "GP": 69.3,
+   "GS": 60,
+   "MPG": 35.6023,
+   "PTS": 28.244,
+   "REB": 5.3243,
+   "OREB": 0.6927,
+   "DREB": 4.6317,
+   "AST": 4.0707,
+   "STL": 1.3073,
+   "BLK": 0.7073,
+   "TOV": 3.039,
+   "FG%": 0.4695,
+   "3PM": 3.7243,
+   "3P%": 0.3971,
+   "FT%": 0.815,
+   "FGA": 20.2927,
+   "FTA": 6.783,
+   "3PA": 9.2804,
+   "A/T": 1.34,
+   "DD": 0.0544,
+   "DD_est_season": 3.8,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.154,
+   "seasons": {
+    "2025-26": {
+     "GP": 61,
+     "weight": 91.5
+    },
+    "2024-25": {
+     "GP": 79,
+     "weight": 79
+    }
+   },
+   "blend_share_2025_26": 0.537
+  },
+  "Giannis Antetokounmpo": {
+   "season": "blend",
+   "bbref_name": "Giannis Antetokounmpo",
+   "team": "MIL",
+   "pos": "PF",
+   "GP": 53.2,
+   "GS": 36,
+   "MPG": 31.8347,
+   "PTS": 29.1504,
+   "REB": 10.9628,
+   "OREB": 2.4231,
+   "DREB": 8.5397,
+   "AST": 6.0091,
+   "STL": 0.9,
+   "BLK": 0.9769,
+   "TOV": 3.1446,
+   "FG%": 0.6113,
+   "3PM": 0.2893,
+   "3P%": 0.2715,
+   "FT%": 0.6317,
+   "FGA": 18.3165,
+   "FTA": 10.2876,
+   "3PA": 1.0785,
+   "A/T": 1.91,
+   "DD": 0.6813,
+   "DD_est_season": 36.2,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.021,
+   "seasons": {
+    "2025-26": {
+     "GP": 36,
+     "weight": 54.0
+    },
+    "2024-25": {
+     "GP": 67,
+     "weight": 67
+    }
+   },
+   "blend_share_2025_26": 0.446
+  },
+  "Kevin Durant": {
+   "season": "blend",
+   "bbref_name": "Kevin Durant",
+   "team": "HOU",
+   "pos": "SF",
+   "GP": 72.5,
+   "GS": 78,
+   "MPG": 36.4346,
+   "PTS": 26.2078,
+   "REB": 5.6732,
+   "OREB": 0.4654,
+   "DREB": 5.1771,
+   "AST": 4.5922,
+   "STL": 0.8,
+   "BLK": 1.0039,
+   "TOV": 3.1654,
+   "FG%": 0.5224,
+   "3PM": 2.4693,
+   "3P%": 0.4189,
+   "FT%": 0.8619,
+   "FGA": 17.7732,
+   "FTA": 5.9307,
+   "3PA": 5.8693,
+   "A/T": 1.45,
+   "DD": 0.0843,
+   "DD_est_season": 6.1,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.132,
+   "seasons": {
+    "2025-26": {
+     "GP": 78,
+     "weight": 117.0
+    },
+    "2024-25": {
+     "GP": 62,
+     "weight": 62
+    }
+   },
+   "blend_share_2025_26": 0.654
+  },
+  "Kawhi Leonard": {
+   "season": "blend",
+   "bbref_name": "Kawhi Leonard",
+   "team": "LAC",
+   "pos": "SF",
+   "GP": 57.3,
+   "GS": 65,
+   "MPG": 32.045,
+   "PTS": 26.1394,
+   "REB": 6.2625,
+   "OREB": 1.045,
+   "DREB": 5.2175,
+   "AST": 3.4625,
+   "STL": 1.8175,
+   "BLK": 0.4275,
+   "TOV": 1.9725,
+   "FG%": 0.5031,
+   "3PM": 2.4625,
+   "3P%": 0.3936,
+   "FT%": 0.8694,
+   "FGA": 18.6848,
+   "FTA": 5.5472,
+   "3PA": 6.3323,
+   "A/T": 1.76,
+   "DD": 0.1188,
+   "DD_est_season": 6.8,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.04,
+   "seasons": {
+    "2025-26": {
+     "GP": 65,
+     "weight": 97.5
+    },
+    "2024-25": {
+     "GP": 37,
+     "weight": 37
+    }
+   },
+   "blend_share_2025_26": 0.725
+  },
+  "Stephen Curry": {
+   "season": "blend",
+   "bbref_name": "Stephen Curry",
+   "team": "GSW",
+   "pos": "PG",
+   "GP": 57.1,
+   "GS": 41,
+   "MPG": 31.5766,
+   "PTS": 25.5071,
+   "REB": 4.0164,
+   "OREB": 0.5041,
+   "DREB": 3.5643,
+   "AST": 5.3766,
+   "STL": 1.1,
+   "BLK": 0.4,
+   "TOV": 2.852,
+   "FG%": 0.4576,
+   "3PM": 4.4,
+   "3P%": 0.3951,
+   "FT%": 0.9282,
+   "FGA": 18.2877,
+   "FTA": 4.6836,
+   "3PA": 11.248,
+   "A/T": 1.89,
+   "DD": 0.0504,
+   "DD_est_season": 2.9,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.025,
+   "seasons": {
+    "2025-26": {
+     "GP": 43,
+     "weight": 64.5
+    },
+    "2024-25": {
+     "GP": 70,
+     "weight": 70
+    }
+   },
+   "blend_share_2025_26": 0.48
+  },
+  "Jaren Jackson Jr.": {
+   "season": "blend",
+   "bbref_name": "Jaren Jackson Jr.",
+   "team": "2TM",
+   "pos": "C",
+   "GP": 61.2,
+   "GS": 48,
+   "MPG": 30.0466,
+   "PTS": 20.8192,
+   "REB": 5.6493,
+   "OREB": 1.0521,
+   "DREB": 4.5973,
+   "AST": 2.0,
+   "STL": 1.1507,
+   "BLK": 1.4507,
+   "TOV": 2.1493,
+   "FG%": 0.4821,
+   "3PM": 1.9014,
+   "3P%": 0.3661,
+   "FT%": 0.7918,
+   "FGA": 15.7096,
+   "FTA": 4.8082,
+   "3PA": 5.1027,
+   "A/T": 0.93,
+   "DD": 0.0669,
+   "DD_est_season": 4.1,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.189,
+   "seasons": {
+    "2025-26": {
+     "GP": 48,
+     "weight": 72.0
+    },
+    "2024-25": {
+     "GP": 74,
+     "weight": 74
+    }
+   },
+   "blend_share_2025_26": 0.493
+  },
+  "LeBron James": {
+   "season": "blend",
+   "bbref_name": "LeBron James",
+   "team": "LAL",
+   "pos": "SF",
+   "GP": 64.4,
+   "GS": 60,
+   "MPG": 33.9438,
+   "PTS": 22.4312,
+   "REB": 6.8438,
+   "OREB": 0.8313,
+   "DREB": 6.0125,
+   "AST": 7.6375,
+   "STL": 1.1125,
+   "BLK": 0.6,
+   "TOV": 3.3062,
+   "FG%": 0.5141,
+   "3PM": 1.65,
+   "3P%": 0.3428,
+   "FT%": 0.7567,
+   "FGA": 16.525,
+   "FTA": 5.0375,
+   "3PA": 4.8,
+   "A/T": 2.31,
+   "DD": 0.3802,
+   "DD_est_season": 24.5,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.077,
+   "seasons": {
+    "2025-26": {
+     "GP": 60,
+     "weight": 90.0
+    },
+    "2024-25": {
+     "GP": 70,
+     "weight": 70
+    }
+   },
+   "blend_share_2025_26": 0.562
+  },
+  "Anthony Davis": {
+   "season": "blend",
+   "bbref_name": "Anthony Davis",
+   "team": "DAL",
+   "pos": "PF",
+   "GP": 39.5,
+   "GS": 20,
+   "MPG": 32.6852,
+   "PTS": 23.1074,
+   "REB": 11.4148,
+   "OREB": 2.7852,
+   "DREB": 8.5667,
+   "AST": 3.2407,
+   "STL": 1.163,
+   "BLK": 2.0148,
+   "TOV": 2.163,
+   "FG%": 0.5123,
+   "3PM": 0.6259,
+   "3P%": 0.2776,
+   "FT%": 0.7576,
+   "FGA": 17.3926,
+   "FTA": 6.0519,
+   "3PA": 2.2148,
+   "A/T": 1.5,
+   "DD": 0.6763,
+   "DD_est_season": 26.7,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.089,
+   "seasons": {
+    "2025-26": {
+     "GP": 20,
+     "weight": 30.0
+    },
+    "2024-25": {
+     "GP": 51,
+     "weight": 51
+    }
+   },
+   "blend_share_2025_26": 0.37
+  },
+  "Trae Young": {
+   "season": "blend",
+   "bbref_name": "Trae Young",
+   "team": "2TM",
+   "pos": "PG",
+   "GP": 62.1,
+   "GS": 15,
+   "MPG": 33.6244,
+   "PTS": 22.7609,
+   "REB": 2.8487,
+   "OREB": 0.4543,
+   "DREB": 2.3944,
+   "AST": 10.7777,
+   "STL": 1.1315,
+   "BLK": 0.1772,
+   "TOV": 4.2203,
+   "FG%": 0.4217,
+   "3PM": 2.6487,
+   "3P%": 0.3395,
+   "FT%": 0.8636,
+   "FGA": 16.6609,
+   "FTA": 7.1944,
+   "3PA": 7.6919,
+   "A/T": 2.55,
+   "DD": 0.624,
+   "DD_est_season": 38.8,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.164,
+   "seasons": {
+    "2025-26": {
+     "GP": 15,
+     "weight": 22.5
+    },
+    "2024-25": {
+     "GP": 76,
+     "weight": 76
+    }
+   },
+   "blend_share_2025_26": 0.228
+  },
+  "Tyrese Maxey": {
+   "season": "blend",
+   "bbref_name": "Tyrese Maxey",
+   "team": "PHI",
+   "pos": "PG",
+   "GP": 64.0,
+   "GS": 70,
+   "MPG": 37.9006,
+   "PTS": 27.6376,
+   "REB": 3.835,
+   "OREB": 0.3,
+   "DREB": 3.5682,
+   "AST": 6.4344,
+   "STL": 1.8669,
+   "BLK": 0.6675,
+   "TOV": 2.4,
+   "FG%": 0.4537,
+   "3PM": 3.1,
+   "3P%": 0.3571,
+   "FT%": 0.8877,
+   "FGA": 21.2675,
+   "FTA": 5.8675,
+   "3PA": 8.7987,
+   "A/T": 2.68,
+   "DD": 0.1272,
+   "DD_est_season": 8.1,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.132,
+   "seasons": {
+    "2025-26": {
+     "GP": 70,
+     "weight": 105.0
+    },
+    "2024-25": {
+     "GP": 52,
+     "weight": 52
+    }
+   },
+   "blend_share_2025_26": 0.669
+  },
+  "Jayson Tatum": {
+   "season": "blend",
+   "bbref_name": "Jayson Tatum",
+   "team": "BOS",
+   "pos": "PF",
+   "GP": 58.0,
+   "GS": 16,
+   "MPG": 35.45,
+   "PTS": 25.55,
+   "REB": 9.025,
+   "OREB": 0.65,
+   "DREB": 8.375,
+   "AST": 5.825,
+   "STL": 1.175,
+   "BLK": 0.425,
+   "TOV": 2.775,
+   "FG%": 0.4418,
+   "3PM": 3.35,
+   "3P%": 0.3395,
+   "FT%": 0.8163,
+   "FGA": 19.7,
+   "FTA": 5.8,
+   "3PA": 9.8,
+   "A/T": 2.1,
+   "DD": 0.4761,
+   "DD_est_season": 27.6,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.022,
+   "seasons": {
+    "2025-26": {
+     "GP": 16,
+     "weight": 24.0
+    },
+    "2024-25": {
+     "GP": 72,
+     "weight": 72
+    }
+   },
+   "blend_share_2025_26": 0.25
+  },
+  "Donovan Mitchell": {
+   "season": "blend",
+   "bbref_name": "Donovan Mitchell",
+   "team": "CLE",
+   "pos": "SG",
+   "GP": 70.4,
+   "GS": 70,
+   "MPG": 32.6528,
+   "PTS": 26.3267,
+   "REB": 4.5,
+   "OREB": 0.7403,
+   "DREB": 3.7597,
+   "AST": 5.4176,
+   "STL": 1.4193,
+   "BLK": 0.2597,
+   "TOV": 2.5176,
+   "FG%": 0.4669,
+   "3PM": 3.2403,
+   "3P%": 0.3656,
+   "FT%": 0.8481,
+   "FGA": 19.4352,
+   "FTA": 5.6966,
+   "3PA": 8.8403,
+   "A/T": 2.15,
+   "DD": 0.0618,
+   "DD_est_season": 4.4,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.031,
+   "seasons": {
+    "2025-26": {
+     "GP": 70,
+     "weight": 105.0
+    },
+    "2024-25": {
+     "GP": 71,
+     "weight": 71
+    }
+   },
+   "blend_share_2025_26": 0.597
+  },
+  "Jamal Murray": {
+   "season": "blend",
+   "bbref_name": "Jamal Murray",
+   "team": "DEN",
+   "pos": "PG",
+   "GP": 72.0,
+   "GS": 75,
+   "MPG": 35.6613,
+   "PTS": 23.907,
+   "REB": 4.2134,
+   "OREB": 0.512,
+   "DREB": 3.7014,
+   "AST": 6.6894,
+   "STL": 1.0866,
+   "BLK": 0.4373,
+   "TOV": 2.2253,
+   "FG%": 0.4796,
+   "3PM": 2.9267,
+   "3P%": 0.4193,
+   "FT%": 0.8866,
+   "FGA": 17.5774,
+   "FTA": 4.6401,
+   "3PA": 6.9028,
+   "A/T": 3.01,
+   "DD": 0.1546,
+   "DD_est_season": 11.1,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.183,
+   "seasons": {
+    "2025-26": {
+     "GP": 75,
+     "weight": 112.5
+    },
+    "2024-25": {
+     "GP": 67,
+     "weight": 67
+    }
+   },
+   "blend_share_2025_26": 0.627
+  },
+  "Jalen Brunson": {
+   "season": "blend",
+   "bbref_name": "Jalen Brunson",
+   "team": "NYK",
+   "pos": "PG",
+   "GP": 70.7,
+   "GS": 74,
+   "MPG": 35.1477,
+   "PTS": 26.0,
+   "REB": 3.1523,
+   "OREB": 0.4,
+   "DREB": 2.7523,
+   "AST": 6.9847,
+   "STL": 0.8369,
+   "BLK": 0.1,
+   "TOV": 2.4369,
+   "FG%": 0.4748,
+   "3PM": 2.4892,
+   "3P%": 0.3742,
+   "FT%": 0.8336,
+   "FGA": 19.383,
+   "FTA": 6.1432,
+   "3PA": 6.7307,
+   "A/T": 2.87,
+   "DD": 0.18,
+   "DD_est_season": 12.7,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.17,
+   "seasons": {
+    "2025-26": {
+     "GP": 74,
+     "weight": 111.0
+    },
+    "2024-25": {
+     "GP": 65,
+     "weight": 65
+    }
+   },
+   "blend_share_2025_26": 0.631
+  },
+  "LaMelo Ball": {
+   "season": "blend",
+   "bbref_name": "LaMelo Ball",
+   "team": "CHO",
+   "pos": "PG",
+   "GP": 64.4,
+   "GS": 69,
+   "MPG": 29.2129,
+   "PTS": 21.6465,
+   "REB": 4.8303,
+   "OREB": 0.9303,
+   "DREB": 3.9,
+   "AST": 7.191,
+   "STL": 1.1697,
+   "BLK": 0.2303,
+   "TOV": 3.0426,
+   "FG%": 0.4064,
+   "3PM": 3.8,
+   "3P%": 0.3592,
+   "FT%": 0.882,
+   "FGA": 18.5129,
+   "FTA": 3.2277,
+   "3PA": 10.5729,
+   "A/T": 2.36,
+   "DD": 0.2182,
+   "DD_est_season": 14.1,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.085,
+   "seasons": {
+    "2025-26": {
+     "GP": 72,
+     "weight": 108.0
+    },
+    "2024-25": {
+     "GP": 47,
+     "weight": 47
+    }
+   },
+   "blend_share_2025_26": 0.697
+  },
+  "Cooper Flagg": {
+   "season": "blend",
+   "bbref_name": "Cooper Flagg",
+   "team": "DAL",
+   "pos": "SF",
+   "GP": 70.0,
+   "GS": 70,
+   "MPG": 33.5,
+   "PTS": 21.0,
+   "REB": 6.7,
+   "OREB": 1.2,
+   "DREB": 5.4,
+   "AST": 4.5,
+   "STL": 1.2,
+   "BLK": 0.9,
+   "TOV": 2.3,
+   "FG%": 0.468,
+   "3PM": 1.0,
+   "3P%": 0.295,
+   "FT%": 0.827,
+   "FGA": 17.1,
+   "FTA": 4.9,
+   "3PA": 3.5,
+   "A/T": 1.96,
+   "DD": 0.165,
+   "DD_est_season": 11.6,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.008,
+   "seasons": {
+    "2025-26": {
+     "GP": 70,
+     "weight": 105.0
+    },
+    "2024-25": {
+     "GP": null,
+     "weight": 0.0
+    }
+   },
+   "blend_share_2025_26": 1.0
+  },
+  "Austin Reaves": {
+   "season": "blend",
+   "bbref_name": "Austin Reaves",
+   "team": "LAL",
+   "pos": "SG",
+   "GP": 61.7,
+   "GS": 45,
+   "MPG": 34.6953,
+   "PTS": 21.7863,
+   "REB": 4.6023,
+   "OREB": 0.6977,
+   "DREB": 3.9047,
+   "AST": 5.6465,
+   "STL": 1.1,
+   "BLK": 0.3512,
+   "TOV": 2.707,
+   "FG%": 0.4754,
+   "3PM": 2.4953,
+   "3P%": 0.3683,
+   "FT%": 0.8739,
+   "FGA": 14.5582,
+   "FTA": 6.1769,
+   "3PA": 6.8395,
+   "A/T": 2.09,
+   "DD": 0.076,
+   "DD_est_season": 4.7,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.018,
+   "seasons": {
+    "2025-26": {
+     "GP": 51,
+     "weight": 76.5
+    },
+    "2024-25": {
+     "GP": 73,
+     "weight": 73
+    }
+   },
+   "blend_share_2025_26": 0.512
+  },
+  "Lauri Markkanen": {
+   "season": "blend",
+   "bbref_name": "Lauri Markkanen",
+   "team": "UTA",
+   "pos": "PF",
+   "GP": 44.1,
+   "GS": 42,
+   "MPG": 33.1182,
+   "PTS": 23.41,
+   "REB": 6.4727,
+   "OREB": 1.7864,
+   "DREB": 4.6864,
+   "AST": 1.8436,
+   "STL": 0.8718,
+   "BLK": 0.4573,
+   "TOV": 1.4573,
+   "FG%": 0.4539,
+   "3PM": 2.7855,
+   "3P%": 0.3512,
+   "FT%": 0.8875,
+   "FGA": 17.3627,
+   "FTA": 5.3318,
+   "3PA": 8.0418,
+   "A/T": 1.27,
+   "DD": 0.1358,
+   "DD_est_season": 6.0,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.093,
+   "seasons": {
+    "2025-26": {
+     "GP": 42,
+     "weight": 63.0
+    },
+    "2024-25": {
+     "GP": 47,
+     "weight": 47
+    }
+   },
+   "blend_share_2025_26": 0.573
+  },
+  "Pascal Siakam": {
+   "season": "blend",
+   "bbref_name": "Pascal Siakam",
+   "team": "IND",
+   "pos": "PF",
+   "GP": 69.3,
+   "GS": 62,
+   "MPG": 32.9719,
+   "PTS": 22.2667,
+   "REB": 6.7368,
+   "OREB": 1.5368,
+   "DREB": 5.2,
+   "AST": 3.6175,
+   "STL": 1.0088,
+   "BLK": 0.4456,
+   "TOV": 1.8351,
+   "FG%": 0.5,
+   "3PM": 1.6544,
+   "3P%": 0.3721,
+   "FT%": 0.7117,
+   "FGA": 17.0491,
+   "FTA": 5.0965,
+   "3PA": 4.4719,
+   "A/T": 1.97,
+   "DD": 0.1619,
+   "DD_est_season": 11.2,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.004,
+   "seasons": {
+    "2025-26": {
+     "GP": 62,
+     "weight": 93.0
+    },
+    "2024-25": {
+     "GP": 78,
+     "weight": 78
+    }
+   },
+   "blend_share_2025_26": 0.544
+  },
+  "Deni Avdija": {
+   "season": "blend",
+   "bbref_name": "Deni Avdija",
+   "team": "POR",
+   "pos": "SF",
+   "GP": 68.5,
+   "GS": 66,
+   "MPG": 31.9105,
+   "PTS": 21.1263,
+   "REB": 7.0684,
+   "OREB": 1.2684,
+   "DREB": 5.7579,
+   "AST": 5.5211,
+   "STL": 0.8842,
+   "BLK": 0.5579,
+   "TOV": 3.3368,
+   "FG%": 0.4679,
+   "3PM": 1.8158,
+   "3P%": 0.3378,
+   "FT%": 0.7927,
+   "FGA": 14.2474,
+   "FTA": 7.5158,
+   "3PA": 5.4947,
+   "A/T": 1.65,
+   "DD": 0.2347,
+   "DD_est_season": 16.1,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.086,
+   "seasons": {
+    "2025-26": {
+     "GP": 66,
+     "weight": 99.0
+    },
+    "2024-25": {
+     "GP": 72,
+     "weight": 72
+    }
+   },
+   "blend_share_2025_26": 0.579
+  },
+  "Devin Booker": {
+   "season": "blend",
+   "bbref_name": "Devin Booker",
+   "team": "PHO",
+   "pos": "SG",
+   "GP": 68.8,
+   "GS": 64,
+   "MPG": 35.1667,
+   "PTS": 25.8807,
+   "REB": 3.9877,
+   "OREB": 0.8877,
+   "DREB": 3.1,
+   "AST": 6.4825,
+   "STL": 0.8439,
+   "BLK": 0.2561,
+   "TOV": 3.0123,
+   "FG%": 0.4582,
+   "3PM": 2.1193,
+   "3P%": 0.3309,
+   "FT%": 0.8822,
+   "FGA": 18.7877,
+   "FTA": 7.3544,
+   "3PA": 6.4579,
+   "A/T": 2.15,
+   "DD": 0.1326,
+   "DD_est_season": 9.1,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.035,
+   "seasons": {
+    "2025-26": {
+     "GP": 64,
+     "weight": 96.0
+    },
+    "2024-25": {
+     "GP": 75,
+     "weight": 75
+    }
+   },
+   "blend_share_2025_26": 0.561
+  },
+  "Brandon Miller": {
+   "season": "blend",
+   "bbref_name": "Brandon Miller",
+   "team": "CHO",
+   "pos": "SF",
+   "GP": 56.8,
+   "GS": 65,
+   "MPG": 31.1458,
+   "PTS": 20.3735,
+   "REB": 4.9,
+   "OREB": 1.0566,
+   "DREB": 3.8217,
+   "AST": 3.3651,
+   "STL": 1.0217,
+   "BLK": 0.7,
+   "TOV": 2.5651,
+   "FG%": 0.4281,
+   "3PM": 3.2735,
+   "3P%": 0.3769,
+   "FT%": 0.8853,
+   "FGA": 16.5554,
+   "FTA": 3.2916,
+   "3PA": 8.7855,
+   "A/T": 1.31,
+   "DD": 0.0285,
+   "DD_est_season": 1.6,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.14,
+   "seasons": {
+    "2025-26": {
+     "GP": 65,
+     "weight": 97.5
+    },
+    "2024-25": {
+     "GP": 27,
+     "weight": 27
+    }
+   },
+   "blend_share_2025_26": 0.783
+  },
+  "Jalen Williams": {
+   "season": "blend",
+   "bbref_name": "Jalen Williams",
+   "team": "OKC",
+   "pos": "SG",
+   "GP": 54.0,
+   "GS": 33,
+   "MPG": 30.7291,
+   "PTS": 19.7203,
+   "REB": 5.0076,
+   "OREB": 0.8582,
+   "DREB": 4.2076,
+   "AST": 5.2671,
+   "STL": 1.4329,
+   "BLK": 0.5329,
+   "TOV": 2.0747,
+   "FG%": 0.484,
+   "3PM": 1.3405,
+   "3P%": 0.3374,
+   "FT%": 0.8091,
+   "FGA": 15.4797,
+   "FTA": 4.1329,
+   "3PA": 3.8139,
+   "A/T": 2.54,
+   "DD": 0.0677,
+   "DD_est_season": 3.7,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.093,
+   "seasons": {
+    "2025-26": {
+     "GP": 33,
+     "weight": 49.5
+    },
+    "2024-25": {
+     "GP": 69,
+     "weight": 69
+    }
+   },
+   "blend_share_2025_26": 0.418
+  },
+  "Domantas Sabonis": {
+   "season": "blend",
+   "bbref_name": "Domantas Sabonis",
+   "team": "SAC",
+   "pos": "C",
+   "GP": 55.2,
+   "GS": 15,
+   "MPG": 33.2533,
+   "PTS": 18.1452,
+   "REB": 13.1766,
+   "OREB": 3.6843,
+   "DREB": 9.4924,
+   "AST": 5.4503,
+   "STL": 0.7579,
+   "BLK": 0.3421,
+   "TOV": 2.8421,
+   "FG%": 0.5764,
+   "3PM": 0.7264,
+   "3P%": 0.3499,
+   "FT%": 0.7462,
+   "FGA": 12.4528,
+   "FTA": 4.1,
+   "3PA": 1.9685,
+   "A/T": 1.92,
+   "DD": 0.7607,
+   "DD_est_season": 42.0,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.018,
+   "seasons": {
+    "2025-26": {
+     "GP": 19,
+     "weight": 28.5
+    },
+    "2024-25": {
+     "GP": 70,
+     "weight": 70
+    }
+   },
+   "blend_share_2025_26": 0.289
+  },
+  "Ivica Zubac": {
+   "season": "blend",
+   "bbref_name": "Ivica Zubac",
+   "team": "2TM",
+   "pos": "C",
+   "GP": 64.8,
+   "GS": 47,
+   "MPG": 31.5211,
+   "PTS": 15.5211,
+   "REB": 11.6526,
+   "OREB": 3.6105,
+   "DREB": 8.0947,
+   "AST": 2.4632,
+   "STL": 0.5579,
+   "BLK": 0.9579,
+   "TOV": 1.6947,
+   "FG%": 0.6138,
+   "3PM": 0.0,
+   "3P%": null,
+   "FT%": 0.6847,
+   "FGA": 10.9474,
+   "FTA": 3.0,
+   "3PA": 0.0,
+   "A/T": 1.45,
+   "DD": 0.6063,
+   "DD_est_season": 39.3,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.079,
+   "seasons": {
+    "2025-26": {
+     "GP": 48,
+     "weight": 72.0
+    },
+    "2024-25": {
+     "GP": 80,
+     "weight": 80
+    }
+   },
+   "blend_share_2025_26": 0.474
+  },
+  "Naz Reid": {
+   "season": "blend",
+   "bbref_name": "Naz Reid",
+   "team": "MIN",
+   "pos": "C",
+   "GP": 78.2,
+   "GS": 3,
+   "MPG": 26.6729,
+   "PTS": 13.8455,
+   "REB": 6.1182,
+   "OREB": 1.2,
+   "DREB": 4.9591,
+   "AST": 2.2409,
+   "STL": 0.8772,
+   "BLK": 0.9591,
+   "TOV": 1.5182,
+   "FG%": 0.4585,
+   "3PM": 2.1409,
+   "3P%": 0.369,
+   "FT%": 0.75,
+   "FGA": 11.3818,
+   "FTA": 1.6818,
+   "3PA": 5.8,
+   "A/T": 1.48,
+   "DD": 0.0836,
+   "DD_est_season": 6.5,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.069,
+   "seasons": {
+    "2025-26": {
+     "GP": 77,
+     "weight": 115.5
+    },
+    "2024-25": {
+     "GP": 80,
+     "weight": 80
+    }
+   },
+   "blend_share_2025_26": 0.591
+  },
+  "Julius Randle": {
+   "season": "blend",
+   "bbref_name": "Julius Randle",
+   "team": "MIN",
+   "pos": "PF",
+   "GP": 75.3,
+   "GS": 79,
+   "MPG": 32.7424,
+   "PTS": 20.2168,
+   "REB": 6.8472,
+   "OREB": 1.8472,
+   "DREB": 5.0632,
+   "AST": 4.8896,
+   "STL": 0.9528,
+   "BLK": 0.2,
+   "TOV": 2.7368,
+   "FG%": 0.4825,
+   "3PM": 1.4736,
+   "3P%": 0.3257,
+   "FT%": 0.8035,
+   "FGA": 14.6744,
+   "FTA": 5.7848,
+   "3PA": 4.4736,
+   "A/T": 1.79,
+   "DD": 0.1869,
+   "DD_est_season": 14.1,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.046,
+   "seasons": {
+    "2025-26": {
+     "GP": 79,
+     "weight": 118.5
+    },
+    "2024-25": {
+     "GP": 69,
+     "weight": 69
+    }
+   },
+   "blend_share_2025_26": 0.632
+  },
+  "Tyler Herro": {
+   "season": "blend",
+   "bbref_name": "Tyler Herro",
+   "team": "MIA",
+   "pos": "SG",
+   "GP": 59.8,
+   "GS": 28,
+   "MPG": 33.7957,
+   "PTS": 22.5696,
+   "REB": 5.0435,
+   "OREB": 0.4609,
+   "DREB": 4.5826,
+   "AST": 4.9522,
+   "STL": 0.8217,
+   "BLK": 0.2783,
+   "TOV": 2.3261,
+   "FG%": 0.4751,
+   "3PM": 2.987,
+   "3P%": 0.3762,
+   "FT%": 0.8933,
+   "FGA": 17.0,
+   "FTA": 3.8478,
+   "3PA": 7.9174,
+   "A/T": 2.13,
+   "DD": 0.0585,
+   "DD_est_season": 3.5,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.024,
+   "seasons": {
+    "2025-26": {
+     "GP": 33,
+     "weight": 49.5
+    },
+    "2024-25": {
+     "GP": 77,
+     "weight": 77
+    }
+   },
+   "blend_share_2025_26": 0.391
+  },
+  "Reed Sheppard": {
+   "season": "blend",
+   "bbref_name": "Reed Sheppard",
+   "team": "HOU",
+   "pos": "SG",
+   "GP": 73.1,
+   "GS": 21,
+   "MPG": 22.1589,
+   "PTS": 10.796,
+   "REB": 2.484,
+   "OREB": 0.3,
+   "DREB": 2.184,
+   "AST": 2.8057,
+   "STL": 1.2623,
+   "BLK": 0.5811,
+   "TOV": 1.2623,
+   "FG%": 0.4065,
+   "3PM": 2.2354,
+   "3P%": 0.3774,
+   "FT%": 0.8053,
+   "FGA": 9.4497,
+   "FTA": 0.792,
+   "3PA": 5.7223,
+   "A/T": 2.22,
+   "DD": 0.0001,
+   "DD_est_season": 0.0,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.025,
+   "seasons": {
+    "2025-26": {
+     "GP": 82,
+     "weight": 123.0
+    },
+    "2024-25": {
+     "GP": 52,
+     "weight": 52
+    }
+   },
+   "blend_share_2025_26": 0.703
+  },
+  "Kon Knueppel": {
+   "season": "blend",
+   "bbref_name": "Kon Knueppel",
+   "team": "CHO",
+   "pos": "SF",
+   "GP": 81.0,
+   "GS": 80,
+   "MPG": 31.5,
+   "PTS": 18.5,
+   "REB": 5.3,
+   "OREB": 1.2,
+   "DREB": 4.1,
+   "AST": 3.4,
+   "STL": 0.7,
+   "BLK": 0.2,
+   "TOV": 2.0,
+   "FG%": 0.475,
+   "3PM": 3.4,
+   "3P%": 0.425,
+   "FT%": 0.863,
+   "FGA": 13.4,
+   "FTA": 2.8,
+   "3PA": 7.9,
+   "A/T": 1.7,
+   "DD": 0.0454,
+   "DD_est_season": 3.7,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.05,
+   "seasons": {
+    "2025-26": {
+     "GP": 81,
+     "weight": 121.5
+    },
+    "2024-25": {
+     "GP": null,
+     "weight": 0.0
+    }
+   },
+   "blend_share_2025_26": 1.0
+  },
+  "Luke Kennard": {
+   "season": "blend",
+   "bbref_name": "Luke Kennard",
+   "team": "2TM",
+   "pos": "SG",
+   "GP": 73.4,
+   "GS": 6,
+   "MPG": 21.9571,
+   "PTS": 8.5786,
+   "REB": 2.4786,
+   "OREB": 0.4714,
+   "DREB": 2.0071,
+   "AST": 2.5929,
+   "STL": 0.7357,
+   "BLK": 0.1,
+   "TOV": 0.9071,
+   "FG%": 0.5134,
+   "3PM": 1.5714,
+   "3P%": 0.4619,
+   "FT%": 0.9066,
+   "FGA": 6.0214,
+   "FTA": 0.9,
+   "3PA": 3.4214,
+   "A/T": 2.86,
+   "DD": 0.0,
+   "DD_est_season": 0.0,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.071,
+   "seasons": {
+    "2025-26": {
+     "GP": 78,
+     "weight": 117.0
+    },
+    "2024-25": {
+     "GP": 65,
+     "weight": 65
+    }
+   },
+   "blend_share_2025_26": 0.643
+  },
+  "Grayson Allen": {
+   "season": "blend",
+   "bbref_name": "Grayson Allen",
+   "team": "PHO",
+   "pos": "SG",
+   "GP": 56.9,
+   "GS": 27,
+   "MPG": 26.6591,
+   "PTS": 13.8125,
+   "REB": 3.0,
+   "OREB": 0.6089,
+   "DREB": 2.3911,
+   "AST": 3.0256,
+   "STL": 1.1267,
+   "BLK": 0.3,
+   "TOV": 1.4178,
+   "FG%": 0.4235,
+   "3PM": 2.7356,
+   "3P%": 0.3841,
+   "FT%": 0.8383,
+   "FGA": 10.5947,
+   "FTA": 2.6167,
+   "3PA": 7.3512,
+   "A/T": 2.13,
+   "DD": 0.0004,
+   "DD_est_season": 0.0,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.017,
+   "seasons": {
+    "2025-26": {
+     "GP": 51,
+     "weight": 76.5
+    },
+    "2024-25": {
+     "GP": 64,
+     "weight": 64
+    }
+   },
+   "blend_share_2025_26": 0.544
+  },
+  "Gary Trent Jr.": {
+   "season": "blend",
+   "bbref_name": "Gary Trent Jr.",
+   "team": "MIL",
+   "pos": "SG",
+   "GP": 68.9,
+   "GS": 21,
+   "MPG": 23.0985,
+   "PTS": 9.3945,
+   "REB": 1.5609,
+   "OREB": 0.1863,
+   "DREB": 1.3746,
+   "AST": 1.2,
+   "STL": 0.7157,
+   "BLK": 0.0431,
+   "TOV": 0.6,
+   "FG%": 0.406,
+   "3PM": 2.1157,
+   "3P%": 0.3842,
+   "FT%": 0.8031,
+   "FGA": 7.9904,
+   "FTA": 0.9726,
+   "3PA": 5.5589,
+   "A/T": 2.0,
+   "DD": 0.0,
+   "DD_est_season": 0.0,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.0,
+   "seasons": {
+    "2025-26": {
+     "GP": 65,
+     "weight": 97.5
+    },
+    "2024-25": {
+     "GP": 74,
+     "weight": 74
+    }
+   },
+   "blend_share_2025_26": 0.569
+  },
+  "Norman Powell": {
+   "season": "blend",
+   "bbref_name": "Norman Powell",
+   "team": "MIA",
+   "pos": "SG",
+   "GP": 58.8,
+   "GS": 52,
+   "MPG": 30.8245,
+   "PTS": 21.7408,
+   "REB": 3.3776,
+   "OREB": 0.4,
+   "DREB": 2.9776,
+   "AST": 2.3367,
+   "STL": 1.1408,
+   "BLK": 0.2,
+   "TOV": 1.8592,
+   "FG%": 0.4757,
+   "3PM": 2.8224,
+   "3P%": 0.3955,
+   "FT%": 0.8176,
+   "FGA": 15.5633,
+   "FTA": 5.051,
+   "3PA": 7.1,
+   "A/T": 1.26,
+   "DD": 0.0012,
+   "DD_est_season": 0.1,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.117,
+   "seasons": {
+    "2025-26": {
+     "GP": 58,
+     "weight": 87.0
+    },
+    "2024-25": {
+     "GP": 60,
+     "weight": 60
+    }
+   },
+   "blend_share_2025_26": 0.592
+  },
+  "Bogdan Bogdanović": {
+   "season": "blend",
+   "bbref_name": "Bogdan Bogdanović",
+   "team": "LAC",
+   "pos": "SG",
+   "GP": 41.9,
+   "GS": 3,
+   "MPG": 22.9339,
+   "PTS": 9.4746,
+   "REB": 2.7831,
+   "OREB": 0.361,
+   "DREB": 2.422,
+   "AST": 2.5051,
+   "STL": 0.6441,
+   "BLK": 0.161,
+   "TOV": 1.322,
+   "FG%": 0.4118,
+   "3PM": 1.7051,
+   "3P%": 0.3568,
+   "FT%": 0.8482,
+   "FGA": 8.1254,
+   "FTA": 1.161,
+   "3PA": 4.8932,
+   "A/T": 1.89,
+   "DD": 0.0001,
+   "DD_est_season": 0.0,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.012,
+   "seasons": {
+    "2025-26": {
+     "GP": 23,
+     "weight": 34.5
+    },
+    "2024-25": {
+     "GP": 54,
+     "weight": 54
+    }
+   },
+   "blend_share_2025_26": 0.39
+  },
+  "Isaiah Joe": {
+   "season": "blend",
+   "bbref_name": "Isaiah Joe",
+   "team": "OKC",
+   "pos": "SG",
+   "GP": 72.2,
+   "GS": 9,
+   "MPG": 21.405,
+   "PTS": 10.731,
+   "REB": 2.541,
+   "OREB": 0.541,
+   "DREB": 2.1,
+   "AST": 1.423,
+   "STL": 0.659,
+   "BLK": 0.159,
+   "TOV": 0.559,
+   "FG%": 0.4489,
+   "3PM": 2.541,
+   "3P%": 0.4185,
+   "FT%": 0.8641,
+   "FGA": 7.723,
+   "FTA": 1.331,
+   "3PA": 6.123,
+   "A/T": 2.55,
+   "DD": 0.0,
+   "DD_est_season": 0.0,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.029,
+   "seasons": {
+    "2025-26": {
+     "GP": 71,
+     "weight": 106.5
+    },
+    "2024-25": {
+     "GP": 74,
+     "weight": 74
+    }
+   },
+   "blend_share_2025_26": 0.59
+  },
+  "Quentin Grimes": {
+   "season": "blend",
+   "bbref_name": "Quentin Grimes",
+   "team": "PHI",
+   "pos": "SG",
+   "GP": 75.0,
+   "GS": 19,
+   "MPG": 28.36,
+   "PTS": 13.88,
+   "REB": 3.88,
+   "OREB": 0.68,
+   "DREB": 3.2,
+   "AST": 3.18,
+   "STL": 0.94,
+   "BLK": 0.36,
+   "TOV": 1.84,
+   "FG%": 0.4568,
+   "3PM": 1.9,
+   "3P%": 0.3544,
+   "FT%": 0.8068,
+   "FGA": 10.46,
+   "FTA": 3.08,
+   "3PA": 5.3,
+   "A/T": 1.73,
+   "DD": 0.004,
+   "DD_est_season": 0.3,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.042,
+   "seasons": {
+    "2025-26": {
+     "GP": 75,
+     "weight": 112.5
+    },
+    "2024-25": {
+     "GP": 75,
+     "weight": 75
+    }
+   },
+   "blend_share_2025_26": 0.6
+  },
+  "Tim Hardaway Jr.": {
+   "season": "blend",
+   "bbref_name": "Tim Hardaway Jr.",
+   "team": "DEN",
+   "pos": "SG",
+   "GP": 78.8,
+   "GS": 6,
+   "MPG": 27.1472,
+   "PTS": 12.5228,
+   "REB": 2.5218,
+   "OREB": 0.2,
+   "DREB": 2.2827,
+   "AST": 1.4782,
+   "STL": 0.5,
+   "BLK": 0.1,
+   "TOV": 0.5391,
+   "FG%": 0.431,
+   "3PM": 2.5655,
+   "3P%": 0.3918,
+   "FT%": 0.8282,
+   "FGA": 9.3482,
+   "FTA": 2.2655,
+   "3PA": 6.5091,
+   "A/T": 2.74,
+   "DD": 0.0,
+   "DD_est_season": 0.0,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.038,
+   "seasons": {
+    "2025-26": {
+     "GP": 80,
+     "weight": 120.0
+    },
+    "2024-25": {
+     "GP": 77,
+     "weight": 77
+    }
+   },
+   "blend_share_2025_26": 0.609
+  },
+  "Luguentz Dort": {
+   "season": "blend",
+   "bbref_name": "Luguentz Dort",
+   "team": "OKC",
+   "pos": "SF",
+   "GP": 69.8,
+   "GS": 69,
+   "MPG": 27.7765,
+   "PTS": 9.0324,
+   "REB": 3.8034,
+   "OREB": 1.0034,
+   "DREB": 2.7814,
+   "AST": 1.3628,
+   "STL": 0.9814,
+   "BLK": 0.4407,
+   "TOV": 0.7593,
+   "FG%": 0.4053,
+   "3PM": 2.1034,
+   "3P%": 0.3717,
+   "FT%": 0.7419,
+   "FGA": 7.9255,
+   "FTA": 0.7186,
+   "3PA": 5.5628,
+   "A/T": 1.79,
+   "DD": 0.0018,
+   "DD_est_season": 0.1,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.014,
+   "seasons": {
+    "2025-26": {
+     "GP": 69,
+     "weight": 103.5
+    },
+    "2024-25": {
+     "GP": 71,
+     "weight": 71
+    }
+   },
+   "blend_share_2025_26": 0.593
+  },
+  "CJ McCollum": {
+   "season": "blend",
+   "bbref_name": "CJ McCollum",
+   "team": "2TM",
+   "pos": "PG",
+   "GP": 69.4,
+   "GS": 60,
+   "MPG": 30.7553,
+   "PTS": 19.4906,
+   "REB": 3.4647,
+   "OREB": 0.8,
+   "DREB": 2.6647,
+   "AST": 3.9659,
+   "STL": 0.8,
+   "BLK": 0.4671,
+   "TOV": 1.8329,
+   "FG%": 0.4514,
+   "3PM": 2.6976,
+   "3P%": 0.3743,
+   "FT%": 0.7539,
+   "FGA": 16.0894,
+   "FTA": 3.1,
+   "3PA": 7.1941,
+   "A/T": 2.16,
+   "DD": 0.0053,
+   "DD_est_season": 0.4,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.025,
+   "seasons": {
+    "2025-26": {
+     "GP": 76,
+     "weight": 114.0
+    },
+    "2024-25": {
+     "GP": 56,
+     "weight": 56
+    }
+   },
+   "blend_share_2025_26": 0.671
+  },
+  "Kelly Oubre Jr.": {
+   "season": "blend",
+   "bbref_name": "Kelly Oubre Jr.",
+   "team": "PHI",
+   "pos": "SF",
+   "GP": 54.4,
+   "GS": 41,
+   "MPG": 32.8778,
+   "PTS": 14.5444,
+   "REB": 5.4889,
+   "OREB": 1.2667,
+   "DREB": 4.2222,
+   "AST": 1.6889,
+   "STL": 1.4444,
+   "BLK": 0.5,
+   "TOV": 1.3556,
+   "FG%": 0.4683,
+   "3PM": 1.4778,
+   "3P%": 0.3302,
+   "FT%": 0.7593,
+   "FGA": 11.5667,
+   "FTA": 2.9889,
+   "3PA": 4.4444,
+   "A/T": 1.25,
+   "DD": 0.0485,
+   "DD_est_season": 2.6,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.09,
+   "seasons": {
+    "2025-26": {
+     "GP": 50,
+     "weight": 75.0
+    },
+    "2024-25": {
+     "GP": 60,
+     "weight": 60
+    }
+   },
+   "blend_share_2025_26": 0.556
+  },
+  "Jordan Clarkson": {
+   "season": "blend",
+   "bbref_name": "Jordan Clarkson",
+   "team": "NYK",
+   "pos": "SG",
+   "GP": 63.1,
+   "GS": 1,
+   "MPG": 19.8924,
+   "PTS": 10.5393,
+   "REB": 2.1572,
+   "OREB": 0.849,
+   "DREB": 1.3083,
+   "AST": 1.9124,
+   "STL": 0.5021,
+   "BLK": 0.1255,
+   "TOV": 1.2572,
+   "FG%": 0.44,
+   "3PM": 1.3317,
+   "3P%": 0.3359,
+   "FT%": 0.8216,
+   "FGA": 8.831,
+   "FTA": 1.9634,
+   "3PA": 3.8421,
+   "A/T": 1.52,
+   "DD": 0.0,
+   "DD_est_season": 0.0,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.053,
+   "seasons": {
+    "2025-26": {
+     "GP": 72,
+     "weight": 108.0
+    },
+    "2024-25": {
+     "GP": 37,
+     "weight": 37
+    }
+   },
+   "blend_share_2025_26": 0.745
+  },
+  "Khris Middleton": {
+   "season": "blend",
+   "bbref_name": "Khris Middleton",
+   "team": "2TM",
+   "pos": "SF",
+   "GP": 55.7,
+   "GS": 50,
+   "MPG": 22.8,
+   "PTS": 10.6783,
+   "REB": 3.7,
+   "OREB": 0.6875,
+   "DREB": 3.0407,
+   "AST": 3.1658,
+   "STL": 0.7563,
+   "BLK": 0.1281,
+   "TOV": 1.6437,
+   "FG%": 0.4355,
+   "3PM": 1.1563,
+   "3P%": 0.3603,
+   "FT%": 0.8699,
+   "FGA": 8.7407,
+   "FTA": 2.2281,
+   "3PA": 3.1688,
+   "A/T": 1.93,
+   "DD": 0.002,
+   "DD_est_season": 0.1,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.01,
+   "seasons": {
+    "2025-26": {
+     "GP": 63,
+     "weight": 94.5
+    },
+    "2024-25": {
+     "GP": 37,
+     "weight": 37
+    }
+   },
+   "blend_share_2025_26": 0.719
+  },
+  "Keyonte George": {
+   "season": "blend",
+   "bbref_name": "Keyonte George",
+   "team": "UTA",
+   "pos": "PG",
+   "GP": 59.9,
+   "GS": 54,
+   "MPG": 32.3757,
+   "PTS": 20.5216,
+   "REB": 3.7453,
+   "OREB": 0.4,
+   "DREB": 3.3453,
+   "AST": 5.8736,
+   "STL": 0.9189,
+   "BLK": 0.2095,
+   "TOV": 2.9189,
+   "FG%": 0.4266,
+   "3PM": 2.5453,
+   "3P%": 0.3583,
+   "FT%": 0.8585,
+   "FGA": 15.123,
+   "FTA": 5.7777,
+   "3PA": 7.1074,
+   "A/T": 2.01,
+   "DD": 0.076,
+   "DD_est_season": 4.6,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.003,
+   "seasons": {
+    "2025-26": {
+     "GP": 54,
+     "weight": 81.0
+    },
+    "2024-25": {
+     "GP": 67,
+     "weight": 67
+    }
+   },
+   "blend_share_2025_26": 0.547
+  },
+  "Jaylen Brown": {
+   "season": "blend",
+   "bbref_name": "Jaylen Brown",
+   "team": "BOS",
+   "pos": "SF",
+   "GP": 68.0,
+   "GS": 71,
+   "MPG": 34.3628,
+   "PTS": 26.2841,
+   "REB": 6.4912,
+   "OREB": 1.1743,
+   "DREB": 5.3168,
+   "AST": 4.877,
+   "STL": 1.0743,
+   "BLK": 0.3628,
+   "TOV": 3.2283,
+   "FG%": 0.4718,
+   "3PM": 1.9257,
+   "3P%": 0.3385,
+   "FT%": 0.7835,
+   "FGA": 20.2133,
+   "FTA": 6.608,
+   "3PA": 5.7,
+   "A/T": 1.51,
+   "DD": 0.159,
+   "DD_est_season": 10.8,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.119,
+   "seasons": {
+    "2025-26": {
+     "GP": 71,
+     "weight": 106.5
+    },
+    "2024-25": {
+     "GP": 63,
+     "weight": 63
+    }
+   },
+   "blend_share_2025_26": 0.628
+  },
+  "Kyrie Irving": {
+   "season": "blend",
+   "bbref_name": "Kyrie Irving",
+   "team": "DAL",
+   "pos": "SG",
+   "GP": 50.0,
+   "GS": 50,
+   "MPG": 36.1,
+   "PTS": 24.7,
+   "REB": 4.8,
+   "OREB": 1.2,
+   "DREB": 3.6,
+   "AST": 4.6,
+   "STL": 1.3,
+   "BLK": 0.5,
+   "TOV": 2.2,
+   "FG%": 0.473,
+   "3PM": 2.9,
+   "3P%": 0.401,
+   "FT%": 0.916,
+   "FGA": 18.9,
+   "FTA": 4.3,
+   "3PA": 7.2,
+   "A/T": 2.09,
+   "DD": 0.0392,
+   "DD_est_season": 2.0,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.016,
+   "seasons": {
+    "2025-26": {
+     "GP": null,
+     "weight": 0.0
+    },
+    "2024-25": {
+     "GP": 50,
+     "weight": 50
+    }
+   },
+   "blend_share_2025_26": 0.0
+  },
+  "Tyus Jones": {
+   "season": "blend",
+   "bbref_name": "Tyus Jones",
+   "team": "3TM",
+   "pos": "PG",
+   "GP": 73.2,
+   "GS": 12,
+   "MPG": 20.0446,
+   "PTS": 6.2132,
+   "REB": 1.6802,
+   "OREB": 0.3339,
+   "DREB": 1.4017,
+   "AST": 3.6942,
+   "STL": 0.7339,
+   "BLK": 0.0446,
+   "TOV": 0.7124,
+   "FG%": 0.3932,
+   "3PM": 1.2248,
+   "3P%": 0.3464,
+   "FT%": 0.8302,
+   "FGA": 5.576,
+   "FTA": 0.3678,
+   "3PA": 3.3388,
+   "A/T": 5.19,
+   "DD": 0.0004,
+   "DD_est_season": 0.0,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.212,
+   "seasons": {
+    "2025-26": {
+     "GP": 67,
+     "weight": 100.5
+    },
+    "2024-25": {
+     "GP": 81,
+     "weight": 81
+    }
+   },
+   "blend_share_2025_26": 0.554
+  },
+  "Dennis Schröder": {
+   "season": "blend",
+   "bbref_name": "Dennis Schröder",
+   "team": "2TM",
+   "pos": "PG",
+   "GP": 72.1,
+   "GS": 17,
+   "MPG": 25.825,
+   "PTS": 11.7583,
+   "REB": 2.6583,
+   "OREB": 0.4583,
+   "DREB": 2.2417,
+   "AST": 5.1083,
+   "STL": 0.8417,
+   "BLK": 0.2,
+   "TOV": 1.8417,
+   "FG%": 0.4054,
+   "3PM": 1.35,
+   "3P%": 0.3344,
+   "FT%": 0.8357,
+   "FGA": 9.8333,
+   "FTA": 2.9,
+   "3PA": 3.9667,
+   "A/T": 2.77,
+   "DD": 0.0216,
+   "DD_est_season": 1.6,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.12,
+   "seasons": {
+    "2025-26": {
+     "GP": 70,
+     "weight": 105.0
+    },
+    "2024-25": {
+     "GP": 75,
+     "weight": 75
+    }
+   },
+   "blend_share_2025_26": 0.583
+  },
+  "Collin Gillespie": {
+   "season": "blend",
+   "bbref_name": "Collin Gillespie",
+   "team": "PHO",
+   "pos": "PG",
+   "GP": 69.9,
+   "GS": 58,
+   "MPG": 25.3725,
+   "PTS": 11.2333,
+   "REB": 3.7333,
+   "OREB": 1.0137,
+   "DREB": 2.7196,
+   "AST": 4.1255,
+   "STL": 1.0706,
+   "BLK": 0.2,
+   "TOV": 1.3627,
+   "FG%": 0.4206,
+   "3PM": 2.5333,
+   "3P%": 0.4079,
+   "FT%": 0.8718,
+   "FGA": 9.2706,
+   "FTA": 1.0137,
+   "3PA": 6.2294,
+   "A/T": 3.03,
+   "DD": 0.0058,
+   "DD_est_season": 0.4,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.123,
+   "seasons": {
+    "2025-26": {
+     "GP": 80,
+     "weight": 120.0
+    },
+    "2024-25": {
+     "GP": 33,
+     "weight": 33
+    }
+   },
+   "blend_share_2025_26": 0.784
+  },
+  "Marcus Smart": {
+   "season": "blend",
+   "bbref_name": "Marcus Smart",
+   "team": "LAL",
+   "pos": "SG",
+   "GP": 54.5,
+   "GS": 54,
+   "MPG": 26.2244,
+   "PTS": 9.2197,
+   "REB": 2.6126,
+   "OREB": 0.5732,
+   "DREB": 2.0394,
+   "AST": 3.0535,
+   "STL": 1.3197,
+   "BLK": 0.3732,
+   "TOV": 1.5268,
+   "FG%": 0.3945,
+   "3PM": 1.5465,
+   "3P%": 0.3356,
+   "FT%": 0.8057,
+   "FGA": 7.6732,
+   "FTA": 2.1,
+   "3PA": 4.5394,
+   "A/T": 2.0,
+   "DD": 0.0001,
+   "DD_est_season": 0.0,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.0,
+   "seasons": {
+    "2025-26": {
+     "GP": 62,
+     "weight": 93.0
+    },
+    "2024-25": {
+     "GP": 34,
+     "weight": 34
+    }
+   },
+   "blend_share_2025_26": 0.732
+  },
+  "Ayo Dosunmu": {
+   "season": "blend",
+   "bbref_name": "Ayo Dosunmu",
+   "team": "2TM",
+   "pos": "SG",
+   "GP": 61.9,
+   "GS": 19,
+   "MPG": 28.2231,
+   "PTS": 14.0308,
+   "REB": 3.4308,
+   "OREB": 0.6692,
+   "DREB": 2.8308,
+   "AST": 3.8769,
+   "STL": 0.8308,
+   "BLK": 0.3308,
+   "TOV": 1.4308,
+   "FG%": 0.5093,
+   "3PM": 1.6462,
+   "3P%": 0.4048,
+   "FT%": 0.848,
+   "FGA": 10.4923,
+   "FTA": 1.9769,
+   "3PA": 4.1,
+   "A/T": 2.71,
+   "DD": 0.0037,
+   "DD_est_season": 0.2,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.089,
+   "seasons": {
+    "2025-26": {
+     "GP": 69,
+     "weight": 103.5
+    },
+    "2024-25": {
+     "GP": 46,
+     "weight": 46
+    }
+   },
+   "blend_share_2025_26": 0.692
+  },
+  "Coby White": {
+   "season": "blend",
+   "bbref_name": "Coby White",
+   "team": "2TM",
+   "pos": "SG",
+   "GP": 61.9,
+   "GS": 26,
+   "MPG": 29.0228,
+   "PTS": 18.8899,
+   "REB": 3.549,
+   "OREB": 0.3,
+   "DREB": 3.249,
+   "AST": 4.2483,
+   "STL": 0.6987,
+   "BLK": 0.1497,
+   "TOV": 2.5007,
+   "FG%": 0.4495,
+   "3PM": 2.598,
+   "3P%": 0.366,
+   "FT%": 0.8592,
+   "FGA": 13.7913,
+   "FTA": 4.4523,
+   "3PA": 7.145,
+   "A/T": 1.7,
+   "DD": 0.0089,
+   "DD_est_season": 0.6,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.06,
+   "seasons": {
+    "2025-26": {
+     "GP": 50,
+     "weight": 75.0
+    },
+    "2024-25": {
+     "GP": 74,
+     "weight": 74
+    }
+   },
+   "blend_share_2025_26": 0.503
+  },
+  "D'Angelo Russell": {
+   "season": "blend",
+   "bbref_name": "D'Angelo Russell",
+   "team": "DAL",
+   "pos": "PG",
+   "GP": 45.1,
+   "GS": 3,
+   "MPG": 22.8866,
+   "PTS": 11.6351,
+   "REB": 2.599,
+   "OREB": 0.3,
+   "DREB": 2.2392,
+   "AST": 4.6577,
+   "STL": 0.799,
+   "BLK": 0.2794,
+   "TOV": 1.9,
+   "FG%": 0.396,
+   "3PM": 1.6588,
+   "3P%": 0.3064,
+   "FT%": 0.787,
+   "FGA": 10.1557,
+   "FTA": 2.4196,
+   "3PA": 5.4361,
+   "A/T": 2.45,
+   "DD": 0.0108,
+   "DD_est_season": 0.5,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.072,
+   "seasons": {
+    "2025-26": {
+     "GP": 26,
+     "weight": 39.0
+    },
+    "2024-25": {
+     "GP": 58,
+     "weight": 58
+    }
+   },
+   "blend_share_2025_26": 0.402
+  },
+  "Collin Sexton": {
+   "season": "blend",
+   "bbref_name": "Collin Sexton",
+   "team": "2TM",
+   "pos": "SG",
+   "GP": 66.1,
+   "GS": 22,
+   "MPG": 25.3036,
+   "PTS": 16.5455,
+   "REB": 2.4527,
+   "OREB": 0.7527,
+   "DREB": 1.7382,
+   "AST": 3.6436,
+   "STL": 0.9473,
+   "BLK": 0.1,
+   "TOV": 2.2527,
+   "FG%": 0.4831,
+   "3PM": 1.6382,
+   "3P%": 0.4029,
+   "FT%": 0.8588,
+   "FGA": 12.0073,
+   "FTA": 3.8764,
+   "3PA": 4.1764,
+   "A/T": 1.62,
+   "DD": 0.0015,
+   "DD_est_season": 0.1,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.07,
+   "seasons": {
+    "2025-26": {
+     "GP": 68,
+     "weight": 102.0
+    },
+    "2024-25": {
+     "GP": 63,
+     "weight": 63
+    }
+   },
+   "blend_share_2025_26": 0.618
+  },
+  "Josh Okogie": {
+   "season": "blend",
+   "bbref_name": "Josh Okogie",
+   "team": "HOU",
+   "pos": "SG",
+   "GP": 68.3,
+   "GS": 32,
+   "MPG": 16.9414,
+   "PTS": 5.1624,
+   "REB": 2.651,
+   "OREB": 1.0255,
+   "DREB": 1.551,
+   "AST": 0.8745,
+   "STL": 0.9019,
+   "BLK": 0.2764,
+   "TOV": 0.5764,
+   "FG%": 0.4296,
+   "3PM": 0.8,
+   "3P%": 0.3756,
+   "FT%": 0.6315,
+   "FGA": 4.1822,
+   "FTA": 1.2057,
+   "3PA": 2.151,
+   "A/T": 1.52,
+   "DD": 0.0,
+   "DD_est_season": 0.0,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.026,
+   "seasons": {
+    "2025-26": {
+     "GP": 78,
+     "weight": 117.0
+    },
+    "2024-25": {
+     "GP": 40,
+     "weight": 40
+    }
+   },
+   "blend_share_2025_26": 0.745
+  },
+  "Toumani Camara": {
+   "season": "blend",
+   "bbref_name": "Toumani Camara",
+   "team": "POR",
+   "pos": "PF",
+   "GP": 80.4,
+   "GS": 82,
+   "MPG": 33.0672,
+   "PTS": 12.5851,
+   "REB": 5.3716,
+   "OREB": 1.8328,
+   "DREB": 3.6,
+   "AST": 2.3836,
+   "STL": 1.2552,
+   "BLK": 0.4776,
+   "TOV": 1.6448,
+   "FG%": 0.447,
+   "3PM": 2.3119,
+   "3P%": 0.3719,
+   "FT%": 0.7134,
+   "FGA": 10.2403,
+   "FTA": 1.6612,
+   "3PA": 6.191,
+   "A/T": 1.45,
+   "DD": 0.0379,
+   "DD_est_season": 3.0,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.078,
+   "seasons": {
+    "2025-26": {
+     "GP": 82,
+     "weight": 123.0
+    },
+    "2024-25": {
+     "GP": 78,
+     "weight": 78
+    }
+   },
+   "blend_share_2025_26": 0.612
+  },
+  "Tari Eason": {
+   "season": "blend",
+   "bbref_name": "Tari Eason",
+   "team": "HOU",
+   "pos": "PF",
+   "GP": 58.8,
+   "GS": 34,
+   "MPG": 25.451,
+   "PTS": 11.0816,
+   "REB": 6.3388,
+   "OREB": 2.1388,
+   "DREB": 4.1612,
+   "AST": 1.5,
+   "STL": 1.3939,
+   "BLK": 0.6551,
+   "TOV": 1.2837,
+   "FG%": 0.4435,
+   "3PM": 1.4061,
+   "3P%": 0.3518,
+   "FT%": 0.7698,
+   "FGA": 9.7388,
+   "FTA": 1.3714,
+   "3PA": 3.8735,
+   "A/T": 1.17,
+   "DD": 0.0792,
+   "DD_est_season": 4.7,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.095,
+   "seasons": {
+    "2025-26": {
+     "GP": 60,
+     "weight": 90.0
+    },
+    "2024-25": {
+     "GP": 57,
+     "weight": 57
+    }
+   },
+   "blend_share_2025_26": 0.612
+  },
+  "Zaccharie Risacher": {
+   "season": "blend",
+   "bbref_name": "Zaccharie Risacher",
+   "team": "ATL",
+   "pos": "SF",
+   "GP": 70.4,
+   "GS": 46,
+   "MPG": 23.3402,
+   "PTS": 10.8821,
+   "REB": 3.7145,
+   "OREB": 1.1,
+   "DREB": 2.6291,
+   "AST": 1.1427,
+   "STL": 0.8145,
+   "BLK": 0.5,
+   "TOV": 1.0282,
+   "FG%": 0.4563,
+   "3PM": 1.4855,
+   "3P%": 0.3624,
+   "FT%": 0.6726,
+   "FGA": 9.0256,
+   "FTA": 1.5991,
+   "3PA": 4.1991,
+   "A/T": 1.11,
+   "DD": 0.0019,
+   "DD_est_season": 0.1,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.083,
+   "seasons": {
+    "2025-26": {
+     "GP": 67,
+     "weight": 100.5
+    },
+    "2024-25": {
+     "GP": 75,
+     "weight": 75
+    }
+   },
+   "blend_share_2025_26": 0.573
+  },
+  "Shaedon Sharpe": {
+   "season": "blend",
+   "bbref_name": "Shaedon Sharpe",
+   "team": "POR",
+   "pos": "SG",
+   "GP": 60.8,
+   "GS": 42,
+   "MPG": 30.3306,
+   "PTS": 19.6735,
+   "REB": 4.398,
+   "OREB": 0.951,
+   "DREB": 3.4469,
+   "AST": 2.698,
+   "STL": 1.1551,
+   "BLK": 0.149,
+   "TOV": 2.5082,
+   "FG%": 0.452,
+   "3PM": 2.051,
+   "3P%": 0.3243,
+   "FT%": 0.786,
+   "FGA": 16.3714,
+   "FTA": 3.6551,
+   "3PA": 6.3449,
+   "A/T": 1.08,
+   "DD": 0.0127,
+   "DD_est_season": 0.8,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.185,
+   "seasons": {
+    "2025-26": {
+     "GP": 50,
+     "weight": 75.0
+    },
+    "2024-25": {
+     "GP": 72,
+     "weight": 72
+    }
+   },
+   "blend_share_2025_26": 0.51
+  },
+  "Scoot Henderson": {
+   "season": "blend",
+   "bbref_name": "Scoot Henderson",
+   "team": "POR",
+   "pos": "PG",
+   "GP": 51.4,
+   "GS": 10,
+   "MPG": 25.9703,
+   "PTS": 13.3081,
+   "REB": 2.8784,
+   "OREB": 0.7189,
+   "DREB": 2.1595,
+   "AST": 4.5324,
+   "STL": 0.9595,
+   "BLK": 0.2405,
+   "TOV": 2.5784,
+   "FG%": 0.4186,
+   "3PM": 1.7216,
+   "3P%": 0.3532,
+   "FT%": 0.7966,
+   "FGA": 10.8054,
+   "FTA": 3.1811,
+   "3PA": 4.8649,
+   "A/T": 1.76,
+   "DD": 0.0101,
+   "DD_est_season": 0.5,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.05,
+   "seasons": {
+    "2025-26": {
+     "GP": 30,
+     "weight": 45.0
+    },
+    "2024-25": {
+     "GP": 66,
+     "weight": 66
+    }
+   },
+   "blend_share_2025_26": 0.405
+  },
+  "Isaiah Hartenstein": {
+   "season": "blend",
+   "bbref_name": "Isaiah Hartenstein",
+   "team": "OKC",
+   "pos": "C",
+   "GP": 51.5,
+   "GS": 46,
+   "MPG": 25.8541,
+   "PTS": 10.0941,
+   "REB": 9.9812,
+   "OREB": 3.0659,
+   "DREB": 7.0153,
+   "AST": 3.6341,
+   "STL": 0.9106,
+   "BLK": 0.9341,
+   "TOV": 1.7,
+   "FG%": 0.6037,
+   "3PM": 0.0,
+   "3P%": 0.0,
+   "FT%": 0.6391,
+   "FGA": 7.2388,
+   "FTA": 2.1553,
+   "3PA": 0.1894,
+   "A/T": 2.14,
+   "DD": 0.3059,
+   "DD_est_season": 15.8,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.02,
+   "seasons": {
+    "2025-26": {
+     "GP": 47,
+     "weight": 70.5
+    },
+    "2024-25": {
+     "GP": 57,
+     "weight": 57
+    }
+   },
+   "blend_share_2025_26": 0.553
+  },
+  "John Collins": {
+   "season": "blend",
+   "bbref_name": "John Collins",
+   "team": "LAC",
+   "pos": "PF",
+   "GP": 60.9,
+   "GS": 56,
+   "MPG": 28.0477,
+   "PTS": 15.1052,
+   "REB": 6.1084,
+   "OREB": 1.7672,
+   "DREB": 4.3411,
+   "AST": 1.2787,
+   "STL": 0.9279,
+   "BLK": 0.7836,
+   "TOV": 1.7345,
+   "FG%": 0.545,
+   "3PM": 1.3557,
+   "3P%": 0.404,
+   "FT%": 0.7889,
+   "FGA": 10.6314,
+   "FTA": 2.7296,
+   "3PA": 3.3394,
+   "A/T": 0.74,
+   "DD": 0.0883,
+   "DD_est_season": 5.4,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.187,
+   "seasons": {
+    "2025-26": {
+     "GP": 69,
+     "weight": 103.5
+    },
+    "2024-25": {
+     "GP": 40,
+     "weight": 40
+    }
+   },
+   "blend_share_2025_26": 0.721
+  },
+  "Kristaps Porziņģis": {
+   "season": "blend",
+   "bbref_name": "Kristaps Porziņģis",
+   "team": "2TM",
+   "pos": "C",
+   "GP": 36.7,
+   "GS": 23,
+   "MPG": 26.24,
+   "PTS": 18.0067,
+   "REB": 5.9467,
+   "OREB": 1.44,
+   "DREB": 4.5133,
+   "AST": 2.3133,
+   "STL": 0.6467,
+   "BLK": 1.34,
+   "TOV": 1.3,
+   "FG%": 0.4633,
+   "3PM": 2.0733,
+   "3P%": 0.3725,
+   "FT%": 0.8266,
+   "FGA": 12.8467,
+   "FTA": 4.8067,
+   "3PA": 5.4667,
+   "A/T": 1.78,
+   "DD": 0.0842,
+   "DD_est_season": 3.1,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.025,
+   "seasons": {
+    "2025-26": {
+     "GP": 32,
+     "weight": 48.0
+    },
+    "2024-25": {
+     "GP": 42,
+     "weight": 42
+    }
+   },
+   "blend_share_2025_26": 0.533
+  },
+  "Draymond Green": {
+   "season": "blend",
+   "bbref_name": "Draymond Green",
+   "team": "GSW",
+   "pos": "PF",
+   "GP": 68.0,
+   "GS": 68,
+   "MPG": 28.18,
+   "PTS": 8.64,
+   "REB": 5.74,
+   "OREB": 0.92,
+   "DREB": 4.82,
+   "AST": 5.54,
+   "STL": 1.14,
+   "BLK": 0.76,
+   "TOV": 2.66,
+   "FG%": 0.4204,
+   "3PM": 1.38,
+   "3P%": 0.3256,
+   "FT%": 0.696,
+   "FGA": 7.32,
+   "FTA": 1.6,
+   "3PA": 4.2,
+   "A/T": 2.08,
+   "DD": 0.0562,
+   "DD_est_season": 3.8,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.017,
+   "seasons": {
+    "2025-26": {
+     "GP": 68,
+     "weight": 102.0
+    },
+    "2024-25": {
+     "GP": 68,
+     "weight": 68
+    }
+   },
+   "blend_share_2025_26": 0.6
+  },
+  "Bobby Portis": {
+   "season": "blend",
+   "bbref_name": "Bobby Portis",
+   "team": "MIL",
+   "pos": "PF",
+   "GP": 61.1,
+   "GS": 9,
+   "MPG": 24.5933,
+   "PTS": 13.7656,
+   "REB": 7.0555,
+   "OREB": 1.4639,
+   "DREB": 5.5916,
+   "AST": 1.7639,
+   "STL": 0.6328,
+   "BLK": 0.2983,
+   "TOV": 1.0656,
+   "FG%": 0.4808,
+   "3PM": 1.7706,
+   "3P%": 0.4262,
+   "FT%": 0.7486,
+   "FGA": 11.495,
+   "FTA": 1.1639,
+   "3PA": 4.1378,
+   "A/T": 1.66,
+   "DD": 0.1567,
+   "DD_est_season": 9.6,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.033,
+   "seasons": {
+    "2025-26": {
+     "GP": 67,
+     "weight": 100.5
+    },
+    "2024-25": {
+     "GP": 49,
+     "weight": 49
+    }
+   },
+   "blend_share_2025_26": 0.672
+  },
+  "Moritz Wagner": {
+   "season": "blend",
+   "bbref_name": "Moritz Wagner",
+   "team": "ORL",
+   "pos": "C",
+   "GP": 33.9,
+   "GS": 0,
+   "MPG": 14.3643,
+   "PTS": 9.0429,
+   "REB": 3.8071,
+   "OREB": 0.9786,
+   "DREB": 2.8286,
+   "AST": 1.0143,
+   "STL": 0.5429,
+   "BLK": 0.2071,
+   "TOV": 0.8929,
+   "FG%": 0.4746,
+   "3PM": 0.7071,
+   "3P%": 0.3304,
+   "FT%": 0.7829,
+   "FGA": 6.4357,
+   "FTA": 2.6071,
+   "3PA": 2.1143,
+   "A/T": 1.14,
+   "DD": 0.0018,
+   "DD_est_season": 0.1,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.071,
+   "seasons": {
+    "2025-26": {
+     "GP": 36,
+     "weight": 54.0
+    },
+    "2024-25": {
+     "GP": 30,
+     "weight": 30
+    }
+   },
+   "blend_share_2025_26": 0.643
+  },
+  "DeAndre Jordan": {
+   "season": "blend",
+   "bbref_name": "DeAndre Jordan",
+   "team": "NOP",
+   "pos": "C",
+   "GP": 45.3,
+   "GS": 7,
+   "MPG": 13.3459,
+   "PTS": 3.8703,
+   "REB": 5.3919,
+   "OREB": 1.6703,
+   "DREB": 3.7459,
+   "AST": 0.9,
+   "STL": 0.3,
+   "BLK": 0.573,
+   "TOV": 0.7243,
+   "FG%": 0.6515,
+   "3PM": 0.0,
+   "3P%": null,
+   "FT%": 0.4767,
+   "FGA": 2.5486,
+   "FTA": 1.173,
+   "3PA": 0.0,
+   "A/T": 1.24,
+   "DD": 0.0015,
+   "DD_est_season": 0.1,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.051,
+   "seasons": {
+    "2025-26": {
+     "GP": 12,
+     "weight": 18.0
+    },
+    "2024-25": {
+     "GP": 56,
+     "weight": 56
+    }
+   },
+   "blend_share_2025_26": 0.243
+  },
+  "Jaxson Hayes": {
+   "season": "blend",
+   "bbref_name": "Jaxson Hayes",
+   "team": "LAL",
+   "pos": "C",
+   "GP": 62.4,
+   "GS": 9,
+   "MPG": 18.7335,
+   "PTS": 7.2471,
+   "REB": 4.3529,
+   "OREB": 1.4639,
+   "DREB": 2.889,
+   "AST": 0.9361,
+   "STL": 0.4723,
+   "BLK": 0.8361,
+   "TOV": 0.6084,
+   "FG%": 0.7437,
+   "3PM": 0.0,
+   "3P%": 0.6387,
+   "FT%": 0.6418,
+   "FGA": 4.0,
+   "FTA": 2.1194,
+   "3PA": 0.0361,
+   "A/T": 1.54,
+   "DD": 0.0036,
+   "DD_est_season": 0.2,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.026,
+   "seasons": {
+    "2025-26": {
+     "GP": 66,
+     "weight": 99.0
+    },
+    "2024-25": {
+     "GP": 56,
+     "weight": 56
+    }
+   },
+   "blend_share_2025_26": 0.639
+  },
+  "Thomas Bryant": {
+   "season": "blend",
+   "bbref_name": "Thomas Bryant",
+   "team": "CLE",
+   "pos": "C",
+   "GP": 62.5,
+   "GS": 1,
+   "MPG": 13.2154,
+   "PTS": 6.3269,
+   "REB": 3.5692,
+   "OREB": 1.1269,
+   "DREB": 2.4423,
+   "AST": 0.6846,
+   "STL": 0.3423,
+   "BLK": 0.4846,
+   "TOV": 0.5,
+   "FG%": 0.5068,
+   "3PM": 0.7577,
+   "3P%": 0.3442,
+   "FT%": 0.8267,
+   "FGA": 4.6692,
+   "FTA": 1.0577,
+   "3PA": 2.2,
+   "A/T": 1.37,
+   "DD": 0.0004,
+   "DD_est_season": 0.0,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.03,
+   "seasons": {
+    "2025-26": {
+     "GP": 60,
+     "weight": 90.0
+    },
+    "2024-25": {
+     "GP": 66,
+     "weight": 66
+    }
+   },
+   "blend_share_2025_26": 0.577
+  },
+  "Larry Nance Jr.": {
+   "season": "blend",
+   "bbref_name": "Larry Nance Jr.",
+   "team": "CLE",
+   "pos": "PF",
+   "GP": 31.5,
+   "GS": 3,
+   "MPG": 14.8392,
+   "PTS": 5.2059,
+   "REB": 3.202,
+   "OREB": 0.8627,
+   "DREB": 2.2706,
+   "AST": 1.1882,
+   "STL": 0.6627,
+   "BLK": 0.2941,
+   "TOV": 0.6314,
+   "FG%": 0.4494,
+   "3PM": 0.851,
+   "3P%": 0.3688,
+   "FT%": 0.5342,
+   "FGA": 4.4412,
+   "FTA": 0.4314,
+   "3PA": 2.2392,
+   "A/T": 1.88,
+   "DD": 0.0001,
+   "DD_est_season": 0.0,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.007,
+   "seasons": {
+    "2025-26": {
+     "GP": 35,
+     "weight": 52.5
+    },
+    "2024-25": {
+     "GP": 24,
+     "weight": 24
+    }
+   },
+   "blend_share_2025_26": 0.686
+  },
+  "Paul George": {
+   "season": "blend",
+   "bbref_name": "Paul George",
+   "team": "PHI",
+   "pos": "PF",
+   "GP": 38.7,
+   "GS": 37,
+   "MPG": 31.4648,
+   "PTS": 16.8326,
+   "REB": 5.3,
+   "OREB": 0.5425,
+   "DREB": 4.8,
+   "AST": 3.8974,
+   "STL": 1.7425,
+   "BLK": 0.4425,
+   "TOV": 2.0824,
+   "FG%": 0.4352,
+   "3PM": 2.5301,
+   "3P%": 0.3776,
+   "FT%": 0.8175,
+   "FGA": 13.9,
+   "FTA": 2.7451,
+   "3PA": 6.7301,
+   "A/T": 1.87,
+   "DD": 0.0458,
+   "DD_est_season": 1.8,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.022,
+   "seasons": {
+    "2025-26": {
+     "GP": 37,
+     "weight": 55.5
+    },
+    "2024-25": {
+     "GP": 41,
+     "weight": 41
+    }
+   },
+   "blend_share_2025_26": 0.575
+  },
+  "Brandon Ingram": {
+   "season": "blend",
+   "bbref_name": "Brandon Ingram",
+   "team": "TOR",
+   "pos": "SF",
+   "GP": 69.0,
+   "GS": 77,
+   "MPG": 33.7056,
+   "PTS": 21.5944,
+   "REB": 5.6,
+   "OREB": 0.8135,
+   "DREB": 4.773,
+   "AST": 3.9022,
+   "STL": 0.8135,
+   "BLK": 0.6865,
+   "TOV": 2.5888,
+   "FG%": 0.4754,
+   "3PM": 1.8809,
+   "3P%": 0.3809,
+   "FT%": 0.8247,
+   "FGA": 16.9427,
+   "FTA": 4.3978,
+   "3PA": 4.8427,
+   "A/T": 1.51,
+   "DD": 0.0674,
+   "DD_est_season": 4.6,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.101,
+   "seasons": {
+    "2025-26": {
+     "GP": 77,
+     "weight": 115.5
+    },
+    "2024-25": {
+     "GP": 18,
+     "weight": 18
+    }
+   },
+   "blend_share_2025_26": 0.865
+  },
+  "Tobias Harris": {
+   "season": "blend",
+   "bbref_name": "Tobias Harris",
+   "team": "DET",
+   "pos": "PF",
+   "GP": 67.4,
+   "GS": 63,
+   "MPG": 29.3997,
+   "PTS": 13.4743,
+   "REB": 5.4487,
+   "OREB": 0.9,
+   "DREB": 4.6051,
+   "AST": 2.3693,
+   "STL": 0.9436,
+   "BLK": 0.5743,
+   "TOV": 1.0872,
+   "FG%": 0.4725,
+   "3PM": 1.2564,
+   "3P%": 0.358,
+   "FT%": 0.8638,
+   "FGA": 10.7179,
+   "FTA": 2.4128,
+   "3PA": 3.5436,
+   "A/T": 2.18,
+   "DD": 0.0438,
+   "DD_est_season": 3.0,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.018,
+   "seasons": {
+    "2025-26": {
+     "GP": 63,
+     "weight": 94.5
+    },
+    "2024-25": {
+     "GP": 73,
+     "weight": 73
+    }
+   },
+   "blend_share_2025_26": 0.564
+  },
+  "Jerami Grant": {
+   "season": "blend",
+   "bbref_name": "Jerami Grant",
+   "team": "POR",
+   "pos": "PF",
+   "GP": 53.5,
+   "GS": 38,
+   "MPG": 30.6577,
+   "PTS": 17.1102,
+   "REB": 3.5,
+   "OREB": 0.8581,
+   "DREB": 2.6419,
+   "AST": 2.1,
+   "STL": 0.7709,
+   "BLK": 0.7419,
+   "TOV": 1.8517,
+   "FG%": 0.4246,
+   "3PM": 2.3645,
+   "3P%": 0.3805,
+   "FT%": 0.8264,
+   "FGA": 12.5872,
+   "FTA": 4.8551,
+   "3PA": 6.1709,
+   "A/T": 1.13,
+   "DD": 0.0016,
+   "DD_est_season": 0.1,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.135,
+   "seasons": {
+    "2025-26": {
+     "GP": 57,
+     "weight": 85.5
+    },
+    "2024-25": {
+     "GP": 47,
+     "weight": 47
+    }
+   },
+   "blend_share_2025_26": 0.645
+  },
+  "Santi Aldama": {
+   "season": "blend",
+   "bbref_name": "Santi Aldama",
+   "team": "MEM",
+   "pos": "PF",
+   "GP": 54.0,
+   "GS": 11,
+   "MPG": 26.6954,
+   "PTS": 13.2471,
+   "REB": 6.5494,
+   "OREB": 1.4996,
+   "DREB": 5.0498,
+   "AST": 2.9,
+   "STL": 0.8498,
+   "BLK": 0.5494,
+   "TOV": 1.1996,
+   "FG%": 0.481,
+   "3PM": 1.7004,
+   "3P%": 0.359,
+   "FT%": 0.679,
+   "FGA": 10.5479,
+   "FTA": 2.0475,
+   "3PA": 4.8506,
+   "A/T": 2.42,
+   "DD": 0.1111,
+   "DD_est_season": 6.0,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.045,
+   "seasons": {
+    "2025-26": {
+     "GP": 43,
+     "weight": 64.5
+    },
+    "2024-25": {
+     "GP": 65,
+     "weight": 65
+    }
+   },
+   "blend_share_2025_26": 0.498
+  },
+  "Ja Morant": {
+   "season": "blend",
+   "bbref_name": "Ja Morant",
+   "team": "MEM",
+   "pos": "PG",
+   "GP": 38.8,
+   "GS": 20,
+   "MPG": 29.6875,
+   "PTS": 21.8125,
+   "REB": 3.8,
+   "OREB": 0.5875,
+   "DREB": 3.2125,
+   "AST": 7.6,
+   "STL": 1.125,
+   "BLK": 0.2375,
+   "TOV": 3.6625,
+   "FG%": 0.4375,
+   "3PM": 1.5,
+   "3P%": 0.2812,
+   "FT%": 0.8514,
+   "FGA": 17.1625,
+   "FTA": 6.2125,
+   "3PA": 5.175,
+   "A/T": 2.08,
+   "DD": 0.2486,
+   "DD_est_season": 9.6,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.02,
+   "seasons": {
+    "2025-26": {
+     "GP": 20,
+     "weight": 30.0
+    },
+    "2024-25": {
+     "GP": 50,
+     "weight": 50
+    }
+   },
+   "blend_share_2025_26": 0.375
+  },
+  "Miles Bridges": {
+   "season": "blend",
+   "bbref_name": "Miles Bridges",
+   "team": "CHO",
+   "pos": "PF",
+   "GP": 72.4,
+   "GS": 77,
+   "MPG": 31.2496,
+   "PTS": 18.2409,
+   "REB": 6.4061,
+   "OREB": 1.0357,
+   "DREB": 5.4348,
+   "AST": 3.4496,
+   "STL": 0.6357,
+   "BLK": 0.507,
+   "TOV": 1.6496,
+   "FG%": 0.4497,
+   "3PM": 2.007,
+   "3P%": 0.3259,
+   "FT%": 0.8391,
+   "FGA": 14.7479,
+   "FTA": 3.5496,
+   "3PA": 6.2279,
+   "A/T": 2.09,
+   "DD": 0.1225,
+   "DD_est_season": 8.9,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.013,
+   "seasons": {
+    "2025-26": {
+     "GP": 77,
+     "weight": 115.5
+    },
+    "2024-25": {
+     "GP": 64,
+     "weight": 64
+    }
+   },
+   "blend_share_2025_26": 0.643
+  },
+  "James Harden": {
+   "season": "blend",
+   "bbref_name": "James Harden",
+   "team": "2TM",
+   "pos": "PG",
+   "GP": 73.9,
+   "GS": 70,
+   "MPG": 35.0147,
+   "PTS": 23.2565,
+   "REB": 5.2293,
+   "OREB": 0.6429,
+   "DREB": 4.5864,
+   "AST": 8.3005,
+   "STL": 1.2717,
+   "BLK": 0.5288,
+   "TOV": 3.8435,
+   "FG%": 0.4237,
+   "3PM": 3.0571,
+   "3P%": 0.3651,
+   "FT%": 0.8797,
+   "FGA": 16.1717,
+   "FTA": 7.4141,
+   "3PA": 8.3288,
+   "A/T": 2.16,
+   "DD": 0.3649,
+   "DD_est_season": 27.0,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.044,
+   "seasons": {
+    "2025-26": {
+     "GP": 70,
+     "weight": 105.0
+    },
+    "2024-25": {
+     "GP": 79,
+     "weight": 79
+    }
+   },
+   "blend_share_2025_26": 0.571
+  },
+  "Darius Garland": {
+   "season": "blend",
+   "bbref_name": "Darius Garland",
+   "team": "2TM",
+   "pos": "PG",
+   "GP": 60.8,
+   "GS": 43,
+   "MPG": 30.3211,
+   "PTS": 19.7474,
+   "REB": 2.6632,
+   "OREB": 0.5053,
+   "DREB": 2.1053,
+   "AST": 6.7,
+   "STL": 1.1053,
+   "BLK": 0.1474,
+   "TOV": 2.6895,
+   "FG%": 0.4663,
+   "3PM": 2.7526,
+   "3P%": 0.3986,
+   "FT%": 0.8699,
+   "FGA": 15.3211,
+   "FTA": 3.0684,
+   "3PA": 6.9579,
+   "A/T": 2.49,
+   "DD": 0.1421,
+   "DD_est_season": 8.6,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.104,
+   "seasons": {
+    "2025-26": {
+     "GP": 45,
+     "weight": 67.5
+    },
+    "2024-25": {
+     "GP": 75,
+     "weight": 75
+    }
+   },
+   "blend_share_2025_26": 0.474
+  },
+  "Bennedict Mathurin": {
+   "season": "blend",
+   "bbref_name": "Bennedict Mathurin",
+   "team": "2TM",
+   "pos": "SF",
+   "GP": 62.5,
+   "GS": 25,
+   "MPG": 29.9059,
+   "PTS": 16.8941,
+   "REB": 5.3529,
+   "OREB": 1.0941,
+   "DREB": 4.2588,
+   "AST": 2.1647,
+   "STL": 0.7529,
+   "BLK": 0.2471,
+   "TOV": 2.0588,
+   "FG%": 0.4432,
+   "3PM": 1.4,
+   "3P%": 0.3268,
+   "FT%": 0.8511,
+   "FGA": 12.1706,
+   "FTA": 5.4471,
+   "3PA": 4.2118,
+   "A/T": 1.05,
+   "DD": 0.0457,
+   "DD_est_season": 2.9,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.162,
+   "seasons": {
+    "2025-26": {
+     "GP": 54,
+     "weight": 81.0
+    },
+    "2024-25": {
+     "GP": 72,
+     "weight": 72
+    }
+   },
+   "blend_share_2025_26": 0.529
+  },
+  "Isaiah Jackson": {
+   "season": "blend",
+   "bbref_name": "Isaiah Jackson",
+   "team": "2TM",
+   "pos": "C",
+   "GP": 52.1,
+   "GS": 14,
+   "MPG": 16.5171,
+   "PTS": 6.7171,
+   "REB": 5.3171,
+   "OREB": 2.1057,
+   "DREB": 3.2114,
+   "AST": 0.9057,
+   "STL": 0.6943,
+   "BLK": 0.94,
+   "TOV": 1.0943,
+   "FG%": 0.6354,
+   "3PM": 0.0,
+   "3P%": 0.0,
+   "FT%": 0.6395,
+   "FGA": 4.3171,
+   "FTA": 1.9514,
+   "3PA": 0.0943,
+   "A/T": 0.83,
+   "DD": 0.0117,
+   "DD_est_season": 0.6,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.116,
+   "seasons": {
+    "2025-26": {
+     "GP": 55,
+     "weight": 82.5
+    },
+    "2024-25": {
+     "GP": 5,
+     "weight": 5
+    }
+   },
+   "blend_share_2025_26": 0.943
+  },
+  "Paolo Banchero": {
+   "season": "blend",
+   "bbref_name": "Paolo Banchero",
+   "team": "ORL",
+   "pos": "PF",
+   "GP": 64.2,
+   "GS": 72,
+   "MPG": 34.6805,
+   "PTS": 23.3052,
+   "REB": 8.1312,
+   "OREB": 1.1701,
+   "DREB": 6.961,
+   "AST": 5.0805,
+   "STL": 0.7299,
+   "BLK": 0.6,
+   "TOV": 3.0701,
+   "FG%": 0.4569,
+   "3PM": 1.4091,
+   "3P%": 0.3095,
+   "FT%": 0.7607,
+   "FGA": 17.1351,
+   "FTA": 8.2597,
+   "3PA": 4.4273,
+   "A/T": 1.65,
+   "DD": 0.3423,
+   "DD_est_season": 22.0,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.081,
+   "seasons": {
+    "2025-26": {
+     "GP": 72,
+     "weight": 108.0
+    },
+    "2024-25": {
+     "GP": 46,
+     "weight": 46
+    }
+   },
+   "blend_share_2025_26": 0.701
+  },
+  "T.J. McConnell": {
+   "season": "blend",
+   "bbref_name": "T.J. McConnell",
+   "team": "IND",
+   "pos": "PG",
+   "GP": 67.1,
+   "GS": 4,
+   "MPG": 17.5393,
+   "PTS": 9.2546,
+   "REB": 2.2969,
+   "OREB": 0.4969,
+   "DREB": 1.8485,
+   "AST": 4.7607,
+   "STL": 1.0485,
+   "BLK": 0.2485,
+   "TOV": 1.2454,
+   "FG%": 0.5288,
+   "3PM": 0.2515,
+   "3P%": 0.3132,
+   "FT%": 0.8029,
+   "FGA": 7.9515,
+   "FTA": 0.7423,
+   "3PA": 0.7546,
+   "A/T": 3.82,
+   "DD": 0.0092,
+   "DD_est_season": 0.6,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.202,
+   "seasons": {
+    "2025-26": {
+     "GP": 56,
+     "weight": 84.0
+    },
+    "2024-25": {
+     "GP": 79,
+     "weight": 79
+    }
+   },
+   "blend_share_2025_26": 0.515
+  },
+  "De'Aaron Fox": {
+   "season": "blend",
+   "bbref_name": "De'Aaron Fox",
+   "team": "SAS",
+   "pos": "PG",
+   "GP": 68.4,
+   "GS": 72,
+   "MPG": 32.86,
+   "PTS": 20.3871,
+   "REB": 4.1647,
+   "OREB": 0.7094,
+   "DREB": 3.4553,
+   "AST": 6.2365,
+   "STL": 1.3094,
+   "BLK": 0.3365,
+   "TOV": 2.4824,
+   "FG%": 0.4776,
+   "3PM": 1.8365,
+   "3P%": 0.324,
+   "FT%": 0.7844,
+   "FGA": 16.0682,
+   "FTA": 4.02,
+   "3PA": 5.7188,
+   "A/T": 2.51,
+   "DD": 0.1083,
+   "DD_est_season": 7.4,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.102,
+   "seasons": {
+    "2025-26": {
+     "GP": 72,
+     "weight": 108.0
+    },
+    "2024-25": {
+     "GP": 62,
+     "weight": 62
+    }
+   },
+   "blend_share_2025_26": 0.635
+  },
+  "Jimmy Butler III": {
+   "season": "blend",
+   "bbref_name": "Jimmy Butler",
+   "team": "GSW",
+   "pos": "SF",
+   "GP": 46.3,
+   "GS": 38,
+   "MPG": 31.3946,
+   "PTS": 18.7723,
+   "REB": 5.5018,
+   "OREB": 2.3,
+   "DREB": 3.1509,
+   "AST": 5.1455,
+   "STL": 1.4,
+   "BLK": 0.2491,
+   "TOV": 1.4527,
+   "FG%": 0.5116,
+   "3PM": 0.7018,
+   "3P%": 0.3426,
+   "FT%": 0.8532,
+   "FGA": 11.5616,
+   "FTA": 7.3545,
+   "3PA": 2.0527,
+   "A/T": 3.54,
+   "DD": 0.0854,
+   "DD_est_season": 4.0,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.196,
+   "seasons": {
+    "2025-26": {
+     "GP": 38,
+     "weight": 57.0
+    },
+    "2024-25": {
+     "GP": 55,
+     "weight": 55
+    }
+   },
+   "blend_share_2025_26": 0.509
+  },
+  "Cam Spencer": {
+   "season": "blend",
+   "bbref_name": "Cam Spencer",
+   "team": "MEM",
+   "pos": "SG",
+   "GP": 63.2,
+   "GS": 20,
+   "MPG": 21.2248,
+   "PTS": 9.803,
+   "REB": 2.2556,
+   "OREB": 0.5812,
+   "DREB": 1.7556,
+   "AST": 4.8105,
+   "STL": 0.6436,
+   "BLK": 0.1624,
+   "TOV": 1.0932,
+   "FG%": 0.4621,
+   "3PM": 1.7744,
+   "3P%": 0.4332,
+   "FT%": 0.9513,
+   "FGA": 6.8729,
+   "FTA": 1.6932,
+   "3PA": 4.0489,
+   "A/T": 4.4,
+   "DD": 0.011,
+   "DD_est_season": 0.7,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.237,
+   "seasons": {
+    "2025-26": {
+     "GP": 72,
+     "weight": 108.0
+    },
+    "2024-25": {
+     "GP": 25,
+     "weight": 25
+    }
+   },
+   "blend_share_2025_26": 0.812
+  },
+  "Sam Merrill": {
+   "season": "blend",
+   "bbref_name": "Sam Merrill",
+   "team": "CLE",
+   "pos": "SG",
+   "GP": 61.1,
+   "GS": 38,
+   "MPG": 23.2597,
+   "PTS": 10.1315,
+   "REB": 2.4094,
+   "OREB": 0.5,
+   "DREB": 1.857,
+   "AST": 1.9711,
+   "STL": 0.6477,
+   "BLK": 0.1477,
+   "TOV": 0.657,
+   "FG%": 0.4348,
+   "3PM": 2.4758,
+   "3P%": 0.3977,
+   "FT%": 0.9079,
+   "FGA": 7.7275,
+   "FTA": 0.8711,
+   "3PA": 6.247,
+   "A/T": 3.0,
+   "DD": 0.0,
+   "DD_est_season": 0.0,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.062,
+   "seasons": {
+    "2025-26": {
+     "GP": 52,
+     "weight": 78.0
+    },
+    "2024-25": {
+     "GP": 71,
+     "weight": 71
+    }
+   },
+   "blend_share_2025_26": 0.523
+  },
+  "AJ Green": {
+   "season": "blend",
+   "bbref_name": "A.J. Green",
+   "team": "MIL",
+   "pos": "SG",
+   "GP": 76.1,
+   "GS": 68,
+   "MPG": 26.6411,
+   "PTS": 9.2474,
+   "REB": 2.5847,
+   "OREB": 0.3232,
+   "DREB": 2.2847,
+   "AST": 1.7463,
+   "STL": 0.5,
+   "BLK": 0.1,
+   "TOV": 0.8079,
+   "FG%": 0.4259,
+   "3PM": 2.6542,
+   "3P%": 0.4221,
+   "FT%": 0.8396,
+   "FGA": 7.0932,
+   "FTA": 0.6463,
+   "3PA": 6.2932,
+   "A/T": 2.16,
+   "DD": 0.0,
+   "DD_est_season": 0.0,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.012,
+   "seasons": {
+    "2025-26": {
+     "GP": 78,
+     "weight": 117.0
+    },
+    "2024-25": {
+     "GP": 73,
+     "weight": 73
+    }
+   },
+   "blend_share_2025_26": 0.616
+  },
+  "Duncan Robinson": {
+   "season": "blend",
+   "bbref_name": "Duncan Robinson",
+   "team": "DET",
+   "pos": "SG",
+   "GP": 75.8,
+   "GS": 77,
+   "MPG": 26.1113,
+   "PTS": 11.7314,
+   "REB": 2.5438,
+   "OREB": 0.3219,
+   "DREB": 2.1828,
+   "AST": 2.2172,
+   "STL": 0.5609,
+   "BLK": 0.2219,
+   "TOV": 0.8953,
+   "FG%": 0.4486,
+   "3PM": 2.7828,
+   "3P%": 0.4034,
+   "FT%": 0.8065,
+   "FGA": 9.0609,
+   "FTA": 1.1266,
+   "3PA": 6.8047,
+   "A/T": 2.48,
+   "DD": 0.0,
+   "DD_est_season": 0.0,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.039,
+   "seasons": {
+    "2025-26": {
+     "GP": 77,
+     "weight": 115.5
+    },
+    "2024-25": {
+     "GP": 74,
+     "weight": 74
+    }
+   },
+   "blend_share_2025_26": 0.609
+  },
+  "Miles McBride": {
+   "season": "blend",
+   "bbref_name": "Miles McBride",
+   "team": "NYK",
+   "pos": "SG",
+   "GP": 52.7,
+   "GS": 15,
+   "MPG": 25.5861,
+   "PTS": 10.7251,
+   "REB": 2.451,
+   "OREB": 0.651,
+   "DREB": 1.849,
+   "AST": 2.753,
+   "STL": 0.951,
+   "BLK": 0.251,
+   "TOV": 0.698,
+   "FG%": 0.4143,
+   "3PM": 2.241,
+   "3P%": 0.3906,
+   "FT%": 0.8003,
+   "FGA": 9.1861,
+   "FTA": 1.049,
+   "3PA": 5.7331,
+   "A/T": 3.94,
+   "DD": 0.0,
+   "DD_est_season": 0.0,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.127,
+   "seasons": {
+    "2025-26": {
+     "GP": 41,
+     "weight": 61.5
+    },
+    "2024-25": {
+     "GP": 64,
+     "weight": 64
+    }
+   },
+   "blend_share_2025_26": 0.49
+  },
+  "Royce O'Neale": {
+   "season": "blend",
+   "bbref_name": "Royce O'Neale",
+   "team": "PHO",
+   "pos": "SF",
+   "GP": 76.8,
+   "GS": 67,
+   "MPG": 26.8766,
+   "PTS": 9.5266,
+   "REB": 4.7609,
+   "OREB": 0.7609,
+   "DREB": 3.9609,
+   "AST": 2.5047,
+   "STL": 1.0219,
+   "BLK": 0.4391,
+   "TOV": 1.1438,
+   "FG%": 0.4218,
+   "3PM": 2.5828,
+   "3P%": 0.4072,
+   "FT%": 0.7188,
+   "FGA": 7.8438,
+   "FTA": 0.4219,
+   "3PA": 6.3875,
+   "A/T": 2.19,
+   "DD": 0.0121,
+   "DD_est_season": 0.9,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.019,
+   "seasons": {
+    "2025-26": {
+     "GP": 78,
+     "weight": 117.0
+    },
+    "2024-25": {
+     "GP": 75,
+     "weight": 75
+    }
+   },
+   "blend_share_2025_26": 0.609
+  },
+  "Rui Hachimura": {
+   "season": "blend",
+   "bbref_name": "Rui Hachimura",
+   "team": "LAL",
+   "pos": "PF",
+   "GP": 64.7,
+   "GS": 41,
+   "MPG": 29.546,
+   "PTS": 12.0863,
+   "REB": 3.923,
+   "OREB": 0.8565,
+   "DREB": 3.0665,
+   "AST": 1.0199,
+   "STL": 0.6733,
+   "BLK": 0.3366,
+   "TOV": 0.6733,
+   "FG%": 0.5122,
+   "3PM": 1.7,
+   "3P%": 0.432,
+   "FT%": 0.7219,
+   "FGA": 9.1665,
+   "FTA": 1.3932,
+   "3PA": 4.0099,
+   "A/T": 1.51,
+   "DD": 0.0036,
+   "DD_est_season": 0.2,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.031,
+   "seasons": {
+    "2025-26": {
+     "GP": 68,
+     "weight": 102.0
+    },
+    "2024-25": {
+     "GP": 59,
+     "weight": 59
+    }
+   },
+   "blend_share_2025_26": 0.634
+  },
+  "Jaylon Tyson": {
+   "season": "blend",
+   "bbref_name": "Jaylon Tyson",
+   "team": "CLE",
+   "pos": "SG",
+   "GP": 59.9,
+   "GS": 42,
+   "MPG": 21.3308,
+   "PTS": 10.1096,
+   "REB": 4.1021,
+   "OREB": 1.4781,
+   "DREB": 2.6562,
+   "AST": 1.7815,
+   "STL": 0.639,
+   "BLK": 0.3034,
+   "TOV": 1.2103,
+   "FG%": 0.4727,
+   "3PM": 1.4849,
+   "3P%": 0.4135,
+   "FT%": 0.7554,
+   "FGA": 7.9466,
+   "FTA": 1.2459,
+   "3PA": 3.4377,
+   "A/T": 1.47,
+   "DD": 0.0042,
+   "DD_est_season": 0.3,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.057,
+   "seasons": {
+    "2025-26": {
+     "GP": 66,
+     "weight": 99.0
+    },
+    "2024-25": {
+     "GP": 47,
+     "weight": 47
+    }
+   },
+   "blend_share_2025_26": 0.678
+  },
+  "Ryan Rollins": {
+   "season": "blend",
+   "bbref_name": "Ryan Rollins",
+   "team": "MIL",
+   "pos": "PG",
+   "GP": 68.0,
+   "GS": 67,
+   "MPG": 26.2317,
+   "PTS": 13.5778,
+   "REB": 3.6946,
+   "OREB": 0.5994,
+   "DREB": 3.0623,
+   "AST": 4.3593,
+   "STL": 1.2653,
+   "BLK": 0.3665,
+   "TOV": 2.0964,
+   "FG%": 0.477,
+   "3PM": 1.9635,
+   "3P%": 0.4067,
+   "FT%": 0.7973,
+   "FGA": 10.8485,
+   "FTA": 1.6641,
+   "3PA": 4.7587,
+   "A/T": 2.08,
+   "DD": 0.0096,
+   "DD_est_season": 0.7,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.014,
+   "seasons": {
+    "2025-26": {
+     "GP": 74,
+     "weight": 111.0
+    },
+    "2024-25": {
+     "GP": 56,
+     "weight": 56
+    }
+   },
+   "blend_share_2025_26": 0.665
+  },
+  "Andrew Wiggins": {
+   "season": "blend",
+   "bbref_name": "Andrew Wiggins",
+   "team": "MIA",
+   "pos": "SF",
+   "GP": 65.0,
+   "GS": 68,
+   "MPG": 30.4481,
+   "PTS": 16.363,
+   "REB": 4.6889,
+   "OREB": 1.6259,
+   "DREB": 3.063,
+   "AST": 2.663,
+   "STL": 1.063,
+   "BLK": 0.9259,
+   "TOV": 1.5741,
+   "FG%": 0.465,
+   "3PM": 2.0741,
+   "3P%": 0.3992,
+   "FT%": 0.7762,
+   "FGA": 12.8037,
+   "FTA": 3.1037,
+   "3PA": 5.2333,
+   "A/T": 1.69,
+   "DD": 0.0189,
+   "DD_est_season": 1.2,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.042,
+   "seasons": {
+    "2025-26": {
+     "GP": 68,
+     "weight": 102.0
+    },
+    "2024-25": {
+     "GP": 60,
+     "weight": 60
+    }
+   },
+   "blend_share_2025_26": 0.63
+  },
+  "Jaden McDaniels": {
+   "season": "blend",
+   "bbref_name": "Jaden McDaniels",
+   "team": "MIN",
+   "pos": "PF",
+   "GP": 76.9,
+   "GS": 73,
+   "MPG": 31.7856,
+   "PTS": 13.6867,
+   "REB": 4.8423,
+   "OREB": 1.2569,
+   "DREB": 3.6282,
+   "AST": 2.4003,
+   "STL": 1.1856,
+   "BLK": 0.9572,
+   "TOV": 1.5431,
+   "FG%": 0.4987,
+   "3PM": 1.3144,
+   "3P%": 0.3769,
+   "FT%": 0.8256,
+   "FGA": 10.7146,
+   "FTA": 2.0574,
+   "3PA": 3.5285,
+   "A/T": 1.56,
+   "DD": 0.021,
+   "DD_est_season": 1.6,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.059,
+   "seasons": {
+    "2025-26": {
+     "GP": 73,
+     "weight": 109.5
+    },
+    "2024-25": {
+     "GP": 82,
+     "weight": 82
+    }
+   },
+   "blend_share_2025_26": 0.572
+  },
+  "Josh Hart": {
+   "season": "blend",
+   "bbref_name": "Josh Hart",
+   "team": "NYK",
+   "pos": "SF",
+   "GP": 70.8,
+   "GS": 52,
+   "MPG": 33.4375,
+   "PTS": 12.7,
+   "REB": 8.3625,
+   "OREB": 1.7063,
+   "DREB": 6.6562,
+   "AST": 5.2812,
+   "STL": 1.275,
+   "BLK": 0.3438,
+   "TOV": 1.9875,
+   "FG%": 0.5154,
+   "3PM": 1.325,
+   "3P%": 0.378,
+   "FT%": 0.7445,
+   "FGA": 9.4375,
+   "FTA": 2.25,
+   "3PA": 3.525,
+   "A/T": 2.66,
+   "DD": 0.284,
+   "DD_est_season": 20.1,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.109,
+   "seasons": {
+    "2025-26": {
+     "GP": 66,
+     "weight": 99.0
+    },
+    "2024-25": {
+     "GP": 77,
+     "weight": 77
+    }
+   },
+   "blend_share_2025_26": 0.562
+  },
+  "Onyeka Okongwu": {
+   "season": "blend",
+   "bbref_name": "Onyeka Okongwu",
+   "team": "ATL",
+   "pos": "C",
+   "GP": 74.0,
+   "GS": 63,
+   "MPG": 29.76,
+   "PTS": 14.48,
+   "REB": 8.12,
+   "OREB": 2.34,
+   "DREB": 5.78,
+   "AST": 2.78,
+   "STL": 1.02,
+   "BLK": 1.02,
+   "TOV": 1.5,
+   "FG%": 0.5148,
+   "3PM": 1.38,
+   "3P%": 0.3552,
+   "FT%": 0.7578,
+   "FGA": 10.64,
+   "FTA": 2.78,
+   "3PA": 3.92,
+   "A/T": 1.85,
+   "DD": 0.2667,
+   "DD_est_season": 19.7,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.019,
+   "seasons": {
+    "2025-26": {
+     "GP": 74,
+     "weight": 111.0
+    },
+    "2024-25": {
+     "GP": 74,
+     "weight": 74
+    }
+   },
+   "blend_share_2025_26": 0.6
+  },
+  "Brook Lopez": {
+   "season": "blend",
+   "bbref_name": "Brook Lopez",
+   "team": "LAC",
+   "pos": "C",
+   "GP": 77.1,
+   "GS": 40,
+   "MPG": 25.9558,
+   "PTS": 10.3701,
+   "REB": 4.1818,
+   "OREB": 0.9325,
+   "DREB": 3.2494,
+   "AST": 1.5078,
+   "STL": 0.6,
+   "BLK": 1.4909,
+   "TOV": 0.9247,
+   "FG%": 0.4617,
+   "3PM": 1.5831,
+   "3P%": 0.3654,
+   "FT%": 0.7857,
+   "FGA": 8.239,
+   "FTA": 1.2909,
+   "3PA": 4.4078,
+   "A/T": 1.63,
+   "DD": 0.0052,
+   "DD_est_season": 0.4,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.031,
+   "seasons": {
+    "2025-26": {
+     "GP": 75,
+     "weight": 112.5
+    },
+    "2024-25": {
+     "GP": 80,
+     "weight": 80
+    }
+   },
+   "blend_share_2025_26": 0.584
+  },
+  "Adem Bona": {
+   "season": "blend",
+   "bbref_name": "Adem Bona",
+   "team": "PHI",
+   "pos": "C",
+   "GP": 66.4,
+   "GS": 18,
+   "MPG": 16.7653,
+   "PTS": 5.1526,
+   "REB": 4.2647,
+   "OREB": 1.7295,
+   "DREB": 2.5353,
+   "AST": 0.5,
+   "STL": 0.4,
+   "BLK": 1.2,
+   "TOV": 0.9058,
+   "FG%": 0.6331,
+   "3PM": 0.0,
+   "3P%": 0.2156,
+   "FT%": 0.6946,
+   "FGA": 3.1705,
+   "FTA": 1.6353,
+   "3PA": 0.0647,
+   "A/T": 0.55,
+   "DD": 0.0011,
+   "DD_est_season": 0.1,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.12,
+   "seasons": {
+    "2025-26": {
+     "GP": 71,
+     "weight": 106.5
+    },
+    "2024-25": {
+     "GP": 58,
+     "weight": 58
+    }
+   },
+   "blend_share_2025_26": 0.647
+  },
+  "VJ Edgecombe": {
+   "season": "blend",
+   "bbref_name": "VJ Edgecombe",
+   "team": "PHI",
+   "pos": "SG",
+   "GP": 75.0,
+   "GS": 75,
+   "MPG": 35.0,
+   "PTS": 16.0,
+   "REB": 5.6,
+   "OREB": 1.6,
+   "DREB": 4.0,
+   "AST": 4.2,
+   "STL": 1.4,
+   "BLK": 0.5,
+   "TOV": 1.8,
+   "FG%": 0.438,
+   "3PM": 2.0,
+   "3P%": 0.354,
+   "FT%": 0.818,
+   "FGA": 13.7,
+   "FTA": 2.4,
+   "3PA": 5.6,
+   "A/T": 2.33,
+   "DD": 0.0633,
+   "DD_est_season": 4.7,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.051,
+   "seasons": {
+    "2025-26": {
+     "GP": 75,
+     "weight": 112.5
+    },
+    "2024-25": {
+     "GP": null,
+     "weight": 0.0
+    }
+   },
+   "blend_share_2025_26": 1.0
+  },
+  "Anthony Black": {
+   "season": "blend",
+   "bbref_name": "Anthony Black",
+   "team": "ORL",
+   "pos": "PG",
+   "GP": 70.3,
+   "GS": 40,
+   "MPG": 27.2897,
+   "PTS": 12.4897,
+   "REB": 3.3966,
+   "OREB": 0.7,
+   "DREB": 2.7414,
+   "AST": 3.431,
+   "STL": 1.2655,
+   "BLK": 0.6552,
+   "TOV": 1.9655,
+   "FG%": 0.4362,
+   "3PM": 1.2414,
+   "3P%": 0.3263,
+   "FT%": 0.745,
+   "FGA": 10.2172,
+   "FTA": 3.1069,
+   "3PA": 3.7138,
+   "A/T": 1.75,
+   "DD": 0.0016,
+   "DD_est_season": 0.1,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.042,
+   "seasons": {
+    "2025-26": {
+     "GP": 64,
+     "weight": 96.0
+    },
+    "2024-25": {
+     "GP": 78,
+     "weight": 78
+    }
+   },
+   "blend_share_2025_26": 0.552
+  },
+  "Dru Smith": {
+   "season": "blend",
+   "bbref_name": "Dru Smith",
+   "team": "MIA",
+   "pos": "SG",
+   "GP": 63.4,
+   "GS": 1,
+   "MPG": 16.6294,
+   "PTS": 5.6706,
+   "REB": 2.5118,
+   "OREB": 0.9,
+   "DREB": 1.6118,
+   "AST": 2.4824,
+   "STL": 1.4118,
+   "BLK": 0.3118,
+   "TOV": 0.8471,
+   "FG%": 0.4259,
+   "3PM": 0.5706,
+   "3P%": 0.323,
+   "FT%": 0.8197,
+   "FGA": 4.5765,
+   "FTA": 1.4294,
+   "3PA": 1.8353,
+   "A/T": 2.93,
+   "DD": 0.0,
+   "DD_est_season": 0.0,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.073,
+   "seasons": {
+    "2025-26": {
+     "GP": 70,
+     "weight": 105.0
+    },
+    "2024-25": {
+     "GP": 14,
+     "weight": 14
+    }
+   },
+   "blend_share_2025_26": 0.882
+  },
+  "Precious Achiuwa": {
+   "season": "blend",
+   "bbref_name": "Precious Achiuwa",
+   "team": "SAC",
+   "pos": "C",
+   "GP": 67.5,
+   "GS": 57,
+   "MPG": 22.736,
+   "PTS": 8.9018,
+   "REB": 6.3234,
+   "OREB": 2.1946,
+   "DREB": 4.1288,
+   "AST": 1.2631,
+   "STL": 0.8658,
+   "BLK": 0.7,
+   "TOV": 0.8658,
+   "FG%": 0.5191,
+   "3PM": 0.3315,
+   "3P%": 0.278,
+   "FT%": 0.5677,
+   "FGA": 7.3441,
+   "FTA": 1.6604,
+   "3PA": 1.0604,
+   "A/T": 1.46,
+   "DD": 0.056,
+   "DD_est_season": 3.8,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.043,
+   "seasons": {
+    "2025-26": {
+     "GP": 73,
+     "weight": 109.5
+    },
+    "2024-25": {
+     "GP": 57,
+     "weight": 57
+    }
+   },
+   "blend_share_2025_26": 0.658
+  },
+  "Jock Landale": {
+   "season": "blend",
+   "bbref_name": "Jock Landale",
+   "team": "2TM",
+   "pos": "C",
+   "GP": 60.4,
+   "GS": 27,
+   "MPG": 19.125,
+   "PTS": 8.9083,
+   "REB": 5.0,
+   "OREB": 2.2917,
+   "DREB": 2.6792,
+   "AST": 1.4667,
+   "STL": 0.4417,
+   "BLK": 0.4125,
+   "TOV": 0.7833,
+   "FG%": 0.5202,
+   "3PM": 0.8667,
+   "3P%": 0.3947,
+   "FT%": 0.6467,
+   "FGA": 6.7875,
+   "FTA": 1.6375,
+   "3PA": 2.1583,
+   "A/T": 1.87,
+   "DD": 0.0151,
+   "DD_est_season": 0.9,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.009,
+   "seasons": {
+    "2025-26": {
+     "GP": 68,
+     "weight": 102.0
+    },
+    "2024-25": {
+     "GP": 42,
+     "weight": 42
+    }
+   },
+   "blend_share_2025_26": 0.708
+  },
+  "Zion Williamson": {
+   "season": "blend",
+   "bbref_name": "Zion Williamson",
+   "team": "NOP",
+   "pos": "PF",
+   "GP": 54.2,
+   "GS": 55,
+   "MPG": 29.4317,
+   "PTS": 21.878,
+   "REB": 6.0659,
+   "OREB": 2.122,
+   "DREB": 3.9439,
+   "AST": 3.7122,
+   "STL": 1.0488,
+   "BLK": 0.5976,
+   "TOV": 2.2439,
+   "FG%": 0.592,
+   "3PM": 0.0244,
+   "3P%": 0.2454,
+   "FT%": 0.7014,
+   "FGA": 13.9512,
+   "FTA": 7.622,
+   "3PA": 0.1732,
+   "A/T": 1.65,
+   "DD": 0.1003,
+   "DD_est_season": 5.4,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.063,
+   "seasons": {
+    "2025-26": {
+     "GP": 62,
+     "weight": 93.0
+    },
+    "2024-25": {
+     "GP": 30,
+     "weight": 30
+    }
+   },
+   "blend_share_2025_26": 0.756
+  },
+  "Max Christie": {
+   "season": "blend",
+   "bbref_name": "Max Christie",
+   "team": "DAL",
+   "pos": "SG",
+   "GP": 77.4,
+   "GS": 68,
+   "MPG": 28.3744,
+   "PTS": 11.2116,
+   "REB": 3.2403,
+   "OREB": 0.3209,
+   "DREB": 2.9194,
+   "AST": 1.9597,
+   "STL": 0.6806,
+   "BLK": 0.4,
+   "TOV": 1.1597,
+   "FG%": 0.4354,
+   "3PM": 1.9775,
+   "3P%": 0.3887,
+   "FT%": 0.8813,
+   "FGA": 8.6744,
+   "FTA": 1.8403,
+   "3PA": 5.0744,
+   "A/T": 1.69,
+   "DD": 0.0005,
+   "DD_est_season": 0.0,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.032,
+   "seasons": {
+    "2025-26": {
+     "GP": 77,
+     "weight": 115.5
+    },
+    "2024-25": {
+     "GP": 78,
+     "weight": 78
+    }
+   },
+   "blend_share_2025_26": 0.597
+  },
+  "Ajay Mitchell": {
+   "season": "blend",
+   "bbref_name": "Ajay Mitchell",
+   "team": "OKC",
+   "pos": "SG",
+   "GP": 50.8,
+   "GS": 16,
+   "MPG": 23.0741,
+   "PTS": 11.4963,
+   "REB": 2.8852,
+   "OREB": 0.6407,
+   "DREB": 2.2444,
+   "AST": 3.0667,
+   "STL": 1.0519,
+   "BLK": 0.2407,
+   "TOV": 1.2222,
+   "FG%": 0.488,
+   "3PM": 0.9519,
+   "3P%": 0.3577,
+   "FT%": 0.8579,
+   "FGA": 8.8296,
+   "FTA": 2.2667,
+   "3PA": 2.6852,
+   "A/T": 2.51,
+   "DD": 0.0003,
+   "DD_est_season": 0.0,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.055,
+   "seasons": {
+    "2025-26": {
+     "GP": 57,
+     "weight": 85.5
+    },
+    "2024-25": {
+     "GP": 36,
+     "weight": 36
+    }
+   },
+   "blend_share_2025_26": 0.704
+  },
+  "DeMar DeRozan": {
+   "season": "blend",
+   "bbref_name": "DeMar DeRozan",
+   "team": "SAC",
+   "pos": "PF",
+   "GP": 77.0,
+   "GS": 77,
+   "MPG": 33.08,
+   "PTS": 19.92,
+   "REB": 3.3,
+   "OREB": 0.54,
+   "DREB": 2.78,
+   "AST": 4.22,
+   "STL": 0.92,
+   "BLK": 0.34,
+   "TOV": 1.28,
+   "FG%": 0.489,
+   "3PM": 0.8,
+   "3P%": 0.3232,
+   "FT%": 0.8636,
+   "FGA": 14.66,
+   "FTA": 5.64,
+   "3PA": 2.46,
+   "A/T": 3.3,
+   "DD": 0.0077,
+   "DD_est_season": 0.6,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.147,
+   "seasons": {
+    "2025-26": {
+     "GP": 77,
+     "weight": 115.5
+    },
+    "2024-25": {
+     "GP": 77,
+     "weight": 77
+    }
+   },
+   "blend_share_2025_26": 0.6
+  },
+  "Damian Lillard": {
+   "season": "blend",
+   "bbref_name": "Damian Lillard",
+   "team": "MIL",
+   "pos": "PG",
+   "GP": 58.0,
+   "GS": 58,
+   "MPG": 36.1,
+   "PTS": 24.9,
+   "REB": 4.7,
+   "OREB": 0.5,
+   "DREB": 4.2,
+   "AST": 7.1,
+   "STL": 1.2,
+   "BLK": 0.2,
+   "TOV": 2.8,
+   "FG%": 0.448,
+   "3PM": 3.4,
+   "3P%": 0.376,
+   "FT%": 0.921,
+   "FGA": 17.1,
+   "FTA": 6.8,
+   "3PA": 9.0,
+   "A/T": 2.54,
+   "DD": 0.2091,
+   "DD_est_season": 12.1,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.117,
+   "seasons": {
+    "2025-26": {
+     "GP": null,
+     "weight": 0.0
+    },
+    "2024-25": {
+     "GP": 58,
+     "weight": 58
+    }
+   },
+   "blend_share_2025_26": 0.0
+  },
+  "Zach LaVine": {
+   "season": "blend",
+   "bbref_name": "Zach LaVine",
+   "team": "SAC",
+   "pos": "SG",
+   "GP": 58.5,
+   "GS": 37,
+   "MPG": 33.5223,
+   "PTS": 21.4898,
+   "REB": 3.6377,
+   "OREB": 0.2558,
+   "DREB": 3.3819,
+   "AST": 3.3611,
+   "STL": 0.7558,
+   "BLK": 0.2442,
+   "TOV": 2.4026,
+   "FG%": 0.4969,
+   "3PM": 2.8909,
+   "3P%": 0.4213,
+   "FT%": 0.8493,
+   "FGA": 15.3962,
+   "FTA": 3.7675,
+   "3PA": 6.8909,
+   "A/T": 1.4,
+   "DD": 0.0032,
+   "DD_est_season": 0.2,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.116,
+   "seasons": {
+    "2025-26": {
+     "GP": 39,
+     "weight": 58.5
+    },
+    "2024-25": {
+     "GP": 74,
+     "weight": 74
+    }
+   },
+   "blend_share_2025_26": 0.442
+  },
+  "Cameron Johnson": {
+   "season": "blend",
+   "bbref_name": "Cameron Johnson",
+   "team": "DEN",
+   "pos": "SF",
+   "GP": 55.2,
+   "GS": 54,
+   "MPG": 30.9543,
+   "PTS": 14.9261,
+   "REB": 4.0065,
+   "OREB": 0.8413,
+   "DREB": 3.1652,
+   "AST": 2.813,
+   "STL": 0.7826,
+   "BLK": 0.4,
+   "TOV": 1.2304,
+   "FG%": 0.4779,
+   "3PM": 2.3304,
+   "3P%": 0.4135,
+   "FT%": 0.8613,
+   "FGA": 10.5761,
+   "FTA": 2.8435,
+   "3PA": 5.7326,
+   "A/T": 2.29,
+   "DD": 0.0053,
+   "DD_est_season": 0.3,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.031,
+   "seasons": {
+    "2025-26": {
+     "GP": 54,
+     "weight": 81.0
+    },
+    "2024-25": {
+     "GP": 57,
+     "weight": 57
+    }
+   },
+   "blend_share_2025_26": 0.587
+  },
+  "Jrue Holiday": {
+   "season": "blend",
+   "bbref_name": "Jrue Holiday",
+   "team": "POR",
+   "pos": "PG",
+   "GP": 56.9,
+   "GS": 51,
+   "MPG": 29.9258,
+   "PTS": 14.0216,
+   "REB": 4.4686,
+   "OREB": 1.2562,
+   "DREB": 3.1686,
+   "AST": 5.136,
+   "STL": 1.0438,
+   "BLK": 0.2314,
+   "TOV": 2.0989,
+   "FG%": 0.4475,
+   "3PM": 2.2057,
+   "3P%": 0.367,
+   "FT%": 0.8691,
+   "FGA": 11.5597,
+   "FTA": 1.6495,
+   "3PA": 5.9675,
+   "A/T": 2.45,
+   "DD": 0.0381,
+   "DD_est_season": 2.2,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.078,
+   "seasons": {
+    "2025-26": {
+     "GP": 53,
+     "weight": 79.5
+    },
+    "2024-25": {
+     "GP": 62,
+     "weight": 62
+    }
+   },
+   "blend_share_2025_26": 0.562
+  },
+  "Dejounte Murray": {
+   "season": "blend",
+   "bbref_name": "Dejounte Murray",
+   "team": "NOP",
+   "pos": "PG",
+   "GP": 24.1,
+   "GS": 14,
+   "MPG": 30.6615,
+   "PTS": 17.1769,
+   "REB": 6.0558,
+   "OREB": 0.4192,
+   "DREB": 5.5769,
+   "AST": 6.9962,
+   "STL": 1.8385,
+   "BLK": 0.3192,
+   "TOV": 3.4,
+   "FG%": 0.4298,
+   "3PM": 1.5788,
+   "3P%": 0.3018,
+   "FT%": 0.8408,
+   "FGA": 14.7288,
+   "FTA": 3.6769,
+   "3PA": 5.1154,
+   "A/T": 2.06,
+   "DD": 0.2397,
+   "DD_est_season": 5.8,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.015,
+   "seasons": {
+    "2025-26": {
+     "GP": 14,
+     "weight": 21.0
+    },
+    "2024-25": {
+     "GP": 31,
+     "weight": 31
+    }
+   },
+   "blend_share_2025_26": 0.404
+  },
+  "Jusuf Nurkic": {
+   "season": "blend",
+   "bbref_name": "Jusuf Nurkić",
+   "team": "UTA",
+   "pos": "C",
+   "GP": 45.5,
+   "GS": 36,
+   "MPG": 23.8613,
+   "PTS": 9.9933,
+   "REB": 9.2213,
+   "OREB": 2.192,
+   "DREB": 7.0293,
+   "AST": 3.6667,
+   "STL": 1.0733,
+   "BLK": 0.5907,
+   "TOV": 2.228,
+   "FG%": 0.4912,
+   "3PM": 0.6,
+   "3P%": 0.3307,
+   "FT%": 0.6011,
+   "FGA": 7.884,
+   "FTA": 2.664,
+   "3PA": 1.8813,
+   "A/T": 1.65,
+   "DD": 0.2536,
+   "DD_est_season": 11.5,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.065,
+   "seasons": {
+    "2025-26": {
+     "GP": 41,
+     "weight": 61.5
+    },
+    "2024-25": {
+     "GP": 51,
+     "weight": 51
+    }
+   },
+   "blend_share_2025_26": 0.547
+  },
+  "Kevin Porter Jr.": {
+   "season": "blend",
+   "bbref_name": "Kevin Porter Jr.",
+   "team": "MIL",
+   "pos": "PG",
+   "GP": 59.0,
+   "GS": 36,
+   "MPG": 25.5864,
+   "PTS": 13.3659,
+   "REB": 4.3477,
+   "OREB": 0.7295,
+   "DREB": 3.6182,
+   "AST": 5.1273,
+   "STL": 1.575,
+   "BLK": 0.3295,
+   "TOV": 2.275,
+   "FG%": 0.4559,
+   "3PM": 0.9159,
+   "3P%": 0.3158,
+   "FT%": 0.8161,
+   "FGA": 10.7727,
+   "FTA": 3.0773,
+   "3PA": 3.0045,
+   "A/T": 2.25,
+   "DD": 0.0342,
+   "DD_est_season": 2.0,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.047,
+   "seasons": {
+    "2025-26": {
+     "GP": 38,
+     "weight": 57.0
+    },
+    "2024-25": {
+     "GP": 75,
+     "weight": 75
+    }
+   },
+   "blend_share_2025_26": 0.432
+  },
+  "Bub Carrington": {
+   "season": "blend",
+   "bbref_name": "Bub Carrington",
+   "team": "WAS",
+   "pos": "PG",
+   "GP": 82.0,
+   "GS": 48,
+   "MPG": 28.62,
+   "PTS": 10.34,
+   "REB": 3.72,
+   "OREB": 0.4,
+   "DREB": 3.32,
+   "AST": 4.52,
+   "STL": 0.64,
+   "BLK": 0.24,
+   "TOV": 2.06,
+   "FG%": 0.4148,
+   "3PM": 1.94,
+   "3P%": 0.3804,
+   "FT%": 0.7628,
+   "FGA": 9.04,
+   "FTA": 1.24,
+   "3PA": 5.0,
+   "A/T": 2.19,
+   "DD": 0.0091,
+   "DD_est_season": 0.7,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.033,
+   "seasons": {
+    "2025-26": {
+     "GP": 82,
+     "weight": 123.0
+    },
+    "2024-25": {
+     "GP": 82,
+     "weight": 82
+    }
+   },
+   "blend_share_2025_26": 0.6
+  },
+  "Svi Mykhailiuk": {
+   "season": "blend",
+   "bbref_name": "Svi Mykhailiuk",
+   "team": "UTA",
+   "pos": "SF",
+   "GP": 46.0,
+   "GS": 41,
+   "MPG": 22.0575,
+   "PTS": 9.1982,
+   "REB": 2.4664,
+   "OREB": 0.6664,
+   "DREB": 1.8,
+   "AST": 1.9336,
+   "STL": 0.5,
+   "BLK": 0.1336,
+   "TOV": 1.0018,
+   "FG%": 0.4487,
+   "3PM": 1.9327,
+   "3P%": 0.3868,
+   "FT%": 0.8617,
+   "FGA": 7.4354,
+   "FTA": 0.7009,
+   "3PA": 4.9681,
+   "A/T": 1.93,
+   "DD": 0.0,
+   "DD_est_season": 0.0,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.006,
+   "seasons": {
+    "2025-26": {
+     "GP": 50,
+     "weight": 75.0
+    },
+    "2024-25": {
+     "GP": 38,
+     "weight": 38
+    }
+   },
+   "blend_share_2025_26": 0.664
+  },
+  "Ja'Kobe Walter": {
+   "season": "blend",
+   "bbref_name": "Ja'Kobe Walter",
+   "team": "TOR",
+   "pos": "SG",
+   "GP": 65.5,
+   "GS": 19,
+   "MPG": 20.7275,
+   "PTS": 7.8575,
+   "REB": 2.7625,
+   "OREB": 0.8975,
+   "DREB": 1.8325,
+   "AST": 1.33,
+   "STL": 0.935,
+   "BLK": 0.2,
+   "TOV": 0.6625,
+   "FG%": 0.4327,
+   "3PM": 1.435,
+   "3P%": 0.3895,
+   "FT%": 0.791,
+   "FGA": 6.25,
+   "FTA": 1.3975,
+   "3PA": 3.6675,
+   "A/T": 2.01,
+   "DD": 0.0,
+   "DD_est_season": 0.0,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": 0.0,
+   "seasons": {
+    "2025-26": {
+     "GP": 72,
+     "weight": 108.0
+    },
+    "2024-25": {
+     "GP": 52,
+     "weight": 52
+    }
+   },
+   "blend_share_2025_26": 0.675
+  },
+  "Russell Westbrook": {
+   "season": "blend",
+   "bbref_name": "Russell Westbrook",
+   "team": "SAC",
+   "pos": "SF",
+   "GP": 68.8,
+   "GS": 58,
+   "MPG": 28.5175,
+   "PTS": 14.3667,
+   "REB": 5.1807,
+   "OREB": 1.3439,
+   "DREB": 3.9368,
+   "AST": 6.4368,
+   "STL": 1.3439,
+   "BLK": 0.3316,
+   "TOV": 3.2561,
+   "FG%": 0.4366,
+   "3PM": 1.693,
+   "3P%": 0.3314,
+   "FT%": 0.6795,
+   "FGA": 12.2228,
+   "FTA": 2.9877,
+   "3PA": 5.0228,
+   "A/T": 1.98,
+   "DD": 0.1313,
+   "DD_est_season": 9.0,
+   "DD_basis": "정규근사 추정 (혼합 per-game 기준)",
+   "at_marginal_lift": -0.006,
+   "seasons": {
+    "2025-26": {
+     "GP": 64,
+     "weight": 96.0
+    },
+    "2024-25": {
+     "GP": 75,
+     "weight": 75
+    }
+   },
+   "blend_share_2025_26": 0.561
+  }
+ }
+}

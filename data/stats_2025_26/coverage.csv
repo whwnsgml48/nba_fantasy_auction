@@ -1,0 +1,23 @@
+category,leaderboard_rows,matched_in_player_db,pct,unmatched
+BLK,25,25,100,0
+STL,25,25,100,0
+OREB,25,24,96,1
+3PT%,25,21,84,4
+FT%,25,22,88,3
+A/T,25,20,80,5
+PTS,25,25,100,0
+DD,25,25,100,0
+
+# DB 미수록 선수,categories_appearing_in
+Bub Carrington,3PT%
+Cameron Johnson,3PT%
+DeMar DeRozan,FT% A/T
+Dejounte Murray,A/T
+Ja'Kobe Walter,3PT%
+Jrue Holiday,A/T
+Jusuf Nurkic,A/T
+Kevin Porter Jr.,FT%
+Marvin Bagley III,OREB
+Russell Westbrook,A/T
+Svi Mykhailiuk,3PT%
+Zach LaVine,FT%
