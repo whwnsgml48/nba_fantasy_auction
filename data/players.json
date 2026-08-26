@@ -4527,7 +4527,7 @@
   "volume_leverage": null,
   "at_marginal_lift": "AST 3.1 / TOV 1.3 → 팀 A/T 한계 기여 +0.044 (2시즌 혼합 · GP 69.4)",
   "verdict": "2시즌 혼합으로 BLK가 엘리트 구간입니다(1.2). 기존 'BLK는 엘리트 아님'은 2025-26 단일 시즌 리더보드 기준이었습니다. OREB·FG%도 플러스. 반대 요인은 FT%와 3PM 0.",
-  "flag": "FT% 악화 요인 · 3PM 0",
+  "flag": "FT% 악화 요인 · 3PM 0 · BLK 엘리트 아님(오분류 정정)",
   "market_source": "refit_v2_measured_2025_26_league_auction",
   "market_prior_estimate": {
    "low": 4,
@@ -9388,7 +9388,7 @@
   "volume_leverage": null,
   "at_marginal_lift": "AST 5.4 / TOV 2.9 → 팀 A/T 한계 기여 -0.031 (2시즌 혼합 · GP 57.1)",
   "verdict": "3PT% 39.3%를 11.3시도에 쐈고 레버리지 45.5로 엘리트 구간입니다. 기존 판정 '3PT% 엘리트 아님'은 구 리더보드가 **비율순 top-25**라 하한 40.6%에서 잘린 결과였습니다 (볼륨 무시 = 오류 패턴 ③). PTS도 26.6으로 엘리트 재확인. 그럼에도 태우기 유지 근거는 **43경기 · A/T 1.68 하위권 · 빅맨 캣 전무 · 시장가 $34-40 > 내 최대가**입니다 — 캣 프로필이 아니라 출장·시장가 때문입니다.",
-  "flag": "43경기 · A/T 1.68 하위권 · 빅맨 캣 전무",
+  "flag": "43경기 · A/T 1.68 하위권 · 빅맨 캣 전무 · 3PT% 엘리트 아님(오분류 정정)",
   "market_source": "refit_v2_measured_2025_26_league_auction",
   "market_prior_estimate": {
    "low": 32,
@@ -9924,7 +9924,7 @@
   "volume_leverage": null,
   "at_marginal_lift": "AST 3.2 / TOV 2.2 → 팀 A/T 한계 기여 -0.098 (2시즌 혼합 · GP 39.5)",
   "verdict": "BLK **2.2**로 엘리트입니다. 기존 '블록 리그 top-25 밖(검증)'은 2025-26 20경기로 리더보드 자격 미달이었던 것입니다. 다만 2024-25도 51경기로 출장이 최대 리스크.",
-  "flag": "2025-26 20경기(2024-25 51경기 사용) · GP 리스크 · Ayton과 겹침",
+  "flag": "2025-26 20경기(2024-25 51경기 사용) · GP 리스크 · Ayton과 겹침 · BLK 엘리트 오분류 정정",
   "market_source": "refit_v2_measured_2025_26_league_auction",
   "market_prior_estimate": {
    "low": 20,
@@ -16354,7 +16354,7 @@
   "volume_leverage": null,
   "at_marginal_lift": "AST 4.6 / TOV 2.2 → 팀 A/T 한계 기여 +0.016 (2시즌 혼합 · GP 50)",
   "verdict": "2024-25 기준 3P% 레버리지가 엘리트 구간입니다. 기존 '3PT% 엘리트 아님'은 2025-26 리더보드에 그가 없었기 때문(전체 결장)입니다. 다만 근거가 부상 전 시즌이고 ACL 복귀라 캣 프로필보다 출장이 훨씬 큰 리스크입니다.",
-  "flag": "2025-26 전체 결장(ACL) — 가중치 근거는 2024-25 50경기 · 복귀 시점 불확실",
+  "flag": "2025-26 전체 결장(ACL) — 가중치 근거는 2024-25 50경기 · 복귀 시점 불확실 · 3PT% 엘리트 아님(오분류 정정)",
   "market_source": "refit_v2_measured_2025_26_league_auction",
   "market_prior_estimate": {
    "low": 16,
@@ -18167,7 +18167,7 @@
   "volume_leverage": null,
   "at_marginal_lift": "AST 1.5 / TOV 1.3 → 팀 A/T 한계 기여 -0.097 (2시즌 혼합 · GP 58.8)",
   "verdict": "2시즌 혼합 기준 STL 1.4로 엘리트 구간입니다. 기존 '실측 top-25 밖 → 매수 태그 철회'는 2025-26 단일 시즌 리더보드 기준이었습니다. 휴스턴 5년 $81.5M 연장으로 역할은 보장되나 3PM·FT%가 약하고 로테이션 경합이 있습니다.",
-  "flag": "혼합 GP 58.8 · 3PM·FT% 약점 · 휴스턴 로테이션 경합",
+  "flag": "혼합 GP 58.8 · 3PM·FT% 약점 · 휴스턴 로테이션 경합 · STL 엘리트 아님 — 매수 태그 철회",
   "market_source": "refit_v2_measured_2025_26_league_auction",
   "market_prior_estimate": {
    "low": 10,
@@ -19162,7 +19162,7 @@
   "volume_leverage": null,
   "at_marginal_lift": "AST 2.3 / TOV 1.3 → 팀 A/T 한계 기여 -0.027 (2시즌 혼합 · GP 36.7)",
   "verdict": "BLK **1.5**로 엘리트 구간입니다. 저출장으로 리더보드에서 빠졌던 것입니다. 3PM·3P%도 플러스. 두 시즌 연속 42경기 이하라 출장 리스크가 캣 프로필보다 큽니다.",
-  "flag": "2025-26 32경기(2024-25 42경기 사용) · 만성 결장 · 출장이 최대 리스크",
+  "flag": "2025-26 32경기(2024-25 42경기 사용) · 만성 결장 · 출장이 최대 리스크 · BLK 엘리트 오분류 정정",
   "market_source": "refit_v2_measured_2025_26_league_auction",
   "market_prior_estimate": {
    "low": 10,
@@ -23252,7 +23252,7 @@
   "volume_leverage": "3PA 7.0/G · 주간 24시도 · 지분 18.1% → 기여 +0.91pp (그룹 9위) · 변동성 ±9.9pp",
   "at_marginal_lift": "AST 2.2 / TOV 0.9 → 팀 A/T 한계 기여 +0.037 (2시즌 혼합 · GP 75.8)",
   "verdict": null,
-  "flag": "소속 재확인 권장",
+  "flag": "디트로이트 주전 예상(2025-26 건강한 77경기 전 경기 선발) · Isaiah Joe 합류로 3PT 경합",
   "market_source": "refit_v2_measured_2025_26_league_auction",
   "market_prior_estimate": {
    "low": 2,
@@ -23389,7 +23389,8 @@
    "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
-  }
+  },
+  "team_source": "2026-08-27 웹 확인 · DET 확정 (NBA.com/Yahoo Sports)"
  },
  {
   "name": "Miles McBride",
@@ -27806,7 +27807,7 @@
   "volume_leverage": "3PA 5.0/G · 주간 18시도 · 팀 지분 13.0% → 3PT% 기여 +0.62pp · 변동성 ±11.7pp",
   "at_marginal_lift": "AST 4.5 / TOV 2.1 → 팀 A/T 한계 기여 +0.025 (2시즌 혼합 · GP 82)",
   "verdict": null,
-  "flag": "소속 재확인 권장(2025-26 워싱턴) · 워싱턴 사용률 혼잡",
+  "flag": "워싱턴 사용률 혼잡(Trae Young 뒤 백업 PG 전망)",
   "market_source": "refit_v2_measured_2025_26_league_auction",
   "market_prior_estimate": {
    "low": 2,
@@ -27944,11 +27945,12 @@
    "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
-  }
+  },
+  "team_source": "2026-08-27 웹 확인 · WAS 확정 (2025-10 $4.9M 팀 옵션 행사)"
  },
  {
   "name": "Svi Mykhailiuk",
-  "team": "—",
+  "team": "UTA",
   "pos": "G/F",
   "market_low": 1,
   "market_high": 3,
@@ -27969,7 +27971,7 @@
   "volume_leverage": null,
   "at_marginal_lift": "AST 1.9 / TOV 1 → 팀 A/T 한계 기여 -0.009 (2시즌 혼합 · GP 46)",
   "verdict": null,
-  "flag": "2026-27 소속 미확인",
+  "flag": "유타 벤치 · 저볼륨",
   "market_source": "refit_v2_measured_2025_26_league_auction",
   "market_prior_estimate": {
    "low": 1,
@@ -28106,7 +28108,8 @@
    "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
-  }
+  },
+  "team_source": "2026-08-27 웹 확인 · UTA (2024-08 3년 $11.03M 계약이 2026-27 포함)"
  },
  {
   "name": "Ja'Kobe Walter",
@@ -28129,7 +28132,7 @@
   "volume_leverage": null,
   "at_marginal_lift": "AST 1.3 / TOV 0.7 → 팀 A/T 한계 기여 -0.009 (2시즌 혼합 · GP 65.5)",
   "verdict": "3PT%는 상위권이나 주간 13시도로 레버리지가 낮고 변동성이 큽니다(Kennard와 동일 문제).",
-  "flag": "저볼륨 · 소속 재확인 권장",
+  "flag": "저볼륨 (2024-25 신인 52경기 8.6P · 21.2MPG)",
   "market_source": "refit_v2_measured_2025_26_league_auction",
   "market_prior_estimate": {
    "low": 1,
@@ -28266,7 +28269,8 @@
    "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
-  }
+  },
+  "team_source": "2026-08-27 웹 확인 · TOR 확정 (2025-10 $3.81M 팀 옵션 행사)"
  },
  {
   "name": "Russell Westbrook",
@@ -28276,8 +28280,8 @@
   "market_high": 3,
   "my_max": 4,
   "surplus": 2,
-  "obtainable": true,
-  "injury_exclude": false,
+  "obtainable": false,
+  "injury_exclude": true,
   "tag": null,
   "cats": "AST2 STL2 3PM1",
   "cat_weights": {
@@ -28290,7 +28294,7 @@
   "volume_leverage": null,
   "at_marginal_lift": "AST 6.4 / TOV 3.3 → 팀 A/T 한계 기여 -0.015 (2시즌 혼합 · GP 68.8)",
   "verdict": null,
-  "flag": "2026-27 소속 미확인(새크라멘토 재합류 루머) · A/T 하위 · FG%·FT% 악재",
+  "flag": "🚫 은퇴 — 2026 오프시즌 은퇴. 킹스·위저즈 제안을 거절하고 19번째 시즌을 뛰지 않는다. 드래프트 대상이 아니다",
   "market_source": "refit_v2_measured_2025_26_league_auction",
   "market_prior_estimate": {
    "low": 2,
@@ -28428,6 +28432,8 @@
    "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
-  }
+  },
+  "note": "2026 오프시즌 은퇴로 획득 불가입니다. 코어·대체후보·피벗에서 전면 제외됩니다.",
+  "team_source": "2026-08-27 웹 확인 · 은퇴 (Yahoo Sports / Sactown Sports)"
  }
 ]

@@ -69,6 +69,24 @@ for ln in m.group(2).split("\n"):
     # gp:null도 갱신 대상이다. \d+ 패턴만 쓰면 혼합 GP가 새로 생겨도 null이 남는다.
     if ms.get("GP"): new=re.sub(r'gp:(?:\d+|null)','gp:%d'%round(ms["GP"]),new,count=1)
     else:            new=re.sub(r'gp:(?:\d+|null)','gp:null',new,count=1)
+    # ⚠️ 39차: t(소속)·injOut 이 동기화 목록에 **없었다** — 손으로 유지되는 이중 소스였다.
+    # 실제로 DeRozan 소속이 툴에 교정 전 값(GSW)으로 남아 화면에 떴다.
+    #
+    # ⚠️ note 는 동기화하지 않는다. 툴의 note 는 players.json 에 없는 손으로 쓴 분석이고
+    #    (151명), 동기화 대상에 넣으면 전부 삭제된다 — 실제로 그렇게 만들어 되돌렸다.
+    # ⚠️ flag 는 **json 에 값이 있을 때만** 덮어쓴다. 툴에만 있는 경고 15건이 있어서
+    #    무조건 동기화하면 그것들이 지워진다. 즉 flag 는 아직 단일 소스가 아니다.
+    new=re.sub(r'\bt:"[^"]*"','t:"%s"'%q.get("team",""),new,count=1)
+    if q.get("flag"):
+        esc=q["flag"].replace('\\','\\\\').replace('"','\\"')
+        rep=',flag:"%s"'%esc
+        pat=re.compile(r',flag:"(?:[^"\\]|\\.)*"')
+        new=pat.sub(lambda _:rep,new,count=1) if pat.search(new) \
+            else new[:new.rstrip().rfind('}')]+rep+'}'
+    # injOut: 부재가 곧 false다. 은퇴·장기부상 어느 쪽이든 같은 제외 기구를 쓴다.
+    new=re.sub(r',injOut:true','',new,count=1)
+    if q.get("injury_exclude"):
+        new=new[:new.rstrip().rfind('}')]+',injOut:true}'
     lf=(q.get("measured_line_full") or {}).get("line")
     if lf:
         esc=lf.replace('\\','\\\\').replace('"','\\"')

@@ -1160,6 +1160,6 @@ try:
 except Exception as _ex25:
     print("✗ [I25] players.csv 대조 실패: %r" % (_ex25,)); err+=1
 
-print("장기 부상 제외 대상: %s"%(", ".join(sorted(INJ)) or "없음"))
+print("획득 제외 대상(부상·은퇴): %s"%(", ".join(sorted(INJ)) or "없음"))
 print("총 위반: %d건%s"%(err, " · 치환필요 %d건(치명 아님)"%warn if warn else ""))
 sys.exit(1 if err else 0)
