@@ -79,9 +79,10 @@ for ln in m.group(2).split("\n"):
     #    144건·경고 15건이 있어서 무조건 동기화하면 전부 삭제된다 — 실제로 그렇게 만들어
     #    되돌렸다. 즉 둘은 아직 단일 소스가 아니다(시즌 후 과제).
     new=re.sub(r'\bt:"[^"]*"','t:"%s"'%q.get("team",""),new,count=1)
-    for _k in ("flag","note"):
-        if not q.get(_k): continue
-        esc=q[_k].replace('\\','\\\\').replace('"','\\"')
+    # (툴 키, players.json 키). lev 는 19:19 로 정확히 대응한다.
+    for _k, _jk in (("flag","flag"), ("note","note"), ("lev","volume_leverage")):
+        if not q.get(_jk): continue
+        esc=q[_jk].replace('\\','\\\\').replace('"','\\"')
         rep=',%s:"%s"'%(_k,esc)
         pat=re.compile(r',%s:"(?:[^"\\]|\\.)*"'%_k)
         new=pat.sub(lambda _:rep,new,count=1) if pat.search(new) else ins(new, rep)

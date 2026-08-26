@@ -1262,47 +1262,45 @@
   {
    "id": "c2",
    "name": "코어 2 · Jokić 압축",
-   "premise": "Jokić가 AST·A/T(+0.241)를 공급하므로 PG를 최저가로 때우고 Derrick White를 붙인다.\n\n🔴 **39차 판정: c2는 승률로는 7코어 중 최하위다** (79.2% · c6 87.5% 대비 −8.3%p).\n겹침 제약 하에서 재설계를 탐색했고 **84~85%에서 수렴**했다 — c6에 −2.5~3.5%p 부족하고\n최저 승률은 −5%p 이상 부족하다. **재설계로 개선되지 않는다.**\n그리고 **Jokić가 싸게 나와도 c6를 짓는 것이 낫다** — Jokić 할인은 c6의 승률을 바꾸지\n않는다(c6는 그를 쓰지 않는다). 즉 이 분기는 조건이 충족돼도 갈 이유가 없다.\n\n**남겨두는 이유는 승률이 아니라 집합 수준 역할이다** — Dyson Daniels를 안 쓰는 유일한\n코어이고(⑤′ · `core_set_escape_paths_39`), 폐기하면 그의 비의존 경로가 0이 된다.\n다만 Daniels를 못 잡을 확률이 ~0.06이므로 **그 보험의 값어치도 ~0에 가깝다.**\n그래서 재설계도 폐기도 하지 않는다 — 셋 다 값이 없어 **아무것도 하지 않는 것이 맞다.**",
+   "premise": "Jokić 한 칸이 빅맨 캣(REB 12.8 · OREB 3.0 · DD)과 가드 캣(AST 10.5 · A/T +0.241)을 동시에 주므로, 나머지 8칸을 **전부 시장 저평가 구간**에서 채운다. $39 Derrick White 하나만 중가이고 $22 Bane 아래로는 전원 $12 이하다.\n\n🔴 **39차에 base를 전면 교체했다.** 구 c2(Şengün·Gobert·THJ·Nembhard·Merrill)는 실측 79.2%로 7코어 최하위였다. 실제 12팀 목적함수로 재탐색해 **89.3% / 최저 75.0%** 안을 얻었고 평가 세션이 독립 재현(3시드 전부 c6 초과)으로 승인했다. **공식 시뮬 재실행(6000시행 · seed 20261020) 결과 88.9% / 최저 74.1% 로 전 코어 1위다** — c6 87.5% / 71.6%. 다만 조건부이므로 기본값은 여전히 c6다.\n\n이 코어는 **KAT를 쓰지 않는다** — KAT가 과열되는 세계에서 쓸 수 있는 두 번째 갈래다.",
    "targeted_cats": [
+    "3P%",
+    "3PM",
     "A/T",
     "AST",
     "BLK",
     "DD",
     "FG%",
+    "FT%",
     "OREB",
     "PTS",
     "REB",
+    "STL",
     "TOV"
    ],
-   "punted_cats": [
-    "3P%",
-    "3PM",
-    "FT%",
-    "STL"
-   ],
+   "punted_cats": [],
    "single_player_cap": null,
    "big_budget_cap": 153,
-   "big_budget_planned": 143,
-   "c_eligible_count": 4,
-   "planned_total": 196,
+   "big_budget_planned": 127,
+   "c_eligible_count": 5,
+   "planned_total": 192,
    "slots": [
     {
      "slot": "C",
-     "role": "앵커 (실패 시 코어 전환)",
-     "is_anchor": true,
-     "plan_price": 97,
+     "role": "앵커 · REB 12.8 · AST 10.5 · A/T +0.241 · 빅맨/가드 캣 동시 보유",
      "candidates": [
       {
        "name": "Nikola Jokić",
-       "plan_price": 97,
        "bid_ceiling": 97,
-       "expected_cost": 97
+       "expected_cost": 97,
+       "plan_price": 97
       }
      ],
+     "is_anchor": true,
      "anchor_plan": {
       "bid_ceiling": 97,
       "nominal_margin": 0,
-      "budget_slack": 4,
+      "budget_slack": 8,
       "effective_headroom": 0,
       "constraint": "my_max",
       "dual_world_ok": true,
@@ -1314,263 +1312,246 @@
       }
      },
      "bid_ceiling": 97,
-     "expected_cost": 97
+     "expected_cost": 97,
+     "plan_price": 97
     },
     {
      "slot": "SG",
-     "role": "A/T +0.171 · FT% 90.2% · BLK 1.3",
-     "is_anchor": true,
-     "plan_price": 39,
+     "role": "3PM 3.0 (3PA 8.6) · BLK 1.2 · A/T w3",
      "candidates": [
       {
        "name": "Derrick White",
-       "plan_price": 39,
        "bid_ceiling": 44,
-       "expected_cost": 39
+       "expected_cost": 39,
+       "plan_price": 39
       },
       {
-       "name": "De'Aaron Fox",
-       "plan_price": 24,
-       "total_if_used": 181,
-       "redeploy": null,
-       "bid_ceiling": 24,
-       "expected_cost": 24
+       "name": "Trey Murphy III",
+       "bid_ceiling": 32,
+       "expected_cost": 32,
+       "plan_price": 32,
+       "total_if_used": 185,
+       "redeploy": null
       },
       {
-       "name": "Dennis Schröder",
-       "plan_price": 5,
-       "total_if_used": 162,
-       "redeploy": {
-        "moves": [
-         {
-          "player": "Donovan Clingan",
-          "slot": "UTIL",
-          "from": 12,
-          "to": 22
-         },
-         {
-          "player": "Tim Hardaway Jr.",
-          "slot": "SF",
-          "from": 2,
-          "to": 5
-         }
-        ],
-        "total_after": 175,
-        "feasible": true
-       },
-       "bid_ceiling": 12,
-       "expected_cost": 5
+       "name": "Nickeil Alexander-Walker",
+       "bid_ceiling": 27,
+       "expected_cost": 22,
+       "plan_price": 22,
+       "total_if_used": 175,
+       "redeploy": null
       }
      ],
+     "is_anchor": true,
      "anchor_plan": {
       "bid_ceiling": 52,
-      "nominal_margin": 13,
-      "budget_slack": 4,
-      "effective_headroom": 4,
       "constraint": "budget",
-      "dual_world_ok": true,
-      "substitutes_dual_ok": [
-       "De'Aaron Fox",
-       "Dennis Schröder"
-      ],
       "on_fail": {
        "action": "substitute",
-       "target": "De'Aaron Fox",
+       "target": "Trey Murphy III",
        "note": "코어 내 치환 — 코어 전환 불필요. 이중세계 유효 대체 2명"
-      }
+      },
+      "substitutes_dual_ok": [
+       "Trey Murphy III",
+       "Nickeil Alexander-Walker"
+      ],
+      "nominal_margin": 13,
+      "budget_slack": 8,
+      "effective_headroom": 8,
+      "dual_world_ok": true
      },
      "bid_ceiling": 44,
-     "expected_cost": 39
-    },
-    {
-     "slot": "PF",
-     "role": "OREB 3.0 · DD 34 · AST",
-     "is_anchor": false,
-     "plan_price": 26,
-     "candidates": [
-      {
-       "name": "Alperen Şengün",
-       "plan_price": 26,
-       "bid_ceiling": 34,
-       "expected_cost": 26
-      },
-      {
-       "name": "Evan Mobley",
-       "plan_price": 23,
-       "bid_ceiling": 30,
-       "expected_cost": 23
-      }
-     ],
-     "bid_ceiling": 34,
-     "expected_cost": 26
-    },
-    {
-     "slot": "UTIL",
-     "role": "OREB 4.5 리그 1위",
-     "is_anchor": false,
-     "plan_price": 12,
-     "candidates": [
-      {
-       "name": "Donovan Clingan",
-       "plan_price": 12,
-       "bid_ceiling": 22,
-       "expected_cost": 12
-      },
-      {
-       "name": "Rudy Gobert",
-       "plan_price": 8,
-       "bid_ceiling": 18,
-       "expected_cost": 8
-      },
-      {
-       "name": "Mitchell Robinson",
-       "plan_price": 5,
-       "bid_ceiling": 12,
-       "expected_cost": 5
-      }
-     ],
-     "bid_ceiling": 22,
-     "expected_cost": 12
-    },
-    {
-     "slot": "UTIL",
-     "role": "OREB+BLK+DD 빅",
-     "is_anchor": false,
-     "plan_price": 8,
-     "candidates": [
-      {
-       "name": "Rudy Gobert",
-       "plan_price": 8,
-       "bid_ceiling": 18,
-       "expected_cost": 8
-      },
-      {
-       "name": "Ivica Zubac",
-       "plan_price": 11,
-       "bid_ceiling": 16,
-       "expected_cost": 11
-      },
-      {
-       "name": "Mark Williams",
-       "plan_price": 7,
-       "bid_ceiling": 14,
-       "expected_cost": 7
-      }
-     ],
-     "bid_ceiling": 18,
-     "expected_cost": 8
-    },
-    {
-     "slot": "BN",
-     "role": "3PT% 레버리지 3위 · 3PM 3.0",
-     "is_anchor": false,
-     "plan_price": 2,
-     "candidates": [
-      {
-       "name": "Sam Merrill",
-       "plan_price": 2,
-       "bid_ceiling": 8,
-       "expected_cost": 2
-      },
-      {
-       "name": "AJ Green",
-       "plan_price": 2,
-       "bid_ceiling": 11,
-       "expected_cost": 2
-      },
-      {
-       "name": "Miles McBride",
-       "plan_price": 2,
-       "bid_ceiling": 9,
-       "expected_cost": 2
-      }
-     ],
-     "bid_ceiling": 8,
-     "expected_cost": 2
+     "expected_cost": 39,
+     "plan_price": 39
     },
     {
      "slot": "SF",
-     "role": "3PM 고볼륨 저가",
-     "is_anchor": false,
-     "plan_price": 2,
+     "role": "FT% 90.3% w3 · 7캣 폭 · PTS 19.8 — 3PT 스페셜리스트가 아니다",
      "candidates": [
       {
-       "name": "Tim Hardaway Jr.",
-       "plan_price": 2,
-       "bid_ceiling": 10,
-       "expected_cost": 2
+       "name": "Desmond Bane",
+       "bid_ceiling": 31,
+       "expected_cost": 22,
+       "plan_price": 22
       },
       {
-       "name": "Duncan Robinson",
-       "plan_price": 2,
-       "bid_ceiling": 9,
-       "expected_cost": 2
+       "name": "DeMar DeRozan",
+       "bid_ceiling": 16,
+       "expected_cost": 8,
+       "plan_price": 8
+      },
+      {
+       "name": "OG Anunoby",
+       "bid_ceiling": 18,
+       "expected_cost": 14,
+       "plan_price": 14
+      }
+     ],
+     "bid_ceiling": 31,
+     "expected_cost": 22,
+     "plan_price": 22
+    },
+    {
+     "slot": "PF",
+     "role": "$5 빅 · BLK 1.0 · OREB 2.3 · FG% 51.5%",
+     "candidates": [
+      {
+       "name": "Onyeka Okongwu",
+       "bid_ceiling": 10,
+       "expected_cost": 5,
+       "plan_price": 5
+      },
+      {
+       "name": "Jaden McDaniels",
+       "bid_ceiling": 10,
+       "expected_cost": 5,
+       "plan_price": 5
       },
       {
        "name": "Royce O'Neale",
-       "plan_price": 2,
        "bid_ceiling": 8,
-       "expected_cost": 2
+       "expected_cost": 2,
+       "plan_price": 2
       }
      ],
      "bid_ceiling": 10,
-     "expected_cost": 2
+     "expected_cost": 5,
+     "plan_price": 5
     },
     {
      "slot": "PG",
-     "role": "A/T 다트",
-     "is_anchor": false,
-     "plan_price": 2,
+     "role": "$2 가드 · 3P% 40.8% w3 · A/T w2",
      "candidates": [
       {
-       "name": "Andrew Nembhard",
-       "plan_price": 2,
-       "bid_ceiling": 6,
-       "expected_cost": 2
-      },
-      {
-       "name": "Cam Spencer",
-       "plan_price": 2,
-       "bid_ceiling": 6,
-       "expected_cost": 2
-      },
-      {
-       "name": "Davion Mitchell",
-       "plan_price": 2,
+       "name": "Collin Gillespie",
        "bid_ceiling": 4,
-       "expected_cost": 2
+       "expected_cost": 2,
+       "plan_price": 2
+      },
+      {
+       "name": "Cason Wallace",
+       "bid_ceiling": 8,
+       "expected_cost": 3,
+       "plan_price": 3
+      },
+      {
+       "name": "Jordan Goodwin",
+       "bid_ceiling": 4,
+       "expected_cost": 2,
+       "plan_price": 2
       }
      ],
-     "bid_ceiling": 6,
-     "expected_cost": 2
+     "bid_ceiling": 4,
+     "expected_cost": 2,
+     "plan_price": 2
     },
     {
-     "slot": "BN",
-     "role": "A/T +0.142 · FT% 엘리트 — $8 저가 가드",
-     "is_anchor": false,
-     "plan_price": 8,
+     "slot": "UTIL",
+     "role": "저가 센터 · OREB 4.0 · BLK 1.7 · REB 10.2",
      "candidates": [
       {
-       "name": "DeMar DeRozan",
-       "plan_price": 8,
-       "bid_ceiling": 16,
-       "expected_cost": 8
+       "name": "Donovan Clingan",
+       "bid_ceiling": 22,
+       "expected_cost": 12,
+       "plan_price": 12
       },
       {
-       "name": "Moussa Diabaté",
-       "plan_price": 2,
+       "name": "Myles Turner",
+       "bid_ceiling": 18,
+       "expected_cost": 14,
+       "plan_price": 14
+      },
+      {
+       "name": "Brook Lopez",
        "bid_ceiling": 6,
-       "expected_cost": 2
+       "expected_cost": 2,
+       "plan_price": 2
+      }
+     ],
+     "bid_ceiling": 22,
+     "expected_cost": 12,
+     "plan_price": 12
+    },
+    {
+     "slot": "UTIL",
+     "role": "저가 센터 · FG% 61.4% w3 · REB 11.7 · OREB 3.6",
+     "candidates": [
+      {
+       "name": "Ivica Zubac",
+       "bid_ceiling": 16,
+       "expected_cost": 11,
+       "plan_price": 11
       },
       {
-       "name": "Ryan Kalkbrenner",
-       "plan_price": 2,
-       "bid_ceiling": 8,
-       "expected_cost": 2
+       "name": "Kel'el Ware",
+       "bid_ceiling": 4,
+       "expected_cost": 2,
+       "plan_price": 2
+      },
+      {
+       "name": "Rui Hachimura",
+       "bid_ceiling": 4,
+       "expected_cost": 2,
+       "plan_price": 2
       }
      ],
      "bid_ceiling": 16,
-     "expected_cost": 8
+     "expected_cost": 11,
+     "plan_price": 11
+    },
+    {
+     "slot": "BN",
+     "role": "$2 빅 · REB 9.1 · 3PM 1.7 보유 센터",
+     "candidates": [
+      {
+       "name": "Nikola Vučević",
+       "bid_ceiling": 8,
+       "expected_cost": 2,
+       "plan_price": 2
+      },
+      {
+       "name": "Brook Lopez",
+       "bid_ceiling": 6,
+       "expected_cost": 2,
+       "plan_price": 2
+      },
+      {
+       "name": "Andrew Wiggins",
+       "bid_ceiling": 6,
+       "expected_cost": 2,
+       "plan_price": 2
+      }
+     ],
+     "bid_ceiling": 8,
+     "expected_cost": 2,
+     "plan_price": 2
+    },
+    {
+     "slot": "BN",
+     "role": "$2 가드 · A/T w3 · 3PM 2.5",
+     "candidates": [
+      {
+       "name": "Immanuel Quickley",
+       "bid_ceiling": 5,
+       "expected_cost": 2,
+       "plan_price": 2
+      },
+      {
+       "name": "Cason Wallace",
+       "bid_ceiling": 8,
+       "expected_cost": 3,
+       "plan_price": 3
+      },
+      {
+       "name": "Royce O'Neale",
+       "bid_ceiling": 8,
+       "expected_cost": 2,
+       "plan_price": 2
+      }
+     ],
+     "bid_ceiling": 5,
+     "expected_cost": 2,
+     "plan_price": 2
     }
    ],
    "pivot_plan": {
@@ -1580,381 +1561,199 @@
       "rule": "> $22"
      },
      {
-      "player": "Rudy Gobert",
-      "rule": "> $18"
+      "player": "Ivica Zubac",
+      "rule": "> $16"
      }
     ],
-    "rationale": "Jokić가 REB·OREB·DD를 혼자 상당 부분 커버하므로 빅맨 수를 줄이는 여지가 가장 크다. UTIL 한 칸을 3P% 윙(AJ Green)으로 전환.",
+    "rationale": "🔴 **빠진 예산을 채우는 것이 아니라 그 슬롯에서 최선을 다시 고른다**(39차 원칙). base의 유일한 얇은 캣이 STL(+0.100)이고, 저가 센터 두 칸이 과열되면 REB·OREB·BLK는 Jokić·Okongwu·Vučević로 이미 과잉이다. 그래서 한 칸을 **STL 실측 1위 Dyson Daniels(2.4)** 로 돌려 얇은 캣을 두껍게 하고, 다른 칸은 같은 기능의 최저가 센터 **Kel'el Ware $2**(OREB 2.4 · BLK 1.1 · FG% 53.9%)로 대체한다. $2~5 잡부로 때우지 않는다.\n\n실측(4000시행 · 실제 12팀): **87.9% / maximin 40.0%** · 총액 $183 · 예비비 $17. 구 c2 피벗은 56.3%(최저 36.9%)로 14개 플랜 중 유일한 30%대였다. 차선 Gobert·DeRozan은 maximin 41.5%로 더 높지만 평균 87.3%로 낮아, 1차 지표(실제 12팀 평균)에 따라 Daniels·Ware를 채택했다.",
     "swaps": [
      {
       "slot": "UTIL",
       "out": {
        "name": "Donovan Clingan",
-       "plan_price": 12,
        "bid_ceiling": 22,
-       "expected_cost": 12
+       "expected_cost": 12,
+       "plan_price": 12
       },
       "in": {
-       "name": "Mitchell Robinson",
-       "plan_price": 5,
-       "bid_ceiling": 12,
-       "expected_cost": 5
+       "name": "Dyson Daniels",
+       "bid_ceiling": 20,
+       "expected_cost": 12,
+       "plan_price": 12
       },
-      "delta": -6,
-      "kind": "교체"
+      "kind": "과열 회피 → STL 보강"
      },
      {
       "slot": "UTIL",
       "out": {
-       "name": "Rudy Gobert",
-       "plan_price": 8,
-       "bid_ceiling": 18,
-       "expected_cost": 8
+       "name": "Ivica Zubac",
+       "bid_ceiling": 16,
+       "expected_cost": 11,
+       "plan_price": 11
       },
       "in": {
-       "name": "AJ Green",
-       "plan_price": 2,
-       "bid_ceiling": 11,
-       "expected_cost": 2
+       "name": "Kel'el Ware",
+       "bid_ceiling": 4,
+       "expected_cost": 2,
+       "plan_price": 2
       },
-      "delta": -8,
-      "kind": "교체"
-     },
-     {
-      "slot": "PF",
-      "out": {
-       "name": "Alperen Şengün",
-       "plan_price": 26,
-       "bid_ceiling": 34,
-       "expected_cost": 26
-      },
-      "in": {
-       "name": "Alperen Şengün",
-       "plan_price": 26,
-       "bid_ceiling": 34,
-       "expected_cost": 26
-      },
-      "delta": 3,
-      "kind": "가격 상향"
-     },
-     {
-      "slot": "SF",
-      "out": {
-       "name": "Tim Hardaway Jr.",
-       "plan_price": 2,
-       "bid_ceiling": 10,
-       "expected_cost": 2
-      },
-      "in": {
-       "name": "Duncan Robinson",
-       "plan_price": 2,
-       "bid_ceiling": 9,
-       "expected_cost": 2
-      },
-      "delta": 2,
-      "kind": "교체"
+      "kind": "과열 회피 → 동기능 최저가 센터"
      }
     ],
     "final_roster": [
      {
       "slot": "C",
       "name": "Nikola Jokić",
-      "plan_price": 97,
-      "role": "앵커 (실패 시 코어 전환)",
-      "is_anchor": true,
+      "role": "앵커 · REB 12.8 · AST 10.5 · A/T +0.241 · 빅맨/가드 캣 동시 보유",
       "bid_ceiling": 97,
       "expected_cost": 97,
+      "plan_price": 97,
       "dual_world_ok": true
      },
      {
       "slot": "SG",
       "name": "Derrick White",
-      "plan_price": 39,
-      "role": "A/T +0.171 · FT% 90.2% · BLK 1.3",
-      "is_anchor": true,
+      "role": "3PM 3.0 (3PA 8.6) · BLK 1.2 · A/T w3",
       "bid_ceiling": 44,
       "expected_cost": 39,
-      "alternates": [
-       {
-        "name": "De'Aaron Fox",
-        "plan_price": 24,
-        "total_if_used": 168,
-        "redeploy": {
-         "moves": [
-          {
-           "player": "Donovan Clingan",
-           "slot": "UTIL",
-           "from": 12,
-           "to": 15
-          }
-         ],
-         "total_after": 175,
-         "feasible": true
-        },
-        "bid_ceiling": 24,
-        "expected_cost": 24
-       },
-       {
-        "name": "Dennis Schröder",
-        "plan_price": 5,
-        "total_if_used": 149,
-        "redeploy": {
-         "moves": [
-          {
-           "player": "Donovan Clingan",
-           "slot": "UTIL",
-           "from": 12,
-           "to": 22
-          },
-          {
-           "player": "Rudy Gobert",
-           "slot": "UTIL",
-           "from": 8,
-           "to": 17
-          },
-          {
-           "player": "Tim Hardaway Jr.",
-           "slot": "SF",
-           "from": 2,
-           "to": 5
-          }
-         ],
-         "total_after": 175,
-         "feasible": true
-        },
-        "bid_ceiling": 12,
-        "expected_cost": 5
-       }
-      ],
-      "dual_world_ok": true
-     },
-     {
-      "slot": "PF",
-      "name": "Alperen Şengün",
-      "plan_price": 26,
-      "role": "OREB 3.0 · DD 34 · AST",
-      "bid_ceiling": 34,
-      "expected_cost": 26,
-      "alternates": [
-       {
-        "name": "Evan Mobley",
-        "plan_price": 23,
-        "bid_ceiling": 30,
-        "expected_cost": 23,
-        "total_if_used": 180
-       }
-      ],
-      "dual_world_ok": true
-     },
-     {
-      "slot": "UTIL",
-      "name": "Mitchell Robinson",
-      "plan_price": 5,
-      "role": "OREB 4.5 리그 1위",
-      "bid_ceiling": 12,
-      "expected_cost": 5,
-      "alternates": [
-       {
-        "name": "Ivica Zubac",
-        "plan_price": 11,
-        "bid_ceiling": 16,
-        "expected_cost": 11,
-        "total_if_used": 189
-       },
-       {
-        "name": "Mark Williams",
-        "plan_price": 7,
-        "bid_ceiling": 14,
-        "expected_cost": 7,
-        "total_if_used": 185
-       }
-      ],
-      "dual_world_ok": true
-     },
-     {
-      "slot": "UTIL",
-      "name": "AJ Green",
-      "plan_price": 2,
-      "role": "OREB+BLK+DD 빅",
-      "bid_ceiling": 11,
-      "expected_cost": 2,
-      "alternates": [
-       {
-        "name": "Ivica Zubac",
-        "plan_price": 11,
-        "bid_ceiling": 16,
-        "expected_cost": 11,
-        "total_if_used": 192
-       },
-       {
-        "name": "Mark Williams",
-        "plan_price": 7,
-        "bid_ceiling": 14,
-        "expected_cost": 7,
-        "total_if_used": 188
-       }
-      ],
-      "dual_world_ok": true
-     },
-     {
-      "slot": "BN",
-      "name": "Sam Merrill",
-      "plan_price": 2,
-      "role": "3PT% 레버리지 3위 · 3PM 3.0",
-      "bid_ceiling": 8,
-      "expected_cost": 2,
-      "alternates": [
-       {
-        "name": "Moussa Diabaté",
-        "plan_price": 2,
-        "bid_ceiling": 6,
-        "expected_cost": 2,
-        "total_if_used": 183
-       },
-       {
-        "name": "Ryan Kalkbrenner",
-        "plan_price": 2,
-        "bid_ceiling": 8,
-        "expected_cost": 2,
-        "total_if_used": 183
-       }
-      ],
+      "plan_price": 39,
       "dual_world_ok": true
      },
      {
       "slot": "SF",
-      "name": "Duncan Robinson",
-      "plan_price": 2,
-      "role": "3PM 고볼륨 저가",
-      "bid_ceiling": 9,
-      "expected_cost": 2,
-      "alternates": [
-       {
-        "name": "Royce O'Neale",
-        "plan_price": 2,
-        "bid_ceiling": 8,
-        "expected_cost": 2,
-        "total_if_used": 183
-       }
-      ],
+      "name": "Desmond Bane",
+      "role": "FT% 90.3% w3 · 7캣 폭 · PTS 19.8 — 3PT 스페셜리스트가 아니다",
+      "bid_ceiling": 31,
+      "expected_cost": 22,
+      "plan_price": 22,
+      "dual_world_ok": true
+     },
+     {
+      "slot": "PF",
+      "name": "Onyeka Okongwu",
+      "role": "$5 빅 · BLK 1.0 · OREB 2.3 · FG% 51.5%",
+      "bid_ceiling": 10,
+      "expected_cost": 5,
+      "plan_price": 5,
       "dual_world_ok": true
      },
      {
       "slot": "PG",
-      "name": "Andrew Nembhard",
-      "plan_price": 2,
-      "role": "A/T 다트",
-      "bid_ceiling": 6,
+      "name": "Collin Gillespie",
+      "role": "$2 가드 · 3P% 40.8% w3 · A/T w2",
+      "bid_ceiling": 4,
       "expected_cost": 2,
-      "alternates": [
-       {
-        "name": "Cam Spencer",
-        "plan_price": 2,
-        "bid_ceiling": 6,
-        "expected_cost": 2,
-        "total_if_used": 183
-       },
-       {
-        "name": "Davion Mitchell",
-        "plan_price": 2,
-        "bid_ceiling": 4,
-        "expected_cost": 2,
-        "total_if_used": 183
-       }
-      ],
+      "plan_price": 2,
+      "dual_world_ok": true
+     },
+     {
+      "slot": "UTIL",
+      "name": "Dyson Daniels",
+      "role": "STL 2.4 실측 1위 · A/T w3 · OREB 2.1",
+      "bid_ceiling": 20,
+      "expected_cost": 12,
+      "plan_price": 12,
+      "dual_world_ok": true
+     },
+     {
+      "slot": "UTIL",
+      "name": "Kel'el Ware",
+      "role": "$2 센터 · OREB 2.4 · BLK 1.1 · FG% 53.9%",
+      "bid_ceiling": 4,
+      "expected_cost": 2,
+      "plan_price": 2,
       "dual_world_ok": true
      },
      {
       "slot": "BN",
-      "name": "DeMar DeRozan",
-      "plan_price": 8,
-      "role": "A/T +0.142 · FT% 엘리트 — $8 저가 가드",
-      "bid_ceiling": 16,
-      "expected_cost": 8,
-      "alternates": [
-       {
-        "name": "Moussa Diabaté",
-        "plan_price": 2,
-        "bid_ceiling": 6,
-        "expected_cost": 2,
-        "total_if_used": 177
-       },
-       {
-        "name": "Ryan Kalkbrenner",
-        "plan_price": 2,
-        "bid_ceiling": 8,
-        "expected_cost": 2,
-        "total_if_used": 177
-       }
-      ],
+      "name": "Nikola Vučević",
+      "role": "$2 빅 · REB 9.1 · 3PM 1.7 보유 센터",
+      "bid_ceiling": 8,
+      "expected_cost": 2,
+      "plan_price": 2,
+      "dual_world_ok": true
+     },
+     {
+      "slot": "BN",
+      "name": "Immanuel Quickley",
+      "role": "$2 가드 · A/T w3 · 3PM 2.5",
+      "bid_ceiling": 5,
+      "expected_cost": 2,
+      "plan_price": 2,
       "dual_world_ok": true
      }
     ],
+    "redesign_39": {
+     "at": "39차 · base 전면 교체와 함께 재설계",
+     "measured": "4000시행 · 실제 12팀 · 같은 난수 스트림 · tool/pivot_search.py c2",
+     "candidates": "Daniels·Ware 87.9/40.0 · Gobert·J.McDaniels 87.6/39.4 · Gobert·DeRozan 87.3/41.5 · Gobert·Bridges 87.2/35.5",
+     "old": "구 피벗 56.3% (최저 36.9%) — 14개 플랜 중 유일한 30%대",
+     "note": "⚠️ 탐색 출력의 「(현행 피벗) 88.9%」는 **트리거 선수가 그대로 남은 자리표시자**였다 (I24 위반). 피벗으로 쓸 수 없는 값이므로 비교 대상이 아니다."
+    },
     "final_total": 183,
-    "final_big_budget": 128,
-    "final_c_eligible": 3,
+    "final_big_budget": 106,
+    "final_c_eligible": 4,
     "targeted_cats": [
      "3P%",
      "3PM",
      "A/T",
      "AST",
-     "DD",
-     "OREB",
-     "TOV"
-    ],
-    "punted_cats": [
      "BLK",
+     "DD",
      "FG%",
      "FT%",
+     "OREB",
      "PTS",
      "REB",
-     "STL"
+     "STL",
+     "TOV"
     ],
+    "punted_cats": [],
     "cat_marginals": {
      "starters": 9,
      "PTS": {
-      "sum": 135.4,
-      "marginal": -4.6,
-      "verdict": "미달"
+      "sum": 146.8,
+      "marginal": 6.4,
+      "verdict": "확보"
      },
      "TOV": {
-      "sum": 14.6,
-      "marginal": 1.7,
+      "sum": 16.0,
+      "marginal": 0.2,
       "verdict": "확보"
      },
      "all": {
-      "PTS": -4.6,
-      "REB": -2.4,
-      "OREB": 0.2,
-      "AST": 4.7,
-      "STL": -0.4,
-      "BLK": -0.7,
-      "TOV": 1.7,
-      "3PM": 1.5,
-      "DD": 0.1,
-      "3P%": 41.0,
-      "FT%": -9.8,
-      "FG%": -21.3,
-      "A/T": 0.654
+      "PTS": 6.4,
+      "REB": 10.8,
+      "OREB": 3.2,
+      "AST": 8.2,
+      "STL": 2.0,
+      "BLK": 0.4,
+      "TOV": 0.2,
+      "3PM": 2.5,
+      "DD": 0.5,
+      "3P%": 22.9,
+      "FT%": 35.9,
+      "FG%": 31.8,
+      "A/T": 0.625
      },
-     "wins_incl_dd": 7
+     "wins_incl_dd": 13
     }
    },
-   "budget_slack": 4,
+   "budget_slack": 8,
    "cat_weight_sums": {
-    "PTS": 5,
-    "FG%": 11,
-    "3PM": 8,
-    "3P%": 6,
+    "PTS": 4,
+    "FG%": 12,
+    "3PM": 10,
+    "3P%": 9,
     "FT%": 9,
-    "REB": 12,
-    "OREB": 12,
-    "AST": 11,
-    "STL": 4,
-    "BLK": 12,
-    "DD": 6,
-    "A/T": 15,
-    "TOV": 10
+    "REB": 14,
+    "OREB": 13,
+    "AST": 9,
+    "STL": 6,
+    "BLK": 11,
+    "DD": 8,
+    "A/T": 13,
+    "TOV": 7
    },
    "targeted_cats_by_rule": [
     "3P%",
@@ -1967,14 +1766,11 @@
     "FT%",
     "OREB",
     "REB",
+    "STL",
     "TOV"
    ],
    "rule_divergence": {
-    "punted_but_rule_says_secured": [
-     "3P%",
-     "3PM",
-     "FT%"
-    ],
+    "punted_but_rule_says_secured": [],
     "declared_but_rule_says_short": [
      "PTS"
     ],
@@ -1982,63 +1778,62 @@
    },
    "tov_team_marginal": {
     "starters_counted": 9,
-    "starters_tov_sum": 15.2,
-    "vs_opponent_baseline": 1.0,
-    "weight_sum": 10,
+    "starters_tov_sum": 16.1,
+    "vs_opponent_baseline": 0.4,
+    "weight_sum": 7,
     "declaration": "목표",
     "verdict": "확보",
     "note": "가중치 합(≥6=확보) 규칙은 1~3 양수만 있어 'TOV를 흘리는 선수'를 음수로 표현하지 못한다. 이 필드가 실제 판정이다."
    },
    "pts_team_marginal": {
     "starters_counted": 9,
-    "starters_pts_sum": 142.7,
-    "vs_opponent_baseline": 3.6,
-    "weight_sum": 5,
+    "starters_pts_sum": 149.1,
+    "vs_opponent_baseline": 6.6,
+    "weight_sum": 4,
     "declaration": "목표",
     "verdict": "확보",
     "note": "PTS는 많을수록 좋으므로 한계기여 = 실측 − 기준선. 두 기준선 모두에서 판정 동일."
    },
    "cat_team_marginals": {
-    "PTS": 3.6,
-    "REB": 9.3,
-    "OREB": 4.2,
-    "AST": 5.0,
-    "STL": -0.3,
+    "PTS": 6.6,
+    "REB": 15.7,
+    "OREB": 5.5,
+    "AST": 6.1,
+    "STL": 0.1,
     "BLK": 1.2,
-    "TOV": 1.0,
-    "3PM": -0.4,
-    "DD": 0.8,
-    "3P%": -11.0,
-    "FT%": -76.7,
-    "FG%": 93.8,
-    "A/T": 0.527
+    "TOV": 0.4,
+    "3PM": 1.8,
+    "DD": 1.0,
+    "3P%": 36.5,
+    "FT%": 16.9,
+    "FG%": 111.0,
+    "A/T": 0.492
    },
    "cat_declaration_source": "18차: 선발 7명 실측 팀 한계기여로 자동 판정. DD는 실측 소스가 없어 기존 선언 유지.",
    "cat_win_summary": {
     "wins": [
+     "3P%",
+     "3PM",
      "A/T",
      "AST",
      "BLK",
      "DD",
      "FG%",
+     "FT%",
      "OREB",
      "PTS",
      "REB",
+     "STL",
      "TOV"
     ],
-    "losses": [
-     "3P%",
-     "3PM",
-     "FT%",
-     "STL"
-    ],
-    "wins_measured": 9,
+    "losses": [],
+    "wins_measured": 13,
     "cats_measured": 13,
     "dd_declared": "목표",
-    "dd_marginal": 0.8,
-    "wins_incl_dd": 9,
+    "dd_marginal": 1.0,
+    "wins_incl_dd": 13,
     "h2h_verdict": "win",
-    "bench_spend": 10,
+    "bench_spend": 4,
     "note": "13캣 전부 실측/추정 기반. DD는 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13). 승리선 7캣. **9명 전원 집계**(21차 정정) — 벤치도 매일 라인업 로테이션으로 기여한다. wins_incl_dd는 이제 wins_measured와 같다 — 24차에 DD 공짜 캣을 제거했다."
    },
    "reserve_note": "34차: 예비비 제약(>=$12) 적용. 전 슬롯을 min(시장중간, my_max)로 재가격($199→$181)하고 BN Andre Drummond $2 → DeMar DeRozan $8로 교체($187 · 예비 $13). 최소 승률 16.0% → 25.7% · 보수 혼합 41.5% → 50.6%. 앵커 Jokić는 my_max $88 < 시장 하단 $93이라 **조건부 코어 상태는 그대로**다 — 이 수치는 Jokić 할인 세계의 값이다.",
@@ -2069,6 +1864,24 @@
     },
     "why_documented": "다음 사람이 '왜 최하위인 것을 남겨두는가'를 다시 파지 않게 하려고 적는다. 지금까지 답이 없어서 39차 라운드를 통째로 썼다.",
     "same_run_confirmation": "🔒 척도 일치 확인 (같은 실행 · 실제 12팀 · 12000시행 · 시드 3종):\n  c6 (기준선)      87.5 87.4 87.3 · 최저 71.8 71.4 71.3\n  c7              86.3 86.4 86.3 · 최저 69.6 69.3 69.5\n  c2 후보 30k      84.6 84.5 84.5 · 최저 65.9 66.2 65.8\n  c2 후보 120k     84.0 83.9 84.0 · 최저 66.1 65.1 66.0\n  c2 후보 무KAT     83.6 83.7 83.7 · 최저 66.2 66.0 66.9\n  c2 현행          79.2 79.1 79.1 · 최저 60.0 59.8 60.3\n→ 세 후보 전부 ①′(c6 평균 초과 · 최저 c6−3%p 이내) **미달**. 평가 세션이 요구한 '같은 실행에서 c6 재측정'을 반영했고 척도 차이로 뒤집히지 않는다."
+   },
+   "reserve_gate_note": "🔴 예비비 $8은 **앵커 게이트(Jokić ≤ $97)가 앵커 초과 시나리오를 정의상 배제하기 때문에** 수용됐다. Jokić가 $101에 팔리면 게이트 불충족으로 c2에 진입하지 않으므로, 예비비가 앵커 초과를 흡수할 일이 없다. $8이 덮는 것은 나머지 8칸의 초과(D.White +$3 · Bane +$3 · Clingan +$4 · Zubac +$3 — 중간 슬롯 두 개까지)다.\n⚠️ **게이트를 올리면 이 근거가 무효가 되고 트림이 필요해진다. 둘을 함께 보라.** (39차 · 평가 세션 판단 — 트림하면 승률을 파는 것이라 하지 않았다)",
+   "base_redesign_39": {
+    "at": "39차 · 평가 세션 승인 (2026-08-27)",
+    "measured": "후보 89.3/89.2/89.0 · 최저 75.0/74.4/74.3 (12000시행 · 시드 3종) vs c6 87.5/71.8",
+    "evaluator": "독립 재현 2500시행 3시드: 후보 87.1/87.0/86.8 · c6 85.8/85.9/85.9 — 평균 3시드 전부 초과, 최저 최악 −0.0%p",
+    "why_search_was_wrong": "최초 탐색은 세부 포지션(BBRef 주 포지션)을 1:1로 강제해 천장이 84~85%로 보였다. BBRef는 선수당 포지션 1개인데 야후 자격은 다중이다. 검증기 규칙(PG·SG→G · SF·PF→F · C→C · UTIL/BN 무제약)으로 바꾸고 은퇴한 겹침 상한(OVERLAP_MAX)을 걷어내자 89.3%가 나왔다. 「천장 84~85% · 수렴 확인」은 **틀린 탐색 공간 안에서만** 유효했다.",
+    "old_base": [
+     "Nikola Jokić",
+     "Derrick White",
+     "Alperen Şengün",
+     "Donovan Clingan",
+     "Rudy Gobert",
+     "Sam Merrill",
+     "Tim Hardaway Jr.",
+     "Andrew Nembhard",
+     "DeMar DeRozan"
+    ]
    }
   },
   {
@@ -7145,10 +6958,10 @@
  },
  "decision_table_label_note": "⚠️ `label`은 사람이 읽는 문장이고 `cond.rules`가 판정 소스다. 39차에 rules만 고치고 label을 안 고쳐 c2($88 vs 97) · c3($72 vs 85) · c5(제거된 게이트)가 낡았다. 검증기는 label의 **존재**만 보고 내용을 대조하지 않는다 — 임계값을 바꾸면 label도 함께 고칠 것. 툴은 rules에서 문장을 생성하므로 화면은 맞았고 데이터만 갈라져 있었다.",
  "decision_strength_notes": {
-  "c6": "예비비 $9 (목표 $12 미달) · Bane 교체로 전 코어 1위 · C자격 3 (센터 의존 감소)",
+  "c6": "예비비 $9 (목표 $12 미달) · 기본값 · C자격 3 (센터 의존 감소)",
   "c1": "⚠ Hali GP 73 가정 위에서만 — GP 60이면 83.3%로 중위 아래",
   "c7": "Hali 무관 · KAT 의존 · c6와 5명 공유",
-  "c2": "7코어 중 최하 · 피벗 57.5%는 14개 플랜 중 꼴찌 (재설계 진행 중)"
+  "c2": "🔴 전 코어 1위 (조건부 — Jokić ≤ $97 게이트) · 예비비 $8 · 피벗 87.9%"
  },
  "core_set_escape_paths_39": {
   "at": "39차 · 평가 세션 ⑤′ (개별 코어 겹침 상한 → 집합 수준 검사로 교체)",
