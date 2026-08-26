@@ -75,8 +75,14 @@ FT%에도 동일 적용: Cam Spencer(94.0% 리그 1위)·Max Christie·Ajay Mitc
 
 **2차 (스탯 원본 구조화 후 이름 정규화 대조, 12명 추가)**
 리더보드에 있는데 DB에 없던 선수를 표기 정규화로 색출. 전원 2026-27 소속을 조사해 추가.
-- **DeMar DeRozan (GSW)** — `A/T 3.42 (4.1A/1.2TO)` 4+APG 그룹 3위 + FT% 86.8%.
-  **이 포맷에서 가장 아쉬운 누락** — A/T와 TOV를 동시에 주는 유형. 새크라멘토 방출(2026-07) 후 GSW 계약
+- **DeMar DeRozan (~~GSW~~ → DEN)** — `A/T 3.42 (4.1A/1.2TO)` 4+APG 그룹 3위 + FT% 86.8%.
+  **이 포맷에서 가장 아쉬운 누락** — A/T와 TOV를 동시에 주는 유형. 새크라멘토 방출(2026-07) 후
+  **덴버** FA 계약(1년 $3.9M).
+  ⚠️ 여기 적힌 "GSW 계약"은 **오류였습니다**(2026-08-26 외부 평가 세션 지적으로 정정).
+  위 문단의 *"전원 2026-27 소속을 조사해 추가"* 도 그만큼 약해집니다 — 12명 중 최소 1명이
+  틀렸고, `소속 재확인 권장` 플래그가 붙은 3명(Duncan Robinson · Bub Carrington · Ja'Kobe
+  Walter)과 `소속 미확인` 2명(Svi Mykhailiuk · Russell Westbrook)은 **여전히 미확인**입니다.
+  c6 SG 1순위·c2 BN 1순위라 영향이 있는 선수였습니다.
 - Cameron Johnson(DEN, 3PT% 43.0%) · Zach LaVine(SAC, FT% 88.0%) · Kevin Porter Jr.(MIL) ·
   Bub Carrington(WAS) · Svi Mykhailiuk · Ja'Kobe Walter(TOR) · Jrue Holiday(POR) ·
   Russell Westbrook · Jusuf Nurkić(UTA) · Dejounte Murray(NOP)

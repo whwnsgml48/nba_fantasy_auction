@@ -18,7 +18,9 @@
       <!-- GEN:<key> -->  ... 생성 구간 ...  <!-- /GEN:<key> -->
   마커가 없으면 해당 섹션의 첫 표를 찾아 마커로 감싼 뒤 교체한다(최초 1회).
 """
-import json, io, os, re, math
+import json, io, os, re, math, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import cat_model as CM
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DOC  = f"{BASE}/docs/03-player-valuations.md"
@@ -26,8 +28,22 @@ PL   = json.load(io.open(f"{BASE}/data/players.json", encoding="utf-8"))
 CB   = json.load(io.open(f"{BASE}/data/cores.json", encoding="utf-8"))["opponent_baseline"]["cat_baselines"]
 F    = json.load(io.open(f"{BASE}/data/stats_2025_26/measured_full.json", encoding="utf-8"))["players"]
 
-WEEK_GAMES = 3.5      # 주간 경기수 가정
-TEAM_3PA   = 135      # 팀 주간 3점 시도 가정 (선발 7명)
+WEEK_GAMES = CM.GAMES_PER_WEEK   # 주간 경기수 — 단일 소스는 cat_model (38차)
+# 38차: 고정값 135는 ① 주 3.5경기 가정에서 나왔고 ② `docs/10` 실측 범위(코어별
+# 77~113 @3.5경기) **밖**이었다. 분모가 실제보다 19~74% 커서 이 표의 레버리지가
+# 전원 과소 계상됐다. 이제 7코어 로스터의 실제 3PA 합 평균을 쓴다.
+def _team_3pa():
+    CJ = json.load(io.open(f"{BASE}/data/cores.json", encoding="utf-8"))
+    tot = []
+    for c in CJ["cores"]:
+        s = 0.0
+        for sl in c["slots"]:
+            r = F.get(sl["candidates"][0]["name"])
+            if r and r.get("3PA") is not None and r.get("GP"):
+                s += r["3PA"] * WEEK_GAMES * CM.avail(r)
+        tot.append(s)
+    return round(sum(tot) / len(tot), 1)
+TEAM_3PA   = _team_3pa()   # 팀 주간 3점 시도 — 7코어 실측 평균 (38차)
 
 def mid(p):  return (p["market_low"] + p["market_high"]) / 2
 def mkt(p):  return f"${p['market_low']}-{p['market_high']}"

@@ -14,7 +14,8 @@
       지분      = 내 주간 시도 / 팀 주간 시도
       레버리지  = 지분 × (내 rate − 기준선) × 100   [단위 pp]
       변동성    = √(p(1−p)/주간시도) × 100          [이항 SD]
-  주간 시도 = 경기당 시도 × 3.5경기 × 가용률(GP/82) — `cat_model.avail()`과 같은 가중.
+  주간 시도 = 경기당 시도 × 주간경기수 × 가용률(GP/82) — `cat_model.avail()`과 같은 가중.
+  주간 경기수는 `cat_model.GAMES_PER_WEEK`(3.299 · 확정 일정 실측) 단일 소스를 쓴다.
   기준선은 `cat_model.baselines()`(지명 풀 126명 · 시도량 가중)를 그대로 쓴다.
   **팀 주간 시도는 고정값이 아니라 그 코어 9명의 합이다.**
 
@@ -26,7 +27,7 @@ BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, BASE + "/tool")
 import cat_model as CM   # noqa: E402
 
-GPW = 3.5                       # 주간 경기수 (matchup_sim의 [3,4] 평균)
+GPW = CM.GAMES_PER_WEEK         # 주간 경기수 — 단일 소스는 cat_model (38차 · 3.299)
 RATE = CM.RATE                  # {"3P%":"3PA","FT%":"FTA","FG%":"FGA"}
 F = CM.F                        # measured_full 선수별 라인
 B = CM.baselines()
@@ -35,7 +36,7 @@ CORES = {c["id"]: [s["candidates"][0]["name"] for s in c["slots"]] for c in CJ["
 
 
 def att_week(name, cat):
-    """주간 시도량 = 경기당 시도 × 3.5 × 가용률."""
+    """주간 시도량 = 경기당 시도 × GAMES_PER_WEEK × 가용률."""
     r = F.get(name)
     if not r or r.get(RATE[cat]) is None or not r.get("GP"):
         return None
@@ -87,10 +88,10 @@ print("     %s 구간에 있고, 반대편 끝에서는 지분이 %.0f%% 어긋�
       % ("범위 안" if lo <= 135 <= hi else "범위 밖", abs(135 - lo) / lo * 100))
 print("     같은 선수의 3PT%% 레버리지가 코어에 따라 **최대 %.2f배** 달라진다."
       % (hi / lo))
-print("     그리고 135는 실측 최대(%.0f)보다 크므로, docs/03 표의 19명 레버리지는"
-      % hi)
-print("     전원 **과소 계상**돼 있다 (분모가 실제보다 %.0f~%.0f%% 큼)."
-      % ((135 / hi - 1) * 100, (135 / lo - 1) * 100))
+print("     135는 실측 최대(%.0f)보다 크다 — 분모가 실제보다 %.0f~%.0f%% 컸다."
+      % (hi, (135 / hi - 1) * 100, (135 / lo - 1) * 100))
+print("     ✅ docs/03은 38차에 고쳤다(gen_docs03.TEAM_3PA = 7코어 실측 평균).")
+print("     🔴 players.json의 volume_leverage 19명은 아직 옛 분모 문장을 갖고 있다.")
 
 # ── 2. 같은 선수, 다른 코어 — 로스터 의존성 실증 ──────────────────────────
 print("\n" + "=" * 74)

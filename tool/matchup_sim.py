@@ -55,7 +55,11 @@ RATE   = {"3P%":"3PA", "FT%":"FTA", "FG%":"FGA"}
 CATS   = COUNT + list(RATE) + ["A/T", "DD"]
 LOWER  = {"TOV"}
 WIN_LINE = 7            # 13캣 중 7캣이면 주간 승리
-GAMES_RANGE = (3, 4)
+# 38차: 균등 {3,4}(평균 3.5)를 **평균 3.299 가중 추첨**으로 교체했다. 확정 일정
+# 2026-10-20~2027-04-11 = 24.857주 · 82경기 → 팀당 주간 3.299경기다. 단일 소스는
+# cat_model.GAMES_PER_WEEK. ⚠️ 추첨 방식이 바뀌면 난수 소비가 달라져 **같은 시드에서도
+# 승률 절대값이 전부 변한다** — 시드 간 비교는 같은 버전끼리만 해야 한다.
+GAMES_RANGE = (3, 4)          # 지지집합 (보고용). 평균은 CM.GAMES_PER_WEEK
 
 def _draw(mu, c, rng):
     """과분산 정규 근사, 0 절단."""
@@ -88,7 +92,7 @@ def team_week_prepped(pre, rng):
     att  = {k: 0.0 for k in RATE}
     dd = 0
     for avail, cnts, rts, p_dd in pre:
-        for _ in range(rng.randint(*GAMES_RANGE)):
+        for _ in range(CM.draw_week_games(rng)):
             if rng.random() > avail: continue
             for k, mu in cnts:
                 if mu: tot[k] += max(0.0, rng.gauss(mu, C_OVER[k] * math.sqrt(mu)))
@@ -114,7 +118,7 @@ def team_week(names, rng):
         r = F.get(n)
         if not r: continue
         avail = (r.get("GP") or 0) / 82.0
-        g = rng.randint(*GAMES_RANGE)
+        g = CM.draw_week_games(rng)
         p_dd = CM.dd_game_prob(r.get("PTS"), r.get("REB"), r.get("AST"))
         for _ in range(g):
             if rng.random() > avail: continue          # 결장
@@ -399,6 +403,9 @@ if __name__ == "__main__":
     # core_hits 단일화는 증상만 막았다 — 파일을 분리해 근본을 없앤다.
     out = {"generated_by": "tool/matchup_sim.py", "seed": seed, "iterations": iters,
            "win_line": WIN_LINE, "games_per_week": list(GAMES_RANGE),
+           "games_per_week_mean": CM.GAMES_PER_WEEK,
+           "games_per_week_p4": CM.WEEK_GAMES_P4,
+           "games_per_week_basis": "확정 일정 2026-10-20~2027-04-11 = 174일 = 24.857주 · 82경기 → 3.299 (38차)",
            "overdispersion_c": C_OVER, "attempt_c": C_ATT, "big5": BIG5,
            "opponents": {k: (OPP[k] if OPP[k] not in (None, BASELINE_TEAM, FAILED) else
                              {"random": "매 시행 무작위 9인", BASELINE_TEAM: "cat_baselines 기준선 팀",

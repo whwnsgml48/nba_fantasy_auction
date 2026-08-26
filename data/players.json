@@ -26521,7 +26521,7 @@
  },
  {
   "name": "DeMar DeRozan",
-  "team": "GSW",
+  "team": "DEN",
   "pos": "G/F",
   "market_low": 4,
   "market_high": 12,
@@ -26540,11 +26540,11 @@
    "AST": 1
   },
   "measured_2025_26": "4.1A 1.2TO · A/T 3.42 (4+APG 그룹 3위) · FT% 86.8%(리그 25위)",
-  "team_change": "새크라멘토 방출(2026-07) → 골든스테이트 계약",
+  "team_change": "새크라멘토 방출(2026-07) → **덴버** FA 계약 (1년 $3.9M)",
   "volume_leverage": null,
   "at_marginal_lift": "AST 4.2 / TOV 1.3 → 팀 A/T 한계 기여 +0.142 (2시즌 혼합 · GP 77)",
   "verdict": "TOV 1.2개가 핵심입니다. 한계 기여 +0.152로 Giddey($42, +0.140)·Harden($30, +0.074)을 상회. A/T와 TOV를 동시에 주는 유형이 이 포맷에서 구조적으로 귀합니다.",
-  "flag": "나이 · GSW 사용률 분산(Curry·Butler·Draymond·Porzingis) · 소속 재확인 권장",
+  "flag": "나이 37 · 덴버 1년 $3.9M(벤치 계약 · THJ 빈 자리) · Jokić가 어시스트를 독점 → A/T **볼륨 지분** 하락 위험 · 26분 가정 시 한계기여 80% — **측정이 아니라 판단**(2026-27 역할 데이터 없음)",
   "market_source": "refit_v2_measured_2025_26_league_auction",
   "market_prior_estimate": {
    "low": 8,
@@ -26683,7 +26683,8 @@
    "gp_adjust_applied": false,
    "gp_adjust_basis": "현재 my_max 기준",
    "caveat": "dollar_naive는 z 합산상 상단이 압축된다(절대 달러가 아니라 **순위 대조**용). DD는 실측이 아니라 정규근사 추정(실측 25명 검증: 절대오차중앙값 2.13) — 독립 가정 때문에 두 스탯이 10 근처인 빅맨에서 저추정 경향. 13캣을 **동일 가중**하므로, 우리가 의도적으로 포기하는 캣에 특화된 선수는 이 모델에서 과대평가로 보일 수 있다(26차 검증: 그 보정은 코어 의존적이라 일괄 방어 논리로는 성립하지 않는다)."
-  }
+  },
+  "team_source": "외부 평가 세션 지적 (2026-08-26) · 2026-07 덴버 FA 1년 $3.9M · 출처 nba.com. 옛 근거 'GSW 사용률 분산'은 소속 오류였다"
  },
  {
   "name": "Damian Lillard",
