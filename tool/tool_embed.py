@@ -126,7 +126,11 @@ def build_cores(cj):
         plan = []
         for sl in co["slots"]:
             row = [sl["slot"], sl.get("role") or "",
-                   [[x["name"], x["plan_price"]] for x in sl["candidates"]]]
+                   # 39차: 후보별 bid_ceiling(3번째)을 함께 싣는다. 이것이 없어서 툴은
+                   # 계획가만 알고 상한을 몰랐고, 잔여 예산 기반 동적 상한을 계산할 수
+                   # 없었다 — 슬롯 단위로는 전부 합법인데 합계가 예산의 120~138%였다.
+                   [[x["name"], x["plan_price"], x.get("bid_ceiling", x["plan_price"])]
+                    for x in sl["candidates"]]]
             if sl.get("is_anchor"):
                 ap = sl.get("anchor_plan")
                 of = (ap or {}).get("on_fail")
@@ -146,7 +150,10 @@ def build_cores(cj):
         e = {"id": co["id"], "n": co["name"], "prem": co.get("premise") or "",
              "target": co.get("targeted_cats") or [], "punt": co.get("punted_cats") or [],
              "cap": co.get("single_player_cap"), "bigCap": co["big_budget_cap"],
-             "slack": co["budget_slack"], "plan": plan}
+             "slack": co["budget_slack"], "plan": plan,
+             # 슬롯 상한의 합. 예산을 넘는 것 자체는 정상이다(전원이 상한까지 갈 리 없다).
+             # 문제는 그 비율을 아무도 보지 않았다는 것 — 138%와 120%는 실전 의미가 다르다.
+             "ceilSum": sum(sl["bid_ceiling"] for sl in co["slots"])}
         if co.get("conditional_on_discount"):
             e["condDiscount"] = co["conditional_on_discount"]
         out.append(e)

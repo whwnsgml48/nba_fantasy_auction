@@ -1050,6 +1050,37 @@ else:
             err+=1; _bad+=1
     print("툴 동기화: DECISION·ONELINER·OVERHEAT·OTIERS·CORES·PIVOTS 7종(P 포함) %s"%("일치" if not err else "확인 필요"))
     print("             P 배열 mx·mk 대조 %d행 · 불일치 %d건"%(_n,_bad))
+    # ── I30: 툴 JS 구조 검사 ────────────────────────────────────────────────
+    # 39차: sync_tool 이 injOut 을 끼워넣으며 행 끝 쉼표를 잘라먹어 const P 배열이
+    # 깨졌고, 툴 전체가 SyntaxError 로 죽었다. 값 대조는 전부 통과했다 — 값이 맞는
+    # 것과 파일이 실행되는 것은 다른 질문이다. 이 검사가 그 층을 본다.
+    _pm = _re.search(r"const P=\[\n(.*?)\n\];", _ts, _re.S)
+    _rows = [l for l in (_pm.group(1).split("\n") if _pm else []) if l.startswith('{n:"')]
+    _term = [i for i, l in enumerate(_rows) if not l.endswith("},")]
+    if _term != [len(_rows) - 1]:
+        _who = ", ".join(_re.match(r'\{n:"([^"]*)"', _rows[i]).group(1)
+                         for i in _term if i != len(_rows) - 1)
+        print("  ✗ [I30] 툴 const P 행 종결 이상 — 쉼표 누락: %s (배열이 깨져 툴이 실행되지 않는다)" % _who)
+        err += 1
+    if len(_rows) != len(pl):
+        print("  ✗ [I30] 툴 const P 행 %d개 ≠ players.json %d명" % (len(_rows), len(pl)))
+        err += 1
+    # node 가 있으면 실제 문법까지 본다(없으면 위 구조 검사만).
+    import shutil as _sh, subprocess as _sp, tempfile as _tf, os as _os
+    if _sh.which("node"):
+        _js = "\n".join(_re.findall(r"<script[^>]*>(.*?)</script>", _ts, _re.S))
+        _fd, _tmp = _tf.mkstemp(suffix=".js"); _os.close(_fd)
+        io.open(_tmp, "w", encoding="utf-8").write(_js)
+        _r = _sp.run(["node", "--check", _tmp], capture_output=True, text=True)
+        _os.unlink(_tmp)
+        if _r.returncode != 0:
+            print("  ✗ [I30] 툴 JS 문법 오류 — %s" % (_r.stderr.strip().split("\n")[0] if _r.stderr else "?"))
+            err += 1
+        else:
+            print("             [I30] 툴 JS 문법 OK · const P 행 %d개 종결 정상" % len(_rows))
+    else:
+        print("             [I30] const P 행 %d개 종결 정상 (node 없음 — 문법 검사 생략)" % len(_rows))
+
 
 print("-"*66)
 # ── 과열 임계값 2계층 검증 (2026-08-20 분리) ──

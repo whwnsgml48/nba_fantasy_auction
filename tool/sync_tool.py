@@ -69,6 +69,9 @@ for ln in m.group(2).split("\n"):
     # gp:null도 갱신 대상이다. \d+ 패턴만 쓰면 혼합 GP가 새로 생겨도 null이 남는다.
     if ms.get("GP"): new=re.sub(r'gp:(?:\d+|null)','gp:%d'%round(ms["GP"]),new,count=1)
     else:            new=re.sub(r'gp:(?:\d+|null)','gp:null',new,count=1)
+    # ⚠️ rfind('}') 뒤를 버리면 행 끝 쉼표가 사라져 const P 배열이 깨진다.
+    def ins(txt, frag):
+        i=txt.rfind('}');  return txt[:i]+frag+txt[i:]
     # ⚠️ 39차: t(소속)·injOut 이 동기화 목록에 **없었다** — 손으로 유지되는 이중 소스였다.
     # 실제로 DeRozan 소속이 툴에 교정 전 값(GSW)으로 남아 화면에 떴다.
     #
@@ -82,11 +85,11 @@ for ln in m.group(2).split("\n"):
         rep=',flag:"%s"'%esc
         pat=re.compile(r',flag:"(?:[^"\\]|\\.)*"')
         new=pat.sub(lambda _:rep,new,count=1) if pat.search(new) \
-            else new[:new.rstrip().rfind('}')]+rep+'}'
+            else ins(new, rep)
     # injOut: 부재가 곧 false다. 은퇴·장기부상 어느 쪽이든 같은 제외 기구를 쓴다.
     new=re.sub(r',injOut:true','',new,count=1)
     if q.get("injury_exclude"):
-        new=new[:new.rstrip().rfind('}')]+',injOut:true}'
+        new=ins(new, ',injOut:true')
     lf=(q.get("measured_line_full") or {}).get("line")
     if lf:
         esc=lf.replace('\\','\\\\').replace('"','\\"')

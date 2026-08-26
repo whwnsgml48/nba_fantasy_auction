@@ -497,6 +497,34 @@ def crash_at(out):
     return "%s (%s)" % (loc, kind[:60])
 
 
+# ── I30 툴 JS 구조 ────────────────────────────────────────────────────────
+# 39차: sync_tool 이 injOut 을 끼워넣으며 행 끝 쉼표를 잘라먹어 const P 배열이 깨졌고
+# 툴 전체가 SyntaxError 로 죽었다. mx·mk 값 대조는 전부 통과했다 — **값이 맞는 것과
+# 파일이 실행되는 것은 다른 질문**이고, 검사 체계에 후자가 없었다.
+
+@test("I30", "const P 행 끝 쉼표가 사라지면 잡는가 (배열 파손)", "행 종결 이상", after=TAIL)
+def _i30_comma(b):
+    def f(s):
+        m = re.search(r'const P=\[\n(.*?)\n\];', s, re.S)
+        ls = m.group(1).split("\n")
+        hit = [i for i, l in enumerate(ls) if l.startswith('{n:"')][3]
+        assert ls[hit].endswith("},")
+        ls[hit] = ls[hit][:-1]                      # 쉼표만 뗀다
+        return s[:m.start(1)] + "\n".join(ls) + s[m.end(1):]
+    b.html(f)
+
+
+@test("I30", "const P 행이 players.json 인원과 다르면 잡는가", "≠ players.json", after=TAIL)
+def _i30_count(b):
+    def f(s):
+        m = re.search(r'const P=\[\n(.*?)\n\];', s, re.S)
+        ls = m.group(1).split("\n")
+        hit = [i for i, l in enumerate(ls) if l.startswith('{n:"')][-2]
+        del ls[hit]                                  # 한 행을 없앤다
+        return s[:m.start(1)] + "\n".join(ls) + s[m.end(1):]
+    b.html(f)
+
+
 def main():
     argv = [a for a in sys.argv[1:]]
     verbose = "-v" in argv
