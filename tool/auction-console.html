@@ -1000,13 +1000,15 @@ function renderTrig(){
           +' — <b>$'+o.oh+'~$'+o.walk+'</b> 구간은 계획이 "계속 사라"고 말한다</div>';
     });
   });
-  box.innerHTML=h;
+  // ⚠️ 각주를 h 에 붙인 뒤에 innerHTML 을 넣어야 한다. 순서를 뒤집으면 각주가
+  //    dead code 가 된다(39차에 실제로 그렇게 넣었고 발행 직전에 파일을 읽다 잡았다).
   h+='<div style="border-top:1px solid var(--line);margin-top:7px;padding-top:5px;'
     +'font-size:10px;color:var(--ink-3);line-height:1.4">'
     +'이 표는 코어 <b>강도 순이 아니라 도달 가능성 순</b>이다. 강도는 각 행의 실제 12팀 '
     +'승률을 볼 것 — 기본값이 최강이 아닐 수 있고, 강한 코어가 조건부일 수 있다.<br>'
     +'<b>선택</b>은 12팀 평균(1차 지표) · <b>견고</b>는 12팀 중 최저(2차). '
     +'두 값이 1위를 다르게 가리킬 수 있다 — <b>고를 때는 선택 값을 본다.</b></div>';
+  box.innerHTML=h;
   const sb=document.querySelector("#trigbox > summary");
   if(sb) sb.innerHTML="코어 전환 트리거"+(hc>=2?' <b style="color:var(--crit)">· 센터 붕괴 → C7</b>':"");
 }
