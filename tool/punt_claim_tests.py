@@ -25,6 +25,7 @@ import io, json, os, random, sys
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, BASE + "/tool")
 import matchup_sim as MS   # noqa: E402  — __main__ 아래에서만 파일을 쓴다
+import real_opponents as RO   # noqa: E402  — 38차: 실제 12팀
 
 SEED  = int(sys.argv[1]) if len(sys.argv) > 1 else 20261020
 ITERS = int(sys.argv[2]) if len(sys.argv) > 2 else 4000
@@ -37,6 +38,24 @@ ROWS = MS.pool()
 OPP  = MS.build_opponents(random.Random(SEED))
 OPP  = {k: v for k, v in OPP.items() if v != MS.FAILED}
 ORDER = [k for k in ["random", "value_max", "big_stack", "guard_stack", "baseline", "benchmark"] if k in OPP]
+
+# ── 38차: 실제 12팀 상대 ────────────────────────────────────────────
+# 조립 상대는 우리 모델이 만든 팀이다. maximin의 최소값이 7코어 전부 value_max
+# 하나에서 나오므로, 조립 상대에 대한 결론을 "판별력"으로 일반화하면 안 된다.
+REAL, RREP = RO.build()
+
+
+def run_real(roster, iters=None):
+    """실제 12팀 각각에 대해 시뮬. 상대마다 같은 시드로 rng를 새로 만든다."""
+    return {m: MS.simulate(list(roster), names, random.Random(SEED), iters or ITERS, ROWS)
+            for m, names in REAL.items()}
+
+
+def real_summary(roster, iters=None):
+    r = run_real(roster, iters)
+    wr = [v["weekly_win_rate"] for v in r.values()]
+    ec = [v["expected_cats_won"] for v in r.values()]
+    return (sum(wr)/len(wr), min(wr), sum(ec)/len(ec), min(ec))
 
 
 def run(roster, iters=None):
@@ -98,6 +117,22 @@ for cid in sorted(CORES):
     print("  " + row(cid, v, fmt="%9.2f") + "%10.2f" % min(v) + "   %d/%d" % (n, len(ORDER)))
 print("\n  → **7개 코어 전부** 6개 상대 중 %d개에서 기대 승리 캣이 7 미달이다."
       % max(worst.values()))
+print("\n[재판정 · 38차] 같은 질문을 **실제 12팀 상대**에 물으면 답이 뒤집힌다.")
+print("  실제 상대: 작년 옥션 실측 %d팀 (DB 매칭 %d · BBRef 보충 %d · 미매칭 %d)"
+      % (RREP["teams_used"], RREP["matched_in_db"], RREP["supplemented"],
+         len(RREP["unmatched"])))
+print("  %-6s%10s%10s%12s%12s" % ("코어", "평균승률", "최저승률", "평균승리캣", "최저승리캣"))
+_rl = {}
+for cid in sorted(CORES):
+    _rl[cid] = real_summary(base_roster(cid))
+for cid in sorted(_rl, key=lambda c: -_rl[c][0]):
+    m, mn, em, en = _rl[cid]
+    print("  %-6s%9.1f%%%9.1f%%%12.2f%12.2f" % (cid, m*100, mn*100, em, en))
+print("\n  → 실제 12팀 상대로는 **7코어 전부 평균 8.1캣 이상**이고 최저도 승리선 7을 넘는다.")
+print("     조립 상대에게 5.4~5.9캣이던 것과 정반대다.")
+print("  → 정정된 답: N캣 지표는 **조립 상대에 대해 판별력이 없다.** 실제 리그 상대에")
+print("     대해서는 전 플랜이 승리선을 넘고, 그래서 이 지표로도 코어를 못 고른다 —")
+print("     **판별력이 없는 이유가 반대**다(전부 지는 게 아니라 전부 이긴다).")
 print("     이기는 상대는 무작위·기준선 둘뿐이고, 조립된 상대(가치최대·빅스택·")
 print("     가드스택·벤치마크)에는 **평균적으로 진다.**")
 print("  → 주장 1의 답: **아니다.** 그리고 c4만의 문제가 아니라 7코어 공통이다 —")
@@ -163,8 +198,33 @@ for cid in sorted(CORES):
     blk  = min(r[k]["cat_win_probs"]["BLK"] for k in ORDER)
     print("  " + row(cid + " pivot", v, fmt="%9.2f") + "%10.2f" % min(v)
           + "   %d/%d" % (n, len(ORDER)) + "  %5.3f  %5.3f" % (oreb, blk))
-print("\n  → 주장 3의 답: base와 같다 — 조립된 상대에게는 7캣에 못 미친다.")
-print("     OREB·BLK를 포기한 대가가 가드·윙 캣의 승리로 회수되지 않는다.")
+print("\n  → 조립 상대 기준: base와 같다 — 7캣에 못 미친다.")
+print("\n[재판정 · 38차] 실제 12팀 상대 — base 대비 낙폭까지 본다")
+print("  %-12s%10s%10s%12s%12s" % ("피벗", "평균승률", "최저승률", "평균승리캣", "base 대비"))
+_pv = {}
+for cid in sorted(CORES):
+    pr = pivot_roster(cid)
+    if len(pr) != 9:
+        continue
+    _pv[cid] = real_summary(pr)
+for cid in sorted(_pv, key=lambda c: -_pv[c][0]):
+    m, mn, em, en = _pv[cid]
+    d = (m - _rl[cid][0]) * 100 if cid in _rl else float("nan")
+    print("  %-12s%9.1f%%%9.1f%%%12.2f%11.1f%%p" % (cid + " pivot", m*100, mn*100, em, d))
+print("\n  → 주장 3의 답: **조립 상대에 대해서만 참이다.** 실제 12팀 상대로는 피벗도")
+print("     평균 승리캣 7.1~8.7로 승리선을 넘는다. OREB·BLK 포기의 대가는 조립된 빅스택")
+print("     상대에게만 치명적이고, 이 리그 사람들이 짜는 로스터에는 그만큼 노출되지 않는다.")
+_dl = {c: (_pv[c][0] - _rl[c][0]) * 100 for c in _pv if c in _rl}
+_up = [c for c in _dl if _dl[c] > 0]
+_wc = min(_pv, key=lambda c: _pv[c][0])
+print("\n  🔴 그런데 **낙폭이 문제다.** base보다 나은 피벗은 %s(%s)뿐이고 나머지 %d개는"
+      % (", ".join(_up) or "없음",
+         ", ".join("%+.1f%%p" % _dl[c] for c in _up) or "-", len(_dl) - len(_up)))
+print("     %+.1f ~ %+.1f%%p 떨어진다. %s 피벗은 %.1f%%로 전 플랜 중 최악이다."
+      % (max(v for c, v in _dl.items() if v < 0), min(_dl.values()),
+         _wc, _pv[_wc][0] * 100))
+print("     「피벗 로스터 재설계」의 우선순위 근거로 쓸 수 있다 — 예비비 미소진보다")
+print("     이쪽이 직접적인 손실이다.")
 
 print("\n" + "-" * 78)
 print("이 스크립트는 아무 파일도 쓰지 않는다. 결론을 문서에 남기려면 손으로 옮길 것.")

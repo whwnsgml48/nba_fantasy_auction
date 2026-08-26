@@ -41,6 +41,7 @@
 import json, io, os, sys, math, random, statistics
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import cat_model as CM
+import real_opponents as RO   # 38차: 작년 옥션 실측 12팀 = **실제 상대**
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 F  = CM.F
@@ -359,6 +360,18 @@ if __name__ == "__main__":
         if OPP[k] == FAILED: print(f"  {LABEL[k]:<6} **조립 실패 — 미계산**")
     print()
 
+    # ── 실제 상대 복원 (38차) ─────────────────────────────────────────
+    REAL, RREP = RO.build()
+    print("실제 상대(작년 옥션 12팀): 낙찰 %d건 · DB 매칭 %d · BBRef 보충 %d · 미매칭 %d"
+          % (RREP["picks_total"], RREP["matched_in_db"], RREP["supplemented"],
+             len(RREP["unmatched"])))
+    print("  사용 팀 %d/%d · 로스터 앞 %d명"
+          % (RREP["teams_used"], RREP["teams_total"], RREP["roster_n"]))
+    if RREP["teams_dropped"]:
+        print("  버린 팀: " + ", ".join("%s(%d명)" % d for d in RREP["teams_dropped"]))
+    print("  ⚠️ 이것은 '작년 그 팀이 올해 강한가'가 아니라 '이 리그 사람들이 짜는 로스터"
+          " 유형을 상대로 우리가 이기는가'다.\n")
+
     res = {}
     for co in CJ["cores"]:
         us = [x["candidates"][0]["name"] for x in co["slots"]]
@@ -372,6 +385,20 @@ if __name__ == "__main__":
         res[co["id"]]["min_win_rate_vs"] = sorted([k for k in OK if wr[k] == lo])
         res[co["id"]]["tiebreak_p_big5_collapse"] = max(
             res[co["id"]][k]["p_big5_collapse"] for k in OK)
+        # ── 1차 지표(38차): 실제 12팀 상대. 조립 상대가 아니라 **이 리그 사람들이
+        #    실제로 짠 로스터**다. maximin은 7코어 전부 value_max 하나가 지배하고,
+        #    value_max는 우리 z모델의 자기 최적해라 순위가 순환한다.
+        rr = {}
+        for mgr, names in REAL.items():
+            rr[mgr] = simulate(us, names, random.Random(seed), iters, rows)
+        wr_r = [v["weekly_win_rate"] for v in rr.values()]
+        ec_r = [v["expected_cats_won"] for v in rr.values()]
+        res[co["id"]]["real"] = rr
+        res[co["id"]]["real_mean_win_rate"] = round(sum(wr_r)/len(wr_r), 4)
+        res[co["id"]]["real_min_win_rate"] = round(min(wr_r), 4)
+        res[co["id"]]["real_min_win_rate_vs"] = sorted(
+            [m for m in rr if rr[m]["weekly_win_rate"] == min(wr_r)])
+        res[co["id"]]["real_mean_expected_cats"] = round(sum(ec_r)/len(ec_r), 2)
 
     # ── 요구 표: 최소 승률 오름차순
     order = sorted(res, key=lambda cid: res[cid]["min_win_rate"])
@@ -385,6 +412,20 @@ if __name__ == "__main__":
               + f"{d['min_win_rate']*100:>7.1f}%{d[worst]['p_big5_collapse']*100:>8.1f}%"
               + f"{max(d[k]['p_cats_won_le4'] for k in OK)*100:>8.1f}%"
               + f"{max(d[k]['cats_won_sd'] for k in OK):>9.2f}")
+    # ── 1차 지표 표 (38차)
+    o2 = sorted(res, key=lambda cid: -res[cid]["real_mean_win_rate"])
+    print("\n=== 1차 지표: 실제 12팀 상대 (평균 주간 승률 내림차순) ===")
+    h3 = f"{'코어':<5}{'평균':>8}{'최저':>8}{'최저상대':>10}{'기대승리캣':>11}{'(참고)maximin':>14}"
+    print(h3); print("-" * len(h3))
+    for cid in o2:
+        d = res[cid]
+        print(f"{cid:<5}{d['real_mean_win_rate']*100:>7.1f}%{d['real_min_win_rate']*100:>7.1f}%"
+              f"{','.join(d['real_min_win_rate_vs']):>10}"
+              f"{d['real_mean_expected_cats']:>11.2f}{d['min_win_rate']*100:>13.1f}%")
+    print("  1차(실제12) 순위: " + " > ".join(o2))
+    print("  2차(maximin) 순위: " + " > ".join(sorted(res, key=lambda c: -res[c]["min_win_rate"])))
+    print("  ⚠️ 값만 산출한다. 채택은 사람이 한다(32차) — 판단표 변경은 사용자 결정.")
+
     print("\n※ 5캣붕괴·승리<=4·승리캣SD는 상대 6종 중 **최악값**. 상대별 전체는 data/matchup_sim.json.")
     print("※ 최소 승률 동률 시 우선순위: 5캣 동시 붕괴 P가 낮은 쪽 (tiebreak_p_big5_collapse).")
 
@@ -410,9 +451,29 @@ if __name__ == "__main__":
            "opponents": {k: (OPP[k] if OPP[k] not in (None, BASELINE_TEAM, FAILED) else
                              {"random": "매 시행 무작위 9인", BASELINE_TEAM: "cat_baselines 기준선 팀",
                               FAILED: "조립 실패"}.get(OPP[k], "무작위")) for k in OPP},
-           "objective": {"primary": "min_win_rate (maximin — 상대 6종 중 최저 주간 승률)",
-                         "tiebreak": "min_win_rate 동률이면 p_big5_collapse 낮은 쪽",
-                         "note": "값만 산출한다. 이 지표로 코어를 고르지 않는다(32차)."},
+           "objective": {
+               "layer1_primary": "real_mean_win_rate — 실제 12팀 상대 평균 주간 승률 (38차 신설)",
+               "layer1_why": ("조립 상대는 우리 모델이 만든 팀이다. 실제 12팀은 이 리그 "
+                              "사람들이 실제로 짠 로스터이므로 성향의 대리 표본이 된다."),
+               "layer2_robustness": "min_win_rate (maximin — 상대 6종 중 최저 주간 승률)",
+               "layer2_why": ("'최적화된 상대에게 얼마나 버티는가'의 상한 테스트로 유효하다. "
+                              "다만 **선택 기준이 되면 안 된다** — 아래 진단 참조."),
+               "diagnosis_38": [
+                   "min_win_rate_vs 가 7코어 전부 value_max 다 — maximin은 단일 상대가 지배한다",
+                   "value_max 는 우리 z모델의 자기 최적해이므로 이 순위는 "
+                   "'우리 모델에 얼마나 가까운가'에 가깝다",
+                   "docs/05 2b-3이 'value_max는 현실적 상대가 아니다'라고 경고했는데, "
+                   "그 상대가 목적함수를 단독 지배한다는 사실은 기록돼 있지 않았다"],
+               "tiebreak": "min_win_rate 동률이면 p_big5_collapse 낮은 쪽",
+               "note": ("값만 산출한다. 이 지표로 코어를 고르지 않는다(32차) — "
+                        "38차에 기준점을 교체했지만 **채택은 여전히 사람이 한다.**")},
+           "real_opponents": {"source": "data/prior_auction_2025_26/results.json",
+                              "built_by": "tool/real_opponents.py",
+                              "rosters": REAL, "report": RREP,
+                              "interpretation": ("'작년 그 팀이 올해 강한가'가 아니다. "
+                                                 "작년 낙찰 조합을 현재 스탯으로 평가한 것이므로 "
+                                                 "**이 리그의 드래프트 성향 대리 표본**이다. "
+                                                 "가격·예산 제약은 작년 것(12팀·로스터10)이다.")},
            "collapse_note": ("p_big5_collapse는 캣별 승률의 곱이 아니다 — 같은 시행에서 "
                              "REB·OREB·BLK·FG%·DD 5캣이 **동시에** 패한 횟수를 직접 셌다. "
                              "무승부는 패로 세지 않는다."),

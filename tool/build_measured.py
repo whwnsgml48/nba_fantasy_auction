@@ -92,13 +92,19 @@ def blend(name):
     return out
 
 CATS=["PTS","REB","OREB","AST","STL","BLK","TOV","FG%","3PM","3P%","FT%"]
-out={}; miss=[]
-for p in pl:
-    r = blend(p["name"])
-    if r is None: miss.append(p["name"]); continue
+
+def line(name):
+    """이름 하나를 measured_full 한 행으로. 없으면 None.
+
+    38차에 함수로 분리했다 — `tool/real_opponents.py`가 DB 밖 선수(작년 옥션 낙찰자
+    중 174명 DB에 없는 인원)를 **같은 규칙**으로 보충해야 하는데, 규칙을 두 번 구현하면
+    갈라진다(27차 M5·M6 이중 구현 사고). 파일 쓰기는 아래 `__main__`에만 있다.
+    """
+    r = blend(name)
+    if r is None: return None
     at = (r["AST"]/r["TOV"]) if (r.get("AST") and r.get("TOV")) else None
     lift = ((20.0+r["AST"])/(10.0+r["TOV"])-2.0) if (r.get("AST") is not None and r.get("TOV") is not None) else None
-    out[p["name"]]={
+    return {
       "season":"blend","bbref_name":r["bbref_name"],"team":r["team"],"pos":r["pos"],
       "GP":r["GP"],"GS":r["GS"],"MPG":r["MPG"],
       **{c:r.get(c) for c in ["PTS","REB","OREB","DREB","AST","STL","BLK","TOV","FG%","3PM","3P%","FT%"]},
@@ -113,27 +119,35 @@ for p in pl:
       "at_marginal_lift":round(lift,3) if lift is not None else None,
       "seasons":r["seasons"],"blend_share_2025_26":r["blend_share_2025_26"],
     }
-json.dump({"meta":{
-   "source":"basketball-reference per-game (tool/fetch_bbref.py)",
-   "method":"2025-26과 2024-25를 GP 가중 혼합 (2025-26에 ×1.5 최근 가중). "
-              "GP도 같은 가중으로 혼합해 '작년 5경기' 같은 출장 리스크가 남는다.",
-   "recency_multiplier":RECENCY,
-   "matched":len(out),"db_players":len(pl),
-   "blend_note":"players[].seasons에 시즌별 GP와 가중치, blend_share_2025_26에 최근 시즌 반영 비율.","unmatched":miss,
-   "cats_covered":CATS+["A/T","DD"],
-   "cats_not_covered":[],
-   "note":("DD는 BBRef 미집계라 per-game PTS·REB·AST 정규근사로 **추정**한다"
-           "(cat_model.dd_game_prob · σ=c√μ · c=PTS 1.50/REB 1.10/AST 1.05 · 연속성 보정). "
-           "DD 필드는 경기당 확률, DD_est_season은 ×GP. "
-           "실측 25명(리더보드) 검증: 절대오차 중앙값 2.13 DD · 평균오차 -0.65 · 23/25명 오차 6 이내. "
-           "실측값으로 덮어쓰지 않는다 — 실측은 2025-26 단일 시즌이고 다른 12캣은 2시즌 혼합이라 "
-           "기준이 섞인다. 실측은 dd_actual_2025_26에 기록만 남긴다.")},
-   "players":out},
-  open(f"{BASE}/data/stats_2025_26/measured_full.json","w",encoding="utf-8"),
-  ensure_ascii=False,indent=1)
-print(f"매칭 {len(out)}/{len(pl)}명")
-low=[(n,v["blend_share_2025_26"],v["seasons"]) for n,v in out.items() if v["blend_share_2025_26"]<0.5]
-print(f"2024-25가 절반 이상 반영된 선수 {len(low)}명:")
-for n,sh,se in sorted(low,key=lambda x:x[1])[:25]:
-    print(f"   {n:<24}2025-26 {sh*100:>5.1f}%  (GP {se['2025-26']['GP']} vs {se['2024-25']['GP']})")
-print(f"미매칭 {len(miss)}명: "+(", ".join(miss) if miss else "없음"))
+
+if __name__ == "__main__":
+    # 174명 DB 전체를 measured_full.json으로 기록한다. import 경로에서는 실행되지 않는다.
+    out={}; miss=[]
+    for p in pl:
+        r2 = line(p["name"])
+        if r2 is None: miss.append(p["name"]); continue
+        out[p["name"]] = r2
+    json.dump({"meta":{
+       "source":"basketball-reference per-game (tool/fetch_bbref.py)",
+       "method":"2025-26과 2024-25를 GP 가중 혼합 (2025-26에 ×1.5 최근 가중). "
+                  "GP도 같은 가중으로 혼합해 '작년 5경기' 같은 출장 리스크가 남는다.",
+       "recency_multiplier":RECENCY,
+       "matched":len(out),"db_players":len(pl),
+       "blend_note":"players[].seasons에 시즌별 GP와 가중치, blend_share_2025_26에 최근 시즌 반영 비율.","unmatched":miss,
+       "cats_covered":CATS+["A/T","DD"],
+       "cats_not_covered":[],
+       "note":("DD는 BBRef 미집계라 per-game PTS·REB·AST 정규근사로 **추정**한다"
+               "(cat_model.dd_game_prob · σ=c√μ · c=PTS 1.50/REB 1.10/AST 1.05 · 연속성 보정). "
+               "DD 필드는 경기당 확률, DD_est_season은 ×GP. "
+               "실측 25명(리더보드) 검증: 절대오차 중앙값 2.13 DD · 평균오차 -0.65 · 23/25명 오차 6 이내. "
+               "실측값으로 덮어쓰지 않는다 — 실측은 2025-26 단일 시즌이고 다른 12캣은 2시즌 혼합이라 "
+               "기준이 섞인다. 실측은 dd_actual_2025_26에 기록만 남긴다.")},
+       "players":out},
+      open(f"{BASE}/data/stats_2025_26/measured_full.json","w",encoding="utf-8"),
+      ensure_ascii=False,indent=1)
+    print(f"매칭 {len(out)}/{len(pl)}명")
+    low=[(n,v["blend_share_2025_26"],v["seasons"]) for n,v in out.items() if v["blend_share_2025_26"]<0.5]
+    print(f"2024-25가 절반 이상 반영된 선수 {len(low)}명:")
+    for n,sh,se in sorted(low,key=lambda x:x[1])[:25]:
+        print(f"   {n:<24}2025-26 {sh*100:>5.1f}%  (GP {se['2025-26']['GP']} vs {se['2024-25']['GP']})")
+    print(f"미매칭 {len(miss)}명: "+(", ".join(miss) if miss else "없음"))
