@@ -14,7 +14,7 @@
 | 우선 | 조건 | 선택 | 근거 |
 |---|---|---|---|
 | **0** | 저가 센터 계층 과열 2명 이상 | **C7** — 중가 센터 전환 (센터 인플레 대응) | ⚠ 코어 6·4의 과열 피벗보다 **먼저** 코어 7로 전환. 센터 시장이 붕괴하면 피벗으로는 부족하다. 판정은 `low_cost_center` 계층의 `overheat_at`(실측 기대치 기반)으로만 한다 — 네임밸류 빅(Şengün·Mobley·Zubac)이 $30~60에 팔리는 것은 정상가이므로 세지 않는다. |
-| **1** | 센터 정상가 + KAT ≤ $50 + Hali ≤ $48 | **C1** — KAT 앵커 + Haliburton | Hali가 정말 할인되면 코어 1의 천장이 가장 높다. 임계 $48은 내 최대가 $50보다 낮게 잡은 '선택 기준'이다 — $48~50은 살 수는 있으나 코어 1을 우선할 근거는 아니다. ⚠️ 33차: 실행가능성 조건을 cond.feasibility에 명시. Haliburton 할인이 없으면 이 행은 발동하지 않는다. **실행 조건: Tyrese Haliburton 실낙찰가 <= $50 (철수가)** (실패 시 → c6 (기본값)) |
+| **1** | 센터 정상가 + KAT ≤ $50 + Hali ≤ $56 | **C1** — KAT 앵커 + Haliburton | Hali가 정말 할인되면 코어 1의 천장이 가장 높다. 임계 $48은 내 최대가 $50보다 낮게 잡은 '선택 기준'이다 — $48~50은 살 수는 있으나 코어 1을 우선할 근거는 아니다. ⚠️ 33차: 실행가능성 조건을 cond.feasibility에 명시. Haliburton 할인이 없으면 이 행은 발동하지 않는다. **실행 조건: Tyrese Haliburton 실낙찰가 <= $56 (철수가)** (실패 시 → c6 (기본값)) |
 | **2** | 센터 정상가 + Hali 불확실/비쌈 | **C6** — A/T 분산 조달 (정상 시장 기본값) | 정상 시장의 기본값. Hali가 기대만큼 안 싸거나 아킬레스 복귀 리스크를 피하고 싶으면 여기. |
 | **3** | 센터가 조금 비싸지만 SGA ≤ $72 | **C3** — SGA + 저가 빅 4인 | 빅맨 예산 $77(39%)로 7개 코어 중 최저 — 센터가 약간 비싸지는 정도라면 코어 4보다 먼저. |
 | **4** | 앵커를 못 잡았지만 센터는 정상가 | **C4** — 무앵커 분산 (상한 $31) | 앵커 실패 시의 안전망. **센터 과열 대응책이 아니다** — 센터가 깨졌으면 코어 7. |
@@ -96,8 +96,8 @@
 | 선수 | 철수가 | 기대치 | 과열선 | my_max | 근거 |
 |---|---|---|---|---|---|
 | Jalen Johnson | `> $58` | — | — (앵커) | $56 | 포워드. 코어 7 앵커 확보 가능성 판정용 — 센터 시장 온도와 무관 |
+| Tyrese Haliburton | `> $56` | — | — (앵커) | $56 | 가드. 코어 1·5 앵커 확보 가능성 판정용 — 센터 시장 온도와 무관. 37차: my_max 상향($50→$56)에 맞춰 철수가도 $50→$56 (사용자 결정 2026-08-26). $50에 묶어두면 계획가가 시장하단 $54를 밑돌아 my_max 상향이 c1에서 무효였다. |
 | Karl-Anthony Towns | `> $55` | — | — (앵커) | $71 | 34차 · 승률 시뮬로 산출. **가격이 로스터를 바꾸지 않는 구간에서는 승률이 수학적으로 동일하다**(같은 9명 → 같은 분포). 신 c6의 KAT 제외 8칸 원가 $141 기준:   KAT $p → 총액 $141+p · 예비비 $59-p   p<=$47 예비비>=$12(목표) · p<=$51 >=$8(I22 경고) · p<=$55 >=$4(I22 위반선)=**철수가** · p<=$59 총액<=$200(조립 한계) · p>=$61 8칸 다운그레이드 강제(Okongwu 교체 관측) 즉 **승률 기준이 아니라 예산 기준이 먼저 구속한다.** KAT 제외 손실 3.3%p(보유 최고 38.5% vs 제외 최고 35.1%)에 도달하기 전에 I22가 걸린다. $49~$58 최소승률 변동 33.7~36.3%는 1200시행 노이즈(±1.3%p)이고 로스터가 동일하므로 실제 변화가 아니다. 시장 상단은 $49 — 그 초과가 과열 신호지만 anchor 계층은 overheat_at을 두지 않는 스키마이므로 여기 근거로만 남긴다. |
-| Tyrese Haliburton | `> $50` | — | — (앵커) | $56 | 가드. 코어 1·5 앵커 확보 가능성 판정용 — 센터 시장 온도와 무관 |
 | Derrick White | `> $44` | — | — (앵커) | $52 | 가드. c7 피벗의 Haliburton 대체 1순위 — 백업 발동 조건에 필요. 센터 시장 온도와 무관 |
 
 ## 앵커 여유 정책 (단일 소스)
@@ -121,13 +121,13 @@
 
 | 코어 | 슬롯 | 앵커 | 계획 | 상한 | 명목 | 실효 | 제약 | 실패 시 | 실측곡선 |
 |---|---|---|---|---|---|---|---|---|---|
-| C1 | C | Karl-Anthony Towns | $45 | $71 | $26 | **$18** | `budget` | 치환 → Jalen Duren | 획득 가능 |
-| C1 | PG | Tyrese Haliburton | $50 | $56 | $6 | **$6** | `none` | 치환 → Josh Giddey | 획득 가능 |
+| C1 | C | Karl-Anthony Towns | $45 | $71 | $26 | **$12** | `budget` | 치환 → Jalen Duren | 획득 가능 |
+| C1 | PG | Tyrese Haliburton | $56 | $56 | $0 | **$0** | `my_max` | 치환 → Josh Giddey | 획득 가능 |
 | C2 | C | Nikola Jokić | $88 | $88 | $0 | **$0** | `my_max` | **코어 전환 → C6** | **획득 불가** |
 | C2 | SG | Derrick White | $39 | $52 | $13 | **$13** | `none` | 치환 → De'Aaron Fox | 획득 가능 |
 | C3 | SG | Shai Gilgeous-Alexander | $79 | $79 | $0 | **$0** | `my_max` | **코어 전환 → C4** | **획득 불가** |
-| C5 | PG | Tyrese Haliburton | $50 | $56 | $6 | **$6** | `none` | 치환 → Josh Giddey | 획득 가능 |
-| C5 | PF | Domantas Sabonis | $19 | $34 | $15 | **$15** | `none` | **코어 전환 → C6** | 획득 가능 |
+| C5 | PG | Tyrese Haliburton | $56 | $56 | $0 | **$0** | `my_max` | 치환 → Josh Giddey | 획득 가능 |
+| C5 | PF | Domantas Sabonis | $19 | $34 | $15 | **$14** | `budget` | **코어 전환 → C6** | 획득 가능 |
 | C6 | C | Karl-Anthony Towns | $45 | $71 | $26 | **$19** | `budget` | 치환 → Jalen Duren | 획득 가능 |
 | C6 | SG | DeMar DeRozan | $8 | $16 | $8 | **$8** | `none` | 치환 → Dennis Schröder | 획득 가능 |
 | C6 | PG | Derrick White | $39 | $52 | $13 | **$13** | `none` | 치환 → T.J. McConnell | 획득 가능 |
@@ -170,11 +170,11 @@ $25 초과는 "과소 편성"(로스터가 예산을 못 씀) 경고입니다.
 
 | | 코어 | 계획 | 예비비 | 빅맨/상한 | C자격 | 노리는 캣 | 포기 | 승리 캣 | 피벗 총액 |
 |---|---|---|---|---|---|---|---|---|---|
-| c1 | KAT 앵커 + Haliburton | $182 | $18 | $93/$115 | 5 | 10개 | 3PM, FT%, TOV | **10**/13 | $178 |
+| c1 | KAT 앵커 + Haliburton | $188 | $12 | $93/$115 | 5 | 10개 | 3PM, FT%, TOV | **10**/13 | $184 |
 | c2 | Jokić 압축 | $187 | $13 | $134/$153 | 4 | 9개 | 3P%, 3PM, FT%, STL | **9**/13 | $174 |
 | c3 | SGA + 저가 빅 4인 | $190 | $10 | $57/$85 | 4 | 9개 | 3P%, 3PM, FT%, TOV | **9**/13 | $196 |
 | c4 | 무앵커 분산 (상한 $31) | $186 | $14 | $84/$107 | 4 | 8개 | 3P%, 3PM, A/T, FT%, TOV | **8**/13 | $193 |
-| c5 | Sabonis 부상 할인 (조건부 베팅) | $180 | $20 | $70/$96 | 5 | 9개 | 3PM, FT%, PTS, TOV | **9**/13 | $178 |
+| c5 | Sabonis 부상 할인 (조건부 베팅) | $186 | $14 | $70/$96 | 5 | 9개 | 3PM, FT%, PTS, TOV | **9**/13 | $184 |
 | c6 | A/T 분산 조달 (정상 시장 기본값) | $181 | $19 | $91/$113 | 4 | 9개 | 3P%, 3PM, FT%, TOV | **9**/13 | $187 |
 | c7 | 중가 센터 전환 (센터 인플레 대응) | $184 | $16 | $107/$130 | 5 | 9개 | 3P%, A/T, FT%, TOV | **9**/13 | $181 |
 
@@ -205,11 +205,11 @@ $25 초과는 "과소 편성"(로스터가 예산을 못 씀) 경고입니다.
 
 ## 코어 1 · KAT 앵커 + Haliburton
 
-**우선 1** — 센터 정상가 + KAT ≤ $50 + Hali ≤ $48
+**우선 1** — 센터 정상가 + KAT ≤ $50 + Hali ≤ $56
 
 > 잉여가 $50 이상 구간에서 시장을 앞서는 선수는 KAT 하나뿐(+$16). A/T는 Haliburton 단독(한계기여 +0.517, 리그 1위)으로 조달. 아킬레스 복귀 리스크를 감수하는 조건부 플랜이며, 회피하려면 코어 6.
 
-**계획 $182** · 예비비 **$18** · 빅맨 $93/$115 (C자격 5명) · 노리는 캣 10개 `3P% A/T AST BLK DD FG% OREB PTS REB STL` · 포기 `3PM FT% TOV`
+**계획 $188** · 예비비 **$12** · 빅맨 $93/$115 (C자격 5명) · 노리는 캣 10개 `3P% A/T AST BLK DD FG% OREB PTS REB STL` · 포기 `3PM FT% TOV`
 
 **주간 승률** 최소 **38.8%** (vs 가치최대) · 빅5 동시붕괴 43.5% · 기대 승리 캣 8.97
 
@@ -221,8 +221,8 @@ $25 초과는 "과소 편성"(로스터가 예산을 못 씀) 경고입니다.
 
 | 슬롯 | 계획가 | 상한 | 여력 | 역할 | 1순위 | 대체 ① | 대체 ② |
 |---|---|---|---|---|---|---|---|
-| **C** `앵커` | $45 | $55 | **$18** (실패→치환 Jalen Duren) | 앵커 · DD 56 리그 1위 | **Karl-Anthony Towns** `C` | Jalen Duren $27 | Alperen Şengün $26 |
-| **PG** `앵커` | $50 | $50 | **$6** (실패→치환 Josh Giddey) | A/T +0.517 리그 1위 · TOV 동시 | **Tyrese Haliburton** | Josh Giddey $41 | De'Aaron Fox $24 |
+| **C** `앵커` | $45 | $55 | **$12** (실패→치환 Jalen Duren) | 앵커 · DD 56 리그 1위 | **Karl-Anthony Towns** `C` | Jalen Duren $27 | Alperen Şengün $26 |
+| **PG** `앵커` | $56 | $56 | **$0** (실패→치환 Josh Giddey) | A/T +0.517 리그 1위 · TOV 동시 | **Tyrese Haliburton** | Josh Giddey $41 | De'Aaron Fox $24 |
 | **PF** | $26 | $34 | — | OREB 3.0 · DD 34 · AST | **Alperen Şengün** `C` | Evan Mobley $23 | — |
 | **SF** | $22 | $33 | — | 3PT% 레버리지 2위 · 3PM 3.4 | **Kon Knueppel** | Desmond Bane $22 | Toumani Camara $11 |
 | **SG** | $12 | $20 | — | STL 2.0 리그 공동 1위 | **Dyson Daniels** | Ausar Thompson $3 | Cason Wallace $3 |
@@ -245,12 +245,12 @@ $25 초과는 "과소 편성"(로스터가 예산을 못 씀) 경고입니다.
 | SF | Kon Knueppel → **Desmond Bane** | $22 | +1 |
 | C | Karl-Anthony Towns → **Karl-Anthony Towns** | $49 | +4 |
 
-**피벗 최종 9인** — 총액 $178 · 예비비 $22 · 빅맨 $87 (C자격 4명) · 노리는 캣 `3P% A/T AST DD FG% OREB REB STL TOV` · 포기 `3PM BLK FT% PTS`
+**피벗 최종 9인** — 총액 $184 · 예비비 $16 · 빅맨 $87 (C자격 4명) · 노리는 캣 `3P% A/T AST DD FG% OREB REB STL TOV` · 포기 `3PM BLK FT% PTS`
 
 | 슬롯 | 선수 | 계획가 | 상한 |
 |---|---|---|---|
 | C | Karl-Anthony Towns `C` | $49 | $55 |
-| PG | Tyrese Haliburton | $50 | $50 |
+| PG | Tyrese Haliburton | $56 | $56 |
 | PF | Alperen Şengün `C` | $26 | $34 |
 | SF | Desmond Bane | $22 | $31 |
 | SG | Dyson Daniels | $12 | $20 |
@@ -430,7 +430,7 @@ $25 초과는 "과소 편성"(로스터가 예산을 못 씀) 경고입니다.
 
 > ⚠️ 격리된 별도 베팅안. Sabonis 건강이 프리시즌에 확인될 때만 발동. 실출장 ~20경기이고 A/T 한계기여는 −0.102로 마이너스 — 정상 복귀를 기본값으로 두면 위험합니다. 헤지 빅 2명을 필수로 붙입니다.
 
-**계획 $180** · 예비비 **$20** · 빅맨 $70/$96 (C자격 5명) · 노리는 캣 9개 `3P% A/T AST BLK DD FG% OREB REB STL` · 포기 `3PM FT% PTS TOV`
+**계획 $186** · 예비비 **$14** · 빅맨 $70/$96 (C자격 5명) · 노리는 캣 9개 `3P% A/T AST BLK DD FG% OREB REB STL` · 포기 `3PM FT% PTS TOV`
 
 **주간 승률** 최소 **32.7%** (vs 가치최대) · 빅5 동시붕괴 42.2% · 기대 승리 캣 8.72
 
@@ -440,11 +440,11 @@ $25 초과는 "과소 편성"(로스터가 예산을 못 씀) 경고입니다.
 
 | 슬롯 | 계획가 | 상한 | 여력 | 역할 | 1순위 | 대체 ① | 대체 ② |
 |---|---|---|---|---|---|---|---|
-| **PG** `앵커` | $50 | $50 | **$6** (실패→치환 Josh Giddey) | A/T +0.517 리그 1위 | **Tyrese Haliburton** | Josh Giddey $41 | De'Aaron Fox $24 |
+| **PG** `앵커` | $56 | $56 | **$0** (실패→치환 Josh Giddey) | A/T +0.517 리그 1위 | **Tyrese Haliburton** | Josh Giddey $41 | De'Aaron Fox $24 |
 | **SF** | $26 | $49 | — | 가드형 OREB 3.0 · 79G | **Amen Thompson** | Toumani Camara $11 | Jaden McDaniels $5 |
 | **UTIL** | $23 | $30 | — | Sabonis 헤지 빅 ① | **Evan Mobley** `C` | Walker Kessler $16 | — |
 | **SG** | $22 | $33 | — | 3PT% 레버리지 2위 | **Kon Knueppel** | Desmond Bane $22 | Sam Merrill $2 |
-| **PF** `앵커` | $19 | $34 | **$15** (실패→C6) | 앵커 (부상 할인 · 실패 시 코어 전환) | **Domantas Sabonis** `C` | — | — |
+| **PF** `앵커` | $19 | $34 | **$14** (실패→C6) | 앵커 (부상 할인 · 실패 시 코어 전환) | **Domantas Sabonis** `C` | — | — |
 | **C** | $12 | $22 | — | Sabonis 헤지 빅 ② (필수) | **Donovan Clingan** `C` | Jalen Duren $27 | Rudy Gobert $8 |
 | **UTIL** | $11 | $16 | — | DD 24 · Hali 픽앤롤 시너지 | **Ivica Zubac** `C` | Mitchell Robinson $5 | Mark Williams $7 |
 | **BN** | $5 | $14 | — | OREB 2.6 · DD 22 | **Deandre Ayton** `C` | Nic Claxton $4 | Neemias Queta $2 |
@@ -463,11 +463,11 @@ $25 초과는 "과소 편성"(로스터가 예산을 못 씀) 경고입니다.
 | SG | Kon Knueppel → **Trey Murphy III** | $32 | +7 |
 | SF | Amen Thompson → **Amen Thompson** | $26 | +3 |
 
-**피벗 최종 9인** — 총액 $178 · 예비비 $22 · 빅맨 $58 (C자격 5명) · 노리는 캣 `A/T AST BLK DD FG% OREB REB STL TOV` · 포기 `3P% 3PM FT% PTS`
+**피벗 최종 9인** — 총액 $184 · 예비비 $16 · 빅맨 $58 (C자격 5명) · 노리는 캣 `A/T AST BLK DD FG% OREB REB STL TOV` · 포기 `3P% 3PM FT% PTS`
 
 | 슬롯 | 선수 | 계획가 | 상한 |
 |---|---|---|---|
-| PG | Tyrese Haliburton | $50 | $50 |
+| PG | Tyrese Haliburton | $56 | $56 |
 | SF | Amen Thompson | $26 | $49 |
 | UTIL | Evan Mobley `C` | $23 | $30 |
 | SG | Trey Murphy III | $32 | $32 |

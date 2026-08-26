@@ -56,7 +56,7 @@
   {
    "prio": "1",
    "core": "c1",
-   "label": "센터 정상가 + KAT ≤ $50 + Hali ≤ $48",
+   "label": "센터 정상가 + KAT ≤ $50 + Hali ≤ $56",
    "cond": {
     "type": "prices",
     "market": "normal",
@@ -67,13 +67,13 @@
      },
      {
       "player": "Tyrese Haliburton",
-      "max": 48
+      "max": 56
      }
     ],
     "feasibility": {
-     "required": "Tyrese Haliburton 실낙찰가 <= $50 (철수가)",
-     "why": "37차: my_max 를 $50 → **$56** 으로 상향해 실측 시장하단 $54 를 넘겼다 — 평가상으로는 획득 가능해졌다. 다만 `overheat_thresholds` 의 **철수가가 $50** 에 묶여 있어 계획가는 $50 이고, 그 값이 시장하단 $54 보다 낮아 여전히 할인 조건부다. 철수가를 $56 으로 올릴지는 미결(사람 판단) — 올리면 c1 총액 $182 → $188 · 예비비 $12 로 실행 가능해진다.",
-     "selection_threshold": "$48 — $48~50 구간은 살 수는 있으나 코어 1을 우선할 근거는 아니다",
+     "required": "Tyrese Haliburton 실낙찰가 <= $56 (철수가)",
+     "why": "37차에 my_max $50→$56 · 철수가 $50→$56 을 함께 올려 **c1이 실행 가능해졌다** — 계획가 $56 이 실측 시장하단 $54 를 넘는다. 이전의 '할인 없이는 c1이 존재하지 않는다'는 해소됐다. 시장 상단은 $66 이므로 여전히 **상단에서는 못 잡는다** — 중간값 아래에서 잡아야 한다.",
+     "selection_threshold": "$56 — 옛 기준 $48은 my_max $50 시절의 값이고, 실측 시장하단이 $54라 그 기준을 유지하면 c1이 다른 경로로 다시 死플랜이 된다. 철수가와 같게 뒀다.",
      "on_fail": "c6 (기본값)"
     }
    },
@@ -268,15 +268,15 @@
   },
   {
    "player": "Tyrese Haliburton",
-   "rule": "> $50",
-   "threshold": 50,
+   "rule": "> $56",
+   "threshold": 56,
    "tier": "anchor",
    "expected_2026_27": null,
    "overheat_at": null,
    "overheat_rule": null,
-   "basis": "가드. 코어 1·5 앵커 확보 가능성 판정용 — 센터 시장 온도와 무관",
-   "walk_away": 50,
-   "walk_away_rule": "> $50"
+   "basis": "가드. 코어 1·5 앵커 확보 가능성 판정용 — 센터 시장 온도와 무관. 37차: my_max 상향($50→$56)에 맞춰 철수가도 $50→$56 (사용자 결정 2026-08-26). $50에 묶어두면 계획가가 시장하단 $54를 밑돌아 my_max 상향이 c1에서 무효였다.",
+   "walk_away": 56,
+   "walk_away_rule": "> $56"
   },
   {
    "player": "Derrick White",
@@ -332,7 +332,7 @@
    "big_budget_cap": 115,
    "big_budget_planned": 93,
    "c_eligible_count": 5,
-   "planned_total": 182,
+   "planned_total": 188,
    "slots": [
     {
      "slot": "C",
@@ -349,14 +349,14 @@
       {
        "name": "Jalen Duren",
        "plan_price": 27,
-       "total_if_used": 164,
+       "total_if_used": 170,
        "redeploy": {
         "moves": [
          {
           "player": "Kon Knueppel",
           "slot": "SF",
           "from": 22,
-          "to": 33
+          "to": 27
          }
         ],
         "total_after": 175,
@@ -368,20 +368,14 @@
       {
        "name": "Alperen Şengün",
        "plan_price": 26,
-       "total_if_used": 163,
+       "total_if_used": 169,
        "redeploy": {
         "moves": [
          {
           "player": "Kon Knueppel",
           "slot": "SF",
           "from": 22,
-          "to": 33
-         },
-         {
-          "player": "Donovan Clingan",
-          "slot": "UTIL",
-          "from": 12,
-          "to": 13
+          "to": 28
          }
         ],
         "total_after": 175,
@@ -394,8 +388,8 @@
      "anchor_plan": {
       "bid_ceiling": 71,
       "nominal_margin": 26,
-      "budget_slack": 18,
-      "effective_headroom": 18,
+      "budget_slack": 12,
+      "effective_headroom": 12,
       "constraint": "budget",
       "dual_world_ok": true,
       "substitutes_dual_ok": [
@@ -415,13 +409,13 @@
      "slot": "PG",
      "role": "A/T +0.517 리그 1위 · TOV 동시",
      "is_anchor": true,
-     "plan_price": 50,
+     "plan_price": 56,
      "candidates": [
       {
        "name": "Tyrese Haliburton",
-       "plan_price": 50,
-       "bid_ceiling": 50,
-       "expected_cost": 50
+       "plan_price": 56,
+       "bid_ceiling": 56,
+       "expected_cost": 56
       },
       {
        "name": "Josh Giddey",
@@ -470,10 +464,10 @@
      ],
      "anchor_plan": {
       "bid_ceiling": 56,
-      "nominal_margin": 6,
-      "budget_slack": 18,
-      "effective_headroom": 6,
-      "constraint": "none",
+      "nominal_margin": 0,
+      "budget_slack": 12,
+      "effective_headroom": 0,
+      "constraint": "my_max",
       "dual_world_ok": true,
       "substitutes_dual_ok": [
        "Josh Giddey",
@@ -485,8 +479,8 @@
        "note": "코어 내 치환 — 코어 전환 불필요. 이중세계 유효 대체 2명"
       }
      },
-     "bid_ceiling": 50,
-     "expected_cost": 50
+     "bid_ceiling": 56,
+     "expected_cost": 56
     },
     {
      "slot": "PF",
@@ -793,7 +787,7 @@
        {
         "name": "Jalen Duren",
         "plan_price": 27,
-        "total_if_used": 156,
+        "total_if_used": 162,
         "redeploy": {
          "moves": [
           {
@@ -818,7 +812,7 @@
        {
         "name": "Alperen Şengün",
         "plan_price": 26,
-        "total_if_used": 155,
+        "total_if_used": 161,
         "redeploy": {
          "moves": [
           {
@@ -846,11 +840,11 @@
      {
       "slot": "PG",
       "name": "Tyrese Haliburton",
-      "plan_price": 50,
+      "plan_price": 56,
       "role": "A/T +0.517 리그 1위 · TOV 동시",
       "is_anchor": true,
-      "bid_ceiling": 50,
-      "expected_cost": 50,
+      "bid_ceiling": 56,
+      "expected_cost": 56,
       "alternates": [
        {
         "name": "Josh Giddey",
@@ -884,7 +878,7 @@
         "plan_price": 23,
         "bid_ceiling": 30,
         "expected_cost": 23,
-        "total_if_used": 175
+        "total_if_used": 181
        }
       ],
       "dual_world_ok": true
@@ -902,7 +896,7 @@
         "plan_price": 11,
         "bid_ceiling": 14,
         "expected_cost": 11,
-        "total_if_used": 167
+        "total_if_used": 173
        }
       ],
       "dual_world_ok": true
@@ -920,14 +914,14 @@
         "plan_price": 3,
         "bid_ceiling": 8,
         "expected_cost": 3,
-        "total_if_used": 169
+        "total_if_used": 175
        },
        {
         "name": "Cason Wallace",
         "plan_price": 3,
         "bid_ceiling": 8,
         "expected_cost": 3,
-        "total_if_used": 169
+        "total_if_used": 175
        }
       ],
       "dual_world_ok": true
@@ -945,14 +939,14 @@
         "plan_price": 11,
         "bid_ceiling": 16,
         "expected_cost": 11,
-        "total_if_used": 184
+        "total_if_used": 190
        },
        {
         "name": "Mark Williams",
         "plan_price": 7,
         "bid_ceiling": 14,
         "expected_cost": 7,
-        "total_if_used": 180
+        "total_if_used": 186
        }
       ],
       "dual_world_ok": true
@@ -970,7 +964,7 @@
         "plan_price": 11,
         "bid_ceiling": 16,
         "expected_cost": 11,
-        "total_if_used": 182
+        "total_if_used": 188
        }
       ],
       "dual_world_ok": true
@@ -988,14 +982,14 @@
         "plan_price": 2,
         "bid_ceiling": 8,
         "expected_cost": 2,
-        "total_if_used": 175
+        "total_if_used": 181
        },
        {
         "name": "Day'Ron Sharpe",
         "plan_price": 2,
         "bid_ceiling": 5,
         "expected_cost": 2,
-        "total_if_used": 175
+        "total_if_used": 181
        }
       ],
       "dual_world_ok": true
@@ -1013,20 +1007,20 @@
         "plan_price": 2,
         "bid_ceiling": 8,
         "expected_cost": 2,
-        "total_if_used": 178
+        "total_if_used": 184
        },
        {
         "name": "Day'Ron Sharpe",
         "plan_price": 2,
         "bid_ceiling": 5,
         "expected_cost": 2,
-        "total_if_used": 178
+        "total_if_used": 184
        }
       ],
       "dual_world_ok": true
      }
     ],
-    "final_total": 178,
+    "final_total": 184,
     "final_big_budget": 87,
     "final_c_eligible": 4,
     "targeted_cats": [
@@ -1076,7 +1070,7 @@
      "wins_incl_dd": 9
     }
    },
-   "budget_slack": 18,
+   "budget_slack": 12,
    "cat_weight_sums": {
     "PTS": 5,
     "FG%": 12,
@@ -3414,19 +3408,19 @@
    "big_budget_cap": 96,
    "big_budget_planned": 70,
    "c_eligible_count": 5,
-   "planned_total": 180,
+   "planned_total": 186,
    "slots": [
     {
      "slot": "PG",
      "role": "A/T +0.517 리그 1위",
      "is_anchor": true,
-     "plan_price": 50,
+     "plan_price": 56,
      "candidates": [
       {
        "name": "Tyrese Haliburton",
-       "plan_price": 50,
-       "bid_ceiling": 50,
-       "expected_cost": 50
+       "plan_price": 56,
+       "bid_ceiling": 56,
+       "expected_cost": 56
       },
       {
        "name": "Josh Giddey",
@@ -3469,10 +3463,10 @@
      ],
      "anchor_plan": {
       "bid_ceiling": 56,
-      "nominal_margin": 6,
-      "budget_slack": 20,
-      "effective_headroom": 6,
-      "constraint": "none",
+      "nominal_margin": 0,
+      "budget_slack": 14,
+      "effective_headroom": 0,
+      "constraint": "my_max",
       "dual_world_ok": true,
       "substitutes_dual_ok": [
        "Josh Giddey",
@@ -3484,8 +3478,8 @@
        "note": "코어 내 치환 — 코어 전환 불필요. 이중세계 유효 대체 2명"
       }
      },
-     "bid_ceiling": 50,
-     "expected_cost": 50
+     "bid_ceiling": 56,
+     "expected_cost": 56
     },
     {
      "slot": "SF",
@@ -3581,9 +3575,9 @@
      "anchor_plan": {
       "bid_ceiling": 34,
       "nominal_margin": 15,
-      "budget_slack": 20,
-      "effective_headroom": 15,
-      "constraint": "none",
+      "budget_slack": 14,
+      "effective_headroom": 14,
+      "constraint": "budget",
       "dual_world_ok": true,
       "substitutes_dual_ok": [],
       "on_fail": {
@@ -3794,11 +3788,11 @@
      {
       "slot": "PG",
       "name": "Tyrese Haliburton",
-      "plan_price": 50,
+      "plan_price": 56,
       "role": "A/T +0.517 리그 1위",
       "is_anchor": true,
-      "bid_ceiling": 50,
-      "expected_cost": 50,
+      "bid_ceiling": 56,
+      "expected_cost": 56,
       "alternates": [
        {
         "name": "Josh Giddey",
@@ -3832,14 +3826,14 @@
         "plan_price": 11,
         "bid_ceiling": 14,
         "expected_cost": 11,
-        "total_if_used": 163
+        "total_if_used": 169
        },
        {
         "name": "Jaden McDaniels",
         "plan_price": 5,
         "bid_ceiling": 10,
         "expected_cost": 5,
-        "total_if_used": 157
+        "total_if_used": 163
        }
       ],
       "dual_world_ok": true
@@ -3857,14 +3851,14 @@
         "plan_price": 5,
         "bid_ceiling": 12,
         "expected_cost": 5,
-        "total_if_used": 160
+        "total_if_used": 166
        },
        {
         "name": "Mark Williams",
         "plan_price": 7,
         "bid_ceiling": 14,
         "expected_cost": 7,
-        "total_if_used": 162
+        "total_if_used": 168
        }
       ],
       "dual_world_ok": true
@@ -3882,14 +3876,14 @@
         "plan_price": 22,
         "bid_ceiling": 31,
         "expected_cost": 22,
-        "total_if_used": 168
+        "total_if_used": 174
        },
        {
         "name": "Sam Merrill",
         "plan_price": 2,
         "bid_ceiling": 8,
         "expected_cost": 2,
-        "total_if_used": 148
+        "total_if_used": 154
        }
       ],
       "dual_world_ok": true
@@ -3917,14 +3911,14 @@
         "plan_price": 27,
         "bid_ceiling": 34,
         "expected_cost": 27,
-        "total_if_used": 198
+        "total_if_used": 204
        },
        {
         "name": "Rudy Gobert",
         "plan_price": 8,
         "bid_ceiling": 18,
         "expected_cost": 8,
-        "total_if_used": 179
+        "total_if_used": 185
        }
       ],
       "dual_world_ok": true
@@ -3942,14 +3936,14 @@
         "plan_price": 5,
         "bid_ceiling": 12,
         "expected_cost": 5,
-        "total_if_used": 179
+        "total_if_used": 185
        },
        {
         "name": "Mark Williams",
         "plan_price": 7,
         "bid_ceiling": 14,
         "expected_cost": 7,
-        "total_if_used": 181
+        "total_if_used": 187
        }
       ],
       "dual_world_ok": true
@@ -3967,14 +3961,14 @@
         "plan_price": 2,
         "bid_ceiling": 6,
         "expected_cost": 2,
-        "total_if_used": 175
+        "total_if_used": 181
        },
        {
         "name": "Davion Mitchell",
         "plan_price": 2,
         "bid_ceiling": 4,
         "expected_cost": 2,
-        "total_if_used": 175
+        "total_if_used": 181
        }
       ],
       "dual_world_ok": true
@@ -3992,20 +3986,20 @@
         "plan_price": 2,
         "bid_ceiling": 6,
         "expected_cost": 2,
-        "total_if_used": 168
+        "total_if_used": 174
        },
        {
         "name": "Davion Mitchell",
         "plan_price": 2,
         "bid_ceiling": 4,
         "expected_cost": 2,
-        "total_if_used": 168
+        "total_if_used": 174
        }
       ],
       "dual_world_ok": true
      }
     ],
-    "final_total": 178,
+    "final_total": 184,
     "final_big_budget": 58,
     "final_c_eligible": 5,
     "targeted_cats": [
@@ -4055,7 +4049,7 @@
      "wins_incl_dd": 9
     }
    },
-   "budget_slack": 20,
+   "budget_slack": 14,
    "cat_weight_sums": {
     "PTS": 4,
     "FG%": 16,
