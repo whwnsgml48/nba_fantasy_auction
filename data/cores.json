@@ -92,7 +92,7 @@
   {
    "prio": "3",
    "core": "c3",
-   "label": "센터가 조금 비싸지만 SGA ≤ $72",
+   "label": "센터가 조금 비싸지만 SGA ≤ $85",
    "cond": {
     "type": "prices",
     "market": "slightly_hot",
@@ -126,7 +126,7 @@
   {
    "prio": "조건부",
    "core": "c2",
-   "label": "Jokić ≤ $88",
+   "label": "Jokić ≤ $97",
    "cond": {
     "type": "prices",
     "rules": [
@@ -150,7 +150,7 @@
   {
    "prio": "격리",
    "core": "c5",
-   "label": "Sabonis 건강 확인 + ≤ $26",
+   "label": "Sabonis 프리시즌 정상 복귀 확인 (가격 게이트 없음)",
    "cond": {
     "type": "manual",
     "desc": "프리시즌에 Sabonis 정상 복귀가 확인되고 $26 이하",
@@ -7236,5 +7236,6 @@
    }
   },
   "gate_impact": "우선 0 발동 문턱이 **실질 1명 → 설계대로 2명**으로 복원된다. 재산정 후 저가 센터 6명 중 상시 점등은 0명이다. ⚠️ 드래프트 당일 이 문턱이 바뀐 것을 모르면 안 된다."
- }
+ },
+ "decision_table_label_note": "⚠️ `label`은 사람이 읽는 문장이고 `cond.rules`가 판정 소스다. 39차에 rules만 고치고 label을 안 고쳐 c2($88 vs 97) · c3($72 vs 85) · c5(제거된 게이트)가 낡았다. 검증기는 label의 **존재**만 보고 내용을 대조하지 않는다 — 임계값을 바꾸면 label도 함께 고칠 것. 툴은 rules에서 문장을 생성하므로 화면은 맞았고 데이터만 갈라져 있었다."
 }
