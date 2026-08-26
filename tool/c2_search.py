@@ -61,20 +61,29 @@ POOL = [n for n, p in PL.items()
         if n != ANCHOR and p.get("obtainable") and not p.get("injury_exclude")
         and p["my_max"] >= mid(n) and n in FM]
 
-def strict_ok(names):
-    """BBRef 세부 포지션으로 PG·SG·SF·PF·C 5슬롯을 채울 수 있는가 (이분 매칭)."""
+def slot_fit_ok(names):
+    """9슬롯(PG SG SF PF C UTIL×2 BN×2)을 **야후 자격**으로 동시에 채울 수 있는가.
+
+    🔴 39차 정정: 처음엔 BBRef 주 포지션(PG/SG/SF/PF/C)을 1:1로 강제했다. **틀렸다** —
+    BBRef는 선수당 주 포지션 1개만 주고 야후 자격은 다중이다(Bane BBRef `SG` ↔ 야후 `G/F`).
+    그 결과 SF가 24명뿐인 BBRef 분류에서 SF 슬롯이 병목이 되어, **실측 84.0%인 noKAT-N1이
+    제약에서 걸러졌다.** 검증기(`validate.py` NEED)와 툴(`slotOK`)이 쓰는 규칙으로 통일한다:
+        PG·SG → G · SF·PF → F · C → C · UTIL·BN 무제약
+    """
     need = ["PG", "SG", "SF", "PF", "C"]
-    cand = {s: [n for n in names if FM[n].get("pos") == s] for s in need}
+    req = {"PG": "G", "SG": "G", "SF": "F", "PF": "F", "C": "C"}
     used = set()
     def go(i):
         if i == len(need): return True
-        for n in cand[need[i]]:
+        for n in names:
             if n in used: continue
+            if req[need[i]] not in (PL[n].get("pos") or ""): continue
             used.add(n)
             if go(i + 1): return True
             used.discard(n)
         return False
     return go(0)
+
 
 def ok(names):
     if len(set(names)) != 9: return None
@@ -86,7 +95,7 @@ def ok(names):
     pr = sorted(names, key=mid)
     if sum(mid(n) for n in pr[:2]) > 20: return None            # 벤치 <= $20
     if set(sorted(names, key=lambda n: -mid(n))[:2]) & set(pr[:2]): return None
-    if not strict_ok(names): return None
+    if not slot_fit_ok(names): return None
     return tot
 
 B = CM.baselines()

@@ -40,7 +40,7 @@ CONST=[("CORES",buildCORES()),("PIVOTS",TE.build_pivots(c)),
        # 39차 갈래 1: 판단표에 **실제 12팀 강도**를 싣는다. 강도는 32차 원칙상
        # cores.json 에 넣지 않고 **여기서 툴 상수를 만들 때만** 합친다.
        # validate 도 같은 TE.build_decision(cj, sim) 을 쓰므로 이중 구현이 안 생긴다.
-       ("DECISION",TE.build_decision(c,SIM))]
+       ("DECISION",TE.build_decision(c,SIM)),("KATBR",TE.build_kat_branch(c))]
 n=0
 for name,val in CONST:
     m=re.search(r'const %s=(\[|\{).*?(\]|\});\n'%re.escape(name), s, re.S)

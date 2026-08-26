@@ -92,6 +92,21 @@ def label_price_clauses(label):
     return [int(x) for x in PRICE_CLAUSE.findall(label or "")]
 
 
+def build_kat_branch(cj):
+    """KAT 가격 분기. 판단표는 코어당 1행이라(I10) 별도 구조로 둔다.
+
+    39차: KAT은 c1·c6·c7 세 코어의 앵커인데 그가 비싸지면 판단표에 갈 곳이 없었다.
+    `default_normal`은 예산을 안 보고, $50~57에서 유일하게 살아있는 c7은 `hot_bigs`
+    분기로만 도달한다 — 정상 시장에서는 표가 c7을 제시하지 않는다.
+    """
+    b = cj.get("kat_price_branch")
+    if not b:
+        return None
+    return {"n": b["player"], "ceil": b["ceilings"],
+            "steps": [{"over": s["over"], "go": s["go"], "label": s["label"],
+                       "str": s.get("strength")} for s in b["steps"]]}
+
+
 def build_tiers(cj):
     """툴 `OTIERS` 상수."""
     return {k: {"label": v["label"], "c7": v["counts_toward_core7"], "why": v["why"]}
