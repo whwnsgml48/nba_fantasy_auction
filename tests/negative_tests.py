@@ -482,7 +482,20 @@ def violations(out):
 
 
 def cautions(out):
-    return [l.strip() for l in out.splitlines() if "△" in l]
+    """`△` 줄 + **그 뒤에 이어지는 들여쓰기 상세 줄**.
+
+    ⚠️ 39차: `△` 줄만 보면 안 된다. I21 요약 줄(`△ [I21 경고] … 0건`)은 위반이 없어도
+    **항상 찍히므로**, 마커를 `[I21`로 잡으면 주입 없이 통과한다 — I22가 당했던 것과
+    같은 형태다(테스트가 초록인데 검출과 무관). 개수>0 일 때만 나오는 상세 줄이
+    필요하고, 그 줄에는 `△`가 없다."""
+    out_lines, keep, on = out.splitlines(), [], False
+    for l in out_lines:
+        if "△" in l:
+            on = True; keep.append(l.strip()); continue
+        if on and l[:6].isspace() and l.strip():
+            keep.append(l.strip()); continue
+        on = False
+    return keep
 
 
 def crash_at(out):
@@ -523,6 +536,59 @@ def _i30_count(b):
         del ls[hit]                                  # 한 행을 없앤다
         return s[:m.start(1)] + "\n".join(ls) + s[m.end(1):]
     b.html(f)
+
+
+# ── M4 · M5 · M5b · I21 (39차 신설) ───────────────────────────────────────
+# 커버리지 공백이었다. M4·M5·M5b 는 위반 등급이고 I21 은 경고 등급이라 warn=True 로 본다.
+# (I15·I16·I17 은 별도 마커가 없다 — 다른 검사에 접혀 있어 주입 지점이 없다.)
+
+@test("M4", "캣 가중치 w3인데 flag가 그 캣을 '엘리트 아님'이라 부른다", "[M4]", after=TAIL)
+def _m4(b):
+    for p in b.players:
+        w = p.get("cat_weights") or {}
+        cat = next((c for c, v in w.items() if v == 3), None)
+        if cat and not (p.get("flag") or ""):
+            p["flag"] = "%s 엘리트 아님" % cat
+            return
+    raise AssertionError("대상 선수 없음")
+
+
+@test("M5", "tag=burn 인데 div가 '우리가 과소' 방향이고 tag_basis가 없다", "[M5]", after=TAIL)
+def _m5(b):
+    for p in b.players:
+        vr = p.get("value_reference")
+        if vr and "rank_divergence" in vr and not p.get("tag_basis") and not p.get("tag_basis_auto"):
+            p["tag"] = "burn"            # 안 산다고 선언했는데
+            vr["rank_divergence"] = 60   # 우리 가치모델은 과소평가라고 한다 — 모순
+            return
+    raise AssertionError("대상 선수 없음")
+
+
+@test("M5b", "tag_basis의 div 인용이 실제와 어긋난다 (드리프트)",
+      ("[M5b]", "드리프트"), after=TAIL)
+def _m5b(b):
+    for p in b.players:
+        vr = p.get("value_reference")
+        if vr and isinstance(vr.get("rank_divergence"), int) and not p.get("tag_basis_auto"):
+            # 실제 div 와 크게 다른 값을 인용시킨다(허용 오차 ±2).
+            p["tag_basis"] = "div %+d — 근거 기록" % (vr["rank_divergence"] + 40)
+            return
+    raise AssertionError("대상 선수 없음")
+
+
+@test("I21", "계획가가 시장 상단을 넘으면 경고로 잡는가",
+      ("[I21", "시장상단 $"), after=TAIL, warn=True)
+def _i21(b):
+    # my_max 가 시장 상단보다 높은 슬롯을 골라 계획가를 my_max 까지 올린다.
+    # I1(계획가 <= my_max)은 지키면서 I21(계획가 > 시장 상단)만 건드린다.
+    for co in b.cj["cores"]:
+        for s in co["slots"]:
+            q = b.pl.get(s["candidates"][0]["name"])
+            if q and q["my_max"] > q["market_high"] and s["plan_price"] <= q["market_high"]:
+                b.set_price_on(s, q["my_max"])
+                b.resync_totals(co["id"])
+                return
+    raise AssertionError("대상 슬롯 없음")
 
 
 def main():
