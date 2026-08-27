@@ -461,12 +461,17 @@ Giannis는 실측 27.6 PPG인데 PTS 리더보드에 없습니다(36경기 → �
 
 ### 1.3 🆕 반복 작업은 스크립트로 (19차)
 ```bash
-V=../nba_2026/.venv/bin/python      # 이 프로젝트엔 venv가 없어 재사용
-$V tool/recompute_cores.py          # cores.json 파생 필드 전부 재계산
-$V tool/sync_tool.py                # 툴 HTML 임베드 상수 7종 재생성
+python3 tool/recompute_cores.py     # cores.json 파생 필드 전부 재계산
+python3 tool/sync_tool.py           # 툴 HTML 임베드 상수 8종 + P 배열
+python3 tool/gen_docs06.py          # docs/06 전량 생성
+python3 tool/gen_players_csv.py     # players.csv 재생성 (I25가 대조)
 python3 validate.py                 # 위반 0건이어야 정상
+python3 tests/negative_tests.py     # 49/49 여야 정상
 ```
-**계획가·로스터를 하나라도 고치면 위 3개를 순서대로 돌릴 것.** 안 돌리면 exit 1입니다.
+**계획가·로스터를 하나라도 고치면 위 순서대로 돌릴 것.** 안 돌리면 exit 1입니다.
+⚠️ 이 목록은 **최소 경로**다. 실측·가중치까지 건드렸으면 아래 「2a. 재계산 파이프라인 순서」의
+전체 목록을 쓸 것 — 거기가 완전한 판본이다.
+⚠️ 그리고 `tool/` 이나 `data/` 를 고쳤으면 **아티팩트를 재발행**해야 사용자 화면에 닿는다(2a-0).
 데이터 수집은 `tool/fetch_bbref.py` → `tool/build_measured.py`.
 
 ### 1.4 ~~c4는 주간 승리를 못 한다~~ → ✅ **해결 (19차)**
