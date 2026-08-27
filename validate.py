@@ -940,6 +940,106 @@ else:
                         co["id"],s["slot"],_c,", ".join(_weak),_role)); warn+=1; _w29+=1
     print("[I29] role 의 캣 공급 선언 ↔ 후보: %d건 검사 · 불일치 %d건"%(_n29,_w29))
 
+    # ── I31: 9인이 PG SG SF PF C UTIL UTIL BN BN 에 **이분매칭** 되는가 (40차 신설) ──
+    #
+    # 왜 기존 검사로 안 잡혔나
+    #   슬롯 자격 검사는 있었다 — `NEED={"PG":"G",...}` + `k in p["pos"]`. 규칙은 맞았고
+    #   **입력이 넓었다.** `pos` 는 G/F/C 3분 추상이라 `G/F` 가 SF 로도 PF 로도 통과했다.
+    #   그래서 SF 충원 0명인 c3, PF 충원 0명인 c2 가 불변식 30개를 전부 통과했다.
+    #   40차에 야후 실자격 19명이 들어오자 **11명이 불일치했고 11건 전부 자격을 잃는 방향**
+    #   이었다 — 추상화의 계통 편향이다(`tool/pos_elig.py` 참조).
+    #
+    # 두 층을 함께 본다. 라벨이 유효해도 매칭이 깨질 수 있고, 그 반대도 있다:
+    #   (a) 라벨 유효성 — 선언된 자리에 그 선수를 **실제로 넣을 수 있는가**.
+    #       매칭이 성립해도 화면이 틀린 자리를 지시하면 10초 시계 아래서 막힌다.
+    #   (b) 완전매칭 — 9명이 9칸을 다 채우는가.
+    #
+    # ⚠️ 이건 **합법성 판정이 아니다.** 야후는 포지션 커버리지를 강제하지 않는다.
+    #   매칭이 깨진다는 것은 그 칸이 매일 비어 **선수-경기를 버린다**는 뜻이고,
+    #   실측 손실은 0.2~3.2%다(`tool/lineup_feasibility.py` · cores[].lineup_loss).
+    #   그래서 위반 등급이되 "조립 불가"라고 쓰지 않는다.
+    import pos_elig as _PEV
+    _n31=_e31=0
+    for co in cj["cores"]:
+        for _tag,_ros in (("base",[(s["slot"],s["candidates"][0]["name"]) for s in co["slots"]]),
+                          ("pivot",[(r["slot"],r["name"]) for r in
+                                    ((co.get("pivot_plan") or {}).get("final_roster") or [])])):
+            if not _ros: continue
+            _n31+=1
+            for _sl,_nm,_el in _PEV.label_errors(_ros,pl):
+                print("  ✗ [I31] %s %s: %s 를 %s 에 뒀는데 자격은 %s"%(
+                    co["id"],_tag,_nm,_sl,"/".join(_el) or "없음")); err+=1; _e31+=1
+            if sorted(s for s,_ in _ros)!=sorted(_PEV.ROSTER_SLOTS):
+                print("  ✗ [I31] %s %s: 슬롯 구성 불일치 %s"%(
+                    co["id"],_tag,sorted(s for s,_ in _ros))); err+=1; _e31+=1
+            elif _PEV.match([pl[n] for _,n in _ros if n in pl]) is None:
+                _lack=[sl for sl in _PEV.NAMED
+                       if not any(_PEV.can(pl[n],sl) for _,n in _ros if n in pl)]
+                print("  ✗ [I31] %s %s: 9인이 9칸을 못 채운다 — 충원 0명인 칸 %s"%(
+                    co["id"],_tag,", ".join(_lack) or "(조합 문제)")); err+=1; _e31+=1
+        # 대체후보도 그 슬롯에 실제로 들어갈 수 있어야 한다. 1순위를 놓쳤을 때 가는
+        # 자리이므로 여기가 비면 **대안이 있다고 화면이 거짓말한다.**
+        for s in co["slots"]:
+            for cd in s["candidates"][1:]:
+                _p=pl.get(cd["name"])
+                if _p and not _PEV.can(_p,s["slot"]):
+                    print("  ✗ [I31] %s %s 대체 %s: 자격 %s"%(
+                        co["id"],s["slot"],cd["name"],"/".join(sorted(_PEV.elig(_p))) or "없음"))
+                    err+=1; _e31+=1
+    _unconf=sum(1 for co in cj["cores"] for s in co["slots"]
+                if not _PEV.confirmed(pl.get(s["candidates"][0]["name"],{})))
+    print("[I31] 슬롯 이분매칭: 로스터 %d개 검사 · 위반 %d건 · 1순위 중 자격 미확인 %d명"
+          %(_n31,_e31,_unconf))
+    print("             ⚠️ 미확인은 추상 pos(G→PG,SG · F→SF,PF)로 판정한다. 확인된 19명에서"
+          " **11명이 자격을 잃는 방향으로 틀렸다** — 미확인 판정은 계통적으로 낙관 편향이다.")
+
+    # ── I34 (40차 신설): 대체안이 **예산 안에서 실제로 실행되는가** ─────────────
+    #
+    # 대체안은 1순위를 놓쳤을 때 가는 자리다. 그런데 전환하면 총액이 $200을 넘어
+    # **살 수 없는 대안**이 4건 있었다(c3·c5 의 C 가 Clingan $12 → Duren $27 · c6 UTIL 이
+    # Edgecombe $5 → Knueppel/Bane $22). 화면에는 대안이 있다고 뜨고 실제로는 못 산다.
+    #
+    # 기존 검사들은 대체안의 **가격 정합**(my_max·시장하단·단일상한)만 봤다. 그건 "그 값이
+    # 말이 되는가"이고, 여기서 묻는 것은 **"그 값을 낼 돈이 있는가"** 다. 다른 질문이다.
+    # 예비비 하한은 I22 와 같은 $4 를 쓴다 — 대안으로 갈아탄 세계도 여전히 앵커를 안고 있다.
+    _n34=_e34=_w34=0
+    for co in cj["cores"]:
+        _tot=co["planned_total"]
+        for s in co["slots"]:
+            for cd in s["candidates"][1:]:
+                _n34+=1
+                _t=_tot-s["plan_price"]+cd["plan_price"]; _r=200-_t
+                if _r<0:
+                    print("  ✗ [I34] %s %s: %s → %s 로 갈아타면 총액 $%d (초과 $%d) — 살 수 없는 대안"%(
+                        co["id"],s["slot"],s["candidates"][0]["name"],cd["name"],_t,-_r)); err+=1; _e34+=1
+                elif _r<_RSV_E:
+                    print("  △ [I34] %s %s: %s → %s 로 갈아타면 예비비 $%d < $%d"%(
+                        co["id"],s["slot"],s["candidates"][0]["name"],cd["name"],_r,_RSV_E)); warn+=1; _w34+=1
+    print("[I34] 대체안 예산 실행 가능성: %d건 검사 · 실행 불가 %d · 예비비 하한 미달 %d"%(_n34,_e34,_w34))
+
+    # ── I35 (40차 신설): 피벗 서술이 **인용한 금액**이 실제와 맞는가 ──────────────
+    #
+    # 사용자가 직접 잡은 결함 계열이다 — c6 피벗 서술이 존재하지 않는 교체 2건과
+    # 빅맨 $96 을 안내하고 있었다. 39차에 손으로 고쳤는데 c1 은 $78 로 고쳐 놓고
+    # 40차 재조립에서 실제가 $82 가 되면서 **틀린 숫자를 고친 문장이 다시 낡았다.**
+    #
+    # 서술문 전체를 검사할 수는 없다. 하지만 「빅맨 … $NN」은 계산 가능한 값을 인용하는
+    # 고정된 형태이고, 실제로 두 번 갈라진 자리다. **좁게 그 형태만** 본다(I29 와 같은 방침).
+    import re as _re35
+    _P35=_re35.compile(r"빅맨[^.。\n]{0,24}?\$(\d+)")
+    _n35=_w35=0
+    for co in cj["cores"]:
+        _pv=co.get("pivot_plan") or {}
+        _big=sum(r["plan_price"] for r in (_pv.get("final_roster") or []) if isBig(r["name"]))
+        for _m in _P35.finditer(_pv.get("rationale") or ""):
+            _n35+=1
+            if int(_m.group(1))!=_big:
+                print("  △ [I35] %s 피벗 서술이 빅맨 $%s 라고 적었는데 실제는 $%d\n         …%s…"%(
+                    co["id"],_m.group(1),_big,
+                    _pv["rationale"][max(0,_m.start()-26):_m.end()+6].replace("\n"," ")))
+                warn+=1; _w35+=1
+    print("[I35] 피벗 서술의 빅맨 예산 인용: %d건 검사 · 불일치 %d건"%(_n35,_w35))
+
     _cond=[x["id"] for x in cj["cores"] if x.get("conditional_on_discount")]
     print("앵커 정책: 앵커 %d개 · 피벗/백업 엔트리 %d개 · 조건부 베팅 %s%s"%(
         _nA,_nB,",".join(_cond) or "없음",
@@ -1098,13 +1198,24 @@ else:
         if tier not in TIERS:
             print("  ✗ %s: tier 미지정 또는 미정의 (%r)"%(n,tier)); err+=1; continue
         # 철수 가격 정합
-        if t.get("walk_away")!=t["threshold"] or t.get("walk_away_rule")!=t["rule"]:
-            print("  ✗ %s: walk_away가 threshold와 불일치"%n); err+=1
-        if t["rule"]!="> $%d"%t["threshold"]:
-            print("  ✗ %s: rule 형식 불일치"%n); err+=1
-        if n in MAXPLAN and t["threshold"]<MAXPLAN[n]:
-            print("  ✗ %s: 철수가 $%d < 최대 계획가 $%d (플랜이 자기 피벗을 트리거함)"%(
-                n,t["threshold"],MAXPLAN[n])); err+=1
+        # 40차: 철수가는 **null 일 수 있다.** SF 병목 감시 4명은 과열선만 있고 무차별
+        # 가격을 아직 재지 않았다. 숫자를 지어 넣으면 사용자가 보호받는다고 믿는다 —
+        # 이미 겪은 실패다(Gobert 철수가 $18은 어떤 모델에서도 발동 확률 0).
+        # null 을 허용하되 **사유 문자열을 요구**하고, 값이 있으면 기존 검사를 그대로 건다.
+        if t["threshold"] is None:
+            if not t.get("threshold_status"):
+                print("  ✗ %s: 철수가가 null 인데 사유(threshold_status)가 없다"%n); err+=1
+            if t.get("rule") is not None or t.get("walk_away") is not None \
+               or t.get("walk_away_rule") is not None:
+                print("  ✗ %s: 철수가 null 인데 rule/walk_away 가 남아 있다"%n); err+=1
+        else:
+            if t.get("walk_away")!=t["threshold"] or t.get("walk_away_rule")!=t["rule"]:
+                print("  ✗ %s: walk_away가 threshold와 불일치"%n); err+=1
+            if t["rule"]!="> $%d"%t["threshold"]:
+                print("  ✗ %s: rule 형식 불일치"%n); err+=1
+            if n in MAXPLAN and t["threshold"]<MAXPLAN[n]:
+                print("  ✗ %s: 철수가 $%d < 최대 계획가 $%d (플랜이 자기 피벗을 트리거함)"%(
+                    n,t["threshold"],MAXPLAN[n])); err+=1
         # 과열 신호 정합
         oh, exp = t.get("overheat_at"), t.get("expected_2026_27")
         if TIERS[tier].get("counts_toward_core7"):
@@ -1162,6 +1273,81 @@ else:
     if dt[0]["core"]!="c7": print("  ✗ 우선순위 0이 코어 7이 아님"); err+=1
     print("판단 순서: %d행 · 우선 0 = %s (센터 붕괴 시 최우선)"%(len(dt),dt[0]["core"]))
 print("-"*66)
+# ── I32 (40차 신설): players.json 의 **파생 필드**가 기저와 갈라졌는가 ──────
+#
+# 왜 필요한가
+#   `surplus` 와 `obtainable` 은 `my_max`·`market_low`·`market_high` 의 함수인데
+#   불변식이 없어서 `my_max` 를 손볼 때마다 조용히 낡았다. 40차에 실측했더니
+#     surplus    16명 불일치 — 그중 **부호가 뒤집힌 것 7명**
+#     obtainable  4명 불일치 — 그중 **3명이 「살 수 있다」고 거짓 표시**
+#   툴 화면은 차익을 자체 계산해 무사했지만 `docs/03` 의 잉여 상위·잉여 플러스 다트·
+#   획득 불가 세 표가 저장된 필드로 정렬·집계되어 **못 사는 선수를 살 수 있다고 적고
+#   있었다.** 재계산은 `tool/recompute_derived.py`.
+#
+# 손수정 예외는 숨기지 않는다
+#   Westbrook 은 가격상 획득 가능한데 **은퇴**라 손으로 내렸다. 공식에 if 를 넣는 대신
+#   `obtainable_override`(이유 문자열)를 요구한다 — 이 저장소가 반복해 실패한
+#   「규칙이 아니라 서술문」의 반대 방향이다. override 가 있으면 면제하고 **세어서 표시**한다.
+_n32=_e32=_ov32=0
+for _p in pl.values():
+    _n32+=1
+    _mid=round((_p["market_low"]+_p["market_high"])/2)
+    _exp=_p["my_max"]-_mid
+    if _p.get("surplus")!=_exp:
+        print("✗ [I32] %s: surplus %s ≠ my_max $%d − 시장중간 $%d = %d"%(
+            _p["name"],_p.get("surplus"),_p["my_max"],_mid,_exp)); err+=1; _e32+=1
+    if _p.get("obtainable_override"):
+        _ov32+=1; continue
+    _eo=_p["my_max"]>=_p["market_low"]
+    if _p.get("obtainable")!=_eo:
+        print("✗ [I32] %s: obtainable %s ≠ (my_max $%d %s 시장하단 $%d)%s"%(
+            _p["name"],_p.get("obtainable"),_p["my_max"],">=" if _eo else "<",_p["market_low"],
+            "  🔴 못 사는 선수를 살 수 있다고 표시" if _p.get("obtainable") else ""))
+        err+=1; _e32+=1
+print("[I32] 파생 필드(surplus·obtainable): %d명 검사 · 위반 %d건 · 손수정 예외 %d건"
+      %(_n32,_e32,_ov32))
+
+# ── I33 (40차 신설): **같은 사실이 두 곳에 있으면 대조한다** ──────────────────
+#
+# (a) `pos_yahoo` ↔ `yahoo_eligibility_39.listed`
+#     40차에 야후 실자격을 `pos_yahoo` 로 넣고 나서야 39차에 이미 같은 사실이
+#     `yahoo_eligibility_39` 에 4명분 들어 있었다는 걸 알았다. **넣은 당일 2건이 갈라져
+#     있었다** — Amen(PG,SG ↔ PG,SF,SG) · Okongwu(C ↔ C,PF). 그 2건이 하필 수리의
+#     근거였다. 이중 보관을 만든 것보다 **대조가 없었다면 못 잡았을 것**이 요점이다.
+#     ⚠️ 등급은 **경고**다 — 어느 쪽이 맞는지는 사람이 확인해야 하고(재확인 요청 중),
+#       현재 로스터는 두 판독 모두에서 유효하므로 진행을 막을 이유가 없다.
+#
+# (b) `overheat_at` ↔ 계층의 `overheat_margin`
+#     `low_cost_center` 가 「기대치 × 1.4 (최소 +$3)」라고 선언해 놓고 그 계층 6명 전원이
+#     실제로는 × 1.25 였다. 데이터가 아니라 **설명문**이 낡은 경우이고, 검사가 없으면
+#     어느 쪽이 진짜인지 아무도 모른다.
+import re as _re33
+_w33=0
+_n33a=0
+for _p in pl.values():
+    _y39=_p.get("yahoo_eligibility_39")
+    if not _y39 or not _p.get("pos_yahoo"): continue
+    _n33a+=1
+    _a=set(x.strip() for x in (_y39.get("listed") or "").split(",") if x.strip())
+    _b=set(_p["pos_yahoo"])
+    if _a!=_b:
+        print("  △ [I33] %s: pos_yahoo %s ↔ 39차 기록 %s — 같은 사실이 두 곳에서 다르다 (출처: %s)"
+              %(_p["name"],",".join(sorted(_b)),",".join(sorted(_a)),
+                (_y39.get("source") or "?")[:40])); warn+=1; _w33+=1
+_n33b=0
+for _t in cj["overheat_thresholds"]:
+    _tier=TIERS.get(_t.get("tier")) or {}
+    _m=_tier.get("overheat_margin"); _oh=_t.get("overheat_at"); _e=_t.get("expected_2026_27")
+    if not _m or _oh is None or _e is None: continue
+    _mm=_re33.search(r"×\s*([\d.]+)",_m)
+    if not _mm: continue
+    _n33b+=1
+    _exp=round(_e*float(_mm.group(1)))
+    if _exp!=_oh:
+        print("  △ [I33] %s: overheat_at $%d ↔ 계층 선언 '%s' 로는 $%d (기대치 $%d)"
+              %(_t["player"],_oh,_m,_exp,_e)); warn+=1; _w33+=1
+print("[I33] 이중 보관 대조: 자격 %d명 · 과열배율 %d건 · 불일치 %d건"%(_n33a,_n33b,_w33))
+
 # ── I25 (38차 신설): data/players.csv == 생성기 출력 ─────────────────────
 # README는 players.csv를 "같은 데이터 표 형식"이라고 적어놨지만 **생성기가 없었고
 # 손으로 유지되는 미러**였다. 그래서 갈라졌다 — 도입 시점에 174행 전부가 달랐다

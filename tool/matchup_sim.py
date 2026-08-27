@@ -42,6 +42,8 @@ import json, io, os, sys, math, random, statistics
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import cat_model as CM
 import real_opponents as RO   # 38차: 작년 옥션 실측 12팀 = **실제 상대**
+import pos_elig as PE         # 40차: 슬롯 자격 단일 소스
+import lineup_feasibility as LF
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 F  = CM.F
@@ -75,13 +77,77 @@ def _binom(n, p, rng):
     m = n * p
     return min(n, max(0, int(round(rng.gauss(m, math.sqrt(m * (1 - p)))))))
 
-def prep(names):
-    """선수별 정적 값을 미리 뽑아둔다 — 시행마다 dict 조회를 반복하지 않는다."""
+# ── 라인업 사용률 (40차 · 공식 경로로 승격 · 사용자 결정 2026-08-27) ──────────
+#
+# 왜 가정이 아니라 **누락된 규칙**인가
+#   야후는 라인업을 매일 세팅하고 선발 7칸은 포지션이 정해져 있다. 그날 경기가 있어도
+#   넣을 칸이 없으면 그 경기는 통째로 버려진다. 이건 모델링 선택이 아니라 **리그 규칙**이고,
+#   보정하지 않은 승률은 **불가능한 로스터 운용**을 계산한 값이다.
+#
+#   실제로 순위가 바뀐다. 자격 반영 전후로 7코어 중 c2 하나만 −2.5%p 움직였다
+#   (나머지는 전부 ±0.4%p 안). c2 는 저평가 구간을 쓸어담는 방식이 곧 C 전용을 5명까지
+#   쌓는 방식이었고, 보정 없는 시뮬은 그 5명을 매일 다 쓸 수 있다고 계산했다.
+#   「전 코어 1위」가 코어의 강점이 아니라 모델의 맹점에서 나온 이득이었다.
+#
+# 어떻게
+#   `avail = GP/82` 에 **사용률**(그 선수의 경기 중 슬롯을 얻는 비율)을 곱한다.
+#   두 손실은 성격이 다르고 곱해지는 것이 맞다 — 결장은 경기가 없는 것,
+#   사용률은 경기가 있는데 칸이 없는 것이다.
+#
+# ⚠️ 무작위 상대만 근사한다
+#   무작위 상대는 시행마다 로스터가 바뀌어 매번 사용률을 재면 시뮬이 끝나지 않는다.
+#   대신 무작위 로스터 표본에서 **자격집합별 평균 사용률**을 미리 구해 쓴다.
+#   1차 지표(실제 12팀)와 고정 상대는 전부 로스터별 실측이므로 근사가 섞이지 않는다.
+LINEUP_ADJ   = True
+LINEUP_WEEKS = 2500          # 사용률 추정용 주 수. 비율 추정이라 승률만큼 정밀할 필요는 없다
+_URATE = {}
+_RND_RATE = None
+
+def _pdict(n):
+    """자격 판정용 최소 dict. 상대 로스터에는 players.json 에 없는 선수가 있다."""
+    p = PL.get(n)
+    if p: return p
+    r = F.get(n) or {}
+    return {"name": n, "pos": r.get("pos"), "pos_yahoo": None,
+            "measured_source": {"GP": r.get("GP")}}
+
+def usable_rates(names):
+    """로스터별 사용률 {이름: 비율}. 같은 로스터는 캐시한다."""
+    key = tuple(names)
+    if key not in _URATE:
+        _URATE[key] = LF.usable_rates([_pdict(n) for n in names if n in F],
+                                      weeks=LINEUP_WEEKS)
+    return _URATE[key]
+
+def random_rate_table(rows, rng, samples=120):
+    """무작위 상대용 — 자격집합별 평균 사용률. 한 번만 만든다."""
+    global _RND_RATE
+    if _RND_RATE is not None: return _RND_RATE
+    acc = {}
+    for _ in range(samples):
+        sel = random_roster(rows, rng)
+        if not sel: continue
+        for n, u in LF.usable_rates([_pdict(x) for x in sel if x in F], weeks=300).items():
+            acc.setdefault(frozenset(PE.elig(_pdict(n))), []).append(u)
+    _RND_RATE = {k: sum(v) / len(v) for k, v in acc.items()}
+    return _RND_RATE
+
+def prep(names, rates=None):
+    """선수별 정적 값을 미리 뽑아둔다 — 시행마다 dict 조회를 반복하지 않는다.
+
+    `rates` 를 주면 그 표를 쓰고(무작위 상대용 자격집합별 평균), 안 주면 이 로스터로 직접 잰다.
+    """
+    if LINEUP_ADJ and rates is None:
+        rates = usable_rates(names)
     out = []
     for n in names:
         r = F.get(n)
         if not r: continue
-        out.append(((r.get("GP") or 0) / 82.0,
+        av = (r.get("GP") or 0) / 82.0
+        if LINEUP_ADJ and rates:
+            av *= (rates.get(n) if n in rates
+                   else rates.get(frozenset(PE.elig(_pdict(n))), 1.0))
+        out.append((av,
                     [(k, r.get(k)) for k in COUNT],
                     [(k, a, r.get(a), r.get(k)) for k, a in RATE.items()],
                     CM.dd_game_prob(r.get("PTS"), r.get("REB"), r.get("AST"))))
@@ -254,7 +320,11 @@ def baseline_prep():
     사용자 검산 앵커(c6 FT% 22~25%)는 "상대가 기준선에 정확히 앉아 있다"는 가정이므로,
     그 가정을 그대로 구현한 상대를 5번째로 둬서 앵커와 직접 대조할 수 있게 한다.
 
-    구성: baseline_per_game 값을 그대로 갖는 가상 선수 9명, GP는 지명 풀 평균."""
+    구성: baseline_per_game 값을 그대로 갖는 가상 선수 9명, GP는 지명 풀 평균.
+
+    ⚠️ 40차 라인업 보정의 **예외**다. 이 상대는 포지션이 없는 가상 선수라 자격 제약을
+    적용할 대상이 없고, 애초에 사용자 검산 앵커(c6 FT% 22~25%)를 재현하기 위한
+    대조군이므로 보정을 넣으면 앵커가 움직여 대조 자체가 무의미해진다."""
     Bpg = CM.baselines_per_game()
     gp = statistics.mean([(F[p["name"]].get("GP") or 0) for p in pool() if p["name"] in F])
     avail = gp / 82.0
@@ -317,7 +387,7 @@ def simulate(us, opp_names, rng, iters, rows=None):
         else:
             them = random_roster(rows, rng)
             if them is None: continue
-            pt = prep(them)
+            pt = prep(them, rates=_RND_RATE)
         w = wins(team_week_prepped(pu, rng), team_week_prepped(pt, rng))
         for k in CATS: acc[k] += w[k]
         s = sum(w.values()); cats_won.append(s)
@@ -343,7 +413,14 @@ if __name__ == "__main__":
     rows = pool()
     OPP = build_opponents(rng)
     OK = [k for k in OPP if OPP[k] != FAILED]
-    print(f"시드 {seed} · 시행 {iters} · 지명 풀 {len(rows)}명\n")
+    print(f"시드 {seed} · 시행 {iters} · 지명 풀 {len(rows)}명")
+    if LINEUP_ADJ:
+        random_rate_table(rows, random.Random(seed))
+        print("라인업 보정 ON — 가용률 = GP/82 × 사용률. 무작위 상대만 자격집합별 평균 근사"
+              " (표 %d종) · 그 외는 로스터별 실측 %d주" % (len(_RND_RATE), LINEUP_WEEKS))
+    else:
+        print("⚠️ 라인업 보정 OFF — 불가능한 로스터 운용을 계산한다")
+    print()
     for k in OK:
         v = OPP[k]
         if v is None:              d = "매 시행 무작위 9인 (예산·포지션 합법)"

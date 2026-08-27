@@ -36,6 +36,10 @@ def build_overheat(cj):
         # "철수가 $18"을 보고 보호받는다고 믿는 것이 드래프트 당일 가장 나쁘다(I26 참조).
         if t.get("binding") is False:
             e["binding"] = False
+        # 40차: 철수가 미측정. 빈칸으로 두면 화면이 "철수가 없음 = 안전"으로 읽힌다.
+        # 사유 문자열을 그대로 실어 **재지 않았다는 사실**이 보이게 한다.
+        if t.get("threshold") is None and t.get("threshold_status"):
+            e["walkNA"] = t["threshold_status"]
         return_note = t.get("binding_note")
         if return_note:
             e["bnote"] = return_note

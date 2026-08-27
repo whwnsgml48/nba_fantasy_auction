@@ -71,7 +71,10 @@ RATIONALE = {
            "하나만 바꿔 빅맨을 $76로 낮추고 나머지 8칸은 그대로 둔다 — 이 코어는 저가 센터를 "
            "쓸어담는 축이 아니라 전방위 윙으로 슬롯 효율을 사는 축이라 센터 과열에 노출이 작다. "
            "저가 빅 3명 이상이 과열되면 피벗이 아니라 코어 7로 전환한다."),
-    # 빅맨 서술 $96 ≠ 실제 $78.
+    # 빅맨 서술 $96 ≠ 실제 $82.
+    # ⚠️ 40차 정정: 이 스크립트를 처음 쓸 때 $78 로 적었는데, 그 뒤 피벗이 재조립되면서
+    #    실제는 $82 가 됐다. **하드코딩한 수치는 적용 직전에 데이터로 다시 확인할 것** —
+    #    "틀린 숫자를 고치는 패치"가 그 사이에 또 낡는 것이 이 저장소의 반복 형태다.
     "c1": None,   # 아래에서 숫자만 치환
 }
 
@@ -128,7 +131,8 @@ def main():
     c6["pivot_plan"]["rationale"] = RATIONALE["c6"]
     show("rationale c6", "(존재하지 않는 교체 2건 + 빅맨 $96)", RATIONALE["c6"]); n += 1
     c1 = next(c for c in cj["cores"] if c["id"] == "c1")
-    r1 = c1["pivot_plan"]["rationale"].replace("($96)", "($78)").replace("$96", "$78")
+    r1 = (c1["pivot_plan"]["rationale"].replace("($96)", "($82)").replace("$96", "$82")
+      .replace("($78)", "($82)"))   # 40차 재조립으로 $78 → $82
     r1 = ROUND.sub("", r1).replace("⚠️ 정정:", "⚠️").replace("  ", " ")
     show("rationale c1", c1["pivot_plan"]["rationale"], r1)
     c1["pivot_plan"]["rationale"] = r1; n += 1

@@ -41,7 +41,10 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import cat_model as CM
 def marg(names,cat): return CM.marginal(names,cat,CB_MODEL)
 
-WALK={t["player"]:t["threshold"] for t in c["overheat_thresholds"]}
+# 40차: 철수가가 **미측정(null)** 인 감시 항목이 생겼다(SF 병목 4명).
+# null 을 그대로 담으면 ceil_price 의 min() 이 TypeError 로 죽는다 — 걸러 담는다.
+WALK={t["player"]:t["threshold"] for t in c["overheat_thresholds"]
+      if t.get("threshold") is not None}
 def ceil_price(n,cap):
     """입찰 상한 = min(my_max, 단일상한, 철수가). 철수가를 넘으면 자기 피벗을 트리거한다."""
     v=PL[n]["my_max"]

@@ -51,6 +51,7 @@ NEEDED = [
     "data/prior_auction_2025_26/results.json",   # I26 실측 산포
     "tool/trigger_audit.py",                     # I26 발동 확률 모델
     "tool/tool_embed.py",                        # 39차 — 툴 임베드 상수 단일 소스
+    "tool/pos_elig.py",                          # 40차 — 슬롯 자격 단일 소스 (I31)
     "data/stats_2025_26/measured_full.json",
     "tool/auction-console.html",
     "tool/cat_model.py",
@@ -437,6 +438,70 @@ def _(b):
     #    KAT은 BLK 가중치가 없어 'BLK 잠금'을 선언하면 반드시 걸린다.
     b.slot("c1", "C")["role"] = "BLK 잠금 전용 슬롯"
     return
+
+
+# ── 40차 신설 ────────────────────────────────────────────────────────────────
+@test("I31a", "선언된 슬롯에 그 선수를 넣을 수 없다 (라벨 오류)",
+      ("[I31]", "에 뒀는데 자격은"), after=TAIL)
+def _(b):
+    # 40차에 실제로 있던 형태 — `SF=Amen Thompson`(야후 자격 PG/SG).
+    # 매칭은 성립하는데 **화면이 틀린 자리를 지시**한다.
+    b.pl[b.first("c1", "SF")]["pos_yahoo"] = ["PG", "SG"]
+
+
+@test("I31b", "9인이 9칸을 못 채운다 (SF 자격자를 전멸시킨다)",
+      ("[I31]", "9인이 9칸을 못 채운다"), after=TAIL)
+def _(b):
+    # ⚠️ 라벨 오류만 주입하면 I31a 와 구별되지 않는다. **매칭 자체가 깨지도록**
+    #    그 코어에서 SF 를 댈 수 있는 사람을 전부 없앤다.
+    co = b.core("c1")
+    for s in co["slots"]:
+        for cd in s["candidates"]:
+            p = b.pl.get(cd["name"])
+            if p:
+                p["pos_yahoo"] = ["C"]
+                p["pos"] = "C"
+
+
+@test("I31c", "대체후보가 그 슬롯에 못 들어간다",
+      ("[I31]", "대체", "자격"), after=TAIL)
+def _(b):
+    s = b.slot("c1", "SF")
+    b.pl[s["candidates"][1]["name"]]["pos_yahoo"] = ["C"]
+
+
+@test("I32a", "surplus 가 my_max·시장중간과 갈라졌다", ("[I32]", "surplus"), after=TAIL)
+def _(b):
+    b.pl["Nikola Jokić"]["surplus"] = 99
+
+
+@test("I32b", "못 사는 선수를 살 수 있다고 표시했다",
+      ("[I32]", "못 사는 선수를 살 수 있다고 표시"), after=TAIL)
+def _(b):
+    # my_max < 시장 하단인데 obtainable=true — 40차에 실제로 3명이 이 상태였다.
+    p = b.pl["Nikola Jokić"]
+    p["my_max"] = p["market_low"] - 5
+    p["surplus"] = p["my_max"] - round((p["market_low"] + p["market_high"]) / 2)
+    p["obtainable"] = True
+
+
+@test("I33a", "같은 자격 사실이 두 곳에서 다르다",
+      ("[I33]", "같은 사실이 두 곳에서 다르다"), after=TAIL, warn=True)
+def _(b):
+    p = b.pl["Alperen Şengün"]          # 무결 상태에서 두 기록이 일치하는 선수를 고른다
+    p["yahoo_eligibility_39"]["listed"] = "C, PF, SF"
+
+
+@test("I34", "대체안으로 갈아타면 예산을 넘는다",
+      ("[I34]", "살 수 없는 대안"), after=TAIL)
+def _(b):
+    # 40차에 실제로 4건 있었다. 대체안의 **가격 정합**은 통과하는데 전환하면 총액이 넘는다.
+    s = b.slot("c7", "BN")
+    cd = s["candidates"][1]
+    n = cd["name"]
+    b.pl[n]["market_low"] = 60; b.pl[n]["market_high"] = 70; b.pl[n]["my_max"] = 70
+    b.pl[n]["surplus"] = 70 - 65; b.pl[n]["obtainable"] = True
+    cd["plan_price"] = cd["expected_cost"] = 65; cd["bid_ceiling"] = 70
 
 
 @test("I26a", "판단표 가격 조건이 절대 발동할 수 없다", ("[I26]", "절대 발동 불가"), after=TAIL)
