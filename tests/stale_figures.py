@@ -19,8 +19,11 @@
 # ═══════════════════════════════════════════════════════════════════════════
 import json, re, subprocess, sys, pathlib
 
+# 🔴 40차: `data/cores.json` 을 넣지 않았다가 놓쳤다. 옛 값이 **거기 산문에** 살아 있고
+#   그게 툴 상수로 흘러 화면에 뜬다(decision_oneliner · decision_table[].note ·
+#   kat_price_branch[].strength). 생성 필드에서 잡음이 늘지만 누락보다 낫다.
 TARGETS = ["README.md", "HANDOFF.md"] + sorted(str(p) for p in pathlib.Path("docs").glob("*.md")) \
-          + ["tool/auction-console.html"]
+          + ["tool/auction-console.html", "data/cores.json"]
 
 def literals_at(ref):
     """<ref> 시점 툴의 DECISION 에서 코어 평균·최저를 소수점 1자리 문자열로."""
@@ -34,9 +37,18 @@ def literals_at(ref):
     for r in rows:
         s = r.get("str")
         if not s: continue
-        out.setdefault("%.1f" % (s["mean"] * 100), []).append(r["core"] + " 평균")
-        if s.get("min") is not None:
-            out.setdefault("%.1f" % (s["min"] * 100), []).append(r["core"] + " 최저")
+        # 🔴 40차: 백분율 문자열만 찍었다가 **임베드 JSON 을 통째로 놓쳤다.**
+        #   툴 상수 안에서 승률은 `0.889` 로 들어 있어 `88.9` 로는 안 걸린다.
+        #   KAT 가격 분기의 옛 값 셋이 그렇게 통과해서, 결국 렌더 결과를 사람이
+        #   눈으로 읽다가 발견했다. 두 표기를 다 넣는다.
+        for v, lab in ((s["mean"], "평균"), (s.get("min"), "최저")):
+            if v is None: continue
+            out.setdefault("%.1f" % (v * 100), []).append(f"{r['core']} {lab}")
+            # ⚠️ 자리수도 갈린다 — DECISION 은 0.8886, kat_price_branch 는 0.889 로
+            #   같은 값을 다른 정밀도로 들고 있다. 한쪽만 찍으면 다른 쪽을 놓친다
+            #   (실제로 놓쳤다). 3·4자리를 다 넣는다.
+            for nd in (3, 4):
+                out.setdefault("%g" % round(v, nd), []).append(f"{r['core']} {lab}({nd}자리)")
     means = [r["str"]["mean"] for r in rows if r.get("str")]
     if means:
         out.setdefault("%.1f%%p" % ((max(means) - min(means)) * 100), []).append("최고-최저 파생")
@@ -59,7 +71,9 @@ def main():
         hits = []
         for i, line in enumerate(p.read_text(encoding="utf-8").splitlines(), 1):
             # 툴의 생성 데이터 행(const DECISION 등)은 sync_tool 이 덮어쓰므로 제외
-            if path.endswith(".html") and re.match(r"const (DECISION|CORES|PIVOTS|P)=", line):
+            # 툴의 생성 데이터 행은 sync_tool 이 덮어쓰므로 **원본**(cores.json)에서 잡는다.
+            # 단 KATBR·DECISION_ONELINER 는 예외 없이 본다 — 옛 값이 실제로 여기서 샜다.
+            if path.endswith(".html") and re.match(r"const (CORES|PIVOTS|P|DECISION)=", line):
                 continue
             for v in lits:
                 if v in line:
