@@ -140,3 +140,23 @@ for(const core of ['c1','c4','c7']){
   for(const [lbl,setup] of cases){ setup(); R();
     console.log('   ['+lbl+']\n      '+block().trim()); }
 }
+
+// ── ⑧ 계획 슬롯 — 자격상 합법이지만 계획과 **다른 슬롯**에 넣으면 계획 여유가 틀린다 ──
+//    계획 여유는 슬롯 이름으로 계획 행과 짝을 짓기 때문이다. 39차에 드롭다운이
+//    계획 슬롯을 「· 계획」으로 표시하고 기본 선택하도록 고쳤다.
+{
+  console.log('\n════ ⑧ 계획 슬롯 짝짓기');
+  for(const [core,who] of [['c3','Shai Gilgeous-Alexander'],['c2','Nikola Jokić'],
+                            ['c6','Karl-Anthony Towns'],['c4','Trae Young']]){
+    reset(core);
+    const c=T.activeCore();
+    const ps=c.plan?(c.plan.find(r=>r[2].some(x=>x[0]===who))||[])[0]:null;
+    console.log('   '+core+'  '+who.padEnd(26)+' 계획 슬롯: '+ps);
+  }
+  for(const sl of ['SG','PG']){
+    reset('c3'); buy('Shai Gilgeous-Alexander',80,sl); R();
+    const k=T.planSlack();
+    console.log('   c3 · SGA $80 을 '+sl+' 에 → 계획 여유 '
+      +(k<0?'-$'+(-k):'$'+k)+(sl==='SG'?'  ← 계획 슬롯':'  ← 계획과 다름(드롭다운이 막는다)'));
+  }
+}

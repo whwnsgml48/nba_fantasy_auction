@@ -725,6 +725,22 @@ const slotsLeft=()=>SLOTS.length-S.mine.length;
 const remaining=()=>BUDGET-spent();
 const maxBid=()=>{const sl=slotsLeft(); return sl<=0?0:Math.max(0,remaining()-(sl-1));};
 const owned=id=>S.mine.some(m=>m.id===id);
+// 🔴 39차: 계획 여유는 **슬롯 이름으로** 계획 행과 짝을 짓는다. 그래서 사용자가
+//    자격상 합법이지만 계획과 **다른 슬롯**에 넣으면 계획 여유가 틀리게 나온다
+//    (실측: c3 에서 SGA 를 PG 에 넣으면 여유 $9 → -$64). 드롭다운이 계획 슬롯을
+//    알려주지 않아서 생기는 문제라, 계획 슬롯을 표시하고 기본 선택으로 둔다.
+function plannedSlot(name){
+  const c=activeCore(); if(!c.plan) return null;
+  const used={}; S.mine.forEach(function(m){used[m.slot]=(used[m.slot]||0)+1;});
+  const seen={};
+  for(let i=0;i<c.plan.length;i++){
+    const r=c.plan[i], sl=r[0];
+    seen[sl]=(seen[sl]||0)+1;
+    if(seen[sl]<=(used[sl]||0)) continue;            // 이미 채워진 행
+    if(r[2].some(function(x){return x[0]===name;})) return sl;
+  }
+  return null;
+}
 // ── 39차: 잔여 예산 기반 동적 상한 ────────────────────────────────────────
 // bid_ceiling 은 **슬롯 단위** 상한이라 합계가 예산을 넘는다(코어별 120~138%).
 // 슬롯마다 개별로 "상한까지 OK"라고 말하면 셋만 상한까지 가도 예산이 터진다.
@@ -835,7 +851,17 @@ function renderRows(){
         const ok=open.filter(o=>slotOK(p,o.s)), no=open.filter(o=>!slotOK(p,o.s));
         acts='<div class="winform"><input id="wp" type="number" min="1" max="200" value="'+Math.min(p.mx,maxBid())+'" aria-label="낙찰가" />'
             +'<select id="ws" aria-label="슬롯">'
-            +ok.map(o=>'<option value="'+o.i+'">'+o.s+'</option>').join("")
+            +(function(){
+                const ps=plannedSlot(p.n);
+                let first=true;
+                return ok.slice().sort(function(x,y){          // 계획 슬롯을 맨 앞으로
+                  return (y.s===ps?1:0)-(x.s===ps?1:0);
+                }).map(function(o){
+                  const isPlan=(o.s===ps&&first&&(first=false,true));
+                  return '<option value="'+o.i+'"'+(isPlan?' selected':'')+'>'+o.s
+                    +(isPlan?' · 계획':'')+'</option>';
+                }).join("");
+              })()
             +(no.length&&S.posOverride?'<optgroup label="자격 밖(강제)">'+no.map(o=>'<option value="'+o.i+'">'+o.s+' ⚠</option>').join("")+'</optgroup>':"")
             +'</select>'
             +'<button class="b" data-confirm="'+p.id+'">확정</button>'
