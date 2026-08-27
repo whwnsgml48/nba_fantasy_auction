@@ -374,12 +374,24 @@ em.bigmk{font-style:normal;font-family:var(--mono);font-size:8.5px;color:var(--a
         <span><i style="background:var(--ok)"></i>매수 타겟</span>
         <span><i style="background:var(--warn)"></i>$1~8 특화 다트</span>
         <span><i style="background:var(--crit)"></i>태우기 대상</span>
-        <span>차익 = 내 최대가 − 시장 상단</span>
+        <span>차익 = 내 최대가 − 시장 <b>중간값</b></span>
       </div>
+      <!-- 40차 ⑤-2: 차익을 "시장이 틀린 곳"으로 읽으면 안 된다. market_low/high 는
+           작년 곡선에 **우리 순위**를 얹어 만든 값이라 두 모델의 총액이 같다
+           (지명풀 126명 · 시장 중간값 합 = my_max 합 = $2,747). 즉 차익 합계는
+           정의상 0이고(반올림 오차 ±$1) 양수 75명 · 음수 46명은 서로를 상쇄한다. -->
+      <p class="fin" style="font-size:10.5px;line-height:1.5;color:var(--ink-3);margin-top:6px">
+        <b>차익은 시장 오류가 아니라 우리 두 모델의 불일치다.</b>
+        시장가는 작년 곡선에 우리 순위를 얹어 총액을 맞춘 값이라, 지명풀 126명의
+        차익 합계는 <b>정의상 0</b>이다(중간값 합 = 내 최대가 합 = $2,747 · 양수 75 · 음수 46 · 중앙값 +$2).
+        순위 상관도 ρ=0.89로 두 모델은 대체로 같은 말을 한다 —
+        차익 +$15는 “시장이 $15 싸게 매겼다”가 아니라 <b>“두 모델이 $15만큼 엇갈린 칸”</b>이다.
+        어느 쪽이 맞는지는 이 데이터로 알 수 없다.
+      </p>
 
       <footer class="fin">
         <p id="vstat"></p>
-        <p><b>수치 출처:</b> 2025-26 NBA 실적(OREB·DD·BLK·STL·A/T 리더보드), 2026 오프시즌 이적, Yahoo 9캣 top-50 랭킹. Haliburton은 2025-26 전체 결장이라 2024-25 기준.</p>
+        <p><b>수치 출처:</b> 2025-26 NBA 실적(OREB·DD·BLK·STL·A/T 리더보드), 2026 오프시즌 이적, Yahoo 9캣 top-50 랭킹. Haliburton은 2025-26 전체 결장이라 <b>2024-25의 73경기</b> 기준 — 즉 아킬레스 복귀 시즌에 건강한 73경기를 가정한다. <b>기본값이 가장 낙관적인 칸</b>이고, GP를 60으로만 낮춰도 코어 1은 86.8%→83.3%로 중위 아래로 내려간다. Lillard(2025-26 전체 결장 · 코어 3 1순위)도 같은 성질이다. <b>프리시즌 출장 여부를 확인할 것</b> — 복귀 여부를 이 화면은 알지 못한다.</p>
         <p><b>“내 최대가”는 제 추정치입니다</b> — 공개 밸류표가 아니라 13캣(OREB·DD·3PT%·A/T 추가) 기준으로 재산정한 값입니다. 포지션 자격은 랭킹 출처 기준이라 드래프트 전 야후에서 실제 자격을 확인하세요.</p>
         <p><b>지명 시 자동 $1 입찰 — 확정 (2026-08-26)</b>. 지명하면 그 선수에게 $1이 자동으로 걸립니다. <b>태우기 지명은 남이 100% 달려들 선수만</b> 올리세요 — 아무도 안 붙으면 $1에 떠안고 로스터 9칸 중 하나를 버립니다.</p>
         <div class="tools">
@@ -639,7 +651,7 @@ const P=[
 {n:"Ja'Kobe Walter",t:"TOR",p:"G",mk:[1,3],mx:3,tag:"dart",s:"7.9P 2.8R 1.3A 0.9S 0.2B 0.7TO · OREB 0.9 · FG 43.3% (6.2FGA) · 3P 39.0% (3.7×) 1.4×3PM · FT 79.1% (1.4FTA) · 혼합 GP 65.5 · 20.7MPG · 25-26 67%",gp:66,c:"3P%1 TOV3",note:"3PT%는 상위권이나 주간 13시도로 레버리지가 낮고 변동성이 큽니다(Kennard와 동일 문제).",flag:"저볼륨 (2024-25 신인 52경기 8.6P · 21.2MPG)"},
 {n:"Russell Westbrook",t:"—",p:"G",mk:[1,3],mx:4,s:"14.4P 5.2R 6.4A 1.3S 0.3B 3.3TO · OREB 1.3 · FG 43.7% (12.2FGA) · 3P 33.1% (5×) 1.7×3PM · FT 67.9% (3FTA) · 혼합 GP 68.8 · 28.5MPG · 25-26 56%",atlev:"AST 6.7 / TOV 3.3 → 팀 A/T 한계 기여 +0.008 (사실상 중립)",gp:69,c:"AST2 STL2 3PM1",flag:"🚫 은퇴 — 2026 오프시즌 은퇴. 킹스·위저즈 제안을 거절하고 19번째 시즌을 뛰지 않는다. 드래프트 대상이 아니다",note:"2026 오프시즌 은퇴로 획득 불가입니다. 코어·대체후보·피벗에서 전면 제외됩니다.",injOut:true}
 ];
-P.forEach((p,i)=>{p.id=i; p.cw={}; p.c.split(/\s+/).filter(Boolean).forEach(tk=>{p.cw[tk.slice(0,-1)]=+tk.slice(-1);}); p.edge=p.mx-p.mk[1];});
+P.forEach((p,i)=>{p.id=i; p.cw={}; p.c.split(/\s+/).filter(Boolean).forEach(tk=>{p.cw[tk.slice(0,-1)]=+tk.slice(-1);}); });
 
 const FILTERS=[
  {k:"all",l:"전체"},{k:"core",l:"◉ 코어 후보"},{k:"meas",l:"✓ 실측 확인"},{k:"inj",l:"🚫 획득 제외"},{k:"buy",l:"★ 매수 타겟"},{k:"burn",l:"■ 태우기"},{k:"dart",l:"◆ $1~8 다트"},
@@ -655,6 +667,33 @@ const PIVOTS={"c1": {"triggers": [{"player": "Donovan Clingan", "rule": "> $22"}
 const ohOf=n=>OVERHEAT.find(x=>x.n===n)||null;
 const overTh=n=>{const r=ohOf(n);return r?r.walk:null;};        // 철수 가격(피벗 트리거)
 // 철수가 초과 — 해당 코어의 과열 피벗 트리거용
+// 40차 ④: cores.json 의 주석은 마크다운(`**굵게**`)이다. 지금까지 그대로 innerHTML 에
+//   꽂아서 화면에 별표가 찍혔다(#trigbox). 카드로 올리면서 변환한다 — 이 문자열들은
+//   사람이 손으로 쓰는 필드라 `<`·`&` 가 들어올 수 있으니 먼저 이스케이프한다.
+function mdb(s){
+  return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
+    .replace(/\*\*([^*]+)\*\*/g,"<b>$1</b>");
+}
+// 40차 ⑤-1: 코어 순위(평균 기준). 동률이면 같은 순위를 준다.
+// ⚠️ **즉시 실행 IIFE 로 쓰면 안 된다.** 이 블록은 `const DECISION` 보다 위에 있어서
+//    IIFE 로 두면 로드 시점에 TDZ 로 죽고 **툴 전체가 빈 화면이 된다.**
+//    40차에 실제로 그렇게 짰고 `node --check` 는 통과했다(문법이 아니라 실행 오류라서).
+//    tests/rehearse.mjs 가 실행해 보고 잡았다. 지연 계산 + 메모이즈로 둔다.
+let _strRank=null;
+function strRank(core){
+  if(!_strRank){
+    const rs=DECISION.filter(d=>d.str).map(d=>d.str.mean).sort((a,b)=>b-a);
+    _strRank={};
+    DECISION.forEach(d=>{ if(d.str) _strRank[d.core]=rs.indexOf(d.str.mean)+1; });
+  }
+  return _strRank[core];
+}
+// 🔴 40차: matchup_sim 은 포지션 자격을 모델링하지 않는다. 일일 이분매칭 실측에서
+//    선발 칸이 비는 손실이 c2 3.16% · c3 1.57% 로 나머지(0.2~0.6%)보다 한 자리 크다.
+//    즉 이 두 코어의 승률만 다른 자 위에 있어 **순위를 못 박으면 안 된다.**
+//    ⚠️ 임시 하드코딩이다 — A 가 cores.json 에 코어별 lineup_loss 를 넣으면
+//       이 상수를 지우고 데이터에서 뽑아 행마다 렌더할 것(평가 세션 합의).
+const STR_PENDING={c2:"3.16%",c3:"1.57%"};
 function hotBigs(){const out=[];OVERHEAT.forEach(o=>{const p=P.find(x=>x.n===o.n);
   if(!p)return;const a=(S.actual||{})[p.id];
   if(a&&a>o.walk)out.push({n:o.n,th:o.walk,a,tier:o.tier});});return out;}
@@ -876,7 +915,8 @@ function renderRows(){
             +'<div class="winform"><input id="ap'+p.id+'" type="number" min="1" max="200" placeholder="타팀 낙찰가" style="width:110px" />'
             +'<button class="b sec" data-actual="'+p.id+'">기록하고 제외</button></div>';
       }
-      const blk=(lab,txt,cls)=>'<div class="dblk '+(cls||"")+'"><span class="dlab">'+lab+'</span><span class="dval">'+txt+'</span></div>';
+      // 40차: 손으로 쓰는 필드들이라 마크다운이 섞여 들어온다 — mdb 로 변환·이스케이프한다.
+      const blk=(lab,txt,cls)=>'<div class="dblk '+(cls||"")+'"><span class="dlab">'+lab+'</span><span class="dval">'+mdb(txt)+'</span></div>';
       d='<div class="detail">'
         +(p.s?blk("실측 25-26",p.s,"meas"):blk("실측","2025-26 실측 미확인 — 아키타입 추정치이므로 최대가를 그대로 믿지 마세요","est"))
         +(p.chg?blk("팀 변화",p.chg,"chg"):"")
@@ -884,8 +924,8 @@ function renderRows(){
         +(p.atlev?blk("A/T 한계기여",p.atlev,"lev"):"")
         +((function(){const alt=cheaperAlts(p);return alt?blk("더 싼 대체",alt,"alt"):"";})())
         +'<div class="catrow">'+chips+'</div>'
-        +(p.note?'<p>'+p.note+'</p>':"")
-        +(p.flag?'<div class="flag">⚠ '+p.flag+'</div>':"")
+        +(p.note?'<p>'+mdb(p.note)+'</p>':"")
+        +(p.flag?'<div class="flag">⚠ '+mdb(p.flag)+'</div>':"")
         +acts+'</div>';
     }
     return '<div class="'+cls+'">'
@@ -1044,11 +1084,14 @@ function renderTrig(){
     // ⚠️ 두 값이 1위를 다르게 가리킨다(평균 c6 · 최저 c1). 어느 쪽이 선택 기준인지
     // 화면에 없으면 최저를 보고 c1을 고른다. 평균 = 선택 · 최저 = 견고성이다.
     if(st2) h+='<div style="padding-left:8px;font-size:10px;color:var(--ink-3)">'
-      +'선택 <b style="color:var(--ink-2)">'+(st2.mean*100).toFixed(1)+'%</b>'
-      +(st2.min!=null?' <span style="opacity:.75">· 견고 '+(st2.min*100).toFixed(1)+'%</span>':'')
+      +'<b style="color:'+(STR_PENDING[d.core]?'var(--warn)':'var(--ink-2)')+'">'
+      +(strRank(d.core)||"-")+'위'+(STR_PENDING[d.core]?' (재측정 대기)':'')+'</b>'
+      +' <span style="opacity:.75">'+(st2.mean*100).toFixed(1)+'%'
+      +(st2.min!=null?' · 견고 '+(st2.min*100).toFixed(1)+'%':'')+'</span>'
       +' <span style="opacity:.6">(실제 12팀)</span></div>';
+    // 40차 ④: `**굵게**`가 별표 그대로 찍히고 있었다. mdb 로 변환한다.
     if(sN) h+='<div style="padding-left:8px;font-size:10px;line-height:1.35;color:var(--warn)">'
-      +sN+'</div>';
+      +mdb(sN)+'</div>';
   });
   h+='<div style="border-top:1px solid var(--line);margin-top:5px;padding-top:5px">'
     +'<span>저가 계층 1명만 과열</span><b>해당 코어 과열 피벗</b></div>';
@@ -1086,10 +1129,22 @@ function renderTrig(){
   //    dead code 가 된다(39차에 실제로 그렇게 넣었고 발행 직전에 파일을 읽다 잡았다).
   h+='<div style="border-top:1px solid var(--line);margin-top:7px;padding-top:5px;'
     +'font-size:10px;color:var(--ink-3);line-height:1.4">'
-    +'이 표는 코어 <b>강도 순이 아니라 도달 가능성 순</b>이다. 강도는 각 행의 실제 12팀 '
-    +'승률을 볼 것 — 기본값이 최강이 아닐 수 있고, 강한 코어가 조건부일 수 있다.<br>'
-    +'<b>선택</b>은 12팀 평균(1차 지표) · <b>견고</b>는 12팀 중 최저(2차). '
-    +'두 값이 1위를 다르게 가리킬 수 있다 — <b>고를 때는 선택 값을 본다.</b></div>';
+    +'이 표는 코어 <b>강도 순이 아니라 도달 가능성 순</b>이다. 강도는 각 행의 순위를 '
+    +'볼 것 — 기본값이 최강이 아닐 수 있고, 강한 코어가 조건부일 수 있다.<br>'
+    +'순위는 12팀 <b>평균</b>(1차 지표) 기준 · <b>견고</b>는 12팀 중 최저(2차). '
+    +'두 값이 1위를 다르게 가리킬 수 있다 — <b>고를 때는 평균을 본다.</b><br><br>'
+    +'🔴 <b>이 %는 기대 승률이 아니다.</b> 같은 시뮬·같은 상대에서 정보집합만 바꿔 잰 '
+    +'백테스트(작년 낙찰 95명 · 실낙찰가로 $195 소진 · 상대 8팀 · 단일 시드):<br>'
+    +'&nbsp;&nbsp;직전 시즌 정보로 고르고 다음 시즌 채점 <b>73.0%</b> (정직)<br>'
+    +'&nbsp;&nbsp;채점할 시즌 결과를 알고 고르기 <b>96.0%</b> (후견지명)<br>'
+    +'&nbsp;&nbsp;이 방 실제 최강 매니저 <b>63.6%</b><br>'
+    +'평가가 2025-26 실적에 58% 가중을 두고 상대 로스터는 그 시즌 전에 짜였으므로 '
+    +'이 프로그램은 <b>후견 쪽에 서 있다</b>(격차 23%p). 그런데 코어 순위는 4.8%p로 갈린다 — '
+    +'<b>절대값이 아니라 순서만 쓰라</b>는 뜻이고, 이 격차 안에서 코어를 재최적화하면 '
+    +'노이즈를 좇는 것이다.<br>'
+    +'🟢 고장난 것은 <b>투영이지 채점이 아니다</b> — 2025-26 실적만으로 작년 12팀 '
+    +'라운드로빈을 돌리면 시뮬이 실제 정규 1위 팀을 1위로 뽑는다(docs/05).<br>'
+    +'<span style="opacity:.7">출처: 평가 세션 백테스트 · 이 세션 미재현</span></div>';
   box.innerHTML=h;
   const sb=document.querySelector("#trigbox > summary");
   if(sb) sb.innerHTML="코어 전환 트리거"+(hc>=2?' <b style="color:var(--crit)">· 센터 붕괴 → C7</b>':"");
@@ -1108,15 +1163,39 @@ function renderDecide(){
       +'<span style="color:'+col+'">'+d.prio+'. '+d.label+'</span>'
       +'<b style="color:'+col+'">'+d.core.toUpperCase()+' · '+st+(on?" ◀":"")+'</b></div>';
     // 🔴 39차: 강도를 여기(항상 보이는 카드)에 띄운다. 처음엔 #trig(접힌 details)에만
-    //    넣었는데, 10초 안에 접힌 패널을 펼칠 수는 없다(docs/02 §4). 상세 설명은
-    //    #trigbox에 두고 카드에는 숫자 + ⚠ 마커만 — 카드가 좁다.
+    //    넣었는데, 10초 안에 접힌 패널을 펼칠 수는 없다(docs/02 §4).
+    // 🔴 40차 ⑤-1: 승률 **절대값**은 후견지명 편향 위에 있다(각주 참조). 순위를 앞세우고
+    //    숫자는 부차로 내린다 — 이 값의 유효한 용도는 코어 **순서**뿐이다.
     if(d.str) h+='<div style="display:flex;justify-content:space-between;gap:6px;'
       +'font-family:var(--mono);font-size:9.5px;color:var(--ink-3);padding:0 0 3px 10px">'
-      +'<span>선택 <b style="color:var(--ink-2)">'+(d.str.mean*100).toFixed(1)+'</b>'
-      +(d.str.min!=null?' · 견고 '+(d.str.min*100).toFixed(1):'')+'</span>'
-      +(d.snote?'<span style="color:var(--warn)">⚠</span>':'<span></span>')+'</div>';
+      +'<span><b style="color:'+(STR_PENDING[d.core]?'var(--warn)':'var(--ink-2)')+'">'
+      +(strRank(d.core)||"-")+'위'+(STR_PENDING[d.core]?'?':'')+'</b>'
+      +' <span style="opacity:.7">'+(d.str.mean*100).toFixed(1)
+      +(d.str.min!=null?' · 견고 '+(d.str.min*100).toFixed(1):'')+'</span></span>'
+      +(STR_PENDING[d.core]
+          ?'<span style="color:var(--warn)">재측정 대기 · 칸 비움 '+STR_PENDING[d.core]+'</span>'
+          :'<span></span>')+'</div>';
+    // 🔴 40차 ④: 조건 배지. 39차에는 여기에 ⚠ 글리프 하나만 찍고 본문은 접힌
+    //    #trigbox 에 뒀다 — 그래서 "c3 84.1"과 "c4 84.3"이 카드에서 **조건 없이**
+    //    나란히 보였다. c3의 84.1은 Lillard가 뛴다는 가정 위에 있다. 본문을 올린다.
+    if(d.snote){
+      const warn=/^[⚠🔴]/.test(d.snote.trim());
+      h+='<div style="font-size:9.5px;line-height:1.4;padding:0 0 4px 10px;color:'
+        +(warn?'var(--warn)':'var(--ink-3)')+'">'+mdb(d.snote)+'</div>';
+    }
   });
   h+='</div>';
+  // ⑤-1 각주 — 이 숫자가 무엇이 **아닌지**를 숫자 옆에 둔다.
+  h+='<div style="border-top:1px solid var(--line);margin-top:6px;padding-top:5px;'
+    +'font-size:9.5px;line-height:1.4;color:var(--ink-3)">'
+    +'순위 옆 숫자는 <b>코어 순위용 상대 지표</b>이지 기대 승률이 아니다. '
+    +'백테스트에서 정직한 정보집합 73.0% · 후견지명 96.0%로 갈렸다 — 평가가 결과를 아는 쪽에 서 있다. '
+    +'정직한 기대치는 <b>방 최강 매니저(63.6%) 대비 +9%p</b> 수준으로 읽어라.<br><br>'
+    +'⚠ <b>c2·c3의 순위는 재측정 대기다(40차).</b> 이 시뮬은 포지션 자격을 모델링하지 않는다. '
+    +'일일 이분매칭 실측(20,000주)에서 자격 구멍으로 <b>선발 칸이 비는 손실</b>은 '
+    +'c2 3.16% · c3 1.57% · 나머지 5개 코어 0.2~0.6%다 — 즉 c2·c3의 숫자만 다른 자 위에 있다. '
+    +'<span style="opacity:.7">불법 로스터가 되는 것이 아니라 그 칸이 매일 비는 것이고 손실은 유한하다. '
+    +'출처: 평가·A 세션 · 이 세션 미재현.</span></div>';
   // 🔴 39차 KAT 가격 분기 — 판단표는 코어당 1행이라(I10) 별도 구조다.
   //    KAT은 c1·c6·c7 세 코어의 앵커이고 그가 비싸지면 예산이 먼저 막는데,
   //    default_normal은 예산을 안 보고 c7은 hot_bigs로만 도달한다.
@@ -1163,10 +1242,12 @@ function renderDecide(){
     if(!fired&&price==null) h+='<div style="font-size:10px;color:var(--ink-3);padding-left:10px">'
       +'↳ KAT 낙찰가를 기록하면 해당 단계가 점등됩니다</div>';
   }
+  // 40차 ④: 옛 문안의 "⚠ 표시는 아래 코어 전환 트리거에 사유가 있다" 를 뺐다 —
+  //   ⚠ 글리프를 없애고 사유 본문을 행마다 직접 띄우므로 가리킬 대상이 사라졌다.
   h+='<p class="prem" style="font-size:10.5px;color:var(--ink-3);margin-top:7px;line-height:1.4">'
-    +'<b>강도 순이 아니라 도달 가능성 순</b>이다. <b>선택</b>=실제 12팀 평균(1차) · '
+    +'<b>강도 순이 아니라 도달 가능성 순</b>이다. 순위는 실제 12팀 <b>평균</b>(1차) 기준 · '
     +'<b>견고</b>=12팀 중 최저(2차). 두 값이 1위를 다르게 가리킬 수 있다 — '
-    +'<b>고를 때는 선택 값을 본다.</b> ⚠ 표시는 아래 <b>코어 전환 트리거</b>에 사유가 있다.</p>';
+    +'<b>고를 때는 평균 순위를 본다.</b> 각 행의 조건은 그 행에 직접 적혀 있다.</p>';
   // 🔴 39차: 충족이 2행 이상이면 **하나를 고르지 않는다.** 표 순서상 첫 행을 자동으로
   //    권하면 조립 불가능한 코어를 권할 수 있다(c7 충족 + 내가 Jokić 보유 → c7 -$34).
   //    강도 순으로 둘 다 보여주고 각 행에 **그 코어의 계획 여유**를 붙여
@@ -1195,7 +1276,7 @@ function renderDecide(){
   }
   else if(act) h+='<p class="prem" style="font-size:12px;margin-top:9px"><b>현재 권장: '+act.core.toUpperCase()+'</b> — '+act.note+'</p>';
   h+='<details class="rules" style="margin-top:8px;border:0"><summary style="padding:6px 0">한 줄 요약</summary>'
-    +'<p class="prem" style="font-size:12px;padding:0 0 6px">'+DECISION_ONELINER+'</p></details>';
+    +'<p class="prem" style="font-size:12px;padding:0 0 6px">'+mdb(DECISION_ONELINER)+'</p></details>';
   box.innerHTML=h;
 }
 function renderPivot(){
@@ -1205,7 +1286,7 @@ function renderPivot(){
   let h='<div class="pvhead '+(armed?"armed":"")+'">'+(armed?"⚠ 트리거 발동":"대기")+'</div>';
   if(hotCenterCount()>=2&&c.id!=="c7") h+='<div class="alert c" style="margin-top:8px"><b>피벗 대신 코어 7</b>'
     +'저가 센터 계층에서 2명 이상 과열됐습니다(과열선 = 실측 기대치 기반). 이 피벗을 실행하는 것보다 코어 7로 전환하는 것이 우선입니다.</div>';
-  h+='<p class="prem" style="font-size:12px">'+pv.rationale+'</p>';
+  h+='<p class="prem" style="font-size:12px">'+mdb(pv.rationale)+'</p>';
   h+='<div class="rulebody" style="padding:0;margin-top:8px">';
   pv.triggers.forEach(t=>{const on=hot.includes(t.player);
     h+='<div'+(on?' style="color:var(--crit)"':'')+'><span>'+shortName(t.player)+'</span><b>'+t.rule+(on?" ✔":"")+'</b></div>';});
@@ -1228,7 +1309,7 @@ function renderPivot(){
     h+='<details class="rules" style="margin-top:9px;border:0"><summary style="padding:8px 0">⚠ 백업 규칙 (1차 피벗 실행 불가 시)</summary><div class="rulebody" style="padding:0">'
       +'<div style="display:block;color:var(--crit);font-family:var(--mono);font-size:11px;padding:4px 0"><b>'
         +fb.condition_rules.map(r=>shortName(r.player)+" "+r.rule).join(" "+fb.condition_logic+" ")+'</b></div>'
-      +'<div style="display:block;color:var(--ink-2);font-family:var(--sans);font-size:12px;line-height:1.5;padding:4px 0">'+fb.rationale+'</div>'
+      +'<div style="display:block;color:var(--ink-2);font-family:var(--sans);font-size:12px;line-height:1.5;padding:4px 0">'+mdb(fb.rationale)+'</div>'
       +fb.swaps.map(w=>'<div><span>'+w.slot+' · '+shortName(w.out.name)+' → '+shortName(w.in.name)+'</span><b>$'+w.in.plan_price+'</b></div>').join("")
       +'<div><span>총액 / 빅맨</span><b>$'+fb.final_total+' / $'+fb.final_big_budget+'</b></div>'
       +'<div><span>포기 캣</span><b>'+fb.punted_cats.join(" ")+'</b></div>'
@@ -1283,7 +1364,7 @@ function renderCore(){
   $("#coresel").innerHTML=CORES.map(x=>'<option value="'+x.id+'"'+(x.id===c.id?' selected':'')+'>'+x.n+'</option>').join("");
   if(!c.plan){box.innerHTML='<p class="prem">코어를 고르면 슬롯별 후보와 <b>후보별 계획가</b>가 표시됩니다. 계획가는 전부 내 최대가 이하로 검증돼 있습니다.</p>';return;}
   const target=c.plan.reduce((a,r)=>a+r[2][0][1],0), sp=spent();
-  let h='<p class="prem">'+c.prem+'</p>';
+  let h='<p class="prem">'+mdb(c.prem)+'</p>';
   h+='<div class="plansum">'
     +'<div><div class="k">계획 총액</div><div class="v">$'+target+'</div></div>'
     +'<div><div class="k">현재 지출</div><div class="v '+(sp>target?"over":"")+'">$'+sp+'</div></div>'

@@ -22,11 +22,25 @@
 
 import fs from 'fs';
 const SRC='/tmp/published.html';   // 발행본 본문(없으면 로컬 툴에서 추출)
-let html;
-try { html=fs.readFileSync(SRC,'utf8'); }
-catch { const raw0=fs.readFileSync('tool/auction-console.html','utf8');
-        html=raw0.slice(raw0.indexOf('<title>13캣')); 
-        console.log('⚠ 발행본이 없어 **로컬 파일**로 돌립니다 — 발행본과 다를 수 있습니다.\n'); }
+// 🔴 40차에 여기서 당했다: 이전 회차의 /tmp/published.html 이 남아 있어서, 툴을 고치고
+//    리허설을 돌렸는데 **옛 발행본이 실행됐다.** 출력은 멀쩡해 보였고 어느 파일을 읽었는지
+//    화면에 없었다. 그래서 "고친 게 통과했다"고 잘못 읽었다.
+//    → 항상 출처를 찍고, 발행본과 로컬이 다르면 눈에 띄게 경고한다.
+const LOCAL=fs.readFileSync('tool/auction-console.html','utf8');
+const localBody=LOCAL.slice(LOCAL.indexOf('<title>13캣'));
+let html, srcLabel;
+try {
+  html=fs.readFileSync(SRC,'utf8'); srcLabel=SRC+' (발행본)';
+  if(html.trim()!==localBody.trim()){
+    console.log('🔴 발행본과 로컬 툴이 **다릅니다.** 지금 돌리는 것은 발행본입니다.');
+    console.log('   로컬 수정을 확인하려면:  rm '+SRC+'  후 다시 실행하십시오.');
+    console.log('   (발행 직전 대조 목적이면 이대로 두는 것이 맞습니다.)\n');
+  }
+} catch {
+  html=localBody; srcLabel='tool/auction-console.html (로컬)';
+  console.log('⚠ 발행본이 없어 **로컬 파일**로 돌립니다 — 발행본과 다를 수 있습니다.\n');
+}
+console.log('▸ 실행 대상: '+srcLabel+'\n');
 const nodes={};
 const mk=id=>nodes[id]||(nodes[id]={id,_h:'',_t:'',className:'',dataset:{},style:{},
   set innerHTML(v){this._h=v}, get innerHTML(){return this._h},
