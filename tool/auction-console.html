@@ -674,6 +674,15 @@ function mdb(s){
   return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
     .replace(/\*\*([^*]+)\*\*/g,"<b>$1</b>");
 }
+// 40차: 가정 취약성 조회. 승률 1차 지표가 상위 5개를 1.3%p(대응 SE 0.59%p) 안으로
+//   몰아넣었고 2차(maximin)는 5/7 이 value_max 에 지배돼 쓸 수 없다 —
+//   **어떤 승률 측정도 상위 5개를 못 가른다.** 이 표는 -11.3%p 를 만든다.
+//   즉 지금 다섯을 가르는 유일한 측정이고, 그게 화면에 없었다.
+function stressOf(core){
+  const rs=(STRESS&&STRESS.rows)||[];
+  for(const r of rs) if(r.core===core) return r;
+  return null;
+}
 // 🔴 40차: **순위를 매기지 않는다.**
 //    자격 보정 후 상위 5개가 1.3%p 안에 들어왔고 코어 비교의 대응 표준오차는
 //    0.59%p 다(matchup_sim.json.standard_error · paired). 그 안에서 1·2·3위를
@@ -693,6 +702,7 @@ function pivotOf(id){return PIVOTS[id]||null;}
 function pivotArmed(){const c=activeCore();const pv=pivotOf(c.id);if(!pv)return false;
   const hot=hotBigs().map(x=>x.n);return pv.triggers.some(t=>hot.includes(t.player));}
 const DECISION=[{"prio": "0", "core": "c7", "label": "저가 센터 계층 과열 2명 이상", "cond": {"type": "hot_bigs", "n": 2, "tier": "low_cost_center", "signal": "overheat_at", "players": ["Donovan Clingan", "Rudy Gobert", "Jalen Duren", "Mitchell Robinson", "Deandre Ayton", "Mark Williams"]}, "note": "⚠ 코어 6·4의 과열 피벗보다 **먼저** 코어 7로 전환. 센터 시장이 붕괴하면 피벗으로는 부족하다. 판정은 `low_cost_center` 계층의 `overheat_at`(실측 기대치 기반)으로만 한다 — 네임밸류 빅(Şengün·Mobley·Zubac)이 $30~60에 팔리는 것은 정상가이므로 세지 않는다.", "target_note": "33차: 목적지 c7은 이제 A1(중가 센터 전환)이다. 기존 c7(반센터)은 c7_old에 보존.", "priority_analysis": {"measured": "33차 승률 시뮬 4000시행 · 같은 난수 스트림", "c7_A1": {"random": 0.9235, "value_max": 0.3438, "big_stack": 0.4243, "guard_stack": 0.5495, "baseline": 0.9055, "benchmark": 0.5258, "overheat_big": 0.7668}, "c6_new": {"random": 0.9283, "value_max": 0.375, "big_stack": 0.4865, "guard_stack": 0.5415, "baseline": 0.909, "benchmark": 0.5165, "overheat_big": 0.7682}, "trigger_world_overheat_big": {"c7_A1": 0.7668, "c6_new": 0.7682}, "min_win_rate": {"c7_A1": 0.3438, "c6_new": 0.375}, "proposal": "**우선 0을 c6로 옮길 것을 제안한다.** B-c6-1 채택 후 신 c6이 발동 세계에서도 76.8% vs 76.7%로 동등하고(사실상 동률), 최소 승률은 37.5% vs 34.4%로 3.1%p 앞선다. 6개 상대 중 c6이 5개(무작위·가치최대·빅스택·기준선·과열빅)에서 우위이고 c7이 앞서는 것은 가드스택(54.9 vs 54.1)·벤치마크(52.6 vs 51.6) 2개다. 즉 '센터 과열 전용 최우선 계획'이라는 별도 분기의 근거가 측정으로 사라졌다. 결정은 사용자.", "not_applied": "우선순위는 바꾸지 않았다 — 제안만 기록한다"}, "str": {"mean": 0.8637, "min": 0.7242, "n": 4000}, "snote": "Hali 무관 · KAT 의존 · c6와 5명 공유"}, {"prio": "1", "core": "c1", "label": "KAT ≤ $50 + Hali ≤ $56", "cond": {"type": "prices", "market": "normal", "rules": [{"player": "Karl-Anthony Towns", "max": 50, "threshold_basis": "**예산 제약이다 — 선택 기준이 아니다.** c1은 KAT 계획가 $45 · 총액 $188 · 예비비 $12이고, 예비비를 I22 위반선까지 짜도 KAT 상한은 $53, 예비비 0이어야 $57이다. $50은 c1의 **조립 가능 경계**에 놓여 있다. 올리면 c1이 예비비 마이너스로 진입한다 — 34차의 '승률이 높다와 그 로스터를 살 수 있다는 다른 질문'을 반복하게 된다. (39차 평가 세션 결정: A안 유지)"}, {"player": "Tyrese Haliburton", "max": 56}], "feasibility": {"required": "Tyrese Haliburton 실낙찰가 <= $56 (철수가)", "why": "37차에 my_max $50→$56 · 철수가 $50→$56 을 함께 올려 **c1이 실행 가능해졌다** — 계획가 $56 이 실측 시장하단 $54 를 넘는다. 이전의 '할인 없이는 c1이 존재하지 않는다'는 해소됐다. 시장 상단은 $66 이므로 여전히 **상단에서는 못 잡는다** — 중간값 아래에서 잡아야 한다.", "selection_threshold": "$56 — 옛 기준 $48은 my_max $50 시절의 값이고, 실측 시장하단이 $54라 그 기준을 유지하면 c1이 다른 경로로 다시 死플랜이 된다. 철수가와 같게 뒀다.", "on_fail": "c6 (기본값)"}, "display_only": {"fields": ["market"], "why": "🔴 `cond.market` 은 **표시 전용**이다. `decideStatus` 는 이 필드를 보지 않고 `rules`(가격)만 검사한다. 39차 이전 라벨은 「센터 정상가 +」·「센터가 조금 비싸지만」을 붙여 **구현되지 않은 조건을 주장**하고 있었다 — 라벨에서 뺐다.\n동작은 바꾸지 않았다: 센터 시장 판정은 **우선 0(c7)이 별도로** 하고, 충족이 2행 이상이면 계획 여유가 조립 불가를 드러낸다. D-7에 발동 조건을 바꾸지 않는다.\n시즌 후에 실제 검사로 승격할지 판단할 것 — docs/11 NEXT_SEASON."}}, "note": "Hali가 정말 할인되면 코어 1의 천장이 가장 높다. 임계 $56은 철수가와 같은 값이고, 실측 시장이 $54-66이라 **중간값 아래에서 잡아야** 성립한다 — 할인이 없으면 이 행은 발동하지 않고 기본값 c6로 간다.", "str": {"mean": 0.8704, "min": 0.7488, "n": 4000}, "snote": "⚠ Hali GP 73 가정 위에서만 — GP 54면 81.9%로 하위권"}, {"prio": "2", "core": "c6", "label": "센터 정상가 + Hali 불확실/비쌈", "cond": {"type": "default_normal"}, "note": "정상 시장의 기본값. Hali가 기대만큼 안 싸거나 아킬레스 복귀 리스크를 피하고 싶으면 여기.", "str": {"mean": 0.8763, "min": 0.7508, "n": 4000}, "snote": "예비비 $9 (목표 $12 미달) · 기본값 · C자격 3 (센터 의존 감소)"}, {"prio": "3", "core": "c3", "label": "SGA ≤ $85", "cond": {"type": "prices", "market": "slightly_hot", "rules": [{"player": "Shai Gilgeous-Alexander", "max": 85}], "display_only": {"fields": ["market"], "why": "🔴 `cond.market` 은 **표시 전용**이다. `decideStatus` 는 이 필드를 보지 않고 `rules`(가격)만 검사한다. 39차 이전 라벨은 「센터 정상가 +」·「센터가 조금 비싸지만」을 붙여 **구현되지 않은 조건을 주장**하고 있었다 — 라벨에서 뺐다.\n동작은 바꾸지 않았다: 센터 시장 판정은 **우선 0(c7)이 별도로** 하고, 충족이 2행 이상이면 계획 여유가 조립 불가를 드러낸다. D-7에 발동 조건을 바꾸지 않는다.\n시즌 후에 실제 검사로 승격할지 판단할 것 — docs/11 NEXT_SEASON."}}, "note": "빅맨 예산 $77(39%)로 7개 코어 중 최저 — 센터가 약간 비싸지는 정도라면 코어 4보다 먼저.", "threshold_history": [{"at": "39차", "player": "Shai Gilgeous-Alexander", "from": 72, "to": 85, "why": "my_max 상향(중간안)에 맞춰 트리거를 시장 중간값으로. 사용자 결정 2026-08-26"}], "str": {"mean": 0.8769, "min": 0.7348, "n": 4000}, "snote": "⚠ Lillard 투영 GP(직전 시즌 결장) · SF 조달이 Hart 한 사람 · 대체가 비동등(3PM·FT%·AST → OREB·FG%)"}, {"prio": "4", "core": "c4", "label": "앵커를 못 잡았지만 센터는 정상가", "cond": {"type": "anchor_fail"}, "note": "앵커 실패 시의 안전망. **센터 과열 대응책이 아니다** — 센터가 깨졌으면 코어 7.", "str": {"mean": 0.842, "min": 0.682, "n": 4000}, "snote": "⚠ Trae GP 가정 위 (실측 비중 22.8% · 워싱턴 역할 데이터 없음) · 대체가 비동등(FT% w3→w1)"}, {"prio": "조건부 ★", "core": "c2", "label": "Jokić ≤ $97 낙찰 → 즉시 코어 2", "cond": {"type": "prices", "rules": [{"player": "Nikola Jokić", "max": 97}]}, "note": "🔴 **게이트가 열리면 이 표의 다른 모든 행보다 우선한다** — 실측 88.9% / 최저 74.1% 로 전 코어 1위다(c6 87.5% / 71.6%). 우선순위 표는 '무엇이 강한가'가 아니라 '무엇을 살 수 있는가' 순이라 c2는 조건부에 남지만, **조건이 충족되면 최강이다.**\n⏱ **Jokić는 최상위 선수라 드래프트 초반에 지명된다 — 즉 이 게이트의 개폐를 초반에 알게 된다.** 그 시점에 $97 이하로 잡았다면 기본값 c6로 가지 말고 c2로 전환하라.", "threshold_history": [{"at": "39차", "player": "Nikola Jokić", "from": 88, "to": 97, "why": "my_max 상향(중간안)에 맞춰 트리거를 시장 중간값으로. 사용자 결정 2026-08-26"}], "gate_open_priority": "게이트 충족 시 우선 0(c7)·1(c1)·2(c6)보다 앞선다. 우선순위 숫자를 바꾸지 않은 이유는 숫자 순서가 '조립 가능성' 축이고 c2는 게이트가 열려야만 존재하기 때문이다 (39차에 c7 기본값 안을 같은 잣대로 기각했다).", "str": {"mean": 0.8654, "min": 0.7252, "n": 4000}, "snote": "자격 반영 후 상위 5개와 **동급**(87.4 · 이 시뮬의 오차 ±0.8). 이전의 「전 코어 1위」는 포지션 자격을 모르는 모델이 만든 숫자였다 — C 전용 5명을 매일 다 쓸 수 있다고 계산했다. ⚠ Jokić GP 67 가정 위"}, {"prio": "격리", "core": "c5", "label": "Sabonis 복귀 일정이 개막 전으로 보도되고, 방에서 실제로 할인될 때", "cond": {"type": "manual", "desc": "드래프트 당일 기준 ① Sabonis 가 야후에서 OUT/IL 로 표기돼 있지 않고 ② 구단·보도 기준 복귀 일정이 개막(2026-10-20) 전이며 ③ 방에서 실제 낙찰가가 $26 이하로 흐를 때", "removed_price_gate": {"was": "Sabonis <= $26", "at": "39차 (평가 세션 결정 · 2026-08-26)", "why": "시장 추정 $15-23 대비 **동어반복**이다 — 임계 $26이 시장 상단 위라 균등 P=1.00. 게다가 작년 실낙찰 $61(스케일 $68)이라 '부상 할인' 전제 자체가 미검증이다. 과지불 보호는 bid_ceiling·철수가 층이 담당한다 — 판단표 게이트는 '어느 코어를 돌릴까'이지 '얼마까지 부를까'가 아니다.", "real_condition": "드래프트 당일 관측 가능한 복귀 정보 + 방 안의 실제 가격 (cond.desc)", "do_not_restore": "다음 감사에서 'c5만 가격 조건이 없다'며 되돌리지 말 것. 제거가 결론이고 근거는 위에 있다.", "superseded_40": "39차에 「프리시즌 정상 복귀 확인」을 실질 조건으로 남겼는데 그건 드래프트 31일 뒤에나 관측 가능하다 — 남은 게이트가 그것 하나였으므로 c5 는 열릴 수 없는 플랜이었다. 가격 조건을 되돌린 것이 아니라, **관측 가능한 조건으로 다시 쓴 것**이다."}, "observable_at_draft": "드래프트 당일(2026-09-05)에 볼 수 있는 것만으로 판정한다 — 구단·선수 공식 발표와 보도 기준 복귀 일정 · 야후 부상 표기(OUT/IL) · 방 안의 실제 낙찰가. 프리시즌 시작은 31일 뒤라 실경기 확인은 불가능하다."}, "note": "별도 베팅안. 정상 복귀를 기본값으로 두지 않는다.", "str": {"mean": 0.8488, "min": 0.682, "n": 4000}, "snote": "⚠ 가정 **둘**을 동시에 얹는다 — Hali GP 73 + Sabonis 복귀. GP 54면 78.8%로 최하위. 발동 조건은 드래프트 당일 볼 수 있는 것(복귀 보도 · 부상 표기 · 방 안 실제 가격)으로만 판정한다"}];
+const STRESS={"seed": 20261020, "iterations": 4000, "gp_factor": 0.74, "share_threshold": 0.5, "what": "코어의 1순위 중 GP 실측 비중이 임계 미만인 선수 전원의 GP 에 같은 배율을 곱하고 실제 12팀 평균 주간 승률을 다시 잰다.", "why": "승률 1차 지표가 상위 5개를 1.3%p 안으로 몰아넣었고 2차는 쓸 수 없다. **가정 취약성이 그 다섯을 가르는 유일한 측정**이다.", "caveat": "배율 0.74 에 통계적 근거는 없다(Haliburton 73→54 와 같은 비율). GP 를 예측하는 표가 아니라 **얼마나 흔들리는가**를 보는 표다. 코어 간 상대 비교로만 읽을 것.", "rows": [{"core": "c1", "base": 0.8704, "stressed": 0.8161, "delta": -0.0543, "assumptions": [{"player": "Tyrese Haliburton", "share": 0.0, "gp": 73.0, "gp_stressed": 54.0}]}, {"core": "c2", "base": 0.8654, "stressed": 0.8654, "delta": 0.0, "assumptions": []}, {"core": "c3", "base": 0.8769, "stressed": 0.855, "delta": -0.0219, "assumptions": [{"player": "Damian Lillard", "share": 0.0, "gp": 58.0, "gp_stressed": 42.9}]}, {"core": "c4", "base": 0.842, "stressed": 0.8096, "delta": -0.0324, "assumptions": [{"player": "Trae Young", "share": 0.228, "gp": 62.1, "gp_stressed": 46.0}]}, {"core": "c5", "base": 0.8488, "stressed": 0.736, "delta": -0.1128, "assumptions": [{"player": "Domantas Sabonis", "share": 0.289, "gp": 55.2, "gp_stressed": 40.8}, {"player": "Ivica Zubac", "share": 0.474, "gp": 64.8, "gp_stressed": 48.0}, {"player": "Tyrese Haliburton", "share": 0.0, "gp": 73.0, "gp_stressed": 54.0}]}, {"core": "c6", "base": 0.8763, "stressed": 0.8763, "delta": 0.0, "assumptions": []}, {"core": "c7", "base": 0.8637, "stressed": 0.8637, "delta": 0.0, "assumptions": []}]};
 const DECISION_ONELINER="정상 시장: 코어 6 기본 → Hali 할인 시 코어 1 → SGA 할인 시 코어 3 → 앵커 실패 시 코어 4. 저가 센터 2명 이상 과열: 즉시 코어 7. 🔴 **Jokić를 $97 이하로 잡으면 즉시 코어 2 — 실측 88.9%로 전 코어 1위이고 게이트가 열리면 다른 모든 행보다 우선한다.** Sabonis는 조건 충족 시에만 별도 진입.";
 const KATBR={"n": "Karl-Anthony Towns", "ceil": {"c6": 50, "c1": 53, "c7": 57, "_note": "예비비 $4(I22 위반선)를 남긴 KAT 최대 지불액. 계획가 $45 + 예비비 − $4"}, "steps": [{"over": 50, "go": "c7", "label": "KAT 낙찰 > $50 → 코어 7", "str": {"mean": 0.864, "min": 0.703}, "br": null}, {"over": 57, "go": "c2 (Jokić ≤ $97) · 아니면 c4", "label": "KAT 낙찰 > $57 → Jokić ≤ $97 이면 코어 2, 아니면 코어 4", "str": {"mean": 0.889, "min": 0.741}, "br": [{"cond": "Jokić <= 97", "go": "c2", "mean": 0.889, "min": 0.741}, {"cond": "Jokić > 97", "go": "c4", "mean": 0.843, "min": 0.689}]}]};
 function hotCenterCount(){
@@ -1156,9 +1166,17 @@ function renderDecide(){
       +'<span>'+(d.tier?'<b style="color:var(--ink-2)">'+d.tier+'</b> ':'')
       +'<span style="opacity:.7">'+(d.str.mean*100).toFixed(1)
       +(d.str.min!=null?' · 견고 '+(d.str.min*100).toFixed(1):'')+'</span></span>'
-      +(d.lineup_loss!=null
-          ?'<span style="color:var(--ink-3)">칸 비움 '+(d.lineup_loss*100).toFixed(2)+'%</span>'
-          :'<span></span>')+'</div>';
+      +(function(){
+          // 상위 코어들이 승률로는 안 갈리므로 이 칸이 실제 선택 기준이다.
+          const sx=stressOf(d.core);
+          if(!sx) return d.lineup_loss!=null
+            ? '<span style="color:var(--ink-3)">칸 비움 '+(d.lineup_loss*100).toFixed(2)+'%</span>'
+            : '<span></span>';
+          const dl=sx.delta||0;
+          if(dl>=-0.0001) return '<span style="color:var(--ok)">가정 없음 🟢</span>';
+          return '<span style="color:'+(dl<=-0.05?'var(--crit)':'var(--warn)')+'">가정 '
+            +(dl*100).toFixed(1)+'%p</span>';
+        })()+'</div>';
     // 🔴 40차 ④: 조건 배지. 39차에는 여기에 ⚠ 글리프 하나만 찍고 본문은 접힌
     //    #trigbox 에 뒀다 — 그래서 코어 승률들이 카드에서 **조건 없이** 나란히 보였다.
     //    40차 자격 보정 후에는 c3(87.7)가 동급 최상위인데 그 값이 Lillard 가정 위에 있다.
@@ -1179,8 +1197,15 @@ function renderDecide(){
     +'🔴 <b>그리고 이 숫자로 상위 코어를 줄 세울 수 없다.</b> 야후 라인업 자격을 반영한 뒤 '
     +'상위 다섯이 <b>1.3%p 안</b>에 들어왔는데, 코어끼리 비교할 때의 표준오차가 <b>0.59%p</b>다 '
     +'(같은 12팀에 붙여 재는 대응 오차 · n=12가 병목이라 <b>시행수를 늘려도 안 준다</b>). '
-    +'말할 수 있는 것은 <b>동급 다섯 vs 아래 둘</b>뿐이고, 그 다섯 중에서 고르는 일은 '
-    +'<b>이 표가 아니라 위 조건이 한다</b> — 방이 무엇을 싸게 내놓았는가.</div>';
+    +'말할 수 있는 것은 <b>동급 다섯 vs 아래 둘</b>뿐이다.<br><br>'
+    +'🔴 <b>그래서 다섯을 가르는 것은 「가정」 칸이다.</b> 투영 출장에 기대는 선수가 있는 '
+    +'코어에 <b>같은 배율</b>(GP ×'+((STRESS&&STRESS.gp_factor)||0.74)+')을 걸고 다시 잰 값이다 — '
+    +'승률이 1.3%p 안에서 못 가르는 것을 이 칸은 <b>'
+    +(function(){var w=0;((STRESS&&STRESS.rows)||[]).forEach(function(r){if((r.delta||0)<w)w=r.delta;});
+      return (w*100).toFixed(1)+'%p';})()+'</b>까지 가른다.<br>'
+    +'<b>가정 없음 🟢</b> = 1순위 전원이 직전 시즌 실측 위에 있다 — 프리시즌을 몰라도 흔들리지 않는다.<br>'
+    +'<span style="opacity:.7">⚠ 배율에 통계적 근거는 없다. 출장을 <b>예측</b>하는 값이 아니라 '
+    +'「이만큼 틀리면 순위가 뒤집히는가」를 보는 값이다 — 코어 간 상대 비교로만 읽을 것.</span></div>';
   // 🔴 39차 KAT 가격 분기 — 판단표는 코어당 1행이라(I10) 별도 구조다.
   //    KAT은 c1·c6·c7 세 코어의 앵커이고 그가 비싸지면 예산이 먼저 막는데,
   //    default_normal은 예산을 안 보고 c7은 hot_bigs로만 도달한다.

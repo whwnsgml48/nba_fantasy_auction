@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """툴 HTML의 임베드 상수를 데이터에서 재생성.
 
-동기화 대상 7종: P(선수 mk·cats·gp·실측라인) · CORES · PIVOTS ·
+동기화 대상 8종: P(선수 mk·cats·gp·실측라인) · CORES · PIVOTS ·
                  OVERHEAT · OTIERS · DECISION · DECISION_ONELINER
 `validate.py`가 이 7종을 cores.json/players.json과 대조하므로,
 데이터를 고치면 반드시 이 스크립트를 돌려야 한다.
@@ -13,15 +13,12 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 # 대조하므로, 여기서 직접 dict를 조립하면 두 파일이 갈라진다(실제로 갈라졌다).
 import tool_embed as TE
 BASE=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# 39차 갈래 1: 판단표 각 행에 실제 12팀 강도를 얹는다(cores.json엔 안 넣는다 · 32차).
+# (40차: 같은 try/except 가 두 번 있었다 — 하나로 합쳤다. 동작 동일.)
 try:
     SIM=json.load(io.open(f"{BASE}/data/matchup_sim.json",encoding="utf-8"))
 except Exception:
     SIM=None   # 시뮬 파일이 없으면 강도 없이 생성한다(검증기도 같은 폴백을 쓴다)
-# 39차 갈래 1: 판단표 각 행에 실제 12팀 강도를 얹는다(cores.json엔 안 넣는다 · 32차).
-try:
-    SIM=json.load(io.open(f"{BASE}/data/matchup_sim.json",encoding="utf-8"))
-except Exception:
-    SIM=None
 pl=json.load(io.open(f"{BASE}/data/players.json",encoding="utf-8"))
 c=json.load(io.open(f"{BASE}/data/cores.json",encoding="utf-8"))
 by={p["name"]:p for p in pl}
@@ -40,7 +37,16 @@ CONST=[("CORES",buildCORES()),("PIVOTS",TE.build_pivots(c)),
        # 39차 갈래 1: 판단표에 **실제 12팀 강도**를 싣는다. 강도는 32차 원칙상
        # cores.json 에 넣지 않고 **여기서 툴 상수를 만들 때만** 합친다.
        # validate 도 같은 TE.build_decision(cj, sim) 을 쓰므로 이중 구현이 안 생긴다.
-       ("DECISION",TE.build_decision(c,SIM)),("KATBR",TE.build_kat_branch(c))]
+       ("DECISION",TE.build_decision(c,SIM)),("KATBR",TE.build_kat_branch(c)),
+       # 40차 B: 가정 취약성. 승률 1차 지표가 상위 5개를 1.3%p(대응 SE 0.59%p) 안으로
+       #   몰아넣었고 2차(maximin)는 5/7 이 value_max 에 지배돼 쓸 수 없다 —
+       #   **어떤 승률 측정도 상위 5개를 못 가른다.** 이 표는 −11.3%p 를 만든다.
+       #   지금 다섯을 가르는 유일한 측정인데 화면에 없었다.
+       # ⚠️ 이것은 **가공 없는 통과(passthrough)** 다 — matchup_sim.json 의 값을
+       #   그대로 싣는다. 계산을 여기서 하지 않으므로 tool_embed 와 갈라질 여지가 없다.
+       #   ⚠️ 다만 validate.py 의 동기화 대조 목록에는 아직 없다(A 소관 요청 중).
+       #      그때까지는 tests/check_stress_sync.py 가 대조한다.
+       ("STRESS",(SIM or {}).get("assumption_stress") or {})]
 n=0
 for name,val in CONST:
     m=re.search(r'const %s=(\[|\{).*?(\]|\});\n'%re.escape(name), s, re.S)
