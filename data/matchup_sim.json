@@ -3478,5 +3478,105 @@
   "use": "판단표 「동급 묶음」 컷에 쓴다. **컷 폭을 화면에 상수로 박지 말 것** — 상대 집합이 바뀌면 이 값이 바뀌는데 화면 상수는 그대로 남아 조용히 틀린다.",
   "suggested_cut": 0.0074,
   "caveat": "단일 컷은 근사다. 쌍마다 SE 가 다르다(c1-c6 0.25%p ↔ c2-c3 0.80%p) — 선수를 많이 공유하는 코어끼리는 차이가 더 정밀하게 측정된다."
+ },
+ "assumption_stress": {
+  "seed": 20261020,
+  "iterations": 4000,
+  "gp_factor": 0.74,
+  "share_threshold": 0.5,
+  "what": "코어의 1순위 중 GP 실측 비중이 임계 미만인 선수 전원의 GP 에 같은 배율을 곱하고 실제 12팀 평균 주간 승률을 다시 잰다.",
+  "why": "승률 1차 지표가 상위 5개를 1.3%p 안으로 몰아넣었고 2차는 쓸 수 없다. **가정 취약성이 그 다섯을 가르는 유일한 측정**이다.",
+  "caveat": "배율 0.74 에 통계적 근거는 없다(Haliburton 73→54 와 같은 비율). GP 를 예측하는 표가 아니라 **얼마나 흔들리는가**를 보는 표다. 코어 간 상대 비교로만 읽을 것.",
+  "rows": [
+   {
+    "core": "c1",
+    "base": 0.8704,
+    "stressed": 0.8161,
+    "delta": -0.0543,
+    "assumptions": [
+     {
+      "player": "Tyrese Haliburton",
+      "share": 0.0,
+      "gp": 73.0,
+      "gp_stressed": 54.0
+     }
+    ]
+   },
+   {
+    "core": "c2",
+    "base": 0.8654,
+    "stressed": 0.8654,
+    "delta": 0.0,
+    "assumptions": []
+   },
+   {
+    "core": "c3",
+    "base": 0.8769,
+    "stressed": 0.855,
+    "delta": -0.0219,
+    "assumptions": [
+     {
+      "player": "Damian Lillard",
+      "share": 0.0,
+      "gp": 58.0,
+      "gp_stressed": 42.9
+     }
+    ]
+   },
+   {
+    "core": "c4",
+    "base": 0.842,
+    "stressed": 0.8096,
+    "delta": -0.0324,
+    "assumptions": [
+     {
+      "player": "Trae Young",
+      "share": 0.228,
+      "gp": 62.1,
+      "gp_stressed": 46.0
+     }
+    ]
+   },
+   {
+    "core": "c5",
+    "base": 0.8488,
+    "stressed": 0.736,
+    "delta": -0.1128,
+    "assumptions": [
+     {
+      "player": "Domantas Sabonis",
+      "share": 0.289,
+      "gp": 55.2,
+      "gp_stressed": 40.8
+     },
+     {
+      "player": "Ivica Zubac",
+      "share": 0.474,
+      "gp": 64.8,
+      "gp_stressed": 48.0
+     },
+     {
+      "player": "Tyrese Haliburton",
+      "share": 0.0,
+      "gp": 73.0,
+      "gp_stressed": 54.0
+     }
+    ]
+   },
+   {
+    "core": "c6",
+    "base": 0.8763,
+    "stressed": 0.8763,
+    "delta": 0.0,
+    "assumptions": []
+   },
+   {
+    "core": "c7",
+    "base": 0.8637,
+    "stressed": 0.8637,
+    "delta": 0.0,
+    "assumptions": []
+   }
+  ]
  }
 }
