@@ -63,18 +63,25 @@ NEEDED = [
 TESTS = []
 
 
-def test(iid, desc, expect, after=(), warn=False):
+def test(iid, desc, expect, after=(), warn=False, expect_pass=False):
     """expect: `✗` 줄에 있어야 하는 문자열(하나 또는 튜플).
     after:  **전체 출력**에 있어야 하는 문자열 — 그 지점 이후의 검사가 실제로 실행됐다는
             증거다. 중단(crash)도 exit 1을 내므로 마커만으로는 절단을 구분할 수 없다.
     warn:   **경고 등급 검사**용(39차 신설). 경고는 err에 가산하지 않으므로 exit 0이고,
             위반 전제(exit 1 + `✗` 줄)로는 검사할 수 없다. 이 프로젝트에는 경고 등급이
             여럿인데(I21·I22·I24 예비비·I26 비구속·I27) **테스트가 하나도 없었다.**
-            warn=True 면 마커를 `△` 줄에서 찾고 exit 0을 정상으로 본다."""
+            warn=True 면 마커를 `△` 줄에서 찾고 exit 0을 정상으로 본다.
+    expect_pass: **검사가 발화하면 안 되는** 주입(40차 신설). 지금까지 이 하네스는
+            「위반을 넣으면 걸리는가」만 물었고 **「정당한 것을 넣으면 안 걸리는가」는
+            물은 적이 없다.** 그래서 검사가 과도하게 좁아져도 아무도 모른다 — 실제로
+            I36 이 c5 의 **정당한** 강등을 막았고, 그 사실은 사람이 판단표를 고치다가
+            발견했다. expect_pass=True 면 **exit 0 + `✗` 줄에 마커 없음**을 요구하고,
+            `expect` 는 `after` 처럼 **전체 출력**에 있어야 하는 증거 문자열로 쓴다."""
     def deco(fn):
         TESTS.append((iid, desc, fn,
                       (expect,) if isinstance(expect, str) else tuple(expect),
-                      (after,) if isinstance(after, str) else tuple(after), warn))
+                      (after,) if isinstance(after, str) else tuple(after),
+                      "pass" if expect_pass else warn))
         return fn
     return deco
 
@@ -239,9 +246,13 @@ def _(b):
             tg[0]["rule"] = "> $999"; return
     raise AssertionError("트리거가 있는 코어 없음")
 
-@test("I10a", "판단표에서 코어 하나가 빠졌다", "판단표에 누락된 코어")
+# ⚠️ 40차: 원래 이 테스트는 **c5** 를 뺐는데, 40차에 c5 가 정당하게 강등되면서
+#   기준 샌드박스에 이미 없다 — 주입이 **무동작**이 되어 exit 0 으로 통과했다.
+#   (검사가 죽은 게 아니라 **테스트가 죽었다.** I36 을 만들며 발견했다.)
+#   살아 있는 행(c6 · 기본값)을 빼도록 바꾼다. 마커도 I36 신설로 바뀌었다.
+@test("I10a", "판단표에서 살아 있는 코어가 빠졌다", "비활성 선언도 없는 코어")
 def _(b):
-    b.cj["decision_table"] = [d for d in b.cj["decision_table"] if d["core"] != "c5"]
+    b.cj["decision_table"] = [d for d in b.cj["decision_table"] if d["core"] != "c6"]
 
 @test("I10b", "우선순위 0이 코어 7이 아니다", "우선순위 0이 코어 7이 아님")
 def _(b):
@@ -656,6 +667,50 @@ def _i21(b):
     raise AssertionError("대상 슬롯 없음")
 
 
+# ── I36 판단표 도달 가능성 ────────────────────────────────────────────────
+# 40차: c5 를 판단표에서 **의도적으로** 내리자 무명 검사가 걸렸다. 그 검사가 막던 것은
+# 「존재하지만 아무도 고를 수 없는 코어」이고 그건 지켜야 한다 — 그래서 지우지 않고
+# **좁혔다**: 판단표에 없으면 `status` 가 active:false · reason · revert 를 다 갖춰야 통과.
+#
+# ⚠️ 마커를 `[I36` 으로 잡으면 **주입 없이도 통과한다** — 요약 줄
+#   `[I36] 판단표 도달 가능성: …` 이 위반 유무와 무관하게 항상 찍히기 때문이다.
+#   I21 이 실제로 당했던 형태다(cautions 주석 참조). `✗` 줄에만 있는 문구로 잡는다.
+
+def _drop_c5_row(b):
+    """판단표에서 c5 행을 뺀다. 세 테스트가 공유하는 전제."""
+    b.cj["decision_table"] = [r for r in b.cj["decision_table"] if r["core"] != "c5"]
+
+
+@test("I36", "판단표에서 코어를 빼고 비활성 선언이 없으면 잡는가",
+      "비활성 선언도 없는 코어", after=TAIL)
+def _i36_no_status(b):
+    _drop_c5_row(b)
+    b.core("c5").pop("status", None)
+
+
+@test("I36", "비활성 선언에 revert 가 없으면 잡는가 (되돌릴 길이 없다)",
+      "status 에 revert 가 없다", after=TAIL)
+def _i36_no_revert(b):
+    _drop_c5_row(b)
+    st = b.core("c5").setdefault("status", {})
+    st["active"] = False
+    st["reason"] = "테스트 주입"
+    st.pop("revert", None)
+
+
+@test("I36", "비활성 선언이 완비되면 통과하는가 (정당한 강등을 막지 않는가)",
+      "명시적 비활성 1개", after=TAIL, expect_pass=True)
+def _i36_complete(b):
+    # 이것만 **통과를 확인하는** 테스트다(expect_pass). 나머지 둘과 달리 위반을 만들지
+    # 않는다 — 검사가 과도하게 좁아져 **정당한 강등까지 막으면** 여기서 걸린다.
+    # 이 하네스에 원래 없던 축이고, I36 이 실제로 정당한 강등을 막은 것이 계기다.
+    _drop_c5_row(b)
+    st = b.core("c5").setdefault("status", {})
+    st["active"] = False
+    st.setdefault("reason", "테스트 주입 — 왜 내렸는가")
+    st.setdefault("revert", "테스트 주입 — 어떻게 되돌리는가")
+
+
 def main():
     argv = [a for a in sys.argv[1:]]
     verbose = "-v" in argv
@@ -726,6 +781,22 @@ def main():
                 print("  ⊘ %-6s %s — 주입 불가 (%s)" % (iid, desc, ex))
                 continue
             code, out = b.run()
+            if wmode == "pass":
+                # 「정당한 것을 넣으면 안 걸리는가」. exit 0 이고 ✗ 줄에 마커가 없어야 한다.
+                bad = [l for l in violations(out) if any(m in l for m in expect)]
+                missing = [m for m in (expect + after) if m not in out]
+                if "Traceback" in out:
+                    print("  ✗ %-6s %s\n        검증기 중단(%s)" % (iid, desc, crash_at(out)))
+                    fails.append((iid, desc, "중단"))
+                elif code == 0 and not bad and not missing:
+                    print("  ✓ %-6s %s  (통과 확인)" % (iid, desc))
+                else:
+                    why = ("검사가 과도하게 발화했다: " + bad[0][:110]) if bad else (
+                           "exit %d — 다른 위반이 났다" % code if code else
+                           "증거 문자열 없음: %s" % ", ".join(missing))
+                    print("  ✗ %-6s %s\n        %s" % (iid, desc, why))
+                    fails.append((iid, desc, why))
+                continue
             v = cautions(out) if wmode else violations(out)
             vtext = "\n".join(v)
             hit = all(m in vtext for m in expect)
@@ -789,6 +860,8 @@ def main():
         if selftest:
             # 경고 등급 테스트는 `err` 가산을 쓰지 않으므로 무력화해도 빨개지지 않는다.
             # 기대 대상에서 빼야 한다 — 안 그러면 정상 동작이 실패로 보고된다(39차).
+            # 경고 등급과 **통과 확인**(expect_pass)은 err 가산을 안 쓰므로 무력화해도
+            # 빨개지지 않는다. 둘 다 기대 대상에서 뺀다.
             nwarn = sum(1 for i, _, _, _, _a, w in TESTS
                         if w and (not filt or filt in i))
             expect_red = ran - nwarn
@@ -796,8 +869,10 @@ def main():
             print("[--selftest] %s — 검출 팔이 살아 있는 테스트 %d/%d"
                   % ("통과" if ok else "✗ 실패", len(fails), expect_red))
             if nwarn:
-                print("            경고 등급 %d건은 err 무력화와 무관하므로 제외했다"
-                      " (경고는 exit code를 바꾸지 않는다)." % nwarn)
+                _np = sum(1 for i, _, _, _, _a, w in TESTS
+                          if w == "pass" and (not filt or filt in i))
+                print("            경고 등급 %d건 · 통과 확인 %d건은 err 무력화와 무관하므로"
+                      " 제외했다 (둘 다 exit code 를 바꾸지 않는다)." % (nwarn - _np, _np))
             if not ok:
                 print("            초록으로 남은 테스트는 검출과 무관하게 통과하고 있다.")
             return 0 if ok else 1

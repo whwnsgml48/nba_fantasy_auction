@@ -4305,8 +4305,10 @@
      "note": "c2·c6·c7 은 1순위 전원이 2025-26 실측 기반이라 흔들 가정이 없다."
     }
    },
-   "status_40": {
+   "status": {
     "active": false,
+    "reason": "게이트가 열려도 다른 코어가 닫히지 않는다 — Sabonis 가 싸다는 것은 c6 를 막지 않는다(c6 는 그를 안 쓴다). 그래서 비교는 늘 「c5 vs 그때도 살아 있는 코어」이고 c6 87.6 vs c5 84.9 = 2.7%p(대응 SE 0.59%p 대비 4.6σ)다. c5 가 앞서는 것은 삼중 실패 세계에서 c4 대비 +0.7%p 뿐이고 오차 안이며, 그 대가로 검증 불가한 가정을 셋 얹는다 — 대칭 스트레스에서는 c4 가 7.4%p 앞선다. 판정 2026-08-31 · 근거 cores.c5.dominance_audit_40",
+    "revert": "`c5_removed_from_decision_table_40.removed_row` 를 `decision_table` 끝에 다시 넣고 이 `status` 를 지우면 된다. 되돌리기 전에 위 사다리를 반박할 측정을 먼저 만들 것.",
     "where": "판단표에서 내림 (2026-08-31). 플랜은 유지 — 되돌릴 때 필요하다.",
     "if_sabonis_is_cheap": "방에서 Sabonis 가 헐값에 흐르면 **c6 로 가고 그를 무시한다.** c5 를 다시 꺼내지 말 것 — 근거는 c5_removed_from_decision_table_40.",
     "see": "cores.c5.dominance_audit_40 · matchup_sim.assumption_stress"

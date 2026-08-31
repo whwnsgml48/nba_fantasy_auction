@@ -1275,8 +1275,32 @@ else:
                     tier, ",".join(sorted(miss)) or "-", ",".join(sorted(extra)) or "-")); err+=1
             if c.get("signal")!="overheat_at":
                 print("  ✗ hot_bigs signal이 overheat_at이 아님: %r"%c.get("signal")); err+=1
-    if ids-seen: print("  ✗ 판단표에 누락된 코어: %s"%", ".join(sorted(ids-seen))); err+=1
+    # ── I36 (40차 신설 · 무명 검사에 이름을 붙이고 좁혔다) ──────────────────────
+    #  막는 것: **존재하지만 아무도 고를 수 없는 코어**(죽은 플랜). 이 저장소가 여러 번
+    #  당한 형태다. 그런데 40차에 c5 를 **의도적으로** 판단표에서 내리자 이 검사가 걸렸다.
+    #  지우면 보호가 사라지고, 그대로 두면 정당한 강등이 막힌다 → **좁힌다.**
+    #    판단표에 없는 코어는 `status` 가 셋을 다 갖췄을 때만 통과한다:
+    #      active:false · reason(왜 내렸나) · revert(어떻게 되돌리나)
+    #    하나라도 없으면 위반이다 — 「조용한 고아」는 여전히 걸린다.
+    #  🔴 면제 건수를 요약 줄에 찍는다. 조용히 넘어가면 검사가 없는 것과 같다.
+    _inactive=[]
+    for _cid in sorted(ids-seen):
+        _c=next((x for x in cj["cores"] if x["id"]==_cid), None)
+        _st=(_c or {}).get("status") or {}
+        _miss=[k for k in ("reason","revert") if not _st.get(k)]
+        if _st.get("active") is False and not _miss:
+            _inactive.append(_cid); continue
+        if _st.get("active") is False:
+            print("  ✗ [I36] %s: 판단표에 없고 status 에 %s 가 없다 — 비활성 선언은 "
+                  "왜 내렸는지와 어떻게 되돌리는지를 함께 적어야 한다"
+                  %(_cid,"·".join(_miss))); err+=1
+        else:
+            print("  ✗ [I36] 판단표에 없는데 비활성 선언도 없는 코어: %s "
+                  "(존재하지만 아무도 고를 수 없다)"%_cid); err+=1
     if dt[0]["core"]!="c7": print("  ✗ 우선순위 0이 코어 7이 아님"); err+=1
+    print("[I36] 판단표 도달 가능성: 코어 %d개 · 판단표 %d행 · 명시적 비활성 %d개%s"
+          %(len(ids),len(dt),len(_inactive),
+            (" ("+", ".join(_inactive)+")") if _inactive else ""))
     print("판단 순서: %d행 · 우선 0 = %s (센터 붕괴 시 최우선)"%(len(dt),dt[0]["core"]))
 print("-"*66)
 # ── I32 (40차 신설): players.json 의 **파생 필드**가 기저와 갈라졌는가 ──────
@@ -1320,8 +1344,13 @@ print("[I32] 파생 필드(surplus·obtainable): %d명 검사 · 위반 %d건 ·
 #     `yahoo_eligibility_39` 에 4명분 들어 있었다는 걸 알았다. **넣은 당일 2건이 갈라져
 #     있었다** — Amen(PG,SG ↔ PG,SF,SG) · Okongwu(C ↔ C,PF). 그 2건이 하필 수리의
 #     근거였다. 이중 보관을 만든 것보다 **대조가 없었다면 못 잡았을 것**이 요점이다.
-#     ⚠️ 등급은 **경고**다 — 어느 쪽이 맞는지는 사람이 확인해야 하고(재확인 요청 중),
+#     ⚠️ 등급은 **경고**다 — 어느 쪽이 맞는지는 사람이 확인해야 하고,
 #       현재 로스터는 두 판독 모두에서 유효하므로 진행을 막을 이유가 없다.
+#     🔴 40차(2026-08-31): 사용자가 두 건을 재확인했다 — 실제는 Amen PG·SG · Okongwu C 로
+#       **좁은 쪽(pos_yahoo)이 맞았다.** 39차 기록(`listed`)은 **덮어쓰지 않는다** — 그건
+#       당시 무엇을 믿었는지의 기록이고, 갈라졌다는 사실 자체가 이 검사가 잡아낸 사례다.
+#       지우면 「왜 이 검사가 있는지」가 사라진다. 대신 `superseded_40` 을 얹어 **면제**하되
+#       **면제 건수를 요약 줄에 찍는다** — 조용히 넘어가면 검사가 없는 것과 같다.
 #
 # (b) `overheat_at` ↔ 계층의 `overheat_margin`
 #     `low_cost_center` 가 「기대치 × 1.4 (최소 +$3)」라고 선언해 놓고 그 계층 6명 전원이
@@ -1330,16 +1359,23 @@ print("[I32] 파생 필드(surplus·obtainable): %d명 검사 · 위반 %d건 ·
 import re as _re33
 _w33=0
 _n33a=0
+_fix33=0
 for _p in pl.values():
     _y39=_p.get("yahoo_eligibility_39")
     if not _y39 or not _p.get("pos_yahoo"): continue
     _n33a+=1
     _a=set(x.strip() for x in (_y39.get("listed") or "").split(",") if x.strip())
     _b=set(_p["pos_yahoo"])
-    if _a!=_b:
-        print("  △ [I33] %s: pos_yahoo %s ↔ 39차 기록 %s — 같은 사실이 두 곳에서 다르다 (출처: %s)"
-              %(_p["name"],",".join(sorted(_b)),",".join(sorted(_a)),
-                (_y39.get("source") or "?")[:40])); warn+=1; _w33+=1
+    if _a==_b: continue
+    if _y39.get("superseded_40"):
+        # 사람이 확인해서 어느 쪽이 맞는지 판정된 건. 경고는 내리되 **세어서 찍는다.**
+        _fix33+=1
+        print("             [I33] %s: 39차 기록이 틀린 것으로 확인됨 — 실제 %s (정정 표시 있음)"
+              %(_p["name"],",".join(sorted(_b))))
+        continue
+    print("  △ [I33] %s: pos_yahoo %s ↔ 39차 기록 %s — 같은 사실이 두 곳에서 다르다 (출처: %s)"
+          %(_p["name"],",".join(sorted(_b)),",".join(sorted(_a)),
+            (_y39.get("source") or "?")[:40])); warn+=1; _w33+=1
 _n33b=0
 for _t in cj["overheat_thresholds"]:
     _tier=TIERS.get(_t.get("tier")) or {}
@@ -1352,7 +1388,8 @@ for _t in cj["overheat_thresholds"]:
     if _exp!=_oh:
         print("  △ [I33] %s: overheat_at $%d ↔ 계층 선언 '%s' 로는 $%d (기대치 $%d)"
               %(_t["player"],_oh,_m,_exp,_e)); warn+=1; _w33+=1
-print("[I33] 이중 보관 대조: 자격 %d명 · 과열배율 %d건 · 불일치 %d건"%(_n33a,_n33b,_w33))
+print("[I33] 이중 보관 대조: 자격 %d명 · 과열배율 %d건 · 불일치 %d건 · 정정 확인 %d건"
+      %(_n33a,_n33b,_w33,_fix33))
 
 # ── I25 (38차 신설): data/players.csv == 생성기 출력 ─────────────────────
 # README는 players.csv를 "같은 데이터 표 형식"이라고 적어놨지만 **생성기가 없었고

@@ -2724,7 +2724,7 @@
   "volume_leverage": null,
   "at_marginal_lift": "AST 4.7 / TOV 2.3 → 팀 A/T 한계 기여 +0.008 (2시즌 혼합 · GP 75.3)",
   "verdict": "가드가 OREB 3.0을 잡는 유일한 유형. STL 1.5 · DD 20 · 79경기 · G/F 자격. Barnes의 절반 가격에 OREB까지 주는 상위 호환.",
-  "flag": "FT%·3PT% 약점 · 🔴 자격 기록 충돌 — 한쪽은 PG·SG, 다른 쪽은 PG·SF·SG. 좁은 쪽(PG·SG)으로 계획했으니 **드래프트 당일 화면에서 SF 유무만 확인**할 것",
+  "flag": "FT%·3PT% 약점 · 야후 자격 확인됨: PG·SG",
   "market_source": "refit_v2_measured_2025_26_league_auction",
   "market_prior_estimate": {
    "low": 26,
@@ -2872,7 +2872,8 @@
    "listed": "SF, PG, SG",
    "source": "Yahoo Sports 선수 페이지 (sports.yahoo.com/nba/players/10108/)",
    "why": "이 선수의 **F 자격이 계획을 좌우한다** — 잃으면 해당 코어의 선발 5칸을 못 채운다(전수 계산: base+피벗 14개 플랜 중 임계 자격은 4건뿐이고 전부 'F'다).",
-   "caveat": "⚠️ 확인한 것은 **2025-26 자격**이다. 2026-27 자격은 2025-26 출장 포지션으로 프리시즌에 확정된다. 드래프트 당일 야후에서 재확인할 것."
+   "caveat": "⚠️ 확인한 것은 **2025-26 자격**이다. 2026-27 자격은 2025-26 출장 포지션으로 프리시즌에 확정된다. 드래프트 당일 야후에서 재확인할 것.",
+   "superseded_40": "사용자 재확인 2026-08-31 — 실제는 **PG·SG**. 이 기록(SF, PG, SG)이 틀렸다. 좁은 쪽(pos_yahoo)으로 계획한 것이 맞았고 로스터·라벨은 바꿀 필요가 없었다."
   }
  },
  {
@@ -24983,7 +24984,7 @@
   "volume_leverage": null,
   "at_marginal_lift": "AST 2.8 / TOV 1.5 → 팀 A/T 한계 기여 -0.017 (2시즌 혼합 · GP 74)",
   "verdict": null,
-  "flag": "OREB top-25 밖 · 🔴 자격 기록 충돌 — 한쪽은 C 전용, 다른 쪽은 C·PF. 좁은 쪽(C)으로 계획했으니 **드래프트 당일 화면에서 PF 유무만 확인**할 것",
+  "flag": "OREB top-25 밖 · 야후 자격 확인됨: C",
   "market_source": "refit_v2_measured_2025_26_league_auction",
   "market_prior_estimate": {
    "low": 6,
@@ -25136,7 +25137,8 @@
    "listed": "C, PF",
    "source": "NBA.com Forward-Center · 다수 플랫폼 C/PF",
    "why": "이 선수의 **F 자격이 계획을 좌우한다** — 잃으면 해당 코어의 선발 5칸을 못 채운다(전수 계산: base+피벗 14개 플랜 중 임계 자격은 4건뿐이고 전부 'F'다).",
-   "caveat": "⚠️ 확인한 것은 **2025-26 자격**이다. 2026-27 자격은 2025-26 출장 포지션으로 프리시즌에 확정된다. 드래프트 당일 야후에서 재확인할 것."
+   "caveat": "⚠️ 확인한 것은 **2025-26 자격**이다. 2026-27 자격은 2025-26 출장 포지션으로 프리시즌에 확정된다. 드래프트 당일 야후에서 재확인할 것.",
+   "superseded_40": "사용자 재확인 2026-08-31 — 실제는 **C**. 이 기록(C, PF)이 틀렸다. 좁은 쪽(pos_yahoo)으로 계획한 것이 맞았고 로스터·라벨은 바꿀 필요가 없었다."
   }
  },
  {
