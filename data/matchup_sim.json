@@ -3904,5 +3904,138 @@
     "binding": "budget"
    }
   ]
+ },
+ "all_healthy": {
+  "seed": 20261020,
+  "iterations": 4000,
+  "healthy_season": "2024-25",
+  "share_threshold": 0.5,
+  "gp_floor": 40,
+  "what": "전 코어 1순위 중 GP 가 부상 시즌에 기대는 선수(실측 비중<0.50 또는 2025-26 GP<40)의 GP 를 **직전 온전한 시즌 실제 출장수**로 올리고 실제 12팀 평균/최저 주간 승률을 다시 잰다.",
+  "why": "드래프트가 프리시즌보다 4.4주 앞서 복귀 여부를 확인할 수 없다. 사용자가 「전원 건강 가정」으로 계획하기로 했는데, **현행 데이터는 그 세계가 아니다** — Haliburton·Lillard 만 건강 가정이고 Sabonis·Trae·Zubac 은 부상 시즌이 섞여 있다.",
+  "caveat": "지어낸 값이 없다 — 전부 그 선수가 실제로 뛴 시즌의 출장수다. 다만 '전원 건강'은 낙관적인 쪽 끝이고 예측이 아니다. `assumption_stress`(반대 끝)와 **한 쌍으로** 읽을 것.",
+  "not_applied": "players.json 의 GP 는 바꾸지 않았다. 채택은 사람이 판정한다.",
+  "targets": {
+   "Damian Lillard": {
+    "from": 58.0,
+    "to": 58.0,
+    "moved": false,
+    "why": "share=0.0 · 25-26 GP=None"
+   },
+   "Domantas Sabonis": {
+    "from": 55.2,
+    "to": 70.0,
+    "moved": true,
+    "why": "share=0.289 · 25-26 GP=19"
+   },
+   "Ivica Zubac": {
+    "from": 64.8,
+    "to": 80.0,
+    "moved": true,
+    "why": "share=0.474 · 25-26 GP=48"
+   },
+   "Trae Young": {
+    "from": 62.1,
+    "to": 76.0,
+    "moved": true,
+    "why": "share=0.228 · 25-26 GP=15"
+   },
+   "Tyrese Haliburton": {
+    "from": 73.0,
+    "to": 73.0,
+    "moved": false,
+    "why": "share=0.0 · 25-26 GP=None"
+   }
+  },
+  "excluded": [],
+  "rows": [
+   {
+    "core": "c1",
+    "base": 0.8704,
+    "base_min": 0.7488,
+    "healthy": 0.8704,
+    "healthy_min": 0.7488,
+    "delta": 0.0,
+    "delta_min": 0.0,
+    "changed": []
+   },
+   {
+    "core": "c2",
+    "base": 0.8654,
+    "base_min": 0.7252,
+    "healthy": 0.8654,
+    "healthy_min": 0.7252,
+    "delta": 0.0,
+    "delta_min": 0.0,
+    "changed": []
+   },
+   {
+    "core": "c3",
+    "base": 0.8769,
+    "base_min": 0.7348,
+    "healthy": 0.8769,
+    "healthy_min": 0.7348,
+    "delta": 0.0,
+    "delta_min": 0.0,
+    "changed": []
+   },
+   {
+    "core": "c4",
+    "base": 0.842,
+    "base_min": 0.682,
+    "healthy": 0.8732,
+    "healthy_min": 0.7295,
+    "delta": 0.0312,
+    "delta_min": 0.0475,
+    "changed": [
+     {
+      "player": "Trae Young",
+      "gp": 62.1,
+      "gp_healthy": 76.0
+     }
+    ]
+   },
+   {
+    "core": "c5",
+    "base": 0.8488,
+    "base_min": 0.682,
+    "healthy": 0.8804,
+    "healthy_min": 0.747,
+    "delta": 0.0316,
+    "delta_min": 0.065,
+    "changed": [
+     {
+      "player": "Domantas Sabonis",
+      "gp": 55.2,
+      "gp_healthy": 70.0
+     },
+     {
+      "player": "Ivica Zubac",
+      "gp": 64.8,
+      "gp_healthy": 80.0
+     }
+    ]
+   },
+   {
+    "core": "c6",
+    "base": 0.8763,
+    "base_min": 0.7508,
+    "healthy": 0.8763,
+    "healthy_min": 0.7508,
+    "delta": 0.0,
+    "delta_min": 0.0,
+    "changed": []
+   },
+   {
+    "core": "c7",
+    "base": 0.8637,
+    "base_min": 0.7242,
+    "healthy": 0.8637,
+    "healthy_min": 0.7242,
+    "delta": 0.0,
+    "delta_min": 0.0,
+    "changed": []
+   }
+  ]
  }
 }
