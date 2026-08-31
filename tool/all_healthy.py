@@ -61,6 +61,8 @@ def main():
     REAL, _ = RO.build()
 
     def run(us, gp=None):
+        """(평균, 최저, 상대별 벡터). 벡터는 **쌍별 SE** 계산에 쓴다 —
+        중앙값 SE 로 비교하면 안 된다(standard_error.which_to_use)."""
         old = {}
         for n, g in (gp or {}).items():
             if n in MS.F:
@@ -71,7 +73,7 @@ def main():
         for n, g in old.items():
             MS.F[n]["GP"] = g
         MS._URATE.clear()
-        return (round(sum(wr) / len(wr), 4), round(min(wr), 4))
+        return (round(sum(wr) / len(wr), 4), round(min(wr), 4), wr)
 
     # ── 대상 확정 (전 코어 1순위 합집합) ──────────────────────────────
     firsts = sorted({s["candidates"][0]["name"] for co in cj["cores"] for s in co["slots"]})
@@ -112,12 +114,14 @@ def main():
            "targets": {n: t for n, t in sorted(targets.items())},
            "excluded": excluded, "rows": []}
 
+    vecs = {}
     print("  %-4s %16s %16s %8s   %s" % ("코어", "기준(평균/최저)", "전원건강", "평균차", "바뀐 선수"))
     for co in cj["cores"]:
         us = [s["candidates"][0]["name"] for s in co["slots"]]
         mine = {n: targets[n]["to"] for n in us if n in targets and targets[n]["moved"]}
-        b_mean, b_min = run(us)
-        h_mean, h_min = run(us, mine) if mine else (b_mean, b_min)
+        b_mean, b_min, b_vec = run(us)
+        h_mean, h_min, h_vec = run(us, mine) if mine else (b_mean, b_min, b_vec)
+        vecs[co["id"]] = h_vec
         row = {"core": co["id"], "base": b_mean, "base_min": b_min,
                "healthy": h_mean, "healthy_min": h_min,
                "delta": round(h_mean - b_mean, 4),
@@ -130,6 +134,40 @@ def main():
                  100 * row["delta"],
                  " · ".join("%s %.0f→%.0f" % (n.split()[-1], targets[n]["from"], targets[n]["to"])
                             for n in sorted(mine)) or "없음"))
+
+    # ── 전원건강 세계의 **쌍별** SE ────────────────────────────────────
+    # 🔴 중앙값 SE 로 코어를 비교하면 안 된다 — standard_error.which_to_use 가
+    #   "비교할 때는 paired 를 쓴다"이고 caveat 이 "쌍마다 다르다"이다.
+    #   c4·c5 가 낀 쌍은 이 세계에서 값이 달라지므로 여기서 다시 낸다.
+    # 🔴 그리고 21쌍에서 유의한 것을 사후에 고르면 **승자의 저주**다(환율 측정에서
+    #   두 번 당했다). Bonferroni(0.05/21) 로 자른 임계를 함께 싣는다.
+    import math
+    ids = [r["core"] for r in out["rows"]]
+    pairs = {}
+    for i in range(len(ids)):
+        for j in range(i + 1, len(ids)):
+            a, b = ids[i], ids[j]
+            d = [x - y for x, y in zip(vecs[a], vecs[b])]
+            n = len(d); mu = sum(d) / n
+            sd = math.sqrt(sum((x - mu) ** 2 for x in d) / (n - 1)) if n > 1 else 0.0
+            se = sd / math.sqrt(n)
+            pairs["%s-%s" % (a, b)] = {"mean_diff": round(mu, 4), "se": round(se, 4),
+                                       "sigma": round(abs(mu) / se, 2) if se else None}
+    out["paired_se_by_pair"] = pairs
+    out["multiple_comparison"] = {
+        "n_pairs": len(pairs), "alpha": 0.05,
+        "bonferroni_sigma": 2.9,
+        "why": ("21쌍에서 유의한 것을 **사후에 고르면** 승자의 저주다 — 이 저장소가 환율 "
+                "측정에서 두 번 당한 형태다. Bonferroni(0.05/21)로 자르면 약 2.9σ 다."),
+        "survives": sorted([k for k, v in pairs.items()
+                            if v["sigma"] and v["sigma"] >= 2.9]),
+    }
+    print("\n  쌍별 SE — Bonferroni(≈2.9σ) 통과: %s"
+          % (", ".join(out["multiple_comparison"]["survives"]) or "없음"))
+    for k, v in sorted(pairs.items(), key=lambda kv: -(kv[1]["sigma"] or 0))[:6]:
+        print("    %-8s 차이 %+.1f%%p · SE %.2f%%p · %.2fσ%s"
+              % (k, 100 * v["mean_diff"], 100 * v["se"], v["sigma"] or 0,
+                 "  ✅ 보정 후에도 유의" if (v["sigma"] or 0) >= 2.9 else ""))
 
     sim = json.load(io.open(f"{BASE}/data/matchup_sim.json", encoding="utf-8"))
     sim["all_healthy"] = out
