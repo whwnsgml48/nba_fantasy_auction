@@ -1180,8 +1180,16 @@ function renderDecide(){
       +(function(){
           // 상위 코어들이 승률로는 안 갈리므로 이 칸이 실제 선택 기준이다.
           const sx=stressOf(d.core);
+          // 🔴 40차 경계 검증: 이 값에는 **자격과 무관한 바닥 약 0.19%p** 가 들어 있다.
+          //    포지션 자격이 전혀 없는 로스터도 0.19% 를 버린다 — 하루에 8~9명이 동시에
+          //    경기를 가지면 선발 7칸을 넘기기 때문이고, **로스터 용량의 문제이지 자격의
+          //    문제가 아니다**(cores.json.lineup_loss_validation_40). 라벨만 두면 화면에서
+          //    「자격이 이만큼 버리게 한다」로 읽힌다 — 바닥을 라벨에 같이 적는다.
           if(!sx) return d.lineup_loss!=null
-            ? '<span style="color:var(--ink-3)">칸 비움 '+(d.lineup_loss*100).toFixed(2)+'%</span>'
+            ? '<span style="color:var(--ink-3)" title="자격과 무관한 바닥 약 0.19%p 를 포함한다 — '
+              +'자격이 전혀 없는 로스터도 그만큼 버린다(로스터 용량). 자격 탓인 부분은 바닥을 뺀 나머지.">'
+              +'칸 비움 '+(d.lineup_loss*100).toFixed(2)+'%'
+              +'<span style="opacity:.6"> (바닥 0.19 포함)</span></span>'
             : '<span></span>';
           const dl=sx.delta||0;
           if(dl>=-0.0001) return '<span style="color:var(--ok)">가정 없음 🟢</span>';

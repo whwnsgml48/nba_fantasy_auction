@@ -634,6 +634,13 @@ Amen      pos_yahoo PG,SG  ↔ listed PG,SF,SG    🔴  ← 이 2건이 하필
 Okongwu   pos_yahoo C      ↔ listed C,PF        🔴     그날 수리의 근거였다
 ```
 
+✅ **2026-08-31 해소 — 사용자가 야후 화면에서 확인했습니다.**
+`Amen Thompson = PG·SG` · `Onyeka Okongwu = C` 로, **`pos_yahoo` 쪽이 맞고
+`yahoo_eligibility_39` 쪽이 틀렸습니다.** 보수적인 쪽을 쓴 것이 옳았고 로스터·라벨은
+바꿀 필요가 없었습니다. 그래서 「c3 는 SF 충원 0명」·「c2 는 PF 충원 0명」은 이제
+**단정해도 되는 사실**입니다. 기록: `players.json.yahoo_eligibility_39.superseded_40`
+⚠️ 확정된 것은 **19명 중 2명**뿐입니다 — 나머지 155명은 여전히 추정입니다.
+
 이 저장소가 반복해 당한 형태 그대로입니다 — 39차에 `tool_embed.py` 로 하나를 없앤
 직후에 새로 하나를 만들었습니다. 이중 보관은 **의도해서 생기지 않습니다.** 새 필드를
 넣는 사람은 옛 필드를 모르고, 옛 필드를 넣은 사람은 이미 없습니다.

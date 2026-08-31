@@ -57,6 +57,9 @@ def match(players, slots=None):
     ⚠️ '조립 가능'은 합법성 판정이 아니다 — 야후는 커버리지를 강제하지 않는다.
       매칭이 깨진다는 것은 **그 칸이 매일 비어 선수-경기를 버린다**는 뜻이고,
       실제 손실률은 `tool/lineup_feasibility.py` 가 잰다(0.2~3.2%p).
+      ⚠️ 그 범위를 통째로 자격 탓으로 읽지 말 것 — **약 0.19%p 는 자격과 무관한 바닥**이다
+      (자격이 전혀 없는 로스터도 그만큼 버린다 · 로스터 용량의 문제 ·
+       `cores.json.lineup_loss_validation_40`).
     """
     slots = list(slots if slots is not None else ROSTER_SLOTS)
     adj = [[j for j in range(len(slots)) if can(p, slots[j])] for p in players]
