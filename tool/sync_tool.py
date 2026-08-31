@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """툴 HTML의 임베드 상수를 데이터에서 재생성.
 
-동기화 대상 8종: P(선수 mk·cats·gp·실측라인) · CORES · PIVOTS ·
+동기화 대상 8종(+P 행의 py): P(선수 mk·cats·gp·실측라인) · CORES · PIVOTS ·
                  OVERHEAT · OTIERS · DECISION · DECISION_ONELINER
 `validate.py`가 이 7종을 cores.json/players.json과 대조하므로,
 데이터를 고치면 반드시 이 스크립트를 돌려야 한다.
@@ -92,6 +92,11 @@ for ln in m.group(2).split("\n"):
         rep=',%s:"%s"'%(_k,esc)
         pat=re.compile(r',%s:"(?:[^"\\]|\\.)*"'%_k)
         new=pat.sub(lambda _:rep,new,count=1) if pat.search(new) else ins(new, rep)
+    # 40차: 작년 실낙찰가(표시 전용). **없는 선수는 필드를 안 넣는다** —
+    #   null 을 넣으면 소비자가 깨진다(이번 회차에 walk:null 로 화면이 실제로 깨졌다).
+    new=re.sub(r',py:\d+','',new,count=1)
+    if q.get("prior_auction_price") is not None:
+        new=ins(new, ',py:%d'%q["prior_auction_price"])
     # injOut: 부재가 곧 false다. 은퇴·장기부상 어느 쪽이든 같은 제외 기구를 쓴다.
     new=re.sub(r',injOut:true','',new,count=1)
     if q.get("injury_exclude"):

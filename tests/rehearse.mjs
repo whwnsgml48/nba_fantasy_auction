@@ -249,6 +249,10 @@ for(const core of ['c1','c4','c7']){
     ['KATBR.steps[].str = null',  (T.KATBR&&T.KATBR.steps||[]).some(s=>!s.str)],
     ['KATBR.steps[].br = null',   (T.KATBR&&T.KATBR.steps||[]).some(s=>!s.br)],
     ['CORES 중 plan 부재(c0)',     T.CORES.some(c=>!c.plan)],
+    // 40차: 작년 실낙찰가. **없는 선수는 필드 자체가 없다**(null 로 안 채운다) —
+    //   walk:null 이 화면을 깨뜨린 교훈이다. 두 모양을 다 밟는지 본다.
+    ['P.py 있음 (92명)',          T.P.some(x=>x.py!=null)],
+    ['P.py 부재 (82명)',          T.P.some(x=>x.py===undefined)],
   ];
   for(const [k,hit] of shapes) console.log('   '+(hit?'✅ 밟음  ':'⬜ 안 밟음')+'  '+k);
   console.log('   ⬜ 는 그 모양이 데이터에 **아직 없다**는 뜻이다 — 생기면 여기가 먼저 켜진다.');
