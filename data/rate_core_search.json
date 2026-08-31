@@ -1,0 +1,176 @@
+{
+ "seed": 20261020,
+ "iterations": 4000,
+ "candidates": [
+  {
+   "names": [
+    "Deandre Ayton",
+    "Jalen Duren",
+    "Jarrett Allen",
+    "Josh Hart",
+    "Karl-Anthony Towns",
+    "Kawhi Leonard",
+    "Kevin Durant",
+    "Nikola Vučević",
+    "Ryan Kalkbrenner"
+   ],
+   "total": 187,
+   "reserve": 13,
+   "mean": 0.7173,
+   "min": 0.5252,
+   "cats": 7.52
+  },
+  {
+   "names": [
+    "Deandre Ayton",
+    "Jalen Duren",
+    "Jarrett Allen",
+    "Josh Hart",
+    "Karl-Anthony Towns",
+    "Kawhi Leonard",
+    "Kel'el Ware",
+    "Kevin Durant",
+    "Ryan Kalkbrenner"
+   ],
+   "total": 187,
+   "reserve": 13,
+   "mean": 0.6999,
+   "min": 0.5065,
+   "cats": 7.36
+  },
+  {
+   "names": [
+    "Deandre Ayton",
+    "Ivica Zubac",
+    "Jalen Duren",
+    "Josh Hart",
+    "Karl-Anthony Towns",
+    "Kawhi Leonard",
+    "Kevin Durant",
+    "Luke Kornet",
+    "Neemias Queta"
+   ],
+   "total": 186,
+   "reserve": 14,
+   "mean": 0.6949,
+   "min": 0.5205,
+   "cats": 7.36
+  },
+  {
+   "names": [
+    "Deandre Ayton",
+    "Ivica Zubac",
+    "Jalen Duren",
+    "Josh Hart",
+    "Karl-Anthony Towns",
+    "Kawhi Leonard",
+    "Kevin Durant",
+    "Luke Kornet",
+    "Ryan Kalkbrenner"
+   ],
+   "total": 186,
+   "reserve": 14,
+   "mean": 0.6873,
+   "min": 0.504,
+   "cats": 7.31
+  },
+  {
+   "names": [
+    "Deandre Ayton",
+    "Jalen Duren",
+    "Jarrett Allen",
+    "Josh Hart",
+    "Karl-Anthony Towns",
+    "Kawhi Leonard",
+    "Kevin Durant",
+    "Luke Kornet",
+    "Neemias Queta"
+   ],
+   "total": 187,
+   "reserve": 13,
+   "mean": 0.6854,
+   "min": 0.5028,
+   "cats": 7.35
+  },
+  {
+   "names": [
+    "Deandre Ayton",
+    "Jalen Duren",
+    "Jarrett Allen",
+    "Josh Hart",
+    "Karl-Anthony Towns",
+    "Kawhi Leonard",
+    "Kevin Durant",
+    "Luke Kornet",
+    "Ryan Kalkbrenner"
+   ],
+   "total": 187,
+   "reserve": 13,
+   "mean": 0.6838,
+   "min": 0.5052,
+   "cats": 7.31
+  }
+ ],
+ "diagnosis": {
+  "verdict": "🔴 **실패 — 다만 가설의 절반은 맞았다.**",
+  "best_mean": 0.717,
+  "best_min": 0.525,
+  "expected_cats": 7.52,
+  "vs_existing": "기존 7코어는 84.2~87.7%. 비율코어 71.7% 는 그 아래 12.5%p 다.",
+  "where_it_failed": {
+   "1_A/T 붕괴": "A/T 20.2% (c6 64.2% · −44.1%p) · AST 13.1% (−67.4%p). A/T 는 **목표 캣이었는데** 로스터에 플레이메이커가 없다. FG% 최대화가 빅맨 스택을 뽑았고 어시스트가 사라졌다.",
+   "2_FT% 는 목표였는데 여전히 진다": "45.3% — 50% 아래다. 지시가 예고한 긴장이 **여기서 실현됐다.** FG% 최적 빅(Ayton·Duren·Allen·Kalkbrenner)이 전부 FT% 음수라, FG% 를 극대화하면 FT% 를 살 수 없다.",
+   "3_승리 캣이 정확히 7개": "50% 넘는 캣 = REB·OREB·BLK·TOV·3P%·DD·FG% **7개**. 승리선이 7 이라 **여유가 0** 이다 — 하나만 미끄러지면 진다. c6 는 9개를 넘긴다. 이것이 71.7% 대 87.6% 의 실체다.",
+   "4_탐색기 설계 결함": "프리필터가 비율캣 마진 합을 썼는데 FG% 의 절대 크기가 FT%·3P% 를 압도한다(Ayton FG +110 vs FT −21). 그래서 '비율캣 집중'이 아니라 **'FG% 최대화'**를 탐색했다. 이 측정은 가설의 순수한 시험이 아니다."
+  },
+  "what_worked": "FG% 95.5%(+35.1) · TOV 60.3%(+27.8) · 3P% 64.5%(+23.3) · DD 87.5%(+9.2). **저분산 캣은 실제로 거의 확정 승리로 바뀐다** — 가설의 이 부분은 지지된다.",
+  "assumption_exposure": "흔들 선수 **0명**(share<0.5 인 1순위 없음) — 가정 노출은 c2·c6·c7 과 같은 등급이다. 이건 이 코어의 유일한 강점이다.",
+  "not_adopted": "cores.json 에 넣지 않았다. 탐색 산출물이다."
+ },
+ "fa_depth": {
+  "measured": "BBRef 2025-26 전체 583명 · GP≥30 · MPG≥15 → 335명. 지명풀(상위 126) 밖 = FA 후보 222명.",
+  "why": "14팀 × 9명 = 126명이 로스터에 묶인다. 우리 풀이 정확히 상위 126명이니 FA 는 그 밖이다.",
+  "counts": {
+   "OREB·BLK 빅 (OREB≥2.0·BLK≥0.8)": {
+    "풀안": 22,
+    "풀밖": 8,
+    "미평가": 7
+   },
+   "  ↳ FTA≤2.5": {
+    "풀안": 10,
+    "풀밖": 5,
+    "미평가": 4
+   },
+   "고FG% 저볼륨 빅 (FG%≥58·FTA≤2.5)": {
+    "풀안": 8,
+    "풀밖": 12,
+    "미평가": 9
+   },
+   "STL 가드 (STL≥1.2)": {
+    "풀안": 35,
+    "풀밖": 28,
+    "미평가": 20
+   },
+   "3PM 다트 (3PM≥1.8·3P%≥36)": {
+    "풀안": 40,
+    "풀밖": 40,
+    "미평가": 25
+   },
+   "REB 공급 (REB≥7.0)": {
+    "풀안": 30,
+    "풀밖": 13,
+    "미평가": 12
+   }
+  },
+  "verdict": "🔴 **원형마다 깊이가 크게 다르다.** 3PM 다트(25)·STL 가드(20)는 깊고, 이 코어가 실제로 필요한 **OREB·BLK 빅 중 FTA 작은 유형은 4명**뿐이다. 「다치면 FA 에서 줍는다」 전제는 **원형에 따라 참이기도 거짓이기도 하다.**",
+  "caveat": "🔴 '풀밖'은 Embiid·Butler·Mikal Bridges 같은 유명 선수를 포함한다 — 실제로는 남이 지명한다. '미평가'(우리가 평가조차 안 한 174명 밖)가 **하한**이다. 그리고 이건 **2025-26 실적**이고 2026-27 FA 풀이 아니다 — 우리가 아는 전부가 여기까지다."
+ },
+ "recoverable_stress": {
+  "question": "$2 필러의 결장은 버리고 FA 에서 주우면 되지만 $56 앵커의 결장은 회복 불가다. assumption_stress 는 둘을 똑같이 흔든다 — 그 차이가 얼마인가.",
+  "measured": "스트레스를 집중군($5 초과)에만 걸었을 때 vs 전원에 걸었을 때. 4000시행 · 같은 시드.",
+  "result": "🔴 **7코어 전부 차이 0.00%p.**",
+  "why": "흔들 선수(share<0.5)가 **하나도 $5 이하가 아니다** — Haliburton $56 · Trae $30 · Sabonis $19 · Lillard $14 · Zubac $11. 최저가 $11 이다. 즉 **스트레스 집합과 싼 집합이 안 겹친다.**",
+  "conclusion": "지적한 구멍은 **개념적으로 실재하지만 현재 데이터에서는 발화하지 않는다.** 모델을 지금 고칠 이유가 없다. 다만 싼 투영 의존 선수를 계획에 넣는 순간 발화하므로, 그때 이 측정을 다시 할 것.",
+  "not_changed": "위험 모델은 고치지 않았다(사용자 결정 사항)."
+ }
+}
