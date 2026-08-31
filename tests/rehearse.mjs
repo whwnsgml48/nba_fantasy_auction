@@ -63,8 +63,8 @@ global.ResizeObserver=class{observe(){}disconnect(){}};
 const raw=html.match(/<script>([\s\S]*)<\/script>/)[1];
 const cut=raw.lastIndexOf('})();');
 fs.writeFileSync('/tmp/pub.mjs', raw.slice(0,cut)
-  +';globalThis.__T={S,P,SLOTS,CORES,KATBR,DECISION,openRows,planSlack,effCeil,'
-  +'renderDecide,renderCore,renderAlerts,renderPivot,renderBar,activeCore};\n'+raw.slice(cut));
+  +';globalThis.__T={S,P,SLOTS,CORES,KATBR,DECISION,OVERHEAT,openRows,planSlack,effCeil,'
+  +'renderDecide,renderCore,renderAlerts,renderPivot,renderBar,renderTrig,activeCore};\n'+raw.slice(cut));
 await import('/tmp/pub.mjs');
 const T=globalThis.__T,{S,P}=T;
 const id=n=>P.findIndex(x=>x.n===n);
@@ -173,4 +173,77 @@ for(const core of ['c1','c4','c7']){
     console.log('   c3 · SGA $80 을 '+sl+' 에 → 계획 여유 '
       +(k<0?'-$'+(-k):'$'+k)+(sl==='SG'?'  ← 계획 슬롯':'  ← 계획과 다름(드롭다운이 막는다)'));
   }
+}
+
+// ── ⑨ 미측정(null) 모양 — 「값이 있는 세계」만 밟던 것을 고친다 ──────────────
+//  🔴 왜 있는가 (40차 · 2026-08-31)
+//    시나리오 ①~⑧ 이 전부 **값이 채워진** 세계만 밟았다. 그래서 철수가가 `null` 인
+//    감시 항목이 생겼을 때 아무도 못 잡았고, 발행본에서 이런 것들이 나왔다:
+//      · JS 에서 `a > null` 은 `a > 0` 이라 **$1 낙찰만으로 철수 경보**가 떴다
+//      · 계층 목록에 **`철수 >$null`** 이 그대로 찍혔다
+//      · 「철수가 $null는 **발동 확률 0**」 — 재지 않은 것을 단정했다
+//        (측정했는데 안 걸리는 Gobert 용 문장이 미측정 5명에게 복사됐다)
+//    셋 다 데이터만 보는 validate 로는 안 잡힌다. **화면을 그려 봐야** 나온다.
+//
+//  일반화: 리허설이 `null`·빈 배열·필드 부재를 한 번도 안 밟으면, 다음에 누가
+//  새 필드를 새 모양으로 넣을 때 똑같이 뚫린다. 아래 ⑩ 이 어떤 모양을 밟았는지 찍는다.
+{
+  console.log('\n════ ⑨ 철수가 미측정(null) 항목');
+  const na=T.OVERHEAT.filter(o=>o.walk==null&&o.oh!=null);
+  const measured=T.OVERHEAT.filter(o=>o.walk!=null);
+  console.log('   미측정 '+na.length+'명: '+na.map(o=>o.n).join(' · '));
+  if(!na.length){ console.log('   ⚠ 미측정 항목이 없다 — 이 시나리오가 아무것도 검사하지 않는다'); }
+
+  // ⑨-1 계층 목록에 $null 이 찍히는가
+  reset('c6'); R(); T.renderTrig();
+  const t=txt(nodes['trig'].innerHTML);
+  console.log('   ⑨-1 계층 목록 $null: '+(t.includes('$null')?'🔴 찍힘':'✅ 없음'));
+
+  // ⑨-2 $1 낙찰에 철수 경보가 뜨는가  ← 실제로 깨졌던 지점
+  const one=na[0];
+  if(one){
+    reset('c6'); sold(one.n,1); R();
+    const al=txt(nodes['alerts'].innerHTML);
+    const last=one.n.split(' ').pop();
+    const cried=al.includes(last)&&al.includes('철수');
+    console.log('   ⑨-2 '+one.n+' $1 낙찰 → 철수 경보: '+(cried?'🔴 뜬다(오경보)':'✅ 안 뜬다'));
+  }
+
+  // ⑨-3 미측정 항목에 「발동 확률 0」이 붙는가 — 그건 **측정된** 항목에만 해당한다
+  reset('c6'); R(); T.renderTrig();
+  const t2=txt(nodes['trig'].innerHTML);
+  let bad=null;
+  for(const o of na){
+    const i=t2.indexOf(o.n.split(' ').pop());
+    if(i>=0&&t2.slice(i,i+220).includes('발동 확률 0')) { bad=o.n; break; }
+  }
+  console.log('   ⑨-3 미측정 항목의 「발동 확률 0」: '+(bad?'🔴 '+bad+' 에 붙음':'✅ 없음'));
+  console.log('   ⑨-4 미측정 안내 문구: '
+    +(t2.includes('철수가 미측정')?'✅ 있음':'🔴 없음'));
+  // 대조군 — 측정됐지만 비구속인 항목에는 그 문장이 **있어야** 한다
+  const g=measured.find(o=>o.binding===false);
+  if(g){
+    const i=t2.indexOf(g.n.split(' ').pop());
+    console.log('   ⑨-5 대조군 '+g.n+'(측정·비구속)의 「발동 확률 0」: '
+      +(i>=0&&t2.slice(i,i+240).includes('발동 확률 0')?'✅ 있음':'🔴 사라졌다'));
+  }
+}
+
+// ── ⑩ 어떤 모양을 밟았는가 ────────────────────────────────────────────────
+//  🔴 이 리허설이 무엇을 **안** 밟았는지 사람이 볼 수 있어야 한다.
+//    "검사가 통과했다"는 "무엇을 검사했는가"를 확인한 뒤에만 의미가 있다(docs/11).
+{
+  console.log('\n════ ⑩ 밟은 모양 (null·빈 배열·필드 부재)');
+  const shapes=[
+    ['OVERHEAT.walk = null',      T.OVERHEAT.some(o=>o.walk==null)],
+    ['OVERHEAT.oh = null',        T.OVERHEAT.some(o=>o.oh==null)],
+    ['DECISION.str 부재',          T.DECISION.some(d=>!d.str)],
+    ['DECISION.snote 부재',        T.DECISION.some(d=>!d.snote)],
+    ['DECISION.tier 부재',         T.DECISION.every(d=>d.tier===undefined)],
+    ['KATBR.steps[].str = null',  (T.KATBR&&T.KATBR.steps||[]).some(s=>!s.str)],
+    ['KATBR.steps[].br = null',   (T.KATBR&&T.KATBR.steps||[]).some(s=>!s.br)],
+    ['CORES 중 plan 부재(c0)',     T.CORES.some(c=>!c.plan)],
+  ];
+  for(const [k,hit] of shapes) console.log('   '+(hit?'✅ 밟음  ':'⬜ 안 밟음')+'  '+k);
+  console.log('   ⬜ 는 그 모양이 데이터에 **아직 없다**는 뜻이다 — 생기면 여기가 먼저 켜진다.');
 }
