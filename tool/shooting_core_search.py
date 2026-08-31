@@ -48,6 +48,7 @@ TARGET = ("3PM", "3P%", "FT%", "PTS", "AST", "STL", "TOV", "A/T")
 PUNT = ("REB", "OREB", "BLK", "DD", "FG%")
 MAX_SHAKY = 1
 NEED_CATS = 8.44
+MIN_SPEND = 175   # 🔴 예산 미소진 방지 — 첫 실행이 $24 짜리 해를 냈다
 PL = {p["name"]: p for p in json.load(io.open(f"{BASE}/data/players.json", encoding="utf-8"))}
 B = CM.baselines()
 
@@ -90,16 +91,22 @@ def main():
         # 빅 자리(PF·C)를 채우되 슈팅을 **덜 깎는** 쪽 — 1차의 교훈
         if ("PF" in e or "C" in e) and pr <= 12 and (tp + ft) > -20:
             bigs.append((n, pr, tp + ft, sorted(e)))
-    shooters.sort(key=lambda x: -x[2] / max(1, x[1]))
+    # 🔴 **달러당 가치로만 정렬하면 $2 선수만 뽑힌다.** 첫 실행이 총액 $24 짜리
+    #   퇴화 해를 내놨다(예산 $176 미사용 · 27.2% · 5.69캣). 그건 가설의 결과가 아니라
+    #   탐색기의 결함이다 — 2차 탐색의 $27 미소진이 훨씬 나쁜 형태로 재발한 것이다.
+    #   → 절대 기여 상위(비싼 슈터)와 달러당 상위(싼 슈터)를 **둘 다** 넣고,
+    #     아래에서 **최소 소진액**을 강제한다.
+    by_abs = sorted(shooters, key=lambda x: -x[2])[:12]
+    by_eff = sorted(shooters, key=lambda x: -x[2] / max(1, x[1]))[:12]
+    S = list(dict.fromkeys([s[0] for s in by_abs] + [s[0] for s in by_eff]))
     bigs.sort(key=lambda x: -x[2])
-    S = [s[0] for s in shooters[:20]]
     G = [b[0] for b in bigs[:14]]
     print("슈터 %d · 빅(슈팅 비파괴) %d" % (len(S), len(G)))
     print("  슈터:", ", ".join("%s $%d" % (s[0].split()[-1], s[1]) for s in shooters[:10]))
     print("  빅  :", ", ".join("%s $%d" % (b[0].split()[-1], b[1]) for b in bigs[:10]))
 
     combos, seen = [], set()
-    for s6 in itertools.combinations(S[:15], 6):
+    for s6 in itertools.combinations(S[:16], 6):
         if sum(1 for n in s6 if shaky(n)) > MAX_SHAKY:
             continue
         cs = sum(price(n) for n in s6)
@@ -112,8 +119,8 @@ def main():
             if sum(1 for n in names if shaky(n)) > MAX_SHAKY:
                 continue
             tot = cs + sum(price(n) for n in g3)
-            if tot > BUDGET - RESERVE_FLOOR:
-                continue
+            if tot > BUDGET - RESERVE_FLOOR or tot < MIN_SPEND:
+                continue          # 🔴 남긴 돈은 0점이다(docs/12 §1). 하한을 강제한다.
             seen.add(names)
             if not legal(names):
                 continue
