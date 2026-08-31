@@ -3623,5 +3623,286 @@
    "mild_is_enough": "약한 스트레스(0.85 = GP −15%)만으로도 상위가 재배열된다 — c3 1위→3위 · c1 3위→5위. 재배열이 극단적 가정의 산물이 아니라는 뜻이다.",
    "note": "배율 1.00 은 스트레스 없음(기준 세계)이며 대조용이다."
   }
+ },
+ "walkaway_40": {
+  "status": "부분 측정 — 5명 중 1명만 판정 가능",
+  "method": "무차별 가격 = 2순위 취득가 + (그 선수를 잃을 때의 승률 손실) / 환율. 환율은 코어마다 **사전 지정한** 큰 금액차 교체 1건으로 잰다(가장 비싼 비앵커 칸 → 그 칸의 가장 싼 적격 대안). 0.110~0.259%p/$.",
+  "rejected_attempt": {
+   "what": "후보 9개를 재고 **환율이 가장 높은 것**을 골랐다.",
+   "why_wrong": "max(잡음)/작은 분모다. 대응 SE 가 ±0.59%p 인데 금액차가 $1~3 이라 c3 가 1.768%p/$ 로 나왔다 — 독립 대조점(c3 에서 $7 빼니 1.1%p = 0.157%p/$)의 **11배**.",
+   "what_it_produced": "Daniels 철수가 $5. 그를 잃으면 4.5%p 를 잃는데 $6 에 포기하라고 말한다. 6개 코어의 1순위이고 대체후보가 어디에도 없는 선수다.",
+   "how_caught": "독립 대조점이 있었다. 없었으면 그대로 화면에 나갔다."
+  },
+  "paired_se": 0.0059,
+  "significance": "손실 > 2×SE (=1.18%p) 일 때만 판정한다",
+  "conclusions": {
+   "Dyson Daniels": "🔴 **예산 구속**. 6개 코어 전부에서 손실 3.9~4.6%p(SE 의 6.6~7.8배)이고 무차별 가격이 $20~44 로 **예산 상한을 넘는다**. 즉 그는 우리가 낼 수 있는 것보다 가치가 크다 — 철수선은 무차별이 아니라 **내 최대가 $20** 이다. ⚠️ $44 같은 값을 인용하지 말 것(먼 외삽이다). 필요한 주장은 '상한을 넘는다'뿐이고 그건 환율이 2배 틀려도 성립한다.",
+   "Kon Knueppel": "판정 불가 — 4개 코어 전부 손실이 잡음 안(0.43~1.50%p).",
+   "Desmond Bane": "판정 불가 — 0.55·0.76%p, 잡음 안.",
+   "DeMar DeRozan": "판정 불가 — 0.14·0.19%p, 잡음 안.",
+   "Josh Hart": "c3 는 잡음 안(0.73%p). c7 의 5.79%p 는 **가격이 아니라 대체 목록의 문제**였다 — 그 칸 대체가 Queta·Diabaté 로 **둘 다 센터**여서 SF 를 잃는 값이 찍혔다. 대체를 SF 가능한 선수로 바꿔 원인을 없앴다."
+  },
+  "side_finding": "Knueppel ↔ Bane 은 **어느 코어에서도 구별되지 않는다**(전부 잡음 안). SF 병목은 '둘 중 누구를 잡느냐'가 아니라 **'둘 중 하나를 잡느냐'** 의 문제다.",
+  "rate_by_core": {
+   "c1": {
+    "from": "Alperen Şengün",
+    "to": "Andrew Wiggins",
+    "delta_dollar": 24,
+    "delta_pp": 0.0264,
+    "rate": 0.0011
+   },
+   "c2": {
+    "from": "Desmond Bane",
+    "to": "Andrew Wiggins",
+    "delta_dollar": 20,
+    "delta_pp": 0.0292,
+    "rate": 0.00146
+   },
+   "c3": {
+    "from": "Alperen Şengün",
+    "to": "Andrew Wiggins",
+    "delta_dollar": 24,
+    "delta_pp": 0.0462,
+    "rate": 0.00193
+   },
+   "c4": {
+    "from": "Trae Young",
+    "to": "AJ Green",
+    "delta_dollar": 28,
+    "delta_pp": 0.0726,
+    "rate": 0.00259
+   },
+   "c5": {
+    "from": "Amen Thompson",
+    "to": "AJ Green",
+    "delta_dollar": 24,
+    "delta_pp": 0.0489,
+    "rate": 0.00204
+   },
+   "c6": {
+    "from": "Alperen Şengün",
+    "to": "Andrew Wiggins",
+    "delta_dollar": 24,
+    "delta_pp": 0.0458,
+    "rate": 0.00191
+   },
+   "c7": {
+    "from": "Alperen Şengün",
+    "to": "Andrew Wiggins",
+    "delta_dollar": 24,
+    "delta_pp": 0.0264,
+    "rate": 0.0011
+   }
+  },
+  "rows": [
+   {
+    "player": "Kon Knueppel",
+    "core": "c1",
+    "plan": 22,
+    "alt": "Desmond Bane",
+    "alt_price": 22,
+    "loss_pp": -0.007,
+    "significant": false,
+    "rate": 0.0011,
+    "indifference": null,
+    "budget_cap": 30,
+    "binding": "below_noise"
+   },
+   {
+    "player": "Kon Knueppel",
+    "core": "c4",
+    "plan": 22,
+    "alt": "Desmond Bane",
+    "alt_price": 22,
+    "loss_pp": -0.015,
+    "significant": false,
+    "rate": 0.00259,
+    "indifference": null,
+    "budget_cap": 32,
+    "binding": "below_noise"
+   },
+   {
+    "player": "Kon Knueppel",
+    "core": "c5",
+    "plan": 22,
+    "alt": "Josh Hart",
+    "alt_price": 4,
+    "loss_pp": -0.0112,
+    "significant": false,
+    "rate": 0.00204,
+    "indifference": null,
+    "budget_cap": 32,
+    "binding": "below_noise"
+   },
+   {
+    "player": "Kon Knueppel",
+    "core": "c7",
+    "plan": 22,
+    "alt": "Desmond Bane",
+    "alt_price": 22,
+    "loss_pp": -0.0043,
+    "significant": false,
+    "rate": 0.0011,
+    "indifference": null,
+    "budget_cap": 34,
+    "binding": "below_noise"
+   },
+   {
+    "player": "Desmond Bane",
+    "core": "c2",
+    "plan": 22,
+    "alt": "Josh Hart",
+    "alt_price": 4,
+    "loss_pp": -0.0055,
+    "significant": false,
+    "rate": 0.00146,
+    "indifference": null,
+    "budget_cap": 29,
+    "binding": "below_noise"
+   },
+   {
+    "player": "Desmond Bane",
+    "core": "c6",
+    "plan": 22,
+    "alt": "Josh Hart",
+    "alt_price": 4,
+    "loss_pp": 0.0076,
+    "significant": false,
+    "rate": 0.00191,
+    "indifference": null,
+    "budget_cap": 27,
+    "binding": "below_noise"
+   },
+   {
+    "player": "Josh Hart",
+    "core": "c3",
+    "plan": 4,
+    "alt": "DeMar DeRozan",
+    "alt_price": 8,
+    "loss_pp": 0.0073,
+    "significant": false,
+    "rate": 0.00193,
+    "indifference": null,
+    "budget_cap": 9,
+    "binding": "below_noise"
+   },
+   {
+    "player": "Josh Hart",
+    "core": "c7",
+    "plan": 4,
+    "alt": "Neemias Queta",
+    "alt_price": 2,
+    "loss_pp": 0.0579,
+    "significant": true,
+    "rate": 0.0011,
+    "indifference": 54.6,
+    "budget_cap": 16,
+    "binding": "budget"
+   },
+   {
+    "player": "DeMar DeRozan",
+    "core": "c2",
+    "plan": 8,
+    "alt": "Jaden McDaniels",
+    "alt_price": 5,
+    "loss_pp": -0.0014,
+    "significant": false,
+    "rate": 0.00146,
+    "indifference": null,
+    "budget_cap": 15,
+    "binding": "below_noise"
+   },
+   {
+    "player": "DeMar DeRozan",
+    "core": "c6",
+    "plan": 8,
+    "alt": "Josh Hart",
+    "alt_price": 4,
+    "loss_pp": 0.0019,
+    "significant": false,
+    "rate": 0.00191,
+    "indifference": null,
+    "budget_cap": 13,
+    "binding": "below_noise"
+   },
+   {
+    "player": "Dyson Daniels",
+    "core": "c1",
+    "plan": 12,
+    "alt": "Ausar Thompson",
+    "alt_price": 3,
+    "loss_pp": 0.0455,
+    "significant": true,
+    "rate": 0.0011,
+    "indifference": 44.4,
+    "budget_cap": 20,
+    "binding": "budget"
+   },
+   {
+    "player": "Dyson Daniels",
+    "core": "c3",
+    "plan": 12,
+    "alt": "Ausar Thompson",
+    "alt_price": 3,
+    "loss_pp": 0.0387,
+    "significant": true,
+    "rate": 0.00193,
+    "indifference": 23.1,
+    "budget_cap": 17,
+    "binding": "budget"
+   },
+   {
+    "player": "Dyson Daniels",
+    "core": "c4",
+    "plan": 12,
+    "alt": "Ausar Thompson",
+    "alt_price": 3,
+    "loss_pp": 0.0443,
+    "significant": true,
+    "rate": 0.00259,
+    "indifference": 20.1,
+    "budget_cap": 22,
+    "binding": "indifference"
+   },
+   {
+    "player": "Dyson Daniels",
+    "core": "c5",
+    "plan": 12,
+    "alt": "Andrew Nembhard",
+    "alt_price": 2,
+    "loss_pp": 0.0425,
+    "significant": true,
+    "rate": 0.00204,
+    "indifference": 22.8,
+    "budget_cap": 22,
+    "binding": "budget"
+   },
+   {
+    "player": "Dyson Daniels",
+    "core": "c6",
+    "plan": 12,
+    "alt": "Ausar Thompson",
+    "alt_price": 3,
+    "loss_pp": 0.0436,
+    "significant": true,
+    "rate": 0.00191,
+    "indifference": 25.8,
+    "budget_cap": 17,
+    "binding": "budget"
+   },
+   {
+    "player": "Dyson Daniels",
+    "core": "c7",
+    "plan": 12,
+    "alt": "Ausar Thompson",
+    "alt_price": 3,
+    "loss_pp": 0.0449,
+    "significant": true,
+    "rate": 0.0011,
+    "indifference": 43.8,
+    "budget_cap": 24,
+    "binding": "budget"
+   }
+  ]
  }
 }
