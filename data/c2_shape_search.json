@@ -1,0 +1,230 @@
+{
+ "seed": 20261020,
+ "iterations": 4000,
+ "banned": [
+  "Nikola Jokić"
+ ],
+ "question": "Jokić 없이 c2 의 모양(50% 미만 0개)을 만들 수 있는가",
+ "candidates": [
+  {
+   "names": [
+    "Damian Lillard",
+    "DeMar DeRozan",
+    "Deandre Ayton",
+    "Derrick White",
+    "Desmond Bane",
+    "Immanuel Quickley",
+    "Ivica Zubac",
+    "Rudy Gobert",
+    "Tyrese Haliburton"
+   ],
+   "total": 173,
+   "reserve": 27,
+   "mean": 0.8023,
+   "min": 0.623,
+   "cats": 8.47,
+   "below_50": [],
+   "cat_win": {
+    "PTS": 0.527,
+    "REB": 0.659,
+    "OREB": 0.754,
+    "AST": 0.767,
+    "STL": 0.553,
+    "BLK": 0.679,
+    "TOV": 0.676,
+    "3PM": 0.519,
+    "3P%": 0.56,
+    "FT%": 0.591,
+    "FG%": 0.63,
+    "A/T": 0.875,
+    "DD": 0.677
+   }
+  },
+  {
+   "names": [
+    "Damian Lillard",
+    "DeMar DeRozan",
+    "Derrick White",
+    "Desmond Bane",
+    "Immanuel Quickley",
+    "Ivica Zubac",
+    "Mark Williams",
+    "Rudy Gobert",
+    "Tyrese Haliburton"
+   ],
+   "total": 175,
+   "reserve": 25,
+   "mean": 0.795,
+   "min": 0.6212,
+   "cats": 8.42,
+   "below_50": [],
+   "cat_win": {
+    "PTS": 0.504,
+    "REB": 0.626,
+    "OREB": 0.746,
+    "AST": 0.776,
+    "STL": 0.553,
+    "BLK": 0.656,
+    "TOV": 0.696,
+    "3PM": 0.509,
+    "3P%": 0.565,
+    "FT%": 0.632,
+    "FG%": 0.601,
+    "A/T": 0.89,
+    "DD": 0.667
+   }
+  },
+  {
+   "names": [
+    "Collin Gillespie",
+    "Damian Lillard",
+    "DeMar DeRozan",
+    "Deandre Ayton",
+    "Derrick White",
+    "Desmond Bane",
+    "Ivica Zubac",
+    "Rudy Gobert",
+    "Tyrese Haliburton"
+   ],
+   "total": 173,
+   "reserve": 27,
+   "mean": 0.8031,
+   "min": 0.6218,
+   "cats": 8.49,
+   "below_50": [
+    "PTS"
+   ],
+   "cat_win": {
+    "PTS": 0.487,
+    "REB": 0.674,
+    "OREB": 0.801,
+    "AST": 0.735,
+    "STL": 0.56,
+    "BLK": 0.696,
+    "TOV": 0.674,
+    "3PM": 0.546,
+    "3P%": 0.584,
+    "FT%": 0.596,
+    "FG%": 0.628,
+    "A/T": 0.852,
+    "DD": 0.656
+   }
+  },
+  {
+   "names": [
+    "Damian Lillard",
+    "DeMar DeRozan",
+    "Derrick White",
+    "Desmond Bane",
+    "Immanuel Quickley",
+    "Ivica Zubac",
+    "Moussa Diabaté",
+    "Rudy Gobert",
+    "Tyrese Haliburton"
+   ],
+   "total": 170,
+   "reserve": 30,
+   "mean": 0.797,
+   "min": 0.6205,
+   "cats": 8.41,
+   "below_50": [
+    "PTS"
+   ],
+   "cat_win": {
+    "PTS": 0.466,
+    "REB": 0.669,
+    "OREB": 0.819,
+    "AST": 0.784,
+    "STL": 0.572,
+    "BLK": 0.676,
+    "TOV": 0.694,
+    "3PM": 0.509,
+    "3P%": 0.562,
+    "FT%": 0.575,
+    "FG%": 0.58,
+    "A/T": 0.893,
+    "DD": 0.608
+   }
+  },
+  {
+   "names": [
+    "Collin Gillespie",
+    "Damian Lillard",
+    "DeMar DeRozan",
+    "Derrick White",
+    "Desmond Bane",
+    "Ivica Zubac",
+    "Nic Claxton",
+    "Rudy Gobert",
+    "Tyrese Haliburton"
+   ],
+   "total": 172,
+   "reserve": 28,
+   "mean": 0.7965,
+   "min": 0.615,
+   "cats": 8.4,
+   "below_50": [
+    "PTS"
+   ],
+   "cat_win": {
+    "PTS": 0.47,
+    "REB": 0.646,
+    "OREB": 0.787,
+    "AST": 0.798,
+    "STL": 0.581,
+    "BLK": 0.732,
+    "TOV": 0.672,
+    "3PM": 0.542,
+    "3P%": 0.583,
+    "FT%": 0.519,
+    "FG%": 0.573,
+    "A/T": 0.89,
+    "DD": 0.603
+   }
+  },
+  {
+   "names": [
+    "Collin Gillespie",
+    "Damian Lillard",
+    "DeMar DeRozan",
+    "Derrick White",
+    "Desmond Bane",
+    "Ivica Zubac",
+    "Neemias Queta",
+    "Rudy Gobert",
+    "Tyrese Haliburton"
+   ],
+   "total": 170,
+   "reserve": 30,
+   "mean": 0.7959,
+   "min": 0.612,
+   "cats": 8.42,
+   "below_50": [
+    "PTS"
+   ],
+   "cat_win": {
+    "PTS": 0.436,
+    "REB": 0.642,
+    "OREB": 0.797,
+    "AST": 0.75,
+    "STL": 0.565,
+    "BLK": 0.72,
+    "TOV": 0.702,
+    "3PM": 0.535,
+    "3P%": 0.594,
+    "FT%": 0.615,
+    "FG%": 0.599,
+    "A/T": 0.879,
+    "DD": 0.583
+   }
+  }
+ ],
+ "verdict": {
+  "shape": "🟢 **모양은 재현된다.** 50% 미만 캣이 **0개**인 조합이 나왔다(기대 8.47캣 · c2 는 8.95). Jokić 없이도 '전 캣에서 안 지는' 구성이 존재한다 — 싼 A/T 가드(DeRozan $8 · Quickley $2)와 싼 FG% 빅(Ayton $5 · Gobert $8 · Zubac)이 그 자리를 채운다.",
+  "strength": "🔴 **강도는 못 따라간다.** 80.2% — 상위 묶음(84%+) 밖이다. 사전 합의한 종료 조건에 걸린다.",
+  "the_irony": "🔴 **그런데 진짜 문제는 승률이 아니다.** 이 탐색의 목적은 「c2 가 조건부라 게이트가 안 열리면 그 모양이 사라진다 → 무조건 도달 가능한 c2 형을 찾자」였다. 그런데 나온 답이 **Haliburton(share 0.0) + Lillard(0.0) + Zubac(0.474)** 위에 서 있다 — **가정 노출 3명으로 포트폴리오 최악이다.** c5 조차 3명이다.\n즉 「Jokić 게이트라는 조건」을 「부상 복귀 두 건이라는 조건」으로 바꾼 것이고, **조건부성을 없앤 게 아니라 다른 조건으로 옮겼다.** 목적을 달성하지 못했다.",
+  "search_limitation": "⚠️ **예산을 $27 남긴다**(c2 는 $11). docs/12 는 '$200 을 다 쓴다 — 남기면 0점'이라고 적고 있다. 즉 이 결과는 **$16 어치를 안 산 상태의 값**이고, 강도 격차 6.3%p 의 일부는 그것으로 설명된다. 내 조합 생성기가 싼 풀에서만 뽑아 예산을 못 쓴 것이다 — **설계 한계이지 모양의 성질이 아니다.** 다시 돌린다면 중가 구간을 강제로 채워야 한다.",
+  "cat_shape": "전 캣이 51.9~87.5% 로 **평평하다.** 지배하는 캣이 없다 — c2 는 A/T 87 · 3PM 70 처럼 확실한 강점이 있는데 이쪽은 없다. '안 진다'와 '이긴다'는 다르다.",
+  "closing": "사전 합의(84%+ 밖이면 종료)에 따라 **닫는다.** cores.json 에 넣지 않았다."
+ }
+}
