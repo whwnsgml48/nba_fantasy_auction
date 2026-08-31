@@ -253,6 +253,9 @@ for(const core of ['c1','c4','c7']){
     //   walk:null 이 화면을 깨뜨린 교훈이다. 두 모양을 다 밟는지 본다.
     ['P.py 있음 (92명)',          T.P.some(x=>x.py!=null)],
     ['P.py 부재 (82명)',          T.P.some(x=>x.py===undefined)],
+    // 40차: edge 표시. 음수(남이 더 높게 친다)와 양수 둘 다 화면에 나야 한다.
+    ['edgePrior 음수 존재',        T.P.some(x=>x.py!=null&&(x.mx-x.py*1.11)<0)],
+    ['edgePrior 양수 존재',        T.P.some(x=>x.py!=null&&(x.mx-x.py*1.11)>0)],
   ];
   for(const [k,hit] of shapes) console.log('   '+(hit?'✅ 밟음  ':'⬜ 안 밟음')+'  '+k);
   console.log('   ⬜ 는 그 모양이 데이터에 **아직 없다**는 뜻이다 — 생기면 여기가 먼저 켜진다.');

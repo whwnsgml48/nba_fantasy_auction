@@ -3285,7 +3285,7 @@
   "volume_leverage": null,
   "at_marginal_lift": "AST 5.3 / TOV 1.9 → 팀 A/T 한계 기여 +0.126 (2시즌 혼합 · GP 76)",
   "verdict": "STL 2.0 리그 공동 1위 + 가드가 OREB 2.4. STL 캣을 혼자 잠그는 저가 카드.",
-  "flag": "3PT%·FT% 악화 요인",
+  "flag": "3PT%·FT% 악화 요인 · 🔴 **작년 실낙찰 $32**(환산 $36)인데 우리 상한은 **$20** 이다 — 7코어 **전부**에서 교체된다. 대체는 있고 살 수 있다(Wallace·Ausar·D.Mitchell $2~3) 다만 상실 손실 **3.9~4.6%p** 가 **6개 코어에 동시에** 걸린다. 그는 6/7 코어의 1순위이고 도달 가능한 탈출로가 조건부 c2 하나다.",
   "market_source": "refit_v2_measured_2025_26_league_auction",
   "market_prior_estimate": {
    "low": 12,
@@ -24974,7 +24974,7 @@
   "volume_leverage": "3PA 3.7/G · 주간 12시도 · 레버리지 그룹 16위 · 변동성 ±13.7pp · 기여pp는 코어마다 다르다 — docs/10",
   "at_marginal_lift": "AST 5.3 / TOV 2 → 팀 A/T 한계 기여 +0.108 (2시즌 혼합 · GP 70.8)",
   "verdict": null,
-  "flag": "3PT% 레버리지 하위 — 엘리트 가중치 철회",
+  "flag": "3PT% 레버리지 하위 — 엘리트 가중치 철회 · 🔴 **작년 실낙찰 $23**(환산 $26)인데 우리 my_max 는 **$9** 다 — 이 방에서 살 수 있다고 보기 어렵다. c3 의 SF 1순위인데 대체 DeRozan(작년 $9)은 살 수 있고 손실은 −0.7%p(오차 안)라 **c3 는 버틴다.** 값을 올리라는 뜻이 아니라 **놓칠 준비를 하라**는 뜻이다.",
   "market_source": "refit_v2_measured_2025_26_league_auction",
   "market_prior_estimate": {
    "low": 4,
