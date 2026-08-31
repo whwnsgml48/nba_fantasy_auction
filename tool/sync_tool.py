@@ -37,7 +37,7 @@ CONST=[("CORES",buildCORES()),("PIVOTS",TE.build_pivots(c)),
        # 39차 갈래 1: 판단표에 **실제 12팀 강도**를 싣는다. 강도는 32차 원칙상
        # cores.json 에 넣지 않고 **여기서 툴 상수를 만들 때만** 합친다.
        # validate 도 같은 TE.build_decision(cj, sim) 을 쓰므로 이중 구현이 안 생긴다.
-       ("DECISION",TE.build_decision(c,SIM)),("KATBR",TE.build_kat_branch(c)),
+       ("DECISION",TE.build_decision(c,SIM)),("KATBR",TE.build_kat_branch(c,SIM)),
        # 40차 B: 가정 취약성. 승률 1차 지표가 상위 5개를 1.3%p(대응 SE 0.59%p) 안으로
        #   몰아넣었고 2차(maximin)는 5/7 이 value_max 에 지배돼 쓸 수 없다 —
        #   **어떤 승률 측정도 상위 5개를 못 가른다.** 이 표는 −11.3%p 를 만든다.

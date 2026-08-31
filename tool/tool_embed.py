@@ -96,22 +96,47 @@ def label_price_clauses(label):
     return [int(x) for x in PRICE_CLAUSE.findall(label or "")]
 
 
-def build_kat_branch(cj):
+def _sim_str(sim, core):
+    """`sim`에서 코어 강도를 뽑는다. 없으면 None."""
+    c = (sim or {}).get("cores", {}).get(core) if sim else None
+    if not c or c.get("real_mean_win_rate") is None:
+        return None
+    return {"mean": c["real_mean_win_rate"], "min": c.get("real_min_win_rate")}
+
+
+def build_kat_branch(cj, sim=None):
     """KAT 가격 분기. 판단표는 코어당 1행이라(I10) 별도 구조로 둔다.
 
     39차: KAT은 c1·c6·c7 세 코어의 앵커인데 그가 비싸지면 판단표에 갈 곳이 없었다.
     `default_normal`은 예산을 안 보고, $50~57에서 유일하게 살아있는 c7은 `hot_bigs`
     분기로만 도달한다 — 정상 시장에서는 표가 c7을 제시하지 않는다.
+
+    🔴 40차: 강도를 `sim`에서 뽑는다. 이전에는 `cores.json`의 `steps[].strength` ·
+    `branch[].mean/min`에 **손으로 적어** 두었고, 그래서 40차 자격 보정 때
+    `build_decision`만 갱신되고 **여기만 옛 값으로 남았다**(c2 88.9/74.1 · c4 84.3/68.9 ·
+    c7 86.4/70.3). 같은 사실을 두 곳에 보관한 결과다 — 값을 고쳐도 다음 재측정에 또 갈라진다.
+    이제 `go_core`(단일 목적지) 또는 `branch[].go`로 조회하므로 낡을 자리가 없다.
+
+    ⚠️ `steps[1].go`는 `"c2 (Jokić ≤ $97) · 아니면 c4"` 라는 **사람이 읽는 산문**이라
+    조회 키로 쓸 수 없다. 단일 목적지 단계는 `go_core`를 따로 두고, 2갈래 단계는
+    상위 강도를 싣지 않는다(갈래마다 다르므로 하위에서만 보여주는 것이 정확하다).
     """
     b = cj.get("kat_price_branch")
     if not b:
         return None
-    return {"n": b["player"], "ceil": b["ceilings"],
-            # 39차 후반: $57 갈래는 Jokić 게이트에 따라 c2/c4 2갈래다. 하위 분기를
-            # 함께 실어서 툴이 Jokić 실낙찰가로 어느 쪽인지 점등한다.
-            "steps": [{"over": s["over"], "go": s["go"], "label": s["label"],
-                       "str": s.get("strength"), "br": s.get("branch")}
-                      for s in b["steps"]]}
+    steps = []
+    for s in b["steps"]:
+        go_core = s.get("go_core")
+        br = []
+        for x in (s.get("branch") or []):
+            st = _sim_str(sim, x.get("go")) or {}
+            br.append({**{k: v for k, v in x.items() if k not in ("mean", "min")},
+                       "mean": st.get("mean"), "min": st.get("min")})
+        steps.append({"over": s["over"], "go": s["go"], "label": s["label"],
+                      # 2갈래 단계는 상위 강도가 없다 — 갈래마다 다르다.
+                      "str": _sim_str(sim, go_core) if go_core else None,
+                      "br": br or None})
+    return {"n": b["player"], "ceil": b["ceilings"], "steps": steps}
 
 
 def build_tiers(cj):

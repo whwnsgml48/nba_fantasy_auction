@@ -1062,8 +1062,14 @@ else:
     _dec=_const("DECISION","[]")
     _oh=_const("OVERHEAT","[]")
     _ot=_const("OTIERS","{}")
-    _m1=_re.search(r'const DECISION_ONELINER="(.*?)";\n',_ts,_re.S)
-    _one=_m1.group(1) if _m1 else None
+    _m1=_re.search(r'const DECISION_ONELINER=(".*?");\n',_ts,_re.S)
+    # 🔴 40차: 여기서 **이스케이프된 JS 문자열**을 그대로 잡아 cores.json 의 원문과
+    #   비교하고 있었다. 한 줄짜리일 때는 우연히 같았지만, 문자열에 개행이나 따옴표가
+    #   들어가는 순간 툴은 `\n`(두 글자) · 원본은 실제 개행이라 **항상 불일치**가 된다.
+    #   실제로 40차에 한 줄 요약이 두 줄이 되자 이 검사가 오탐을 냈다.
+    #   JSON 으로 파싱해서 **값끼리** 비교한다.
+    try:    _one=json.loads(_m1.group(1)) if _m1 else None
+    except Exception: _one=None
     # 39차: DECISION 만 원본과 직접 대조하고 있었다(OVERHEAT·OTIERS·CORES·PIVOTS는 이미
     # tool_embed 경유). A가 판단표에 **실제 12팀 강도**를 얹으려 하자 같은 벽에 막혔다 —
     # 강도는 32차 원칙상 cores.json 에 넣을 수 없어 툴 상수 생성 시점에만 합쳐지는데,
