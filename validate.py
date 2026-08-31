@@ -1303,6 +1303,56 @@ else:
             (" ("+", ".join(_inactive)+")") if _inactive else ""))
     print("판단 순서: %d행 · 우선 0 = %s (센터 붕괴 시 최우선)"%(len(dt),dt[0]["core"]))
 print("-"*66)
+# ── I37 (40차 신설): 탈출로가 **도달 가능한가** ────────────────────────────
+#
+# `core_set_escape_paths_39` 의 규칙 ⑤′ 는 "3회 이상 1순위로 쓰이는 선수마다 그를 안 쓰는
+# 코어가 최소 하나 있어야 한다"인데, **도달 가능성을 안 본다.** 40차에 c5 를 판단표에서
+# 내리자 그 구멍이 드러났다 — Şengün·Gobert 의 탈출로 둘 중 하나가 c5 였다.
+#
+# 🔴 그리고 더 중요한 것: **지는 계획은 탈출로가 아니다.** c5 는 모든 스트레스 배율에서
+#    최하위이고 가정을 셋 얹는다. 그걸 탈출로로 세는 것은 가짜 안전이고, 드래프트 당일
+#    "탈출로가 있다"고 믿게 만드는 쪽이 더 위험하다. → 판단표에 있는 코어만 센다(I36 과 같은 논리).
+#
+# ⚠️ 등급은 **경고**다. "조건부 코어를 탈출로로 셀 것인가"는 사람 판단이고,
+#   위반으로 두면 드래프트 직전에 진행이 막힌다. 숫자를 드러내는 것이 목적이다.
+_ESC_MIN = 3      # ⑤′ 의 임계 — 이만큼 이상 1순위로 쓰이면 탈출로를 본다
+_dt37 = {r["core"]: r for r in cj["decision_table"]}
+_top37 = {c["id"]: [s["candidates"][0]["name"]
+                    for s in c["slots"] if s.get("candidates")] for c in cj["cores"]}
+_use37 = {}
+for _cid, _ns in _top37.items():
+    for _n in _ns:
+        _use37.setdefault(_n, set()).add(_cid)
+_rows37, _w37 = [], 0
+for _n, _users in sorted(_use37.items(), key=lambda kv: -len(kv[1])):
+    if len(_users) < _ESC_MIN:
+        continue
+    _esc = [k for k in _top37 if k not in _users]
+    _live = [k for k in _esc if k in _dt37]
+    _unc = [k for k in _live if (_dt37[k]["cond"].get("type") == "default_normal")]
+    _rows37.append((_n, len(_users), _esc, _live, _unc))
+    if not _live:
+        print("  △ [I37] %s: %d/%d 코어의 1순위인데 **도달 가능한 탈출로가 없다** "
+              "(탈출로 %s 는 전부 판단표 밖)"
+              % (_n, len(_users), len(_top37), ",".join(sorted(_esc)) or "없음")); warn += 1; _w37 += 1
+    elif not _unc and len(_live) <= 1:
+        # 날카로운 경우 — 도달 가능한 탈출로가 하나뿐이고 그것마저 조건부다.
+        print("  △ [I37] %s: %d/%d 코어의 1순위인데 도달 가능한 탈출로가 %s **하나뿐이고 "
+              "그것도 조건부**다 — 그 조건이 안 열리면 갈 곳이 없다"
+              % (_n, len(_users), len(_top37), ",".join(sorted(_live)))); warn += 1; _w37 += 1
+    elif not _unc:
+        # 여러 개지만 전부 조건부 — 동시에 다 닫힐 수는 있으나 위 경우보다 약하다.
+        # 경고로 올리면 날카로운 셋이 묻힌다. 아래 요약표에 숫자가 그대로 보인다.
+        print("             [I37] %s: 도달 탈출로 %s — 전부 조건부(무조건 경로 없음)"
+              % (_n, ",".join(sorted(_live))))
+print("[I37] 탈출로 도달 가능성: 다용 선수 %d명(1순위 %d회 이상) · 경고 %d건"
+      % (len(_rows37), _ESC_MIN, _w37))
+for _n, _u, _esc, _live, _unc in _rows37:
+    print("      %-22s %d/%d 코어 · 탈출로 %d개 중 도달 %d개 · 그중 무조건 %d개%s"
+          % (_n, _u, len(_top37), len(_esc), len(_live), len(_unc),
+             (" (" + ",".join(sorted(_unc)) + ")") if _unc else ""))
+print("-" * 66)
+
 # ── I32 (40차 신설): players.json 의 **파생 필드**가 기저와 갈라졌는가 ──────
 #
 # 왜 필요한가

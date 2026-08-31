@@ -774,6 +774,16 @@ def main():
             shutil.rmtree(work, ignore_errors=True)
             shutil.copytree(pristine, work)
             b = Box(work)
+            # 🔴 40차: **주입이 무동작이면 테스트가 죽는다.** I10a 가 그랬다 —
+            #   "c5 를 판단표에서 뺀다"는 주입이었는데 c5 가 정당하게 강등되면서
+            #   기준 샌드박스에 이미 없었고, 아무것도 안 바꾸고 exit 0 으로 **초록**이 났다.
+            #   검사가 죽은 게 아니라 테스트가 죽은 것이고, 그건 더 나쁘다(아무도 모른다).
+            #   c5 만의 문제가 아니다 — 코어·선수·판단표 행을 지우는 변경마다 생긴다.
+            #   → 주입 전후를 비교해서 **정말 뭔가 바뀌었는지** 본다.
+            _before = (json.dumps(b.players, ensure_ascii=False, sort_keys=True),
+                       json.dumps(b.cj, ensure_ascii=False, sort_keys=True),
+                       io.open(work + "/tool/auction-console.html", encoding="utf-8").read(),
+                       io.open(work + "/data/players.csv", encoding="utf-8").read())
             try:
                 fn(b)
             except (AssertionError, KeyError, StopIteration, IndexError) as ex:
@@ -781,6 +791,15 @@ def main():
                 print("  ⊘ %-6s %s — 주입 불가 (%s)" % (iid, desc, ex))
                 continue
             code, out = b.run()
+            _after = (json.dumps(b.players, ensure_ascii=False, sort_keys=True),
+                      json.dumps(b.cj, ensure_ascii=False, sort_keys=True),
+                      io.open(work + "/tool/auction-console.html", encoding="utf-8").read(),
+                      io.open(work + "/data/players.csv", encoding="utf-8").read())
+            if _before == _after and wmode != "pass":
+                # expect_pass 는 「정당한 것을 넣어도 안 걸리는가」라 무동작일 수 있다.
+                why = "주입이 아무것도 바꾸지 않았다 — 이 테스트는 검출과 무관하게 통과한다"
+                print("  ✗ %-6s %s\n        %s" % (iid, desc, why))
+                fails.append((iid, desc, why)); continue
             if wmode == "pass":
                 # 「정당한 것을 넣으면 안 걸리는가」. exit 0 이고 ✗ 줄에 마커가 없어야 한다.
                 bad = [l for l in violations(out) if any(m in l for m in expect)]

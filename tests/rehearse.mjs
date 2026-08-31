@@ -240,6 +240,12 @@ for(const core of ['c1','c4','c7']){
     ['DECISION.str 부재',          T.DECISION.some(d=>!d.str)],
     ['DECISION.snote 부재',        T.DECISION.some(d=>!d.snote)],
     ['DECISION.tier 부재',         T.DECISION.every(d=>d.tier===undefined)],
+    // 🔴 `lineup_loss` 는 화면 분기가 **의도적으로 죽어 있다** — 공식 시뮬이 라인업 보정을
+    //   이미 포함하므로 승률 옆에 「칸 비움 X%」를 띄우면 이중 차감이다(조율 세션 판정).
+    //   지금은 build_decision 이 이 필드를 안 싣고 **동시에** STRESS.rows 가 7코어를 다
+    //   덮어서 이중으로 막혀 있다. 데이터가 바뀌어 **조용히 살아나면** 여기가 켜진다.
+    //   → 지금은 ⬜(안 밟음)이 정답이다.
+    ['DECISION.lineup_loss 존재',  T.DECISION.some(d=>d.lineup_loss!=null)],
     ['KATBR.steps[].str = null',  (T.KATBR&&T.KATBR.steps||[]).some(s=>!s.str)],
     ['KATBR.steps[].br = null',   (T.KATBR&&T.KATBR.steps||[]).some(s=>!s.br)],
     ['CORES 중 plan 부재(c0)',     T.CORES.some(c=>!c.plan)],
