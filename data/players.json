@@ -3928,7 +3928,7 @@
   "volume_leverage": null,
   "at_marginal_lift": "AST 0.9 / TOV 0.7 → 팀 A/T 한계 기여 -0.047 (2시즌 혼합 · GP 53.2)",
   "verdict": "OREB 4.2 리그 2위. 보스턴 3년 $47M = 주전 계약.",
-  "flag": "Neemias Queta와 로테이션 · FT% 심각",
+  "flag": "Neemias Queta와 로테이션 · FT% 심각 · 🔴 **혼합 53경기** — 시즌 중 FA 대체가 얇은 원형(저가 OREB·BLK 빅 · 하한 4명)인데 결장까지 잦다. 대체후보로 두는 것은 괜찮지만 **1순위로 올릴 때는 「못 갈아끼우는 자리 + 자주 비는 몸」을 동시에 사는 것**이다 (docs/05 §6c)",
   "market_source": "refit_v2_measured_2025_26_league_auction",
   "market_prior_estimate": {
    "low": 5,
@@ -4265,7 +4265,7 @@
   "volume_leverage": null,
   "at_marginal_lift": "AST 1.5 / TOV 1.3 → 팀 A/T 한계 기여 -0.097 (2시즌 혼합 · GP 54.7)",
   "verdict": "OREB 3.1 + 피닉스 연장 계약 = 주전 C.",
-  "flag": "출장 이력 확인 권장",
+  "flag": "출장 이력 확인 권장 · 🔴 **혼합 55경기** — 시즌 중 FA 대체가 얇은 원형(저가 OREB·BLK 빅 · 하한 4명)인데 결장까지 잦다. 대체후보로 두는 것은 괜찮지만 **1순위로 올릴 때는 「못 갈아끼우는 자리 + 자주 비는 몸」을 동시에 사는 것**이다 (docs/05 §6c)",
   "market_source": "refit_v2_measured_2025_26_league_auction",
   "market_prior_estimate": {
    "low": 6,
