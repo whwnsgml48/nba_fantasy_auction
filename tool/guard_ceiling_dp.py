@@ -301,6 +301,11 @@ def run_weekly(iters, seed, max_ls=1):
     print("2차(3000시행) 상위: " + " · ".join("%.1f%%" % (100*w) for w, _ in t2[:8]))
     fin = [(sim([x["n"] for x in s], iters), s) for _, s in t2[:6]]
     fin.sort(key=lambda t: -t[0]["weekly"])
+    # 🔴 **승자의 저주 방어는 기본 동작이다** (조율 판정 · 40차 6차).
+    #    수백 개에서 최댓값을 고르면 그 값에 잡음의 상방이 섞인다 — 40차 E1 에서
+    #    환율 측정이 정확히 이것으로 11배 틀렸고 첫 시도를 통째로 버렸다.
+    #    탐색에 쓴 시드와 **무관한 시드** 둘로 상위 3개를 다시 잰다. 옵션이 아니다.
+    confirm_seeds(fin[:3], iters, seed)
     g6 = sim(C6, iters); g2 = sim(
         ["Nikola Jokić", "Derrick White", "Desmond Bane", "Onyeka Okongwu",
          "Collin Gillespie", "Donovan Clingan", "DeMar DeRozan",
@@ -336,6 +341,27 @@ def run_weekly(iters, seed, max_ls=1):
         print("  vs c2  %+.2f%%p · 대응SE %.2f%%p · **%.2fσ**" % (100*md2, 100*se2, s2))
         print("  c2 와 겹치는 인원 %d · Jokić %s"
               % (len(set(names) & set(g2sel())), "포함" if "Nikola Jokić" in names else "없음"))
+
+def confirm_seeds(fin, iters, search_seed, extra=(777, 31337)):
+    """탐색 시드와 무관한 시드로 상위 후보를 재측정. 저주 폭을 찍는다."""
+    seeds = [search_seed] + [x for x in extra if x != search_seed]
+    print("\n── 승자의 저주 방어 — 시드 %s · %d시행 ──" % (seeds, iters))
+    base = {}
+    for sd in seeds:
+        g6 = sim(C6, iters, sd)
+        line = ["c6 %.2f%%" % (100 * g6["weekly"])]
+        for i, (_, sel) in enumerate(fin, 1):
+            o = sim([x["n"] for x in sel], iters, sd)
+            md, se, sg = paired(o, g6)
+            base.setdefault(i, []).append(o["weekly"])
+            line.append("후보%d %.2f%% (vs c6 %+.2f%%p · %.2fσ)"
+                        % (i, 100 * o["weekly"], 100 * md, sg))
+        print("  seed %-9d %s" % (sd, " · ".join(line)))
+    for i, v in base.items():
+        spread = max(v) - min(v)
+        print("  후보%d 시드 간 폭 %.2f%%p%s" % (i, 100 * spread,
+              "  🔴 탐색 시드가 최댓값이다 — 저주 의심" if v[0] == max(v) and spread > 0.005 else ""))
+
 
 def g2sel():
     return ["Nikola Jokić", "Derrick White", "Desmond Bane", "Onyeka Okongwu",
