@@ -110,8 +110,10 @@ def report_roster(tag, names, total=None):
 
 if __name__ == "__main__":
     mode = sys.argv[1] if len(sys.argv) > 1 else "baseline"
-    it = int(sys.argv[2]) if len(sys.argv) > 2 else 12000
+    # 🔴 argv[2] 의 뜻이 모드마다 다르다 — baseline 은 iters, pair 는 파일 경로다.
+    #    여기서 무조건 int() 하면 pair 가 파일명에서 죽는다(실제로 죽었다).
     if mode == "baseline":
+        it = int(sys.argv[2]) if len(sys.argv) > 2 else 12000
         PV, BS = pivots(), bases()
         print("피벗 %d개 · %d시행 × 실제 12팀 · 이름 정렬 정규화 적용" % (len(PV), it))
         print("🔴 피벗 로스터는 지금까지 **한 번도 시뮬에 안 걸렸다**"
@@ -129,12 +131,18 @@ if __name__ == "__main__":
             print("%-5s %8.2f%% %8.2f%% %+8.2f%%p %7.2f%%p %6.2f%s"
                   % (cid, 100*a["weekly"], 100*b["weekly"], 100*md, 100*se, sg, mark))
     else:
+        # 🔴 a/b 의 뜻 — `gen_delta_pairs.py` 정의를 그대로 따른다. 뒤집으면 결론이 뒤집힌다.
+        #    a = **원안** (못 사는 이름을 그대로 둔 로스터)
+        #    b = 그 자리를 **살 수 있는** 이름으로 바꾼 로스터
+        #    보고 부호는 **대체 − 원안** 이다. 음수 = 살 수 있는 것으로 바꾸면 그만큼 잃는다.
+        #    (1차 구현이 이 둘을 반대로 찍었다. 숫자는 같았고 **말이 반대**였다.)
         rows = json.load(io.open(sys.argv[2], encoding="utf-8"))
         it = int(sys.argv[3]) if len(sys.argv) > 3 else 12000
+        print("원안 = 못 사는 이름 유지 · 대체 = 살 수 있는 이름 · 부호는 **대체 − 원안**")
         for r in rows:
             a = measure(r["a"], it); b = measure(r["b"], it)
-            md, se, sg = delta(a, b)
-            print("%-28s 살수있는 %.2f%% · 못사는 %.2f%% · 차 %+.2f%%p (SE %.2f · %.2fσ) → %s"
+            md, se, sg = delta(b, a)                      # 대체 − 원안
+            print("%-46s 원안 %.2f%% → 대체 %.2f%% · %+.2f%%p (SE %.2f · %.2fσ) → %s"
                   % (r.get("label", "?"), 100*a["weekly"], 100*b["weekly"], 100*md,
                      100*se, sg,
                      "승격 권고" if abs(md) <= PAIRED_SE else "**대체 없음으로 남긴다**"))
