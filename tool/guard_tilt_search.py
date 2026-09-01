@@ -185,18 +185,42 @@ def main():
                  sum(eds), sum(1 for e in eds if e < 0)))
         print("        %s" % " · ".join(n.split()[-1] for n in names))
     out.sort(key=lambda r: -r["mean"])
-    json.dump({"seed": SEED, "iterations": ITERS, "punt": list(PUNT), "target": list(TARGET),
-               "min_spend": MIN_SPEND, "max_shaky": MAX_SHAKY, "min_positive": MIN_POSITIVE,
-               "candidates": out},
-              io.open(f"{BASE}/data/guard_tilt_search.json", "w", encoding="utf-8"),
-              ensure_ascii=False, indent=1)
+    # 🔴 재실행이 **손으로 쓴 결론을 지우지 않게** 한다.
+    #   실제로 한 번 지웠다 — `verdict` · `first_run_discarded`(4차를 닫은 판정)를
+    #   재실행 한 번으로 날렸다. 생성기가 사람 글을 덮는 형태이고,
+    #   `tool/fix_preseason_gates.py` 에서 막은 것과 같은 종류다.
+    OUT = f"{BASE}/data/guard_tilt_search.json"
+    prev = {}
+    if os.path.exists(OUT):
+        prev = json.load(io.open(OUT, encoding="utf-8"))
+    doc = {"seed": SEED, "iterations": ITERS, "punt": list(PUNT), "target": list(TARGET),
+           "min_spend": MIN_SPEND, "max_shaky": MAX_SHAKY, "min_positive": MIN_POSITIVE,
+           "candidates": out}
+    kept = [k for k in prev if k not in doc]          # 손으로 쓴 주석 키
+    for k in kept:
+        doc[k] = prev[k]
+    if kept:
+        print("🔒 손으로 쓴 키 보존: %s" % ", ".join(kept))
+    json.dump(doc, io.open(OUT, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     b = out[0]
     print("\n최선 %5.1f%% · 기대 %.2f캣 · 여유/SD %.2f · 가정 %d · c2 겹침 %d · 총액 $%d"
           % (100 * b["mean"], b["cats"], b["margin_over_sd"], len(b["shaky"]),
              b["c2_overlap"], b["total"]))
-    print("사전 등록 판정: %s"
-          % ("채택 검토" if (b["mean"] >= 0.84 and len(b["shaky"]) <= 1 and b["total"] >= 180)
-             else ("「답은 c2」" if (b["has_jokic"] or b["c2_overlap"] >= 6) else "미달 — 기록하고 닫는다")))
+    # 🔴 **실격 조항을 채택 조건보다 먼저 검사한다** (docs/11 ⑧).
+    #   첫 판에서 이 순서가 뒤집혀 있어 「채택 검토」를 찍었다 — 실제로는 후보 6개 전부에
+    #   Jokić 이 있어 실격이었다. 순서가 뒤집히면 **사전 등록이 사후 합리화로 변한다**:
+    #   「기준은 넘었는데…」라는 문장이 나오는 순간 이미 협상이 시작된 것이다.
+    #   실격이면 채택 조건을 **계산조차 하지 않는다.**
+    if b["has_jokic"] or b["c2_overlap"] >= 6:
+        verdict = ("실격 → 「답은 c2」 (Jokić %s · c2 겹침 %d명 ≥ 6? %s) "
+                   "— 채택 조건은 검사하지 않는다"
+                   % ("있음" if b["has_jokic"] else "없음", b["c2_overlap"],
+                      "예" if b["c2_overlap"] >= 6 else "아니오"))
+    elif b["mean"] >= 0.84 and len(b["shaky"]) <= 1 and b["total"] >= 180:
+        verdict = "채택 검토"
+    else:
+        verdict = "미달 — 기록하고 닫는다"
+    print("사전 등록 판정: %s" % verdict)
     print("data/guard_tilt_search.json 기록")
 
 
