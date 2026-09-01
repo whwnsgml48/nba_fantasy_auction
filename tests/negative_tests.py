@@ -52,6 +52,7 @@ NEEDED = [
     "tool/trigger_audit.py",                     # I26 발동 확률 모델
     "tool/tool_embed.py",                        # 39차 — 툴 임베드 상수 단일 소스
     "tool/pos_elig.py",                          # 40차 — 슬롯 자격 단일 소스 (I31)
+    "tool/name_fields.py",                       # 2026-09-01 — 이름 필드 분류 단일 소스 (I38)
     "data/stats_2025_26/measured_full.json",
     "tool/auction-console.html",
     "tool/cat_model.py",

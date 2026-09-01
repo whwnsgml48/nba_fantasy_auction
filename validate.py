@@ -1490,6 +1490,47 @@ try:
 except Exception as _ex25:
     print("✗ [I25] players.csv 대조 실패: %r" % (_ex25,)); err+=1
 
+# ── I38 (2026-09-01): cores.json 의 **선수 이름 필드 전수 분류**
+#   🔴 왜 — 같은 형태를 세 번 밟았다. 1회성 스크립트(4개인 줄 알았는데 7개) ·
+#      PF 대체(칸 문제인 줄 알았는데 선정 절차) · 조달 검사(candidates 만 보고
+#      on_fail.target·pivot_plan 181건을 놓침).
+#      매번 **밟은 자리만 고쳤고 매번 옆에 더 있었다.**
+#   그래서 자리를 세지 않고 **전부 걷는다.** 새 경로가 생기면 `tool/name_fields.CLASS`
+#   에 분류가 없어 **여기서 실패한다** — 열거가 사람 기억에 있으면 또 샌다.
+#   ⚠️ COND(남의 가격을 보는 조건)·RECORD(기록)·DEAD(c7_old)를 조달 검사에서 빼는 것은
+#      **판단**이다. 예외를 코드에 두되 **이유를 붙여** 둔다 — 안 그러면 다음 사람이
+#      「트리거도 못 산다」는 무의미한 에러를 보고 검사를 꺼 버린다.
+try:
+    sys.path.insert(0, D+"/tool")
+    import name_fields as _NF
+    _exact={}
+    def _w(node, path):
+        if isinstance(node, dict):
+            for _k,_v in node.items(): _w(_v, path+"."+_k)
+        elif isinstance(node, list):
+            for _v in node: _w(_v, path+"[]")
+        elif isinstance(node, str) and node in pl:
+            _exact.setdefault(path, []).append(node)
+    for _k,_v in cj.items(): _w(_v, _k)
+    _uncl=[q for q in _exact
+           if not q.startswith(_NF.DEAD_PREFIX) and q not in _NF.CLASS]
+    if _uncl:
+        print("✗ [I38] cores.json 에 **분류되지 않은 선수 이름 필드** %d개 — "
+              "tool/name_fields.CLASS 에 BUY/COND/RECORD 중 하나로 추가하고 "
+              "**왜 그 분류인지** 적을 것"%len(_uncl)); err+=1
+        for q in sorted(_uncl)[:6]: print("        %s (%d건)"%(q, len(_exact[q])))
+    else:
+        _buy=[q for q in _exact if _NF.CLASS.get(q,("",""))[0]=="BUY"]
+        _nb=0
+        for q in _buy:
+            for _n2 in set(_exact[q]):
+                _py=pl[_n2].get("prior_auction_price")
+                if _py is not None and pl[_n2]["my_max"] < round(_py*_PRIOR_SCALE): _nb+=1
+        print("[I38] 이름 필드 전수 분류: %d개 전부 분류됨 (BUY %d · 조달 불가 %d건은 "
+              "△ tool/pivot_procurement.py 참조)"%(len(_exact), len(_buy), _nb))
+except Exception as _ex38:
+    print("✗ [I38] 이름 필드 전수 검사 실패: %r"%(_ex38,)); err+=1
+
 print("획득 제외 대상(부상·은퇴): %s"%(", ".join(sorted(INJ)) or "없음"))
 print("총 위반: %d건%s"%(err, " · 치환필요 %d건(치명 아님)"%warn if warn else ""))
 sys.exit(1 if err else 0)
