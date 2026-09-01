@@ -596,7 +596,7 @@
   "team_change": "뉴욕 유지. Mitchell Robinson이 보스턴으로 떠나 리바운드 경쟁 완화 → OREB·DD 상승 요인",
   "volume_leverage": null,
   "at_marginal_lift": "AST 3 / TOV 2.6 → 팀 A/T 한계 기여 -0.175 (2시즌 혼합 · GP 73.8)",
-  "verdict": "이 리그 최대 아비트라지. DD 56개 리그 1위 + OREB 3.1 + FT%/3PTM까지 = 7캣 기여. 9캣 시장은 #19로 평가하는데 13캣 실질은 top-5. 75경기로 내구성까지.",
+  "verdict": "DD 56개 리그 1위 + OREB 3.1 + FT%/3PTM까지 = **7캣 기여**. 75경기로 내구성까지. 우리 모델의 값은 **$71** 이고 그건 그대로다.\n🔴 **[2026-08-31 정정] 「이 리그 최대 아비트라지 · 9캣 시장이 #19로 본다」는 철회한다.** 이 방은 작년에 **12캣**이었고 DD·3PT% 를 이미 셌다(docs/01). 그리고 **작년에 그를 $66 — 전체 6번째로 비싸게 샀다.** 바뀐 것은 **가치가 아니라 획득 기대**다 — 우리 철수가 $55 · 작년 환산 $73 · edge **−2**. 싸게 살 수 있다는 기대가 사라진 것이지 그가 덜 좋아진 것이 아니다. KAT 가격 분기가 그 세계를 받는다(>$50 c7 · >$57 c2/c4).",
   "flag": null,
   "market_source": "refit_v2_measured_2025_26_league_auction",
   "market_prior_estimate": {
@@ -2377,7 +2377,7 @@
   "team_change": "John Collins 합류로 리바운드 일부 분산 가능",
   "volume_leverage": null,
   "at_marginal_lift": "AST 2.3 / TOV 1.8 → 팀 A/T 한계 기여 -0.110 (2시즌 혼합 · GP 73.4)",
-  "verdict": "OREB 3.8 · DD 41 · 70경기. 9캣 #33 가격에 13캣 #15급 생산. FT%만 감안하면 순수 이득.",
+  "verdict": "OREB 3.8 · DD 41 · 70경기. FT%만 감안하면 순수 이득.\n🟢 **[2026-08-31] 프레임을 실측으로 바꾼다 — 근거가 더 강해진다.** 「9캣 시장이 #33으로 본다」가 아니라 **이 방이 작년에 그를 $10에 넘겼다.** 우리 my_max 는 $52 이고 환산 $11 이라 **edge +41 로 92명 중 1위**다. 이 방을 상대로 우리 우위가 가장 큰 자리이고, 지금은 **대체후보로만** 들어 있다.",
   "flag": null,
   "market_source": "refit_v2_measured_2025_26_league_auction",
   "market_prior_estimate": {
@@ -3613,7 +3613,7 @@
   "team_change": "Ja Morant 합류로 픽앤롤 공급 증가. Robert Williams III 연장이나 상습 결장",
   "volume_leverage": null,
   "at_marginal_lift": "AST 1.7 / TOV 1.2 → 팀 A/T 한계 기여 -0.062 (2시즌 혼합 · GP 73.3)",
-  "verdict": "OREB 4.5 리그 1위 · BLK 1.7 · DD 37 · 77경기. 9캣이 FT%/3점 없다고 top-50 밖으로 밀어놓은 선수가 13캣에서는 5캣 공급원. 이 리그 최고의 달러당 효율.",
+  "verdict": "OREB 4.5 리그 1위 · BLK 1.7 · DD 37 · 77경기 — 이 포맷에서 **5캣 공급원**이고 달러당 효율이 가장 좋은 쪽이다.\n📌 [2026-08-31] 「9캣이 top-50 밖으로 밀어놓은」이라는 프레임을 뺐다 — 이 방은 작년에 12캣이었고, 그가 **작년에 낙찰되지 않아** 이 방의 평가를 알 수 있는 근거가 없다. 생산 수치는 실측이라 그대로 둔다. **없는 근거를 만들지 않는다.**",
   "flag": "Robert Williams III와 경쟁(상습 결장이라 실질 위협 낮음)",
   "market_source": "refit_v2_measured_2025_26_league_auction",
   "market_prior_estimate": {
