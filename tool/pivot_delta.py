@@ -88,6 +88,44 @@ def procure(name):
             "over_lo":  (mx is not None and lo is not None and lo > mx)}   # 하단에서도 못 산다
 
 
+def band(verbose=True):
+    """🔴 조달 「경계」 밴드를 **재서** 정한다. 눈으로 고르지 않는다 (조율 지시 · 40차).
+
+    `excess = 작년환산(실낙찰 ×1.11) − my_max` 의 부호를 믿을 수 있는 최소 폭이 필요하다.
+    후보 척도 셋을 전부 내고 **가장 작은 것**을 쓴다 — 밴드를 넓히면 특정 선수(KAT)를
+    넣으려고 옮긴 것이 된다. 작은 밴드는 「확실히 못 산다」를 **늘리는** 쪽이라
+    경계 선수에게 불리하다. 그래도 경계에 남으면 그 판정은 밴드 선택과 무관하다.
+
+      ① excess 분포의 로버스트σ (1.4826 × MAD)
+      ② 작년 관측 **1회**의 잡음 = (작년환산 − 우리 적합 시장중간) 의 로버스트σ
+      ③ 우리가 스스로 밝힌 가격 정밀도 = market_high−low 반폭의 중앙값
+    """
+    rows = [p for p in json.load(io.open(f"{BASE}/data/players.json", encoding="utf-8"))
+            if p.get("prior_auction_price") and p.get("my_max") is not None]
+    adj = lambda p: round(p["prior_auction_price"] * 1.11)
+    mid = lambda p: (p["market_low"] + p["market_high"]) / 2
+    def mad(v):
+        m = statistics.median(v); return statistics.median([abs(x - m) for x in v])
+    S = {"① excess 로버스트σ": 1.4826 * mad([adj(p) - p["my_max"] for p in rows]),
+         "② 작년 관측 1회 잡음": 1.4826 * mad([adj(p) - mid(p) for p in rows]),
+         "③ 우리 가격 구간 반폭": statistics.median(
+             [(p["market_high"] - p["market_low"]) / 2 for p in rows])}
+    b = min(S.values())
+    if verbose:
+        print("모집단 %d명 · 후보 척도:" % len(rows))
+        for k, v in S.items(): print("   %-22s $%.2f" % (k, v))
+        print("   → 밴드 = **$%.2f** (가장 작은 것 · 경계 선수에게 불리한 쪽)" % b)
+    return b, rows, adj
+
+
+def classify(b, rows, adj):
+    out = {"못 산다": [], "경계": [], "산다": []}
+    for p in rows:
+        e = adj(p) - p["my_max"]
+        out["못 산다" if e > b else ("경계" if e > 0 else "산다")].append((p["name"], e))
+    return out
+
+
 def pivots():
     out = {}
     for co in CJ["cores"]:
@@ -121,6 +159,15 @@ def report_roster(tag, names, total=None):
 
 if __name__ == "__main__":
     mode = sys.argv[1] if len(sys.argv) > 1 else "baseline"
+    if mode == "band":
+        b, rows, adj = band()
+        c = classify(b, rows, adj)
+        for k in ("못 산다", "경계", "산다"):
+            v = sorted(c[k], key=lambda t: -t[1])
+            print("\n%s — %d명" % (k, len(v)))
+            if k != "산다":
+                print("   " + " · ".join("%s +$%d" % (n, e) for n, e in v))
+        sys.exit(0)
     # 🔴 argv[2] 의 뜻이 모드마다 다르다 — baseline 은 iters, pair 는 파일 경로다.
     #    여기서 무조건 int() 하면 pair 가 파일명에서 죽는다(실제로 죽었다).
     if mode == "baseline":
