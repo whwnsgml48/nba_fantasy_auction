@@ -4424,6 +4424,7 @@
      "role": "OREB 3.0 · DD · 빅맨 최상급 AST",
      "is_anchor": false,
      "plan_price": 26,
+     "no_reachable_fallback_40b": "🔴 **이 칸은 대체가 없다.** 아래 둘 다 작년 환산가가 우리 상한을 넘는다 — Mobley 환산 $48 > 상한 $36 · LeBron 환산 $34 > 상한 $16. 방이 작년처럼 가면 **Şengün 을 놓쳤을 때 갈 곳이 없다.** ⚠️ 승격 후보를 재 봤고(자격·조달·예산 통과 40명 전원 시뮬) **일부러 안 올렸다**: 살 수 있는 최선이 Cooper Flagg 85.2% 인데 못 사는 최선 LeBron 86.8% 보다 **−1.6%p(대응 SE 0.59%p 대비 2.7σ)** 다. 그걸 앞에 세우면 조달 위험을 **승률로 바꿔치기**하는 것이다. **물러설 곳이 없다는 사실이 가짜 대체보다 낫다.** 측정: tool/alt_promote.py · data/c6_promote.json (2026-09-01 · 조율 판정).",
      "candidates": [
       {
        "name": "Alperen Şengün",
@@ -4435,13 +4436,15 @@
        "name": "Evan Mobley",
        "plan_price": 23,
        "bid_ceiling": 30,
-       "expected_cost": 23
+       "expected_cost": 23,
+       "procurement_40b": "🔴 작년 환산 $48 > 상한 $30 — 방이 작년처럼 가면 못 산다"
       },
       {
        "name": "LeBron James",
        "plan_price": 14,
        "bid_ceiling": 16,
-       "expected_cost": 14
+       "expected_cost": 14,
+       "procurement_40b": "🔴 작년 환산 $34 > 상한 $16 — 방이 작년처럼 가면 못 산다"
       }
      ],
      "bid_ceiling": 34,
@@ -4536,6 +4539,7 @@
      "role": "전방위 저가 윙 — FT% 엘리트 · 후보 21명 실측 1위",
      "is_anchor": false,
      "plan_price": 22,
+     "promotion_40b": "🔴 **Jamal Murray 를 1순위 대체로 올렸다. 지우지 않고 순서만 바꿨다** — Hart·Vučević 는 그대로 뒤에 있다(근거가 작년 표본 하나라, 올해 시장이 싸게 흐르면 그쪽이 다시 살아난다).\n올린 이유는 **조달이 확실해서**다: 작년 실낙찰 $20(환산 $22) 이고 우리 상한 $51 이다. 반면 Hart 환산 $26 > 상한 $9 · Vučević 환산 $23 > 상한 $8 로 **둘 다 못 산다.**\n🔴 **1순위 교체 근거로 쓰지 말 것.** 시뮬에서 Murray 는 Bane 과 같은 $22 에 +2.2%p 로 나오지만, 그 `+2.2%p` 는 **방이 반박한 바로 그 레이트 투영**에서 나온다(우리 시장가 $52~58 ↔ 방의 작년 $20 · docs/05 §6d). 우위가 실재하는지 우리 평가가 부푼 것인지 **같은 데이터로 구분되지 않는다** — 우리 시뮬과 우리 가격 곡선은 입력을 공유한다(docs/05 §6h). 대체는 **조달이 확실하다는 것만으로 값이 있으므로** 승격하고, 1순위는 건드리지 않는다. (2026-09-01 · 조율 판정 · tool/alt_promote.py)",
      "candidates": [
       {
        "name": "Desmond Bane",
@@ -4544,16 +4548,25 @@
        "expected_cost": 22
       },
       {
+       "name": "Jamal Murray",
+       "plan_price": 22,
+       "bid_ceiling": 31,
+       "expected_cost": 22,
+       "promoted_40b": "🟢 작년 실낙찰 $20 (환산 $22) · 상한 $51 — **이 방에서 살 수 있는 유일한 대체다.** 승률 우위는 근거로 쓰지 않는다(위 promotion_40b)."
+      },
+      {
        "name": "Josh Hart",
        "plan_price": 4,
        "bid_ceiling": 9,
-       "expected_cost": 4
+       "expected_cost": 4,
+       "procurement_40b": "🔴 작년 환산 $26 > 상한 $9 — 방이 작년처럼 가면 못 산다. **지우지 않는다** — 올해 싸게 흐르면 살아난다"
       },
       {
        "name": "Nikola Vučević",
        "plan_price": 2,
        "bid_ceiling": 8,
-       "expected_cost": 2
+       "expected_cost": 2,
+       "procurement_40b": "🔴 작년 환산 $23 > 상한 $8 — 방이 작년처럼 가면 못 산다. **지우지 않는다**"
       }
      ],
      "bid_ceiling": 31,
@@ -4564,6 +4577,7 @@
      "role": "SF 자격 확정 — A/T +0.152 · TOV 1.2 · FT% 86.8%",
      "is_anchor": true,
      "plan_price": 8,
+     "promotion_40b": "🔴 **Trey Murphy III 를 1순위 대체로 올렸다. 지우지 않고 순서만 바꿨다** — Hart·Wiggins 는 그대로 뒤에 있다.\n올린 이유는 **승률 손해 없이 조달 위험만 없애기 때문**이다: 살 수 있는 최선 Murphy 87.1% vs 못 사는 최선 Hart 87.4% 로 **−0.4%p 인데 대응 SE 0.59%p 안**이다(구분 불가). 그런데 Murphy 는 작년 환산 $12 로 확실히 사고 Hart 는 환산 $26 > 상한 $9 로 못 산다. **같은 승률에 조달만 확실해지는 교환**이라 올린다. (2026-09-01 · 조율 승인 · tool/alt_promote.py)",
      "candidates": [
       {
        "name": "DeMar DeRozan",
@@ -4572,12 +4586,22 @@
        "expected_cost": 8
       },
       {
+       "name": "Trey Murphy III",
+       "bid_ceiling": 16,
+       "expected_cost": 12,
+       "plan_price": 12,
+       "total_if_used": 195,
+       "redeploy": null,
+       "promoted_40b": "🟢 작년 실낙찰 $11 (환산 $12) · 상한 $32 — 확실히 살 수 있다. ⚠️ 이 칸에서 쓰면 계획총액 $195 · 예비 $5 로 **경고선($8) 아래**다. 이 칸의 상한은 슬롯 상한 $16 을 그대로 쓴다 — 슬롯 상한은 안 올렸다."
+      },
+      {
        "name": "Josh Hart",
        "bid_ceiling": 9,
        "expected_cost": 4,
        "plan_price": 4,
        "total_if_used": 187,
-       "redeploy": null
+       "redeploy": null,
+       "procurement_40b": "🔴 작년 환산 $26 > 상한 $9 — 방이 작년처럼 가면 못 산다. **지우지 않는다** — 올해 싸게 흐르면 살아난다"
       },
       {
        "name": "Andrew Wiggins",
@@ -4585,7 +4609,8 @@
        "expected_cost": 2,
        "plan_price": 2,
        "total_if_used": 185,
-       "redeploy": null
+       "redeploy": null,
+       "procurement_40b": "🔴 작년 환산 $7 > 상한 $6 — 아슬아슬하게 못 산다(edge −1). **지우지 않는다**"
       }
      ],
      "anchor_plan": {
@@ -4596,13 +4621,14 @@
       "constraint": "none",
       "dual_world_ok": true,
       "substitutes_dual_ok": [
+       "Trey Murphy III",
        "Josh Hart",
        "Andrew Wiggins"
       ],
       "on_fail": {
        "action": "substitute",
-       "target": "Josh Hart",
-       "note": "코어 내 치환 — 코어 전환 불필요. 이중세계 유효 대체 2명"
+       "target": "Trey Murphy III",
+       "note": "코어 내 치환 — 코어 전환 불필요. 이중세계 유효 대체 3명. 🔴 2026-09-01: 치환 대상을 Josh Hart → Trey Murphy III 로 바꿨다. Hart 는 작년 환산 $26 > 상한 $9 라 **치환 대상이 될 수 없었다** — 「대체가 있다」고 적혀 있었지만 그 대체를 살 수 없었다. Murphy 는 환산 $12 로 확실히 산다. 승률은 −0.4%p 로 대응 SE 0.59%p 안이다(구분 불가)."
       }
      },
      "bid_ceiling": 16,

@@ -28,6 +28,7 @@ def _nm2(x):
     return " ".join(_re2.sub(r"\b(jr|iii|ii|iv|sr)\b","",x).split())
 # 재적합(실측 기반 시장 곡선) — 있으면 "이중세계" 검증에 사용. 없으면 건너뜀
 _rfp=D+"/data/prior_auction_2025_26/proposed_market_refit.json"
+_PRIOR_SCALE=1.11   # 작년 12팀 → 올해 14팀, 방 전체 예산 +11% (docs/08)
 RF={}
 if os.path.exists(_rfp):
     RF={x["name"]:x for x in json.load(io.open(_rfp,encoding="utf-8"))["players"]}
@@ -102,7 +103,26 @@ for c in cj["cores"]:
             n,v=cd["name"],cd["plan_price"]; p=pl.get(n)
             if not p: print("  ✗ 대체후보 없는 선수",n); err+=1; continue
             if v>p["my_max"]: print("  ✗ 대체후보 %s $%d > my_max $%d"%(n,v,p["my_max"])); err+=1
-            if v<p["market_low"]: print("  ✗ 대체후보 %s $%d < market_low $%d"%(n,v,p["market_low"])); err+=1
+            # 🔴 2026-09-01 — `market_low` 는 **시장 관측이 아니다**(docs/05 §6d).
+            #   작년 가격 곡선에 **우리 순위**를 얹은 값이고, 작년 실낙찰가와는
+            #   ρ 0.773 · 평균 절대차 $11.5 로 어긋난다. 반면 `prior_auction_price` 는
+            #   **이 방이 실제로 낸 돈**이다 — 우리 모델과 독립된 유일한 신호다.
+            #   둘이 충돌하면 관측이 이긴다. 단 **한 방향으로만** 허용한다:
+            #   「작년에 방이 낸 돈(환산) 이상을 계획한다」면 희망가격이 아니다.
+            #   그 아래를 계획하면 여전히 위반이다.
+            if v<p["market_low"]:
+                _pa=p.get("prior_auction_price")
+                # 계획가는 정수 달러다 — 환산가도 **반올림해서** 비교한다.
+                # 안 그러면 $20×1.11=$22.2 라 「$22 계획」이 0.2 때문에 위반으로 찍힌다.
+                _paa=None if _pa is None else round(_pa*_PRIOR_SCALE)
+                if _paa is not None and v>=_paa:
+                    print("  △ 대체후보 %s $%d < market_low $%d — **작년 실낙찰 환산 $%d 이상이라 허용**"
+                          " (market_low 는 우리 순위이고 실낙찰가는 방의 실제 지불이다 · docs/05 §6d·§6h)"
+                          %(n,v,p["market_low"],_paa)); warn+=1
+                else:
+                    print("  ✗ 대체후보 %s $%d < market_low $%d%s"
+                          %(n,v,p["market_low"],
+                            "" if _paa is None else " (작년 실낙찰 환산 $%d 에도 못 미친다)"%_paa)); err+=1
             k=NEED[s["slot"]]
             if k and k not in p["pos"]: print("  ✗ 대체후보 %s(%s) 자격→%s"%(n,p["pos"],s["slot"])); err+=1
             if n in INJ: print("  ✗ 🚑 대체후보에 장기부상: %s"%n); err+=1
