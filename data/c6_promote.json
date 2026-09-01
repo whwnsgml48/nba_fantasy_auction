@@ -1,0 +1,178 @@
+{
+ "seed": 20261020,
+ "iterations": 4000,
+ "base_wr": 0.8763,
+ "slots": {
+  "PF": {
+   "base": 0.8763,
+   "best_new": 0.8517,
+   "best_alt": 0.8675,
+   "delta": -0.0158,
+   "cands": 40,
+   "rows": [
+    {
+     "name": "Cooper Flagg",
+     "wr": 0.8517,
+     "cost": 26,
+     "unknown_prior": false
+    },
+    {
+     "name": "Trey Murphy III",
+     "wr": 0.8512,
+     "cost": 12,
+     "unknown_prior": false
+    },
+    {
+     "name": "Pascal Siakam",
+     "wr": 0.8497,
+     "cost": 26,
+     "unknown_prior": false
+    },
+    {
+     "name": "Julius Randle",
+     "wr": 0.8486,
+     "cost": 11,
+     "unknown_prior": false
+    },
+    {
+     "name": "Miles Bridges",
+     "wr": 0.843,
+     "cost": 7,
+     "unknown_prior": false
+    },
+    {
+     "name": "Toumani Camara",
+     "wr": 0.838,
+     "cost": 2,
+     "unknown_prior": false
+    }
+   ],
+   "current_alts": [
+    {
+     "name": "LeBron James",
+     "wr": 0.8675,
+     "prior_adj": 34
+    },
+    {
+     "name": "Evan Mobley",
+     "wr": 0.8624,
+     "prior_adj": 48
+    }
+   ]
+  },
+  "SF": {
+   "base": 0.8763,
+   "best_new": 0.8706,
+   "best_alt": 0.8744,
+   "delta": -0.0038,
+   "cands": 34,
+   "rows": [
+    {
+     "name": "Trey Murphy III",
+     "wr": 0.8706,
+     "cost": 12,
+     "unknown_prior": false
+    },
+    {
+     "name": "Miles Bridges",
+     "wr": 0.8588,
+     "cost": 7,
+     "unknown_prior": false
+    },
+    {
+     "name": "Naz Reid",
+     "wr": 0.8566,
+     "cost": 1,
+     "unknown_prior": false
+    },
+    {
+     "name": "Jaden McDaniels",
+     "wr": 0.8563,
+     "cost": 7,
+     "unknown_prior": false
+    },
+    {
+     "name": "Brandon Ingram",
+     "wr": 0.8547,
+     "cost": 6,
+     "unknown_prior": false
+    },
+    {
+     "name": "Toumani Camara",
+     "wr": 0.853,
+     "cost": 2,
+     "unknown_prior": false
+    }
+   ],
+   "current_alts": [
+    {
+     "name": "Josh Hart",
+     "wr": 0.8744,
+     "prior_adj": 26
+    },
+    {
+     "name": "Andrew Wiggins",
+     "wr": 0.8504,
+     "prior_adj": 7
+    }
+   ]
+  },
+  "BN:Desmond Bane": {
+   "base": 0.8763,
+   "best_new": 0.8979,
+   "best_alt": 0.8691,
+   "delta": 0.0287,
+   "cands": 111,
+   "rows": [
+    {
+     "name": "Jamal Murray",
+     "wr": 0.8979,
+     "cost": 22,
+     "unknown_prior": false
+    },
+    {
+     "name": "Jalen Brunson",
+     "wr": 0.8808,
+     "cost": 23,
+     "unknown_prior": false
+    },
+    {
+     "name": "Damian Lillard",
+     "wr": 0.8747,
+     "cost": 14,
+     "unknown_prior": true
+    },
+    {
+     "name": "Jalen Duren",
+     "wr": 0.8653,
+     "cost": 11,
+     "unknown_prior": false
+    },
+    {
+     "name": "LaMelo Ball",
+     "wr": 0.8644,
+     "cost": 22,
+     "unknown_prior": false
+    },
+    {
+     "name": "Cooper Flagg",
+     "wr": 0.8603,
+     "cost": 26,
+     "unknown_prior": false
+    }
+   ],
+   "current_alts": [
+    {
+     "name": "Nikola Vučević",
+     "wr": 0.8691,
+     "prior_adj": 23
+    },
+    {
+     "name": "Josh Hart",
+     "wr": 0.8687,
+     "prior_adj": 26
+    }
+   ]
+  }
+ }
+}
