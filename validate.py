@@ -1138,7 +1138,11 @@ else:
         #     빈 dict가 falsy라 anchor_plan이 생성되지 않고 sync_tool이 KeyError로 죽었다
         #     (docs/04 33차 「구현 중 걸린 것」 3번). 지금 고치는 것은 그 사고의 하류다.
         # 방어하되 **조용히 건너뛰지 않는다** — 없으면 위반으로 올리고 상세 비교만 생략한다.
-        _exp,_probs=_TE.build_cores(cj)
+        # 조달 배율은 별도 산출물(core_procurement.json)이라 여기서도 같이 넣어야
+        # 툴과 대조가 성립한다. 없으면 None 으로 — 생성기와 같은 폴백이다.
+        try: _PROC=json.load(io.open(D+"/data/core_procurement.json",encoding="utf-8"))
+        except Exception: _PROC=None
+        _exp,_probs=_TE.build_cores(cj,_PROC)
         _cores_broken=bool(_probs)
         for _p in _probs:
             print("  ✗ 툴 CORES 대조: %s — 상세 비교 생략(뒤쪽 검사는 계속 실행)"%_p); err+=1

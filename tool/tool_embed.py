@@ -150,9 +150,16 @@ def build_pivots(cj):
     return {x["id"]: x["pivot_plan"] for x in cj["cores"]}
 
 
-def build_cores(cj):
-    """툴 `CORES` 상수. 반환 `(list, problems)` — problems 는 앵커 결손 설명 문자열."""
+def build_cores(cj, proc=None):
+    """툴 `CORES` 상수. 반환 `(list, problems)` — problems 는 앵커 결손 설명 문자열.
+
+    proc: `data/core_procurement.json` — 「방이 작년처럼 부르면 이 아홉이 얼마인가」.
+      🔴 승률로는 코어가 안 갈리는데(7코어 3.5%p · §6i) **조달로는 1.05~1.73배로 갈린다.**
+         그 축이 화면에 없었다. 점 추정이 아니라 **구간**으로 싣고 결측 인원수도 함께
+         싣는다 — 결측을 계획가로 때우면 결측 많은 코어가 유리해 보인다(§6j).
+    """
     problems = []
+    _pm = {c["id"]: c for c in (proc or {}).get("cores", [])}
     out = [{"id": "c0", "n": "— 코어 미선택 —"}]
     for co in cj["cores"]:
         plan = []
@@ -186,6 +193,11 @@ def build_cores(cj):
              # 슬롯 상한의 합. 예산을 넘는 것 자체는 정상이다(전원이 상한까지 갈 리 없다).
              # 문제는 그 비율을 아무도 보지 않았다는 것 — 138%와 120%는 실전 의미가 다르다.
              "ceilSum": sum(sl["bid_ceiling"] for sl in co["slots"])}
+        _p = _pm.get(co["id"])
+        if _p:
+            # lo/hi = 작년 가격으로 다시 살 때의 구간 · miss = 작년가 결측 인원
+            e["proc"] = {"lo": _p["lo"], "hi": _p["hi"], "miss": len(_p["missing"]),
+                         "avg": (proc or {}).get("avg_team")}
         if co.get("conditional_on_discount"):
             e["condDiscount"] = co["conditional_on_discount"]
         out.append(e)

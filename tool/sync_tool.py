@@ -19,13 +19,17 @@ try:
     SIM=json.load(io.open(f"{BASE}/data/matchup_sim.json",encoding="utf-8"))
 except Exception:
     SIM=None   # 시뮬 파일이 없으면 강도 없이 생성한다(검증기도 같은 폴백을 쓴다)
+try:
+    PROC=json.load(io.open(f"{BASE}/data/core_procurement.json",encoding="utf-8"))
+except Exception:
+    PROC=None   # 조달 배율 파일이 없으면 그 줄 없이 생성한다 — python3 tool/core_procurement.py
 pl=json.load(io.open(f"{BASE}/data/players.json",encoding="utf-8"))
 c=json.load(io.open(f"{BASE}/data/cores.json",encoding="utf-8"))
 by={p["name"]:p for p in pl}
 p=f"{BASE}/tool/auction-console.html"; s=io.open(p,encoding="utf-8").read()
 
 def buildCORES():
-    out, problems = TE.build_cores(c)
+    out, problems = TE.build_cores(c, PROC)
     if problems:
         # 깨진 상수를 툴에 쓰면 안 된다 — 33차에 이 결손이 KeyError로 죽었고,
         # 조용히 넘기면 툴이 앵커 정보 없는 코어를 표시하게 된다.

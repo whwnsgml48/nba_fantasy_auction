@@ -1,0 +1,106 @@
+{
+ "scale": 1.11,
+ "room_total_adj": 2628,
+ "avg_team": 187.7,
+ "cores": [
+  {
+   "id": "c1",
+   "plan": 188,
+   "lo": 265,
+   "hi": 282,
+   "mult_lo": 1.41,
+   "mult_hi": 1.5,
+   "missing": [
+    "Tyrese Haliburton",
+    "Kon Knueppel",
+    "Donovan Clingan",
+    "VJ Edgecombe",
+    "Moussa Diabaté"
+   ],
+   "assume_plan": 282,
+   "assume_tier": 265
+  },
+  {
+   "id": "c2",
+   "plan": 189,
+   "lo": 199,
+   "hi": 200,
+   "mult_lo": 1.053,
+   "mult_hi": 1.056,
+   "missing": [
+    "Collin Gillespie",
+    "Donovan Clingan"
+   ],
+   "assume_plan": 199,
+   "assume_tier": 200
+  },
+  {
+   "id": "c3",
+   "plan": 191,
+   "lo": 282,
+   "hi": 283,
+   "mult_lo": 1.474,
+   "mult_hi": 1.482,
+   "missing": [
+    "Donovan Clingan",
+    "Damian Lillard"
+   ],
+   "assume_plan": 283,
+   "assume_tier": 282
+  },
+  {
+   "id": "c4",
+   "plan": 186,
+   "lo": 295,
+   "hi": 300,
+   "mult_lo": 1.586,
+   "mult_hi": 1.613,
+   "missing": [
+    "Kon Knueppel"
+   ],
+   "assume_plan": 300,
+   "assume_tier": 295
+  },
+  {
+   "id": "c5",
+   "plan": 186,
+   "lo": 297,
+   "hi": 321,
+   "mult_lo": 1.597,
+   "mult_hi": 1.726,
+   "missing": [
+    "Tyrese Haliburton",
+    "Kon Knueppel",
+    "Donovan Clingan"
+   ],
+   "assume_plan": 321,
+   "assume_tier": 297
+  },
+  {
+   "id": "c6",
+   "plan": 191,
+   "lo": 274,
+   "hi": 276,
+   "mult_lo": 1.435,
+   "mult_hi": 1.445,
+   "missing": [
+    "VJ Edgecombe"
+   ],
+   "assume_plan": 274,
+   "assume_tier": 276
+  },
+  {
+   "id": "c7",
+   "plan": 184,
+   "lo": 305,
+   "hi": 310,
+   "mult_lo": 1.658,
+   "mult_hi": 1.685,
+   "missing": [
+    "Kon Knueppel"
+   ],
+   "assume_plan": 310,
+   "assume_tier": 305
+  }
+ ]
+}

@@ -53,6 +53,7 @@ NEEDED = [
     "tool/tool_embed.py",                        # 39차 — 툴 임베드 상수 단일 소스
     "tool/pos_elig.py",                          # 40차 — 슬롯 자격 단일 소스 (I31)
     "tool/name_fields.py",                       # 2026-09-01 — 이름 필드 분류 단일 소스 (I38)
+    "data/core_procurement.json",                # 2026-09-01 — 조달 배율(툴 CORES.proc 의 원천)
     "data/stats_2025_26/measured_full.json",
     "tool/auction-console.html",
     "tool/cat_model.py",
