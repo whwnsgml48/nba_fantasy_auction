@@ -64,6 +64,17 @@ def delta(a, b):
     return md, se, (abs(md) / se if se else float("inf"))
 
 
+def verdict(md):
+    """🔴 **부호를 본다.** 판정 규칙 원문은 「차가 SE 안이면 승격 권고 · 크면 대체 없음」인데
+    그건 **대체가 더 나쁠 것을 전제**하고 쓴 문장이다. 실제로 `대체 − 원안 > 0` 인 쌍이
+    나왔다(c3 피벗 C: Vučević → Duren **+1.30%p · 4.6σ**). 부호를 안 보면 **살 수 있고
+    더 강한 대체**를 「대체 없음」으로 찍는다 — `docs/11 ⑪`(비교 기준에 부호를 안 적은
+    실패)이 하루 만에 같은 형태로 재발한 것이다. 여기서 갈라 둔다."""
+    if md > PAIRED_SE:  return "🟢 **대체가 더 강하다 — 승격**"
+    if abs(md) <= PAIRED_SE: return "승격 권고 (SE 안)"
+    return "**대체 없음으로 남긴다**"
+
+
 def procure(name):
     """조달 판정 3층. 어느 층을 쓸지는 사람이 정한다 — 여기서는 전부 보고한다."""
     p = PL.get(name)
@@ -145,4 +156,4 @@ if __name__ == "__main__":
             print("%-46s 원안 %.2f%% → 대체 %.2f%% · %+.2f%%p (SE %.2f · %.2fσ) → %s"
                   % (r.get("label", "?"), 100*a["weekly"], 100*b["weekly"], 100*md,
                      100*se, sg,
-                     "승격 권고" if abs(md) <= PAIRED_SE else "**대체 없음으로 남긴다**"))
+                     verdict(md)))
