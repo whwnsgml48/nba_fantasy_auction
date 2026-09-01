@@ -33,6 +33,10 @@
 """
 import json, io, os, sys
 
+import os as _os, sys as _sys
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+import oneshot
+
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CP, PP = BASE + "/data/cores.json", BASE + "/data/players.json"
 
@@ -45,6 +49,12 @@ HART_MAX = 9
 
 
 def main():
+    oneshot.spent(
+        __file__,
+        did='40차 후속 4건 — 실행 불가 대체안 4건 교체 · Hart 최대가 · DeRozan 감시 · 목적함수 진단',
+        breaks='**data/cores.json 과 data/matchup_sim.json 을 40차 문안으로 덮는다** (샌드박스 재실행으로 실측: 2개 파일 변경). 이후 회차의 정정이 사라진다',
+        instead='지금 대체후보를 바꾸려면 cores.json 을 직접 고치고 validate.py 를 돌려라')
+
     cj = json.load(io.open(CP, encoding="utf-8"))
     pll = json.load(io.open(PP, encoding="utf-8"))
 

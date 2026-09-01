@@ -24,6 +24,10 @@
 """
 import json, io, os, sys
 
+import os as _os, sys as _sys
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+import oneshot
+
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import pos_elig as PE
@@ -84,6 +88,12 @@ SNOTE = {
 
 
 def main():
+    oneshot.spent(
+        __file__,
+        did='SF 병목 감시목록 · `lineup_loss` 필드 · 판단표 강도 주석 재작성 (40차)',
+        breaks='**data/cores.json 을 덮는다** (샌드박스 재실행으로 실측: 1개 파일 변경). 판단표 강도 주석이 40차 문안으로 되돌아간다',
+        instead='주석을 고치려면 cores.json 을 직접 고치고 sync_tool.py 로 툴을 재생성해라')
+
     cj = json.load(io.open(CP, encoding="utf-8"))
     PLl = json.load(io.open(BASE + "/data/players.json", encoding="utf-8"))
     PL = {p["name"]: p for p in PLl}

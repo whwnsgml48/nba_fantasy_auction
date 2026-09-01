@@ -40,6 +40,10 @@
 """
 import json, io, os, sys
 
+import os as _os, sys as _sys
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+import oneshot
+
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import pos_elig as PE
@@ -119,6 +123,12 @@ def slot_of(co, name):
 
 
 def main():
+    oneshot.spent(
+        __file__,
+        did='야후 실자격 반영 수리 — 1순위 교체 · 슬롯 라벨 재배정 · 대체후보 재선정 (40차)',
+        breaks='지금은 자기검사(「c2 에 1순위 Ivica Zubac 가 없다」)에서 멈춘다 — 🔴 **그건 가드가 아니라 우연이다.** 데이터가 그 검사를 통과하는 모양이 되면 **1순위를 40차 값으로 되돌린다**. 1순위는 이 저장소에서 가장 바꾸면 안 되는 필드다',
+        instead='1순위를 바꾸는 것은 조율 세션 승인 사항이다. 승인이 있으면 cores.json 을 직접 고쳐라')
+
     cj = json.load(io.open(CP, encoding="utf-8"))
     pl = {p["name"]: p for p in json.load(io.open(PP, encoding="utf-8"))}
 

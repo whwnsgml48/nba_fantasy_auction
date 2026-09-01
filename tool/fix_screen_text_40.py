@@ -20,6 +20,10 @@
 """
 import json, io, os
 
+import os as _os, sys as _sys
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+import oneshot
+
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PP, CP = BASE + "/data/players.json", BASE + "/data/cores.json"
 
@@ -42,6 +46,12 @@ NOTE_BANE_NEW = ("Bane 채택 후 c6 실측이 올라갔습니다. 3PT 보강 �
 
 
 def main():
+    oneshot.spent(
+        __file__,
+        did='화면에 남은 철회·낡은 문구 정리 (40차 후반) — 발행본을 실제로 열어 보고 찾은 것',
+        breaks='지금은 대상 문자열이 이미 없어 0건이다 — 🔴 **그건 가드가 아니라 우연이다.** 비슷한 문구가 다시 생기면 40차 기준으로 고쳐 버린다',
+        instead='화면 문구는 tool/auction-console.html 을 직접 고치고 tests/rehearse.mjs 로 확인해라')
+
     pll = json.load(io.open(PP, encoding="utf-8"))
     n = 0
     for p in pll:

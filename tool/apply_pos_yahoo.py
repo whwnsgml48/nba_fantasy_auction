@@ -26,6 +26,10 @@
 """
 import json, io, os, collections
 
+import os as _os, sys as _sys
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+import oneshot
+
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PP = BASE + "/data/players.json"
 
@@ -65,6 +69,12 @@ def expand(pos):
 
 
 def main():
+    oneshot.spent(
+        __file__,
+        did='야후 실자격 `pos_yahoo` 신설 — 손확인 19명을 players.json 에 기록 (40차)',
+        breaks='손확인 **19명 목록이 하드코딩**돼 있다. 지금은 값이 같아 변경 0건이지만, 🔴 **docs/05 §6f 의 P2 로 73명 미확인을 채우고 나면 재실행이 그것을 19명 상태로 되돌린다.** 지금 안전한 것은 가드가 있어서가 아니라 우연이다',
+        instead='자격을 추가로 확인했으면 players.json 의 pos_yahoo 를 직접 채우고 validate.py [I31] 을 돌려라')
+
     pl = json.load(io.open(PP, encoding="utf-8"))
     names = {p["name"] for p in pl}
     missing = [n for n in YAHOO if n not in names]

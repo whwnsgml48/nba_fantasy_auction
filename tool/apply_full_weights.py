@@ -8,6 +8,16 @@
       TOV는 낮을수록 좋으므로 역순.
 """
 import json, io, os, re
+
+import os as _os, sys as _sys
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+import oneshot
+oneshot.spent(
+    __file__,
+    did='전체 스탯(BBRef 172명)으로 cat_weights 재배정 — 등급별 인원수는 보존하고 순서만 교정',
+    breaks='**data/players.json 을 덮는다** (샌드박스 재실행으로 실측: 1개 파일 변경). 그 뒤에 들어간 손수정 — 예를 들어 my_max 점 수정(Jokić 88→97 · SGA 79→85, 사용자 결정 2026-08-26) — 이 사라질 수 있다',
+    instead='가중치를 다시 재려면 docs/11 의 NEXT_SEASON 절차를 따라라. 174명이 연쇄로 움직인다')
+
 BASE=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 F=json.load(io.open(f"{BASE}/data/stats_2025_26/measured_full.json",encoding="utf-8"))["players"]
 bb=json.load(io.open(f"{BASE}/data/stats_2025_26/bbref/per_game.json",encoding="utf-8"))["2025-26"]

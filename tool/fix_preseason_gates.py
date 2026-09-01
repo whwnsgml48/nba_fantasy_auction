@@ -27,6 +27,10 @@
 """
 import json, io, os
 
+import os as _os, sys as _sys
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+import oneshot
+
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CP = BASE + "/data/cores.json"
 
@@ -36,21 +40,12 @@ OBSERVABLE = ("드래프트 당일(2026-09-05)에 볼 수 있는 것만으로 �
 
 
 def main():
-    # 🔴 2026-09-01 — **다시 돌리지 마라. 돌리면 조용히 되돌린다.**
-    #   이 스크립트는 40차의 1회성 이행 스크립트이고, 아래 본문은 전부 **드래프트
-    #   2026-09-05** 라는 틀린 날짜 위에 있다. 사용자가 **2026-10-05** 로 정정했고
-    #   그 결과 「프리시즌은 31일 뒤라 관측 불가」가 **거짓**이 됐다.
-    #   지금 `cores.json` 에 들어 있는 문장들은 정정본이다 — 이 스크립트를 실행하면
-    #   그 정정본을 40차 문장으로 **덮어쓴다**. validate 는 이걸 못 잡는다:
-    #   두 문장 다 문법적으로 멀쩡하고 불변식을 안 건드린다.
-    #   ⚠️ 이 저장소가 반복하는 형태다 — 「사실을 적었는데 그 사실에 의존하는 것들이
-    #      안 고쳐졌다」(docs/05 §6b·§6f). 여기서는 생성기가 그 자리다.
-    raise SystemExit(
-        "🔴 tool/fix_preseason_gates.py 는 **소진된 1회성 이행 스크립트**다 (40차).\n"
-        "   본문이 「드래프트 2026-09-05 · 프리시즌 31일 뒤」 위에 있는데 그 날짜가 틀렸다\n"
-        "   (실제 2026-10-05 · 프리시즌 경기 10-03 개시 · 사용자 정정 2026-09-01).\n"
-        "   실행하면 cores.json 의 정정본을 옛 문장으로 조용히 되돌린다.\n"
-        "   관측 규칙의 현행본은 docs/05 §6f 와 cores.json:observability_rule_40 이다.")
+    oneshot.spent(
+        __file__,
+        did="드래프트 당일 관측 불가능한 조건을 실행 조건에서 걷어냄 (40차) — c5 게이트 재작성 포함",
+        breaks="본문이 전부 「드래프트 2026-09-05 · 프리시즌 31일 뒤」 위에 있는데 그 날짜가 틀렸다 (실제 2026-10-05 · 프리시즌 경기 10-03 개시 · 사용자 정정 2026-09-01). 재실행하면 **data/cores.json 의 정정본을 40차 문안으로 되돌린다**",
+        instead="관측 규칙의 현행본은 docs/05 §6f 와 cores.json:observability_rule_40 이다. 고치려면 그쪽을 직접 고쳐라")
+
 
     cj = json.load(io.open(CP, encoding="utf-8"))
     n = 0
