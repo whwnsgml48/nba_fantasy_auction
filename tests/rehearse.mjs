@@ -256,6 +256,15 @@ for(const core of ['c1','c4','c7']){
     // 40차: edge 표시. 음수(남이 더 높게 친다)와 양수 둘 다 화면에 나야 한다.
     ['edgePrior 음수 존재',        T.P.some(x=>x.py!=null&&(x.mx-x.py*1.11)<0)],
     ['edgePrior 양수 존재',        T.P.some(x=>x.py!=null&&(x.mx-x.py*1.11)>0)],
+    // 40차: 화면 표시 두 종류. 기준이 다르다(docs/05 §6e) — 음수는 철수가 대비,
+    //   양수는 my_max 대비. 둘 다 flag 로 화면에 나야 한다.
+    ['flag 에 양수 표시(6명)',     T.P.some(x=>(x.flag||'').includes('이 방 대비 우위'))],
+    // ⚠️ 음수 경고는 `flag` 가 아니라 **렌더 시점 계산**이다(py 와 OVERHEAT.walk 를 비교).
+    //   그래서 여기서는 그 조건이 성립하는 데이터가 있는지만 본다.
+    ['음수 경고 조건 성립(py > 철수가)',
+      T.P.some(x=>{ if(x.py==null) return false;
+        const w=(T.OVERHEAT.find(o=>o.n===x.n)||{}).walk;
+        return w!=null && x.py>w; })],
   ];
   for(const [k,hit] of shapes) console.log('   '+(hit?'✅ 밟음  ':'⬜ 안 밟음')+'  '+k);
   console.log('   ⬜ 는 그 모양이 데이터에 **아직 없다**는 뜻이다 — 생기면 여기가 먼저 켜진다.');
