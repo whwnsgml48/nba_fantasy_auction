@@ -4999,7 +4999,7 @@
   "team_change": "Giannis 이탈로 득점 상승 여지. 다만 리바운드는 원래 안 하는 유형",
   "volume_leverage": null,
   "at_marginal_lift": "AST 1.5 / TOV 1.4 → 팀 A/T 한계 기여 -0.114 (2시즌 혼합 · GP 71.4)",
-  "verdict": "밀워키 주전 C 확정(4년 $108M). 하지만 REB 5.3은 센터로서 최악급이고 OREB 낮고 DD 사실상 0 — 9캣에서 13캣으로 오면서 가치가 오히려 하락하는 대표 사례.",
+  "verdict": "밀워키 주전 C 확정(4년 $108M). 하지만 REB 5.3은 센터로서 최악급이고 OREB 낮고 DD 사실상 0 — 이 포맷에서 센터로서의 기여가 얇다.\n📌 [2026-08-31] 「9캣에서 13캣으로 오면서 가치가 하락하는 대표 사례」를 지웠다. **이 방에서 그 전환은 일어나지 않았다** — 작년이 12캣이었고 DD 는 이미 캣이었다(docs/01). 이 방의 델타는 OREB 하나다. 그리고 **가치 하락이 관측되지도 않는다**: 작년 실낙찰 **$11** · 우리 my_max $18 · edge **+6** — 이 방은 그를 이미 싸게 넘겼다.",
   "flag": "이름값 대비 OREB·DD 기여 0",
   "market_source": "refit_v2_measured_2025_26_league_auction",
   "market_prior_estimate": {
@@ -20662,7 +20662,7 @@
   "team_change": "필라델피아→보스턴",
   "volume_leverage": null,
   "at_marginal_lift": "AST 3.9 / TOV 2.1 → 팀 A/T 한계 기여 -0.025 (2시즌 혼합 · GP 38.7)",
-  "verdict": "STL 1.7과 3PTM 2.7개는 비율상 상위권입니다(37경기라 공식 리더보드 미등재). 순수 레이트로는 저평가 자산.",
+  "verdict": "STL 1.7과 3PTM 2.7개는 비율상 상위권입니다(37경기라 공식 리더보드 미등재). **레이트는 좋다** — 다만 그건 캣 진술이고 가격 진술이 아니다.\n📌 [2026-08-31] 「저평가 자산」을 지웠다. 「저평가」는 우리 필드로 주장할 수 없다(market_low/high 가 우리 순위다 · docs/05 §6e). 실측으로 보면 작년 실낙찰 **$7** · 우리 my_max $8 · edge **≈0** — **이 방에 대해 우리 우위가 없다.**",
   "flag": "37경기 — 레이트는 좋지만 출장이 치명적",
   "market_source": "refit_v2_measured_2025_26_league_auction",
   "market_prior_estimate": {
