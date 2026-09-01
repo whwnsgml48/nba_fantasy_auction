@@ -1,0 +1,330 @@
+{
+ "seed": 20261020,
+ "iterations": 4000,
+ "punt": [
+  "OREB",
+  "BLK",
+  "DD"
+ ],
+ "target": [
+  "PTS",
+  "REB",
+  "AST",
+  "STL",
+  "TOV",
+  "3PM",
+  "3P%",
+  "FT%",
+  "FG%",
+  "A/T"
+ ],
+ "min_spend": 180,
+ "max_shaky": 1,
+ "min_positive": 7,
+ "candidates": [
+  {
+   "names": [
+    "Alperen Şengün",
+    "Collin Gillespie",
+    "Immanuel Quickley",
+    "Kel'el Ware",
+    "Kris Dunn",
+    "Nikola Jokić",
+    "Nikola Vučević",
+    "Royce O'Neale",
+    "Tyrese Haliburton"
+   ],
+   "total": 195,
+   "reserve": 5,
+   "mean": 0.8559,
+   "min": 0.7255,
+   "cats": 8.66,
+   "cats_sd": 1.81,
+   "margin_over_sd": 0.91,
+   "shaky": [
+    "Tyrese Haliburton"
+   ],
+   "c2_overlap": 4,
+   "has_jokic": true,
+   "edge_sum": -33.8,
+   "edge_neg": 4,
+   "below_50": [
+    "PTS",
+    "FT%",
+    "BLK"
+   ],
+   "cat_win": {
+    "PTS": 0.311,
+    "REB": 0.779,
+    "OREB": 0.776,
+    "AST": 0.875,
+    "STL": 0.764,
+    "BLK": 0.474,
+    "TOV": 0.621,
+    "3PM": 0.69,
+    "3P%": 0.65,
+    "FT%": 0.424,
+    "FG%": 0.549,
+    "A/T": 0.919,
+    "DD": 0.824
+   }
+  },
+  {
+   "names": [
+    "Alperen Şengün",
+    "Collin Gillespie",
+    "Duncan Robinson",
+    "Immanuel Quickley",
+    "Kel'el Ware",
+    "Nikola Jokić",
+    "Nikola Vučević",
+    "Royce O'Neale",
+    "Tyrese Haliburton"
+   ],
+   "total": 195,
+   "reserve": 5,
+   "mean": 0.8527,
+   "min": 0.7185,
+   "cats": 8.71,
+   "cats_sd": 1.85,
+   "margin_over_sd": 0.92,
+   "shaky": [
+    "Tyrese Haliburton"
+   ],
+   "c2_overlap": 4,
+   "has_jokic": true,
+   "edge_sum": -33.8,
+   "edge_neg": 4,
+   "below_50": [
+    "PTS",
+    "FT%",
+    "BLK"
+   ],
+   "cat_win": {
+    "PTS": 0.381,
+    "REB": 0.758,
+    "OREB": 0.745,
+    "AST": 0.853,
+    "STL": 0.639,
+    "BLK": 0.47,
+    "TOV": 0.653,
+    "3PM": 0.806,
+    "3P%": 0.681,
+    "FT%": 0.443,
+    "FG%": 0.528,
+    "A/T": 0.918,
+    "DD": 0.831
+   }
+  },
+  {
+   "names": [
+    "Collin Gillespie",
+    "Donovan Clingan",
+    "Duncan Robinson",
+    "Immanuel Quickley",
+    "Jarrett Allen",
+    "Nikola Jokić",
+    "Nikola Vučević",
+    "Royce O'Neale",
+    "Tyrese Haliburton"
+   ],
+   "total": 191,
+   "reserve": 9,
+   "mean": 0.8481,
+   "min": 0.708,
+   "cats": 8.72,
+   "cats_sd": 1.87,
+   "margin_over_sd": 0.92,
+   "shaky": [
+    "Tyrese Haliburton"
+   ],
+   "c2_overlap": 5,
+   "has_jokic": true,
+   "edge_sum": -27.2,
+   "edge_neg": 3,
+   "below_50": [
+    "PTS",
+    "FT%"
+   ],
+   "cat_win": {
+    "PTS": 0.278,
+    "REB": 0.766,
+    "OREB": 0.797,
+    "AST": 0.76,
+    "STL": 0.573,
+    "BLK": 0.523,
+    "TOV": 0.786,
+    "3PM": 0.752,
+    "3P%": 0.682,
+    "FT%": 0.44,
+    "FG%": 0.623,
+    "A/T": 0.93,
+    "DD": 0.808
+   }
+  },
+  {
+   "names": [
+    "Collin Gillespie",
+    "Duncan Robinson",
+    "Jalen Duren",
+    "Kel'el Ware",
+    "Kris Dunn",
+    "Nikola Jokić",
+    "Nikola Vučević",
+    "Royce O'Neale",
+    "Tyrese Haliburton"
+   ],
+   "total": 196,
+   "reserve": 4,
+   "mean": 0.8446,
+   "min": 0.6927,
+   "cats": 8.67,
+   "cats_sd": 1.86,
+   "margin_over_sd": 0.9,
+   "shaky": [
+    "Tyrese Haliburton"
+   ],
+   "c2_overlap": 3,
+   "has_jokic": true,
+   "edge_sum": 26.7,
+   "edge_neg": 2,
+   "below_50": [
+    "PTS",
+    "FT%",
+    "BLK"
+   ],
+   "cat_win": {
+    "PTS": 0.23,
+    "REB": 0.775,
+    "OREB": 0.804,
+    "AST": 0.702,
+    "STL": 0.68,
+    "BLK": 0.493,
+    "TOV": 0.751,
+    "3PM": 0.705,
+    "3P%": 0.698,
+    "FT%": 0.443,
+    "FG%": 0.692,
+    "A/T": 0.881,
+    "DD": 0.815
+   }
+  },
+  {
+   "names": [
+    "Collin Gillespie",
+    "Duncan Robinson",
+    "Immanuel Quickley",
+    "Jalen Duren",
+    "Kel'el Ware",
+    "Nikola Jokić",
+    "Nikola Vučević",
+    "Royce O'Neale",
+    "Tyrese Haliburton"
+   ],
+   "total": 196,
+   "reserve": 4,
+   "mean": 0.8444,
+   "min": 0.6933,
+   "cats": 8.72,
+   "cats_sd": 1.89,
+   "margin_over_sd": 0.91,
+   "shaky": [
+    "Tyrese Haliburton"
+   ],
+   "c2_overlap": 4,
+   "has_jokic": true,
+   "edge_sum": 21.7,
+   "edge_neg": 3,
+   "below_50": [
+    "PTS",
+    "BLK",
+    "FT%"
+   ],
+   "cat_win": {
+    "PTS": 0.315,
+    "REB": 0.762,
+    "OREB": 0.777,
+    "AST": 0.749,
+    "STL": 0.577,
+    "BLK": 0.446,
+    "TOV": 0.757,
+    "3PM": 0.761,
+    "3P%": 0.704,
+    "FT%": 0.483,
+    "FG%": 0.655,
+    "A/T": 0.91,
+    "DD": 0.829
+   }
+  },
+  {
+   "names": [
+    "Collin Gillespie",
+    "Donovan Clingan",
+    "Duncan Robinson",
+    "Immanuel Quickley",
+    "Kel'el Ware",
+    "Nikola Jokić",
+    "Nikola Vučević",
+    "Royce O'Neale",
+    "Tyrese Haliburton"
+   ],
+   "total": 181,
+   "reserve": 19,
+   "mean": 0.8436,
+   "min": 0.6853,
+   "cats": 8.67,
+   "cats_sd": 1.87,
+   "margin_over_sd": 0.9,
+   "shaky": [
+    "Tyrese Haliburton"
+   ],
+   "c2_overlap": 5,
+   "has_jokic": true,
+   "edge_sum": -19.2,
+   "edge_neg": 3,
+   "below_50": [
+    "PTS"
+   ],
+   "cat_win": {
+    "PTS": 0.234,
+    "REB": 0.761,
+    "OREB": 0.796,
+    "AST": 0.727,
+    "STL": 0.556,
+    "BLK": 0.574,
+    "TOV": 0.805,
+    "3PM": 0.812,
+    "3P%": 0.685,
+    "FT%": 0.504,
+    "FG%": 0.521,
+    "A/T": 0.927,
+    "DD": 0.771
+   }
+  }
+ ],
+ "first_run_discarded": {
+  "what": "제약 통과 조합 **0개**.",
+  "why": "가드 풀을 **절대 점수**로만 정렬해 전부 $35~97 이 됐고 빅 풀을 **달러당**으로만 정렬해 전부 $2 가 됐다. 그 둘로는 $180~196 구간을 만들 수 없다.",
+  "note": "🔴 **40차에만 네 번째다** — 1차 FG% 하이재킹 · guard_stack 참고값 · 3차 $24 퇴화 해 · 그리고 여기. **한 기준으로만 정렬하면 후보 풀이 한쪽으로 몰린다.** 고친 방법도 매번 같다: 절대 상위와 달러당 상위를 섞는다."
+ },
+ "verdict": {
+  "prereg_outcome": "🔴 **「답은 c2」로 닫는다.** 사전 등록: 「Jokić 가 뽑히거나 c2 와 6명 이상 겹치면 c2 의 변형으로 본다」 — **최종 후보 6개 전부에 Jokić 이 있다.**\n⚠️ 스크립트의 판정 출력이 「채택 검토」로 찍혔는데 **그건 내 우선순위 버그다** — 채택 조건을 먼저 검사하고 c2 조항을 나중에 봤다. 사전 등록의 의도는 c2 조항이 **실격 사유**라는 것이고, 그 해석이 맞다.",
+  "numbers": {
+   "mean": 0.856,
+   "cats": 8.66,
+   "cats_sd": 1.81,
+   "margin_over_sd": 0.91,
+   "total": 195,
+   "reserve": 5,
+   "shaky": 1,
+   "c2_overlap": 4,
+   "edge_sum": -34,
+   "edge_neg": 4
+  },
+  "not_guard_tilted": "🔴 **그리고 이건 가드 편향 빌드가 아니다.** 최선안 9명 중 **PF/C 자격이 5명**이다(Şengün · Ware · Jokić · Vučević · O'Neale). 순수 가드는 넷뿐이다.\n원인은 내 가드 풀 점수식이다 — `AST×3 + STL×12 + 3PM×6 + PTS − TOV×5` 로 뽑았더니 **Jokić 이 가드 상위 4위**로 들어왔다(AST 10.5). 즉 「가드 편향을 재라」는 요청에 **탐색기가 가드를 정의하지 못했다.**",
+  "punted_cats_won": "🔴 포기 선언한 3캣 중 **2캣을 이긴다** — OREB 77.6% · DD 82.4% (BLK 만 47.4%).\n빅 다섯을 쓰니 당연하다. **포기가 실제로 일어나지 않았다** — 이 측정은 「3캣을 버린 가드 빌드」가 아니라 **「c2 에 가드를 조금 더 얹은 것」**을 잰 것이다.",
+  "what_it_does_show": "🟢 산수 진단은 맞았다 — 3캣만 버리면 **여유/SD 0.91** 이 나온다(3차 0.57 · c4 0.78). 목표를 10으로 넓히면 여유가 산다는 것은 확인됐다.\n다만 그 여유를 **Jokić 이 만든다.** 그가 한 칸에서 REB·OREB·DD·AST·FG% 를 동시에 주므로 나머지 여덟 칸을 가드로 채울 수 있다 — 그게 **c2 의 정의**다.",
+  "edge_check": "edge 합계 **−34** · 음수 **4명**. 이 방 상대로 살 수 있는 팀도 아니다 (Jokić $97 · Şengün $52 가 둘 다 음수 쪽이다).",
+  "closing": "cores.json 에 넣지 않았다. **4차로 탐색을 닫는다.**"
+ }
+}
