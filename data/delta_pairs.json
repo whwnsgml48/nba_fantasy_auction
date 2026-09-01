@@ -1,0 +1,1025 @@
+[
+ {
+  "label": "c1 pivot C :: Karl-Anthony Towns → Jalen Duren",
+  "a": [
+   "Karl-Anthony Towns",
+   "Tyrese Haliburton",
+   "Alperen Şengün",
+   "Desmond Bane",
+   "Dyson Daniels",
+   "Nikola Vučević",
+   "Onyeka Okongwu",
+   "VJ Edgecombe",
+   "Cameron Johnson"
+  ],
+  "b": [
+   "Jalen Duren",
+   "Tyrese Haliburton",
+   "Alperen Şengün",
+   "Desmond Bane",
+   "Dyson Daniels",
+   "Nikola Vučević",
+   "Onyeka Okongwu",
+   "VJ Edgecombe",
+   "Cameron Johnson"
+  ],
+  "meta": {
+   "out": "Karl-Anthony Towns",
+   "in": "Jalen Duren",
+   "out_prior_adj": 73,
+   "out_max": 71,
+   "in_prior_adj": 11,
+   "in_max": 52
+  }
+ },
+ {
+  "label": "c1 pivot SG :: Dyson Daniels → Cason Wallace",
+  "a": [
+   "Karl-Anthony Towns",
+   "Tyrese Haliburton",
+   "Alperen Şengün",
+   "Desmond Bane",
+   "Dyson Daniels",
+   "Nikola Vučević",
+   "Onyeka Okongwu",
+   "VJ Edgecombe",
+   "Cameron Johnson"
+  ],
+  "b": [
+   "Karl-Anthony Towns",
+   "Tyrese Haliburton",
+   "Alperen Şengün",
+   "Desmond Bane",
+   "Cason Wallace",
+   "Nikola Vučević",
+   "Onyeka Okongwu",
+   "VJ Edgecombe",
+   "Cameron Johnson"
+  ],
+  "meta": {
+   "out": "Dyson Daniels",
+   "in": "Cason Wallace",
+   "out_prior_adj": 36,
+   "out_max": 20,
+   "in_prior_adj": null,
+   "in_max": 8
+  }
+ },
+ {
+  "label": "c1 pivot UTIL :: Nikola Vučević → Mitchell Robinson",
+  "a": [
+   "Karl-Anthony Towns",
+   "Tyrese Haliburton",
+   "Alperen Şengün",
+   "Desmond Bane",
+   "Dyson Daniels",
+   "Nikola Vučević",
+   "Onyeka Okongwu",
+   "VJ Edgecombe",
+   "Cameron Johnson"
+  ],
+  "b": [
+   "Karl-Anthony Towns",
+   "Tyrese Haliburton",
+   "Alperen Şengün",
+   "Desmond Bane",
+   "Dyson Daniels",
+   "Mitchell Robinson",
+   "Onyeka Okongwu",
+   "VJ Edgecombe",
+   "Cameron Johnson"
+  ],
+  "meta": {
+   "out": "Nikola Vučević",
+   "in": "Mitchell Robinson",
+   "out_prior_adj": 23,
+   "out_max": 8,
+   "in_prior_adj": null,
+   "in_max": 12
+  }
+ },
+ {
+  "label": "c1 pivot UTIL :: Nikola Vučević → Deandre Ayton",
+  "a": [
+   "Karl-Anthony Towns",
+   "Tyrese Haliburton",
+   "Alperen Şengün",
+   "Desmond Bane",
+   "Dyson Daniels",
+   "Nikola Vučević",
+   "Onyeka Okongwu",
+   "VJ Edgecombe",
+   "Cameron Johnson"
+  ],
+  "b": [
+   "Karl-Anthony Towns",
+   "Tyrese Haliburton",
+   "Alperen Şengün",
+   "Desmond Bane",
+   "Dyson Daniels",
+   "Deandre Ayton",
+   "Onyeka Okongwu",
+   "VJ Edgecombe",
+   "Cameron Johnson"
+  ],
+  "meta": {
+   "out": "Nikola Vučević",
+   "in": "Deandre Ayton",
+   "out_prior_adj": 23,
+   "out_max": 8,
+   "in_prior_adj": 6,
+   "in_max": 18
+  }
+ },
+ {
+  "label": "c2 pivot UTIL :: Dyson Daniels → Myles Turner",
+  "a": [
+   "Nikola Jokić",
+   "Derrick White",
+   "Desmond Bane",
+   "Onyeka Okongwu",
+   "Collin Gillespie",
+   "Dyson Daniels",
+   "DeMar DeRozan",
+   "Nikola Vučević",
+   "Immanuel Quickley"
+  ],
+  "b": [
+   "Nikola Jokić",
+   "Derrick White",
+   "Desmond Bane",
+   "Onyeka Okongwu",
+   "Collin Gillespie",
+   "Myles Turner",
+   "DeMar DeRozan",
+   "Nikola Vučević",
+   "Immanuel Quickley"
+  ],
+  "meta": {
+   "out": "Dyson Daniels",
+   "in": "Myles Turner",
+   "out_prior_adj": 36,
+   "out_max": 20,
+   "in_prior_adj": 12,
+   "in_max": 18
+  }
+ },
+ {
+  "label": "c2 pivot UTIL :: Dyson Daniels → Brook Lopez",
+  "a": [
+   "Nikola Jokić",
+   "Derrick White",
+   "Desmond Bane",
+   "Onyeka Okongwu",
+   "Collin Gillespie",
+   "Dyson Daniels",
+   "DeMar DeRozan",
+   "Nikola Vučević",
+   "Immanuel Quickley"
+  ],
+  "b": [
+   "Nikola Jokić",
+   "Derrick White",
+   "Desmond Bane",
+   "Onyeka Okongwu",
+   "Collin Gillespie",
+   "Brook Lopez",
+   "DeMar DeRozan",
+   "Nikola Vučević",
+   "Immanuel Quickley"
+  ],
+  "meta": {
+   "out": "Dyson Daniels",
+   "in": "Brook Lopez",
+   "out_prior_adj": 36,
+   "out_max": 20,
+   "in_prior_adj": null,
+   "in_max": 6
+  }
+ },
+ {
+  "label": "c2 pivot BN :: Nikola Vučević → Cason Wallace",
+  "a": [
+   "Nikola Jokić",
+   "Derrick White",
+   "Desmond Bane",
+   "Onyeka Okongwu",
+   "Collin Gillespie",
+   "Dyson Daniels",
+   "DeMar DeRozan",
+   "Nikola Vučević",
+   "Immanuel Quickley"
+  ],
+  "b": [
+   "Nikola Jokić",
+   "Derrick White",
+   "Desmond Bane",
+   "Onyeka Okongwu",
+   "Collin Gillespie",
+   "Dyson Daniels",
+   "DeMar DeRozan",
+   "Cason Wallace",
+   "Immanuel Quickley"
+  ],
+  "meta": {
+   "out": "Nikola Vučević",
+   "in": "Cason Wallace",
+   "out_prior_adj": 23,
+   "out_max": 8,
+   "in_prior_adj": null,
+   "in_max": 8
+  }
+ },
+ {
+  "label": "c2 pivot BN :: Nikola Vučević → Royce O'Neale",
+  "a": [
+   "Nikola Jokić",
+   "Derrick White",
+   "Desmond Bane",
+   "Onyeka Okongwu",
+   "Collin Gillespie",
+   "Dyson Daniels",
+   "DeMar DeRozan",
+   "Nikola Vučević",
+   "Immanuel Quickley"
+  ],
+  "b": [
+   "Nikola Jokić",
+   "Derrick White",
+   "Desmond Bane",
+   "Onyeka Okongwu",
+   "Collin Gillespie",
+   "Dyson Daniels",
+   "DeMar DeRozan",
+   "Royce O'Neale",
+   "Immanuel Quickley"
+  ],
+  "meta": {
+   "out": "Nikola Vučević",
+   "in": "Royce O'Neale",
+   "out_prior_adj": 23,
+   "out_max": 8,
+   "in_prior_adj": null,
+   "in_max": 8
+  }
+ },
+ {
+  "label": "c2 pivot BN :: Immanuel Quickley → Cason Wallace",
+  "a": [
+   "Nikola Jokić",
+   "Derrick White",
+   "Desmond Bane",
+   "Onyeka Okongwu",
+   "Collin Gillespie",
+   "Dyson Daniels",
+   "DeMar DeRozan",
+   "Nikola Vučević",
+   "Immanuel Quickley"
+  ],
+  "b": [
+   "Nikola Jokić",
+   "Derrick White",
+   "Desmond Bane",
+   "Onyeka Okongwu",
+   "Collin Gillespie",
+   "Dyson Daniels",
+   "DeMar DeRozan",
+   "Nikola Vučević",
+   "Cason Wallace"
+  ],
+  "meta": {
+   "out": "Immanuel Quickley",
+   "in": "Cason Wallace",
+   "out_prior_adj": 10,
+   "out_max": 5,
+   "in_prior_adj": null,
+   "in_max": 8
+  }
+ },
+ {
+  "label": "c2 pivot BN :: Immanuel Quickley → Royce O'Neale",
+  "a": [
+   "Nikola Jokić",
+   "Derrick White",
+   "Desmond Bane",
+   "Onyeka Okongwu",
+   "Collin Gillespie",
+   "Dyson Daniels",
+   "DeMar DeRozan",
+   "Nikola Vučević",
+   "Immanuel Quickley"
+  ],
+  "b": [
+   "Nikola Jokić",
+   "Derrick White",
+   "Desmond Bane",
+   "Onyeka Okongwu",
+   "Collin Gillespie",
+   "Dyson Daniels",
+   "DeMar DeRozan",
+   "Nikola Vučević",
+   "Royce O'Neale"
+  ],
+  "meta": {
+   "out": "Immanuel Quickley",
+   "in": "Royce O'Neale",
+   "out_prior_adj": 10,
+   "out_max": 5,
+   "in_prior_adj": null,
+   "in_max": 8
+  }
+ },
+ {
+  "label": "c3 pivot UTIL :: Dyson Daniels → Cason Wallace",
+  "a": [
+   "Shai Gilgeous-Alexander",
+   "Alperen Şengün",
+   "Amen Thompson",
+   "Dyson Daniels",
+   "Nikola Vučević",
+   "Nic Claxton",
+   "Jay Huff",
+   "Damian Lillard",
+   "Josh Hart"
+  ],
+  "b": [
+   "Shai Gilgeous-Alexander",
+   "Alperen Şengün",
+   "Amen Thompson",
+   "Cason Wallace",
+   "Nikola Vučević",
+   "Nic Claxton",
+   "Jay Huff",
+   "Damian Lillard",
+   "Josh Hart"
+  ],
+  "meta": {
+   "out": "Dyson Daniels",
+   "in": "Cason Wallace",
+   "out_prior_adj": 36,
+   "out_max": 20,
+   "in_prior_adj": null,
+   "in_max": 8
+  }
+ },
+ {
+  "label": "c3 pivot C :: Nikola Vučević → Jalen Duren",
+  "a": [
+   "Shai Gilgeous-Alexander",
+   "Alperen Şengün",
+   "Amen Thompson",
+   "Dyson Daniels",
+   "Nikola Vučević",
+   "Nic Claxton",
+   "Jay Huff",
+   "Damian Lillard",
+   "Josh Hart"
+  ],
+  "b": [
+   "Shai Gilgeous-Alexander",
+   "Alperen Şengün",
+   "Amen Thompson",
+   "Dyson Daniels",
+   "Jalen Duren",
+   "Nic Claxton",
+   "Jay Huff",
+   "Damian Lillard",
+   "Josh Hart"
+  ],
+  "meta": {
+   "out": "Nikola Vučević",
+   "in": "Jalen Duren",
+   "out_prior_adj": 23,
+   "out_max": 8,
+   "in_prior_adj": 11,
+   "in_max": 52
+  }
+ },
+ {
+  "label": "c3 pivot C :: Nikola Vučević → Rudy Gobert",
+  "a": [
+   "Shai Gilgeous-Alexander",
+   "Alperen Şengün",
+   "Amen Thompson",
+   "Dyson Daniels",
+   "Nikola Vučević",
+   "Nic Claxton",
+   "Jay Huff",
+   "Damian Lillard",
+   "Josh Hart"
+  ],
+  "b": [
+   "Shai Gilgeous-Alexander",
+   "Alperen Şengün",
+   "Amen Thompson",
+   "Dyson Daniels",
+   "Rudy Gobert",
+   "Nic Claxton",
+   "Jay Huff",
+   "Damian Lillard",
+   "Josh Hart"
+  ],
+  "meta": {
+   "out": "Nikola Vučević",
+   "in": "Rudy Gobert",
+   "out_prior_adj": 23,
+   "out_max": 8,
+   "in_prior_adj": 9,
+   "in_max": 30
+  }
+ },
+ {
+  "label": "c3 pivot SF :: Josh Hart → DeMar DeRozan",
+  "a": [
+   "Shai Gilgeous-Alexander",
+   "Alperen Şengün",
+   "Amen Thompson",
+   "Dyson Daniels",
+   "Nikola Vučević",
+   "Nic Claxton",
+   "Jay Huff",
+   "Damian Lillard",
+   "Josh Hart"
+  ],
+  "b": [
+   "Shai Gilgeous-Alexander",
+   "Alperen Şengün",
+   "Amen Thompson",
+   "Dyson Daniels",
+   "Nikola Vučević",
+   "Nic Claxton",
+   "Jay Huff",
+   "Damian Lillard",
+   "DeMar DeRozan"
+  ],
+  "meta": {
+   "out": "Josh Hart",
+   "in": "DeMar DeRozan",
+   "out_prior_adj": 26,
+   "out_max": 9,
+   "in_prior_adj": 10,
+   "in_max": 16
+  }
+ },
+ {
+  "label": "c4 pivot UTIL :: Dyson Daniels → Cason Wallace",
+  "a": [
+   "Jalen Duren",
+   "Alperen Şengün",
+   "Amen Thompson",
+   "Walker Kessler",
+   "Kon Knueppel",
+   "Dyson Daniels",
+   "Desmond Bane",
+   "Julius Randle",
+   "Trae Young"
+  ],
+  "b": [
+   "Jalen Duren",
+   "Alperen Şengün",
+   "Amen Thompson",
+   "Walker Kessler",
+   "Kon Knueppel",
+   "Cason Wallace",
+   "Desmond Bane",
+   "Julius Randle",
+   "Trae Young"
+  ],
+  "meta": {
+   "out": "Dyson Daniels",
+   "in": "Cason Wallace",
+   "out_prior_adj": 36,
+   "out_max": 20,
+   "in_prior_adj": null,
+   "in_max": 8
+  }
+ },
+ {
+  "label": "c4 pivot PG :: Trae Young → Dennis Schröder",
+  "a": [
+   "Jalen Duren",
+   "Alperen Şengün",
+   "Amen Thompson",
+   "Walker Kessler",
+   "Kon Knueppel",
+   "Dyson Daniels",
+   "Desmond Bane",
+   "Julius Randle",
+   "Trae Young"
+  ],
+  "b": [
+   "Jalen Duren",
+   "Alperen Şengün",
+   "Amen Thompson",
+   "Walker Kessler",
+   "Kon Knueppel",
+   "Dyson Daniels",
+   "Desmond Bane",
+   "Julius Randle",
+   "Dennis Schröder"
+  ],
+  "meta": {
+   "out": "Trae Young",
+   "in": "Dennis Schröder",
+   "out_prior_adj": 62,
+   "out_max": 30,
+   "in_prior_adj": null,
+   "in_max": 12
+  }
+ },
+ {
+  "label": "c6 pivot C :: Karl-Anthony Towns → Jalen Duren",
+  "a": [
+   "Karl-Anthony Towns",
+   "Alperen Şengün",
+   "Amen Thompson",
+   "VJ Edgecombe",
+   "Dyson Daniels",
+   "Desmond Bane",
+   "DeMar DeRozan",
+   "Onyeka Okongwu",
+   "Derrick White"
+  ],
+  "b": [
+   "Jalen Duren",
+   "Alperen Şengün",
+   "Amen Thompson",
+   "VJ Edgecombe",
+   "Dyson Daniels",
+   "Desmond Bane",
+   "DeMar DeRozan",
+   "Onyeka Okongwu",
+   "Derrick White"
+  ],
+  "meta": {
+   "out": "Karl-Anthony Towns",
+   "in": "Jalen Duren",
+   "out_prior_adj": 73,
+   "out_max": 71,
+   "in_prior_adj": 11,
+   "in_max": 52
+  }
+ },
+ {
+  "label": "c6 pivot UTIL :: Dyson Daniels → Cason Wallace",
+  "a": [
+   "Karl-Anthony Towns",
+   "Alperen Şengün",
+   "Amen Thompson",
+   "VJ Edgecombe",
+   "Dyson Daniels",
+   "Desmond Bane",
+   "DeMar DeRozan",
+   "Onyeka Okongwu",
+   "Derrick White"
+  ],
+  "b": [
+   "Karl-Anthony Towns",
+   "Alperen Şengün",
+   "Amen Thompson",
+   "VJ Edgecombe",
+   "Cason Wallace",
+   "Desmond Bane",
+   "DeMar DeRozan",
+   "Onyeka Okongwu",
+   "Derrick White"
+  ],
+  "meta": {
+   "out": "Dyson Daniels",
+   "in": "Cason Wallace",
+   "out_prior_adj": 36,
+   "out_max": 20,
+   "in_prior_adj": null,
+   "in_max": 8
+  }
+ },
+ {
+  "label": "c7 pivot C :: Karl-Anthony Towns → Jalen Duren",
+  "a": [
+   "Karl-Anthony Towns",
+   "Alperen Şengün",
+   "Kon Knueppel",
+   "Dyson Daniels",
+   "Derrick White",
+   "Evan Mobley",
+   "Nikola Vučević",
+   "Josh Hart",
+   "DeMar DeRozan"
+  ],
+  "b": [
+   "Jalen Duren",
+   "Alperen Şengün",
+   "Kon Knueppel",
+   "Dyson Daniels",
+   "Derrick White",
+   "Evan Mobley",
+   "Nikola Vučević",
+   "Josh Hart",
+   "DeMar DeRozan"
+  ],
+  "meta": {
+   "out": "Karl-Anthony Towns",
+   "in": "Jalen Duren",
+   "out_prior_adj": 73,
+   "out_max": 71,
+   "in_prior_adj": 11,
+   "in_max": 52
+  }
+ },
+ {
+  "label": "c7 pivot PF :: Alperen Şengün → Pascal Siakam",
+  "a": [
+   "Karl-Anthony Towns",
+   "Alperen Şengün",
+   "Kon Knueppel",
+   "Dyson Daniels",
+   "Derrick White",
+   "Evan Mobley",
+   "Nikola Vučević",
+   "Josh Hart",
+   "DeMar DeRozan"
+  ],
+  "b": [
+   "Karl-Anthony Towns",
+   "Pascal Siakam",
+   "Kon Knueppel",
+   "Dyson Daniels",
+   "Derrick White",
+   "Evan Mobley",
+   "Nikola Vučević",
+   "Josh Hart",
+   "DeMar DeRozan"
+  ],
+  "meta": {
+   "out": "Alperen Şengün",
+   "in": "Pascal Siakam",
+   "out_prior_adj": 67,
+   "out_max": 52,
+   "in_prior_adj": 26,
+   "in_max": 26
+  }
+ },
+ {
+  "label": "c7 pivot SG :: Dyson Daniels → Cason Wallace",
+  "a": [
+   "Karl-Anthony Towns",
+   "Alperen Şengün",
+   "Kon Knueppel",
+   "Dyson Daniels",
+   "Derrick White",
+   "Evan Mobley",
+   "Nikola Vučević",
+   "Josh Hart",
+   "DeMar DeRozan"
+  ],
+  "b": [
+   "Karl-Anthony Towns",
+   "Alperen Şengün",
+   "Kon Knueppel",
+   "Cason Wallace",
+   "Derrick White",
+   "Evan Mobley",
+   "Nikola Vučević",
+   "Josh Hart",
+   "DeMar DeRozan"
+  ],
+  "meta": {
+   "out": "Dyson Daniels",
+   "in": "Cason Wallace",
+   "out_prior_adj": 36,
+   "out_max": 20,
+   "in_prior_adj": null,
+   "in_max": 8
+  }
+ },
+ {
+  "label": "c7 pivot UTIL :: Evan Mobley → Mitchell Robinson",
+  "a": [
+   "Karl-Anthony Towns",
+   "Alperen Şengün",
+   "Kon Knueppel",
+   "Dyson Daniels",
+   "Derrick White",
+   "Evan Mobley",
+   "Nikola Vučević",
+   "Josh Hart",
+   "DeMar DeRozan"
+  ],
+  "b": [
+   "Karl-Anthony Towns",
+   "Alperen Şengün",
+   "Kon Knueppel",
+   "Dyson Daniels",
+   "Derrick White",
+   "Mitchell Robinson",
+   "Nikola Vučević",
+   "Josh Hart",
+   "DeMar DeRozan"
+  ],
+  "meta": {
+   "out": "Evan Mobley",
+   "in": "Mitchell Robinson",
+   "out_prior_adj": 48,
+   "out_max": 36,
+   "in_prior_adj": null,
+   "in_max": 12
+  }
+ },
+ {
+  "label": "c7 pivot UTIL :: Evan Mobley → Deandre Ayton",
+  "a": [
+   "Karl-Anthony Towns",
+   "Alperen Şengün",
+   "Kon Knueppel",
+   "Dyson Daniels",
+   "Derrick White",
+   "Evan Mobley",
+   "Nikola Vučević",
+   "Josh Hart",
+   "DeMar DeRozan"
+  ],
+  "b": [
+   "Karl-Anthony Towns",
+   "Alperen Şengün",
+   "Kon Knueppel",
+   "Dyson Daniels",
+   "Derrick White",
+   "Deandre Ayton",
+   "Nikola Vučević",
+   "Josh Hart",
+   "DeMar DeRozan"
+  ],
+  "meta": {
+   "out": "Evan Mobley",
+   "in": "Deandre Ayton",
+   "out_prior_adj": 48,
+   "out_max": 36,
+   "in_prior_adj": 6,
+   "in_max": 18
+  }
+ },
+ {
+  "label": "c7 pivot UTIL :: Nikola Vučević → Mitchell Robinson",
+  "a": [
+   "Karl-Anthony Towns",
+   "Alperen Şengün",
+   "Kon Knueppel",
+   "Dyson Daniels",
+   "Derrick White",
+   "Evan Mobley",
+   "Nikola Vučević",
+   "Josh Hart",
+   "DeMar DeRozan"
+  ],
+  "b": [
+   "Karl-Anthony Towns",
+   "Alperen Şengün",
+   "Kon Knueppel",
+   "Dyson Daniels",
+   "Derrick White",
+   "Evan Mobley",
+   "Mitchell Robinson",
+   "Josh Hart",
+   "DeMar DeRozan"
+  ],
+  "meta": {
+   "out": "Nikola Vučević",
+   "in": "Mitchell Robinson",
+   "out_prior_adj": 23,
+   "out_max": 8,
+   "in_prior_adj": null,
+   "in_max": 12
+  }
+ },
+ {
+  "label": "c7 pivot BN :: Josh Hart → Kel'el Ware",
+  "a": [
+   "Karl-Anthony Towns",
+   "Alperen Şengün",
+   "Kon Knueppel",
+   "Dyson Daniels",
+   "Derrick White",
+   "Evan Mobley",
+   "Nikola Vučević",
+   "Josh Hart",
+   "DeMar DeRozan"
+  ],
+  "b": [
+   "Karl-Anthony Towns",
+   "Alperen Şengün",
+   "Kon Knueppel",
+   "Dyson Daniels",
+   "Derrick White",
+   "Evan Mobley",
+   "Nikola Vučević",
+   "Kel'el Ware",
+   "DeMar DeRozan"
+  ],
+  "meta": {
+   "out": "Josh Hart",
+   "in": "Kel'el Ware",
+   "out_prior_adj": 26,
+   "out_max": 9,
+   "in_prior_adj": 4,
+   "in_max": 4
+  }
+ },
+ {
+  "label": "c1 base C(앵커) :: Karl-Anthony Towns → Jalen Duren",
+  "a": [
+   "Karl-Anthony Towns",
+   "Tyrese Haliburton",
+   "Alperen Şengün",
+   "Kon Knueppel",
+   "Dyson Daniels",
+   "Donovan Clingan",
+   "Rudy Gobert",
+   "VJ Edgecombe",
+   "Moussa Diabaté"
+  ],
+  "b": [
+   "Jalen Duren",
+   "Tyrese Haliburton",
+   "Alperen Şengün",
+   "Kon Knueppel",
+   "Dyson Daniels",
+   "Donovan Clingan",
+   "Rudy Gobert",
+   "VJ Edgecombe",
+   "Moussa Diabaté"
+  ],
+  "meta": {
+   "out": "Karl-Anthony Towns",
+   "in": "Jalen Duren",
+   "out_prior_adj": 73,
+   "out_max": 71,
+   "in_prior_adj": 11,
+   "in_max": 52
+  }
+ },
+ {
+  "label": "c1 base C(앵커) :: Karl-Anthony Towns → Jalen Duren",
+  "a": [
+   "Karl-Anthony Towns",
+   "Tyrese Haliburton",
+   "Alperen Şengün",
+   "Kon Knueppel",
+   "Dyson Daniels",
+   "Donovan Clingan",
+   "Rudy Gobert",
+   "VJ Edgecombe",
+   "Moussa Diabaté"
+  ],
+  "b": [
+   "Jalen Duren",
+   "Tyrese Haliburton",
+   "Alperen Şengün",
+   "Kon Knueppel",
+   "Dyson Daniels",
+   "Donovan Clingan",
+   "Rudy Gobert",
+   "VJ Edgecombe",
+   "Moussa Diabaté"
+  ],
+  "meta": {
+   "out": "Karl-Anthony Towns",
+   "in": "Jalen Duren",
+   "out_prior_adj": 73,
+   "out_max": 71,
+   "in_prior_adj": 11,
+   "in_max": 52
+  }
+ },
+ {
+  "label": "c6 base C(앵커) :: Karl-Anthony Towns → Jalen Duren",
+  "a": [
+   "Karl-Anthony Towns",
+   "Alperen Şengün",
+   "Amen Thompson",
+   "VJ Edgecombe",
+   "Dyson Daniels",
+   "Desmond Bane",
+   "DeMar DeRozan",
+   "Rudy Gobert",
+   "Derrick White"
+  ],
+  "b": [
+   "Jalen Duren",
+   "Alperen Şengün",
+   "Amen Thompson",
+   "VJ Edgecombe",
+   "Dyson Daniels",
+   "Desmond Bane",
+   "DeMar DeRozan",
+   "Rudy Gobert",
+   "Derrick White"
+  ],
+  "meta": {
+   "out": "Karl-Anthony Towns",
+   "in": "Jalen Duren",
+   "out_prior_adj": 73,
+   "out_max": 71,
+   "in_prior_adj": 11,
+   "in_max": 52
+  }
+ },
+ {
+  "label": "c6 base C(앵커) :: Karl-Anthony Towns → Jalen Duren",
+  "a": [
+   "Karl-Anthony Towns",
+   "Alperen Şengün",
+   "Amen Thompson",
+   "VJ Edgecombe",
+   "Dyson Daniels",
+   "Desmond Bane",
+   "DeMar DeRozan",
+   "Rudy Gobert",
+   "Derrick White"
+  ],
+  "b": [
+   "Jalen Duren",
+   "Alperen Şengün",
+   "Amen Thompson",
+   "VJ Edgecombe",
+   "Dyson Daniels",
+   "Desmond Bane",
+   "DeMar DeRozan",
+   "Rudy Gobert",
+   "Derrick White"
+  ],
+  "meta": {
+   "out": "Karl-Anthony Towns",
+   "in": "Jalen Duren",
+   "out_prior_adj": 73,
+   "out_max": 71,
+   "in_prior_adj": 11,
+   "in_max": 52
+  }
+ },
+ {
+  "label": "c7 base C(앵커) :: Karl-Anthony Towns → Jalen Duren",
+  "a": [
+   "Karl-Anthony Towns",
+   "Alperen Şengün",
+   "Kon Knueppel",
+   "Dyson Daniels",
+   "Derrick White",
+   "Evan Mobley",
+   "Rudy Gobert",
+   "Josh Hart",
+   "Onyeka Okongwu"
+  ],
+  "b": [
+   "Jalen Duren",
+   "Alperen Şengün",
+   "Kon Knueppel",
+   "Dyson Daniels",
+   "Derrick White",
+   "Evan Mobley",
+   "Rudy Gobert",
+   "Josh Hart",
+   "Onyeka Okongwu"
+  ],
+  "meta": {
+   "out": "Karl-Anthony Towns",
+   "in": "Jalen Duren",
+   "out_prior_adj": 73,
+   "out_max": 71,
+   "in_prior_adj": 11,
+   "in_max": 52
+  }
+ },
+ {
+  "label": "c7 base C(앵커) :: Karl-Anthony Towns → Jalen Duren",
+  "a": [
+   "Karl-Anthony Towns",
+   "Alperen Şengün",
+   "Kon Knueppel",
+   "Dyson Daniels",
+   "Derrick White",
+   "Evan Mobley",
+   "Rudy Gobert",
+   "Josh Hart",
+   "Onyeka Okongwu"
+  ],
+  "b": [
+   "Jalen Duren",
+   "Alperen Şengün",
+   "Kon Knueppel",
+   "Dyson Daniels",
+   "Derrick White",
+   "Evan Mobley",
+   "Rudy Gobert",
+   "Josh Hart",
+   "Onyeka Okongwu"
+  ],
+  "meta": {
+   "out": "Karl-Anthony Towns",
+   "in": "Jalen Duren",
+   "out_prior_adj": 73,
+   "out_max": 71,
+   "in_prior_adj": 11,
+   "in_max": 52
+  }
+ }
+]
