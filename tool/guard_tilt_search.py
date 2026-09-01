@@ -28,6 +28,7 @@ import cat_model as CM
 import matchup_sim as MS
 import real_opponents as RO
 import pos_elig as PE
+import search_pool as SP
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SEED, ITERS, PRE_ITERS = 20261020, 4000, 800
@@ -83,12 +84,9 @@ def main():
     #   그 둘로는 $180~196 구간을 만들 수 없어 **제약 통과 조합이 0개**였다.
     #   이 저장소가 40차에만 네 번 밟은 형태다(1차 FG% · guard_stack · 3차 $24 · 여기).
     #   → **절대 점수 상위**와 **달러당 상위**를 섞고, 빅에 중가 구간을 강제로 넣는다.
-    def mix(rows, k):
-        a = sorted(rows, key=lambda x: -x[2])[:k]
-        b = sorted(rows, key=lambda x: -x[2] / max(1, x[1]))[:k]
-        return list(dict.fromkeys([x[0] for x in a] + [x[0] for x in b]))
-    G = mix(gw, 11)
-    Bg = mix(bigs, 7)
+    #   → `tool/search_pool.mix_axes()` 가 그것을 **강제**한다(안 섞이면 assert 로 죽는다).
+    G = SP.mix_axes(gw, 11, label="가드/윙")
+    Bg = SP.mix_axes(bigs, 7, label="빅")
     mid = [x[0] for x in sorted(bigs, key=lambda x: -x[2]) if 8 <= x[1] <= 30][:6]
     Bg = list(dict.fromkeys(Bg + mid))
     print("가드/윙 %d · 빅(REB·FG%% 유지용) %d" % (len(G), len(Bg)))
