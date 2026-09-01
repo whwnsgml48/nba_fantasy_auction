@@ -287,8 +287,12 @@ def run_weekly(iters, seed, max_ls=1):
         key = frozenset(x["n"] for x in r[1])
         if key in seen: continue
         seen.add(key); cands.append(r[1])
-    print("가중 벡터 %d개 → 서로 다른 로스터 **%d개** (제약: 빅지출≤$40 · 총액 $190~196 "
-          "· C정확히1 · 빅≤3 · 가정≤1)" % (len(Ws), len(cands)))
+    # 🔴 제약 문구를 손으로 적어 두면 max_ls 를 바꿨을 때 **화면만 낡는다**
+    #    (이 저장소의 상습 실패형 · docs/11 ⑥). 실제 값에서 만든다.
+    print("가중 벡터 %d개 → 서로 다른 로스터 **%d개** (제약: 빅지출≤$%d · 총액 $%d~%d "
+          "· C정확히1 · 빅≤3 · 가정 노출 ≤%d명)"
+          % (len(Ws), len(cands), SIX["big2"]//2, SIX["min2"]//2, SIX["tot2"]//2,
+             SIX["max_ls"]))
     t1 = sorted(((sim([x["n"] for x in s], 400)["weekly"], s) for s in cands),
                 key=lambda t: -t[0])
     print("1차(400시행) 상위: " + " · ".join("%.1f%%" % (100*w) for w, _ in t1[:8]))
