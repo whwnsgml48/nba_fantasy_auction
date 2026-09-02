@@ -200,7 +200,25 @@ def main():
         print("\n  ⚠️ 중복 %d쌍 제거 (같은 label·a·b) — 생성 경로가 겹쳤다는 뜻이다" % dups)
     pairs = dedup
 
+    # 🔴 **파일 모양을 바꾸지 않는다.** `pivot_delta.py pair` 가 최상위를 리스트로 순회한다
+    #   (`for r in rows: r["a"]`). dict 로 감싸면 **남의 도구가 죽는다.**
+    #   한 번 그렇게 만들었다가 되돌렸다 — 소비자를 확인하고 나서 형식을 바꾼다.
+    #   스탬프는 **곁파일**에 둔다. 소비자는 안 보고, 필요한 사람은 찾을 수 있다.
     json.dump(pairs, io.open(OUT, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    import roster_hash as _RH
+    json.dump({"for": os.path.relpath(OUT, BASE),
+               "roster_hash": _RH.roster_hash(), "file_hash": _RH.file_hash(),
+               "pairs": len(pairs),
+               "note": "🔴 재측정 필요 여부는 **roster_hash** 로 판정한다. file_hash 는 "
+                       "근거 문구만 바뀌어도 달라지므로 쓰지 말 것 (tool/roster_hash.py)."},
+              io.open(OUT.replace(".json", ".stamp.json"), "w", encoding="utf-8"),
+              ensure_ascii=False, indent=1)
+    # 🔴 스탬프를 붙인다 — 이 쌍들이 **어느 계획 상태에서 만들어졌는지**.
+    #   05 가 재측정 필요를 파일 해시로 판정하다 헛돌았다(주석만 바뀌어도 달라진다).
+    #   **로스터 해시**를 같이 찍으면 「계획이 바뀌었나」를 그 자리에서 알 수 있다.
+    import roster_hash as RH
+    print("\n" + RH.stamp())
+
     print("\n  %s 기록 (%d쌍)" % (os.path.relpath(OUT, BASE), len(pairs)))
     print("  → python3 tool/pivot_delta.py pair data/delta_pairs.json [iters]")
     print("\n⚠️ 승률은 재지 않았다 — 05 가 잰다. 순서 정규화도 pivot_delta.canon() 이 한다.")

@@ -264,39 +264,6 @@
   }
  },
  {
-  "label": "c2 pivot BN :: Immanuel Quickley → Cason Wallace",
-  "a": [
-   "Nikola Jokić",
-   "Derrick White",
-   "Desmond Bane",
-   "Onyeka Okongwu",
-   "Collin Gillespie",
-   "Dyson Daniels",
-   "DeMar DeRozan",
-   "Nikola Vučević",
-   "Immanuel Quickley"
-  ],
-  "b": [
-   "Nikola Jokić",
-   "Derrick White",
-   "Desmond Bane",
-   "Onyeka Okongwu",
-   "Collin Gillespie",
-   "Dyson Daniels",
-   "DeMar DeRozan",
-   "Nikola Vučević",
-   "Cason Wallace"
-  ],
-  "meta": {
-   "out": "Immanuel Quickley",
-   "in": "Cason Wallace",
-   "out_prior_adj": 10,
-   "out_max": 5,
-   "in_prior_adj": null,
-   "in_max": 8
-  }
- },
- {
   "label": "c2 pivot BN :: Immanuel Quickley → Royce O'Neale",
   "a": [
    "Nikola Jokić",
@@ -323,6 +290,39 @@
   "meta": {
    "out": "Immanuel Quickley",
    "in": "Royce O'Neale",
+   "out_prior_adj": 10,
+   "out_max": 5,
+   "in_prior_adj": null,
+   "in_max": 8
+  }
+ },
+ {
+  "label": "c2 pivot BN :: Immanuel Quickley → Cason Wallace",
+  "a": [
+   "Nikola Jokić",
+   "Derrick White",
+   "Desmond Bane",
+   "Onyeka Okongwu",
+   "Collin Gillespie",
+   "Dyson Daniels",
+   "DeMar DeRozan",
+   "Nikola Vučević",
+   "Immanuel Quickley"
+  ],
+  "b": [
+   "Nikola Jokić",
+   "Derrick White",
+   "Desmond Bane",
+   "Onyeka Okongwu",
+   "Collin Gillespie",
+   "Dyson Daniels",
+   "DeMar DeRozan",
+   "Nikola Vučević",
+   "Cason Wallace"
+  ],
+  "meta": {
+   "out": "Immanuel Quickley",
+   "in": "Cason Wallace",
    "out_prior_adj": 10,
    "out_max": 5,
    "in_prior_adj": null,

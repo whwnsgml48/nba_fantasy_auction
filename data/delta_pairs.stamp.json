@@ -1,0 +1,7 @@
+{
+ "for": "data/delta_pairs.json",
+ "roster_hash": "871bd03476a9",
+ "file_hash": "2fe6c9c4d042",
+ "pairs": 28,
+ "note": "🔴 재측정 필요 여부는 **roster_hash** 로 판정한다. file_hash 는 근거 문구만 바뀌어도 달라지므로 쓰지 말 것 (tool/roster_hash.py)."
+}
