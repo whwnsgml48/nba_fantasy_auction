@@ -99,10 +99,32 @@ def provenance(pairfile, iters, seed=20261020):
     def h(path):
         return hashlib.sha256(io.open(path, "rb").read()).hexdigest()[:12]
     return ("── 측정 출처 ──\n"
-            "  cores.json  %s      쌍파일 %s  %s\n"
-            "  시행 %d · 시드 %d · 이름 정렬 정규화 ON\n"
-            "  ⚠️ **이 표는 위 cores.json 상태에서만 유효하다.** 로스터가 바뀌면 해시가 달라진다."
-            % (h(f"{BASE}/data/cores.json"), pairfile, h(pairfile), iters, seed))
+            "  로스터 %s   ← **이게 바뀌면 재측정해야 한다**\n"
+            "  cores.json %s · 쌍파일 %s %s   ← 주석만 바뀌어도 달라진다\n"
+            "  시행 %d · 시드 %d · 이름 정렬 정규화 ON"
+            % (roster_digest(), h(f"{BASE}/data/cores.json"), pairfile, h(pairfile),
+               iters, seed))
+
+
+def roster_digest():
+    """🔴 **로스터만의 해시.** 파일 해시와 갈라 둔다 (9b 제안 · 40차).
+
+    1차 구현은 `cores.json` 파일 해시만 찍었다. 그런데 그 파일에는 주석·근거 필드가 계속
+    붙는다 — 실제로 9b 가 승격 근거 문구를 달자 **로스터는 그대로인데 해시가 달라졌고**,
+    스탬프가 「재측정 필요」처럼 읽혔다. 파일 해시는 「파일이 바뀌었다」를 잡지
+    「로스터가 바뀌었다」를 잡지 않는다.
+
+    측정에 실제로 들어가는 것은 **이름 아홉 개씩**뿐이다. 그것만 정규화해 해시한다 —
+    이게 바뀌었을 때만 재측정이 필요하다.
+    """
+    import hashlib
+    cj = json.load(io.open(f"{BASE}/data/cores.json", encoding="utf-8"))
+    parts = []
+    for co in sorted(cj["cores"], key=lambda c: c["id"]):
+        base = sorted(s["candidates"][0]["name"] for s in co["slots"])
+        piv = sorted(x["name"] for x in (co.get("pivot_plan") or {}).get("final_roster", []))
+        parts.append("%s|%s|%s" % (co["id"], ",".join(base), ",".join(piv)))
+    return hashlib.sha256("\n".join(parts).encode("utf-8")).hexdigest()[:12]
 
 
 def band(verbose=True):
