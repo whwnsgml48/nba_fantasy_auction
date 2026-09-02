@@ -106,25 +106,14 @@ def provenance(pairfile, iters, seed=20261020):
                iters, seed))
 
 
-def roster_digest():
-    """🔴 **로스터만의 해시.** 파일 해시와 갈라 둔다 (9b 제안 · 40차).
-
-    1차 구현은 `cores.json` 파일 해시만 찍었다. 그런데 그 파일에는 주석·근거 필드가 계속
-    붙는다 — 실제로 9b 가 승격 근거 문구를 달자 **로스터는 그대로인데 해시가 달라졌고**,
-    스탬프가 「재측정 필요」처럼 읽혔다. 파일 해시는 「파일이 바뀌었다」를 잡지
-    「로스터가 바뀌었다」를 잡지 않는다.
-
-    측정에 실제로 들어가는 것은 **이름 아홉 개씩**뿐이다. 그것만 정규화해 해시한다 —
-    이게 바뀌었을 때만 재측정이 필요하다.
-    """
-    import hashlib
-    cj = json.load(io.open(f"{BASE}/data/cores.json", encoding="utf-8"))
-    parts = []
-    for co in sorted(cj["cores"], key=lambda c: c["id"]):
-        base = sorted(s["candidates"][0]["name"] for s in co["slots"])
-        piv = sorted(x["name"] for x in (co.get("pivot_plan") or {}).get("final_roster", []))
-        parts.append("%s|%s|%s" % (co["id"], ",".join(base), ",".join(piv)))
-    return hashlib.sha256("\n".join(parts).encode("utf-8")).hexdigest()[:12]
+# 🔴 로스터 해시는 **`tool/roster_hash.py` 하나만 쓴다** (2026-09-02).
+#    내가 여기 `roster_digest()` 를 따로 갖고 있었다. 9b 가 같은 목적으로
+#    `roster_hash.py` 를 만들었고 **둘이 다른 값을 냈다**(97c3643207a9 vs 871bd03476a9) —
+#    같은 이름의 두 해시는 하나보다 나쁘다(docs/11 ④).
+#    그리고 **9b 것이 맞다**: 내 것은 이름 집합만 해싱해서 **대체 순서 변경(=승격)과
+#    계획가 변경을 못 잡았다.** 승격이 나면 쌍의 b 쪽이 바뀌는데 내 해시는 「재측정 불필요」
+#    라고 말했을 것이다. 내 구현을 지우고 그쪽을 import 한다.
+from roster_hash import roster_hash as roster_digest
 
 
 def band(verbose=True):
