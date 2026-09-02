@@ -37,8 +37,10 @@
  "auction_rules": {
   "min_bid": 1,
   "auto_close_seconds": 10,
-  "nominator": "직전 낙찰자",
-  "ends_when": "전원 9명 낙찰"
+  "nominator": "순번 로테이션",
+  "ends_when": "전원 9명 낙찰",
+  "nominator_changed": "2026-09-01 — 종전 '직전 낙찰자'. 사용자 확인",
+  "nominator_note": "순서는 드래프트 당일 추첨. 로스터 9명을 채운 팀은 로테이션에서 빠짐(2026-09-02 확인). 스네이크 여부는 리그 미결"
  },
  "max_bid_formula": "남은 예산 - (남은 슬롯 - 1)",
  "players_drafted_leaguewide": 126
