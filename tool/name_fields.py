@@ -53,6 +53,10 @@ CLASS = {
     "decision_table[].cond.players[]": ("COND", "판단표 조건이 보는 이름"),
     "decision_table[].threshold_history[].player": ("COND", "트리거 임계 변경 이력"),
     "overheat_thresholds[].player": ("COND", "과열 판정 임계 — 남의 가격을 본다"),
+    "overheat_thresholds[].anchor_loss_40c.sub":
+        ("RECORD", "앵커를 대체로 바꿀 때의 **측정 결과**다. 그 이름을 사겠다는 계획이 "
+                   "아니라 「이만큼 잃는다」의 근거로 적은 것이라 조달 검사 대상이 아니다 "
+                   "— 실제 조달은 그 대체가 실린 slots[].candidates 에서 검사된다"),
     "cores[].pivot_plan.triggers[].player": ("COND", "피벗 발동 트리거 — 남의 가격"),
     "kat_price_branch.player": ("COND", "KAT 가격 분기 트리거"),
 

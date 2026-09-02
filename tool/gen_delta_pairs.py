@@ -113,11 +113,16 @@ def main():
             #   "switch_core" 면 코어 id("c6")가 들어온다. 이름으로 가정하면 KeyError 다.
             #   (이 자리가 `name_fields` 에서 BUY 로 분류됐지만, BUY 인 것은
             #    action=="substitute" 인 경우뿐이다.)
+            #   🔴 `on_fail.target` 은 대개 `substitutes_dual_ok` 에도 들어 있다 —
+            #      두 경로에서 같은 이름을 넣으면 **완전히 동일한 쌍이 두 번** 나온다.
+            #      실제로 3건 났고(05 가 값이 소수점까지 같아서 발견) 「31쌍」이 거짓이 됐다.
+            #      순서는 유지한 채 중복만 제거한다(on_fail 우선).
             names = []
             of = ap.get("on_fail") or {}
             if of.get("action") == "substitute" and of.get("target") in pl:
                 names.append(of["target"])
             names += [x for x in (ap.get("substitutes_dual_ok") or []) if x in pl]
+            names = list(dict.fromkeys(names))
             if not names:
                 continue
             if buyable(base[i]):
@@ -180,6 +185,20 @@ def main():
         for cid, slot, cd, n, a, mx in redeploy_dead:
             print("       %-4s %-5s %s 치환 시 → **%s** (환산 $%d > 상한 $%d)"
                   % (cid, slot, cd, n, a, mx))
+
+    # 🔴 최종 안전망 — 위 수정으로 충분하지만, **중복은 조용히 지나간다.**
+    #   05 가 값이 소수점까지 같아서 눈치챘을 뿐 다음엔 못 본다. 여기서 세고 죽인다.
+    seen_k, dedup, dups = set(), [], 0
+    for x in pairs:
+        k = (x["label"], tuple(x["a"]), tuple(x["b"]))
+        if k in seen_k:
+            dups += 1
+            continue
+        seen_k.add(k)
+        dedup.append(x)
+    if dups:
+        print("\n  ⚠️ 중복 %d쌍 제거 (같은 label·a·b) — 생성 경로가 겹쳤다는 뜻이다" % dups)
+    pairs = dedup
 
     json.dump(pairs, io.open(OUT, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     print("\n  %s 기록 (%d쌍)" % (os.path.relpath(OUT, BASE), len(pairs)))

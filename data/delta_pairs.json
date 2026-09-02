@@ -858,39 +858,6 @@
   }
  },
  {
-  "label": "c1 base C(앵커) :: Karl-Anthony Towns → Jalen Duren",
-  "a": [
-   "Karl-Anthony Towns",
-   "Tyrese Haliburton",
-   "Alperen Şengün",
-   "Kon Knueppel",
-   "Dyson Daniels",
-   "Donovan Clingan",
-   "Rudy Gobert",
-   "VJ Edgecombe",
-   "Moussa Diabaté"
-  ],
-  "b": [
-   "Jalen Duren",
-   "Tyrese Haliburton",
-   "Alperen Şengün",
-   "Kon Knueppel",
-   "Dyson Daniels",
-   "Donovan Clingan",
-   "Rudy Gobert",
-   "VJ Edgecombe",
-   "Moussa Diabaté"
-  ],
-  "meta": {
-   "out": "Karl-Anthony Towns",
-   "in": "Jalen Duren",
-   "out_prior_adj": 73,
-   "out_max": 71,
-   "in_prior_adj": 11,
-   "in_max": 52
-  }
- },
- {
   "label": "c6 base C(앵커) :: Karl-Anthony Towns → Jalen Duren",
   "a": [
    "Karl-Anthony Towns",
@@ -913,72 +880,6 @@
    "DeMar DeRozan",
    "Rudy Gobert",
    "Derrick White"
-  ],
-  "meta": {
-   "out": "Karl-Anthony Towns",
-   "in": "Jalen Duren",
-   "out_prior_adj": 73,
-   "out_max": 71,
-   "in_prior_adj": 11,
-   "in_max": 52
-  }
- },
- {
-  "label": "c6 base C(앵커) :: Karl-Anthony Towns → Jalen Duren",
-  "a": [
-   "Karl-Anthony Towns",
-   "Alperen Şengün",
-   "Amen Thompson",
-   "VJ Edgecombe",
-   "Dyson Daniels",
-   "Desmond Bane",
-   "DeMar DeRozan",
-   "Rudy Gobert",
-   "Derrick White"
-  ],
-  "b": [
-   "Jalen Duren",
-   "Alperen Şengün",
-   "Amen Thompson",
-   "VJ Edgecombe",
-   "Dyson Daniels",
-   "Desmond Bane",
-   "DeMar DeRozan",
-   "Rudy Gobert",
-   "Derrick White"
-  ],
-  "meta": {
-   "out": "Karl-Anthony Towns",
-   "in": "Jalen Duren",
-   "out_prior_adj": 73,
-   "out_max": 71,
-   "in_prior_adj": 11,
-   "in_max": 52
-  }
- },
- {
-  "label": "c7 base C(앵커) :: Karl-Anthony Towns → Jalen Duren",
-  "a": [
-   "Karl-Anthony Towns",
-   "Alperen Şengün",
-   "Kon Knueppel",
-   "Dyson Daniels",
-   "Derrick White",
-   "Evan Mobley",
-   "Rudy Gobert",
-   "Josh Hart",
-   "Onyeka Okongwu"
-  ],
-  "b": [
-   "Jalen Duren",
-   "Alperen Şengün",
-   "Kon Knueppel",
-   "Dyson Daniels",
-   "Derrick White",
-   "Evan Mobley",
-   "Rudy Gobert",
-   "Josh Hart",
-   "Onyeka Okongwu"
   ],
   "meta": {
    "out": "Karl-Anthony Towns",
