@@ -105,6 +105,14 @@ for ln in m.group(2).split("\n"):
     new=re.sub(r',injOut:true','',new,count=1)
     if q.get("injury_exclude"):
         new=ins(new, ',injOut:true')
+    # 🔴 2026-09-02: `tag` 를 동기화 대상에 넣는다.
+    #   이게 없어서 **화면 태우기 명단이 손으로 쓴 채 아무도 대조하지 않았다** —
+    #   players.json 10명인데 화면은 13명(LeBron·Curry·Kessler 가 화면에만 있었다).
+    #   지명 규칙이 「차례가 무조건 온다」로 바뀌면서 이 명단의 위험이 올라간 시점이라
+    #   자리가 특히 나빴다. validate 의 P 배열 대조는 mx·mk 만 봤다.
+    new=re.sub(r',tag:"[^"]*"','',new,count=1)
+    if q.get("tag"):
+        new=ins(new, ',tag:"%s"'%q["tag"])
     lf=(q.get("measured_line_full") or {}).get("line")
     if lf:
         esc=lf.replace('\\','\\\\').replace('"','\\"')
