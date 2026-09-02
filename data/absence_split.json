@@ -1,0 +1,130 @@
+{
+ "seed": 20261020,
+ "iterations": 4000,
+ "combos": 180,
+ "topn": 12,
+ "mean_a_cut_effect": 0.01943,
+ "mean_b_intrinsic": 0.01193,
+ "rows": [
+  {
+   "player": "Tyler Herro",
+   "core": "c1",
+   "slot": "BN",
+   "displaces": "Moussa Diabaté",
+   "wr_boost": 0.9178,
+   "wr_now": 0.8981,
+   "a_cut": 0.01969,
+   "b_intrinsic": 0.02767
+  },
+  {
+   "player": "Darius Garland",
+   "core": "c5",
+   "slot": "BN",
+   "displaces": "Deandre Ayton",
+   "wr_boost": 0.894,
+   "wr_now": 0.8744,
+   "a_cut": 0.01959,
+   "b_intrinsic": 0.02566
+  },
+  {
+   "player": "Austin Reaves",
+   "core": "c5",
+   "slot": "BN",
+   "displaces": "Deandre Ayton",
+   "wr_boost": 0.8878,
+   "wr_now": 0.8725,
+   "a_cut": 0.01531,
+   "b_intrinsic": 0.02374
+  },
+  {
+   "player": "Tyler Herro",
+   "core": "c5",
+   "slot": "BN",
+   "displaces": "Deandre Ayton",
+   "wr_boost": 0.8871,
+   "wr_now": 0.8676,
+   "a_cut": 0.01948,
+   "b_intrinsic": 0.01887
+  },
+  {
+   "player": "Darius Garland",
+   "core": "c7",
+   "slot": "UTIL",
+   "displaces": "Rudy Gobert",
+   "wr_boost": 0.8932,
+   "wr_now": 0.8752,
+   "a_cut": 0.018,
+   "b_intrinsic": 0.01143
+  },
+  {
+   "player": "Tyler Herro",
+   "core": "c7",
+   "slot": "UTIL",
+   "displaces": "Rudy Gobert",
+   "wr_boost": 0.8929,
+   "wr_now": 0.8686,
+   "a_cut": 0.02431,
+   "b_intrinsic": 0.00488
+  },
+  {
+   "player": "Darius Garland",
+   "core": "c4",
+   "slot": "BN",
+   "displaces": "Julius Randle",
+   "wr_boost": 0.869,
+   "wr_now": 0.8469,
+   "a_cut": 0.02209,
+   "b_intrinsic": 0.0049
+  },
+  {
+   "player": "Austin Reaves",
+   "core": "c7",
+   "slot": "UTIL",
+   "displaces": "Rudy Gobert",
+   "wr_boost": 0.89,
+   "wr_now": 0.8727,
+   "a_cut": 0.01738,
+   "b_intrinsic": 0.00891
+  },
+  {
+   "player": "Darius Garland",
+   "core": "c7",
+   "slot": "BN",
+   "displaces": "Onyeka Okongwu",
+   "wr_boost": 0.8885,
+   "wr_now": 0.8672,
+   "a_cut": 0.02121,
+   "b_intrinsic": 0.0035
+  },
+  {
+   "player": "Tyler Herro",
+   "core": "c4",
+   "slot": "BN",
+   "displaces": "Julius Randle",
+   "wr_boost": 0.8663,
+   "wr_now": 0.8412,
+   "a_cut": 0.02515,
+   "b_intrinsic": -0.00082
+  },
+  {
+   "player": "Darius Garland",
+   "core": "c7",
+   "slot": "UTIL",
+   "displaces": "Evan Mobley",
+   "wr_boost": 0.8874,
+   "wr_now": 0.8663,
+   "a_cut": 0.02111,
+   "b_intrinsic": 0.00252
+  },
+  {
+   "player": "Austin Reaves",
+   "core": "c4",
+   "slot": "BN",
+   "displaces": "Julius Randle",
+   "wr_boost": 0.8638,
+   "wr_now": 0.8539,
+   "a_cut": 0.00982,
+   "b_intrinsic": 0.01192
+  }
+ ]
+}
