@@ -88,6 +88,23 @@ def procure(name):
             "over_lo":  (mx is not None and lo is not None and lo > mx)}   # 하단에서도 못 산다
 
 
+def provenance(pairfile, iters, seed=20261020):
+    """🔴 결과에 **어느 데이터 상태에서 쟀는지**를 붙인다.
+
+    조율 지시 「지금 표는 반영 전 기준이라고 표시해 두라」를 사람이 손으로 적으면 낡는다.
+    `cores.json`·쌍 파일의 해시를 찍어 두면 **로스터가 바뀐 순간 해시가 달라져** 옛 표를
+    새 데이터에 갖다 붙이는 것이 드러난다. 이 저장소가 반복해 당한 형태의 예방이다.
+    """
+    import hashlib
+    def h(path):
+        return hashlib.sha256(io.open(path, "rb").read()).hexdigest()[:12]
+    return ("── 측정 출처 ──\n"
+            "  cores.json  %s      쌍파일 %s  %s\n"
+            "  시행 %d · 시드 %d · 이름 정렬 정규화 ON\n"
+            "  ⚠️ **이 표는 위 cores.json 상태에서만 유효하다.** 로스터가 바뀌면 해시가 달라진다."
+            % (h(f"{BASE}/data/cores.json"), pairfile, h(pairfile), iters, seed))
+
+
 def band(verbose=True):
     """🔴 조달 「경계」 밴드를 **재서** 정한다. 눈으로 고르지 않는다 (조율 지시 · 40차).
 
@@ -214,6 +231,7 @@ if __name__ == "__main__":
         #    (1차 구현이 이 둘을 반대로 찍었다. 숫자는 같았고 **말이 반대**였다.)
         rows = json.load(io.open(sys.argv[2], encoding="utf-8"))
         it = int(sys.argv[3]) if len(sys.argv) > 3 else 12000
+        print(provenance(sys.argv[2], it))
         print("원안 = 못 사는 이름 유지 · 대체 = 살 수 있는 이름 · 부호는 **대체 − 원안**")
         for r in rows:
             a = measure(r["a"], it); b = measure(r["b"], it)
