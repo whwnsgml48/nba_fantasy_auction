@@ -1535,6 +1535,48 @@ try:
 except Exception as _ex38:
     print("✗ [I38] 이름 필드 전수 검사 실패: %r"%(_ex38,)); err+=1
 
+# ── I42 (42차 · 작업4b): **태우기 ∩ 계획 = 공집합**
+#   🔴 왜 — 42차에 실제 충돌이 있었다. `Myles Turner` 가 `tag=burn` 이면서 동시에
+#      **c2 UTIL 후보2($14) · c2 피벗 대체(2회)** 로 실려 있었다.
+#      태우기는 **남이 사가게 만드는 행위**다. 그 선수가 우리 대체 후보이면
+#      **우리 탈출로를 스스로 닫는다.** 그런데 어떤 검사도 이 둘을 대조하지 않았고
+#      `tag_basis` 가 null 이라 M5 도 안 걸렸다 — **조용히 통과하고 있었다.**
+#   ⚠️ 이 검사는 「누구를 태울까」를 판정하지 않는다. **두 선언이 모순되지 않는지**만 본다.
+try:
+    _plan42 = set()
+    for _co in cj["cores"]:
+        for _s in _co["slots"]:
+            for _cd in _s["candidates"]:
+                _plan42.add(_cd["name"])
+        _pv = _co.get("pivot_plan") or {}
+        for _blk in [_pv] + ([_pv["fallback"]] if _pv.get("fallback") else []):
+            for _r in (_blk.get("final_roster") or []):
+                _plan42.add(_r["name"])
+                for _a in (_r.get("alternates") or []):
+                    if _a.get("name"):
+                        _plan42.add(_a["name"])
+    _burn42 = [_n for _n, _p in pl.items() if _p.get("tag") == "burn"]
+    _clash = sorted(set(_burn42) & _plan42)
+    if _clash:
+        print("✗ [I42] **태우기 명단이 계획과 충돌** %d건 (%s) — 태우기는 남이 사가게 "
+              "만드는 행위다. 그 선수가 우리 후보이면 탈출로를 스스로 닫는다. "
+              "한쪽을 내릴 것"%(len(_clash), ", ".join(_clash))); err += 1
+    else:
+        _obs42 = [(_n, pl[_n]["my_max"] - pl[_n]["room_price"])
+                  for _n in _burn42 if pl[_n].get("room_price") is not None]
+        _noobs = [_n for _n in _burn42 if pl[_n].get("room_price") is None]
+        _weak = [(_n, _d) for _n, _d in _obs42 if _d > -15]
+        print("[I42] 태우기 %d명 · 계획과 충돌 0건 · 관측 있는 %d명 (차 중앙값 %+d)%s"
+              % (len(_burn42), len(_obs42),
+                 sorted(_d for _, _d in _obs42)[len(_obs42)//2] if _obs42 else 0,
+                 (" · 관측 없음 %d명"%len(_noobs)) if _noobs else ""))
+        if _weak:
+            print("      △ [I42] 관측상 약한 태우기 %d건 — 방이 우리 값 근처에 샀다"
+                  "(예산 소모 효과 없음): %s"
+                  % (len(_weak), ", ".join("%s %+d"%(_n, _d) for _n, _d in _weak)))
+except Exception as _ex42:
+    print("✗ [I42] 태우기 ∩ 계획 검사 실패: %r"%(_ex42,)); err += 1
+
 # ── I41 (42차 · 작업5): **방이 낸 값** — 관측이 화면에 정확히 올라갔는가
 #   🔴 왜 — 가치와 가격을 한 모델로 만들고 있었다. `market_low/high` 는 우리 순위에 작년
 #      **곡선**을 얹은 것이라 개별 실낙찰가를 안 쓴다(§6d). 그런데 우리에게 **관측이 92명분**

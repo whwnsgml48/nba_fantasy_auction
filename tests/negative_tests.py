@@ -1021,5 +1021,20 @@ def _(b):
     b.html(lambda s: _r.sub(r',rp:\d+', ',rp:999', s, count=1))
 
 
+# 42차 작업4b — I42 (태우기 ∩ 계획)
+#   🔴 42차에 `Myles Turner` 가 태우기이면서 c2 UTIL 후보2 였다. 어떤 검사도 대조하지
+#      않았고 tag_basis 가 null 이라 M5 도 안 걸렸다 — 조용히 통과하던 모순이다.
+
+@test("I42", "계획 1순위를 태우기 명단에 올린다 (탈출로를 스스로 닫는다)",
+      "태우기 명단이 계획과 충돌")
+def _(b):
+    n = b.first("c6", "PG")
+    for p in b.players:
+        if p["name"] == n:
+            p["tag"] = "burn"
+            return
+    raise AssertionError("c6 PG 1순위를 못 찾음")
+
+
 if __name__ == "__main__":
     sys.exit(main())
