@@ -1535,6 +1535,38 @@ try:
 except Exception as _ex38:
     print("✗ [I38] 이름 필드 전수 검사 실패: %r"%(_ex38,)); err+=1
 
+# ── I45 (42차 · 작업3): **펀트 선언 ↔ 관측** 분리 (경고 등급)
+#   🔴 왜 — `punted_cats` 는 **사후 관측치**다. `recompute_cores` 가 한계기여 음수인 캣에
+#      라벨을 붙이고, 탐색은 13캣을 전부 세면서 최적화한다. 즉 **어느 코어도 펀트를
+#      설계 입력으로 선언한 적이 없다** — 균형 최적화 결과 진 캣에 이름을 붙인 것이다.
+#      매치업이 주간 캣 다수결(7/13)로 확정된 포맷은 펀트를 보상하는데 파이프라인이
+#      펀트를 하지 않는다.
+#   ⚠️ **위반이 아니라 경고다.** 로스터 교체는 2σ 게이트와 §2b-7 이 막고 있다.
+#      이 검사의 목적은 **「선언이 없다」를 보이게 만드는 것** — 지금까지는 어긋남을
+#      볼 수조차 없었다.
+try:
+    _nod = [];  _mis = []
+    for _co in cj["cores"]:
+        _d = _co.get("cat_design_42") or {}
+        _dec = _d.get("declared_punt")
+        _obs = set(_d.get("observed_punt") or _co.get("punted_cats") or [])
+        if _dec is None:
+            _nod.append(_co["id"]); continue
+        if set(_dec) != _obs:
+            _mis.append((_co["id"], sorted(set(_dec) - _obs), sorted(_obs - set(_dec))))
+    if _nod:
+        print("      △ [I45] **펀트를 설계 입력으로 선언한 코어 0개** (%d/%d 가 관측만) — "
+              "`punted_cats` 는 사후 라벨이다. 다수결 포맷은 펀트를 보상하는데 "
+              "파이프라인이 펀트를 하지 않는다 (docs/05 §11 · cores.cat_design_42)"
+              % (len(_nod), len(cj["cores"])))
+    for _cid, _only_dec, _only_obs in _mis:
+        print("      △ [I45] %s 선언↔관측 불일치 — 선언만 %s · 관측만 %s"
+              % (_cid, _only_dec or "—", _only_obs or "—"))
+    if not _nod and not _mis:
+        print("[I45] 펀트 선언 = 관측 (%d코어)" % len(cj["cores"]))
+except Exception as _ex45:
+    print("✗ [I45] 펀트 선언/관측 검사 실패: %r"%(_ex45,)); err += 1
+
 # ── I44 (42차): **계획 예비 ↔ 관측 예비**를 나란히 본다 (경고 등급)
 #   🔴 왜 — `budget_slack`(= $200 − Σplan_price)을 「드래프트 당일 쓸 수 있는 여유」로
 #      읽는 코드가 있었다. `kat_price_branch` 가 그렇게 읽어 「c7 은 예비 $16 이라 KAT
