@@ -1535,6 +1535,41 @@ try:
 except Exception as _ex38:
     print("✗ [I38] 이름 필드 전수 검사 실패: %r"%(_ex38,)); err+=1
 
+# ── I44 (42차): **계획 예비 ↔ 관측 예비**를 나란히 본다 (경고 등급)
+#   🔴 왜 — `budget_slack`(= $200 − Σplan_price)을 「드래프트 당일 쓸 수 있는 여유」로
+#      읽는 코드가 있었다. `kat_price_branch` 가 그렇게 읽어 「c7 은 예비 $16 이라 KAT
+#      $57 까지 버틴다」를 만들었고, 같은 예산에서 재니 그 목적지가 **−6.0%p** 였다.
+#      관측(작년 실낙찰 환산)으로 다시 세면 **7코어 중 6개의 예비가 마이너스**다.
+#   ⚠️ **I22 를 고치라는 뜻이 아니다.** I22 는 계획 문서의 내부 정합성 검사이고 그 역할에서
+#      유효하다. 틀린 것은 그 숫자를 **실탄으로 읽는 것**이다.
+#   → 지우지 않고 **옆에 관측을 붙인다.** 경고 등급 — 마이너스 자체는 위반이 아니다
+#      (§6j 가 이미 「방이 작년처럼 부르면 돈이 모자란다」를 측정해 뒀다).
+try:
+    _rows44 = []
+    for _co in cj["cores"]:
+        _plan = _co["planned_total"]; _slack = _co["budget_slack"]
+        _room = 0; _miss = 0
+        for _s in _co["slots"]:
+            _n = _s["candidates"][0]["name"]
+            _rp = pl[_n].get("room_price")
+            if _rp is None:
+                _room += _s["candidates"][0]["expected_cost"]; _miss += 1
+            else:
+                _room += _rp
+        _rows44.append((_co["id"], _plan, _slack, _room, 200 - _room, _miss))
+    _neg = [r for r in _rows44 if r[4] < 0]
+    print("[I44] 예비비 두 축 — 계획 예비 vs **관측 예비**(작년 실낙찰 환산)")
+    for _cid, _pt, _sl, _rt, _rs, _ms in sorted(_rows44, key=lambda r: r[4]):
+        print("      %-4s 계획 $%-4d 예비 $%-3d  |  방 $%-4d 예비 %s%-5s %s"
+              % (_cid, _pt, _sl, _rt, "" if _rs >= 0 else "", "$%d" % _rs,
+                 ("(작년 미지명 %d명은 계획가로 대체 — 총액 과소)" % _ms) if _ms else ""))
+    if _neg:
+        print("      △ [I44] 관측 예비가 **마이너스**인 코어 %d/%d — `budget_slack` 을 "
+              "「드래프트 당일 쓸 수 있는 여유」로 읽지 말 것. 감축 경로가 그 실탄을 대신한다"
+              "(docs/05 §14·§15)" % (len(_neg), len(_rows44)))
+except Exception as _ex44:
+    print("✗ [I44] 예비비 두 축 검사 실패: %r"%(_ex44,)); err += 1
+
 # ── I43 (42차 · 작업6): **선언 모순 전수 대조**
 #   🔴 왜 — 42차에 **같은 형태의 버그를 두 번** 잡았다:
 #      ① `anchor_plan.on_fail`(치환) ↔ `kat_price_branch`(코어 전환) — 측정하니 9.5%p 차

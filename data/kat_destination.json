@@ -1,0 +1,144 @@
+{
+ "generated_by": "tool/kat_destination.py",
+ "seed": 20261020,
+ "iterations": 4000,
+ "why": "$50~57 갈래 목적지를 관측 예산에서 잰다. 임계값 $50·$57 은 **계획가 예비**에서 나온 값인데 관측 세계에 그 예비가 없다(c6 $71 · c7 $111 부족).",
+ "plans": {
+  "A  c7 원안 (KAT 유지 · 감축 전)": {
+   "roster": [
+    "Alperen Şengün",
+    "Derrick White",
+    "Dyson Daniels",
+    "Evan Mobley",
+    "Josh Hart",
+    "Karl-Anthony Towns",
+    "Kon Knueppel",
+    "Onyeka Okongwu",
+    "Rudy Gobert"
+   ],
+   "room_total": 289,
+   "win_rate": 0.8714,
+   "swaps": []
+  },
+  "A1 c7 KAT유지 + 4칸 감축": {
+   "roster": [
+    "Andrew Wiggins",
+    "Ausar Thompson",
+    "Derrick White",
+    "Karl-Anthony Towns",
+    "Kon Knueppel",
+    "Mark Williams",
+    "Onyeka Okongwu",
+    "Pascal Siakam",
+    "Rudy Gobert"
+   ],
+   "room_total": 172,
+   "win_rate": 0.7236,
+   "swaps": [
+    [
+     "Alperen Şengün",
+     "Pascal Siakam"
+    ],
+    [
+     "Evan Mobley",
+     "Mark Williams"
+    ],
+    [
+     "Josh Hart",
+     "Andrew Wiggins"
+    ],
+    [
+     "Dyson Daniels",
+     "Ausar Thompson"
+    ]
+   ]
+  },
+  "B  c6 원안 (감축 전)": {
+   "roster": [
+    "Alperen Şengün",
+    "Amen Thompson",
+    "DeMar DeRozan",
+    "Derrick White",
+    "Desmond Bane",
+    "Dyson Daniels",
+    "Karl-Anthony Towns",
+    "Rudy Gobert",
+    "VJ Edgecombe"
+   ],
+   "room_total": 271,
+   "win_rate": 0.8798,
+   "swaps": []
+  },
+  "B1 c6 KAT→Duren 만": {
+   "roster": [
+    "Alperen Şengün",
+    "Amen Thompson",
+    "DeMar DeRozan",
+    "Derrick White",
+    "Desmond Bane",
+    "Dyson Daniels",
+    "Jalen Duren",
+    "Rudy Gobert",
+    "VJ Edgecombe"
+   ],
+   "room_total": 208,
+   "win_rate": 0.8568,
+   "swaps": [
+    [
+     "Karl-Anthony Towns",
+     "Jalen Duren"
+    ]
+   ]
+  },
+  "B2 c6 KAT→Duren + Şengün→Mobley": {
+   "roster": [
+    "Amen Thompson",
+    "DeMar DeRozan",
+    "Derrick White",
+    "Desmond Bane",
+    "Dyson Daniels",
+    "Evan Mobley",
+    "Jalen Duren",
+    "Rudy Gobert",
+    "VJ Edgecombe"
+   ],
+   "room_total": 189,
+   "win_rate": 0.8409,
+   "swaps": [
+    [
+     "Karl-Anthony Towns",
+     "Jalen Duren"
+    ],
+    [
+     "Alperen Şengün",
+     "Evan Mobley"
+    ]
+   ]
+  },
+  "B3 c6 KAT→Duren + Şengün→LeBron": {
+   "roster": [
+    "Amen Thompson",
+    "DeMar DeRozan",
+    "Derrick White",
+    "Desmond Bane",
+    "Dyson Daniels",
+    "Jalen Duren",
+    "LeBron James",
+    "Rudy Gobert",
+    "VJ Edgecombe"
+   ],
+   "room_total": 176,
+   "win_rate": 0.8457,
+   "swaps": [
+    [
+     "Karl-Anthony Towns",
+     "Jalen Duren"
+    ],
+    [
+     "Alperen Şengün",
+     "LeBron James"
+    ]
+   ]
+  }
+ }
+}
