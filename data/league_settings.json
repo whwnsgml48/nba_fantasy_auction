@@ -6,7 +6,16 @@
   "starters": 7,
   "bench": 2,
   "il_plus": 1,
-  "format": "H2H 13-category"
+  "format": "H2H 13-category",
+  "matchup_scoring": "주간 캣 다수결 — 13캣 중 7캣 이상 확보 시 매치업 1승",
+  "matchup_scoring_confirmed": "2026-09-07 커미셔너 확인. each-category-counts 아님",
+  "lineup_lock": "daily",
+  "lineup_lock_confirmed": "2026-09-07 커미셔너 확인",
+  "regular_weeks": 19,
+  "playoff_weeks": 3,
+  "matchup_weeks_total": 22,
+  "playoff_teams": 8,
+  "playoff_confirmed": "2026-09-07 커미셔너 확인. 14팀 중 8팀 진출 · 플옵 3주 단판 토너먼트"
  },
  "categories": [
   "PTS",
@@ -40,8 +49,15 @@
   "nominator": "순번 로테이션",
   "ends_when": "전원 9명 낙찰",
   "nominator_changed": "2026-09-01 — 종전 '직전 낙찰자'. 사용자 확인",
-  "nominator_note": "순서는 드래프트 당일 추첨. 로스터 9명을 채운 팀은 로테이션에서 빠짐(2026-09-02 확인). 스네이크 여부는 리그 미결"
+  "nominator_note": "순서는 드래프트 당일 추첨. 로스터 9명을 채운 팀은 로테이션에서 빠짐(2026-09-02 확인). 스네이크 여부는 리그 미결",
+  "auto_bid_on_nomination": true,
+  "auto_bid_note": "지명하면 자동 $1 입찰이 걸린다(2026-09-07 커미셔너 확인). 태우기 지명의 전제 — 남이 100% 붙을 선수만 지명할 것"
  },
  "max_bid_formula": "남은 예산 - (남은 슬롯 - 1)",
- "players_drafted_leaguewide": 126
+ "players_drafted_leaguewide": 126,
+ "structural_implications_42": {
+  "punt_is_rewarded": "주간 캣 다수결이므로 캣의 한계가치는 승률 50% 근처에서 최대이고 85% 를 넘으면 거의 0 이다 — 7 이라는 선을 넘는 데 기여하지 않는 초과 마진이기 때문이다. **이 포맷은 펀트를 보상한다.** 13캣 균등 가중 가치표는 이 포맷의 목적함수와 다른 이론 위에 있다.",
+  "ceiling_over_floor": "14팀 중 8팀 진출 → **바닥(플옵 진출)은 사실상 공짜**다. 우승은 3주 연속 승리(p³)이므로 **천장이 값진 구조**다. p=0.60 이면 p³=0.216, p=0.70 이면 0.343 — 10%p 의 주간 승률 차이가 우승 확률에서 1.6배가 된다.",
+  "note": "이 두 함의는 42차에 목적함수·가격표 설계의 근거로 쓰였다. docs/01 · docs/05 §11 참조"
+ }
 }

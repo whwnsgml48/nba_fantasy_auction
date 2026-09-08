@@ -90,11 +90,15 @@ RATE   = {"3P%":"3PA", "FT%":"FTA", "FG%":"FGA"}
 CATS   = COUNT + list(RATE) + ["A/T", "DD"]
 LOWER  = {"TOV"}
 WIN_LINE = 7            # 13캣 중 7캣이면 주간 승리
-# 38차: 균등 {3,4}(평균 3.5)를 **평균 3.299 가중 추첨**으로 교체했다. 확정 일정
-# 2026-10-20~2027-04-11 = 24.857주 · 82경기 → 팀당 주간 3.299경기다. 단일 소스는
-# cat_model.GAMES_PER_WEEK. ⚠️ 추첨 방식이 바뀌면 난수 소비가 달라져 **같은 시드에서도
-# 승률 절대값이 전부 변한다** — 시드 간 비교는 같은 버전끼리만 해야 한다.
-GAMES_RANGE = (3, 4)          # 지지집합 (보고용). 평균은 CM.GAMES_PER_WEEK
+# 🔴 42차: 야후 스케줄 확정으로 **주 유형 2단 추첨**으로 교체했다.
+#   1단 주 유형(표준/긴)을 매치업당 한 번 뽑아 **양 팀이 공유** · 2단 선수별 경기수.
+#   기본 모형은 `WEEK_MODEL=standard`(표준 주 3.417) — **플옵 W20~W22가 전부 표준 주**이고
+#   14팀 중 8팀 진출이라 우승은 그 세계에서 결정된다. 22주 평균 3.572(`mixed`)는
+#   시즌 서술용이고 **코어 선택 근거로 쓰지 않는다.** 단일 소스는 `cat_model`.
+#   ⚠️ 추첨 방식이 바뀌면 난수 소비가 달라져 **같은 시드에서도 승률 절대값이 전부
+#   변한다** — 시드 간 비교는 같은 버전끼리만 해야 한다. 40차 이전 저장값과
+#   42차 값을 직접 빼지 말 것(파일 상단 비교 규약).
+GAMES_RANGE = (CM.STD_BASE, CM.STD_BASE + 1)   # 표준 주 지지집합 (보고용)
 
 def _draw(mu, c, rng):
     """과분산 정규 근사, 0 절단."""
@@ -185,13 +189,18 @@ def prep(names, rates=None):
                     CM.dd_game_prob(r.get("PTS"), r.get("REB"), r.get("AST"))))
     return out
 
-def team_week_prepped(pre, rng):
+def team_week_prepped(pre, rng, draw):
+    """한 주 표본. `draw` 는 `CM.week_games_drawer(rng)` 가 돌려준 클로저다.
+
+    🔴 **같은 매치업의 두 팀에 같은 `draw` 를 넘겨야 한다.** 주 유형(표준/긴)은
+    NBA 캘린더가 정하고 리그 전체가 공유한다 — 우리는 긴 주, 상대는 짧은 주인
+    매치업은 존재하지 않는다. 선수별 경기수 변동은 `draw` 안에 남아 있다(2단 구조)."""
     tot = {k: 0.0 for k in COUNT}
     made = {k: 0.0 for k in RATE}
     att  = {k: 0.0 for k in RATE}
     dd = 0
     for avail, cnts, rts, p_dd in pre:
-        for _ in range(CM.draw_week_games(rng)):
+        for _ in range(draw(rng)):
             if rng.random() > avail: continue
             for k, mu in cnts:
                 if mu: tot[k] += max(0.0, rng.gauss(mu, C_OVER[k] * math.sqrt(mu)))
@@ -207,8 +216,12 @@ def team_week_prepped(pre, rng):
     out["DD"] = float(dd)
     return out
 
-def team_week(names, rng):
-    """로스터의 한 주 표본. 반환은 캣별 팀 합계(비율캣은 성공/시도)."""
+def team_week(names, rng, draw=None):
+    """로스터의 한 주 표본. 반환은 캣별 팀 합계(비율캣은 성공/시도).
+
+    ⚠️ `draw` 를 안 주면 이 호출 안에서 주 유형을 새로 뽑는다 — **상대와 공유되지 않는다.**
+    매치업 계산에는 `team_week_prepped` 를 쓸 것. 이 함수는 단일 팀 진단용이다."""
+    if draw is None: draw = CM.week_games_drawer(rng)
     tot = {k: 0.0 for k in COUNT}
     made = {k: 0.0 for k in RATE}
     att  = {k: 0.0 for k in RATE}
@@ -217,7 +230,7 @@ def team_week(names, rng):
         r = F.get(n)
         if not r: continue
         avail = (r.get("GP") or 0) / 82.0
-        g = CM.draw_week_games(rng)
+        g = draw(rng)
         p_dd = CM.dd_game_prob(r.get("PTS"), r.get("REB"), r.get("AST"))
         for _ in range(g):
             if rng.random() > avail: continue          # 결장
@@ -420,7 +433,9 @@ def simulate(us, opp_names, rng, iters, rows=None):
             them = random_roster(rows, rng)
             if them is None: continue
             pt = prep(them, rates=_RND_RATE)
-        w = wins(team_week_prepped(pu, rng), team_week_prepped(pt, rng))
+        # 🔴 주 유형은 **매치업당 한 번** — 양 팀이 같은 캘린더를 산다
+        draw = CM.week_games_drawer(rng)
+        w = wins(team_week_prepped(pu, rng, draw), team_week_prepped(pt, rng, draw))
         for k in CATS: acc[k] += w[k]
         s = sum(w.values()); cats_won.append(s)
         weeks += 1 if s >= WIN_LINE else 0
@@ -553,9 +568,33 @@ if __name__ == "__main__":
     # core_hits 단일화는 증상만 막았다 — 파일을 분리해 근본을 없앤다.
     out = {"generated_by": "tool/matchup_sim.py", "seed": seed, "iterations": iters,
            "win_line": WIN_LINE, "games_per_week": list(GAMES_RANGE),
-           "games_per_week_mean": CM.GAMES_PER_WEEK,
+           "week_model": CM.WEEK_MODEL,
+           "week_model_note": ("standard = 모든 주가 표준 주(플옵 3주가 실제로 그렇다 · "
+                               "코어 비교·우승 확률의 세계) · mixed = 22주 전체(표준 20 + "
+                               "긴 2 · 시즌 서술용) · legacy = 평평한 옛 값(비교 전용)"),
+           "games_per_standard_week": CM.GAMES_PER_STANDARD_WEEK,
+           "games_per_matchup_week": CM.GAMES_PER_MATCHUP_WEEK,
+           "games_per_calendar_week_deprecated": CM.GAMES_PER_CALENDAR_WEEK,
+           "standard_week_games": CM.STD_WEEK_GAMES,
+           "week_mix": CM.WEEK_MIX,
+           "week_types": [list(t) for t in CM.WEEK_TYPES],
+           "games_in_window": CM.GAMES_IN_WINDOW,
+           "break_days": CM.BREAK_DAYS,
+           "games_per_week_mean": CM.EFFECTIVE_MEAN,
            "games_per_week_p4": CM.WEEK_GAMES_P4,
-           "games_per_week_basis": "확정 일정 2026-10-20~2027-04-11 = 174일 = 24.857주 · 82경기 → 3.299 (38차)",
+           "games_per_week_basis": (
+               "🔴 42차 확정(사용자 야후 확인 2026-09-07): Week1 10-19~10-25 · "
+               "22주 전체 목록 확인. W7 11-30~12-13(14일 · 브레이크 없음) · "
+               "W17 02-15~02-28(14일 · 올스타 브레이크) · 플옵 W20~W22 03-15~04-04. "
+               "→ 창 10-19~04-04 = 168일 = 22 매치업 주. 밀도 82/(174−6) = 0.4881/일 "
+               "→ **표준 주 %.3f** · 창 안 %.3f경기 · 22주 평균 %.3f. "
+               "🔴 종전 3.299 는 브레이크 무경기일을 시즌 전체에 퍼뜨린 값이라 **3.6%% 저평가**였다 "
+               "— 무경기일은 W17 안에 격리돼 있고 나머지 19주는 그만큼 빽빽하다. "
+               "**코어 비교·우승 확률은 표준 주** — 플옵 3주가 전부 표준 주이고 8/14 진출이라 "
+               "우승이 그 세계에서 결정된다. 현재 모형 %s (실효 평균 %.4f). "
+               "세계 비교는 data/gpw_dual.json"
+               % (CM.GAMES_PER_STANDARD_WEEK, CM.GAMES_IN_WINDOW,
+                  CM.GAMES_PER_MATCHUP_WEEK, CM.WEEK_MODEL, CM.EFFECTIVE_MEAN)),
            "overdispersion_c": C_OVER, "attempt_c": C_ATT, "big5": BIG5,
            "opponents": {k: (OPP[k] if OPP[k] not in (None, BASELINE_TEAM, FAILED) else
                              {"random": "매 시행 무작위 9인", BASELINE_TEAM: "cat_baselines 기준선 팀",

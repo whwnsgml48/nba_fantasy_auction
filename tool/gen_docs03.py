@@ -28,7 +28,8 @@ PL   = json.load(io.open(f"{BASE}/data/players.json", encoding="utf-8"))
 CB   = json.load(io.open(f"{BASE}/data/cores.json", encoding="utf-8"))["opponent_baseline"]["cat_baselines"]
 F    = json.load(io.open(f"{BASE}/data/stats_2025_26/measured_full.json", encoding="utf-8"))["players"]
 
-WEEK_GAMES = CM.GAMES_PER_WEEK   # 주간 경기수 — 단일 소스는 cat_model (38차)
+WEEK_GAMES = CM.GAMES_PER_STANDARD_WEEK   # 🔴 42차: **표준 주**(3.417) — 전형적인 한 주.
+#   22주 평균(3.572)이 아니다 — 그 값은 긴 주 W7 하나가 만든 것이다. 단일 소스는 cat_model.
 # 38차: 고정값 135는 ① 주 3.5경기 가정에서 나왔고 ② `docs/10` 실측 범위(코어별
 # 77~113 @3.5경기) **밖**이었다. 분모가 실제보다 19~74% 커서 이 표의 레버리지가
 # 전원 과소 계상됐다. 이제 7코어 로스터의 실제 3PA 합 평균을 쓴다.

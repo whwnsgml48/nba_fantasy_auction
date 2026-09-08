@@ -15,7 +15,8 @@
       레버리지  = 지분 × (내 rate − 기준선) × 100   [단위 pp]
       변동성    = √(p(1−p)/주간시도) × 100          [이항 SD]
   주간 시도 = 경기당 시도 × 주간경기수 × 가용률(GP/82) — `cat_model.avail()`과 같은 가중.
-  주간 경기수는 `cat_model.GAMES_PER_WEEK`(3.299 · 확정 일정 실측) 단일 소스를 쓴다.
+  주간 경기수는 `cat_model.GAMES_PER_STANDARD_WEEK`(3.417 · 확정 일정 2026-09-07) 단일 소스를 쓴다.
+  ⚠️ 22주 평균(3.572)이 아니다 — 그 값은 긴 주 W7 하나가 만들었고 22주 중 19주가 표준 주다.
   기준선은 `cat_model.baselines()`(지명 풀 126명 · 시도량 가중)를 그대로 쓴다.
   **팀 주간 시도는 고정값이 아니라 그 코어 9명의 합이다.**
 
@@ -27,7 +28,10 @@ BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, BASE + "/tool")
 import cat_model as CM   # noqa: E402
 
-GPW = CM.GAMES_PER_WEEK         # 주간 경기수 — 단일 소스는 cat_model (38차 · 3.299)
+GPW = CM.GAMES_PER_STANDARD_WEEK  # 🔴 42차: **표준 주**(3.417).
+#   필요한 것은 「전형적인 한 주의 시도량」이므로 22주 평균(3.572)이 아니다 —
+#   그 평균은 긴 주 W7(6.83경기) 하나가 만든 값이고 22주 중 19주는 3.417 이다.
+#   단일 소스는 cat_model. `GAMES_PER_WEEK` 는 「어느 주인가」가 모호해 42차에 갈랐다.
 RATE = CM.RATE                  # {"3P%":"3PA","FT%":"FTA","FG%":"FGA"}
 F = CM.F                        # measured_full 선수별 라인
 B = CM.baselines()
