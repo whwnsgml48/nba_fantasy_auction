@@ -34,6 +34,9 @@ BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PP = BASE + "/data/players.json"
 
 SOURCE = "사용자 야후 화면 확인 2026-08-27"
+# 42차: 2차 확인 5명. 배치가 둘이 되었으므로 출처를 선수별로 갈라 기록한다
+# (한 문자열이 두 시점을 덮으면 나중에 어느 것이 언제 확인됐는지 알 수 없다).
+SOURCE_42 = "사용자 야후 화면 확인 2026-09-08"
 
 # 확정 19명. ⚠️ 순서·표기를 손으로 고치지 말 것 — 화면에서 옮겨적은 원본이다.
 YAHOO = {
@@ -56,7 +59,18 @@ YAHOO = {
     "Jalen Duren":        ["C"],
     "Deandre Ayton":      ["C"],
     "Ivica Zubac":        ["C"],
+    # ── 42차 2차 확인 (2026-09-08 · SOURCE_42) ────────────────────────────
+    # 추정 대비: White 는 추정과 일치 · Vučević 일치 · **Daniels 는 PG 를 잃었다**(G→SG,SF)
+    # Murphy 는 PF 를 잃었다(G/F→SG,SF) · **Ausar 는 PF 를 얻었다**(G/F→SG,SF,PF).
+    # 즉 이번 배치는 상실 2 · 획득 1 로, 40차의 「전부 상실」 패턴과 다르다.
+    "Derrick White":      ["PG", "SG"],
+    "Nikola Vučević":     ["C"],
+    "Dyson Daniels":      ["SG", "SF"],
+    "Trey Murphy III":    ["SG", "SF"],
+    "Ausar Thompson":     ["SG", "SF", "PF"],
 }
+
+BATCH_42 = {"Derrick White","Nikola Vučević","Dyson Daniels","Trey Murphy III","Ausar Thompson"}
 
 EXPAND = {"G": ["PG", "SG"], "F": ["SF", "PF"], "C": ["C"]}
 
@@ -91,7 +105,7 @@ def main():
             if k == "pos":                      # pos 바로 뒤에 끼운다 (사람이 읽는 순서)
                 new["pos_yahoo"] = y
                 if y:
-                    new["pos_yahoo_source"] = SOURCE
+                    new["pos_yahoo_source"] = SOURCE_42 if p["name"] in BATCH_42 else SOURCE
         if "pos_yahoo" not in new:              # pos 가 없는 엔트리 방어
             new["pos_yahoo"] = y
         if y and set(y) != set(expand(p.get("pos"))):

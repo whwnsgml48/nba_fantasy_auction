@@ -1865,7 +1865,11 @@
   "name": "Derrick White",
   "team": "BOS",
   "pos": "G",
-  "pos_yahoo": null,
+  "pos_yahoo": [
+   "PG",
+   "SG"
+  ],
+  "pos_yahoo_source": "사용자 야후 화면 확인 2026-09-08",
   "market_low": 36,
   "market_high": 42,
   "my_max": 52,
@@ -2224,7 +2228,11 @@
   "name": "Trey Murphy III",
   "team": "NOR",
   "pos": "G/F",
-  "pos_yahoo": null,
+  "pos_yahoo": [
+   "SG",
+   "SF"
+  ],
+  "pos_yahoo_source": "사용자 야후 화면 확인 2026-09-08",
   "market_low": 32,
   "market_high": 38,
   "my_max": 32,
@@ -3322,7 +3330,11 @@
   "name": "Dyson Daniels",
   "team": "ATL",
   "pos": "G",
-  "pos_yahoo": null,
+  "pos_yahoo": [
+   "SG",
+   "SF"
+  ],
+  "pos_yahoo_source": "사용자 야후 화면 확인 2026-09-08",
   "market_low": 9,
   "market_high": 15,
   "my_max": 20,
@@ -4898,7 +4910,10 @@
   "name": "Nikola Vučević",
   "team": "ORL",
   "pos": "C",
-  "pos_yahoo": null,
+  "pos_yahoo": [
+   "C"
+  ],
+  "pos_yahoo_source": "사용자 야후 화면 확인 2026-09-08",
   "market_low": 1,
   "market_high": 3,
   "my_max": 8,
@@ -7729,7 +7744,12 @@
   "name": "Ausar Thompson",
   "team": "DET",
   "pos": "G/F",
-  "pos_yahoo": null,
+  "pos_yahoo": [
+   "SG",
+   "SF",
+   "PF"
+  ],
+  "pos_yahoo_source": "사용자 야후 화면 확인 2026-09-08",
   "market_low": 1,
   "market_high": 5,
   "my_max": 8,
