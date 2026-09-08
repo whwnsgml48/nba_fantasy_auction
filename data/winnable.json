@@ -1,0 +1,1942 @@
+{
+ "generated_by": "tool/winnable.py",
+ "test": "bid_ceiling >= room_price (작년 실낙찰 × 1.117)",
+ "why": "감축표가 「싸다」와 「이길 수 있다」를 섞었다. bid_ceiling 은 우리가 스스로 그은 선이고 여러 대체가 그 위에 있다 — 그 칸은 감축으로 풀리지 않는다.",
+ "caveat": "작년 관측은 **한 해 표본**이다. 「올해도 그 값」이 아니라 「작년처럼 가면 이 칸을 잃는다」로 읽을 것. 작년 미지명 선수는 판정 불가다.",
+ "cores": {
+  "c1": {
+   "slots": [
+    {
+     "slot": "C",
+     "candidates": [
+      {
+       "name": "Karl-Anthony Towns",
+       "rank": 1,
+       "ceiling": 55,
+       "room": 74,
+       "winnable": false
+      },
+      {
+       "name": "Jalen Duren",
+       "rank": 2,
+       "ceiling": 34,
+       "room": 11,
+       "winnable": true
+      },
+      {
+       "name": "Alperen Şengün",
+       "rank": 3,
+       "ceiling": 34,
+       "room": 67,
+       "winnable": false
+      }
+     ],
+     "first_status": "lose",
+     "fallback": "Jalen Duren",
+     "fallback_unknown": false,
+     "wipeout": false
+    },
+    {
+     "slot": "PG",
+     "candidates": [
+      {
+       "name": "Tyrese Haliburton",
+       "rank": 1,
+       "ceiling": 56,
+       "room": null,
+       "winnable": null
+      },
+      {
+       "name": "Josh Giddey",
+       "rank": 2,
+       "ceiling": 42,
+       "room": 41,
+       "winnable": true
+      },
+      {
+       "name": "De'Aaron Fox",
+       "rank": 3,
+       "ceiling": 24,
+       "room": 40,
+       "winnable": false
+      }
+     ],
+     "first_status": "unknown",
+     "fallback": "Josh Giddey",
+     "fallback_unknown": false,
+     "wipeout": false
+    },
+    {
+     "slot": "PF",
+     "candidates": [
+      {
+       "name": "Alperen Şengün",
+       "rank": 1,
+       "ceiling": 34,
+       "room": 67,
+       "winnable": false
+      },
+      {
+       "name": "Evan Mobley",
+       "rank": 2,
+       "ceiling": 30,
+       "room": 48,
+       "winnable": false
+      }
+     ],
+     "first_status": "lose",
+     "fallback": null,
+     "fallback_unknown": false,
+     "wipeout": true
+    },
+    {
+     "slot": "SF",
+     "candidates": [
+      {
+       "name": "Kon Knueppel",
+       "rank": 1,
+       "ceiling": 33,
+       "room": null,
+       "winnable": null
+      },
+      {
+       "name": "Desmond Bane",
+       "rank": 2,
+       "ceiling": 31,
+       "room": 18,
+       "winnable": true
+      },
+      {
+       "name": "Toumani Camara",
+       "rank": 3,
+       "ceiling": 14,
+       "room": 2,
+       "winnable": true
+      }
+     ],
+     "first_status": "unknown",
+     "fallback": "Desmond Bane",
+     "fallback_unknown": false,
+     "wipeout": false
+    },
+    {
+     "slot": "SG",
+     "candidates": [
+      {
+       "name": "Dyson Daniels",
+       "rank": 1,
+       "ceiling": 20,
+       "room": 36,
+       "winnable": false
+      },
+      {
+       "name": "Ausar Thompson",
+       "rank": 2,
+       "ceiling": 8,
+       "room": 12,
+       "winnable": false
+      },
+      {
+       "name": "Cason Wallace",
+       "rank": 3,
+       "ceiling": 8,
+       "room": null,
+       "winnable": null
+      }
+     ],
+     "first_status": "lose",
+     "fallback": "Cason Wallace",
+     "fallback_unknown": true,
+     "wipeout": false
+    },
+    {
+     "slot": "UTIL",
+     "candidates": [
+      {
+       "name": "Donovan Clingan",
+       "rank": 1,
+       "ceiling": 22,
+       "room": null,
+       "winnable": null
+      },
+      {
+       "name": "Rudy Gobert",
+       "rank": 2,
+       "ceiling": 18,
+       "room": 9,
+       "winnable": true
+      },
+      {
+       "name": "Mitchell Robinson",
+       "rank": 3,
+       "ceiling": 12,
+       "room": null,
+       "winnable": null
+      }
+     ],
+     "first_status": "unknown",
+     "fallback": "Rudy Gobert",
+     "fallback_unknown": false,
+     "wipeout": false
+    },
+    {
+     "slot": "UTIL",
+     "candidates": [
+      {
+       "name": "Rudy Gobert",
+       "rank": 1,
+       "ceiling": 18,
+       "room": 9,
+       "winnable": true
+      },
+      {
+       "name": "Ivica Zubac",
+       "rank": 2,
+       "ceiling": 16,
+       "room": 39,
+       "winnable": false
+      },
+      {
+       "name": "Mark Williams",
+       "rank": 3,
+       "ceiling": 14,
+       "room": 15,
+       "winnable": false
+      }
+     ],
+     "first_status": "win",
+     "fallback": null,
+     "fallback_unknown": false,
+     "wipeout": false
+    },
+    {
+     "slot": "BN",
+     "candidates": [
+      {
+       "name": "VJ Edgecombe",
+       "rank": 1,
+       "ceiling": 9,
+       "room": null,
+       "winnable": null
+      },
+      {
+       "name": "T.J. McConnell",
+       "rank": 2,
+       "ceiling": 14,
+       "room": null,
+       "winnable": null
+      },
+      {
+       "name": "Andrew Nembhard",
+       "rank": 3,
+       "ceiling": 6,
+       "room": 13,
+       "winnable": false
+      }
+     ],
+     "first_status": "unknown",
+     "fallback": "T.J. McConnell",
+     "fallback_unknown": true,
+     "wipeout": false
+    },
+    {
+     "slot": "BN",
+     "candidates": [
+      {
+       "name": "Moussa Diabaté",
+       "rank": 1,
+       "ceiling": 6,
+       "room": null,
+       "winnable": null
+      },
+      {
+       "name": "Andre Drummond",
+       "rank": 2,
+       "ceiling": 8,
+       "room": null,
+       "winnable": null
+      },
+      {
+       "name": "Day'Ron Sharpe",
+       "rank": 3,
+       "ceiling": 5,
+       "room": null,
+       "winnable": null
+      }
+     ],
+     "first_status": "unknown",
+     "fallback": "Andre Drummond",
+     "fallback_unknown": true,
+     "wipeout": false
+    }
+   ],
+   "first_win": 1,
+   "first_lose": 3,
+   "first_unknown": 5,
+   "wipeout_slots": [
+    "PF"
+   ],
+   "unknown_slots": [
+    "SG",
+    "BN",
+    "BN"
+   ]
+  },
+  "c2": {
+   "slots": [
+    {
+     "slot": "C",
+     "candidates": [
+      {
+       "name": "Nikola Jokić",
+       "rank": 1,
+       "ceiling": 97,
+       "room": 96,
+       "winnable": true
+      }
+     ],
+     "first_status": "win",
+     "fallback": null,
+     "fallback_unknown": false,
+     "wipeout": false
+    },
+    {
+     "slot": "SG",
+     "candidates": [
+      {
+       "name": "Derrick White",
+       "rank": 1,
+       "ceiling": 44,
+       "room": 22,
+       "winnable": true
+      },
+      {
+       "name": "Trey Murphy III",
+       "rank": 2,
+       "ceiling": 32,
+       "room": 12,
+       "winnable": true
+      },
+      {
+       "name": "Nickeil Alexander-Walker",
+       "rank": 3,
+       "ceiling": 27,
+       "room": null,
+       "winnable": null
+      }
+     ],
+     "first_status": "win",
+     "fallback": "Trey Murphy III",
+     "fallback_unknown": false,
+     "wipeout": false
+    },
+    {
+     "slot": "SF",
+     "candidates": [
+      {
+       "name": "Desmond Bane",
+       "rank": 1,
+       "ceiling": 31,
+       "room": 18,
+       "winnable": true
+      },
+      {
+       "name": "Josh Hart",
+       "rank": 2,
+       "ceiling": 9,
+       "room": 26,
+       "winnable": false
+      },
+      {
+       "name": "Kon Knueppel",
+       "rank": 3,
+       "ceiling": 33,
+       "room": null,
+       "winnable": null
+      }
+     ],
+     "first_status": "win",
+     "fallback": "Kon Knueppel",
+     "fallback_unknown": true,
+     "wipeout": false
+    },
+    {
+     "slot": "UTIL",
+     "candidates": [
+      {
+       "name": "Onyeka Okongwu",
+       "rank": 1,
+       "ceiling": 10,
+       "room": 7,
+       "winnable": true
+      },
+      {
+       "name": "Jaden McDaniels",
+       "rank": 2,
+       "ceiling": 10,
+       "room": 7,
+       "winnable": true
+      },
+      {
+       "name": "Royce O'Neale",
+       "rank": 3,
+       "ceiling": 8,
+       "room": null,
+       "winnable": null
+      }
+     ],
+     "first_status": "win",
+     "fallback": "Jaden McDaniels",
+     "fallback_unknown": false,
+     "wipeout": false
+    },
+    {
+     "slot": "PG",
+     "candidates": [
+      {
+       "name": "Collin Gillespie",
+       "rank": 1,
+       "ceiling": 4,
+       "room": null,
+       "winnable": null
+      },
+      {
+       "name": "Cason Wallace",
+       "rank": 2,
+       "ceiling": 8,
+       "room": null,
+       "winnable": null
+      },
+      {
+       "name": "Jordan Goodwin",
+       "rank": 3,
+       "ceiling": 4,
+       "room": null,
+       "winnable": null
+      }
+     ],
+     "first_status": "unknown",
+     "fallback": "Cason Wallace",
+     "fallback_unknown": true,
+     "wipeout": false
+    },
+    {
+     "slot": "UTIL",
+     "candidates": [
+      {
+       "name": "Donovan Clingan",
+       "rank": 1,
+       "ceiling": 22,
+       "room": null,
+       "winnable": null
+      },
+      {
+       "name": "Myles Turner",
+       "rank": 2,
+       "ceiling": 18,
+       "room": 12,
+       "winnable": true
+      },
+      {
+       "name": "Brook Lopez",
+       "rank": 3,
+       "ceiling": 6,
+       "room": null,
+       "winnable": null
+      }
+     ],
+     "first_status": "unknown",
+     "fallback": "Myles Turner",
+     "fallback_unknown": false,
+     "wipeout": false
+    },
+    {
+     "slot": "PF",
+     "candidates": [
+      {
+       "name": "DeMar DeRozan",
+       "rank": 1,
+       "ceiling": 16,
+       "room": 10,
+       "winnable": true
+      },
+      {
+       "name": "Jaden McDaniels",
+       "rank": 2,
+       "ceiling": 10,
+       "room": 7,
+       "winnable": true
+      },
+      {
+       "name": "John Collins",
+       "rank": 3,
+       "ceiling": 10,
+       "room": 1,
+       "winnable": true
+      }
+     ],
+     "first_status": "win",
+     "fallback": "Jaden McDaniels",
+     "fallback_unknown": false,
+     "wipeout": false
+    },
+    {
+     "slot": "BN",
+     "candidates": [
+      {
+       "name": "Nikola Vučević",
+       "rank": 1,
+       "ceiling": 8,
+       "room": 23,
+       "winnable": false
+      },
+      {
+       "name": "Brook Lopez",
+       "rank": 2,
+       "ceiling": 6,
+       "room": null,
+       "winnable": null
+      },
+      {
+       "name": "Andrew Wiggins",
+       "rank": 3,
+       "ceiling": 6,
+       "room": 7,
+       "winnable": false
+      }
+     ],
+     "first_status": "lose",
+     "fallback": "Brook Lopez",
+     "fallback_unknown": true,
+     "wipeout": false
+    },
+    {
+     "slot": "BN",
+     "candidates": [
+      {
+       "name": "Immanuel Quickley",
+       "rank": 1,
+       "ceiling": 5,
+       "room": 10,
+       "winnable": false
+      },
+      {
+       "name": "Cason Wallace",
+       "rank": 2,
+       "ceiling": 8,
+       "room": null,
+       "winnable": null
+      },
+      {
+       "name": "Royce O'Neale",
+       "rank": 3,
+       "ceiling": 8,
+       "room": null,
+       "winnable": null
+      }
+     ],
+     "first_status": "lose",
+     "fallback": "Cason Wallace",
+     "fallback_unknown": true,
+     "wipeout": false
+    }
+   ],
+   "first_win": 5,
+   "first_lose": 2,
+   "first_unknown": 2,
+   "wipeout_slots": [],
+   "unknown_slots": [
+    "SF",
+    "PG",
+    "BN",
+    "BN"
+   ]
+  },
+  "c3": {
+   "slots": [
+    {
+     "slot": "PG",
+     "candidates": [
+      {
+       "name": "Shai Gilgeous-Alexander",
+       "rank": 1,
+       "ceiling": 85,
+       "room": 83,
+       "winnable": true
+      }
+     ],
+     "first_status": "win",
+     "fallback": null,
+     "fallback_unknown": false,
+     "wipeout": false
+    },
+    {
+     "slot": "PF",
+     "candidates": [
+      {
+       "name": "Alperen Şengün",
+       "rank": 1,
+       "ceiling": 34,
+       "room": 67,
+       "winnable": false
+      },
+      {
+       "name": "Evan Mobley",
+       "rank": 2,
+       "ceiling": 30,
+       "room": 48,
+       "winnable": false
+      }
+     ],
+     "first_status": "lose",
+     "fallback": null,
+     "fallback_unknown": false,
+     "wipeout": true
+    },
+    {
+     "slot": "SG",
+     "candidates": [
+      {
+       "name": "Amen Thompson",
+       "rank": 1,
+       "ceiling": 49,
+       "room": 35,
+       "winnable": true
+      },
+      {
+       "name": "Kon Knueppel",
+       "rank": 2,
+       "ceiling": 33,
+       "room": null,
+       "winnable": null
+      },
+      {
+       "name": "Isaiah Joe",
+       "rank": 3,
+       "ceiling": 10,
+       "room": null,
+       "winnable": null
+      }
+     ],
+     "first_status": "win",
+     "fallback": "Kon Knueppel",
+     "fallback_unknown": true,
+     "wipeout": false
+    },
+    {
+     "slot": "UTIL",
+     "candidates": [
+      {
+       "name": "Dyson Daniels",
+       "rank": 1,
+       "ceiling": 20,
+       "room": 36,
+       "winnable": false
+      },
+      {
+       "name": "Ausar Thompson",
+       "rank": 2,
+       "ceiling": 8,
+       "room": 12,
+       "winnable": false
+      },
+      {
+       "name": "Cason Wallace",
+       "rank": 3,
+       "ceiling": 8,
+       "room": null,
+       "winnable": null
+      }
+     ],
+     "first_status": "lose",
+     "fallback": "Cason Wallace",
+     "fallback_unknown": true,
+     "wipeout": false
+    },
+    {
+     "slot": "C",
+     "candidates": [
+      {
+       "name": "Donovan Clingan",
+       "rank": 1,
+       "ceiling": 22,
+       "room": null,
+       "winnable": null
+      },
+      {
+       "name": "Ivica Zubac",
+       "rank": 2,
+       "ceiling": 16,
+       "room": 39,
+       "winnable": false
+      },
+      {
+       "name": "Rudy Gobert",
+       "rank": 3,
+       "ceiling": 18,
+       "room": 9,
+       "winnable": true
+      }
+     ],
+     "first_status": "unknown",
+     "fallback": "Rudy Gobert",
+     "fallback_unknown": false,
+     "wipeout": false
+    },
+    {
+     "slot": "BN",
+     "candidates": [
+      {
+       "name": "Nic Claxton",
+       "rank": 1,
+       "ceiling": 12,
+       "room": 3,
+       "winnable": true
+      },
+      {
+       "name": "Mitchell Robinson",
+       "rank": 2,
+       "ceiling": 12,
+       "room": null,
+       "winnable": null
+      },
+      {
+       "name": "Deandre Ayton",
+       "rank": 3,
+       "ceiling": 14,
+       "room": 6,
+       "winnable": true
+      }
+     ],
+     "first_status": "win",
+     "fallback": "Mitchell Robinson",
+     "fallback_unknown": true,
+     "wipeout": false
+    },
+    {
+     "slot": "BN",
+     "candidates": [
+      {
+       "name": "Rudy Gobert",
+       "rank": 1,
+       "ceiling": 18,
+       "room": 9,
+       "winnable": true
+      },
+      {
+       "name": "Mark Williams",
+       "rank": 2,
+       "ceiling": 14,
+       "room": 15,
+       "winnable": false
+      },
+      {
+       "name": "Neemias Queta",
+       "rank": 3,
+       "ceiling": 6,
+       "room": null,
+       "winnable": null
+      }
+     ],
+     "first_status": "win",
+     "fallback": "Neemias Queta",
+     "fallback_unknown": true,
+     "wipeout": false
+    },
+    {
+     "slot": "UTIL",
+     "candidates": [
+      {
+       "name": "Damian Lillard",
+       "rank": 1,
+       "ceiling": 14,
+       "room": null,
+       "winnable": null
+      },
+      {
+       "name": "Deandre Ayton",
+       "rank": 2,
+       "ceiling": 14,
+       "room": 6,
+       "winnable": true
+      },
+      {
+       "name": "Neemias Queta",
+       "rank": 3,
+       "ceiling": 6,
+       "room": null,
+       "winnable": null
+      }
+     ],
+     "first_status": "unknown",
+     "fallback": "Deandre Ayton",
+     "fallback_unknown": false,
+     "wipeout": false
+    },
+    {
+     "slot": "SF",
+     "candidates": [
+      {
+       "name": "Josh Hart",
+       "rank": 1,
+       "ceiling": 9,
+       "room": 26,
+       "winnable": false
+      },
+      {
+       "name": "DeMar DeRozan",
+       "rank": 2,
+       "ceiling": 16,
+       "room": 10,
+       "winnable": true
+      },
+      {
+       "name": "Andrew Wiggins",
+       "rank": 3,
+       "ceiling": 6,
+       "room": 7,
+       "winnable": false
+      }
+     ],
+     "first_status": "lose",
+     "fallback": "DeMar DeRozan",
+     "fallback_unknown": false,
+     "wipeout": false
+    }
+   ],
+   "first_win": 4,
+   "first_lose": 3,
+   "first_unknown": 2,
+   "wipeout_slots": [
+    "PF"
+   ],
+   "unknown_slots": [
+    "SG",
+    "UTIL",
+    "BN",
+    "BN"
+   ]
+  },
+  "c4": {
+   "slots": [
+    {
+     "slot": "C",
+     "candidates": [
+      {
+       "name": "Jalen Duren",
+       "rank": 1,
+       "ceiling": 31,
+       "room": 11,
+       "winnable": true
+      },
+      {
+       "name": "Donovan Clingan",
+       "rank": 2,
+       "ceiling": 22,
+       "room": null,
+       "winnable": null
+      },
+      {
+       "name": "Ivica Zubac",
+       "rank": 3,
+       "ceiling": 16,
+       "room": 39,
+       "winnable": false
+      }
+     ],
+     "first_status": "win",
+     "fallback": "Donovan Clingan",
+     "fallback_unknown": true,
+     "wipeout": false
+    },
+    {
+     "slot": "PF",
+     "candidates": [
+      {
+       "name": "Alperen Şengün",
+       "rank": 1,
+       "ceiling": 31,
+       "room": 67,
+       "winnable": false
+      },
+      {
+       "name": "Evan Mobley",
+       "rank": 2,
+       "ceiling": 30,
+       "room": 48,
+       "winnable": false
+      }
+     ],
+     "first_status": "lose",
+     "fallback": null,
+     "fallback_unknown": false,
+     "wipeout": true
+    },
+    {
+     "slot": "SG",
+     "candidates": [
+      {
+       "name": "Amen Thompson",
+       "rank": 1,
+       "ceiling": 31,
+       "room": 35,
+       "winnable": false
+      },
+      {
+       "name": "Josh Hart",
+       "rank": 2,
+       "ceiling": 9,
+       "room": 26,
+       "winnable": false
+      },
+      {
+       "name": "Immanuel Quickley",
+       "rank": 3,
+       "ceiling": 5,
+       "room": 10,
+       "winnable": false
+      }
+     ],
+     "first_status": "lose",
+     "fallback": null,
+     "fallback_unknown": false,
+     "wipeout": true
+    },
+    {
+     "slot": "UTIL",
+     "candidates": [
+      {
+       "name": "Evan Mobley",
+       "rank": 1,
+       "ceiling": 30,
+       "room": 48,
+       "winnable": false
+      },
+      {
+       "name": "Walker Kessler",
+       "rank": 2,
+       "ceiling": 19,
+       "room": 15,
+       "winnable": true
+      }
+     ],
+     "first_status": "lose",
+     "fallback": "Walker Kessler",
+     "fallback_unknown": false,
+     "wipeout": false
+    },
+    {
+     "slot": "SF",
+     "candidates": [
+      {
+       "name": "Kon Knueppel",
+       "rank": 1,
+       "ceiling": 31,
+       "room": null,
+       "winnable": null
+      },
+      {
+       "name": "Desmond Bane",
+       "rank": 2,
+       "ceiling": 31,
+       "room": 18,
+       "winnable": true
+      },
+      {
+       "name": "Ausar Thompson",
+       "rank": 3,
+       "ceiling": 8,
+       "room": 12,
+       "winnable": false
+      }
+     ],
+     "first_status": "unknown",
+     "fallback": "Desmond Bane",
+     "fallback_unknown": false,
+     "wipeout": false
+    },
+    {
+     "slot": "UTIL",
+     "candidates": [
+      {
+       "name": "Dyson Daniels",
+       "rank": 1,
+       "ceiling": 20,
+       "room": 36,
+       "winnable": false
+      },
+      {
+       "name": "Ausar Thompson",
+       "rank": 2,
+       "ceiling": 8,
+       "room": 12,
+       "winnable": false
+      },
+      {
+       "name": "Cason Wallace",
+       "rank": 3,
+       "ceiling": 8,
+       "room": null,
+       "winnable": null
+      }
+     ],
+     "first_status": "lose",
+     "fallback": "Cason Wallace",
+     "fallback_unknown": true,
+     "wipeout": false
+    },
+    {
+     "slot": "BN",
+     "candidates": [
+      {
+       "name": "Rudy Gobert",
+       "rank": 1,
+       "ceiling": 18,
+       "room": 9,
+       "winnable": true
+      },
+      {
+       "name": "Mark Williams",
+       "rank": 2,
+       "ceiling": 14,
+       "room": 15,
+       "winnable": false
+      },
+      {
+       "name": "Mitchell Robinson",
+       "rank": 3,
+       "ceiling": 12,
+       "room": null,
+       "winnable": null
+      }
+     ],
+     "first_status": "win",
+     "fallback": "Mitchell Robinson",
+     "fallback_unknown": true,
+     "wipeout": false
+    },
+    {
+     "slot": "BN",
+     "candidates": [
+      {
+       "name": "Julius Randle",
+       "rank": 1,
+       "ceiling": 18,
+       "room": 11,
+       "winnable": true
+      },
+      {
+       "name": "Paul George",
+       "rank": 2,
+       "ceiling": 8,
+       "room": 8,
+       "winnable": true
+      },
+      {
+       "name": "Josh Hart",
+       "rank": 3,
+       "ceiling": 9,
+       "room": 26,
+       "winnable": false
+      }
+     ],
+     "first_status": "win",
+     "fallback": "Paul George",
+     "fallback_unknown": false,
+     "wipeout": false
+    },
+    {
+     "slot": "PG",
+     "candidates": [
+      {
+       "name": "Trae Young",
+       "rank": 1,
+       "ceiling": 30,
+       "room": 63,
+       "winnable": false
+      },
+      {
+       "name": "Dennis Schröder",
+       "rank": 2,
+       "ceiling": 12,
+       "room": null,
+       "winnable": null
+      },
+      {
+       "name": "Andrew Nembhard",
+       "rank": 3,
+       "ceiling": 6,
+       "room": 13,
+       "winnable": false
+      }
+     ],
+     "first_status": "lose",
+     "fallback": "Dennis Schröder",
+     "fallback_unknown": true,
+     "wipeout": false
+    }
+   ],
+   "first_win": 3,
+   "first_lose": 5,
+   "first_unknown": 1,
+   "wipeout_slots": [
+    "PF",
+    "SG"
+   ],
+   "unknown_slots": [
+    "C",
+    "UTIL",
+    "BN",
+    "PG"
+   ]
+  },
+  "c5": {
+   "slots": [
+    {
+     "slot": "PG",
+     "candidates": [
+      {
+       "name": "Tyrese Haliburton",
+       "rank": 1,
+       "ceiling": 56,
+       "room": null,
+       "winnable": null
+      },
+      {
+       "name": "Josh Giddey",
+       "rank": 2,
+       "ceiling": 42,
+       "room": 41,
+       "winnable": true
+      },
+      {
+       "name": "De'Aaron Fox",
+       "rank": 3,
+       "ceiling": 24,
+       "room": 40,
+       "winnable": false
+      }
+     ],
+     "first_status": "unknown",
+     "fallback": "Josh Giddey",
+     "fallback_unknown": false,
+     "wipeout": false
+    },
+    {
+     "slot": "SG",
+     "candidates": [
+      {
+       "name": "Amen Thompson",
+       "rank": 1,
+       "ceiling": 49,
+       "room": 35,
+       "winnable": true
+      },
+      {
+       "name": "VJ Edgecombe",
+       "rank": 2,
+       "ceiling": 9,
+       "room": null,
+       "winnable": null
+      },
+      {
+       "name": "Nickeil Alexander-Walker",
+       "rank": 3,
+       "ceiling": 27,
+       "room": null,
+       "winnable": null
+      }
+     ],
+     "first_status": "win",
+     "fallback": "VJ Edgecombe",
+     "fallback_unknown": true,
+     "wipeout": false
+    },
+    {
+     "slot": "UTIL",
+     "candidates": [
+      {
+       "name": "Evan Mobley",
+       "rank": 1,
+       "ceiling": 30,
+       "room": 48,
+       "winnable": false
+      },
+      {
+       "name": "Walker Kessler",
+       "rank": 2,
+       "ceiling": 19,
+       "room": 15,
+       "winnable": true
+      }
+     ],
+     "first_status": "lose",
+     "fallback": "Walker Kessler",
+     "fallback_unknown": false,
+     "wipeout": false
+    },
+    {
+     "slot": "SF",
+     "candidates": [
+      {
+       "name": "Kon Knueppel",
+       "rank": 1,
+       "ceiling": 33,
+       "room": null,
+       "winnable": null
+      },
+      {
+       "name": "Josh Hart",
+       "rank": 2,
+       "ceiling": 9,
+       "room": 26,
+       "winnable": false
+      },
+      {
+       "name": "Desmond Bane",
+       "rank": 3,
+       "ceiling": 31,
+       "room": 18,
+       "winnable": true
+      }
+     ],
+     "first_status": "unknown",
+     "fallback": "Desmond Bane",
+     "fallback_unknown": false,
+     "wipeout": false
+    },
+    {
+     "slot": "PF",
+     "candidates": [
+      {
+       "name": "Domantas Sabonis",
+       "rank": 1,
+       "ceiling": 34,
+       "room": 68,
+       "winnable": false
+      }
+     ],
+     "first_status": "lose",
+     "fallback": null,
+     "fallback_unknown": false,
+     "wipeout": true
+    },
+    {
+     "slot": "C",
+     "candidates": [
+      {
+       "name": "Donovan Clingan",
+       "rank": 1,
+       "ceiling": 22,
+       "room": null,
+       "winnable": null
+      },
+      {
+       "name": "Rudy Gobert",
+       "rank": 2,
+       "ceiling": 18,
+       "room": 9,
+       "winnable": true
+      },
+      {
+       "name": "Nikola Vučević",
+       "rank": 3,
+       "ceiling": 8,
+       "room": 23,
+       "winnable": false
+      }
+     ],
+     "first_status": "unknown",
+     "fallback": "Rudy Gobert",
+     "fallback_unknown": false,
+     "wipeout": false
+    },
+    {
+     "slot": "UTIL",
+     "candidates": [
+      {
+       "name": "Ivica Zubac",
+       "rank": 1,
+       "ceiling": 16,
+       "room": 39,
+       "winnable": false
+      },
+      {
+       "name": "Mitchell Robinson",
+       "rank": 2,
+       "ceiling": 12,
+       "room": null,
+       "winnable": null
+      },
+      {
+       "name": "Mark Williams",
+       "rank": 3,
+       "ceiling": 14,
+       "room": 15,
+       "winnable": false
+      }
+     ],
+     "first_status": "lose",
+     "fallback": "Mitchell Robinson",
+     "fallback_unknown": true,
+     "wipeout": false
+    },
+    {
+     "slot": "BN",
+     "candidates": [
+      {
+       "name": "Deandre Ayton",
+       "rank": 1,
+       "ceiling": 14,
+       "room": 6,
+       "winnable": true
+      },
+      {
+       "name": "Nic Claxton",
+       "rank": 2,
+       "ceiling": 12,
+       "room": 3,
+       "winnable": true
+      },
+      {
+       "name": "Neemias Queta",
+       "rank": 3,
+       "ceiling": 6,
+       "room": null,
+       "winnable": null
+      }
+     ],
+     "first_status": "win",
+     "fallback": "Nic Claxton",
+     "fallback_unknown": false,
+     "wipeout": false
+    },
+    {
+     "slot": "BN",
+     "candidates": [
+      {
+       "name": "Dyson Daniels",
+       "rank": 1,
+       "ceiling": 20,
+       "room": 36,
+       "winnable": false
+      },
+      {
+       "name": "Andrew Nembhard",
+       "rank": 2,
+       "ceiling": 6,
+       "room": 13,
+       "winnable": false
+      },
+      {
+       "name": "Davion Mitchell",
+       "rank": 3,
+       "ceiling": 4,
+       "room": null,
+       "winnable": null
+      }
+     ],
+     "first_status": "lose",
+     "fallback": "Davion Mitchell",
+     "fallback_unknown": true,
+     "wipeout": false
+    }
+   ],
+   "first_win": 2,
+   "first_lose": 4,
+   "first_unknown": 3,
+   "wipeout_slots": [
+    "PF"
+   ],
+   "unknown_slots": [
+    "SG",
+    "UTIL",
+    "BN"
+   ]
+  },
+  "c6": {
+   "slots": [
+    {
+     "slot": "C",
+     "candidates": [
+      {
+       "name": "Karl-Anthony Towns",
+       "rank": 1,
+       "ceiling": 55,
+       "room": 74,
+       "winnable": false
+      },
+      {
+       "name": "Jalen Duren",
+       "rank": 2,
+       "ceiling": 34,
+       "room": 11,
+       "winnable": true
+      },
+      {
+       "name": "Alperen Şengün",
+       "rank": 3,
+       "ceiling": 34,
+       "room": 67,
+       "winnable": false
+      }
+     ],
+     "first_status": "lose",
+     "fallback": "Jalen Duren",
+     "fallback_unknown": false,
+     "wipeout": false
+    },
+    {
+     "slot": "PF",
+     "candidates": [
+      {
+       "name": "Alperen Şengün",
+       "rank": 1,
+       "ceiling": 34,
+       "room": 67,
+       "winnable": false
+      },
+      {
+       "name": "Evan Mobley",
+       "rank": 2,
+       "ceiling": 30,
+       "room": 48,
+       "winnable": false
+      },
+      {
+       "name": "LeBron James",
+       "rank": 3,
+       "ceiling": 16,
+       "room": 35,
+       "winnable": false
+      }
+     ],
+     "first_status": "lose",
+     "fallback": null,
+     "fallback_unknown": false,
+     "wipeout": true
+    },
+    {
+     "slot": "SG",
+     "candidates": [
+      {
+       "name": "Amen Thompson",
+       "rank": 1,
+       "ceiling": 49,
+       "room": 35,
+       "winnable": true
+      },
+      {
+       "name": "Kon Knueppel",
+       "rank": 2,
+       "ceiling": 33,
+       "room": null,
+       "winnable": null
+      },
+      {
+       "name": "Duncan Robinson",
+       "rank": 3,
+       "ceiling": 9,
+       "room": null,
+       "winnable": null
+      }
+     ],
+     "first_status": "win",
+     "fallback": "Kon Knueppel",
+     "fallback_unknown": true,
+     "wipeout": false
+    },
+    {
+     "slot": "UTIL",
+     "candidates": [
+      {
+       "name": "VJ Edgecombe",
+       "rank": 1,
+       "ceiling": 9,
+       "room": null,
+       "winnable": null
+      },
+      {
+       "name": "Onyeka Okongwu",
+       "rank": 2,
+       "ceiling": 10,
+       "room": 7,
+       "winnable": true
+      },
+      {
+       "name": "Josh Hart",
+       "rank": 3,
+       "ceiling": 9,
+       "room": 26,
+       "winnable": false
+      }
+     ],
+     "first_status": "unknown",
+     "fallback": "Onyeka Okongwu",
+     "fallback_unknown": false,
+     "wipeout": false
+    },
+    {
+     "slot": "UTIL",
+     "candidates": [
+      {
+       "name": "Dyson Daniels",
+       "rank": 1,
+       "ceiling": 20,
+       "room": 36,
+       "winnable": false
+      },
+      {
+       "name": "Ausar Thompson",
+       "rank": 2,
+       "ceiling": 8,
+       "room": 12,
+       "winnable": false
+      },
+      {
+       "name": "Cason Wallace",
+       "rank": 3,
+       "ceiling": 8,
+       "room": null,
+       "winnable": null
+      }
+     ],
+     "first_status": "lose",
+     "fallback": "Cason Wallace",
+     "fallback_unknown": true,
+     "wipeout": false
+    },
+    {
+     "slot": "BN",
+     "candidates": [
+      {
+       "name": "Desmond Bane",
+       "rank": 1,
+       "ceiling": 31,
+       "room": 18,
+       "winnable": true
+      },
+      {
+       "name": "Jamal Murray",
+       "rank": 2,
+       "ceiling": 31,
+       "room": 22,
+       "winnable": true
+      },
+      {
+       "name": "Josh Hart",
+       "rank": 3,
+       "ceiling": 9,
+       "room": 26,
+       "winnable": false
+      },
+      {
+       "name": "Nikola Vučević",
+       "rank": 4,
+       "ceiling": 8,
+       "room": 23,
+       "winnable": false
+      }
+     ],
+     "first_status": "win",
+     "fallback": "Jamal Murray",
+     "fallback_unknown": false,
+     "wipeout": false
+    },
+    {
+     "slot": "SF",
+     "candidates": [
+      {
+       "name": "DeMar DeRozan",
+       "rank": 1,
+       "ceiling": 16,
+       "room": 10,
+       "winnable": true
+      },
+      {
+       "name": "Trey Murphy III",
+       "rank": 2,
+       "ceiling": 16,
+       "room": 12,
+       "winnable": true
+      },
+      {
+       "name": "Josh Hart",
+       "rank": 3,
+       "ceiling": 9,
+       "room": 26,
+       "winnable": false
+      },
+      {
+       "name": "Andrew Wiggins",
+       "rank": 4,
+       "ceiling": 6,
+       "room": 7,
+       "winnable": false
+      }
+     ],
+     "first_status": "win",
+     "fallback": "Trey Murphy III",
+     "fallback_unknown": false,
+     "wipeout": false
+    },
+    {
+     "slot": "BN",
+     "candidates": [
+      {
+       "name": "Rudy Gobert",
+       "rank": 1,
+       "ceiling": 18,
+       "room": 9,
+       "winnable": true
+      },
+      {
+       "name": "Ivica Zubac",
+       "rank": 2,
+       "ceiling": 16,
+       "room": 39,
+       "winnable": false
+      },
+      {
+       "name": "Mark Williams",
+       "rank": 3,
+       "ceiling": 14,
+       "room": 15,
+       "winnable": false
+      }
+     ],
+     "first_status": "win",
+     "fallback": null,
+     "fallback_unknown": false,
+     "wipeout": false
+    },
+    {
+     "slot": "PG",
+     "candidates": [
+      {
+       "name": "Derrick White",
+       "rank": 1,
+       "ceiling": 44,
+       "room": 22,
+       "winnable": true
+      },
+      {
+       "name": "T.J. McConnell",
+       "rank": 2,
+       "ceiling": 14,
+       "room": null,
+       "winnable": null
+      },
+      {
+       "name": "Andrew Nembhard",
+       "rank": 3,
+       "ceiling": 6,
+       "room": 13,
+       "winnable": false
+      }
+     ],
+     "first_status": "win",
+     "fallback": "T.J. McConnell",
+     "fallback_unknown": true,
+     "wipeout": false
+    }
+   ],
+   "first_win": 5,
+   "first_lose": 3,
+   "first_unknown": 1,
+   "wipeout_slots": [
+    "PF"
+   ],
+   "unknown_slots": [
+    "SG",
+    "UTIL",
+    "PG"
+   ]
+  },
+  "c7": {
+   "slots": [
+    {
+     "slot": "C",
+     "candidates": [
+      {
+       "name": "Karl-Anthony Towns",
+       "rank": 1,
+       "ceiling": 55,
+       "room": 74,
+       "winnable": false
+      },
+      {
+       "name": "Jalen Duren",
+       "rank": 2,
+       "ceiling": 34,
+       "room": 11,
+       "winnable": true
+      },
+      {
+       "name": "Domantas Sabonis",
+       "rank": 3,
+       "ceiling": 34,
+       "room": 68,
+       "winnable": false
+      }
+     ],
+     "first_status": "lose",
+     "fallback": "Jalen Duren",
+     "fallback_unknown": false,
+     "wipeout": false
+    },
+    {
+     "slot": "PF",
+     "candidates": [
+      {
+       "name": "Alperen Şengün",
+       "rank": 1,
+       "ceiling": 34,
+       "room": 67,
+       "winnable": false
+      },
+      {
+       "name": "Domantas Sabonis",
+       "rank": 2,
+       "ceiling": 34,
+       "room": 68,
+       "winnable": false
+      },
+      {
+       "name": "Pascal Siakam",
+       "rank": 3,
+       "ceiling": 26,
+       "room": 26,
+       "winnable": true
+      }
+     ],
+     "first_status": "lose",
+     "fallback": "Pascal Siakam",
+     "fallback_unknown": false,
+     "wipeout": false
+    },
+    {
+     "slot": "SF",
+     "candidates": [
+      {
+       "name": "Kon Knueppel",
+       "rank": 1,
+       "ceiling": 33,
+       "room": null,
+       "winnable": null
+      },
+      {
+       "name": "Desmond Bane",
+       "rank": 2,
+       "ceiling": 31,
+       "room": 18,
+       "winnable": true
+      },
+      {
+       "name": "Andrew Wiggins",
+       "rank": 3,
+       "ceiling": 6,
+       "room": 7,
+       "winnable": false
+      }
+     ],
+     "first_status": "unknown",
+     "fallback": "Desmond Bane",
+     "fallback_unknown": false,
+     "wipeout": false
+    },
+    {
+     "slot": "SG",
+     "candidates": [
+      {
+       "name": "Dyson Daniels",
+       "rank": 1,
+       "ceiling": 20,
+       "room": 36,
+       "winnable": false
+      },
+      {
+       "name": "Ausar Thompson",
+       "rank": 2,
+       "ceiling": 8,
+       "room": 12,
+       "winnable": false
+      },
+      {
+       "name": "Cason Wallace",
+       "rank": 3,
+       "ceiling": 8,
+       "room": null,
+       "winnable": null
+      }
+     ],
+     "first_status": "lose",
+     "fallback": "Cason Wallace",
+     "fallback_unknown": true,
+     "wipeout": false
+    },
+    {
+     "slot": "PG",
+     "candidates": [
+      {
+       "name": "Derrick White",
+       "rank": 1,
+       "ceiling": 44,
+       "room": 22,
+       "winnable": true
+      },
+      {
+       "name": "Josh Giddey",
+       "rank": 2,
+       "ceiling": 42,
+       "room": 41,
+       "winnable": true
+      },
+      {
+       "name": "Nickeil Alexander-Walker",
+       "rank": 3,
+       "ceiling": 27,
+       "room": null,
+       "winnable": null
+      }
+     ],
+     "first_status": "win",
+     "fallback": "Josh Giddey",
+     "fallback_unknown": false,
+     "wipeout": false
+    },
+    {
+     "slot": "UTIL",
+     "candidates": [
+      {
+       "name": "Evan Mobley",
+       "rank": 1,
+       "ceiling": 30,
+       "room": 48,
+       "winnable": false
+      },
+      {
+       "name": "Ivica Zubac",
+       "rank": 2,
+       "ceiling": 16,
+       "room": 39,
+       "winnable": false
+      },
+      {
+       "name": "Mark Williams",
+       "rank": 3,
+       "ceiling": 14,
+       "room": 15,
+       "winnable": false
+      }
+     ],
+     "first_status": "lose",
+     "fallback": null,
+     "fallback_unknown": false,
+     "wipeout": true
+    },
+    {
+     "slot": "UTIL",
+     "candidates": [
+      {
+       "name": "Rudy Gobert",
+       "rank": 1,
+       "ceiling": 18,
+       "room": 9,
+       "winnable": true
+      },
+      {
+       "name": "Mitchell Robinson",
+       "rank": 2,
+       "ceiling": 12,
+       "room": null,
+       "winnable": null
+      },
+      {
+       "name": "Deandre Ayton",
+       "rank": 3,
+       "ceiling": 14,
+       "room": 6,
+       "winnable": true
+      }
+     ],
+     "first_status": "win",
+     "fallback": "Mitchell Robinson",
+     "fallback_unknown": true,
+     "wipeout": false
+    },
+    {
+     "slot": "BN",
+     "candidates": [
+      {
+       "name": "Josh Hart",
+       "rank": 1,
+       "ceiling": 9,
+       "room": 26,
+       "winnable": false
+      },
+      {
+       "name": "Andrew Wiggins",
+       "rank": 2,
+       "ceiling": 6,
+       "room": 7,
+       "winnable": false
+      },
+      {
+       "name": "Duncan Robinson",
+       "rank": 3,
+       "ceiling": 9,
+       "room": null,
+       "winnable": null
+      }
+     ],
+     "first_status": "lose",
+     "fallback": "Duncan Robinson",
+     "fallback_unknown": true,
+     "wipeout": false
+    },
+    {
+     "slot": "BN",
+     "candidates": [
+      {
+       "name": "Onyeka Okongwu",
+       "rank": 1,
+       "ceiling": 10,
+       "room": 7,
+       "winnable": true
+      },
+      {
+       "name": "Nikola Vučević",
+       "rank": 2,
+       "ceiling": 8,
+       "room": 23,
+       "winnable": false
+      },
+      {
+       "name": "Kel'el Ware",
+       "rank": 3,
+       "ceiling": 4,
+       "room": 4,
+       "winnable": true
+      }
+     ],
+     "first_status": "win",
+     "fallback": "Kel'el Ware",
+     "fallback_unknown": false,
+     "wipeout": false
+    }
+   ],
+   "first_win": 3,
+   "first_lose": 5,
+   "first_unknown": 1,
+   "wipeout_slots": [
+    "UTIL"
+   ],
+   "unknown_slots": [
+    "SG",
+    "UTIL",
+    "BN"
+   ]
+  }
+ }
+}

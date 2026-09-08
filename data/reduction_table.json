@@ -24,7 +24,9 @@
      "save_room": 63,
      "delta_pp": -2.294,
      "se_pp": 0.432,
-     "sigma": 5.3
+     "sigma": 5.3,
+     "executable": true,
+     "exec_note": "상한 $34 ≥ 방 $11"
     },
     {
      "slot": "PF",
@@ -38,7 +40,9 @@
      "save_room": 19,
      "delta_pp": -1.16,
      "se_pp": 0.251,
-     "sigma": 4.62
+     "sigma": 4.62,
+     "executable": false,
+     "exec_note": "🔴 상한 $30 < 방 $48 — **못 산다**"
     },
     {
      "slot": "PF",
@@ -52,7 +56,9 @@
      "save_room": 32,
      "delta_pp": -0.701,
      "se_pp": 0.323,
-     "sigma": 2.17
+     "sigma": 2.17,
+     "executable": false,
+     "exec_note": "🔴 상한 $16 < 방 $35 — **못 산다**"
     },
     {
      "slot": "SG",
@@ -66,7 +72,9 @@
      "save_room": null,
      "delta_pp": -0.16,
      "se_pp": 0.255,
-     "sigma": 0.63
+     "sigma": 0.63,
+     "executable": null,
+     "exec_note": "작년 미지명 — 판정 불가"
     },
     {
      "slot": "SG",
@@ -80,7 +88,9 @@
      "save_room": null,
      "delta_pp": -3.786,
      "se_pp": 0.494,
-     "sigma": 7.66
+     "sigma": 7.66,
+     "executable": null,
+     "exec_note": "작년 미지명 — 판정 불가"
     },
     {
      "slot": "UTIL",
@@ -94,7 +104,9 @@
      "save_room": null,
      "delta_pp": 0.435,
      "se_pp": 0.373,
-     "sigma": 1.17
+     "sigma": 1.17,
+     "executable": true,
+     "exec_note": "상한 $10 ≥ 방 $7"
     },
     {
      "slot": "UTIL",
@@ -108,7 +120,9 @@
      "save_room": null,
      "delta_pp": 0.878,
      "se_pp": 0.356,
-     "sigma": 2.47
+     "sigma": 2.47,
+     "executable": false,
+     "exec_note": "🔴 상한 $9 < 방 $26 — **못 산다**"
     },
     {
      "slot": "UTIL",
@@ -122,7 +136,9 @@
      "save_room": 24,
      "delta_pp": -4.297,
      "se_pp": 0.485,
-     "sigma": 8.86
+     "sigma": 8.86,
+     "executable": false,
+     "exec_note": "🔴 상한 $8 < 방 $12 — **못 산다**"
     },
     {
      "slot": "UTIL",
@@ -136,7 +152,9 @@
      "save_room": null,
      "delta_pp": -3.851,
      "se_pp": 0.517,
-     "sigma": 7.45
+     "sigma": 7.45,
+     "executable": null,
+     "exec_note": "작년 미지명 — 판정 불가"
     },
     {
      "slot": "BN",
@@ -150,7 +168,9 @@
      "save_room": -4,
      "delta_pp": 2.335,
      "se_pp": 0.492,
-     "sigma": 4.74
+     "sigma": 4.74,
+     "executable": true,
+     "exec_note": "상한 $31 ≥ 방 $22"
     },
     {
      "slot": "BN",
@@ -164,7 +184,9 @@
      "save_room": -8,
      "delta_pp": -0.44,
      "se_pp": 0.469,
-     "sigma": 0.94
+     "sigma": 0.94,
+     "executable": false,
+     "exec_note": "🔴 상한 $9 < 방 $26 — **못 산다**"
     },
     {
      "slot": "BN",
@@ -178,7 +200,9 @@
      "save_room": -5,
      "delta_pp": -0.766,
      "se_pp": 0.27,
-     "sigma": 2.83
+     "sigma": 2.83,
+     "executable": false,
+     "exec_note": "🔴 상한 $8 < 방 $23 — **못 산다**"
     },
     {
      "slot": "SF",
@@ -192,7 +216,9 @@
      "save_room": -2,
      "delta_pp": -0.491,
      "se_pp": 0.26,
-     "sigma": 1.89
+     "sigma": 1.89,
+     "executable": true,
+     "exec_note": "상한 $16 ≥ 방 $12"
     },
     {
      "slot": "SF",
@@ -206,7 +232,9 @@
      "save_room": -16,
      "delta_pp": 0.25,
      "se_pp": 0.366,
-     "sigma": 0.68
+     "sigma": 0.68,
+     "executable": false,
+     "exec_note": "🔴 상한 $9 < 방 $26 — **못 산다**"
     },
     {
      "slot": "SF",
@@ -220,7 +248,9 @@
      "save_room": 3,
      "delta_pp": -2.268,
      "se_pp": 0.403,
-     "sigma": 5.62
+     "sigma": 5.62,
+     "executable": false,
+     "exec_note": "🔴 상한 $6 < 방 $7 — **못 산다**"
     },
     {
      "slot": "BN",
@@ -234,7 +264,9 @@
      "save_room": -30,
      "delta_pp": -0.151,
      "se_pp": 0.208,
-     "sigma": 0.73
+     "sigma": 0.73,
+     "executable": false,
+     "exec_note": "🔴 상한 $16 < 방 $39 — **못 산다**"
     },
     {
      "slot": "BN",
@@ -248,7 +280,9 @@
      "save_room": -6,
      "delta_pp": -3.352,
      "se_pp": 0.422,
-     "sigma": 7.94
+     "sigma": 7.94,
+     "executable": false,
+     "exec_note": "🔴 상한 $14 < 방 $15 — **못 산다**"
     },
     {
      "slot": "PG",
@@ -262,7 +296,9 @@
      "save_room": null,
      "delta_pp": -4.942,
      "se_pp": 0.512,
-     "sigma": 9.65
+     "sigma": 9.65,
+     "executable": null,
+     "exec_note": "작년 미지명 — 판정 불가"
     },
     {
      "slot": "PG",
@@ -276,7 +312,9 @@
      "save_room": 9,
      "delta_pp": -4.769,
      "se_pp": 0.386,
-     "sigma": 12.36
+     "sigma": 12.36,
+     "executable": false,
+     "exec_note": "🔴 상한 $6 < 방 $13 — **못 산다**"
     }
    ]
   },
@@ -297,7 +335,9 @@
      "save_room": 63,
      "delta_pp": -2.367,
      "se_pp": 0.465,
-     "sigma": 5.09
+     "sigma": 5.09,
+     "executable": true,
+     "exec_note": "상한 $34 ≥ 방 $11"
     },
     {
      "slot": "C",
@@ -311,7 +351,9 @@
      "save_room": 6,
      "delta_pp": -2.722,
      "se_pp": 0.497,
-     "sigma": 5.48
+     "sigma": 5.48,
+     "executable": false,
+     "exec_note": "🔴 상한 $34 < 방 $68 — **못 산다**"
     },
     {
      "slot": "PF",
@@ -325,7 +367,9 @@
      "save_room": -1,
      "delta_pp": -2.237,
      "se_pp": 0.263,
-     "sigma": 8.51
+     "sigma": 8.51,
+     "executable": false,
+     "exec_note": "🔴 상한 $34 < 방 $68 — **못 산다**"
     },
     {
      "slot": "PF",
@@ -339,7 +383,9 @@
      "save_room": 41,
      "delta_pp": -1.563,
      "se_pp": 0.252,
-     "sigma": 6.21
+     "sigma": 6.21,
+     "executable": true,
+     "exec_note": "상한 $26 ≥ 방 $26"
     },
     {
      "slot": "SF",
@@ -353,7 +399,9 @@
      "save_room": null,
      "delta_pp": -0.16,
      "se_pp": 0.312,
-     "sigma": 0.51
+     "sigma": 0.51,
+     "executable": true,
+     "exec_note": "상한 $31 ≥ 방 $18"
     },
     {
      "slot": "SF",
@@ -367,7 +415,9 @@
      "save_room": null,
      "delta_pp": -3.487,
      "se_pp": 0.33,
-     "sigma": 10.56
+     "sigma": 10.56,
+     "executable": false,
+     "exec_note": "🔴 상한 $6 < 방 $7 — **못 산다**"
     },
     {
      "slot": "SG",
@@ -381,7 +431,9 @@
      "save_room": 24,
      "delta_pp": -4.86,
      "se_pp": 0.534,
-     "sigma": 9.09
+     "sigma": 9.09,
+     "executable": false,
+     "exec_note": "🔴 상한 $8 < 방 $12 — **못 산다**"
     },
     {
      "slot": "SG",
@@ -395,7 +447,9 @@
      "save_room": null,
      "delta_pp": -3.24,
      "se_pp": 0.373,
-     "sigma": 8.69
+     "sigma": 8.69,
+     "executable": null,
+     "exec_note": "작년 미지명 — 판정 불가"
     },
     {
      "slot": "PG",
@@ -409,7 +463,9 @@
      "save_room": -19,
      "delta_pp": -2.5,
      "se_pp": 0.418,
-     "sigma": 5.97
+     "sigma": 5.97,
+     "executable": true,
+     "exec_note": "상한 $42 ≥ 방 $41"
     },
     {
      "slot": "PG",
@@ -423,7 +479,9 @@
      "save_room": null,
      "delta_pp": -2.938,
      "se_pp": 0.392,
-     "sigma": 7.5
+     "sigma": 7.5,
+     "executable": null,
+     "exec_note": "작년 미지명 — 판정 불가"
     },
     {
      "slot": "UTIL",
@@ -437,7 +495,9 @@
      "save_room": 9,
      "delta_pp": -2.014,
      "se_pp": 0.358,
-     "sigma": 5.62
+     "sigma": 5.62,
+     "executable": false,
+     "exec_note": "🔴 상한 $16 < 방 $39 — **못 산다**"
     },
     {
      "slot": "UTIL",
@@ -451,7 +511,9 @@
      "save_room": 33,
      "delta_pp": -4.324,
      "se_pp": 0.445,
-     "sigma": 9.71
+     "sigma": 9.71,
+     "executable": false,
+     "exec_note": "🔴 상한 $14 < 방 $15 — **못 산다**"
     },
     {
      "slot": "UTIL",
@@ -465,7 +527,9 @@
      "save_room": null,
      "delta_pp": -4.811,
      "se_pp": 0.52,
-     "sigma": 9.25
+     "sigma": 9.25,
+     "executable": null,
+     "exec_note": "작년 미지명 — 판정 불가"
     },
     {
      "slot": "UTIL",
@@ -479,7 +543,9 @@
      "save_room": 3,
      "delta_pp": -2.798,
      "se_pp": 0.447,
-     "sigma": 6.26
+     "sigma": 6.26,
+     "executable": true,
+     "exec_note": "상한 $14 ≥ 방 $6"
     },
     {
      "slot": "BN",
@@ -493,7 +559,9 @@
      "save_room": 19,
      "delta_pp": -2.781,
      "se_pp": 0.411,
-     "sigma": 6.76
+     "sigma": 6.76,
+     "executable": false,
+     "exec_note": "🔴 상한 $6 < 방 $7 — **못 산다**"
     },
     {
      "slot": "BN",
@@ -507,7 +575,9 @@
      "save_room": null,
      "delta_pp": -2.466,
      "se_pp": 0.444,
-     "sigma": 5.56
+     "sigma": 5.56,
+     "executable": null,
+     "exec_note": "작년 미지명 — 판정 불가"
     },
     {
      "slot": "BN",
@@ -521,7 +591,9 @@
      "save_room": -16,
      "delta_pp": 0.038,
      "se_pp": 0.197,
-     "sigma": 0.19
+     "sigma": 0.19,
+     "executable": false,
+     "exec_note": "🔴 상한 $8 < 방 $23 — **못 산다**"
     },
     {
      "slot": "BN",
@@ -535,7 +607,9 @@
      "save_room": 3,
      "delta_pp": -2.797,
      "se_pp": 0.32,
-     "sigma": 8.74
+     "sigma": 8.74,
+     "executable": true,
+     "exec_note": "상한 $4 ≥ 방 $4"
     }
    ]
   },
@@ -556,7 +630,9 @@
      "save_room": 63,
      "delta_pp": -2.188,
      "se_pp": 0.56,
-     "sigma": 3.9
+     "sigma": 3.9,
+     "executable": true,
+     "exec_note": "상한 $34 ≥ 방 $11"
     },
     {
      "slot": "PG",
@@ -570,7 +646,9 @@
      "save_room": null,
      "delta_pp": -10.672,
      "se_pp": 1.131,
-     "sigma": 9.44
+     "sigma": 9.44,
+     "executable": true,
+     "exec_note": "상한 $42 ≥ 방 $41"
     },
     {
      "slot": "PG",
@@ -584,7 +662,9 @@
      "save_room": null,
      "delta_pp": -11.939,
      "se_pp": 1.233,
-     "sigma": 9.69
+     "sigma": 9.69,
+     "executable": false,
+     "exec_note": "🔴 상한 $24 < 방 $40 — **못 산다**"
     },
     {
      "slot": "PF",
@@ -598,7 +678,9 @@
      "save_room": 19,
      "delta_pp": -0.236,
      "se_pp": 0.153,
-     "sigma": 1.54
+     "sigma": 1.54,
+     "executable": false,
+     "exec_note": "🔴 상한 $30 < 방 $48 — **못 산다**"
     },
     {
      "slot": "SF",
@@ -612,7 +694,9 @@
      "save_room": null,
      "delta_pp": 0.743,
      "se_pp": 0.33,
-     "sigma": 2.25
+     "sigma": 2.25,
+     "executable": true,
+     "exec_note": "상한 $31 ≥ 방 $18"
     },
     {
      "slot": "SF",
@@ -626,7 +710,9 @@
      "save_room": null,
      "delta_pp": -2.926,
      "se_pp": 0.335,
-     "sigma": 8.72
+     "sigma": 8.72,
+     "executable": true,
+     "exec_note": "상한 $14 ≥ 방 $2"
     },
     {
      "slot": "SG",
@@ -640,7 +726,9 @@
      "save_room": 24,
      "delta_pp": -4.183,
      "se_pp": 0.486,
-     "sigma": 8.6
+     "sigma": 8.6,
+     "executable": false,
+     "exec_note": "🔴 상한 $8 < 방 $12 — **못 산다**"
     },
     {
      "slot": "SG",
@@ -654,7 +742,9 @@
      "save_room": null,
      "delta_pp": -3.108,
      "se_pp": 0.503,
-     "sigma": 6.18
+     "sigma": 6.18,
+     "executable": null,
+     "exec_note": "작년 미지명 — 판정 불가"
     },
     {
      "slot": "UTIL",
@@ -668,7 +758,9 @@
      "save_room": null,
      "delta_pp": -3.702,
      "se_pp": 0.522,
-     "sigma": 7.09
+     "sigma": 7.09,
+     "executable": null,
+     "exec_note": "작년 미지명 — 판정 불가"
     },
     {
      "slot": "UTIL",
@@ -682,7 +774,9 @@
      "save_room": -30,
      "delta_pp": -0.461,
      "se_pp": 0.249,
-     "sigma": 1.85
+     "sigma": 1.85,
+     "executable": false,
+     "exec_note": "🔴 상한 $16 < 방 $39 — **못 산다**"
     },
     {
      "slot": "UTIL",
@@ -696,7 +790,9 @@
      "save_room": -6,
      "delta_pp": -2.812,
      "se_pp": 0.448,
-     "sigma": 6.28
+     "sigma": 6.28,
+     "executable": false,
+     "exec_note": "🔴 상한 $14 < 방 $15 — **못 산다**"
     },
     {
      "slot": "BN",
@@ -710,7 +806,9 @@
      "save_room": null,
      "delta_pp": -1.991,
      "se_pp": 0.442,
-     "sigma": 4.51
+     "sigma": 4.51,
+     "executable": null,
+     "exec_note": "작년 미지명 — 판정 불가"
     },
     {
      "slot": "BN",
@@ -724,7 +822,9 @@
      "save_room": null,
      "delta_pp": -1.791,
      "se_pp": 0.337,
-     "sigma": 5.32
+     "sigma": 5.32,
+     "executable": false,
+     "exec_note": "🔴 상한 $6 < 방 $13 — **못 산다**"
     },
     {
      "slot": "BN",
@@ -738,7 +838,9 @@
      "save_room": null,
      "delta_pp": -2.148,
      "se_pp": 0.291,
-     "sigma": 7.38
+     "sigma": 7.38,
+     "executable": null,
+     "exec_note": "작년 미지명 — 판정 불가"
     },
     {
      "slot": "BN",
@@ -752,7 +854,9 @@
      "save_room": null,
      "delta_pp": -1.292,
      "se_pp": 0.23,
-     "sigma": 5.61
+     "sigma": 5.61,
+     "executable": null,
+     "exec_note": "작년 미지명 — 판정 불가"
     }
    ]
   },
@@ -773,7 +877,9 @@
      "save_room": 10,
      "delta_pp": -2.182,
      "se_pp": 0.433,
-     "sigma": 5.04
+     "sigma": 5.04,
+     "executable": true,
+     "exec_note": "상한 $32 ≥ 방 $12"
     },
     {
      "slot": "SG",
@@ -787,7 +893,9 @@
      "save_room": null,
      "delta_pp": -2.732,
      "se_pp": 0.478,
-     "sigma": 5.72
+     "sigma": 5.72,
+     "executable": null,
+     "exec_note": "작년 미지명 — 판정 불가"
     },
     {
      "slot": "SF",
@@ -801,7 +909,9 @@
      "save_room": -8,
      "delta_pp": 0.242,
      "se_pp": 0.18,
-     "sigma": 1.35
+     "sigma": 1.35,
+     "executable": false,
+     "exec_note": "🔴 상한 $9 < 방 $26 — **못 산다**"
     },
     {
      "slot": "SF",
@@ -815,7 +925,9 @@
      "save_room": null,
      "delta_pp": 0.091,
      "se_pp": 0.31,
-     "sigma": 0.29
+     "sigma": 0.29,
+     "executable": null,
+     "exec_note": "작년 미지명 — 판정 불가"
     },
     {
      "slot": "UTIL",
@@ -829,7 +941,9 @@
      "save_room": 0,
      "delta_pp": -1.812,
      "se_pp": 0.414,
-     "sigma": 4.37
+     "sigma": 4.37,
+     "executable": true,
+     "exec_note": "상한 $10 ≥ 방 $7"
     },
     {
      "slot": "UTIL",
@@ -843,7 +957,9 @@
      "save_room": null,
      "delta_pp": -2.665,
      "se_pp": 0.417,
-     "sigma": 6.39
+     "sigma": 6.39,
+     "executable": null,
+     "exec_note": "작년 미지명 — 판정 불가"
     },
     {
      "slot": "PG",
@@ -857,7 +973,9 @@
      "save_room": null,
      "delta_pp": -0.572,
      "se_pp": 0.189,
-     "sigma": 3.03
+     "sigma": 3.03,
+     "executable": null,
+     "exec_note": "작년 미지명 — 판정 불가"
     },
     {
      "slot": "PG",
@@ -871,7 +989,9 @@
      "save_room": null,
      "delta_pp": -2.577,
      "se_pp": 0.469,
-     "sigma": 5.5
+     "sigma": 5.5,
+     "executable": null,
+     "exec_note": "작년 미지명 — 판정 불가"
     },
     {
      "slot": "UTIL",
@@ -885,7 +1005,9 @@
      "save_room": null,
      "delta_pp": -4.293,
      "se_pp": 0.676,
-     "sigma": 6.35
+     "sigma": 6.35,
+     "executable": true,
+     "exec_note": "상한 $18 ≥ 방 $12"
     },
     {
      "slot": "UTIL",
@@ -899,7 +1021,9 @@
      "save_room": null,
      "delta_pp": -5.968,
      "se_pp": 0.848,
-     "sigma": 7.03
+     "sigma": 7.03,
+     "executable": null,
+     "exec_note": "작년 미지명 — 판정 불가"
     },
     {
      "slot": "PF",
@@ -913,7 +1037,9 @@
      "save_room": 3,
      "delta_pp": 0.005,
      "se_pp": 0.252,
-     "sigma": 0.02
+     "sigma": 0.02,
+     "executable": true,
+     "exec_note": "상한 $10 ≥ 방 $7"
     },
     {
      "slot": "PF",
@@ -927,7 +1053,9 @@
      "save_room": 9,
      "delta_pp": -1.948,
      "se_pp": 0.328,
-     "sigma": 5.94
+     "sigma": 5.94,
+     "executable": true,
+     "exec_note": "상한 $10 ≥ 방 $1"
     },
     {
      "slot": "BN",
@@ -941,7 +1069,9 @@
      "save_room": null,
      "delta_pp": -4.748,
      "se_pp": 0.771,
-     "sigma": 6.16
+     "sigma": 6.16,
+     "executable": null,
+     "exec_note": "작년 미지명 — 판정 불가"
     },
     {
      "slot": "BN",
@@ -955,7 +1085,9 @@
      "save_room": 16,
      "delta_pp": -3.138,
      "se_pp": 0.587,
-     "sigma": 5.34
+     "sigma": 5.34,
+     "executable": false,
+     "exec_note": "🔴 상한 $6 < 방 $7 — **못 산다**"
     },
     {
      "slot": "BN",
@@ -969,7 +1101,9 @@
      "save_room": null,
      "delta_pp": -0.748,
      "se_pp": 0.216,
-     "sigma": 3.47
+     "sigma": 3.47,
+     "executable": null,
+     "exec_note": "작년 미지명 — 판정 불가"
     },
     {
      "slot": "BN",
@@ -983,7 +1117,9 @@
      "save_room": null,
      "delta_pp": 0.469,
      "se_pp": 0.171,
-     "sigma": 2.75
+     "sigma": 2.75,
+     "executable": null,
+     "exec_note": "작년 미지명 — 판정 불가"
     }
    ]
   },
@@ -1004,7 +1140,9 @@
      "save_room": null,
      "delta_pp": -1.395,
      "se_pp": 0.292,
-     "sigma": 4.79
+     "sigma": 4.79,
+     "executable": null,
+     "exec_note": "작년 미지명 — 판정 불가"
     },
     {
      "slot": "C",
@@ -1018,7 +1156,9 @@
      "save_room": -28,
      "delta_pp": -1.004,
      "se_pp": 0.143,
-     "sigma": 7.04
+     "sigma": 7.04,
+     "executable": false,
+     "exec_note": "🔴 상한 $16 < 방 $39 — **못 산다**"
     },
     {
      "slot": "SG",
@@ -1032,7 +1172,9 @@
      "save_room": 9,
      "delta_pp": -0.904,
      "se_pp": 0.117,
-     "sigma": 7.7
+     "sigma": 7.7,
+     "executable": false,
+     "exec_note": "🔴 상한 $9 < 방 $26 — **못 산다**"
     },
     {
      "slot": "SG",
@@ -1046,7 +1188,9 @@
      "save_room": 25,
      "delta_pp": -2.879,
      "se_pp": 0.51,
-     "sigma": 5.65
+     "sigma": 5.65,
+     "executable": false,
+     "exec_note": "🔴 상한 $5 < 방 $10 — **못 산다**"
     },
     {
      "slot": "UTIL",
@@ -1060,7 +1204,9 @@
      "save_room": 33,
      "delta_pp": -3.485,
      "se_pp": 0.485,
-     "sigma": 7.18
+     "sigma": 7.18,
+     "executable": true,
+     "exec_note": "상한 $19 ≥ 방 $15"
     },
     {
      "slot": "SF",
@@ -1074,7 +1220,9 @@
      "save_room": null,
      "delta_pp": 1.001,
      "se_pp": 0.308,
-     "sigma": 3.25
+     "sigma": 3.25,
+     "executable": true,
+     "exec_note": "상한 $31 ≥ 방 $18"
     },
     {
      "slot": "SF",
@@ -1088,7 +1236,9 @@
      "save_room": null,
      "delta_pp": -2.707,
      "se_pp": 0.552,
-     "sigma": 4.9
+     "sigma": 4.9,
+     "executable": false,
+     "exec_note": "🔴 상한 $8 < 방 $12 — **못 산다**"
     },
     {
      "slot": "UTIL",
@@ -1102,7 +1252,9 @@
      "save_room": 24,
      "delta_pp": -4.441,
      "se_pp": 0.521,
-     "sigma": 8.53
+     "sigma": 8.53,
+     "executable": false,
+     "exec_note": "🔴 상한 $8 < 방 $12 — **못 산다**"
     },
     {
      "slot": "UTIL",
@@ -1116,7 +1268,9 @@
      "save_room": null,
      "delta_pp": -4.257,
      "se_pp": 0.522,
-     "sigma": 8.16
+     "sigma": 8.16,
+     "executable": null,
+     "exec_note": "작년 미지명 — 판정 불가"
     },
     {
      "slot": "BN",
@@ -1130,7 +1284,9 @@
      "save_room": -6,
      "delta_pp": -3.59,
      "se_pp": 0.412,
-     "sigma": 8.7
+     "sigma": 8.7,
+     "executable": false,
+     "exec_note": "🔴 상한 $14 < 방 $15 — **못 산다**"
     },
     {
      "slot": "BN",
@@ -1144,7 +1300,9 @@
      "save_room": null,
      "delta_pp": -6.012,
      "se_pp": 0.498,
-     "sigma": 12.06
+     "sigma": 12.06,
+     "executable": null,
+     "exec_note": "작년 미지명 — 판정 불가"
     },
     {
      "slot": "BN",
@@ -1158,7 +1316,9 @@
      "save_room": 3,
      "delta_pp": -4.207,
      "se_pp": 0.409,
-     "sigma": 10.27
+     "sigma": 10.27,
+     "executable": true,
+     "exec_note": "상한 $8 ≥ 방 $8"
     },
     {
      "slot": "BN",
@@ -1172,7 +1332,9 @@
      "save_room": -15,
      "delta_pp": 1.488,
      "se_pp": 0.32,
-     "sigma": 4.65
+     "sigma": 4.65,
+     "executable": false,
+     "exec_note": "🔴 상한 $9 < 방 $26 — **못 산다**"
     },
     {
      "slot": "PG",
@@ -1186,7 +1348,9 @@
      "save_room": null,
      "delta_pp": -5.891,
      "se_pp": 0.659,
-     "sigma": 8.95
+     "sigma": 8.95,
+     "executable": null,
+     "exec_note": "작년 미지명 — 판정 불가"
     },
     {
      "slot": "PG",
@@ -1200,10 +1364,244 @@
      "save_room": 50,
      "delta_pp": -5.059,
      "se_pp": 0.554,
-     "sigma": 9.14
+     "sigma": 9.14,
+     "executable": false,
+     "exec_note": "🔴 상한 $6 < 방 $13 — **못 산다**"
+    }
+   ]
+  },
+  "c3": {
+   "base_win_rate": 0.8748,
+   "planned_total": 191,
+   "room_total": 285,
+   "rows": [
+    {
+     "slot": "PF",
+     "out": "Alperen Şengün",
+     "in": "Evan Mobley",
+     "plan_out": 26,
+     "plan_in": 23,
+     "save_plan": 3,
+     "room_out": 67,
+     "room_in": 48,
+     "save_room": 19,
+     "delta_pp": -1.034,
+     "se_pp": 0.317,
+     "sigma": 3.26,
+     "executable": false,
+     "exec_note": "🔴 상한 $30 < 방 $48 — **못 산다**"
+    },
+    {
+     "slot": "SG",
+     "out": "Amen Thompson",
+     "in": "Kon Knueppel",
+     "plan_out": 26,
+     "plan_in": 22,
+     "save_plan": 4,
+     "room_out": 35,
+     "room_in": null,
+     "save_room": null,
+     "delta_pp": -0.704,
+     "se_pp": 0.472,
+     "sigma": 1.49,
+     "executable": null,
+     "exec_note": "작년 미지명 — 판정 불가"
+    },
+    {
+     "slot": "SG",
+     "out": "Amen Thompson",
+     "in": "Isaiah Joe",
+     "plan_out": 26,
+     "plan_in": 2,
+     "save_plan": 24,
+     "room_out": 35,
+     "room_in": null,
+     "save_room": null,
+     "delta_pp": -5.003,
+     "se_pp": 0.849,
+     "sigma": 5.9,
+     "executable": null,
+     "exec_note": "작년 미지명 — 판정 불가"
+    },
+    {
+     "slot": "UTIL",
+     "out": "Dyson Daniels",
+     "in": "Ausar Thompson",
+     "plan_out": 12,
+     "plan_in": 3,
+     "save_plan": 9,
+     "room_out": 36,
+     "room_in": 12,
+     "save_room": 24,
+     "delta_pp": -3.055,
+     "se_pp": 0.456,
+     "sigma": 6.7,
+     "executable": false,
+     "exec_note": "🔴 상한 $8 < 방 $12 — **못 산다**"
+    },
+    {
+     "slot": "UTIL",
+     "out": "Dyson Daniels",
+     "in": "Cason Wallace",
+     "plan_out": 12,
+     "plan_in": 3,
+     "save_plan": 9,
+     "room_out": 36,
+     "room_in": null,
+     "save_room": null,
+     "delta_pp": -3.286,
+     "se_pp": 0.538,
+     "sigma": 6.11,
+     "executable": null,
+     "exec_note": "작년 미지명 — 판정 불가"
+    },
+    {
+     "slot": "C",
+     "out": "Donovan Clingan",
+     "in": "Ivica Zubac",
+     "plan_out": 12,
+     "plan_in": 11,
+     "save_plan": 1,
+     "room_out": null,
+     "room_in": 39,
+     "save_room": null,
+     "delta_pp": 1.02,
+     "se_pp": 0.209,
+     "sigma": 4.89,
+     "executable": false,
+     "exec_note": "🔴 상한 $16 < 방 $39 — **못 산다**"
+    },
+    {
+     "slot": "BN",
+     "out": "Nic Claxton",
+     "in": "Mitchell Robinson",
+     "plan_out": 4,
+     "plan_in": 5,
+     "save_plan": -1,
+     "room_out": 3,
+     "room_in": null,
+     "save_room": null,
+     "delta_pp": -2.132,
+     "se_pp": 0.42,
+     "sigma": 5.08,
+     "executable": null,
+     "exec_note": "작년 미지명 — 판정 불가"
+    },
+    {
+     "slot": "BN",
+     "out": "Nic Claxton",
+     "in": "Deandre Ayton",
+     "plan_out": 4,
+     "plan_in": 5,
+     "save_plan": -1,
+     "room_out": 3,
+     "room_in": 6,
+     "save_room": -3,
+     "delta_pp": -1.191,
+     "se_pp": 0.365,
+     "sigma": 3.27,
+     "executable": true,
+     "exec_note": "상한 $14 ≥ 방 $6"
+    },
+    {
+     "slot": "BN",
+     "out": "Rudy Gobert",
+     "in": "Mark Williams",
+     "plan_out": 8,
+     "plan_in": 7,
+     "save_plan": 1,
+     "room_out": 9,
+     "room_in": 15,
+     "save_room": -6,
+     "delta_pp": -2.912,
+     "se_pp": 0.531,
+     "sigma": 5.48,
+     "executable": false,
+     "exec_note": "🔴 상한 $14 < 방 $15 — **못 산다**"
+    },
+    {
+     "slot": "BN",
+     "out": "Rudy Gobert",
+     "in": "Neemias Queta",
+     "plan_out": 8,
+     "plan_in": 2,
+     "save_plan": 6,
+     "room_out": 9,
+     "room_in": null,
+     "save_room": null,
+     "delta_pp": -2.927,
+     "se_pp": 0.485,
+     "sigma": 6.03,
+     "executable": null,
+     "exec_note": "작년 미지명 — 판정 불가"
+    },
+    {
+     "slot": "UTIL",
+     "out": "Damian Lillard",
+     "in": "Deandre Ayton",
+     "plan_out": 14,
+     "plan_in": 5,
+     "save_plan": 9,
+     "room_out": null,
+     "room_in": 6,
+     "save_room": null,
+     "delta_pp": -4.727,
+     "se_pp": 0.732,
+     "sigma": 6.46,
+     "executable": true,
+     "exec_note": "상한 $14 ≥ 방 $6"
+    },
+    {
+     "slot": "UTIL",
+     "out": "Damian Lillard",
+     "in": "Neemias Queta",
+     "plan_out": 14,
+     "plan_in": 2,
+     "save_plan": 12,
+     "room_out": null,
+     "room_in": null,
+     "save_room": null,
+     "delta_pp": -4.542,
+     "se_pp": 0.704,
+     "sigma": 6.45,
+     "executable": null,
+     "exec_note": "작년 미지명 — 판정 불가"
+    },
+    {
+     "slot": "SF",
+     "out": "Josh Hart",
+     "in": "DeMar DeRozan",
+     "plan_out": 4,
+     "plan_in": 8,
+     "save_plan": -4,
+     "room_out": 26,
+     "room_in": 10,
+     "save_room": 16,
+     "delta_pp": -0.599,
+     "se_pp": 0.343,
+     "sigma": 1.75,
+     "executable": true,
+     "exec_note": "상한 $16 ≥ 방 $10"
+    },
+    {
+     "slot": "SF",
+     "out": "Josh Hart",
+     "in": "Andrew Wiggins",
+     "plan_out": 4,
+     "plan_in": 2,
+     "save_plan": 2,
+     "room_out": 26,
+     "room_in": 7,
+     "save_room": 19,
+     "delta_pp": -2.958,
+     "se_pp": 0.477,
+     "sigma": 6.21,
+     "executable": false,
+     "exec_note": "🔴 상한 $6 < 방 $7 — **못 산다**"
     }
    ]
   }
  },
- "note_split_run": "c6·c7·c1 과 c2·c4 를 **나눠 돌려 합쳤다**(스크립트가 실행마다 파일을 새로 쓴다). 같은 시드·시행·주 길이 모형이므로 합쳐도 규약이 깨지지 않는다."
+ "note_split_run": "c6·c7·c1 / c2·c4 / c3 을 나눠 돌려 합쳤다(스크립트가 실행마다 파일을 새로 쓴다). 같은 시드·시행·주 길이 모형.",
+ "executability_note": "🔴 42차 정정: `save_room` 은 대체를 **방 가격에 우리가 산다**고 전제한다. `bid_ceiling` 이 그 아래면 그 감축은 **실행 불가능**하다. `executable` 로 표시했다 — `false` 인 행을 감축 경로에 넣지 말 것. (`cores.json.no_reachable_fallback_40b` 가 이미 경고해 뒀는데 감축표를 만들 때 안 봤다.)"
 }
