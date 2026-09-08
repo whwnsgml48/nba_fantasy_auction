@@ -1535,6 +1535,50 @@ try:
 except Exception as _ex38:
     print("✗ [I38] 이름 필드 전수 검사 실패: %r"%(_ex38,)); err+=1
 
+# ── I43 (42차 · 작업6): **선언 모순 전수 대조**
+#   🔴 왜 — 42차에 **같은 형태의 버그를 두 번** 잡았다:
+#      ① `anchor_plan.on_fail`(치환) ↔ `kat_price_branch`(코어 전환) — 측정하니 9.5%p 차
+#      ② 태우기 명단 ↔ c2 UTIL 후보(Turner) — `tag_basis` 가 null 이라 M5 도 안 걸림
+#      둘 다 「두 선언이 같은 대상에 반대 지시를 하는데 아무도 대조하지 않는다」다.
+#      개별 버그가 아니라 **버그의 종류**이고, 두 개를 우연히 찾았다면 더 있다.
+#   → 개별 검사 열 개 대신 **대조 하나**를 둔다. 새 선언이 생기면 자동으로 걸린다.
+#   🔴 **미판정 상충은 위반이다.** 판정하려면 `declaration_conflicts.RESOLVED` 에
+#      **이유와 함께** 넣어야 한다 — 그 강제가 이번에 「적용 시점으로 갈린다」는
+#      **한 번도 적힌 적 없던 규칙**을 끌어냈다(비싸지만 잡을 수 있다 vs 못 잡았다).
+#   ⚠️ 이 검사는 **어느 쪽이 옳은지 판정하지 않는다.** 근거의 강도(측정 > 모형 > 서술)로
+#      가르는 것은 사람 일이다. 검사는 「대조되지 않은 채 남아 있는가」만 본다.
+try:
+    sys.path.insert(0, D+"/tool")
+    import declaration_conflicts as _DC
+    import importlib as _il43
+    _il43.reload(_DC)
+    _byp43 = {}
+    for _d in _DC.collect():
+        _byp43.setdefault(_d["player"], []).append(_d)
+    _C43 = _DC.conflicts(_byp43)
+    _U43 = _DC.unresolved(_C43)
+    _noreason = [k for k, v in _DC.RESOLVED.items() if not (v or "").strip()]
+    if _U43:
+        print("✗ [I43] **판정되지 않은 선언 상충** %d건 — 같은 선수에 반대 지시가 걸려 있다. "
+              "tool/declaration_conflicts.RESOLVED 에 **이유와 함께** 넣거나 한쪽을 고칠 것"
+              % len(_U43)); err += 1
+        for _n, _k, _w, _wh in _U43[:5]:
+            print("        %s [%s] %s" % (_n, _k, _w))
+            print("           %s" % " · ".join(sorted(set(_wh))[:5]))
+    elif _noreason:
+        print("✗ [I43] RESOLVED 에 **이유 없는 판정** %d건 (%s) — 값만 넣으면 다음 사람이 "
+              "왜인지 모른다"%(len(_noreason), ", ".join("%s/%s"%k for k in _noreason))); err += 1
+    else:
+        _kinds43 = {}
+        for _, _k, _, _ in _C43:
+            _kinds43[_k] = _kinds43.get(_k, 0) + 1
+        print("[I43] 선언 전수 %d건 · 상충 후보 %d건 **전부 판정됨**%s"
+              % (len(_DC.collect()), len(_C43),
+                 (" (" + " · ".join("%s %d"%(_k, _v) for _k, _v in sorted(_kinds43.items())) + ")")
+                 if _kinds43 else ""))
+except Exception as _ex43:
+    print("✗ [I43] 선언 모순 대조 실패: %r"%(_ex43,)); err += 1
+
 # ── I42 (42차 · 작업4b): **태우기 ∩ 계획 = 공집합**
 #   🔴 왜 — 42차에 실제 충돌이 있었다. `Myles Turner` 가 `tag=burn` 이면서 동시에
 #      **c2 UTIL 후보2($14) · c2 피벗 대체(2회)** 로 실려 있었다.

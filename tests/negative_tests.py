@@ -61,6 +61,7 @@ NEEDED = [
     "tool/gen_players_csv.py",
     "data/players.csv",
     "data/core_value_tables.json",               # 42차 — 코어별 캣 진단표 (I40)
+    "tool/declaration_conflicts.py",             # 42차 — 선언 모순 대조 단일 소스 (I43)
 ]
 
 TESTS = []
@@ -1034,6 +1035,25 @@ def _(b):
             p["tag"] = "burn"
             return
     raise AssertionError("c6 PG 1순위를 못 찾음")
+
+
+# 42차 작업6 — I43 (선언 모순 전수 대조)
+#   개별 검사 대신 **대조 하나**를 뒀다. 새 선언이 생기면 자동으로 걸려야 한다 —
+#   그 「자동」이 실제로 작동하는지 확인한다.
+
+@test("I43", "판정되지 않은 선언 상충을 새로 만든다 (앵커에 코어 전환을 겹친다)",
+      "판정되지 않은 선언 상충")
+def _(b):
+    # c6 PF 1순위에 철수가를 계획가 아래로 박아 WALK↔BUY 상충을 만든다
+    n = b.first("c6", "PF")
+    pp = b.slot("c6", "PF")["candidates"][0]["expected_cost"]
+    for t in b.cj["overheat_thresholds"]:
+        if t["player"] == n:
+            t["threshold"] = max(1, pp - 5)
+            return
+    b.cj["overheat_thresholds"].append(
+        {"player": n, "threshold": max(1, pp - 5), "rule": "> $%d" % max(1, pp - 5),
+         "tier": "anchor", "expected_2026_27": pp, "overheat_at": None, "walk_away": max(1, pp - 5)})
 
 
 if __name__ == "__main__":
