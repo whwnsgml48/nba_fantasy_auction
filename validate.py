@@ -1010,8 +1010,24 @@ else:
                 if not _PEV.confirmed(pl.get(s["candidates"][0]["name"],{})))
     print("[I31] 슬롯 이분매칭: 로스터 %d개 검사 · 위반 %d건 · 1순위 중 자격 미확인 %d명"
           %(_n31,_e31,_unconf))
-    print("             ⚠️ 미확인은 추상 pos(G→PG,SG · F→SF,PF)로 판정한다. 확인된 19명에서"
-          " **11명이 자격을 잃는 방향으로 틀렸다** — 미확인 판정은 계통적으로 낙관 편향이다.")
+    # 🔴 42차: 이 문장의 「19명 / 11명」이 **하드코딩**돼 있었다. 자격 확인이 늘어나면
+    #   그대로 낡는다(이 저장소가 반복해서 당한 형태 — 같은 값을 두 곳에 두면 갈라진다).
+    #   데이터에서 세게 바꿨다. 방향별로 나눠 세는 것이 중요하다 — 「계통적 낙관 편향」은
+    #   상실이 획득보다 압도적이라는 주장이고, 그 비대칭이 무너지면 문장도 무효다.
+    _EX={"G":["PG","SG"],"F":["SF","PF"],"C":["C"]}
+    def _exp(x):
+        o=[]
+        for t in (x or "").split("/"): o+=_EX.get(t,[])
+        return set(o)
+    _v=[q for q in pl.values() if q.get("pos_yahoo")]
+    _narrow=sum(1 for q in _v if _exp(q.get("pos"))-set(q["pos_yahoo"]))
+    _wide  =sum(1 for q in _v if set(q["pos_yahoo"])-_exp(q.get("pos")))
+    _same  =len(_v)-_narrow-_wide
+    print("             ⚠️ 미확인은 추상 pos(G→PG,SG · F→SF,PF)로 판정한다. 확인 %d명 중"
+          " **좁아짐 %d · 넓어짐 %d · 일치 %d** — 상실이 %.0f배라 미확인 판정은"
+          " 계통적으로 낙관 편향이다(미확인 %d명)."
+          %(len(_v),_narrow,_wide,_same,(_narrow/_wide if _wide else float("inf")),
+            len(pl)-len(_v)))
 
     # ── I34 (40차 신설): 대체안이 **예산 안에서 실제로 실행되는가** ─────────────
     #

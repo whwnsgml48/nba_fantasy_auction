@@ -3,7 +3,10 @@
   "name": "Nikola Jokić",
   "team": "DEN",
   "pos": "C",
-  "pos_yahoo": null,
+  "pos_yahoo": [
+   "C"
+  ],
+  "pos_yahoo_source": "사용자 야후 화면 확인 2026-09-08",
   "market_low": 93,
   "market_high": 101,
   "my_max": 97,
@@ -377,7 +380,10 @@
   "name": "Shai Gilgeous-Alexander",
   "team": "OKC",
   "pos": "G",
-  "pos_yahoo": null,
+  "pos_yahoo": [
+   "PG"
+  ],
+  "pos_yahoo_source": "사용자 야후 화면 확인 2026-09-08",
   "market_low": 81,
   "market_high": 89,
   "my_max": 85,
@@ -4738,7 +4744,10 @@
   "name": "Nic Claxton",
   "team": "CHI",
   "pos": "C",
-  "pos_yahoo": null,
+  "pos_yahoo": [
+   "C"
+  ],
+  "pos_yahoo_source": "사용자 야후 화면 확인 2026-09-08",
   "market_low": 2,
   "market_high": 6,
   "my_max": 12,
@@ -7561,7 +7570,11 @@
   "name": "Immanuel Quickley",
   "team": "TOR",
   "pos": "G",
-  "pos_yahoo": null,
+  "pos_yahoo": [
+   "PG",
+   "SG"
+  ],
+  "pos_yahoo_source": "사용자 야후 화면 확인 2026-09-08",
   "market_low": 1,
   "market_high": 3,
   "my_max": 5,
@@ -10539,7 +10552,10 @@
   "name": "Trae Young",
   "team": "WAS",
   "pos": "G",
-  "pos_yahoo": null,
+  "pos_yahoo": [
+   "PG"
+  ],
+  "pos_yahoo_source": "사용자 야후 화면 확인 2026-09-08",
   "market_low": 30,
   "market_high": 36,
   "my_max": 30,
@@ -17672,7 +17688,11 @@
   "name": "Collin Gillespie",
   "team": "PHX",
   "pos": "G",
-  "pos_yahoo": null,
+  "pos_yahoo": [
+   "PG",
+   "SG"
+  ],
+  "pos_yahoo_source": "사용자 야후 화면 확인 2026-09-08",
   "market_low": 1,
   "market_high": 3,
   "my_max": 4,
@@ -28059,7 +28079,10 @@
   "name": "Damian Lillard",
   "team": "POR",
   "pos": "G",
-  "pos_yahoo": null,
+  "pos_yahoo": [
+   "PG"
+  ],
+  "pos_yahoo_source": "사용자 야후 화면 확인 2026-09-08",
   "market_low": 14,
   "market_high": 22,
   "my_max": 14,
