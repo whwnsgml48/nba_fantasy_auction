@@ -1,0 +1,166 @@
+{
+ "generated_by": "tool/closed_world.py",
+ "seed": 20261020,
+ "iterations": 4000,
+ "week_model": "standard",
+ "why": "kat_price_branch 는 KAT > $57 이면 Jokić ≤ $97 → c2, 아니면 c4 로 보낸다. 작년 관측(KAT $74 · Jokić $96)에서는 c2 로 가고 c2 는 방 $200 = 예산이다. 문제는 **Jokić 이 $98 인 세계** — c4 는 방 $302 라 $102 를 감축해야 한다.",
+ "method": "🔴 감축표의 개별 Δ 를 **더하지 않았다.** 두 칸을 동시에 빼면 상호작용이 있으므로 **합친 로스터를 직접 쟀다.** 42차에 모형 위에 숫자를 얹었다가 두 번 기각당한 뒤의 규율이다.",
+ "plans": {
+  "c6 원안": {
+   "roster": [
+    "Alperen Şengün",
+    "Amen Thompson",
+    "DeMar DeRozan",
+    "Derrick White",
+    "Desmond Bane",
+    "Dyson Daniels",
+    "Karl-Anthony Towns",
+    "Rudy Gobert",
+    "VJ Edgecombe"
+   ],
+   "room_total": 271,
+   "win_rate": 0.8798,
+   "swaps": []
+  },
+  "c6 −Şengün": {
+   "roster": [
+    "Amen Thompson",
+    "DeMar DeRozan",
+    "Derrick White",
+    "Desmond Bane",
+    "Dyson Daniels",
+    "Karl-Anthony Towns",
+    "LeBron James",
+    "Rudy Gobert",
+    "VJ Edgecombe"
+   ],
+   "room_total": 239,
+   "win_rate": 0.8728,
+   "swaps": [
+    [
+     "Alperen Şengün",
+     "LeBron James"
+    ]
+   ],
+   "delta_pp": -0.701,
+   "se_pp": 0.323
+  },
+  "c6 −Şengün −KAT": {
+   "roster": [
+    "Amen Thompson",
+    "DeMar DeRozan",
+    "Derrick White",
+    "Desmond Bane",
+    "Dyson Daniels",
+    "Jalen Duren",
+    "LeBron James",
+    "Rudy Gobert",
+    "VJ Edgecombe"
+   ],
+   "room_total": 176,
+   "win_rate": 0.8457,
+   "swaps": [
+    [
+     "Alperen Şengün",
+     "LeBron James"
+    ],
+    [
+     "Karl-Anthony Towns",
+     "Jalen Duren"
+    ]
+   ],
+   "delta_pp": -3.406,
+   "se_pp": 0.429
+  },
+  "c4 원안": {
+   "roster": [
+    "Alperen Şengün",
+    "Amen Thompson",
+    "Dyson Daniels",
+    "Evan Mobley",
+    "Jalen Duren",
+    "Julius Randle",
+    "Kon Knueppel",
+    "Rudy Gobert",
+    "Trae Young"
+   ],
+   "room_total": 280,
+   "win_rate": 0.8469,
+   "swaps": []
+  },
+  "c4 −Trae −Mobley": {
+   "roster": [
+    "Alperen Şengün",
+    "Amen Thompson",
+    "Andrew Nembhard",
+    "Dyson Daniels",
+    "Jalen Duren",
+    "Julius Randle",
+    "Kon Knueppel",
+    "Rudy Gobert",
+    "Walker Kessler"
+   ],
+   "room_total": 197,
+   "win_rate": 0.7503,
+   "swaps": [
+    [
+     "Trae Young",
+     "Andrew Nembhard"
+    ],
+    [
+     "Evan Mobley",
+     "Walker Kessler"
+    ]
+   ],
+   "delta_pp": -9.662,
+   "se_pp": 1.009
+  },
+  "c4 −Trae −Mobley −Amen": {
+   "roster": [
+    "Alperen Şengün",
+    "Andrew Nembhard",
+    "Dyson Daniels",
+    "Immanuel Quickley",
+    "Jalen Duren",
+    "Julius Randle",
+    "Kon Knueppel",
+    "Rudy Gobert",
+    "Walker Kessler"
+   ],
+   "room_total": 172,
+   "win_rate": 0.723,
+   "swaps": [
+    [
+     "Trae Young",
+     "Andrew Nembhard"
+    ],
+    [
+     "Evan Mobley",
+     "Walker Kessler"
+    ],
+    [
+     "Amen Thompson",
+     "Immanuel Quickley"
+    ]
+   ],
+   "delta_pp": -12.385,
+   "se_pp": 1.039
+  },
+  "c2 원안": {
+   "roster": [
+    "Collin Gillespie",
+    "DeMar DeRozan",
+    "Derrick White",
+    "Desmond Bane",
+    "Donovan Clingan",
+    "Immanuel Quickley",
+    "Nikola Jokić",
+    "Nikola Vučević",
+    "Onyeka Okongwu"
+   ],
+   "room_total": 186,
+   "win_rate": 0.8714,
+   "swaps": []
+  }
+ }
+}
