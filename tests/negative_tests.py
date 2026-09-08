@@ -60,6 +60,7 @@ NEEDED = [
     "tool/divergence_rules.py",
     "tool/gen_players_csv.py",
     "data/players.csv",
+    "data/core_value_tables.json",               # 42차 — 코어별 캣 진단표 (I40)
 ]
 
 TESTS = []
@@ -86,6 +87,27 @@ def test(iid, desc, expect, after=(), warn=False, expect_pass=False):
                       "pass" if expect_pass else warn))
         return fn
     return deco
+
+
+def _fingerprint(work, b):
+    """샌드박스의 **모든 파일** + 아직 저장 안 된 메모리 상태를 지문으로 만든다 (42차).
+
+    ⚠️ `b.players`·`b.cj` 는 `run()` 안의 `save()` 에서야 디스크에 쓰인다. 주입 직후
+    시점에는 메모리에만 있으므로 파일 해시만으로는 안 잡힌다 — 둘 다 넣는다.
+    """
+    import hashlib
+    h = {}
+    for root, _dirs, files in os.walk(work):
+        for f in files:
+            fp = os.path.join(root, f)
+            try:
+                h[os.path.relpath(fp, work)] = hashlib.sha1(
+                    io.open(fp, "rb").read()).hexdigest()
+            except OSError:
+                pass
+    return (h,
+            json.dumps(b.players, ensure_ascii=False, sort_keys=True),
+            json.dumps(b.cj, ensure_ascii=False, sort_keys=True))
 
 
 # 검증기 뒷부분 섹션이 실행됐는지 보는 표지. 위반 유무와 무관하게 항상 찍히는 줄들이다.
@@ -147,6 +169,19 @@ class Box:
         p = self.root + "/data/players.csv"
         s = io.open(p, encoding="utf-8").read()
         io.open(p, "w", encoding="utf-8").write(fn(s))
+
+    def tool(self, rel, fn):
+        """`tool/` 아래 파일을 직접 고친다 (42차 · I39 는 소스를 읽는 검사다)."""
+        p = self.root + "/" + rel
+        t = io.open(p, encoding="utf-8").read()
+        io.open(p, "w", encoding="utf-8").write(fn(t))
+
+    def cval(self, fn):
+        """data/core_value_tables.json 을 고친다 (42차 · I40)."""
+        p = self.root + "/data/core_value_tables.json"
+        d = json.load(io.open(p, encoding="utf-8"))
+        fn(d)
+        json.dump(d, io.open(p, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 
     def html(self, fn):
         p = self.root + "/tool/auction-console.html"
@@ -782,10 +817,11 @@ def main():
             #   검사가 죽은 게 아니라 테스트가 죽은 것이고, 그건 더 나쁘다(아무도 모른다).
             #   c5 만의 문제가 아니다 — 코어·선수·판단표 행을 지우는 변경마다 생긴다.
             #   → 주입 전후를 비교해서 **정말 뭔가 바뀌었는지** 본다.
-            _before = (json.dumps(b.players, ensure_ascii=False, sort_keys=True),
-                       json.dumps(b.cj, ensure_ascii=False, sort_keys=True),
-                       io.open(work + "/tool/auction-console.html", encoding="utf-8").read(),
-                       io.open(work + "/data/players.csv", encoding="utf-8").read())
+            # 🔴 42차: 감시 대상이 **4개 파일 하드코딩**이었다. 그래서 `tool/*.py` 나
+            #   `data/core_value_tables.json` 을 고치는 주입은 「아무것도 안 바꿨다」로
+            #   보고됐다 — 검사가 죽었는지 테스트가 죽었는지 구분할 수 없는 상태다.
+            #   목록을 세지 말고 **샌드박스 전체를 해시**한다(NEEDED 가 늘어도 따라온다).
+            _before = _fingerprint(work, b)
             try:
                 fn(b)
             except (AssertionError, KeyError, StopIteration, IndexError) as ex:
@@ -793,10 +829,7 @@ def main():
                 print("  ⊘ %-6s %s — 주입 불가 (%s)" % (iid, desc, ex))
                 continue
             code, out = b.run()
-            _after = (json.dumps(b.players, ensure_ascii=False, sort_keys=True),
-                      json.dumps(b.cj, ensure_ascii=False, sort_keys=True),
-                      io.open(work + "/tool/auction-console.html", encoding="utf-8").read(),
-                      io.open(work + "/data/players.csv", encoding="utf-8").read())
+            _after = _fingerprint(work, b)
             if _before == _after and wmode != "pass":
                 # expect_pass 는 「정당한 것을 넣어도 안 걸리는가」라 무동작일 수 있다.
                 why = "주입이 아무것도 바꾸지 않았다 — 이 테스트는 검출과 무관하게 통과한다"
@@ -900,6 +933,59 @@ def main():
         return 1 if fails else 0
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
+
+
+# ══════════════════════════════════════════════════════════════════════
+# 42차 — I39(주간 경기수 단일 소스) · I40(코어별 캣 진단표)
+#
+# 🔴 왜 이 다섯이 필요한가
+#   I39: 38차가 세 파일의 3.5 를 cat_model 로 모았는데 **40차에 lineup_feasibility 가
+#        다시 복제했다.** 두 값이 우연히 같아서 아무도 몰랐고, 42차에 한쪽을 바꾸자
+#        사용률 표가 따라오지 않았다. 검사가 실제로 발화하는지 확인한다.
+#   I40: 코어별 선수 가격/순위를 두 번 만들었고 두 번 다 기각했다. 다음 사람이
+#        「순위 정도는 괜찮겠지」로 되살리는 경로를 막는 검사다 — 그 검사가 죽어 있으면
+#        아무 의미가 없다.
+# ══════════════════════════════════════════════════════════════════════
+
+@test("I39a", "GAMES_PER_WEEK 를 다른 파일에 복제한다 (40차 사고 재현)",
+      "를 **복제**한 파일")
+def _(b):
+    b.tool("tool/divergence_rules.py",
+           lambda t: t + "\n\nGAMES_PER_WEEK = 3.299   # 복제 — 잡혀야 한다\n")
+
+
+@test("I39b", "cat_model 의 지지집합 가드를 지운다 (조용히 틀리는 경로)",
+      "지지집합 가드가 1/2 자리만 남았다")
+def _(b):
+    b.tool("tool/cat_model.py",
+           lambda t: t.replace("팀당 주간 경기수 범위(1~9) 밖이다", "범위 밖", 1))
+
+
+@test("I39c", "cat_model 의 세계 주입 경로를 지운다 (세계 비교 불가)",
+      "주입 경로")
+def _(b):
+    b.tool("tool/cat_model.py",
+           lambda t: t.replace('os.environ.get("STANDARD_WEEK_GAMES")', 'None', 1))
+
+
+@test("I40a", "코어별 **선수 순위**를 되살린다 (42차에 두 번 기각된 산출)",
+      "선수 가격/순위**가 되살아났다")
+def _(b):
+    def f(d):
+        c = next(iter(d["cores"].values()))
+        c["players"] = {"Nikola Jokić": {"rank_core": 1, "rank_shift": 0}}
+    b.cval(f)
+
+
+@test("I40b", "cores.json 에 core_value_42 를 넣는다 (32차 core_hits 오염 재현)",
+      "core_value_42 가 남아 있다")
+def _(b):
+    b.cj["cores"][0]["core_value_42"] = {"overpay_vs_core_ceiling": []}
+
+
+@test("I40c", "price_override 에 근거(why)가 없다", "price_override 에 `why` 가 없다")
+def _(b):
+    b.slot("c6", "PG")["candidates"][0]["price_override"] = {"bid_ceiling": 1}
 
 
 if __name__ == "__main__":

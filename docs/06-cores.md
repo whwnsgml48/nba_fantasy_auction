@@ -130,7 +130,7 @@
 | C5 | PG | Tyrese Haliburton | $56 | $56 | $0 | **$0** | `my_max` | 치환 → Josh Giddey | 획득 가능 |
 | C5 | PF | Domantas Sabonis | $19 | $34 | $15 | **$14** | `budget` | **코어 전환 → C6** | 획득 가능 |
 | C6 | C | Karl-Anthony Towns | $45 | $71 | $26 | **$9** | `budget` | 치환 → Jalen Duren | 획득 가능 |
-| C6 | SF | DeMar DeRozan | $8 | $16 | $8 | **$8** | `none` | 치환 → Josh Hart | 획득 가능 |
+| C6 | SF | DeMar DeRozan | $8 | $16 | $8 | **$8** | `none` | 치환 → Trey Murphy III | 획득 가능 |
 | C6 | PG | Derrick White | $39 | $52 | $13 | **$9** | `budget` | 치환 → T.J. McConnell | 획득 가능 |
 | C7 | C | Karl-Anthony Towns | $45 | $71 | $26 | **$16** | `budget` | 치환 → Jalen Duren | 획득 가능 |
 | C7 | PG | Derrick White | $39 | $52 | $13 | **$13** | `none` | 치환 → Josh Giddey | 획득 가능 |
@@ -417,7 +417,7 @@ $25 초과는 "과소 편성"(로스터가 예산을 못 씀) 경고입니다.
 
 ## 코어 5 · Sabonis 부상 할인 (조건부 베팅)
 
-> ⚠️ 격리된 별도 베팅안. **드래프트 당일 관측 가능한 것으로만 판정한다** — 복귀 일정 보도와 야후 부상 표기, 그리고 방 안의 실제 가격. 🔴 2026-09-01 정정: 드래프트는 2026-10-05이고 프리시즌 경기는 10-03 개시라 **이틀치가 있을 수 있다**(단 SAC 개막일 확인 필요 — 팀마다 다르다). 캠프 리포트는 09-29부터 6일치가 있다. 쓸 수 있는 것은 **「뛰는가」 이항뿐**이고 실출장 수는 여전히 못 잰다. 실출장 ~20경기이고 A/T 한계기여는 −0.102로 마이너스 — 정상 복귀를 기본값으로 두면 위험합니다. 헤지 빅 2명을 필수로 붙입니다.
+> ⚠️ 격리된 별도 베팅안. **드래프트 당일 관측 가능한 것으로만 판정한다** — 복귀 일정 보도와 야후 부상 표기, 그리고 방 안의 실제 가격. 🔴 2026-09-01 정정: 드래프트는 2026-10-05 이고 프리시즌 경기는 10-03 개시라 **새크라멘토 일정에 따라 이틀치가 있을 수 있다**(팀별 개막일이 다르다 — 확인할 것). 캠프 리포트는 09-29 부터 6일치가 있다. ⚠️ 쓸 수 있는 것은 **「뛰는가」 이항뿐**이고, c5 의 원래 게이트인 「정상 복귀」(=실출장 수)는 여전히 못 잰다 — 그래서 판단표에서 내린 결론은 유지한다. 실출장 ~20경기이고 A/T 한계기여는 −0.102로 마이너스 — 정상 복귀를 기본값으로 두면 위험합니다. 헤지 빅 2명을 필수로 붙입니다.
 
 **계획 $186** · 예비비 **$14** · 빅맨 $70/$96 (C자격 5명) · 노리는 캣 9개 `3P% A/T AST BLK DD FG% OREB REB STL` · 포기 `3PM FT% PTS TOV`
 
@@ -497,8 +497,8 @@ Edgecombe안이 LeBron안을 **모든 축에서** 지배하고, Şengün안과 m
 | **SG** | $26 | $49 | — | SG 자격 확정 · 가드형 OREB 3.0 · 79G | **Amen Thompson** | Kon Knueppel $22 | Duncan Robinson $2 |
 | **UTIL** | $5 | $9 | — | STL 보조 $5 다트 — 예비비 확보용 | **VJ Edgecombe** | Onyeka Okongwu $5 | Josh Hart $4 |
 | **UTIL** | $12 | $20 | — | STL 2.0 리그 공동 1위 | **Dyson Daniels** | Ausar Thompson $3 | Cason Wallace $3 |
-| **BN** | $22 | $31 | — | 전방위 저가 윙 — FT% 엘리트 · 후보 21명 실측 1위 | **Desmond Bane** | Josh Hart $4 | Nikola Vučević $2 |
-| **SF** `앵커` | $8 | $16 | **$8** (실패→치환 Josh Hart) | SF 자격 확정 — A/T +0.152 · TOV 1.2 · FT% 86.8% | **DeMar DeRozan** | Josh Hart $4 | Andrew Wiggins $2 |
+| **BN** | $22 | $31 | — | 전방위 저가 윙 — FT% 엘리트 · 후보 21명 실측 1위 | **Desmond Bane** | Jamal Murray $22 | Josh Hart $4 |
+| **SF** `앵커` | $8 | $16 | **$8** (실패→치환 Trey Murphy III) | SF 자격 확정 — A/T +0.152 · TOV 1.2 · FT% 86.8% | **DeMar DeRozan** | Trey Murphy III $12 | Josh Hart $4 |
 | **BN** | $8 | $18 | — | OREB+BLK+DD 빅 | **Rudy Gobert** `C` | Ivica Zubac $11 | Mark Williams $7 |
 | **PG** `앵커` | $39 | $44 | **$9** (실패→치환 T.J. McConnell) | A/T +0.171 · FT% 90.2% · 3PM3 · BLK 1.3 (가드가 BLK) | **Derrick White** | T.J. McConnell $2 | Andrew Nembhard $2 |
 

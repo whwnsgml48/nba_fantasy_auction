@@ -1535,6 +1535,122 @@ try:
 except Exception as _ex38:
     print("✗ [I38] 이름 필드 전수 검사 실패: %r"%(_ex38,)); err+=1
 
+# ── I40 (42차): **코어별 캣 진단표** — 임베드 동기화 · price_override 근거
+#   🔴 이 검사가 지키는 것은 「가격표」가 아니다. 42차에 코어별 선수 가격/순위를 두 번
+#      만들었고 두 번 다 기각했다(전문: `tool/core_value.py` 상단 · `docs/05 §11`).
+#        1차 달러 상한 → 시뮬 검증 4/5 기각 (c1 KAT→Duren −2.19%p 3.9σ 등)
+#        2차 순위만    → 기전이 「음수 z 벌점 면제」로 확인 (Cam Spencer 최대 상승항이 REB)
+#      남은 것은 **캣 가중·밴드**(목적함수에서 유도되고 검증 가능)와 선발 캣 진단뿐이다.
+#   ⚠️ 그래서 이 검사는 **`CVAL` 에 선수별 배열이 없다는 것도** 본다. 다음 사람이
+#      「순위 정도는 괜찮겠지」로 되살리면 여기서 걸린다.
+try:
+    _cvp = D+"/data/core_value_tables.json"
+    if not os.path.exists(_cvp):
+        print("  △ [I40] data/core_value_tables.json 없음 — python3 tool/core_value.py")
+    else:
+        _cvt = json.load(io.open(_cvp, encoding="utf-8"))
+        _PLL = json.load(io.open(D+"/data/players.json", encoding="utf-8"))
+        _cval = _const("CVAL", "{}") if "_const" in globals() else None
+        if _cval != _TE.build_cval(_cvt, _PLL):
+            print("✗ [I40] 툴 CVAL 이 data/core_value_tables.json 과 불일치 — "
+                  "python3 tool/sync_tool.py"); err += 1
+        # (a) 선수별 가격/순위가 되살아나지 않았는가
+        _banned = ("my_max_core", "surplus_core", "obtainable_core", "dollar_core",
+                   "rank_core", "rank_shift", "z_total_core")
+        _back = sorted({k for _c in (_cvt.get("cores") or {}).values()
+                        for _pv in (_c.get("players") or {}).values() for k in _pv
+                        if k in _banned})
+        if _back:
+            print("✗ [I40] 코어별 **선수 가격/순위**가 되살아났다: %s — 42차에 두 번 "
+                  "기각됐다(tool/core_value.py 상단). 되살리려면 그 기각을 먼저 뒤집을 것"
+                  % ", ".join(_back)); err += 1
+        for _cid, _c in (_cval or {}).get("cores", {}).items():
+            if any(isinstance(_v, list) and len(_v) > 20 for _v in _c.values()):
+                print("✗ [I40] 툴 CVAL[%s] 에 선수별 배열이 있다 — 순위/가격을 "
+                      "다시 실은 것이다"%_cid); err += 1
+        # (b) cores.json 에 코어별 가격표 산출이 들어가 있지 않은가
+        #     들어가면 선수 이름이 core_hits 에 잡혀 my_max_basis.auto 가 무효화된다
+        #     (32차에 파일 분리로 없앤 사고 · 42차에 실제로 재발시켰다가 되돌렸다)
+        _leak = [co["id"] for co in cj["cores"] if co.get("core_value_42")]
+        if _leak:
+            print("✗ [I40] cores.json 에 core_value_42 가 남아 있다 (%s) — 선수 이름이 "
+                  "core_hits 를 오염시킨다(32차 전례). 진단은 core_value_tables.json 에 "
+                  "둘 것"%", ".join(_leak)); err += 1
+        # (c) price_override 는 **근거 필수**
+        _noy = ["%s/%s %s"%(_co["id"], _s["slot"], _cd["name"])
+                for _co in cj["cores"] for _s in _co["slots"] for _cd in _s["candidates"]
+                if _cd.get("price_override") and not _cd["price_override"].get("why")]
+        if _noy:
+            print("✗ [I40] price_override 에 `why` 가 없다 %d건 (%s) — 손으로 정한 "
+                  "예외는 이유가 있어야 한다"%(len(_noy), ", ".join(_noy))); err += 1
+        _ovn = sum(1 for _co in cj["cores"] for _s in _co["slots"]
+                   for _cd in _s["candidates"] if _cd.get("price_override"))
+        _prov = _cvt.get("provenance") or {}
+        print("[I40] 코어별 캣 진단표: 코어 %d종 · 출처 %s/%s · 선수 가격/순위 없음(42차 기각) "
+              "· price_override %d건"
+              % (len(_cvt.get("cores") or {}), _prov.get("file"), _prov.get("world"), _ovn))
+except Exception as _ex40:
+    print("✗ [I40] 코어별 캣 진단표 검사 실패: %r"%(_ex40,)); err += 1
+
+# ── I39 (42차): **`GAMES_PER_WEEK` 단일 소스** — 복제 금지
+#   🔴 왜 — 같은 사고가 두 번 났다. 38차가 세 파일(matchup_sim·gen_docs03·
+#      rate_cat_leverage)에 흩어진 3.5 를 `cat_model` 한 곳으로 모았다. 그런데 40차에
+#      `lineup_feasibility.py` 를 신설하면서 「cat_model.GAMES_PER_WEEK 와 같은 근거」라는
+#      **주석과 함께 값을 복제**했다. 결과가 조용했다 — 두 값이 우연히 같았으니까.
+#      42차에 `cat_model` 쪽을 3.730 으로 바꿔 보니 **사용률 표가 따라오지 않았다.**
+#      주당 경기↑ → 하루 경합↑ → 사용률↓ 라는 반작용이 통째로 빠져 이득이 과대평가됐다.
+#   그리고 42차에 상수가 **셋**으로 갈렸다 — 표준 주 3.417(전형적인 한 주 · 대부분의
+#      소비처) · 22주 평균 3.572(시즌 서술) · (구)캘린더 3.274(폐기 · 브레이크를 퍼뜨린 값).
+#      한 이름으로 쓰면 `lineup_feasibility` 에서 하루 경합을 4.5% 과대(매치업 평균) 또는
+#      4.2% 과소((구)캘린더)로 잡는다. 이름 전부를 복제 금지 대상으로 본다.
+#   검사: `tool/*.py` 중 `cat_model.py` 외의 파일이 이 상수들을 **숫자로 대입하면** 위반이다.
+#      참조(`CM.GAMES_PER_MATCHUP_WEEK` · `= CM.…`)는 허용한다.
+#   ⚠️ 「주석에 같은 근거라고 적었다」는 방어가 아니다. 40차가 정확히 그렇게 적어 뒀다.
+try:
+    import re as _re39, glob as _g39
+    sys.path.insert(0, D+"/tool")
+    import cat_model as CM
+    # 42차: 상수를 캘린더/매치업으로 갈랐으므로 이름 셋 전부를 본다
+    _pat39 = _re39.compile(
+        r'^\s*(GAMES_PER_WEEK|GAMES_PER_CALENDAR_WEEK|GAMES_PER_MATCHUP_WEEK'
+        r'|GAMES_PER_STANDARD_WEEK|GAMES_PER_DAY|STD_WEEK_GAMES|LONG_WEEK_GAMES'
+        r'|GAMES_IN_WINDOW|SEASON_DAYS|BREAK_DAYS)\s*=\s*[0-9]')
+    _dup39 = []
+    for _f39 in sorted(_g39.glob(D+"/tool/*.py")):
+        if os.path.basename(_f39) == "cat_model.py": continue
+        for _i39, _ln39 in enumerate(io.open(_f39, encoding="utf-8"), 1):
+            if _pat39.match(_ln39):
+                _dup39.append((os.path.relpath(_f39, D), _i39, _ln39.strip()))
+    # cat_model 쪽은 환경변수 주입 경로가 살아 있어야 한다 — 상수로 되돌리면 양쪽 산출이 죽는다
+    _cm39 = io.open(D+"/tool/cat_model.py", encoding="utf-8").read()
+    for _need39 in ('os.environ.get("WEEK_MODEL")',
+                    'os.environ.get("STANDARD_WEEK_GAMES")',
+                    'os.environ.get("LEGACY_WEEK_GAMES")'):
+        if _need39 not in _cm39:
+            print("✗ [I39] cat_model.py 의 주입 경로 %s 가 사라졌다 — "
+                  "tool/gpw_dual.py 가 세계를 비교할 수 없다"%_need39); err += 1
+    # 지지집합 가드는 「조용히 틀리지 않게」 막아둔 것이다. 지우면 위반이다.
+    # ⚠️ **두 자리**를 다 본다 — 모듈 로드 시점과 `configure()`(런타임 주입) 양쪽에 있다.
+    #    한쪽만 남으면 그 경로로 들어온 값이 검사를 우회한다. 42차에 음성 테스트가
+    #    「한쪽만 지우기」로 그 구멍을 실제로 드러냈다.
+    _ng39 = _cm39.count("팀당 주간 경기수 범위(1~9) 밖이다")
+    if _ng39 < 2:
+        print("✗ [I39] cat_model.py 의 지지집합 가드가 %d/2 자리만 남았다 — "
+              "모듈 로드와 configure() 양쪽에 있어야 한다. _support 의 두 점 근사가 "
+              "평균을 조용히 틀리게 만든다"%_ng39); err += 1
+    if _dup39:
+        print("✗ [I39] `GAMES_PER_WEEK` 를 **복제**한 파일 %d개 — 단일 소스는 "
+              "tool/cat_model.py 하나다. 참조(`CM.GAMES_PER_WEEK`)로 바꿀 것"%len(_dup39))
+        err += 1
+        for _r39 in _dup39: print("        %s:%d  %s"%_r39)
+    else:
+        print("[I39] 주간 경기수 단일 소스 유지 — cat_model 1곳 (표준주 %.3f / 22주평균 %.3f "
+              "/ 모형 %s · 실효 %.4f · 주 유형 %d종) · 주입 경로 3종 · 가드 3종 있음"
+              %(CM.GAMES_PER_STANDARD_WEEK, CM.GAMES_PER_MATCHUP_WEEK, CM.WEEK_MODEL,
+                CM.EFFECTIVE_MEAN, len(CM.WEEK_MIX)))
+except Exception as _ex39:
+    print("✗ [I39] GAMES_PER_WEEK 단일 소스 검사 실패: %r"%(_ex39,)); err += 1
+
 print("획득 제외 대상(부상·은퇴): %s"%(", ".join(sorted(INJ)) or "없음"))
 print("총 위반: %d건%s"%(err, " · 치환필요 %d건(치명 아님)"%warn if warn else ""))
 sys.exit(1 if err else 0)

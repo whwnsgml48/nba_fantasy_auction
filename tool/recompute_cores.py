@@ -23,6 +23,15 @@ _rf=f"{BASE}/data/prior_auction_2025_26/proposed_market_refit.json"
 if os.path.exists(_rf):
     RF={x["name"]:x for x in json.load(io.open(_rf,encoding="utf-8"))["players"]}
 c=json.load(io.open(f"{BASE}/data/cores.json",encoding="utf-8"))
+# ── 42차: 코어별 가격표를 `bid_ceiling` 체인에 넣으려다 **철회**했다.
+#   시도: `my_max_core`(코어 가중 z 순위로 my_max 사다리를 재배치) → bid_ceiling_core.
+#   기각: 시뮬 검증에서 달러 주장 4/5 가 기각됐다 —
+#         c1 KAT→Duren −2.19%p(3.9σ) · c7 −2.37%p(5.1σ) · c6 Şengün→Mobley −1.16%p(4.6σ).
+#         반대편에서는 시장 $1-3 선수의 코어 상한이 $26~40 이 됐다.
+#   그리고 진단 목록을 `cores.json` 에 쓰자 선수 이름이 `core_hits` 에 잡혀
+#   `my_max_basis.auto` 가 무효화되고 M6 위반이 떴다 — 32차에 파일 분리로 없앤 사고의 재발.
+#   → **`cores.json` 은 코어별 가격표를 참조하지 않는다.** 전문은 `tool/core_value.py`
+#     상단과 `docs/05 §11`. 진단은 `data/core_value_tables.json` 에서 직접 읽는다.
 CB=c["opponent_baseline"]["cat_baselines"]
 CB_MODEL={k:v["baseline"] for k,v in CB.items()}
 RATE={"3P%":"3PA","FT%":"FTA","FG%":"FGA"}
@@ -80,6 +89,9 @@ def write_prices(co):
         n=e.get("name")
         if n not in PL: return
         e["bid_ceiling"]=ceil_price(n,cap)
+        # 42차: 한때 여기에 `bid_ceiling_core` 를 나란히 썼다가 철회했다(위 주석).
+        #   남아 있던 필드를 지운다 — 안 지우면 옛 값이 조용히 남는다.
+        e.pop("bid_ceiling_core",None); e.pop("core_rank",None)
         # 37차: 피벗 전용 가격 오버라이드. 35차에 exp_cost가 **선수당 전역 단일값**이 되면서
         # 피벗의 "가격 상향" 스왑(KAT $45→$56)이 구조적으로 불가능해졌다 — put()이 모든
         # 엔트리를 같은 값으로 덮어썼기 때문이다. 과열 세계에서는 네임밸류 빅을 시장 상단에
@@ -87,6 +99,32 @@ def write_prices(co):
         # I23이 expected_cost <= 시장 상단도 함께 검사한다.
         oc=e.get("overheat_cost")
         e["expected_cost"]=min(oc,e["bid_ceiling"]) if oc else exp_cost(n,cap)
+        # ── 🔴 42차: `price_override` — **손으로 정한 엔트리 예외를 보존**한다
+        #   왜 생겼나: 40b 승격 2건(c6 BN Jamal Murray · c6 SF Trey Murphy III)이
+        #   `cores.json` 에 손으로 적혀 있었고 **이 스크립트가 그것을 덮었다.**
+        #   40b 저자는 두 가지를 손으로 정했다:
+        #     ① 상한을 **슬롯 상한**에 묶었다 (Murray $31 = 그 BN 칸 1순위 Bane 의 상한 ·
+        #        Murphy $16 = 그 SF 칸 1순위 DeRozan 의 상한). 근거는 `promoted_40b` 에
+        #        「이 칸의 상한은 슬롯 상한을 그대로 쓴다 — 슬롯 상한은 안 올렸다」.
+        #     ② 계획가를 **작년 실낙찰 환산가**로 잡았다 (Murray $22 · Murphy $12).
+        #        우리 `market_low` 보다 낮다 — `docs/05 §6d`(market_low 는 우리 순위이고
+        #        실낙찰이 더 강한 출처다) 위에 선 판단이다.
+        #   🔴 이 스크립트에는 **상한을 내리는 기구가 없었다**(`overheat_cost` 는 올리는 쪽).
+        #      그래서 42차에 이 파일을 돌리는 순간 $31→$51 · $16→$32 로 되돌아갔고,
+        #      `validate.py` 는 **그것을 잡지 못했다** — 대체 후보(candidates[1:])의 가격은
+        #      어떤 불변식도 재계산 대조를 하지 않는다. 커밋된 파일이 생성기 출력과
+        #      갈라져 있었고 아무도 보고 있지 않았다.
+        #   → 값을 고치지 않고 **구조로 고친다**(40차 ② 와 같은 형태). 이제 이 스크립트가
+        #      멱등이고 `tests/check_recompute_idempotent.py` 가 상시 확인한다.
+        #   ⚠️ 상한은 **내리는 방향만** 허용한다(min). 올리면 I23(bid_ceiling ≤ my_max)이
+        #      깨질 수 있고, 올리는 용도는 이미 `overheat_cost` 가 담당한다.
+        #   ⚠️ 이 필드를 새로 쓸 때는 `why` 를 반드시 적을 것 — `validate.py [I40]` 가 검사한다.
+        ov=e.get("price_override")
+        if ov:
+            if ov.get("bid_ceiling") is not None:
+                e["bid_ceiling"]=min(e["bid_ceiling"], ov["bid_ceiling"])
+            if ov.get("expected_cost") is not None:
+                e["expected_cost"]=min(ov["expected_cost"], e["bid_ceiling"])
         e["plan_price"]=e["expected_cost"]
     for s in co["slots"]:
         for cd in s["candidates"]: put(cd)
@@ -175,6 +213,9 @@ for co in c["cores"]:
         else:
             for cd in s["candidates"][1:]:
                 cd.pop("total_if_used",None); cd.pop("redeploy",None)
+    # 42차: `core_value_42` 어긋남 목록을 여기 썼다가 철회했다(파일 상단 주석).
+    #   남아 있으면 지운다 — cores.json 에 선수 이름이 있으면 core_hits 가 오염된다.
+    co.pop("core_value_42", None)
     # 캣
     tw={k:0 for k in ["PTS","FG%","3PM","3P%","FT%","REB","OREB","AST","STL","BLK","DD","A/T","TOV"]}
     for s in slots:

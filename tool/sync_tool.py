@@ -23,6 +23,12 @@ try:
     PROC=json.load(io.open(f"{BASE}/data/core_procurement.json",encoding="utf-8"))
 except Exception:
     PROC=None   # 조달 배율 파일이 없으면 그 줄 없이 생성한다 — python3 tool/core_procurement.py
+# 🔴 42차: 코어별 가격표. 없으면 빈 표로 생성하고 툴은 일반 my_max 로 폴백한다
+# (`cvOf()` 가 null 을 돌려주고 화면에 「일반」이라고 적는다).
+try:
+    CVT=json.load(io.open(f"{BASE}/data/core_value_tables.json",encoding="utf-8"))
+except Exception:
+    CVT=None   # python3 tool/core_value.py
 pl=json.load(io.open(f"{BASE}/data/players.json",encoding="utf-8"))
 c=json.load(io.open(f"{BASE}/data/cores.json",encoding="utf-8"))
 by={p["name"]:p for p in pl}
@@ -50,7 +56,9 @@ CONST=[("CORES",buildCORES()),("PIVOTS",TE.build_pivots(c)),
        #   그대로 싣는다. 계산을 여기서 하지 않으므로 tool_embed 와 갈라질 여지가 없다.
        #   ⚠️ 다만 validate.py 의 동기화 대조 목록에는 아직 없다(A 소관 요청 중).
        #      그때까지는 tests/check_stress_sync.py 가 대조한다.
-       ("STRESS",(SIM or {}).get("assumption_stress") or {})]
+       ("STRESS",(SIM or {}).get("assumption_stress") or {}),
+       # 🔴 42차: 코어별 가격표. 구조는 tool_embed 가 단일 소스다(validate 도 같은 함수로 대조).
+       ("CVAL",TE.build_cval(CVT,pl))]
 n=0
 for name,val in CONST:
     m=re.search(r'const %s=(\[|\{).*?(\]|\});\n'%re.escape(name), s, re.S)

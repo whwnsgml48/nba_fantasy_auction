@@ -150,6 +150,46 @@ def build_pivots(cj):
     return {x["id"]: x["pivot_plan"] for x in cj["cores"]}
 
 
+def build_cval(cvt, players):
+    """툴 `CVAL` 상수 — **코어별 가격표** (42차).
+
+    왜 툴에 필요한가 🔴
+      계획 슬롯 27개만 코어별이었고, 경매에 실제로 올라오는 나머지 ~100명은 **일반
+      my_max** 로 판단하고 있었다. `my_max` 는 13캣 균등 가중인데 매치업은 주간 캣
+      다수결(7/13)이므로, 코어가 3~5캣을 버리면 그 캣에 몰린 선수의 가치는 이 코어에서
+      낮다. 화면이 모든 코어에 같은 상한을 보여주면 **플랜과 다른 이론으로 입찰한다.**
+
+    🔴 **달러는 싣지 않는다 (42차 철회).**
+      1차 시도는 코어별 상한 `mx` 를 실어 화면의 `my_max` 를 대체했다. 시뮬 검증에서
+      기각됐다 — c1 KAT→Duren **−2.19%p**(3.9σ) · c7 −2.37%p(5.1σ) ·
+      c6 Şengün→Mobley −1.16%p(4.6σ). 반대편에서는 시장 $1-3 선수의 코어 상한이
+      $26~40 이 되어 '차익+' 정렬 상단 8칸 중 5칸을 $1-3 선수가 차지했다.
+      전문은 `tool/core_value.py` 상단 · `docs/05 §11`.
+
+    구조
+      `{"src":…, "cores":{cid:{"w":{…13}, "p":{…13}, "band":{…13}, "diag":{선발 9명}}}}`
+      선수별 배열은 없다 — 실을 것이 없다.
+
+    유효 범위 — 화면에 그대로 적는다
+      ✅ 캣 밴드·가중치: 「이 코어에서 다음 1달러는 어느 캣에 쓰는가」
+      🔴 **선수 순위(`rk`)도 싣지 않는다** (2차 철회). 기전은 「음수 z 벌점 면제」 —
+         잠긴 캣에서 z 가 음수인 선수는 벌점이 면제된다. Cam Spencer 의 최대 상승
+         항목이 3P% 가 아니라 **REB(z −1.4)** 였다. 순위 이동의 절반이 그 채널이다.
+    """
+    if not cvt:
+        return {"src": None, "cores": {},
+                "why_empty": "data/core_value_tables.json 이 없다 — python3 tool/core_value.py"}
+    cores = {}
+    for cid, t in (cvt.get("cores") or {}).items():
+        cores[cid] = {"w": t["cat_weights"], "p": t["cat_win_probs"],
+                      "band": t["cat_bands"],
+                      "diag": t.get("roster_cat_diagnostic") or {}}
+    return {"src": "data/core_value_tables.json",
+            "fn": cvt.get("weight_function"),
+            "scope": (cvt.get("scope") or {}),
+            "cores": cores}
+
+
 def build_cores(cj, proc=None):
     """툴 `CORES` 상수. 반환 `(list, problems)` — problems 는 앵커 결손 설명 문자열.
 
