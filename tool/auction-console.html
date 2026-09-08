@@ -325,6 +325,34 @@ b.anch{font-family:var(--mono);font-size:8px;letter-spacing:.06em;color:var(--ac
 .anote{font-family:var(--mono);font-size:9.5px;color:var(--warn);align-self:center}
 
 .mkt.caladj{color:var(--accent);font-weight:600}
+/* ── 42차 작업8: 3층 분리 ─────────────────────────────────────────────
+   A층 항상 보임(부르거나 물러난다) · B층 행 클릭 · C층 접힘(왜 이 숫자인가).
+   🔴 데이터를 지우지 않았다. 표시층만 바꿨다. */
+.brlines{display:grid;gap:3px;margin:0 0 9px}
+.brl{display:flex;align-items:baseline;gap:8px;padding:4px 7px;border-radius:2px;
+  background:var(--bg-2,rgba(128,128,128,.07))}
+.brl .brc{font-family:var(--mono);font-size:11.5px;font-weight:700;white-space:nowrap;
+  min-width:118px;color:var(--ink-2)}
+.brl .bra{font-size:12.5px;font-weight:600}
+.brl.ok .brc{color:var(--ok)} .brl.ok .bra{color:var(--ok)}
+.brl.crit .brc{color:var(--crit)} .brl.crit .bra{color:var(--crit)}
+.c3row{display:none!important}
+body.showstr .c3row{display:flex!important}
+.c3tog{font:inherit;font-size:10.5px;font-family:var(--mono);color:var(--ink-3);
+  background:none;border:1px dashed var(--ink-3);border-radius:2px;padding:2px 7px;
+  cursor:pointer;margin-top:6px;opacity:.75}
+.c3tog:hover{opacity:1}
+body.showstr .c3tog{border-style:solid;opacity:1}
+.c3box{margin-top:10px;border-top:1px solid var(--line,rgba(128,128,128,.25));padding-top:8px}
+.c3box>summary{cursor:pointer;font-size:11.5px;font-family:var(--mono);color:var(--ink-3);
+  padding:5px 0;list-style:none}
+.c3box>summary em{font-style:normal;opacity:.7}
+.c3box[open]>summary{color:var(--ink-2)}
+/* B층: flag 은 한 줄로 접어 두고 클릭하면 펼친다. **내용은 그대로다.** */
+.flag.clamp{display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;
+  overflow:hidden;cursor:pointer}
+.flag.clamp.open{-webkit-line-clamp:unset;overflow:visible}
+
 /* 42차 작업5: 방이 낸 값 병기. hi = 우리 추정 상단보다 비쌌다(우리가 싸게 봤다) */
 em.room{display:block;font-style:normal;font-family:var(--mono);font-size:9.5px;
   font-weight:600;color:var(--muted);letter-spacing:0;margin-top:1px}
@@ -400,9 +428,12 @@ em.bigmk{font-style:normal;font-family:var(--mono);font-size:8.5px;color:var(--a
 
       <footer class="fin">
         <p id="vstat"></p>
-        <p><b>수치 출처:</b> 2025-26 NBA 실적(OREB·DD·BLK·STL·A/T 리더보드), 2026 오프시즌 이적, Yahoo 9캣 top-50 랭킹. Haliburton은 2025-26 전체 결장이라 <b>2024-25의 73경기</b> 기준 — 즉 아킬레스 복귀 시즌에 건강한 73경기를 가정한다. <b>기본값이 가장 낙관적인 칸</b>이고, GP를 54로 낮추면 코어 1은 87.0%→81.6%로 <b>7코어 최하위</b>가 된다(전체 코어가 벌어진 폭 3.5%p보다 큰 낙폭이다). Lillard(2025-26 전체 결장 · 코어 3 1순위)도 같은 성질이다. <b>프리시즌 출장 여부를 확인할 것</b> — 복귀 여부를 이 화면은 알지 못한다.</p>
-        <p><b>“내 최대가”는 제 추정치입니다</b> — 공개 밸류표가 아니라 13캣(OREB·DD·3PT%·A/T 추가) 기준으로 재산정한 값입니다. 포지션 자격은 <b>19명은 야후 화면에서 확인했고</b> 나머지는 랭킹 출처 추정입니다 — 추정 쪽은 확인된 19명에서 <b>11명이 실제보다 넓게</b> 잡혀 있었으니 낙관 쪽으로 읽지 마세요.</p>
-        <p><b>지명 시 자동 $1 입찰 — 확정 (2026-08-26)</b>. 지명하면 그 선수에게 $1이 자동으로 걸립니다. <b>태우기 지명은 남이 100% 달려들 선수만</b> 올리세요 — 아무도 안 붙으면 $1에 떠안고 로스터 9칸 중 하나를 버립니다.</p><p><b>지명은 순번 로테이션입니다 (2026-09-01 변경 · 종전 "직전 낙찰자")</b>. 순서는 당일 추첨. 내 지명은 총 9회이고 시점을 미리 아니 위 순서는 <b>초반 2회 · 중반 3회</b>에 씁니다 — <b>태우기는 다섯 장이면 됩니다.</b> 🔴 <b>후반 4회(지명 6~9회차)는 태우기가 아닙니다.</b> <b style="color:var(--crit)">그리고 Gary Trent Jr.·Luguentz Dort 는 작년 이 방이 안 샀습니다 — 태우기로 올리면 $1에 떠안습니다. Myles Turner($12)도 얇습니다.</b> 안전한 것은 위 일곱이고 다섯이면 충분합니다. <b>지명을 피할 수 없으므로 후반 지명에는 태우기 대상이 아니라 "$1에 받아도 손해 아닌 선수"를 올립니다.</b> 슬롯을 늦게까지 남기면 로테이션이 짧아져 지명 차례가 9회보다 많아집니다.</p>
+        <!-- 🔴 42차 작업8: 항상 보이던 515자 산문을 **접힘 하나**로 모았다.
+             지우지 않았다 — 「틀렸던 것을 지우지 않고 남긴다」가 이 저장소 규율이고,
+             10초 판단에 안 쓰는 것을 항상 보이게 두는 것이 문제였을 뿐이다. -->
+        <details class="c3box"><summary>근거 · 수치 출처 · 한계 <em>(드래프트 중에는 열지 마십시오)</em></summary>
+        <p><b>수치 출처:</b> 2025-26 NBA 실적(OREB·DD·BLK·STL·A/T 리더보드), 2026 오프시즌 이적, Yahoo 9캣 top-50 랭킹. Haliburton은 2025-26 전체 결장이라 <b>2024-25의 73경기</b> 기준 — 즉 아킬레스 복귀 시즌에 건강한 73경기를 가정한다. <b>기본값이 가장 낙관적인 칸</b>이고, GP를 54로 낮추면 코어 1은 87.0%→81.6%로 <b>7코어 최하위</b>가 된다(전체 코어가 벌어진 폭 3.5%p보다 큰 낙폭이다). Lillard(2025-26 전체 결장 · 코어 3 1순위)도 같은 성질이다. <b>프리시즌 출장 여부를 확인할 것</b> — 복귀 여부를 이 화면은 알지 못한다.</p><p><b>“내 최대가”는 제 추정치입니다</b> — 공개 밸류표가 아니라 13캣(OREB·DD·3PT%·A/T 추가) 기준으로 재산정한 값입니다. 포지션 자격은 <b>19명은 야후 화면에서 확인했고</b> 나머지는 랭킹 출처 추정입니다 — 추정 쪽은 확인된 19명에서 <b>11명이 실제보다 넓게</b> 잡혀 있었으니 낙관 쪽으로 읽지 마세요.</p><p><b>지명 시 자동 $1 입찰 — 확정 (2026-08-26)</b>. 지명하면 그 선수에게 $1이 자동으로 걸립니다. <b>태우기 지명은 남이 100% 달려들 선수만</b> 올리세요 — 아무도 안 붙으면 $1에 떠안고 로스터 9칸 중 하나를 버립니다.</p><p><b>지명은 순번 로테이션입니다 (2026-09-01 변경 · 종전 "직전 낙찰자")</b>. 순서는 당일 추첨. 내 지명은 총 9회이고 시점을 미리 아니 위 순서는 <b>초반 2회 · 중반 3회</b>에 씁니다 — <b>태우기는 다섯 장이면 됩니다.</b> 🔴 <b>후반 4회(지명 6~9회차)는 태우기가 아닙니다.</b> <b style="color:var(--crit)">그리고 Gary Trent Jr.·Luguentz Dort 는 작년 이 방이 안 샀습니다 — 태우기로 올리면 $1에 떠안습니다. Myles Turner($12)도 얇습니다.</b> 안전한 것은 위 일곱이고 다섯이면 충분합니다. <b>지명을 피할 수 없으므로 후반 지명에는 태우기 대상이 아니라 "$1에 받아도 손해 아닌 선수"를 올립니다.</b> 슬롯을 늦게까지 남기면 로테이션이 짧아져 지명 차례가 9회보다 많아집니다.</p>
+        </details>
         <div class="tools">
           <button class="b sec" id="reset">전체 초기화</button>
           <button class="b sec" id="theme">테마 전환</button>
@@ -1044,13 +1075,13 @@ function renderRows(){
           })())
         +'<div class="catrow">'+chips+'</div>'
         +(p.note?'<p>'+mdb(p.note)+'</p>':"")
-        +(p.flag?'<div class="flag">⚠ '+mdb(p.flag)+'</div>':"")
+        +(p.flag?'<div class="flag clamp" title="클릭하면 전문">⚠ '+mdb(p.flag)+'</div>':"")
         +acts+'</div>';
     }
     return '<div class="'+cls+'">'
       +'<button class="rhead" data-open="'+p.id+'" aria-expanded="'+(openId===p.id)+'">'
       +'<span class="stripe"></span>'
-      +'<span class="nm"><span class="n">'+p.n+(p.injOut?' <em class="injb">제외</em>':'')+(p.s?'':' <em class="noest">추정</em>')+'</span><span class="meta">'+p.t+' · '+p.p+(p.s?' · '+p.s:'')+'</span></span>'
+      +'<span class="nm"><span class="n">'+p.n+(p.injOut?' <em class="injb">제외</em>':'')+(p.s?'':' <em class="noest">추정</em>')+'</span><span class="meta">'+p.t+' · '+p.p+(p.gp?' · '+p.gp+'G':'')+(p.s?'':' · 추정')+'</span></span>'
       +'<span class="mkt'+(A.cal?" caladj":"")+'">$'+A.lo+'–'+A.hi+(unob?'<em class="unob">불가</em>':'')+roomTag(p)+'</span>'
       +'<span class="mx">$'+MX+cvBadge(p)+'</span>'
       +'<span class="ed '+(ed>0?"p":"n")+'">'+edgeTxt+'</span>'
@@ -1283,9 +1314,26 @@ function renderTrig(){
   const sb=document.querySelector("#trigbox > summary");
   if(sb) sb.innerHTML="코어 전환 트리거"+(hc>=2?' <b style="color:var(--crit)">· 센터 붕괴 → C7</b>':"");
 }
+/* 🔴 42차 작업8 — **분기 3줄**. `docs/13 §1` 과 같은 형태이고 **상수에서 만든다.**
+   「정적으로 적어둔 안내는 반드시 낡는다」(HANDOFF 함정 절) — DECISION·KATBR 에서 뽑는다. */
+function branchLines(){
+  const out=[];
+  const c2=DECISION.find(d=>d.core==="c2"), r2=c2&&((c2.cond||{}).rules||[])[0];
+  if(r2) out.push(['Jokić \u2264 $'+r2.max,'코어 2로 즉시 전환','ok']);
+  const kb=(typeof KATBR!=="undefined"&&KATBR&&KATBR.steps&&KATBR.steps[0])?KATBR.steps[0]:null;
+  if(kb) out.push([String(KATBR.n||'KAT').split(" ").pop()+' > $'+kb.over,'KAT 을 포기한다','crit']);
+  const d0=DECISION[0];
+  if(d0&&d0.cond&&d0.cond.n) out.push(['저가 센터 '+d0.cond.n+'명+ 과열','코어 7','crit']);
+  out.push(['그 외','코어 6 (기본값)','']);
+  return out;
+}
 function renderDecide(){
   const box=$("#decide"), act=activePriority(), hc=hotCenterCount();
   let h='';
+  h+='<div class="brlines">'+branchLines().map(function(b){
+      return '<div class="brl'+(b[2]?' '+b[2]:'')+'"><span class="brc">'+b[0]+'</span>'
+           +'<span class="bra">'+b[1]+'</span></div>';
+    }).join("")+'</div>';
   if(hc>=2) h+='<div class="alert c" style="margin-bottom:9px"><b>저가 센터 계층 붕괴 ('+hc+'명 과열)</b>'
     +'즉시 <b>코어 7</b>로 전환하세요. 코어 6·4의 과열 피벗보다 먼저입니다. '
     +'<span class="prem">판정은 '+((OTIERS[DECISION[0].cond.tier]||{}).label||'')+' 계층의 과열선(실측 기대치 기반)만 셉니다.</span></div>';
@@ -1300,7 +1348,9 @@ function renderDecide(){
     //    넣었는데, 10초 안에 접힌 패널을 펼칠 수는 없다(docs/02 §4).
     // 🔴 40차 ⑤-1: 승률 **절대값**은 후견지명 편향 위에 있다(각주 참조). 순위를 앞세우고
     //    숫자는 부차로 내린다 — 이 값의 유효한 용도는 코어 **순서**뿐이다.
-    if(d.str) h+='<div style="display:flex;justify-content:space-between;gap:6px;'
+    /* 🔴 42차 작업8: `c3row` 로 **기본 숨김**. 지우지 않았다 — 「승률 보기」로 켠다.
+       docs/13 종이가 승률을 일부러 뺀 것과 같은 이유(10초 판단에 안 쓴다). */
+    if(d.str) h+='<div class="c3row" style="display:flex;justify-content:space-between;gap:6px;'
       +'font-family:var(--mono);font-size:9.5px;color:var(--ink-3);padding:0 0 3px 10px">'
       +'<span>'+(d.tier?'<b style="color:var(--ink-2)">'+d.tier+'</b> ':'')
       +'<span style="opacity:.7">'+(d.str.mean*100).toFixed(1)
@@ -1443,7 +1493,9 @@ function renderDecide(){
     });
   }
   else if(act) h+='<p class="prem" style="font-size:12px;margin-top:9px"><b>현재 권장: '+act.core.toUpperCase()+'</b> — '+mdb(act.note)+'</p>';
-  h+='<details class="rules" style="margin-top:8px;border:0"><summary style="padding:6px 0">한 줄 요약</summary>'
+  h+='<button class="c3tog" id="strtog" type="button">승률 보기</button>';
+  h+='<details class="rules" style="margin-top:6px;border:0">'
+    +'<summary style="padding:6px 0">한 줄 요약 · 선택 기준 <em>(드래프트 중엔 안 봐도 된다)</em></summary>'
     +'<p class="prem" style="font-size:12px;padding:0 0 6px">'+mdb(DECISION_ONELINER)+'</p></details>';
   box.innerHTML=h;
 }
@@ -1630,6 +1682,14 @@ function renderCore(){
 function renderAll(){renderBar();renderDecide();renderTrig();renderCalib();renderCalImpact();renderPivot();renderCore();renderRows();renderSlots();renderCats();renderAlerts();renderBurn();renderChips();}
 
 document.addEventListener("click",e=>{
+  /* 🔴 42차 작업8 — **click 위임에 붙인다.** 처음에 `change` 핸들러에 넣었는데
+     버튼·div 는 change 를 내지 않는다: 문법도 맞고 validate 도 통과하는데
+     **기능이 죽는다.** 39차 「값이 맞는 것과 파일이 실행되는 것은 다른 질문」과 같은 형태. */
+  const _st=e.target.closest&&e.target.closest("#strtog");
+  if(_st){document.body.classList.toggle("showstr");
+    _st.textContent=document.body.classList.contains("showstr")?"승률 숨기기":"승률 보기";return;}
+  const _fl=e.target.closest&&e.target.closest(".flag.clamp");
+  if(_fl){_fl.classList.toggle("open");return;}
   const t=e.target.closest("[data-open],[data-win],[data-gone],[data-undo],[data-ungone],[data-confirm],[data-cancelwin],[data-f],[data-jump],[data-actual]");
   if(!t) return;
   if(t.dataset.f!==undefined){filter=t.dataset.f;renderAll();return;}
@@ -1691,7 +1751,14 @@ $("#posov").textContent="자격 강제 해제: "+(S.posOverride?"켬 ⚠":"끔")
 /* 레일 카드 접기 — 제목 클릭 토글 · 상태 저장 */
 (function(){
   const KEY="auction13cat_v9_fold";
-  let fold={}; try{fold=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){fold={};}
+  /* 🔴 42차 작업8 — 기본 접힘. 사용자 피드백「설명이 너무 많아 집중이 안 된다」.
+     열어 두는 것: 판단 순서 · 코어 플랜 · 내 로스터 · 경고 · 태우기(내 지명 차례 = 행동).
+     ⚠️ **이미 저장된 상태가 있으면 그것을 존중한다** — 사용자가 조정해 뒀을 수 있다.
+        키가 없을 때만 새 기본값을 적용하고 **키 버전은 올리지 않는다**(설정을 날리지 않는다). */
+  const FOLD_DEFAULT={"13캣 커버리지":1,"시장가 보정":1,"과열 피벗":1};
+  let fold=null;
+  try{const raw=localStorage.getItem(KEY); if(raw!==null) fold=JSON.parse(raw);}catch(e){fold=null;}
+  if(!fold||typeof fold!=="object") fold=Object.assign({},FOLD_DEFAULT);
   document.querySelectorAll(".rail > .card").forEach((card,i)=>{
     const h=card.querySelector("h2"); if(!h||h.parentElement!==card) return;
     const id=(h.textContent||"").trim()||("card"+i);
