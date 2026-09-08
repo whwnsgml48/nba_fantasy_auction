@@ -109,6 +109,16 @@ for ln in m.group(2).split("\n"):
     new=re.sub(r',py:\d+','',new,count=1)
     if q.get("prior_auction_price") is not None:
         new=ins(new, ',py:%d'%q["prior_auction_price"])
+    # 🔴 42차 작업5: **방이 낸 값**. `py` 는 원값이고 `rp` 는 세팅 변경 환산가(×1.117)다.
+    #   둘 다 싣는 이유는 화면이 환산가를 쓰되 원값을 근거로 보여줘야 하기 때문이다.
+    #   `rc` 는 작년 미지명 82명의 A/B/C 분류 — 「지명 안 됨」이 신호인지 아닌지를 가른다.
+    new=re.sub(r',rp:\d+','',new,count=1)
+    if q.get("room_price") is not None:
+        new=ins(new, ',rp:%d'%q["room_price"])
+    new=re.sub(r',rc:"[^"]*"','',new,count=1)
+    _rc=(q.get("room_prior_class") or {}).get("class")
+    if _rc:
+        new=ins(new, ',rc:"%s"'%_rc)
     # injOut: 부재가 곧 false다. 은퇴·장기부상 어느 쪽이든 같은 제외 기구를 쓴다.
     new=re.sub(r',injOut:true','',new,count=1)
     if q.get("injury_exclude"):

@@ -988,5 +988,38 @@ def _(b):
     b.slot("c6", "PG")["candidates"][0]["price_override"] = {"bid_ceiling": 1}
 
 
+# ══════════════════════════════════════════════════════════════════════
+# 42차 작업5 — I41 (방이 낸 값)
+#   🔴 이 검사가 지키는 것은 「추정이 맞나」가 아니라 **「관측이 왜곡 없이 실렸는가」**다.
+#      회귀를 하지 않았으므로 검증할 모델이 없다 — 그래서 검사가 더 단순하고,
+#      단순한 검사일수록 죽어 있어도 아무도 모른다.
+# ══════════════════════════════════════════════════════════════════════
+
+@test("I41a", "room_price 가 실낙찰가 × 1.117 과 어긋난다", "관측 환산 불일치")
+def _(b):
+    for p in b.players:
+        if p.get("prior_auction_price") is not None:
+            p["room_price"] = p["room_price"] + 7
+            return
+    raise AssertionError("실낙찰가 보유 선수 없음")
+
+
+@test("I41b", "작년 미지명 선수에 **추정 가격**을 만들어 넣는다",
+      "미지명 선수에 추정 가격이 붙어 있다")
+def _(b):
+    for p in b.players:
+        if p.get("prior_auction_price") is None and p.get("room_prior_class"):
+            p["room_price"] = 12
+            return
+    raise AssertionError("미지명 선수 없음")
+
+
+@test("I41c", "툴 P 배열의 rp 가 players.json 과 갈라진다",
+      "툴 P 배열의 rp/rc 가")
+def _(b):
+    import re as _r
+    b.html(lambda s: _r.sub(r',rp:\d+', ',rp:999', s, count=1))
+
+
 if __name__ == "__main__":
     sys.exit(main())

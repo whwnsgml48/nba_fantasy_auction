@@ -1535,6 +1535,80 @@ try:
 except Exception as _ex38:
     print("✗ [I38] 이름 필드 전수 검사 실패: %r"%(_ex38,)); err+=1
 
+# ── I41 (42차 · 작업5): **방이 낸 값** — 관측이 화면에 정확히 올라갔는가
+#   🔴 왜 — 가치와 가격을 한 모델로 만들고 있었다. `market_low/high` 는 우리 순위에 작년
+#      **곡선**을 얹은 것이라 개별 실낙찰가를 안 쓴다(§6d). 그런데 우리에게 **관측이 92명분**
+#      있다 — 가격은 2등 입찰자가 정하고 그 2등 입찰자들이 바로 이 방 열둘이다.
+#   ⚠️ 이 검사는 「추정이 맞나」를 묻지 않는다. **관측이 왜곡 없이 실렸는가**만 묻는다.
+#      회귀를 하지 않았으므로 검증할 모델이 없다(표본이 한 해라 홀드아웃이 원리적으로 없다).
+#   ⚠️ `market_low/high`·`obtainable` 은 **안 바꿨다.** 이 필드는 병기 전용이고,
+#      하류(I21·피벗 총액·§6j 배율·판단표 임계값)는 전부 현행 필드 위에서 계속 돈다.
+try:
+    _SC41 = 1.117
+    _bad41 = []; _est41 = []; _npr = _ncls = 0
+    for _n41, _p41 in pl.items():
+        _py41 = _p41.get("prior_auction_price")
+        if _py41 is not None:
+            _npr += 1
+            if _p41.get("room_price_raw") != _py41:
+                _bad41.append("%s room_price_raw %s ≠ prior %s"
+                              % (_n41, _p41.get("room_price_raw"), _py41))
+            elif _p41.get("room_price") != int(round(_py41 * _SC41)):
+                _bad41.append("%s room_price %s ≠ round(%s×%.3f)=%d"
+                              % (_n41, _p41.get("room_price"), _py41, _SC41,
+                                 round(_py41 * _SC41)))
+            if _p41.get("room_prior_class"):
+                _bad41.append("%s: 실낙찰가가 있는데 room_prior_class 가 붙어 있다" % _n41)
+        else:
+            _ncls += 1
+            _rc41 = (_p41.get("room_prior_class") or {}).get("class")
+            if _rc41 not in ("A", "B", "C"):
+                _bad41.append("%s: 작년 미지명인데 분류가 없다/이상하다 (%r)" % (_n41, _rc41))
+            if _p41.get("room_price") is not None:
+                _est41.append(_n41)
+    if _bad41:
+        print("✗ [I41] 관측 환산 불일치 %d건 — room_price 는 실낙찰가 × 1.117 이어야 한다"
+              % len(_bad41)); err += 1
+        for _b in _bad41[:6]: print("        %s"%_b)
+    if _est41:
+        # 🔴 82명은 무작위 결손이 아니라 **결과로 선택된 표본**이다(작년에 이 방이 지명하지
+        #    않은 사람들). 여기에 점 추정을 만들면 검증할 방법이 원리적으로 없다.
+        print("✗ [I41] **미지명 선수에 추정 가격이 붙어 있다** %d건 (%s) — 82명은 결과로 "
+              "선택된 표본이라 점 추정을 만들지 않는다(분류만)"
+              % (len(_est41), ", ".join(_est41[:4]))); err += 1
+    # 툴 P 배열 대조 — 관측이 화면에 그대로 올라갔는가
+    _ts41 = io.open(D+"/tool/auction-console.html", encoding="utf-8").read()
+    _re41 = __import__("re")
+    _prow = {}
+    for _m in _re41.finditer(r'\{n:"((?:[^"\\]|\\.)*)"(.*)', _ts41):
+        _prow[_m.group(1).replace('\\"','"')] = _m.group(2)
+    _tb41 = []
+    for _n41, _p41 in pl.items():
+        _row = _prow.get(_n41)
+        if _row is None: continue
+        _mrp = _re41.search(r',rp:(\d+)', _row)
+        _mrc = _re41.search(r',rc:"([ABC])"', _row)
+        _want_rp = _p41.get("room_price")
+        _want_rc = (_p41.get("room_prior_class") or {}).get("class")
+        if (int(_mrp.group(1)) if _mrp else None) != _want_rp:
+            _tb41.append("%s rp %s ≠ %s"%(_n41, _mrp.group(1) if _mrp else None, _want_rp))
+        if (_mrc.group(1) if _mrc else None) != _want_rc:
+            _tb41.append("%s rc %s ≠ %s"%(_n41, _mrc.group(1) if _mrc else None, _want_rc))
+    if _tb41:
+        print("✗ [I41] 툴 P 배열의 rp/rc 가 players.json 과 불일치 %d건 — "
+              "python3 tool/sync_tool.py"%len(_tb41)); err += 1
+        for _b in _tb41[:6]: print("        %s"%_b)
+    if not _bad41 and not _est41 and not _tb41:
+        _cnt41 = {}
+        for _p41 in pl.values():
+            _c = (_p41.get("room_prior_class") or {}).get("class")
+            if _c: _cnt41[_c] = _cnt41.get(_c, 0) + 1
+        print("[I41] 방이 낸 값: 관측 %d명(×%.3f 환산) · 미지명 %d명 분류 %s · "
+              "툴 P 배열 일치 · market_low/high 는 **안 바꿨다**(병기 전용)"
+              % (_npr, _SC41, _ncls, _cnt41))
+except Exception as _ex41:
+    print("✗ [I41] 방이 낸 값 검사 실패: %r"%(_ex41,)); err += 1
+
 # ── I40 (42차): **코어별 캣 진단표** — 임베드 동기화 · price_override 근거
 #   🔴 이 검사가 지키는 것은 「가격표」가 아니다. 42차에 코어별 선수 가격/순위를 두 번
 #      만들었고 두 번 다 기각했다(전문: `tool/core_value.py` 상단 · `docs/05 §11`).
