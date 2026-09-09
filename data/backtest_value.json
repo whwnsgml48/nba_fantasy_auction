@@ -1,0 +1,63 @@
+{
+ "generated_by": "tool/backtest_value.py",
+ "design": {
+  "info": "2023-24 + 2024-25 (GP 가중 · 최근 ×1.5)",
+  "market": "2025-26 실제 낙찰가 (120명)",
+  "scoring": "2025-26 실제 스탯 · 실제 12팀 상대",
+  "roster": "14팀 세팅 9칸 $200 · 탐욕 조립(세 구조 공통)"
+ },
+ "caveat": "탐욕 조립은 최적해가 아니다. 세 구조에 같은 조립기를 쓰므로 **구조 비교**에는 유효하지만 절대 승률로 읽지 말 것.",
+ "v_empty": -13.31,
+ "v_repl": -5.814,
+ "iterations": 3000,
+ "results": {
+  "현행 (GP 를 z 안쪽)": {
+   "roster": [
+    "Payton Pritchard",
+    "Chris Paul",
+    "Rudy Gobert",
+    "Josh Hart",
+    "Michael Porter Jr.",
+    "Jarrett Allen",
+    "LeBron James",
+    "Shai Gilgeous-Alexander",
+    "Derrick White"
+   ],
+   "spent": 198,
+   "win_rate": 0.7628,
+   "scored_n": 9
+  },
+  "B  순수×a + 빈칸": {
+   "roster": [
+    "Payton Pritchard",
+    "Rudy Gobert",
+    "Chris Paul",
+    "Jarrett Allen",
+    "Domantas Sabonis",
+    "Shai Gilgeous-Alexander",
+    "Derrick White",
+    "Toumani Camara",
+    "Tobias Harris"
+   ],
+   "spent": 198,
+   "win_rate": 0.7627,
+   "scored_n": 9
+  },
+  "A  순수×a + FA대체": {
+   "roster": [
+    "Rudy Gobert",
+    "Chris Paul",
+    "Payton Pritchard",
+    "Fred VanVleet",
+    "Jarrett Allen",
+    "Derrick White",
+    "Shai Gilgeous-Alexander",
+    "LeBron James",
+    "Kawhi Leonard"
+   ],
+   "spent": 198,
+   "win_rate": 0.7074,
+   "scored_n": 9
+  }
+ }
+}
