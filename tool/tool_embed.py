@@ -68,6 +68,12 @@ def build_decision(cj, sim=None):
         note = (cj.get("decision_strength_notes") or {}).get(d["core"])
         if note:
             e["snote"] = note
+        # 🔴 42차: 트리거 확률. **값은 cores.json 이 소유**하고 여기서는 통과만 시킨다 —
+        #   계산을 여기서 하면 validate 와 갈라진다(39차 사고). 단일 소스는
+        #   `tool/trigger_audit.p_elite()` 이고 파생 필드로 저장돼 있다.
+        tp = d.get("trigger_probability")
+        if tp:
+            e["tp"] = tp["row"]
         out.append(e)
     return out
 
