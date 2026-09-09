@@ -98,7 +98,37 @@ def rate_of(co, names, reserve, tries=3):
     return base, best
 
 
+# 🔴🔴 44차 — **이 파일은 기각된 방법을 구현하고 있다. 실행이 막혀 있다.** 🔴🔴
+#
+#   `rate_of()` 는 후보 중 **환율이 가장 높은 것**을 고른다(`r > best[0]`, 96행).
+#   `matchup_sim.json.walkaway_40.rejected_attempt` 가 바로 그것을 이렇게 적어 뒀다:
+#       what        "후보 9개를 재고 **환율이 가장 높은 것**을 골랐다."
+#       why_wrong   "max(잡음)/작은 분모다. 대응 SE 가 ±0.59%p 인데 금액차가 $1~3 이라
+#                    c3 가 1.768%p/$ 로 나왔다 — 독립 대조점의 11배."
+#       produced    "Daniels 철수가 $5. 그를 잃으면 4.5%p 를 잃는데 $6 에 포기하라고 말한다."
+#   44차에 실제로 돌려 보니 **Daniels c1 철수 $5 가 그대로 재현됐다.** 출력은 버렸다.
+#
+#   🔴 채택된 방법은 이 저장소에 **코드가 없다.** 40차에 일회성으로 돌리고 결과만
+#      `matchup_sim.json.walkaway_40` 에 남겼고, 42차에 그 키가 지워지면서
+#      **채택 측정의 유일한 기록이 사라지고 기각된 코드만 남았다**(44차에 git 에서 복원).
+#
+#   다시 쓰려면 `method` 에 적힌 채택 방법을 **구현하고** 이 가드를 지울 것:
+#       "환율은 코어마다 **사전 지정한** 큰 금액차 교체 1건으로 잰다
+#        (가장 비싼 비앵커 칸 → 그 칸의 가장 싼 적격 대안). 0.110~0.259%p/$"
+#   ⚠️ 파일을 지우지 않는 이유: 기각된 구현이 **어떻게 생겼는지**가 기록이다.
+#      `tool/fix_screen_text_40.py` 와 같은 처리이고 `tests/oneshot_guards.py` 가 감시한다.
+REJECTED_METHOD_44 = True
+
+
 def main():
+    if REJECTED_METHOD_44:
+        sys.stderr.write(
+            "🔴 tool/walkaway_price.py 는 **기각된 방법**을 구현하고 있어 실행이 막혀 있다.\n"
+            "   rate_of() 가 환율 최대를 고른다 = walkaway_40.rejected_attempt 그 자체.\n"
+            "   Daniels 철수 $5 를 재생산한다. 채택 방법을 구현한 뒤 가드를 지울 것.\n"
+            "   근거: data/matchup_sim.json.walkaway_40.restored_44 · docs/05 §17\n")
+        sys.exit(1)
+
     out = {"seed": SEED, "iterations": ITERS, "reserve_floor": RSV_FLOOR, "rows": [],
            "method": ("무차별 가격 p* = a + (W_유지 − W_대체) / 환율. "
                       "환율은 그 코어에서 예비비로 살 수 있는 **최선의 업그레이드**를 "

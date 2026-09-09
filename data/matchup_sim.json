@@ -714,7 +714,8 @@
    "real_min_win_rate_vs": [
     "윤범"
    ],
-   "real_mean_expected_cats": 8.55
+   "real_mean_expected_cats": 8.55,
+   "real_mean_se_unpaired": 0.023
   },
   "c2": {
    "roster": [
@@ -1154,7 +1155,8 @@
    "real_min_win_rate_vs": [
     "정명"
    ],
-   "real_mean_expected_cats": 8.96
+   "real_mean_expected_cats": 8.96,
+   "real_mean_se_unpaired": 0.0249
   },
   "c3": {
    "roster": [
@@ -1594,7 +1596,8 @@
    "real_min_win_rate_vs": [
     "윤범"
    ],
-   "real_mean_expected_cats": 8.43
+   "real_mean_expected_cats": 8.43,
+   "real_mean_se_unpaired": 0.0194
   },
   "c4": {
    "roster": [
@@ -2034,7 +2037,8 @@
    "real_min_win_rate_vs": [
     "윤범"
    ],
-   "real_mean_expected_cats": 8.19
+   "real_mean_expected_cats": 8.19,
+   "real_mean_se_unpaired": 0.0277
   },
   "c5": {
    "roster": [
@@ -2474,7 +2478,8 @@
    "real_min_win_rate_vs": [
     "윤범"
    ],
-   "real_mean_expected_cats": 8.32
+   "real_mean_expected_cats": 8.32,
+   "real_mean_se_unpaired": 0.0256
   },
   "c6": {
    "roster": [
@@ -2914,7 +2919,8 @@
    "real_min_win_rate_vs": [
     "윤범"
    ],
-   "real_mean_expected_cats": 8.83
+   "real_mean_expected_cats": 8.83,
+   "real_mean_se_unpaired": 0.0195
   },
   "c7": {
    "roster": [
@@ -3354,7 +3360,527 @@
    "real_min_win_rate_vs": [
     "정명"
    ],
-   "real_mean_expected_cats": 8.51
+   "real_mean_expected_cats": 8.51,
+   "real_mean_se_unpaired": 0.0253
   }
+ },
+ "standard_error": {
+  "n_opponents": 12,
+  "paired_se_median": 0.0068,
+  "paired_se_by_pair": {
+   "c1-c2": {
+    "mean_diff": 0.0067,
+    "se": 0.0067
+   },
+   "c1-c3": {
+    "mean_diff": -0.0077,
+    "se": 0.0055
+   },
+   "c1-c4": {
+    "mean_diff": 0.0267,
+    "se": 0.0062
+   },
+   "c1-c5": {
+    "mean_diff": 0.0227,
+    "se": 0.0049
+   },
+   "c1-c6": {
+    "mean_diff": -0.0285,
+    "se": 0.0043
+   },
+   "c1-c7": {
+    "mean_diff": 0.0087,
+    "se": 0.0046
+   },
+   "c2-c3": {
+    "mean_diff": -0.0144,
+    "se": 0.0102
+   },
+   "c2-c4": {
+    "mean_diff": 0.02,
+    "se": 0.0077
+   },
+   "c2-c5": {
+    "mean_diff": 0.0161,
+    "se": 0.009
+   },
+   "c2-c6": {
+    "mean_diff": -0.0351,
+    "se": 0.007
+   },
+   "c2-c7": {
+    "mean_diff": 0.002,
+    "se": 0.0058
+   },
+   "c3-c4": {
+    "mean_diff": 0.0344,
+    "se": 0.0095
+   },
+   "c3-c5": {
+    "mean_diff": 0.0304,
+    "se": 0.0068
+   },
+   "c3-c6": {
+    "mean_diff": -0.0208,
+    "se": 0.0045
+   },
+   "c3-c7": {
+    "mean_diff": 0.0164,
+    "se": 0.0093
+   },
+   "c4-c5": {
+    "mean_diff": -0.004,
+    "se": 0.0042
+   },
+   "c4-c6": {
+    "mean_diff": -0.0552,
+    "se": 0.009
+   },
+   "c4-c7": {
+    "mean_diff": -0.018,
+    "se": 0.0066
+   },
+   "c5-c6": {
+    "mean_diff": -0.0512,
+    "se": 0.0078
+   },
+   "c5-c7": {
+    "mean_diff": -0.014,
+    "se": 0.0077
+   },
+   "c6-c7": {
+    "mean_diff": 0.0371,
+    "se": 0.0068
+   }
+  },
+  "unpaired_se_by_core": {
+   "c1": 0.023,
+   "c2": 0.0249,
+   "c3": 0.0194,
+   "c4": 0.0277,
+   "c5": 0.0256,
+   "c6": 0.0195,
+   "c7": 0.0253
+  },
+  "which_to_use": "코어끼리 **비교**할 때는 paired 를 쓴다. unpaired 는 '이 코어의 절대 승률이 얼마인가'의 오차이고, 모든 코어를 같은 12팀에 붙이므로 비교에서는 상대의 강약이 상쇄된다. 섞으면 4배 크게 잡는다.",
+  "definition": "paired: 두 코어의 상대별 승률 **차이** 벡터의 표본SD ÷ √n. unpaired: 한 코어의 상대별 승률 벡터의 표본SD ÷ √n.",
+  "not_monte_carlo": "🔴 몬테카를로 오차가 아니다 — 시행수를 늘려도 거의 안 줄어든다(2500 ±0.87%p → 10000 ±0.77%p). 병목은 n=12 다.",
+  "use": "판단표 「동급 묶음」 컷에 쓴다. **컷 폭을 화면에 상수로 박지 말 것** — 상대 집합이 바뀌면 이 값이 바뀌는데 화면 상수는 그대로 남아 조용히 틀린다.",
+  "suggested_cut": 0.0085,
+  "caveat": "단일 컷은 근사다. 쌍마다 SE 가 다르다(c1-c6 0.25%p ↔ c2-c3 0.80%p) — 선수를 많이 공유하는 코어끼리는 차이가 더 정밀하게 측정된다."
+ },
+ "assumption_stress": {
+  "seed": 20261020,
+  "iterations": 4000,
+  "gp_factor": 0.74,
+  "share_threshold": 0.5,
+  "what": "코어의 1순위 중 GP 실측 비중이 임계 미만인 선수 전원의 GP 에 같은 배율을 곱하고 실제 12팀 평균 주간 승률을 다시 잰다.",
+  "why": "승률 1차 지표가 상위 5개를 1.2%p 안으로 몰아넣었고 maximin 은 쓸 수 없다. 🔴 **42차에 이 표를 1차 선택 기준에서 참고 열로 강등했다** — ① 8팀/14팀 진출이라 바닥이 사실상 공짜인데 이건 바닥 지표다 ② ±0 여부는 「1순위 중 실측 비중 <50% 선수가 있는가」의 재진술이라 **정의의 산물**이다. ⚠️ 다만 **크기**(c5 −11.3 vs c3 −2.1)는 측정이므로 지우지 않고 참고로 남긴다. 선택 순서는 1차 조건 · 2차 조달 · 3차 상위 8팀 상대 승률 (cores.json.core_selection_hierarchy_42).",
+  "caveat": "배율 0.74 에 통계적 근거는 없다(Haliburton 73→54 와 같은 비율). GP 를 예측하는 표가 아니라 **얼마나 흔들리는가**를 보는 표다. 코어 간 상대 비교로만 읽을 것.",
+  "rows": [
+   {
+    "core": "c1",
+    "base": 0.8736,
+    "stressed": 0.8144,
+    "delta": -0.0592,
+    "assumptions": [
+     {
+      "player": "Tyrese Haliburton",
+      "share": 0.0,
+      "gp": 73.0,
+      "gp_stressed": 54.0
+     }
+    ]
+   },
+   {
+    "core": "c2",
+    "base": 0.8669,
+    "stressed": 0.8669,
+    "delta": 0.0,
+    "assumptions": []
+   },
+   {
+    "core": "c3",
+    "base": 0.8813,
+    "stressed": 0.856,
+    "delta": -0.0253,
+    "assumptions": [
+     {
+      "player": "Damian Lillard",
+      "share": 0.0,
+      "gp": 58.0,
+      "gp_stressed": 42.9
+     }
+    ]
+   },
+   {
+    "core": "c4",
+    "base": 0.8469,
+    "stressed": 0.8122,
+    "delta": -0.0347,
+    "assumptions": [
+     {
+      "player": "Trae Young",
+      "share": 0.228,
+      "gp": 62.1,
+      "gp_stressed": 46.0
+     }
+    ]
+   },
+   {
+    "core": "c5",
+    "base": 0.8509,
+    "stressed": 0.7361,
+    "delta": -0.1148,
+    "assumptions": [
+     {
+      "player": "Domantas Sabonis",
+      "share": 0.289,
+      "gp": 55.2,
+      "gp_stressed": 40.8
+     },
+     {
+      "player": "Ivica Zubac",
+      "share": 0.474,
+      "gp": 64.8,
+      "gp_stressed": 48.0
+     },
+     {
+      "player": "Tyrese Haliburton",
+      "share": 0.0,
+      "gp": 73.0,
+      "gp_stressed": 54.0
+     }
+    ]
+   },
+   {
+    "core": "c6",
+    "base": 0.9021,
+    "stressed": 0.9021,
+    "delta": 0.0,
+    "assumptions": []
+   },
+   {
+    "core": "c7",
+    "base": 0.8649,
+    "stressed": 0.8649,
+    "delta": 0.0,
+    "assumptions": []
+   }
+  ]
+ },
+ "gp_sensitivity": {
+  "seed": 20261020,
+  "iterations": 4000,
+  "basis": "실제 12팀 상대 평균/최저 주간 승률 · 라인업 보정 적용(matchup_sim 본체)",
+  "why_not_change_data": "데이터의 GP 는 바꾸지 않는다(사용자 결정 2026-08-27). 대체 GP 값 자체에 통계적 근거가 없고 — 해당 선수는 직전 GP→다음 GP 회귀의 표본에 들어 있지도 않다 — 숫자를 고르는 대신 감도를 화면에 띄운다.",
+  "cases": [
+   {
+    "core": "c1",
+    "player": "Tyrese Haliburton",
+    "gp_assumed": 73.0,
+    "gp_alt": 54,
+    "why": "아킬레스 복귀 시즌. 혼합 GP 73 은 전부 2024-25 투영이고 2025-26 실측이 0경기다. 54 는 다른 세션의 리그 전체 회귀 예측치로, **근거가 아니라 흔들어 보는 값**이다.",
+    "mean": 0.8736,
+    "min": 0.7425,
+    "alt_mean": 0.8144,
+    "alt_min": 0.6402,
+    "delta_mean": -0.0592
+   },
+   {
+    "core": "c5",
+    "player": "Tyrese Haliburton",
+    "gp_assumed": 73.0,
+    "gp_alt": 54,
+    "why": "아킬레스 복귀 시즌. 혼합 GP 73 은 전부 2024-25 투영이고 2025-26 실측이 0경기다. 54 는 다른 세션의 리그 전체 회귀 예측치로, **근거가 아니라 흔들어 보는 값**이다.",
+    "mean": 0.8509,
+    "min": 0.6907,
+    "alt_mean": 0.7936,
+    "alt_min": 0.599,
+    "delta_mean": -0.0573
+   }
+  ]
+ },
+ "walkaway_40": {
+  "status": "부분 측정 — 5명 중 1명만 판정 가능",
+  "method": "무차별 가격 = 2순위 취득가 + (그 선수를 잃을 때의 승률 손실) / 환율. 환율은 코어마다 **사전 지정한** 큰 금액차 교체 1건으로 잰다(가장 비싼 비앵커 칸 → 그 칸의 가장 싼 적격 대안). 0.110~0.259%p/$.",
+  "rejected_attempt": {
+   "what": "후보 9개를 재고 **환율이 가장 높은 것**을 골랐다.",
+   "why_wrong": "max(잡음)/작은 분모다. 대응 SE 가 ±0.59%p 인데 금액차가 $1~3 이라 c3 가 1.768%p/$ 로 나왔다 — 독립 대조점(c3 에서 $7 빼니 1.1%p = 0.157%p/$)의 **11배**.",
+   "what_it_produced": "Daniels 철수가 $5. 그를 잃으면 4.5%p 를 잃는데 $6 에 포기하라고 말한다. 6개 코어의 1순위이고 대체후보가 어디에도 없는 선수다.",
+   "how_caught": "독립 대조점이 있었다. 없었으면 그대로 화면에 나갔다."
+  },
+  "paired_se": 0.0059,
+  "significance": "손실 > 2×SE (=1.18%p) 일 때만 판정한다",
+  "conclusions": {
+   "Dyson Daniels": "🔴 **예산 구속**. 6개 코어 전부에서 손실 3.9~4.6%p(SE 의 6.6~7.8배)이고 무차별 가격이 $20~44 로 **예산 상한을 넘는다**. 즉 그는 우리가 낼 수 있는 것보다 가치가 크다 — 철수선은 무차별이 아니라 **내 최대가 $20** 이다. ⚠️ $44 같은 값을 인용하지 말 것(먼 외삽이다). 필요한 주장은 '상한을 넘는다'뿐이고 그건 환율이 2배 틀려도 성립한다.",
+   "Kon Knueppel": "판정 불가 — 4개 코어 전부 손실이 잡음 안(0.43~1.50%p).",
+   "Desmond Bane": "판정 불가 — 0.55·0.76%p, 잡음 안.",
+   "DeMar DeRozan": "판정 불가 — 0.14·0.19%p, 잡음 안.",
+   "Josh Hart": "c3 는 잡음 안(0.73%p). c7 의 5.79%p 는 **가격이 아니라 대체 목록의 문제**였다 — 그 칸 대체가 Queta·Diabaté 로 **둘 다 센터**여서 SF 를 잃는 값이 찍혔다. 대체를 SF 가능한 선수로 바꿔 원인을 없앴다."
+  },
+  "side_finding": "Knueppel ↔ Bane 은 **어느 코어에서도 구별되지 않는다**(전부 잡음 안). SF 병목은 '둘 중 누구를 잡느냐'가 아니라 **'둘 중 하나를 잡느냐'** 의 문제다.",
+  "rate_by_core": {
+   "c1": {
+    "from": "Alperen Şengün",
+    "to": "Andrew Wiggins",
+    "delta_dollar": 24,
+    "delta_pp": 0.0264,
+    "rate": 0.0011
+   },
+   "c2": {
+    "from": "Desmond Bane",
+    "to": "Andrew Wiggins",
+    "delta_dollar": 20,
+    "delta_pp": 0.0292,
+    "rate": 0.00146
+   },
+   "c3": {
+    "from": "Alperen Şengün",
+    "to": "Andrew Wiggins",
+    "delta_dollar": 24,
+    "delta_pp": 0.0462,
+    "rate": 0.00193
+   },
+   "c4": {
+    "from": "Trae Young",
+    "to": "AJ Green",
+    "delta_dollar": 28,
+    "delta_pp": 0.0726,
+    "rate": 0.00259
+   },
+   "c5": {
+    "from": "Amen Thompson",
+    "to": "AJ Green",
+    "delta_dollar": 24,
+    "delta_pp": 0.0489,
+    "rate": 0.00204
+   },
+   "c6": {
+    "from": "Alperen Şengün",
+    "to": "Andrew Wiggins",
+    "delta_dollar": 24,
+    "delta_pp": 0.0458,
+    "rate": 0.00191
+   },
+   "c7": {
+    "from": "Alperen Şengün",
+    "to": "Andrew Wiggins",
+    "delta_dollar": 24,
+    "delta_pp": 0.0264,
+    "rate": 0.0011
+   }
+  },
+  "rows": [
+   {
+    "player": "Kon Knueppel",
+    "core": "c1",
+    "plan": 22,
+    "alt": "Desmond Bane",
+    "alt_price": 22,
+    "loss_pp": -0.007,
+    "significant": false,
+    "rate": 0.0011,
+    "indifference": null,
+    "budget_cap": 30,
+    "binding": "below_noise"
+   },
+   {
+    "player": "Kon Knueppel",
+    "core": "c4",
+    "plan": 22,
+    "alt": "Desmond Bane",
+    "alt_price": 22,
+    "loss_pp": -0.015,
+    "significant": false,
+    "rate": 0.00259,
+    "indifference": null,
+    "budget_cap": 32,
+    "binding": "below_noise"
+   },
+   {
+    "player": "Kon Knueppel",
+    "core": "c5",
+    "plan": 22,
+    "alt": "Josh Hart",
+    "alt_price": 4,
+    "loss_pp": -0.0112,
+    "significant": false,
+    "rate": 0.00204,
+    "indifference": null,
+    "budget_cap": 32,
+    "binding": "below_noise"
+   },
+   {
+    "player": "Kon Knueppel",
+    "core": "c7",
+    "plan": 22,
+    "alt": "Desmond Bane",
+    "alt_price": 22,
+    "loss_pp": -0.0043,
+    "significant": false,
+    "rate": 0.0011,
+    "indifference": null,
+    "budget_cap": 34,
+    "binding": "below_noise"
+   },
+   {
+    "player": "Desmond Bane",
+    "core": "c2",
+    "plan": 22,
+    "alt": "Josh Hart",
+    "alt_price": 4,
+    "loss_pp": -0.0055,
+    "significant": false,
+    "rate": 0.00146,
+    "indifference": null,
+    "budget_cap": 29,
+    "binding": "below_noise"
+   },
+   {
+    "player": "Desmond Bane",
+    "core": "c6",
+    "plan": 22,
+    "alt": "Josh Hart",
+    "alt_price": 4,
+    "loss_pp": 0.0076,
+    "significant": false,
+    "rate": 0.00191,
+    "indifference": null,
+    "budget_cap": 27,
+    "binding": "below_noise"
+   },
+   {
+    "player": "Josh Hart",
+    "core": "c3",
+    "plan": 4,
+    "alt": "DeMar DeRozan",
+    "alt_price": 8,
+    "loss_pp": 0.0073,
+    "significant": false,
+    "rate": 0.00193,
+    "indifference": null,
+    "budget_cap": 9,
+    "binding": "below_noise"
+   },
+   {
+    "player": "Josh Hart",
+    "core": "c7",
+    "plan": 4,
+    "alt": "Neemias Queta",
+    "alt_price": 2,
+    "loss_pp": 0.0579,
+    "significant": true,
+    "rate": 0.0011,
+    "indifference": 54.6,
+    "budget_cap": 16,
+    "binding": "budget"
+   },
+   {
+    "player": "DeMar DeRozan",
+    "core": "c2",
+    "plan": 8,
+    "alt": "Jaden McDaniels",
+    "alt_price": 5,
+    "loss_pp": -0.0014,
+    "significant": false,
+    "rate": 0.00146,
+    "indifference": null,
+    "budget_cap": 15,
+    "binding": "below_noise"
+   },
+   {
+    "player": "DeMar DeRozan",
+    "core": "c6",
+    "plan": 8,
+    "alt": "Josh Hart",
+    "alt_price": 4,
+    "loss_pp": 0.0019,
+    "significant": false,
+    "rate": 0.00191,
+    "indifference": null,
+    "budget_cap": 13,
+    "binding": "below_noise"
+   },
+   {
+    "player": "Dyson Daniels",
+    "core": "c1",
+    "plan": 12,
+    "alt": "Ausar Thompson",
+    "alt_price": 3,
+    "loss_pp": 0.0455,
+    "significant": true,
+    "rate": 0.0011,
+    "indifference": 44.4,
+    "budget_cap": 20,
+    "binding": "budget"
+   },
+   {
+    "player": "Dyson Daniels",
+    "core": "c3",
+    "plan": 12,
+    "alt": "Ausar Thompson",
+    "alt_price": 3,
+    "loss_pp": 0.0387,
+    "significant": true,
+    "rate": 0.00193,
+    "indifference": 23.1,
+    "budget_cap": 17,
+    "binding": "budget"
+   },
+   {
+    "player": "Dyson Daniels",
+    "core": "c4",
+    "plan": 12,
+    "alt": "Ausar Thompson",
+    "alt_price": 3,
+    "loss_pp": 0.0443,
+    "significant": true,
+    "rate": 0.00259,
+    "indifference": 20.1,
+    "budget_cap": 22,
+    "binding": "indifference"
+   },
+   {
+    "player": "Dyson Daniels",
+    "core": "c5",
+    "plan": 12,
+    "alt": "Andrew Nembhard",
+    "alt_price": 2,
+    "loss_pp": 0.0425,
+    "significant": true,
+    "rate": 0.00204,
+    "indifference": 22.8,
+    "budget_cap": 22,
+    "binding": "budget"
+   },
+   {
+    "player": "Dyson Daniels",
+    "core": "c6",
+    "plan": 12,
+    "alt": "Ausar Thompson",
+    "alt_price": 3,
+    "loss_pp": 0.0436,
+    "significant": true,
+    "rate": 0.00191,
+    "indifference": 25.8,
+    "budget_cap": 17,
+    "binding": "budget"
+   },
+   {
+    "player": "Dyson Daniels",
+    "core": "c7",
+    "plan": 12,
+    "alt": "Ausar Thompson",
+    "alt_price": 3,
+    "loss_pp": 0.0449,
+    "significant": true,
+    "rate": 0.0011,
+    "indifference": 43.8,
+    "budget_cap": 24,
+    "binding": "budget"
+   }
+  ],
+  "restored_44": "🔴 **44차에 git 668a179 에서 복원했다. 다시 재지 않았다** — 이 저장소에 **채택된 방법의 코드가 없다.**\n`tool/walkaway_price.py` 는 `rate_of()` 가 후보 중 **환율 최대**를 고른다(`r > best[0]`) — 위 `rejected_attempt` 가 「후보 9개를 재고 환율이 가장 높은 것을 골랐다」고 적어 **버린 바로 그 방법**이다. 44차에 실제로 돌려 보니 **Daniels c1 철수 $5** 가 그대로 나왔다(기각본이 냈던 값). 출력은 버렸다.\n채택된 방법(**코어마다 사전 지정한 큰 금액차 교체 1건**)은 `method` 에 서술만 있고 코드가 없다. 40차에 일회성으로 돌린 뒤 결과만 이 키에 남긴 것이다 — 그래서 42차에 이 키가 지워졌을 때 **채택 측정의 유일한 기록이 사라지고 기각된 코드만 남았다.**\n⚠️ **이 값들은 44차 이전 세계(c6 = Bane) 측정이다.** 승률에서 나온 부분은 낡았다.\n🟢 다만 **결정에 쓰이는 부분은 낡지 않았다** — `cores.json` 과 `docs/11` 이 인용하는 Daniels c6 의 `budget_cap $17` 은 `plan_price + 예비비 − 하한` 의 **산술**이라 방법·세계와 무관하다. 44차 기각본 실행에서도 $17 · 예산구속으로 같았다.\n📌 남은 일: 채택 방법을 **코드로** 구현하고 새 세계에서 재측정. 지금 미룬 이유는 결정에 쓰이는 유일한 값이 산술이라 방법 의존이 아니기 때문이다."
  }
 }

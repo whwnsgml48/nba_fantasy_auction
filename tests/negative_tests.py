@@ -62,6 +62,7 @@ NEEDED = [
     "data/players.csv",
     "data/core_value_tables.json",               # 42차 — 코어별 캣 진단표 (I40)
     "tool/declaration_conflicts.py",             # 42차 — 선언 모순 대조 단일 소스 (I43)
+    "tool/walkaway_price.py",                    # 44차 — 기각 방법 재가동 감시 (I46)
 ]
 
 TESTS = []
@@ -180,6 +181,13 @@ class Box:
     def cval(self, fn):
         """data/core_value_tables.json 을 고친다 (42차 · I40)."""
         p = self.root + "/data/core_value_tables.json"
+        d = json.load(io.open(p, encoding="utf-8"))
+        fn(d)
+        json.dump(d, io.open(p, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+
+    def sim(self, fn):
+        """data/matchup_sim.json 을 고친다 (44차 · I46)."""
+        p = self.root + "/data/matchup_sim.json"
         d = json.load(io.open(p, encoding="utf-8"))
         fn(d)
         json.dump(d, io.open(p, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
@@ -1035,6 +1043,24 @@ def _(b):
             p["tag"] = "burn"
             return
     raise AssertionError("c6 PG 1순위를 못 찾음")
+
+
+# 44차 — I46 (파이프라인 산출물 결측)
+#   🔴 이 저장소가 **두 번** 조용히 잃었다: 42차에 gp_sensitivity·walkaway_40,
+#      44차에 standard_error·assumption_stress. 두 번 다 `matchup_sim.py` 를 뒤에
+#      돌려 덮은 것이고, **두 번 다 validate 0건 · negative 전건 통과**였다.
+#      검사가 「값이 맞는가」만 묻고 **「있기는 한가」를 안 물었다.**
+
+@test("I46", "matchup_sim.json 의 파이프라인 산출물 키를 지운다 (뒤 단계가 안 돈 상태)",
+      "파이프라인 산출물이 **없다**")
+def _(b):
+    b.sim(lambda d: d.pop("assumption_stress", None))
+
+
+@test("I46", "콘솔 임베드 상수를 빈 객체로 만든다 (sync_tool 폴백이 켜진 상태)",
+      "콘솔 임베드 상수가 **비어 있다**")
+def _(b):
+    b.html(lambda s: re.sub(r'const STRESS=\{.*?\};', 'const STRESS={};', s, count=1, flags=re.S))
 
 
 # 42차 작업6 — I43 (선언 모순 전수 대조)

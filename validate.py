@@ -1894,6 +1894,71 @@ try:
 except Exception as _ex39:
     print("✗ [I39] GAMES_PER_WEEK 단일 소스 검사 실패: %r"%(_ex39,)); err += 1
 
+# ── I46 (44차): 파이프라인 산출물이 **사라진 것을 잡는다** ────────────────────
+#   🔴 왜 필요한가 — 이 저장소가 **두 번** 조용히 잃었다.
+#     42차 `e8fc9f0`: gp_sensitivity · walkaway_40 이 사라졌고 **두 라운드 동안**
+#                     아무도 못 봤다. 그동안 cores.json 과 docs/11 은 walkaway_40 을
+#                     계속 인용했다 — **없는 파일의 없는 키**를 근거로 든 것이다.
+#     44차 `e325143`: standard_error · assumption_stress 가 사라졌다.
+#   두 번 다 원인이 같다. `sim_error`·`assumption_stress`·`gp_sensitivity`·
+#   `walkaway_price` 는 matchup_sim.json 을 **읽어 키를 얹고 되쓴다.** matchup_sim.py 를
+#   나중에 돌리면 그 키들이 통째로 날아간다(HANDOFF:160 이 순서를 고정해 뒀다).
+#   🔴 그런데 **검사가 존재를 안 봤다** — 위반 0건 · 음성 70/70 으로 통과했다.
+#      42차에 「음성 테스트가 tool/*.py 주입을 못 봤다」와 같은 종류의 구멍이다.
+#
+#   🔴 `sync_tool` 의 `(SIM or {}).get(...) or {}` 폴백은 **지우지 않는다.** 파일이
+#      없을 때 죽지 않게 하려는 것이고 그 자체는 맞다. 문제는 **폴백이 켜졌다는 사실을
+#      아무도 보고하지 않는 것**이다. 폴백은 두고, 켜지면 여기서 잡는다.
+try:
+    import re as _re46
+    _need46 = ("cores", "standard_error", "assumption_stress",
+               "gp_sensitivity", "walkaway_40")
+    _sim46 = json.load(io.open(D+"/data/matchup_sim.json", encoding="utf-8"))
+    _miss46 = [k for k in _need46 if not _sim46.get(k)]
+    if _miss46:
+        print("✗ [I46] matchup_sim.json 에 파이프라인 산출물이 **없다**: %s"
+              % ", ".join(_miss46))
+        print("        matchup_sim.py 를 뒤에 돌려 덮었을 가능성이 높다. 순서는")
+        print("        matchup_sim → sim_error → assumption_stress → gp_sensitivity")
+        print("        → walkaway_price → sync_tool  (HANDOFF §순서)")
+        err += 1
+    # 콘솔 임베드 상수가 **비어 있으면** 화면이 빈 표를 낸다. 폴백이 켜진 증거다.
+    _html46 = io.open(D+"/tool/auction-console.html", encoding="utf-8").read()
+    _empty46 = []
+    for _c46 in ("STRESS", "CORES", "PIVOTS", "DECISION", "OVERHEAT", "CVAL", "KATBR"):
+        _m46 = _re46.search(r'const %s=(\[\]|\{\});' % _c46, _html46)
+        if _m46:
+            _empty46.append("%s=%s" % (_c46, _m46.group(1)))
+    _m46o = _re46.search(r'const DECISION_ONELINER="";', _html46)
+    if _m46o:
+        _empty46.append('DECISION_ONELINER=""')
+    if _empty46:
+        print("✗ [I46] 콘솔 임베드 상수가 **비어 있다**: %s" % ", ".join(_empty46))
+        print("        sync_tool 의 `or {}` 폴백이 켜진 것이다 — 소스 키를 먼저 복원할 것")
+        err += 1
+    # 🔴 기각된 방법을 구현한 도구가 다시 켜지지 않았는지 본다 (44차).
+    #   `tool/walkaway_price.py` 의 rate_of() 는 후보 중 **환율 최대**를 고르는데,
+    #   그것이 walkaway_40.rejected_attempt 가 적어 둔 **버린 방법** 그 자체다
+    #   (Daniels 철수 $5 를 재생산한다 — 44차에 실제로 확인했다).
+    #   가드를 지우는 것 자체는 허용한다 — 단 **채택 방법을 구현한 뒤**여야 한다.
+    _wp46 = io.open(D + "/tool/walkaway_price.py", encoding="utf-8").read()
+    if "REJECTED_METHOD_44 = True" not in _wp46:
+        if "r > best[0]" in _wp46:
+            print("✗ [I46] tool/walkaway_price.py 의 기각 가드가 풀렸는데 "
+                  "`rate_of()` 는 여전히 **환율 최대**를 고른다(`r > best[0]`) — "
+                  "walkaway_40.rejected_attempt 가 버린 방법이다. Daniels 철수 $5 가 나온다")
+            err += 1
+        else:
+            print("      △ [I46] tool/walkaway_price.py 의 기각 가드가 풀렸다 — "
+                  "`r > best[0]` 도 사라졌으니 채택 방법을 구현한 것으로 본다. "
+                  "walkaway_40 을 새 세계에서 다시 재고 restored_44 를 갱신할 것")
+            warn += 1
+    if not _miss46 and not _empty46:
+        print("[I46] 파이프라인 산출물 %d종 존재 · 콘솔 임베드 상수 7종 비어있지 않음"
+              % len(_need46))
+except Exception as _ex46:
+    print("✗ [I46] 파이프라인 산출물 존재 검사 실패: %r" % (_ex46,)); err += 1
+
 print("획득 제외 대상(부상·은퇴): %s"%(", ".join(sorted(INJ)) or "없음"))
 print("총 위반: %d건%s"%(err, " · 치환필요 %d건(치명 아님)"%warn if warn else ""))
 sys.exit(1 if err else 0)

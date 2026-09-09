@@ -157,9 +157,10 @@ python3 tool/core_value.py          # 42차 — 코어별 캣 진단표 (matchup
 python3 tool/gpw_dual.py 4000       # 42차 — 주 길이 모형 비교 (필요할 때만 · 느리다)
 ```
 `core_value.py` 는 `data/gpw_dual.json` 의 primary world 를 승률 출처로 쓴다.
-시뮬 체인은 `matchup_sim → sim_error → assumption_stress → sync_tool` 순서다 —
-뒤 둘이 `matchup_sim.json` 에 **키를 얹으므로** 순서를 바꾸면 `standard_error` ·
-`assumption_stress` 가 사라진다.
+시뮬 체인은 `matchup_sim → sim_error → assumption_stress → gp_sensitivity →
+walkaway_price → sync_tool` 순서다 — 뒤 넷이 `matchup_sim.json` 에 **키를 얹으므로**
+순서를 바꾸면 `standard_error`·`assumption_stress`·`gp_sensitivity`·`walkaway_40` 이
+사라진다. 🔴 **44차에 `[I46]` 을 신설했다** — 결측 키와 빈 콘솔 상수를 위반으로 잡는다.
 
 ### 9. 🔴 아티팩트 **재발행 필요** (하지 않았다) — **행동/표시로 갈라 둔다**
 
@@ -1181,8 +1182,17 @@ python3 tool/gen_docs06.py          # docs/06 전량 생성 (36차 — 그전엔
 python3 tool/matchup_sim.py 20261020 4000   # 승률 판정 → data/matchup_sim.json (30·32차)
 python3 tool/sim_error.py            # 대응/비대응 SE → matchup_sim.json 에 **키를 얹는다**
 python3 tool/assumption_stress.py    # 가정 취약성 → matchup_sim.json 에 **키를 얹는다**
-#   ⚠️ 42차: 위 둘은 matchup_sim.json 을 읽어 키를 추가하고 되쓴다. matchup_sim.py 를
-#      **나중에** 돌리면 standard_error·assumption_stress 가 **통째로 사라진다.** 순서 고정.
+python3 tool/gp_sensitivity.py       # GP 감도 → matchup_sim.json 에 **키를 얹는다**
+python3 tool/walkaway_price.py       # 철수가(무차별 가격) → **키를 얹는다** · 느리다(~20분)
+#   ⚠️ 42차: 위 넷은 matchup_sim.json 을 읽어 키를 추가하고 되쓴다. matchup_sim.py 를
+#      **나중에** 돌리면 standard_error·assumption_stress·gp_sensitivity·walkaway_40 이
+#      **통째로 사라진다.** 순서 고정.
+#   🔴 44차: 이 목록에 **gp_sensitivity·walkaway_price 가 빠져 있었다.** 그래서 42차에
+#      그 둘이 사라졌고 **두 라운드 동안 아무도 못 봤다** — 그동안 cores.json 과 docs/11 은
+#      `walkaway_40` 을 계속 인용했다(없는 키를 근거로 든 것이다). 44차에 같은 사고가
+#      standard_error·assumption_stress 에 반복됐다.
+#      → **`validate.py [I46]` 이 이제 결측과 빈 콘솔 상수를 잡는다.** 목록을 믿지 말고
+#        검사를 믿을 것. 목록은 사람이 갱신을 잊지만 검사는 안 잊는다.
 python3 tool/core_value.py           # 42차 — 코어별 캣 진단표 (gpw_dual.json 의 primary world 사용)
 python3 validate.py                 # 위반 0건 확인
 python3 tool/track_divergence.py    # M5·M6 진입/이탈 기준선 (27차 · 검증기는 읽기만)
