@@ -1974,6 +1974,49 @@ try:
 except Exception as _ex46:
     print("✗ [I46] 파이프라인 산출물 존재 검사 실패: %r" % (_ex46,)); err += 1
 
+# ── I47 (45차): 조립기 결과는 **예산 소진을 확인하기 전에 믿지 않는다** ───────────
+#   🔴 이 버그가 **세 번** 나왔다. 기전은 매번 같다 — 채우기를 「달러당 가치」로 하면
+#      $1 짜리만 골라 예산이 남고, 그 로스터의 승률은 **구조가 아니라 미소진을 잰다.**
+#        30차  matchup_sim.greedy 가 같은 것을 기록해 뒀다(가치최대 상대가 $200 중 $61)
+#        43차  백테스트에서 현행이 **$90** 만 쓰고 「새 구조 +8.8%p」라는 가짜 결과.
+#              업그레이드 단계를 넣으니 76.28 vs 76.27 로 붙었다
+#        45차  몰빵 조립기가 **$149** 만 쓰고 81.8%. 루프를 넣으니 $200 · 88.5% —
+#              **6.7%p 가 버그였다**(조율 세션 측정)
+#   세 번 다 **사람이 기록을 읽어서** 잡았다. 검사로 내린다.
+#
+#   🔴 규약: 조립기 산출물은 항목마다 `spent` 와 (`win_rate`|`weekly_win_rate`) 를
+#      같이 적는다. 그러면 이 검사가 자동으로 붙는다. **적지 않으면 검사도 못 한다** —
+#      새 도구를 쓸 때 이 두 필드를 내는 것이 opt-in 조건이다.
+try:
+    _FLOOR47, _n47, _bad47 = 0.95, 0, []
+    for _f47, _budget47 in (("data/backtest_value.json", 200),):
+        _p47 = D + "/" + _f47
+        if not os.path.exists(_p47):
+            continue
+        _d47 = json.load(io.open(_p47, encoding="utf-8"))
+        _stack = [_d47]
+        while _stack:
+            _o = _stack.pop()
+            if isinstance(_o, dict):
+                _sp = _o.get("spent")
+                _wr = _o.get("win_rate", _o.get("weekly_win_rate"))
+                if isinstance(_sp, (int, float)) and isinstance(_wr, (int, float)):
+                    _n47 += 1
+                    if _sp < _FLOOR47 * _budget47:
+                        _bad47.append((_f47, _sp, _budget47, _wr))
+                _stack.extend(v for v in _o.values() if isinstance(v, (dict, list)))
+            elif isinstance(_o, list):
+                _stack.extend(v for v in _o if isinstance(v, (dict, list)))
+    for _f47, _sp, _b47, _wr in _bad47:
+        print("✗ [I47] %s: 조립기가 $%d 중 **$%d 만 썼다**(%.0f%%)는데 승률 %.4f 를 냈다 — "
+              "그 값은 구조가 아니라 **미소진**을 잰 것이다. 업그레이드 루프를 넣고 다시 잴 것"
+              % (_f47, _b47, _sp, 100.0 * _sp / _b47, _wr)); err += 1
+    if not _bad47:
+        print("[I47] 조립기 산출물 예산 소진: %d항목 검사 · 전부 %d%% 이상 소진"
+              % (_n47, int(100 * _FLOOR47)))
+except Exception as _ex47:
+    print("✗ [I47] 조립기 예산 소진 검사 실패: %r" % (_ex47,)); err += 1
+
 print("획득 제외 대상(부상·은퇴): %s"%(", ".join(sorted(INJ)) or "없음"))
 print("총 위반: %d건%s"%(err, " · 치환필요 %d건(치명 아님)"%warn if warn else ""))
 sys.exit(1 if err else 0)

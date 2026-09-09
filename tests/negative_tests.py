@@ -64,6 +64,7 @@ NEEDED = [
     "tool/declaration_conflicts.py",             # 42차 — 선언 모순 대조 단일 소스 (I43)
     "tool/walkaway_price.py",                    # 44차 — 기각 방법 재가동 감시 (I46)
     "data/walkaway_v2.json",                     # 45차 — 채택 철수가 산출물 (I46)
+    "data/backtest_value.json",                  # 45차 — 조립기 예산 소진 (I47)
 ]
 
 TESTS = []
@@ -182,6 +183,13 @@ class Box:
     def cval(self, fn):
         """data/core_value_tables.json 을 고친다 (42차 · I40)."""
         p = self.root + "/data/core_value_tables.json"
+        d = json.load(io.open(p, encoding="utf-8"))
+        fn(d)
+        json.dump(d, io.open(p, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+
+    def bt(self, fn):
+        """data/backtest_value.json 을 고친다 (45차 · I47)."""
+        p = self.root + "/data/backtest_value.json"
         d = json.load(io.open(p, encoding="utf-8"))
         fn(d)
         json.dump(d, io.open(p, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
@@ -1069,6 +1077,15 @@ def _(b):
       "콘솔 임베드 상수가 **비어 있다**")
 def _(b):
     b.html(lambda s: re.sub(r'const STRESS=\{.*?\};', 'const STRESS={};', s, count=1, flags=re.S))
+
+
+# 45차 — I47 (조립기 예산 미소진)
+#   30·43·45차에 세 번 재발했다. 세 번 다 사람이 기록을 읽어서 잡았다.
+
+@test("I47", "조립기 산출물의 spent 를 절반으로 낮춘다 (예산을 안 쓴 로스터로 승률을 냈다)",
+      "조립기가 $200 중")
+def _(b):
+    b.bt(lambda d: [v.update(spent=v["spent"] // 2) for v in d["results"].values()])
 
 
 @test("I46", "walkaway_v2 의 독립 대조점을 실패로 바꾼다 (환율 부풀림 = 기각본의 병)",
