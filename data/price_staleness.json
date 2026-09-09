@@ -1,0 +1,1222 @@
+{
+ "generated_by": "tool/price_staleness.py",
+ "metric": "Δz = z(25-26) − z(24-25) · 같은 13캣 · 같은 표준화 · GP 포함. 방의 관측가는 24-25 까지의 정보로 형성됐다.",
+ "rejected_rule": {
+  "abs_threshold": 2.0,
+  "why": "관측 92명 중 59명(64%)이 걸렸다. |Δz| 중앙값 3.27 로 임계가 중앙값 아래였다. **튜닝하지 않고 설계를 바꿨다** — 슬롯 안 비교로 쓴다(24차 원칙)."
+ },
+ "does_not": [
+  "가격을 고치지 않는다 — 진단 전용",
+  "관측가를 폐기하지 않는다 — 어디에 쓸 수 없는지만 말한다",
+  "선수를 「낡음/신선」으로 분류하지 않는다 — 절대 임계는 기각됐다"
+ ],
+ "slot_spread_flag": 4.0,
+ "flagged_slots": [
+  {
+   "core": "c7",
+   "slot": "C",
+   "spread": 17.44,
+   "most_improved": "Jalen Duren",
+   "candidates": {
+    "Karl-Anthony Towns": -1.96,
+    "Jalen Duren": 0.69,
+    "Domantas Sabonis": -16.75
+   }
+  },
+  {
+   "core": "c7",
+   "slot": "PF",
+   "spread": 17.38,
+   "most_improved": "Alperen Şengün",
+   "candidates": {
+    "Alperen Şengün": 0.63,
+    "Domantas Sabonis": -16.75,
+    "Pascal Siakam": -6.77
+   }
+  },
+  {
+   "core": "c4",
+   "slot": "PG",
+   "spread": 14.46,
+   "most_improved": "Andrew Nembhard",
+   "candidates": {
+    "Trae Young": -12.3,
+    "Andrew Nembhard": 2.16
+   }
+  },
+  {
+   "core": "c4",
+   "slot": "SG",
+   "spread": 13.74,
+   "most_improved": "Immanuel Quickley",
+   "candidates": {
+    "Amen Thompson": 2.56,
+    "Josh Hart": -5.19,
+    "Immanuel Quickley": 8.55
+   }
+  },
+  {
+   "core": "c7",
+   "slot": "BN",
+   "spread": 12.99,
+   "most_improved": "Kel'el Ware",
+   "candidates": {
+    "Onyeka Okongwu": -0.05,
+    "Nikola Vučević": -5.77,
+    "Kel'el Ware": 7.22
+   }
+  },
+  {
+   "core": "c6",
+   "slot": "BN",
+   "spread": 12.6,
+   "most_improved": "Jamal Murray",
+   "candidates": {
+    "Desmond Bane": 1.28,
+    "Jamal Murray": 6.83,
+    "Josh Hart": -5.19,
+    "Nikola Vučević": -5.77
+   }
+  },
+  {
+   "core": "c4",
+   "slot": "C",
+   "spread": 11.93,
+   "most_improved": "Jalen Duren",
+   "candidates": {
+    "Jalen Duren": 0.69,
+    "Ivica Zubac": -11.24
+   }
+  },
+  {
+   "core": "c1",
+   "slot": "UTIL",
+   "spread": 11.84,
+   "most_improved": "Mark Williams",
+   "candidates": {
+    "Rudy Gobert": -1.07,
+    "Ivica Zubac": -11.24,
+    "Mark Williams": 0.6
+   }
+  },
+  {
+   "core": "c5",
+   "slot": "UTIL",
+   "spread": 11.84,
+   "most_improved": "Mark Williams",
+   "candidates": {
+    "Ivica Zubac": -11.24,
+    "Mark Williams": 0.6
+   }
+  },
+  {
+   "core": "c6",
+   "slot": "BN",
+   "spread": 11.84,
+   "most_improved": "Mark Williams",
+   "candidates": {
+    "Rudy Gobert": -1.07,
+    "Ivica Zubac": -11.24,
+    "Mark Williams": 0.6
+   }
+  },
+  {
+   "core": "c7",
+   "slot": "UTIL",
+   "spread": 11.84,
+   "most_improved": "Mark Williams",
+   "candidates": {
+    "Evan Mobley": -4.19,
+    "Ivica Zubac": -11.24,
+    "Mark Williams": 0.6
+   }
+  },
+  {
+   "core": "c6",
+   "slot": "SF",
+   "spread": 10.49,
+   "most_improved": "Trey Murphy III",
+   "candidates": {
+    "DeMar DeRozan": -0.13,
+    "Trey Murphy III": 5.3,
+    "Josh Hart": -5.19,
+    "Andrew Wiggins": 4.52
+   }
+  },
+  {
+   "core": "c2",
+   "slot": "BN",
+   "spread": 10.29,
+   "most_improved": "Andrew Wiggins",
+   "candidates": {
+    "Nikola Vučević": -5.77,
+    "Andrew Wiggins": 4.52
+   }
+  },
+  {
+   "core": "c3",
+   "slot": "C",
+   "spread": 10.17,
+   "most_improved": "Rudy Gobert",
+   "candidates": {
+    "Ivica Zubac": -11.24,
+    "Rudy Gobert": -1.07
+   }
+  },
+  {
+   "core": "c3",
+   "slot": "SF",
+   "spread": 9.71,
+   "most_improved": "Andrew Wiggins",
+   "candidates": {
+    "Josh Hart": -5.19,
+    "DeMar DeRozan": -0.13,
+    "Andrew Wiggins": 4.52
+   }
+  },
+  {
+   "core": "c7",
+   "slot": "BN",
+   "spread": 9.71,
+   "most_improved": "Andrew Wiggins",
+   "candidates": {
+    "Josh Hart": -5.19,
+    "Andrew Wiggins": 4.52
+   }
+  },
+  {
+   "core": "c2",
+   "slot": "SG",
+   "spread": 8.35,
+   "most_improved": "Trey Murphy III",
+   "candidates": {
+    "Derrick White": -3.05,
+    "Trey Murphy III": 5.3
+   }
+  },
+  {
+   "core": "c4",
+   "slot": "UTIL",
+   "spread": 7.19,
+   "most_improved": "Evan Mobley",
+   "candidates": {
+    "Evan Mobley": -4.19,
+    "Walker Kessler": -11.38
+   }
+  },
+  {
+   "core": "c5",
+   "slot": "UTIL",
+   "spread": 7.19,
+   "most_improved": "Evan Mobley",
+   "candidates": {
+    "Evan Mobley": -4.19,
+    "Walker Kessler": -11.38
+   }
+  },
+  {
+   "core": "c4",
+   "slot": "BN",
+   "spread": 6.81,
+   "most_improved": "Julius Randle",
+   "candidates": {
+    "Julius Randle": 1.62,
+    "Paul George": 1.29,
+    "Josh Hart": -5.19
+   }
+  },
+  {
+   "core": "c6",
+   "slot": "PF",
+   "spread": 6.7,
+   "most_improved": "Alperen Şengün",
+   "candidates": {
+    "Alperen Şengün": 0.63,
+    "Evan Mobley": -4.19,
+    "LeBron James": -6.07
+   }
+  },
+  {
+   "core": "c2",
+   "slot": "SF",
+   "spread": 6.47,
+   "most_improved": "Desmond Bane",
+   "candidates": {
+    "Desmond Bane": 1.28,
+    "Josh Hart": -5.19
+   }
+  },
+  {
+   "core": "c5",
+   "slot": "SF",
+   "spread": 6.47,
+   "most_improved": "Desmond Bane",
+   "candidates": {
+    "Josh Hart": -5.19,
+    "Desmond Bane": 1.28
+   }
+  },
+  {
+   "core": "c6",
+   "slot": "PG",
+   "spread": 5.21,
+   "most_improved": "Andrew Nembhard",
+   "candidates": {
+    "Derrick White": -3.05,
+    "Andrew Nembhard": 2.16
+   }
+  },
+  {
+   "core": "c6",
+   "slot": "UTIL",
+   "spread": 5.14,
+   "most_improved": "Onyeka Okongwu",
+   "candidates": {
+    "Onyeka Okongwu": -0.05,
+    "Josh Hart": -5.19
+   }
+  },
+  {
+   "core": "c7",
+   "slot": "UTIL",
+   "spread": 5.08,
+   "most_improved": "Deandre Ayton",
+   "candidates": {
+    "Rudy Gobert": -1.07,
+    "Deandre Ayton": 4.01
+   }
+  },
+  {
+   "core": "c1",
+   "slot": "PF",
+   "spread": 4.82,
+   "most_improved": "Alperen Şengün",
+   "candidates": {
+    "Alperen Şengün": 0.63,
+    "Evan Mobley": -4.19
+   }
+  },
+  {
+   "core": "c3",
+   "slot": "PF",
+   "spread": 4.82,
+   "most_improved": "Alperen Şengün",
+   "candidates": {
+    "Alperen Şengün": 0.63,
+    "Evan Mobley": -4.19
+   }
+  },
+  {
+   "core": "c4",
+   "slot": "PF",
+   "spread": 4.82,
+   "most_improved": "Alperen Şengün",
+   "candidates": {
+    "Alperen Şengün": 0.63,
+    "Evan Mobley": -4.19
+   }
+  },
+  {
+   "core": "c5",
+   "slot": "C",
+   "spread": 4.7,
+   "most_improved": "Rudy Gobert",
+   "candidates": {
+    "Rudy Gobert": -1.07,
+    "Nikola Vučević": -5.77
+   }
+  },
+  {
+   "core": "c1",
+   "slot": "SG",
+   "spread": 4.47,
+   "most_improved": "Ausar Thompson",
+   "candidates": {
+    "Dyson Daniels": -0.62,
+    "Ausar Thompson": 3.85
+   }
+  },
+  {
+   "core": "c3",
+   "slot": "UTIL",
+   "spread": 4.47,
+   "most_improved": "Ausar Thompson",
+   "candidates": {
+    "Dyson Daniels": -0.62,
+    "Ausar Thompson": 3.85
+   }
+  },
+  {
+   "core": "c4",
+   "slot": "UTIL",
+   "spread": 4.47,
+   "most_improved": "Ausar Thompson",
+   "candidates": {
+    "Dyson Daniels": -0.62,
+    "Ausar Thompson": 3.85
+   }
+  },
+  {
+   "core": "c6",
+   "slot": "UTIL",
+   "spread": 4.47,
+   "most_improved": "Ausar Thompson",
+   "candidates": {
+    "Dyson Daniels": -0.62,
+    "Ausar Thompson": 3.85
+   }
+  },
+  {
+   "core": "c7",
+   "slot": "SG",
+   "spread": 4.47,
+   "most_improved": "Ausar Thompson",
+   "candidates": {
+    "Dyson Daniels": -0.62,
+    "Ausar Thompson": 3.85
+   }
+  },
+  {
+   "core": "c1",
+   "slot": "PG",
+   "spread": 4.23,
+   "most_improved": "De'Aaron Fox",
+   "candidates": {
+    "Josh Giddey": -3.32,
+    "De'Aaron Fox": 0.91
+   }
+  },
+  {
+   "core": "c5",
+   "slot": "PG",
+   "spread": 4.23,
+   "most_improved": "De'Aaron Fox",
+   "candidates": {
+    "Josh Giddey": -3.32,
+    "De'Aaron Fox": 0.91
+   }
+  }
+ ],
+ "players": {
+  "Nikola Jokić": {
+   "room_price": 96,
+   "my_max": 97,
+   "z_2024_25": 19.37,
+   "z_2025_26": 16.3,
+   "dz": -3.07,
+   "gp_24_25": 70.0,
+   "gp_25_26": 65.0
+  },
+  "Victor Wembanyama": {
+   "room_price": 97,
+   "my_max": 70,
+   "z_2024_25": 3.78,
+   "z_2025_26": 9.86,
+   "dz": 6.08,
+   "gp_24_25": 46.0,
+   "gp_25_26": 64.0
+  },
+  "Shai Gilgeous-Alexander": {
+   "room_price": 83,
+   "my_max": 85,
+   "z_2024_25": 12.82,
+   "z_2025_26": 9.98,
+   "dz": -2.85,
+   "gp_24_25": 76.0,
+   "gp_25_26": 68.0
+  },
+  "Karl-Anthony Towns": {
+   "room_price": 74,
+   "my_max": 71,
+   "z_2024_25": 10.22,
+   "z_2025_26": 8.26,
+   "dz": -1.96,
+   "gp_24_25": 72.0,
+   "gp_25_26": 75.0
+  },
+  "Cade Cunningham": {
+   "room_price": 67,
+   "my_max": 60,
+   "z_2024_25": 3.58,
+   "z_2025_26": 4.15,
+   "dz": 0.56,
+   "gp_24_25": 70.0,
+   "gp_25_26": 64.0
+  },
+  "Jalen Johnson": {
+   "room_price": 47,
+   "my_max": 56,
+   "z_2024_25": -3.23,
+   "z_2025_26": 7.08,
+   "dz": 10.31,
+   "gp_24_25": 36.0,
+   "gp_25_26": 72.0
+  },
+  "Scottie Barnes": {
+   "room_price": 42,
+   "my_max": 51,
+   "z_2024_25": -0.8,
+   "z_2025_26": 7.14,
+   "dz": 7.94,
+   "gp_24_25": 65.0,
+   "gp_25_26": 80.0
+  },
+  "Josh Giddey": {
+   "room_price": 41,
+   "my_max": 42,
+   "z_2024_25": 3.98,
+   "z_2025_26": 0.66,
+   "dz": -3.32,
+   "gp_24_25": 70.0,
+   "gp_25_26": 54.0
+  },
+  "Chet Holmgren": {
+   "room_price": 39,
+   "my_max": 40,
+   "z_2024_25": -4.89,
+   "z_2025_26": 4.14,
+   "dz": 9.03,
+   "gp_24_25": 32.0,
+   "gp_25_26": 69.0
+  },
+  "Derrick White": {
+   "room_price": 22,
+   "my_max": 52,
+   "z_2024_25": 5.56,
+   "z_2025_26": 2.51,
+   "dz": -3.05,
+   "gp_24_25": 76.0,
+   "gp_25_26": 77.0
+  },
+  "Bam Adebayo": {
+   "room_price": 32,
+   "my_max": 39,
+   "z_2024_25": 6.1,
+   "z_2025_26": 3.64,
+   "dz": -2.46,
+   "gp_24_25": 78.0,
+   "gp_25_26": 73.0
+  },
+  "Trey Murphy III": {
+   "room_price": 12,
+   "my_max": 32,
+   "z_2024_25": -1.35,
+   "z_2025_26": 3.95,
+   "dz": 5.3,
+   "gp_24_25": 53.0,
+   "gp_25_26": 66.0
+  },
+  "Jalen Duren": {
+   "room_price": 11,
+   "my_max": 52,
+   "z_2024_25": 5.22,
+   "z_2025_26": 5.92,
+   "dz": 0.69,
+   "gp_24_25": 78.0,
+   "gp_25_26": 70.0
+  },
+  "Alperen Şengün": {
+   "room_price": 67,
+   "my_max": 52,
+   "z_2024_25": 3.8,
+   "z_2025_26": 4.43,
+   "dz": 0.63,
+   "gp_24_25": 76.0,
+   "gp_25_26": 72.0
+  },
+  "Amen Thompson": {
+   "room_price": 35,
+   "my_max": 49,
+   "z_2024_25": 2.88,
+   "z_2025_26": 5.43,
+   "dz": 2.56,
+   "gp_24_25": 69.0,
+   "gp_25_26": 79.0
+  },
+  "Evan Mobley": {
+   "room_price": 48,
+   "my_max": 36,
+   "z_2024_25": 5.45,
+   "z_2025_26": 1.26,
+   "dz": -4.19,
+   "gp_24_25": 71.0,
+   "gp_25_26": 65.0
+  },
+  "Desmond Bane": {
+   "room_price": 18,
+   "my_max": 31,
+   "z_2024_25": 3.38,
+   "z_2025_26": 4.67,
+   "dz": 1.28,
+   "gp_24_25": 69.0,
+   "gp_25_26": 82.0
+  },
+  "Dyson Daniels": {
+   "room_price": 36,
+   "my_max": 20,
+   "z_2024_25": 4.62,
+   "z_2025_26": 4.0,
+   "dz": -0.62,
+   "gp_24_25": 76.0,
+   "gp_25_26": 76.0
+  },
+  "Walker Kessler": {
+   "room_price": 15,
+   "my_max": 19,
+   "z_2024_25": 2.5,
+   "z_2025_26": -8.88,
+   "dz": -11.38,
+   "gp_24_25": 58.0,
+   "gp_25_26": 5.0
+  },
+  "Rudy Gobert": {
+   "room_price": 9,
+   "my_max": 30,
+   "z_2024_25": 5.02,
+   "z_2025_26": 3.95,
+   "dz": -1.07,
+   "gp_24_25": 72.0,
+   "gp_25_26": 76.0
+  },
+  "Deandre Ayton": {
+   "room_price": 6,
+   "my_max": 18,
+   "z_2024_25": -3.73,
+   "z_2025_26": 0.28,
+   "dz": 4.01,
+   "gp_24_25": 40.0,
+   "gp_25_26": 72.0
+  },
+  "Mark Williams": {
+   "room_price": 15,
+   "my_max": 18,
+   "z_2024_25": -0.89,
+   "z_2025_26": -0.29,
+   "dz": 0.6,
+   "gp_24_25": 44.0,
+   "gp_25_26": 60.0
+  },
+  "Jarrett Allen": {
+   "room_price": 25,
+   "my_max": 16,
+   "z_2024_25": 5.87,
+   "z_2025_26": -0.43,
+   "dz": -6.3,
+   "gp_24_25": 82.0,
+   "gp_25_26": 56.0
+  },
+  "Nic Claxton": {
+   "room_price": 3,
+   "my_max": 12,
+   "z_2024_25": -0.48,
+   "z_2025_26": 0.14,
+   "dz": 0.62,
+   "gp_24_25": 70.0,
+   "gp_25_26": 69.0
+  },
+  "Nikola Vučević": {
+   "room_price": 23,
+   "my_max": 8,
+   "z_2024_25": 8.29,
+   "z_2025_26": 2.52,
+   "dz": -5.77,
+   "gp_24_25": 73.0,
+   "gp_25_26": 64.0
+  },
+  "Myles Turner": {
+   "room_price": 12,
+   "my_max": 18,
+   "z_2024_25": 1.89,
+   "z_2025_26": -0.89,
+   "dz": -2.77,
+   "gp_24_25": 72.0,
+   "gp_25_26": 71.0
+  },
+  "Kel'el Ware": {
+   "room_price": 4,
+   "my_max": 4,
+   "z_2024_25": -3.25,
+   "z_2025_26": 3.98,
+   "dz": 7.22,
+   "gp_24_25": 64.0,
+   "gp_25_26": 77.0
+  },
+  "Andrew Nembhard": {
+   "room_price": 13,
+   "my_max": 6,
+   "z_2024_25": -3.67,
+   "z_2025_26": -1.51,
+   "dz": 2.16,
+   "gp_24_25": 65.0,
+   "gp_25_26": 57.0
+  },
+  "Immanuel Quickley": {
+   "room_price": 10,
+   "my_max": 5,
+   "z_2024_25": -5.14,
+   "z_2025_26": 3.41,
+   "dz": 8.55,
+   "gp_24_25": 33.0,
+   "gp_25_26": 70.0
+  },
+  "Ausar Thompson": {
+   "room_price": 12,
+   "my_max": 8,
+   "z_2024_25": -3.53,
+   "z_2025_26": 0.31,
+   "dz": 3.85,
+   "gp_24_25": 59.0,
+   "gp_25_26": 73.0
+  },
+  "Matas Buzelis": {
+   "room_price": 3,
+   "my_max": 10,
+   "z_2024_25": -5.17,
+   "z_2025_26": -1.3,
+   "dz": 3.88,
+   "gp_24_25": 80.0,
+   "gp_25_26": 77.0
+  },
+  "OG Anunoby": {
+   "room_price": 15,
+   "my_max": 18,
+   "z_2024_25": 2.18,
+   "z_2025_26": 1.12,
+   "dz": -1.06,
+   "gp_24_25": 74.0,
+   "gp_25_26": 67.0
+  },
+  "Luka Dončić": {
+   "room_price": 86,
+   "my_max": 52,
+   "z_2024_25": 1.33,
+   "z_2025_26": 6.15,
+   "dz": 4.82,
+   "gp_24_25": 50.0,
+   "gp_25_26": 64.0
+  },
+  "Anthony Edwards": {
+   "room_price": 69,
+   "my_max": 40,
+   "z_2024_25": 5.16,
+   "z_2025_26": 1.95,
+   "dz": -3.22,
+   "gp_24_25": 79.0,
+   "gp_25_26": 61.0
+  },
+  "Giannis Antetokounmpo": {
+   "room_price": 85,
+   "my_max": 25,
+   "z_2024_25": 3.89,
+   "z_2025_26": -3.23,
+   "dz": -7.12,
+   "gp_24_25": 67.0,
+   "gp_25_26": 36.0
+  },
+  "Kevin Durant": {
+   "room_price": 37,
+   "my_max": 26,
+   "z_2024_25": 2.89,
+   "z_2025_26": 6.06,
+   "dz": 3.17,
+   "gp_24_25": 62.0,
+   "gp_25_26": 78.0
+  },
+  "Kawhi Leonard": {
+   "room_price": 22,
+   "my_max": 22,
+   "z_2024_25": -3.35,
+   "z_2025_26": 6.79,
+   "dz": 10.14,
+   "gp_24_25": 37.0,
+   "gp_25_26": 65.0
+  },
+  "Stephen Curry": {
+   "room_price": 39,
+   "my_max": 26,
+   "z_2024_25": 5.65,
+   "z_2025_26": -0.96,
+   "dz": -6.61,
+   "gp_24_25": 70.0,
+   "gp_25_26": 43.0
+  },
+  "Jaren Jackson Jr.": {
+   "room_price": 27,
+   "my_max": 22,
+   "z_2024_25": 1.38,
+   "z_2025_26": -3.97,
+   "dz": -5.35,
+   "gp_24_25": 74.0,
+   "gp_25_26": 48.0
+  },
+  "LeBron James": {
+   "room_price": 35,
+   "my_max": 16,
+   "z_2024_25": 5.35,
+   "z_2025_26": -0.72,
+   "dz": -6.07,
+   "gp_24_25": 70.0,
+   "gp_25_26": 60.0
+  },
+  "Anthony Davis": {
+   "room_price": 54,
+   "my_max": 10,
+   "z_2024_25": 3.23,
+   "z_2025_26": -5.91,
+   "dz": -9.14,
+   "gp_24_25": 51.0,
+   "gp_25_26": 20.0
+  },
+  "Trae Young": {
+   "room_price": 63,
+   "my_max": 30,
+   "z_2024_25": 4.01,
+   "z_2025_26": -8.29,
+   "dz": -12.3,
+   "gp_24_25": 76.0,
+   "gp_25_26": 15.0
+  },
+  "Tyrese Maxey": {
+   "room_price": 45,
+   "my_max": 44,
+   "z_2024_25": -1.03,
+   "z_2025_26": 7.67,
+   "dz": 8.7,
+   "gp_24_25": 52.0,
+   "gp_25_26": 70.0
+  },
+  "Donovan Mitchell": {
+   "room_price": 30,
+   "my_max": 52,
+   "z_2024_25": 2.03,
+   "z_2025_26": 4.14,
+   "dz": 2.11,
+   "gp_24_25": 71.0,
+   "gp_25_26": 70.0
+  },
+  "Jamal Murray": {
+   "room_price": 22,
+   "my_max": 51,
+   "z_2024_25": 4.28,
+   "z_2025_26": 11.11,
+   "dz": 6.83,
+   "gp_24_25": 67.0,
+   "gp_25_26": 75.0
+  },
+  "Jalen Brunson": {
+   "room_price": 23,
+   "my_max": 32,
+   "z_2024_25": 2.27,
+   "z_2025_26": 3.0,
+   "dz": 0.73,
+   "gp_24_25": 65.0,
+   "gp_25_26": 74.0
+  },
+  "LaMelo Ball": {
+   "room_price": 22,
+   "my_max": 30,
+   "z_2024_25": -3.9,
+   "z_2025_26": 3.04,
+   "dz": 6.94,
+   "gp_24_25": 47.0,
+   "gp_25_26": 72.0
+  },
+  "Cooper Flagg": {
+   "room_price": 26,
+   "verdict": "no_prior",
+   "why": "24-25 이 없다(신인·전체 결장) — 판정하지 않는다"
+  },
+  "Austin Reaves": {
+   "room_price": 15,
+   "my_max": 32,
+   "z_2024_25": 3.21,
+   "z_2025_26": -1.7,
+   "dz": -4.92,
+   "gp_24_25": 73.0,
+   "gp_25_26": 51.0
+  },
+  "Lauri Markkanen": {
+   "room_price": 26,
+   "my_max": 19,
+   "z_2024_25": -5.22,
+   "z_2025_26": -1.56,
+   "dz": 3.66,
+   "gp_24_25": 47.0,
+   "gp_25_26": 42.0
+  },
+  "Pascal Siakam": {
+   "room_price": 26,
+   "my_max": 26,
+   "z_2024_25": 4.69,
+   "z_2025_26": -2.08,
+   "dz": -6.77,
+   "gp_24_25": 78.0,
+   "gp_25_26": 62.0
+  },
+  "Deni Avdija": {
+   "room_price": 34,
+   "my_max": 24,
+   "z_2024_25": -0.6,
+   "z_2025_26": -1.56,
+   "dz": -0.96,
+   "gp_24_25": 72.0,
+   "gp_25_26": 66.0
+  },
+  "Devin Booker": {
+   "room_price": 56,
+   "my_max": 24,
+   "z_2024_25": 2.53,
+   "z_2025_26": -1.85,
+   "dz": -4.38,
+   "gp_24_25": 75.0,
+   "gp_25_26": 64.0
+  },
+  "Brandon Miller": {
+   "room_price": 8,
+   "my_max": 26,
+   "z_2024_25": -7.32,
+   "z_2025_26": -0.26,
+   "dz": 7.07,
+   "gp_24_25": 27.0,
+   "gp_25_26": 65.0
+  },
+  "Jalen Williams": {
+   "room_price": 46,
+   "my_max": 16,
+   "z_2024_25": 2.46,
+   "z_2025_26": -5.66,
+   "dz": -8.12,
+   "gp_24_25": 69.0,
+   "gp_25_26": 33.0
+  },
+  "Domantas Sabonis": {
+   "room_price": 68,
+   "my_max": 34,
+   "z_2024_25": 9.56,
+   "z_2025_26": -7.19,
+   "dz": -16.75,
+   "gp_24_25": 70.0,
+   "gp_25_26": 19.0
+  },
+  "Ivica Zubac": {
+   "room_price": 39,
+   "my_max": 18,
+   "z_2024_25": 9.82,
+   "z_2025_26": -1.42,
+   "dz": -11.24,
+   "gp_24_25": 80.0,
+   "gp_25_26": 48.0
+  },
+  "Naz Reid": {
+   "room_price": 1,
+   "my_max": 12,
+   "z_2024_25": 0.98,
+   "z_2025_26": -0.06,
+   "dz": -1.04,
+   "gp_24_25": 80.0,
+   "gp_25_26": 77.0
+  },
+  "Julius Randle": {
+   "room_price": 11,
+   "my_max": 18,
+   "z_2024_25": -1.03,
+   "z_2025_26": 0.59,
+   "dz": 1.62,
+   "gp_24_25": 69.0,
+   "gp_25_26": 79.0
+  },
+  "Tyler Herro": {
+   "room_price": 7,
+   "my_max": 16,
+   "z_2024_25": 3.44,
+   "z_2025_26": -4.95,
+   "dz": -8.4,
+   "gp_24_25": 77.0,
+   "gp_25_26": 33.0
+  },
+  "Norman Powell": {
+   "room_price": 6,
+   "my_max": 16,
+   "z_2024_25": -1.56,
+   "z_2025_26": -2.84,
+   "dz": -1.28,
+   "gp_24_25": 60.0,
+   "gp_25_26": 58.0
+  },
+  "Quentin Grimes": {
+   "room_price": 16,
+   "my_max": 7,
+   "z_2024_25": -2.05,
+   "z_2025_26": -3.73,
+   "dz": -1.68,
+   "gp_24_25": 75.0,
+   "gp_25_26": 75.0
+  },
+  "CJ McCollum": {
+   "room_price": 1,
+   "my_max": 12,
+   "z_2024_25": -3.16,
+   "z_2025_26": -0.31,
+   "dz": 2.85,
+   "gp_24_25": 56.0,
+   "gp_25_26": 76.0
+  },
+  "Kelly Oubre Jr.": {
+   "room_price": 1,
+   "my_max": 8,
+   "z_2024_25": -3.97,
+   "z_2025_26": -4.82,
+   "dz": -0.86,
+   "gp_24_25": 60.0,
+   "gp_25_26": 50.0
+  },
+  "Jordan Clarkson": {
+   "room_price": 1,
+   "my_max": 1,
+   "z_2024_25": -7.75,
+   "z_2025_26": -7.88,
+   "dz": -0.13,
+   "gp_24_25": 37.0,
+   "gp_25_26": 72.0
+  },
+  "Jaylen Brown": {
+   "room_price": 28,
+   "my_max": 26,
+   "z_2024_25": -3.33,
+   "z_2025_26": -0.2,
+   "dz": 3.13,
+   "gp_24_25": 63.0,
+   "gp_25_26": 71.0
+  },
+  "Coby White": {
+   "room_price": 16,
+   "my_max": 10,
+   "z_2024_25": -0.23,
+   "z_2025_26": -6.81,
+   "dz": -6.58,
+   "gp_24_25": 74.0,
+   "gp_25_26": 50.0
+  },
+  "Toumani Camara": {
+   "room_price": 2,
+   "my_max": 14,
+   "z_2024_25": 1.26,
+   "z_2025_26": -0.36,
+   "dz": -1.63,
+   "gp_24_25": 78.0,
+   "gp_25_26": 82.0
+  },
+  "Shaedon Sharpe": {
+   "room_price": 1,
+   "my_max": 9,
+   "z_2024_25": -6.22,
+   "z_2025_26": -6.91,
+   "dz": -0.7,
+   "gp_24_25": 72.0,
+   "gp_25_26": 50.0
+  },
+  "Isaiah Hartenstein": {
+   "room_price": 11,
+   "my_max": 12,
+   "z_2024_25": 0.97,
+   "z_2025_26": -2.06,
+   "dz": -3.03,
+   "gp_24_25": 57.0,
+   "gp_25_26": 47.0
+  },
+  "John Collins": {
+   "room_price": 1,
+   "my_max": 10,
+   "z_2024_25": -3.0,
+   "z_2025_26": -1.49,
+   "dz": 1.51,
+   "gp_24_25": 40.0,
+   "gp_25_26": 69.0
+  },
+  "Kristaps Porziņģis": {
+   "room_price": 7,
+   "my_max": 7,
+   "z_2024_25": -1.36,
+   "z_2025_26": -6.08,
+   "dz": -4.73,
+   "gp_24_25": 42.0,
+   "gp_25_26": 32.0
+  },
+  "Paul George": {
+   "room_price": 8,
+   "my_max": 8,
+   "z_2024_25": -5.02,
+   "z_2025_26": -3.72,
+   "dz": 1.29,
+   "gp_24_25": 41.0,
+   "gp_25_26": 37.0
+  },
+  "Brandon Ingram": {
+   "room_price": 6,
+   "my_max": 20,
+   "z_2024_25": -8.13,
+   "z_2025_26": 0.68,
+   "dz": 8.81,
+   "gp_24_25": 18.0,
+   "gp_25_26": 77.0
+  },
+  "Tobias Harris": {
+   "room_price": 1,
+   "my_max": 8,
+   "z_2024_25": -0.57,
+   "z_2025_26": -1.49,
+   "dz": -0.92,
+   "gp_24_25": 73.0,
+   "gp_25_26": 63.0
+  },
+  "Ja Morant": {
+   "room_price": 16,
+   "my_max": 17,
+   "z_2024_25": -4.76,
+   "z_2025_26": -8.88,
+   "dz": -4.12,
+   "gp_24_25": 50.0,
+   "gp_25_26": 20.0
+  },
+  "Miles Bridges": {
+   "room_price": 7,
+   "my_max": 12,
+   "z_2024_25": -2.04,
+   "z_2025_26": -0.94,
+   "dz": 1.09,
+   "gp_24_25": 64.0,
+   "gp_25_26": 77.0
+  },
+  "James Harden": {
+   "room_price": 37,
+   "my_max": 34,
+   "z_2024_25": 5.33,
+   "z_2025_26": 4.7,
+   "dz": -0.63,
+   "gp_24_25": 79.0,
+   "gp_25_26": 70.0
+  },
+  "Darius Garland": {
+   "room_price": 12,
+   "my_max": 24,
+   "z_2024_25": 4.75,
+   "z_2025_26": -3.02,
+   "dz": -7.77,
+   "gp_24_25": 75.0,
+   "gp_25_26": 45.0
+  },
+  "Bennedict Mathurin": {
+   "room_price": 7,
+   "my_max": 20,
+   "z_2024_25": -4.91,
+   "z_2025_26": -6.38,
+   "dz": -1.48,
+   "gp_24_25": 72.0,
+   "gp_25_26": 54.0
+  },
+  "Paolo Banchero": {
+   "room_price": 58,
+   "my_max": 22,
+   "z_2024_25": -5.9,
+   "z_2025_26": -1.37,
+   "dz": 4.53,
+   "gp_24_25": 46.0,
+   "gp_25_26": 72.0
+  },
+  "De'Aaron Fox": {
+   "room_price": 40,
+   "my_max": 24,
+   "z_2024_25": -1.27,
+   "z_2025_26": -0.36,
+   "dz": 0.91,
+   "gp_24_25": 62.0,
+   "gp_25_26": 72.0
+  },
+  "Jimmy Butler III": {
+   "room_price": 18,
+   "verdict": "no_prior",
+   "why": "24-25 이 없다(신인·전체 결장) — 판정하지 않는다"
+  },
+  "Andrew Wiggins": {
+   "room_price": 7,
+   "my_max": 6,
+   "z_2024_25": -2.6,
+   "z_2025_26": 1.92,
+   "dz": 4.52,
+   "gp_24_25": 60.0,
+   "gp_25_26": 68.0
+  },
+  "Jaden McDaniels": {
+   "room_price": 7,
+   "my_max": 10,
+   "z_2024_25": 0.84,
+   "z_2025_26": 0.91,
+   "dz": 0.07,
+   "gp_24_25": 82.0,
+   "gp_25_26": 73.0
+  },
+  "Josh Hart": {
+   "room_price": 26,
+   "my_max": 9,
+   "z_2024_25": 7.19,
+   "z_2025_26": 1.99,
+   "dz": -5.19,
+   "gp_24_25": 77.0,
+   "gp_25_26": 66.0
+  },
+  "Onyeka Okongwu": {
+   "room_price": 7,
+   "my_max": 10,
+   "z_2024_25": 4.11,
+   "z_2025_26": 4.06,
+   "dz": -0.05,
+   "gp_24_25": 74.0,
+   "gp_25_26": 74.0
+  },
+  "Zion Williamson": {
+   "room_price": 12,
+   "my_max": 16,
+   "z_2024_25": -5.79,
+   "z_2025_26": -1.93,
+   "dz": 3.86,
+   "gp_24_25": 30.0,
+   "gp_25_26": 62.0
+  },
+  "DeMar DeRozan": {
+   "room_price": 10,
+   "my_max": 16,
+   "z_2024_25": 1.9,
+   "z_2025_26": 1.77,
+   "dz": -0.13,
+   "gp_24_25": 77.0,
+   "gp_25_26": 77.0
+  },
+  "Zach LaVine": {
+   "room_price": 16,
+   "my_max": 12,
+   "z_2024_25": 3.11,
+   "z_2025_26": -5.88,
+   "dz": -8.98,
+   "gp_24_25": 74.0,
+   "gp_25_26": 39.0
+  },
+  "Cameron Johnson": {
+   "room_price": 6,
+   "my_max": 10,
+   "z_2024_25": -0.46,
+   "z_2025_26": -1.5,
+   "dz": -1.04,
+   "gp_24_25": 57.0,
+   "gp_25_26": 54.0
+  },
+  "Dejounte Murray": {
+   "room_price": 4,
+   "my_max": 3,
+   "z_2024_25": -6.41,
+   "z_2025_26": -8.8,
+   "dz": -2.38,
+   "gp_24_25": 31.0,
+   "gp_25_26": 14.0
+  }
+ }
+}
