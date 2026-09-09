@@ -1912,7 +1912,7 @@ except Exception as _ex39:
 try:
     import re as _re46
     _need46 = ("cores", "standard_error", "assumption_stress",
-               "gp_sensitivity", "walkaway_40")
+               "gp_sensitivity", "walkaway_40")   # walkaway_40 은 역사 기록 · 현재값은 walkaway_v2.json
     _sim46 = json.load(io.open(D+"/data/matchup_sim.json", encoding="utf-8"))
     _miss46 = [k for k in _need46 if not _sim46.get(k)]
     if _miss46:
@@ -1936,6 +1936,21 @@ try:
         print("✗ [I46] 콘솔 임베드 상수가 **비어 있다**: %s" % ", ".join(_empty46))
         print("        sync_tool 의 `or {}` 폴백이 켜진 것이다 — 소스 키를 먼저 복원할 것")
         err += 1
+    # 45차 — 채택 방법의 산출물도 존재를 본다. 40차가 목록만 남기고 코드를 안 남겨
+    #   42차 유실 때 방법이 통째로 사라진 것이 이 사고의 뿌리다. 이제 코드와 산출물이
+    #   둘 다 있고, 여기서 **산출물이 사라지는 것**을 잡는다.
+    _wv2 = D + "/data/walkaway_v2.json"
+    if not os.path.exists(_wv2):
+        print("✗ [I46] data/walkaway_v2.json 이 없다 — 채택된 철수가 측정의 산출물이다. "
+              "`python3 tool/walkaway_v2.py` 로 재생성할 것")
+        err += 1
+    else:
+        _w2 = json.load(io.open(_wv2, encoding="utf-8"))
+        if not (_w2.get("control_point") or {}).get("passed"):
+            print("✗ [I46] walkaway_v2.json 의 **독립 대조점이 통과 표시가 아니다** — "
+                  "환율이 부풀면 철수가가 붕괴한다(기각본 Daniels $5). 화면에 올리지 말 것")
+            err += 1
+
     # 🔴 기각된 방법을 구현한 도구가 다시 켜지지 않았는지 본다 (44차).
     #   `tool/walkaway_price.py` 의 rate_of() 는 후보 중 **환율 최대**를 고르는데,
     #   그것이 walkaway_40.rejected_attempt 가 적어 둔 **버린 방법** 그 자체다

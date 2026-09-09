@@ -63,6 +63,7 @@ NEEDED = [
     "data/core_value_tables.json",               # 42차 — 코어별 캣 진단표 (I40)
     "tool/declaration_conflicts.py",             # 42차 — 선언 모순 대조 단일 소스 (I43)
     "tool/walkaway_price.py",                    # 44차 — 기각 방법 재가동 감시 (I46)
+    "data/walkaway_v2.json",                     # 45차 — 채택 철수가 산출물 (I46)
 ]
 
 TESTS = []
@@ -181,6 +182,13 @@ class Box:
     def cval(self, fn):
         """data/core_value_tables.json 을 고친다 (42차 · I40)."""
         p = self.root + "/data/core_value_tables.json"
+        d = json.load(io.open(p, encoding="utf-8"))
+        fn(d)
+        json.dump(d, io.open(p, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+
+    def wv2(self, fn):
+        """data/walkaway_v2.json 을 고친다 (45차 · I46)."""
+        p = self.root + "/data/walkaway_v2.json"
         d = json.load(io.open(p, encoding="utf-8"))
         fn(d)
         json.dump(d, io.open(p, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
@@ -1061,6 +1069,12 @@ def _(b):
       "콘솔 임베드 상수가 **비어 있다**")
 def _(b):
     b.html(lambda s: re.sub(r'const STRESS=\{.*?\};', 'const STRESS={};', s, count=1, flags=re.S))
+
+
+@test("I46", "walkaway_v2 의 독립 대조점을 실패로 바꾼다 (환율 부풀림 = 기각본의 병)",
+      "독립 대조점이 통과 표시가 아니다")
+def _(b):
+    b.wv2(lambda d: d["control_point"].update(passed=False))
 
 
 # 42차 작업6 — I43 (선언 모순 전수 대조)

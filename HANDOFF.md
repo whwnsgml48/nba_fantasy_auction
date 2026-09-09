@@ -1183,7 +1183,9 @@ python3 tool/matchup_sim.py 20261020 4000   # 승률 판정 → data/matchup_sim
 python3 tool/sim_error.py            # 대응/비대응 SE → matchup_sim.json 에 **키를 얹는다**
 python3 tool/assumption_stress.py    # 가정 취약성 → matchup_sim.json 에 **키를 얹는다**
 python3 tool/gp_sensitivity.py       # GP 감도 → matchup_sim.json 에 **키를 얹는다**
-python3 tool/walkaway_price.py       # 철수가(무차별 가격) → **키를 얹는다** · 느리다(~20분)
+python3 tool/walkaway_v2.py          # 45차 — 철수가(채택 방법) → data/walkaway_v2.json · 느리다(~20분)
+#   🔴 tool/walkaway_price.py 는 **기각본**이라 실행이 막혀 있다(REJECTED_METHOD_44).
+#      가드를 풀지 말 것 — validate [I46] 이 감시한다. 새 구현은 walkaway_v2.py 다.
 #   ⚠️ 42차: 위 넷은 matchup_sim.json 을 읽어 키를 추가하고 되쓴다. matchup_sim.py 를
 #      **나중에** 돌리면 standard_error·assumption_stress·gp_sensitivity·walkaway_40 이
 #      **통째로 사라진다.** 순서 고정.
