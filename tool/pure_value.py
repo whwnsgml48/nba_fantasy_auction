@@ -268,6 +268,11 @@ def main():
     def budget_check(dv):
         return sum(dv[n] for n in pool if n in dv)
 
+    _POOL = set(pool)
+    vp_all  = [V[n]["v_pure"] for n in V]
+    vp_pool = [V[n]["v_pure"] for n in V if n in _POOL]
+    med_all, med_pool = st.median(vp_all), st.median(vp_pool)
+
     out = {
         "generated_by": "tool/pure_value.py",
         "prereg": "docs/14-gp-penalty-preregistration.md (측정 전 커밋 a6b0535 · 수정 7ee33a7)",
@@ -280,6 +285,19 @@ def main():
         "v_empty_note": ("빈 칸(0 생산)의 z 합. 🔴 **z=0 이 아니다** — z=0 은 지명 풀 "
                          "평균 선수다. 처음에 B 를 v_pure·a 로 쓴 것이 그 혼동이었고, "
                          "그러면 결장이 빈 칸보다 12.7 z 후해져 **거의 공짜**가 된다."),
+        # 🔴 43차 정정 — **중앙값에는 모집단 이름을 붙여서 낸다.**
+        #   최초 보고에서 「지명 풀 중앙값 −1.71」이라고 썼는데 그것은 **측정 전체
+        #   171명**의 중앙값이었다. 지명 풀 126명은 −0.58 이다. 값은 둘 다 맞고
+        #   **이름만 틀렸다** — 그런 오류가 나오는 이유는 숫자가 라벨 없이 굴러다녀서다.
+        #   그래서 두 값을 **모집단·n 과 함께** 산출물에 박는다. 문서는 여기서 인용한다.
+        "v_pure_medians": {
+            "all_measured": {"n": len(vp_all), "median": round(med_all, 3),
+                             "what": "v_pure 를 잰 선수 전체"},
+            "draft_pool": {"n": len(vp_pool), "median": round(med_pool, 3),
+                           "what": "지명 풀(시장가 상위 126명) — z 표준화 모집단과 같다"},
+            "note": ("두 값은 서로 다른 모집단의 같은 통계다. **인용할 때 모집단을 "
+                     "같이 쓸 것.** 지명 풀 쪽이 높다(좋은 선수만 남으므로)."),
+        },
         "archetype_fa": arch_pool,
         "budget_check": {"pool_n": len(pool),
                          "sum_dollar_A": budget_check(dA), "sum_dollar_B": budget_check(dB),
