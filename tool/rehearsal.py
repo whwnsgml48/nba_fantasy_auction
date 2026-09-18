@@ -36,7 +36,7 @@
     python3 tool/rehearsal.py c6 -n 20   # 20명만
 
 **콘솔과 종이를 띄워 놓고 하십시오.** 그게 시험 대상이다.
-입력: `y`(잡는다) · `n`(물러난다) · `b`(태운다) · 엔터만 = 시간 초과와 같게 처리.
+입력: `y`(그 호가에 넘긴다) · `n`(보낸다) · `b`(태운다) · 엔터만 = 시간 초과.\n🔴 **호가는 지명과 함께 보입니다.** 초판은 가격을 숨긴 채 물었는데,\n   옥션의 판단은 「이 값에 부를까」이므로 가격 없이는 답이 없다 — 즉시 정정했다.
 """
 import io
 import json
@@ -66,8 +66,15 @@ def core_map(cj, cid):
     co = co[0]
     m = {}
     for s in co["slots"]:
-        ceil = s.get("bid_ceiling")
         for i, c in enumerate(s.get("candidates", [])):
+            # 🔴 **후보별 `bid_ceiling` 을 쓴다. 슬롯 레벨을 쓰면 틀린다.**
+            #    슬롯 상한 = 그 칸에 최대 얼마까지 쓸 수 있나
+            #    후보 상한 = **그 선수에게** 얼마까지 부를 수 있나 = min(my_max, 단일상한, 철수가)
+            #    초판이 슬롯 레벨을 읽어 Josh Hart 에게 $31(실제 $9)을 줬고,
+            #    콘솔이 맞고 드릴이 틀린 오답을 만들었다(사용자가 잡음 · 2026-09-18).
+            ceil = c.get("bid_ceiling")
+            if ceil is None:
+                ceil = s.get("bid_ceiling")      # 후보에 없을 때만 폴백
             # 같은 선수가 두 칸에 있으면 **상한이 큰 칸**을 남긴다 —
             # 실전에서 그가 올라오면 더 비싼 칸으로 쓸 수 있으므로 그쪽이 실질 상한이다.
             prev = m.get(c["name"])
@@ -156,7 +163,7 @@ def main():
     print("지명 %d건 · 채점 대상 %d건 · 제한 %s"
           % (len(queue), sum(1 for nm, p in queue if answer_of(pl, cmap, nm, p)[2]),
              "없음(--fast)" if fast else "%.0f초" % LIMIT))
-    print("입력  y=잡는다  n=물러난다  b=태운다  (엔터만 = 시간초과와 동일)")
+    print("각 지명에 **호가**가 붙습니다. 그 값에 넘길지만 정하십시오.\n입력  y=넘긴다(내 것)  n=보낸다  b=태운다  (엔터만 = 시간초과와 동일)")
     print("🔴 콘솔과 종이를 띄워 놓고 하십시오 — 그게 시험 대상입니다.")
     print("계획 총액 $%s · 예산 $200 · 칸 9개\n" % plan_total)
     input("준비되면 엔터… ")
@@ -172,7 +179,11 @@ def main():
         want, why, scored = answer_of(pl, cmap, nm, price)
         tag = " [계획]" if nm in cmap else (" [태우기]" if p.get("tag") == "burn" else "")
         print("─" * 68)
+        # 🔴 45차 초판은 **가격을 안 보여주고** y/n 을 물었다. 옥션의 판단은
+        #    「이 값에 부를까」이므로 가격 없이는 답이 없다 — 사용자가 즉시 지적했고
+        #    첫 4건이 통째로 무효였다. 호가를 지명 줄에 띄운다.
         print("[%d/%d] %s  (%s · %s)%s" % (i, len(queue), nm, p["team"], p["pos"], tag))
+        print("        호가 **$%d** — 넘기면 내 것, 안 넘기면 남에게 간다" % price)
         v, late, took = ask("   → ", limit)
         if late or v == "":
             over += 1
@@ -180,15 +191,15 @@ def main():
             print("   ⏱  %.1f초 — 시간 초과" % took)
         if not scored:
             free += 1
-            print("   ⚪ 채점 안 함 — %s   (작년 낙찰 $%d)" % (why, price))
+            print("   ⚪ 채점 안 함 — %s" % why)
             continue
         if v == want:
             ok += 1
-            print("   ✅ (%.1f초) 작년 낙찰 $%d — %s" % (took, price, why))
+            print("   ✅ (%.1f초) %s" % (took, why))
         else:
             bad += 1
             wrong.append((nm, v or "무응답", want, price, why))
-            print("   ❌ (%.1f초) 정답 %s · 작년 낙찰 $%d — %s" % (took, want, price, why))
+            print("   ❌ (%.1f초) 정답 %s — %s" % (took, want, why))
         if v == "y" and want == "y":
             spent += price
             got.append((nm, price))
