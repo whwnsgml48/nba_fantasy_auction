@@ -1911,8 +1911,11 @@ except Exception as _ex39:
 #      아무도 보고하지 않는 것**이다. 폴백은 두고, 켜지면 여기서 잡는다.
 try:
     import re as _re46
-    _need46 = ("cores", "standard_error", "assumption_stress",
-               "gp_sensitivity", "walkaway_40")   # walkaway_40 은 역사 기록 · 현재값은 walkaway_v2.json
+    # 🔴 46차 — `walkaway_40` 을 이 목록에서 뺐다. **재생성되는 파일에 역사 기록을
+    #   두지 않는다.** 42·44·46차에 세 번 사라졌고 세 번 다 matchup_sim.py 가 덮었다.
+    #   재생성기(walkaway_price.py)는 기각본이라 가드가 걸려 복원도 불가능했다.
+    #   → `data/walkaway_40_historical.json` 으로 옮겼고 아래에서 그 파일을 검사한다.
+    _need46 = ("cores", "standard_error", "assumption_stress", "gp_sensitivity")
     _sim46 = json.load(io.open(D+"/data/matchup_sim.json", encoding="utf-8"))
     _miss46 = [k for k in _need46 if not _sim46.get(k)]
     if _miss46:
@@ -1939,6 +1942,13 @@ try:
     # 45차 — 채택 방법의 산출물도 존재를 본다. 40차가 목록만 남기고 코드를 안 남겨
     #   42차 유실 때 방법이 통째로 사라진 것이 이 사고의 뿌리다. 이제 코드와 산출물이
     #   둘 다 있고, 여기서 **산출물이 사라지는 것**을 잡는다.
+    for _hf46, _hk46 in ((D + "/data/walkaway_40_historical.json", "walkaway_40"),):
+        if not os.path.exists(_hf46):
+            print("✗ [I46] %s 가 없다 — **재생성 불가능한 역사 기록**이다. "
+                  "git 에서 복원할 것(668a179)" % os.path.basename(_hf46)); err += 1
+        elif not json.load(io.open(_hf46, encoding="utf-8")).get(_hk46):
+            print("✗ [I46] %s 의 `%s` 가 비었다" % (os.path.basename(_hf46), _hk46)); err += 1
+
     _wv2 = D + "/data/walkaway_v2.json"
     if not os.path.exists(_wv2):
         print("✗ [I46] data/walkaway_v2.json 이 없다 — 채택된 철수가 측정의 산출물이다. "

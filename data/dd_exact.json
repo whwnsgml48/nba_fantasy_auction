@@ -1,0 +1,2669 @@
+{
+ "generated_by": "tool/dd_exact.py",
+ "what": "게임로그에서 DD 를 세어 measured_full 과 **같은 가중**으로 두 시즌 혼합. 추정기(cat_model.dd_game_prob)를 대체할 후보값이다.",
+ "recency": 1.5,
+ "why_blend": "2025-26 실계수만 쓰면 DD 만 단일 시즌이 되어 나머지 12캣과 축이 달라진다. 보고된 「추정기 오차」의 절반 이상이 시즌 차이였다 (같은 시즌 MAE 2.08 DD/시즌 ↔ 혼합↔단일 3.19).",
+ "does_not": [
+  "DD 를 덮지 않는다 — DD_exact 를 병기한다",
+  "커버리지 밖 선수를 추정하지 않는다 — dd_source 로 구분한다"
+ ],
+ "source": "nba_score/raw/gamelog2 (BBRef) · id 는 조율 세션 해석기 결과",
+ "peer_crosscheck": {
+  "file": "/Users/johnny/personal_work/nba_score/dd_exact_2026.json",
+  "mismatches": []
+ },
+ "coverage": {
+  "n": 139,
+  "of": 199,
+  "both_seasons": 127,
+  "one_season": 12,
+  "missing_ours": [
+   "Tyrese Haliburton",
+   "Andre Drummond",
+   "Jay Huff",
+   "Day'Ron Sharpe",
+   "Isaiah Stewart",
+   "Kris Dunn",
+   "Jordan Goodwin",
+   "Luke Kennard",
+   "Grayson Allen",
+   "Gary Trent Jr.",
+   "Bogdan Bogdanović",
+   "Isaiah Joe",
+   "Quentin Grimes",
+   "Tim Hardaway Jr.",
+   "Luguentz Dort",
+   "Khris Middleton",
+   "Keyonte George",
+   "Kyrie Irving",
+   "Tyus Jones",
+   "Dennis Schröder",
+   "Marcus Smart",
+   "D'Angelo Russell",
+   "Collin Sexton",
+   "Josh Okogie",
+   "Shaedon Sharpe",
+   "Scoot Henderson",
+   "Draymond Green",
+   "Moritz Wagner",
+   "DeAndre Jordan",
+   "Jaxson Hayes",
+   "Thomas Bryant",
+   "Larry Nance Jr.",
+   "Jerami Grant",
+   "Isaiah Jackson",
+   "T.J. McConnell",
+   "Cam Spencer",
+   "Sam Merrill",
+   "AJ Green",
+   "Duncan Robinson",
+   "Miles McBride",
+   "Rui Hachimura",
+   "Ryan Rollins",
+   "Anthony Black",
+   "Dru Smith",
+   "Precious Achiuwa",
+   "Jock Landale",
+   "Max Christie",
+   "Ajay Mitchell",
+   "Damian Lillard",
+   "Dejounte Murray",
+   "Jusuf Nurkic",
+   "Svi Mykhailiuk",
+   "Russell Westbrook"
+  ],
+  "missing_opponent_only": [
+   "Jonathan Kuminga",
+   "Klay Thompson",
+   "Obi Toppin",
+   "Yang Hansen",
+   "Alexandre Sarr",
+   "Bradley Beal",
+   "Fred VanVleet"
+  ],
+  "why_symmetry_matters": "추정기가 DD 를 +1.2/시즌 과소평가하므로 실계수 전환은 커버된 쪽을 올린다. 우리 95% ↔ 상대 66% 상태로 재면 7코어가 전부 오르는데 그건 실력이 아니라 인공물이다."
+ },
+ "players": {
+  "Nikola Jokić": {
+   "DD_exact": 0.8448,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 65,
+     "dd": 55,
+     "td": 34,
+     "weight": 97.5
+    },
+    "2024-25": {
+     "gp_gamelog": 70,
+     "dd": 59,
+     "td": 34,
+     "weight": 70
+    }
+   },
+   "blend_share_2025_26": 0.582
+  },
+  "Victor Wembanyama": {
+   "DD_exact": 0.6338,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 64,
+     "dd": 42,
+     "td": 1,
+     "weight": 96.0
+    },
+    "2024-25": {
+     "gp_gamelog": 46,
+     "dd": 27,
+     "td": 1,
+     "weight": 46
+    }
+   },
+   "blend_share_2025_26": 0.676
+  },
+  "Shai Gilgeous-Alexander": {
+   "DD_exact": 0.1011,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 68,
+     "dd": 8,
+     "td": 0,
+     "weight": 102.0
+    },
+    "2024-25": {
+     "gp_gamelog": 76,
+     "dd": 6,
+     "td": 0,
+     "weight": 76
+    }
+   },
+   "blend_share_2025_26": 0.573
+  },
+  "Karl-Anthony Towns": {
+   "DD_exact": 0.7696,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 75,
+     "dd": 56,
+     "td": 1,
+     "weight": 112.5
+    },
+    "2024-25": {
+     "gp_gamelog": 72,
+     "dd": 58,
+     "td": 1,
+     "weight": 72
+    }
+   },
+   "blend_share_2025_26": 0.61
+  },
+  "Cade Cunningham": {
+   "DD_exact": 0.5301,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 64,
+     "dd": 38,
+     "td": 3,
+     "weight": 96.0
+    },
+    "2024-25": {
+     "gp_gamelog": 70,
+     "dd": 31,
+     "td": 9,
+     "weight": 70
+    }
+   },
+   "blend_share_2025_26": 0.578
+  },
+  "Jalen Johnson": {
+   "DD_exact": 0.6493,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 72,
+     "dd": 49,
+     "td": 13,
+     "weight": 108.0
+    },
+    "2024-25": {
+     "gp_gamelog": 36,
+     "dd": 20,
+     "td": 1,
+     "weight": 36
+    }
+   },
+   "blend_share_2025_26": 0.75
+  },
+  "Scottie Barnes": {
+   "DD_exact": 0.3838,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 80,
+     "dd": 30,
+     "td": 3,
+     "weight": 120.0
+    },
+    "2024-25": {
+     "gp_gamelog": 65,
+     "dd": 26,
+     "td": 1,
+     "weight": 65
+    }
+   },
+   "blend_share_2025_26": 0.649
+  },
+  "Josh Giddey": {
+   "DD_exact": 0.4768,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 54,
+     "dd": 28,
+     "td": 13,
+     "weight": 81.0
+    },
+    "2024-25": {
+     "gp_gamelog": 70,
+     "dd": 30,
+     "td": 7,
+     "weight": 70
+    }
+   },
+   "blend_share_2025_26": 0.536
+  },
+  "Chet Holmgren": {
+   "DD_exact": 0.3579,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 69,
+     "dd": 25,
+     "td": 0,
+     "weight": 103.5
+    },
+    "2024-25": {
+     "gp_gamelog": 32,
+     "dd": 11,
+     "td": 0,
+     "weight": 32
+    }
+   },
+   "blend_share_2025_26": 0.764
+  },
+  "Derrick White": {
+   "DD_exact": 0.0287,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 77,
+     "dd": 1,
+     "td": 0,
+     "weight": 115.5
+    },
+    "2024-25": {
+     "gp_gamelog": 76,
+     "dd": 4,
+     "td": 0,
+     "weight": 76
+    }
+   },
+   "blend_share_2025_26": 0.603
+  },
+  "Bam Adebayo": {
+   "DD_exact": 0.4827,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 73,
+     "dd": 35,
+     "td": 0,
+     "weight": 109.5
+    },
+    "2024-25": {
+     "gp_gamelog": 78,
+     "dd": 38,
+     "td": 1,
+     "weight": 78
+    }
+   },
+   "blend_share_2025_26": 0.584
+  },
+  "Trey Murphy III": {
+   "DD_exact": 0.0526,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 66,
+     "dd": 4,
+     "td": 0,
+     "weight": 99.0
+    },
+    "2024-25": {
+     "gp_gamelog": 53,
+     "dd": 2,
+     "td": 0,
+     "weight": 53
+    }
+   },
+   "blend_share_2025_26": 0.651
+  },
+  "Jalen Duren": {
+   "DD_exact": 0.5601,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 70,
+     "dd": 41,
+     "td": 0,
+     "weight": 105.0
+    },
+    "2024-25": {
+     "gp_gamelog": 78,
+     "dd": 41,
+     "td": 0,
+     "weight": 78
+    }
+   },
+   "blend_share_2025_26": 0.574
+  },
+  "Alperen Şengün": {
+   "DD_exact": 0.5217,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 72,
+     "dd": 34,
+     "td": 4,
+     "weight": 108.0
+    },
+    "2024-25": {
+     "gp_gamelog": 76,
+     "dd": 45,
+     "td": 4,
+     "weight": 76
+    }
+   },
+   "blend_share_2025_26": 0.587
+  },
+  "Amen Thompson": {
+   "DD_exact": 0.272,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 79,
+     "dd": 20,
+     "td": 0,
+     "weight": 118.5
+    },
+    "2024-25": {
+     "gp_gamelog": 69,
+     "dd": 21,
+     "td": 3,
+     "weight": 69
+    }
+   },
+   "blend_share_2025_26": 0.632
+  },
+  "Evan Mobley": {
+   "DD_exact": 0.4599,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 65,
+     "dd": 27,
+     "td": 0,
+     "weight": 97.5
+    },
+    "2024-25": {
+     "gp_gamelog": 71,
+     "dd": 37,
+     "td": 0,
+     "weight": 71
+    }
+   },
+   "blend_share_2025_26": 0.579
+  },
+  "Desmond Bane": {
+   "DD_exact": 0.0599,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 82,
+     "dd": 1,
+     "td": 0,
+     "weight": 123.0
+    },
+    "2024-25": {
+     "gp_gamelog": 69,
+     "dd": 10,
+     "td": 1,
+     "weight": 69
+    }
+   },
+   "blend_share_2025_26": 0.641
+  },
+  "Dyson Daniels": {
+   "DD_exact": 0.1658,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 76,
+     "dd": 15,
+     "td": 2,
+     "weight": 114.0
+    },
+    "2024-25": {
+     "gp_gamelog": 76,
+     "dd": 9,
+     "td": 0,
+     "weight": 76
+    }
+   },
+   "blend_share_2025_26": 0.6
+  },
+  "Walker Kessler": {
+   "DD_exact": 0.4733,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 5,
+     "dd": 2,
+     "td": 0,
+     "weight": 7.5
+    },
+    "2024-25": {
+     "gp_gamelog": 58,
+     "dd": 28,
+     "td": 0,
+     "weight": 58
+    }
+   },
+   "blend_share_2025_26": 0.115
+  },
+  "Donovan Clingan": {
+   "DD_exact": 0.3479,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 77,
+     "dd": 37,
+     "td": 0,
+     "weight": 115.5
+    },
+    "2024-25": {
+     "gp_gamelog": 67,
+     "dd": 8,
+     "td": 0,
+     "weight": 67
+    }
+   },
+   "blend_share_2025_26": 0.633
+  },
+  "Rudy Gobert": {
+   "DD_exact": 0.4597,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 76,
+     "dd": 33,
+     "td": 0,
+     "weight": 114.0
+    },
+    "2024-25": {
+     "gp_gamelog": 72,
+     "dd": 36,
+     "td": 0,
+     "weight": 72
+    }
+   },
+   "blend_share_2025_26": 0.613
+  },
+  "Mitchell Robinson": {
+   "DD_exact": 0.1028,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 60,
+     "dd": 6,
+     "td": 0,
+     "weight": 90.0
+    },
+    "2024-25": {
+     "gp_gamelog": 17,
+     "dd": 2,
+     "td": 0,
+     "weight": 17
+    }
+   },
+   "blend_share_2025_26": 0.841
+  },
+  "Deandre Ayton": {
+   "DD_exact": 0.3581,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 72,
+     "dd": 22,
+     "td": 0,
+     "weight": 108.0
+    },
+    "2024-25": {
+     "gp_gamelog": 40,
+     "dd": 20,
+     "td": 0,
+     "weight": 40
+    }
+   },
+   "blend_share_2025_26": 0.73
+  },
+  "Mark Williams": {
+   "DD_exact": 0.3134,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 60,
+     "dd": 14,
+     "td": 0,
+     "weight": 90.0
+    },
+    "2024-25": {
+     "gp_gamelog": 44,
+     "dd": 21,
+     "td": 0,
+     "weight": 44
+    }
+   },
+   "blend_share_2025_26": 0.672
+  },
+  "Jarrett Allen": {
+   "DD_exact": 0.4217,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 56,
+     "dd": 20,
+     "td": 0,
+     "weight": 84.0
+    },
+    "2024-25": {
+     "gp_gamelog": 82,
+     "dd": 40,
+     "td": 0,
+     "weight": 82
+    }
+   },
+   "blend_share_2025_26": 0.506
+  },
+  "Nic Claxton": {
+   "DD_exact": 0.17,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 69,
+     "dd": 11,
+     "td": 2,
+     "weight": 103.5
+    },
+    "2024-25": {
+     "gp_gamelog": 70,
+     "dd": 13,
+     "td": 0,
+     "weight": 70
+    }
+   },
+   "blend_share_2025_26": 0.597
+  },
+  "Nikola Vučević": {
+   "DD_exact": 0.4704,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 64,
+     "dd": 23,
+     "td": 0,
+     "weight": 96.0
+    },
+    "2024-25": {
+     "gp_gamelog": 73,
+     "dd": 45,
+     "td": 1,
+     "weight": 73
+    }
+   },
+   "blend_share_2025_26": 0.568
+  },
+  "Myles Turner": {
+   "DD_exact": 0.1064,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 71,
+     "dd": 4,
+     "td": 0,
+     "weight": 106.5
+    },
+    "2024-25": {
+     "gp_gamelog": 72,
+     "dd": 13,
+     "td": 0,
+     "weight": 72
+    }
+   },
+   "blend_share_2025_26": 0.597
+  },
+  "Kel'el Ware": {
+   "DD_exact": 0.2841,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 77,
+     "dd": 24,
+     "td": 0,
+     "weight": 115.5
+    },
+    "2024-25": {
+     "gp_gamelog": 64,
+     "dd": 15,
+     "td": 0,
+     "weight": 64
+    }
+   },
+   "blend_share_2025_26": 0.643
+  },
+  "Moussa Diabaté": {
+   "DD_exact": 0.205,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 73,
+     "dd": 20,
+     "td": 0,
+     "weight": 109.5
+    },
+    "2024-25": {
+     "gp_gamelog": 71,
+     "dd": 7,
+     "td": 0,
+     "weight": 71
+    }
+   },
+   "blend_share_2025_26": 0.607
+  },
+  "Luke Kornet": {
+   "DD_exact": 0.0429,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 68,
+     "dd": 3,
+     "td": 0,
+     "weight": 102.0
+    },
+    "2024-25": {
+     "gp_gamelog": 73,
+     "dd": 3,
+     "td": 0,
+     "weight": 73
+    }
+   },
+   "blend_share_2025_26": 0.583
+  },
+  "Andrew Nembhard": {
+   "DD_exact": 0.1429,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 57,
+     "dd": 13,
+     "td": 0,
+     "weight": 85.5
+    },
+    "2024-25": {
+     "gp_gamelog": 65,
+     "dd": 2,
+     "td": 0,
+     "weight": 65
+    }
+   },
+   "blend_share_2025_26": 0.568
+  },
+  "Yves Missi": {
+   "DD_exact": 0.125,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 66,
+     "dd": 5,
+     "td": 0,
+     "weight": 99.0
+    },
+    "2024-25": {
+     "gp_gamelog": 73,
+     "dd": 14,
+     "td": 0,
+     "weight": 73
+    }
+   },
+   "blend_share_2025_26": 0.576
+  },
+  "Ryan Kalkbrenner": {
+   "DD_exact": 0.0435,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 69,
+     "dd": 3,
+     "td": 0,
+     "weight": 103.5
+    },
+    "2024-25": null
+   },
+   "blend_share_2025_26": 1.0
+  },
+  "Neemias Queta": {
+   "DD_exact": 0.1449,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 76,
+     "dd": 17,
+     "td": 0,
+     "weight": 114.0
+    },
+    "2024-25": {
+     "gp_gamelog": 62,
+     "dd": 0,
+     "td": 0,
+     "weight": 62
+    }
+   },
+   "blend_share_2025_26": 0.648
+  },
+  "Robert Williams III": {
+   "DD_exact": 0.0691,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 59,
+     "dd": 5,
+     "td": 0,
+     "weight": 88.5
+    },
+    "2024-25": {
+     "gp_gamelog": 20,
+     "dd": 0,
+     "td": 0,
+     "weight": 20
+    }
+   },
+   "blend_share_2025_26": 0.816
+  },
+  "Davion Mitchell": {
+   "DD_exact": 0.0475,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 70,
+     "dd": 5,
+     "td": 0,
+     "weight": 105.0
+    },
+    "2024-25": {
+     "gp_gamelog": 74,
+     "dd": 1,
+     "td": 0,
+     "weight": 74
+    }
+   },
+   "blend_share_2025_26": 0.587
+  },
+  "Immanuel Quickley": {
+   "DD_exact": 0.1014,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 70,
+     "dd": 8,
+     "td": 0,
+     "weight": 105.0
+    },
+    "2024-25": {
+     "gp_gamelog": 33,
+     "dd": 2,
+     "td": 0,
+     "weight": 33
+    }
+   },
+   "blend_share_2025_26": 0.761
+  },
+  "Ausar Thompson": {
+   "DD_exact": 0.0445,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 73,
+     "dd": 3,
+     "td": 0,
+     "weight": 109.5
+    },
+    "2024-25": {
+     "gp_gamelog": 59,
+     "dd": 3,
+     "td": 0,
+     "weight": 59
+    }
+   },
+   "blend_share_2025_26": 0.65
+  },
+  "Cason Wallace": {
+   "DD_exact": 0.0082,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 77,
+     "dd": 1,
+     "td": 0,
+     "weight": 115.5
+    },
+    "2024-25": {
+     "gp_gamelog": 68,
+     "dd": 0,
+     "td": 0,
+     "weight": 68
+    }
+   },
+   "blend_share_2025_26": 0.629
+  },
+  "Matas Buzelis": {
+   "DD_exact": 0.0358,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 77,
+     "dd": 4,
+     "td": 0,
+     "weight": 115.5
+    },
+    "2024-25": {
+     "gp_gamelog": 80,
+     "dd": 1,
+     "td": 0,
+     "weight": 80
+    }
+   },
+   "blend_share_2025_26": 0.591
+  },
+  "OG Anunoby": {
+   "DD_exact": 0.0487,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 67,
+     "dd": 5,
+     "td": 0,
+     "weight": 100.5
+    },
+    "2024-25": {
+     "gp_gamelog": 74,
+     "dd": 1,
+     "td": 0,
+     "weight": 74
+    }
+   },
+   "blend_share_2025_26": 0.576
+  },
+  "Nickeil Alexander-Walker": {
+   "DD_exact": 0.0201,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 78,
+     "dd": 2,
+     "td": 0,
+     "weight": 117.0
+    },
+    "2024-25": {
+     "gp_gamelog": 82,
+     "dd": 1,
+     "td": 0,
+     "weight": 82
+    }
+   },
+   "blend_share_2025_26": 0.588
+  },
+  "Luka Dončić": {
+   "DD_exact": 0.4932,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 64,
+     "dd": 34,
+     "td": 8,
+     "weight": 96.0
+    },
+    "2024-25": {
+     "gp_gamelog": 50,
+     "dd": 21,
+     "td": 5,
+     "weight": 50
+    }
+   },
+   "blend_share_2025_26": 0.658
+  },
+  "Anthony Edwards": {
+   "DD_exact": 0.0587,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 61,
+     "dd": 2,
+     "td": 0,
+     "weight": 91.5
+    },
+    "2024-25": {
+     "gp_gamelog": 79,
+     "dd": 7,
+     "td": 0,
+     "weight": 79
+    }
+   },
+   "blend_share_2025_26": 0.537
+  },
+  "Giannis Antetokounmpo": {
+   "DD_exact": 0.6901,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 36,
+     "dd": 19,
+     "td": 0,
+     "weight": 54.0
+    },
+    "2024-25": {
+     "gp_gamelog": 67,
+     "dd": 55,
+     "td": 11,
+     "weight": 67
+    }
+   },
+   "blend_share_2025_26": 0.446
+  },
+  "Kevin Durant": {
+   "DD_exact": 0.0866,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 78,
+     "dd": 7,
+     "td": 0,
+     "weight": 117.0
+    },
+    "2024-25": {
+     "gp_gamelog": 62,
+     "dd": 5,
+     "td": 0,
+     "weight": 62
+    }
+   },
+   "blend_share_2025_26": 0.654
+  },
+  "Kawhi Leonard": {
+   "DD_exact": 0.0929,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 65,
+     "dd": 5,
+     "td": 0,
+     "weight": 97.5
+    },
+    "2024-25": {
+     "gp_gamelog": 37,
+     "dd": 5,
+     "td": 0,
+     "weight": 37
+    }
+   },
+   "blend_share_2025_26": 0.725
+  },
+  "Stephen Curry": {
+   "DD_exact": 0.1004,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 43,
+     "dd": 3,
+     "td": 0,
+     "weight": 64.5
+    },
+    "2024-25": {
+     "gp_gamelog": 70,
+     "dd": 9,
+     "td": 0,
+     "weight": 70
+    }
+   },
+   "blend_share_2025_26": 0.48
+  },
+  "Jaren Jackson Jr.": {
+   "DD_exact": 0.0719,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 48,
+     "dd": 3,
+     "td": 0,
+     "weight": 72.0
+    },
+    "2024-25": {
+     "gp_gamelog": 74,
+     "dd": 6,
+     "td": 0,
+     "weight": 74
+    }
+   },
+   "blend_share_2025_26": 0.493
+  },
+  "LeBron James": {
+   "DD_exact": 0.3594,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 60,
+     "dd": 17,
+     "td": 3,
+     "weight": 90.0
+    },
+    "2024-25": {
+     "gp_gamelog": 70,
+     "dd": 32,
+     "td": 10,
+     "weight": 70
+    }
+   },
+   "blend_share_2025_26": 0.562
+  },
+  "Anthony Davis": {
+   "DD_exact": 0.6852,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 20,
+     "dd": 13,
+     "td": 0,
+     "weight": 30.0
+    },
+    "2024-25": {
+     "gp_gamelog": 51,
+     "dd": 36,
+     "td": 1,
+     "weight": 51
+    }
+   },
+   "blend_share_2025_26": 0.37
+  },
+  "Trae Young": {
+   "DD_exact": 0.5635,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 15,
+     "dd": 3,
+     "td": 0,
+     "weight": 22.5
+    },
+    "2024-25": {
+     "gp_gamelog": 76,
+     "dd": 51,
+     "td": 0,
+     "weight": 76
+    }
+   },
+   "blend_share_2025_26": 0.228
+  },
+  "Tyrese Maxey": {
+   "DD_exact": 0.1178,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 70,
+     "dd": 7,
+     "td": 0,
+     "weight": 105.0
+    },
+    "2024-25": {
+     "gp_gamelog": 52,
+     "dd": 8,
+     "td": 1,
+     "weight": 52
+    }
+   },
+   "blend_share_2025_26": 0.669
+  },
+  "Jayson Tatum": {
+   "DD_exact": 0.4792,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 16,
+     "dd": 10,
+     "td": 1,
+     "weight": 24.0
+    },
+    "2024-25": {
+     "gp_gamelog": 72,
+     "dd": 31,
+     "td": 2,
+     "weight": 72
+    }
+   },
+   "blend_share_2025_26": 0.25
+  },
+  "Donovan Mitchell": {
+   "DD_exact": 0.0767,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 70,
+     "dd": 5,
+     "td": 0,
+     "weight": 105.0
+    },
+    "2024-25": {
+     "gp_gamelog": 71,
+     "dd": 6,
+     "td": 0,
+     "weight": 71
+    }
+   },
+   "blend_share_2025_26": 0.597
+  },
+  "Jamal Murray": {
+   "DD_exact": 0.1783,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 75,
+     "dd": 18,
+     "td": 0,
+     "weight": 112.5
+    },
+    "2024-25": {
+     "gp_gamelog": 67,
+     "dd": 5,
+     "td": 0,
+     "weight": 67
+    }
+   },
+   "blend_share_2025_26": 0.627
+  },
+  "Jalen Brunson": {
+   "DD_exact": 0.1818,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 74,
+     "dd": 12,
+     "td": 0,
+     "weight": 111.0
+    },
+    "2024-25": {
+     "gp_gamelog": 65,
+     "dd": 14,
+     "td": 0,
+     "weight": 65
+    }
+   },
+   "blend_share_2025_26": 0.631
+  },
+  "LaMelo Ball": {
+   "DD_exact": 0.1806,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 72,
+     "dd": 10,
+     "td": 1,
+     "weight": 108.0
+    },
+    "2024-25": {
+     "gp_gamelog": 47,
+     "dd": 13,
+     "td": 0,
+     "weight": 47
+    }
+   },
+   "blend_share_2025_26": 0.697
+  },
+  "Cooper Flagg": {
+   "DD_exact": 0.1857,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 70,
+     "dd": 13,
+     "td": 0,
+     "weight": 105.0
+    },
+    "2024-25": null
+   },
+   "blend_share_2025_26": 1.0
+  },
+  "Austin Reaves": {
+   "DD_exact": 0.1204,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 51,
+     "dd": 6,
+     "td": 0,
+     "weight": 76.5
+    },
+    "2024-25": {
+     "gp_gamelog": 73,
+     "dd": 9,
+     "td": 1,
+     "weight": 73
+    }
+   },
+   "blend_share_2025_26": 0.512
+  },
+  "Lauri Markkanen": {
+   "DD_exact": 0.1136,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 42,
+     "dd": 5,
+     "td": 0,
+     "weight": 63.0
+    },
+    "2024-25": {
+     "gp_gamelog": 47,
+     "dd": 5,
+     "td": 0,
+     "weight": 47
+    }
+   },
+   "blend_share_2025_26": 0.573
+  },
+  "Pascal Siakam": {
+   "DD_exact": 0.152,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 62,
+     "dd": 10,
+     "td": 0,
+     "weight": 93.0
+    },
+    "2024-25": {
+     "gp_gamelog": 78,
+     "dd": 11,
+     "td": 0,
+     "weight": 78
+    }
+   },
+   "blend_share_2025_26": 0.544
+  },
+  "Deni Avdija": {
+   "DD_exact": 0.2661,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 66,
+     "dd": 19,
+     "td": 3,
+     "weight": 99.0
+    },
+    "2024-25": {
+     "gp_gamelog": 72,
+     "dd": 17,
+     "td": 2,
+     "weight": 72
+    }
+   },
+   "blend_share_2025_26": 0.579
+  },
+  "Devin Booker": {
+   "DD_exact": 0.1462,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 64,
+     "dd": 6,
+     "td": 0,
+     "weight": 96.0
+    },
+    "2024-25": {
+     "gp_gamelog": 75,
+     "dd": 16,
+     "td": 0,
+     "weight": 75
+    }
+   },
+   "blend_share_2025_26": 0.561
+  },
+  "Brandon Miller": {
+   "DD_exact": 0.0522,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 65,
+     "dd": 3,
+     "td": 0,
+     "weight": 97.5
+    },
+    "2024-25": {
+     "gp_gamelog": 27,
+     "dd": 2,
+     "td": 0,
+     "weight": 27
+    }
+   },
+   "blend_share_2025_26": 0.783
+  },
+  "Jalen Williams": {
+   "DD_exact": 0.038,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 33,
+     "dd": 1,
+     "td": 0,
+     "weight": 49.5
+    },
+    "2024-25": {
+     "gp_gamelog": 69,
+     "dd": 3,
+     "td": 0,
+     "weight": 69
+    }
+   },
+   "blend_share_2025_26": 0.418
+  },
+  "Domantas Sabonis": {
+   "DD_exact": 0.802,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 19,
+     "dd": 12,
+     "td": 0,
+     "weight": 28.5
+    },
+    "2024-25": {
+     "gp_gamelog": 70,
+     "dd": 61,
+     "td": 10,
+     "weight": 70
+    }
+   },
+   "blend_share_2025_26": 0.289
+  },
+  "Ivica Zubac": {
+   "DD_exact": 0.625,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 48,
+     "dd": 24,
+     "td": 0,
+     "weight": 72.0
+    },
+    "2024-25": {
+     "gp_gamelog": 80,
+     "dd": 59,
+     "td": 1,
+     "weight": 80
+    }
+   },
+   "blend_share_2025_26": 0.474
+  },
+  "Naz Reid": {
+   "DD_exact": 0.0972,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 77,
+     "dd": 6,
+     "td": 0,
+     "weight": 115.5
+    },
+    "2024-25": {
+     "gp_gamelog": 80,
+     "dd": 10,
+     "td": 0,
+     "weight": 80
+    }
+   },
+   "blend_share_2025_26": 0.591
+  },
+  "Julius Randle": {
+   "DD_exact": 0.1947,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 79,
+     "dd": 15,
+     "td": 3,
+     "weight": 118.5
+    },
+    "2024-25": {
+     "gp_gamelog": 69,
+     "dd": 14,
+     "td": 0,
+     "weight": 69
+    }
+   },
+   "blend_share_2025_26": 0.632
+  },
+  "Tyler Herro": {
+   "DD_exact": 0.0711,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 33,
+     "dd": 0,
+     "td": 0,
+     "weight": 49.5
+    },
+    "2024-25": {
+     "gp_gamelog": 77,
+     "dd": 9,
+     "td": 0,
+     "weight": 77
+    }
+   },
+   "blend_share_2025_26": 0.391
+  },
+  "Reed Sheppard": {
+   "DD_exact": 0.0,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": null,
+    "2024-25": {
+     "gp_gamelog": 52,
+     "dd": 0,
+     "td": 0,
+     "weight": 52
+    }
+   },
+   "blend_share_2025_26": 0.0
+  },
+  "Kon Knueppel": {
+   "DD_exact": 0.0864,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 81,
+     "dd": 7,
+     "td": 0,
+     "weight": 121.5
+    },
+    "2024-25": null
+   },
+   "blend_share_2025_26": 1.0
+  },
+  "Norman Powell": {
+   "DD_exact": 0.017,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 58,
+     "dd": 1,
+     "td": 0,
+     "weight": 87.0
+    },
+    "2024-25": {
+     "gp_gamelog": 60,
+     "dd": 1,
+     "td": 0,
+     "weight": 60
+    }
+   },
+   "blend_share_2025_26": 0.592
+  },
+  "CJ McCollum": {
+   "DD_exact": 0.0,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 76,
+     "dd": 0,
+     "td": 0,
+     "weight": 114.0
+    },
+    "2024-25": {
+     "gp_gamelog": 56,
+     "dd": 0,
+     "td": 0,
+     "weight": 56
+    }
+   },
+   "blend_share_2025_26": 0.671
+  },
+  "Kelly Oubre Jr.": {
+   "DD_exact": 0.1296,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 50,
+     "dd": 5,
+     "td": 0,
+     "weight": 75.0
+    },
+    "2024-25": {
+     "gp_gamelog": 60,
+     "dd": 10,
+     "td": 0,
+     "weight": 60
+    }
+   },
+   "blend_share_2025_26": 0.556
+  },
+  "Jordan Clarkson": {
+   "DD_exact": 0.0,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 72,
+     "dd": 0,
+     "td": 0,
+     "weight": 108.0
+    },
+    "2024-25": {
+     "gp_gamelog": 37,
+     "dd": 0,
+     "td": 0,
+     "weight": 37
+    }
+   },
+   "blend_share_2025_26": 0.745
+  },
+  "Jaylen Brown": {
+   "DD_exact": 0.1534,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 71,
+     "dd": 14,
+     "td": 3,
+     "weight": 106.5
+    },
+    "2024-25": {
+     "gp_gamelog": 63,
+     "dd": 5,
+     "td": 0,
+     "weight": 63
+    }
+   },
+   "blend_share_2025_26": 0.628
+  },
+  "Collin Gillespie": {
+   "DD_exact": 0.0359,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 80,
+     "dd": 3,
+     "td": 0,
+     "weight": 120.0
+    },
+    "2024-25": {
+     "gp_gamelog": 33,
+     "dd": 1,
+     "td": 0,
+     "weight": 33
+    }
+   },
+   "blend_share_2025_26": 0.784
+  },
+  "Ayo Dosunmu": {
+   "DD_exact": 0.0268,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 69,
+     "dd": 2,
+     "td": 1,
+     "weight": 103.5
+    },
+    "2024-25": {
+     "gp_gamelog": 46,
+     "dd": 1,
+     "td": 1,
+     "weight": 46
+    }
+   },
+   "blend_share_2025_26": 0.692
+  },
+  "Coby White": {
+   "DD_exact": 0.0235,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 50,
+     "dd": 1,
+     "td": 0,
+     "weight": 75.0
+    },
+    "2024-25": {
+     "gp_gamelog": 74,
+     "dd": 2,
+     "td": 0,
+     "weight": 74
+    }
+   },
+   "blend_share_2025_26": 0.503
+  },
+  "Toumani Camara": {
+   "DD_exact": 0.0423,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 82,
+     "dd": 3,
+     "td": 0,
+     "weight": 123.0
+    },
+    "2024-25": {
+     "gp_gamelog": 78,
+     "dd": 4,
+     "td": 0,
+     "weight": 78
+    }
+   },
+   "blend_share_2025_26": 0.612
+  },
+  "Tari Eason": {
+   "DD_exact": 0.102,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 60,
+     "dd": 6,
+     "td": 0,
+     "weight": 90.0
+    },
+    "2024-25": {
+     "gp_gamelog": 57,
+     "dd": 6,
+     "td": 0,
+     "weight": 57
+    }
+   },
+   "blend_share_2025_26": 0.612
+  },
+  "Zaccharie Risacher": {
+   "DD_exact": 0.0133,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": null,
+    "2024-25": {
+     "gp_gamelog": 75,
+     "dd": 1,
+     "td": 0,
+     "weight": 75
+    }
+   },
+   "blend_share_2025_26": 0.0
+  },
+  "Isaiah Hartenstein": {
+   "DD_exact": 0.349,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 47,
+     "dd": 11,
+     "td": 1,
+     "weight": 70.5
+    },
+    "2024-25": {
+     "gp_gamelog": 57,
+     "dd": 28,
+     "td": 0,
+     "weight": 57
+    }
+   },
+   "blend_share_2025_26": 0.553
+  },
+  "John Collins": {
+   "DD_exact": 0.122,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 69,
+     "dd": 3,
+     "td": 0,
+     "weight": 103.5
+    },
+    "2024-25": {
+     "gp_gamelog": 40,
+     "dd": 13,
+     "td": 0,
+     "weight": 40
+    }
+   },
+   "blend_share_2025_26": 0.721
+  },
+  "Kristaps Porziņģis": {
+   "DD_exact": 0.0833,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 32,
+     "dd": 1,
+     "td": 0,
+     "weight": 48.0
+    },
+    "2024-25": {
+     "gp_gamelog": 42,
+     "dd": 6,
+     "td": 0,
+     "weight": 42
+    }
+   },
+   "blend_share_2025_26": 0.533
+  },
+  "Bobby Portis": {
+   "DD_exact": 0.1839,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 67,
+     "dd": 11,
+     "td": 0,
+     "weight": 100.5
+    },
+    "2024-25": {
+     "gp_gamelog": 49,
+     "dd": 11,
+     "td": 0,
+     "weight": 49
+    }
+   },
+   "blend_share_2025_26": 0.672
+  },
+  "Paul George": {
+   "DD_exact": 0.0622,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 37,
+     "dd": 2,
+     "td": 0,
+     "weight": 55.5
+    },
+    "2024-25": {
+     "gp_gamelog": 41,
+     "dd": 3,
+     "td": 0,
+     "weight": 41
+    }
+   },
+   "blend_share_2025_26": 0.575
+  },
+  "Brandon Ingram": {
+   "DD_exact": 0.0225,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 77,
+     "dd": 2,
+     "td": 0,
+     "weight": 115.5
+    },
+    "2024-25": {
+     "gp_gamelog": 18,
+     "dd": 0,
+     "td": 0,
+     "weight": 18
+    }
+   },
+   "blend_share_2025_26": 0.865
+  },
+  "Tobias Harris": {
+   "DD_exact": 0.0567,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 63,
+     "dd": 3,
+     "td": 0,
+     "weight": 94.5
+    },
+    "2024-25": {
+     "gp_gamelog": 73,
+     "dd": 5,
+     "td": 0,
+     "weight": 73
+    }
+   },
+   "blend_share_2025_26": 0.564
+  },
+  "Santi Aldama": {
+   "DD_exact": 0.1351,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 43,
+     "dd": 5,
+     "td": 0,
+     "weight": 64.5
+    },
+    "2024-25": {
+     "gp_gamelog": 65,
+     "dd": 10,
+     "td": 0,
+     "weight": 65
+    }
+   },
+   "blend_share_2025_26": 0.498
+  },
+  "Ja Morant": {
+   "DD_exact": 0.3125,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 20,
+     "dd": 8,
+     "td": 0,
+     "weight": 30.0
+    },
+    "2024-25": {
+     "gp_gamelog": 50,
+     "dd": 13,
+     "td": 1,
+     "weight": 50
+    }
+   },
+   "blend_share_2025_26": 0.375
+  },
+  "Miles Bridges": {
+   "DD_exact": 0.1448,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 77,
+     "dd": 8,
+     "td": 0,
+     "weight": 115.5
+    },
+    "2024-25": {
+     "gp_gamelog": 64,
+     "dd": 14,
+     "td": 1,
+     "weight": 64
+    }
+   },
+   "blend_share_2025_26": 0.643
+  },
+  "James Harden": {
+   "DD_exact": 0.3696,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 70,
+     "dd": 20,
+     "td": 2,
+     "weight": 105.0
+    },
+    "2024-25": {
+     "gp_gamelog": 79,
+     "dd": 38,
+     "td": 3,
+     "weight": 79
+    }
+   },
+   "blend_share_2025_26": 0.571
+  },
+  "Darius Garland": {
+   "DD_exact": 0.1228,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 45,
+     "dd": 7,
+     "td": 0,
+     "weight": 67.5
+    },
+    "2024-25": {
+     "gp_gamelog": 75,
+     "dd": 7,
+     "td": 0,
+     "weight": 75
+    }
+   },
+   "blend_share_2025_26": 0.474
+  },
+  "Bennedict Mathurin": {
+   "DD_exact": 0.0817,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 54,
+     "dd": 3,
+     "td": 0,
+     "weight": 81.0
+    },
+    "2024-25": {
+     "gp_gamelog": 72,
+     "dd": 8,
+     "td": 0,
+     "weight": 72
+    }
+   },
+   "blend_share_2025_26": 0.529
+  },
+  "Paolo Banchero": {
+   "DD_exact": 0.3247,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 72,
+     "dd": 26,
+     "td": 3,
+     "weight": 108.0
+    },
+    "2024-25": {
+     "gp_gamelog": 46,
+     "dd": 11,
+     "td": 0,
+     "weight": 46
+    }
+   },
+   "blend_share_2025_26": 0.701
+  },
+  "De'Aaron Fox": {
+   "DD_exact": 0.1235,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 72,
+     "dd": 8,
+     "td": 0,
+     "weight": 108.0
+    },
+    "2024-25": {
+     "gp_gamelog": 62,
+     "dd": 9,
+     "td": 0,
+     "weight": 62
+    }
+   },
+   "blend_share_2025_26": 0.635
+  },
+  "Jimmy Butler III": {
+   "DD_exact": 0.0938,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 38,
+     "dd": 3,
+     "td": 0,
+     "weight": 57.0
+    },
+    "2024-25": {
+     "gp_gamelog": 55,
+     "dd": 6,
+     "td": 3,
+     "weight": 55
+    }
+   },
+   "blend_share_2025_26": 0.509
+  },
+  "Royce O'Neale": {
+   "DD_exact": 0.0208,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 78,
+     "dd": 2,
+     "td": 0,
+     "weight": 117.0
+    },
+    "2024-25": {
+     "gp_gamelog": 75,
+     "dd": 1,
+     "td": 0,
+     "weight": 75
+    }
+   },
+   "blend_share_2025_26": 0.609
+  },
+  "Jaylon Tyson": {
+   "DD_exact": 0.0213,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": null,
+    "2024-25": {
+     "gp_gamelog": 47,
+     "dd": 1,
+     "td": 0,
+     "weight": 47
+    }
+   },
+   "blend_share_2025_26": 0.0
+  },
+  "Andrew Wiggins": {
+   "DD_exact": 0.037,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 68,
+     "dd": 2,
+     "td": 0,
+     "weight": 102.0
+    },
+    "2024-25": {
+     "gp_gamelog": 60,
+     "dd": 3,
+     "td": 0,
+     "weight": 60
+    }
+   },
+   "blend_share_2025_26": 0.63
+  },
+  "Jaden McDaniels": {
+   "DD_exact": 0.0522,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 73,
+     "dd": 0,
+     "td": 0,
+     "weight": 109.5
+    },
+    "2024-25": {
+     "gp_gamelog": 82,
+     "dd": 10,
+     "td": 0,
+     "weight": 82
+    }
+   },
+   "blend_share_2025_26": 0.572
+  },
+  "Josh Hart": {
+   "DD_exact": 0.304,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 66,
+     "dd": 13,
+     "td": 2,
+     "weight": 99.0
+    },
+    "2024-25": {
+     "gp_gamelog": 77,
+     "dd": 34,
+     "td": 9,
+     "weight": 77
+    }
+   },
+   "blend_share_2025_26": 0.562
+  },
+  "Onyeka Okongwu": {
+   "DD_exact": 0.2811,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 74,
+     "dd": 16,
+     "td": 0,
+     "weight": 111.0
+    },
+    "2024-25": {
+     "gp_gamelog": 74,
+     "dd": 28,
+     "td": 0,
+     "weight": 74
+    }
+   },
+   "blend_share_2025_26": 0.6
+  },
+  "Brook Lopez": {
+   "DD_exact": 0.0286,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 75,
+     "dd": 1,
+     "td": 0,
+     "weight": 112.5
+    },
+    "2024-25": {
+     "gp_gamelog": 80,
+     "dd": 4,
+     "td": 0,
+     "weight": 80
+    }
+   },
+   "blend_share_2025_26": 0.584
+  },
+  "Adem Bona": {
+   "DD_exact": 0.0517,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": null,
+    "2024-25": {
+     "gp_gamelog": 58,
+     "dd": 3,
+     "td": 0,
+     "weight": 58
+    }
+   },
+   "blend_share_2025_26": 0.0
+  },
+  "VJ Edgecombe": {
+   "DD_exact": 0.0933,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 75,
+     "dd": 7,
+     "td": 0,
+     "weight": 112.5
+    },
+    "2024-25": null
+   },
+   "blend_share_2025_26": 1.0
+  },
+  "Zion Williamson": {
+   "DD_exact": 0.1382,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 62,
+     "dd": 6,
+     "td": 0,
+     "weight": 93.0
+    },
+    "2024-25": {
+     "gp_gamelog": 30,
+     "dd": 8,
+     "td": 2,
+     "weight": 30
+    }
+   },
+   "blend_share_2025_26": 0.756
+  },
+  "DeMar DeRozan": {
+   "DD_exact": 0.0312,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 77,
+     "dd": 2,
+     "td": 0,
+     "weight": 115.5
+    },
+    "2024-25": {
+     "gp_gamelog": 77,
+     "dd": 3,
+     "td": 0,
+     "weight": 77
+    }
+   },
+   "blend_share_2025_26": 0.6
+  },
+  "Zach LaVine": {
+   "DD_exact": 0.0453,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 39,
+     "dd": 0,
+     "td": 0,
+     "weight": 58.5
+    },
+    "2024-25": {
+     "gp_gamelog": 74,
+     "dd": 6,
+     "td": 0,
+     "weight": 74
+    }
+   },
+   "blend_share_2025_26": 0.442
+  },
+  "Cameron Johnson": {
+   "DD_exact": 0.0254,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 54,
+     "dd": 1,
+     "td": 0,
+     "weight": 81.0
+    },
+    "2024-25": {
+     "gp_gamelog": 57,
+     "dd": 2,
+     "td": 0,
+     "weight": 57
+    }
+   },
+   "blend_share_2025_26": 0.587
+  },
+  "Jrue Holiday": {
+   "DD_exact": 0.1025,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 53,
+     "dd": 9,
+     "td": 0,
+     "weight": 79.5
+    },
+    "2024-25": {
+     "gp_gamelog": 62,
+     "dd": 1,
+     "td": 0,
+     "weight": 62
+    }
+   },
+   "blend_share_2025_26": 0.562
+  },
+  "Kevin Porter Jr.": {
+   "DD_exact": 0.0267,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": null,
+    "2024-25": {
+     "gp_gamelog": 75,
+     "dd": 2,
+     "td": 1,
+     "weight": 75
+    }
+   },
+   "blend_share_2025_26": 0.0
+  },
+  "Bub Carrington": {
+   "DD_exact": 0.061,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": null,
+    "2024-25": {
+     "gp_gamelog": 82,
+     "dd": 5,
+     "td": 0,
+     "weight": 82
+    }
+   },
+   "blend_share_2025_26": 0.0
+  },
+  "Ja'Kobe Walter": {
+   "DD_exact": 0.0192,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": null,
+    "2024-25": {
+     "gp_gamelog": 52,
+     "dd": 1,
+     "td": 0,
+     "weight": 52
+    }
+   },
+   "blend_share_2025_26": 0.0
+  },
+  "Jakob Poeltl": {
+   "DD_exact": 0.2659,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 46,
+     "dd": 7,
+     "td": 0,
+     "weight": 69.0
+    },
+    "2024-25": {
+     "gp_gamelog": 57,
+     "dd": 23,
+     "td": 0,
+     "weight": 57
+    }
+   },
+   "blend_share_2025_26": 0.548
+  },
+  "Franz Wagner": {
+   "DD_exact": 0.027,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 34,
+     "dd": 0,
+     "td": 0,
+     "weight": 51.0
+    },
+    "2024-25": {
+     "gp_gamelog": 60,
+     "dd": 3,
+     "td": 0,
+     "weight": 60
+    }
+   },
+   "blend_share_2025_26": 0.459
+  },
+  "Michael Porter Jr.": {
+   "DD_exact": 0.2129,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 52,
+     "dd": 12,
+     "td": 0,
+     "weight": 78.0
+    },
+    "2024-25": {
+     "gp_gamelog": 77,
+     "dd": 15,
+     "td": 0,
+     "weight": 77
+    }
+   },
+   "blend_share_2025_26": 0.503
+  },
+  "Cam Thomas": {
+   "DD_exact": 0.0114,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 42,
+     "dd": 0,
+     "td": 0,
+     "weight": 63.0
+    },
+    "2024-25": {
+     "gp_gamelog": 25,
+     "dd": 1,
+     "td": 0,
+     "weight": 25
+    }
+   },
+   "blend_share_2025_26": 0.716
+  },
+  "Christian Braun": {
+   "DD_exact": 0.0414,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 44,
+     "dd": 0,
+     "td": 0,
+     "weight": 66.0
+    },
+    "2024-25": {
+     "gp_gamelog": 79,
+     "dd": 6,
+     "td": 0,
+     "weight": 79
+    }
+   },
+   "blend_share_2025_26": 0.455
+  },
+  "Bilal Coulibaly": {
+   "DD_exact": 0.021,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 56,
+     "dd": 0,
+     "td": 0,
+     "weight": 84.0
+    },
+    "2024-25": {
+     "gp_gamelog": 59,
+     "dd": 3,
+     "td": 1,
+     "weight": 59
+    }
+   },
+   "blend_share_2025_26": 0.587
+  },
+  "Zach Edey": {
+   "DD_exact": 0.2364,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 11,
+     "dd": 5,
+     "td": 0,
+     "weight": 16.5
+    },
+    "2024-25": {
+     "gp_gamelog": 66,
+     "dd": 12,
+     "td": 0,
+     "weight": 66
+    }
+   },
+   "blend_share_2025_26": 0.2
+  },
+  "Jalen Suggs": {
+   "DD_exact": 0.0498,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 57,
+     "dd": 4,
+     "td": 1,
+     "weight": 85.5
+    },
+    "2024-25": {
+     "gp_gamelog": 35,
+     "dd": 0,
+     "td": 0,
+     "weight": 35
+    }
+   },
+   "blend_share_2025_26": 0.71
+  },
+  "Joel Embiid": {
+   "DD_exact": 0.2895,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 38,
+     "dd": 10,
+     "td": 1,
+     "weight": 57.0
+    },
+    "2024-25": {
+     "gp_gamelog": 19,
+     "dd": 7,
+     "td": 1,
+     "weight": 19
+    }
+   },
+   "blend_share_2025_26": 0.75
+  },
+  "Anfernee Simons": {
+   "DD_exact": 0.0131,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 55,
+     "dd": 0,
+     "td": 0,
+     "weight": 82.5
+    },
+    "2024-25": {
+     "gp_gamelog": 70,
+     "dd": 2,
+     "td": 0,
+     "weight": 70
+    }
+   },
+   "blend_share_2025_26": 0.541
+  },
+  "Devin Vassell": {
+   "DD_exact": 0.0213,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 67,
+     "dd": 1,
+     "td": 0,
+     "weight": 100.5
+    },
+    "2024-25": {
+     "gp_gamelog": 64,
+     "dd": 2,
+     "td": 0,
+     "weight": 64
+    }
+   },
+   "blend_share_2025_26": 0.611
+  },
+  "Chris Paul": {
+   "DD_exact": 0.1132,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 16,
+     "dd": 0,
+     "td": 0,
+     "weight": 24.0
+    },
+    "2024-25": {
+     "gp_gamelog": 82,
+     "dd": 12,
+     "td": 0,
+     "weight": 82
+    }
+   },
+   "blend_share_2025_26": 0.226
+  },
+  "Stephon Castle": {
+   "DD_exact": 0.1803,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 68,
+     "dd": 18,
+     "td": 5,
+     "weight": 102.0
+    },
+    "2024-25": {
+     "gp_gamelog": 81,
+     "dd": 6,
+     "td": 0,
+     "weight": 81
+    }
+   },
+   "blend_share_2025_26": 0.557
+  },
+  "Jalen Green": {
+   "DD_exact": 0.0308,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 32,
+     "dd": 0,
+     "td": 0,
+     "weight": 48.0
+    },
+    "2024-25": {
+     "gp_gamelog": 82,
+     "dd": 4,
+     "td": 0,
+     "weight": 82
+    }
+   },
+   "blend_share_2025_26": 0.369
+  },
+  "Jordan Poole": {
+   "DD_exact": 0.0079,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 39,
+     "dd": 0,
+     "td": 0,
+     "weight": 58.5
+    },
+    "2024-25": {
+     "gp_gamelog": 68,
+     "dd": 1,
+     "td": 0,
+     "weight": 68
+    }
+   },
+   "blend_share_2025_26": 0.462
+  },
+  "Payton Pritchard": {
+   "DD_exact": 0.063,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 79,
+     "dd": 5,
+     "td": 0,
+     "weight": 118.5
+    },
+    "2024-25": {
+     "gp_gamelog": 80,
+     "dd": 5,
+     "td": 0,
+     "weight": 80
+    }
+   },
+   "blend_share_2025_26": 0.597
+  },
+  "Mikal Bridges": {
+   "DD_exact": 0.0122,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 82,
+     "dd": 1,
+     "td": 0,
+     "weight": 123.0
+    },
+    "2024-25": {
+     "gp_gamelog": 82,
+     "dd": 1,
+     "td": 0,
+     "weight": 82
+    }
+   },
+   "blend_share_2025_26": 0.6
+  },
+  "RJ Barrett": {
+   "DD_exact": 0.0697,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 57,
+     "dd": 0,
+     "td": 0,
+     "weight": 85.5
+    },
+    "2024-25": {
+     "gp_gamelog": 58,
+     "dd": 10,
+     "td": 2,
+     "weight": 58
+    }
+   },
+   "blend_share_2025_26": 0.596
+  },
+  "Isaiah Collier": {
+   "DD_exact": 0.1549,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": null,
+    "2024-25": {
+     "gp_gamelog": 71,
+     "dd": 11,
+     "td": 0,
+     "weight": 71
+    }
+   },
+   "blend_share_2025_26": 0.0
+  },
+  "Jabari Smith Jr.": {
+   "DD_exact": 0.1681,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 77,
+     "dd": 14,
+     "td": 0,
+     "weight": 115.5
+    },
+    "2024-25": {
+     "gp_gamelog": 57,
+     "dd": 8,
+     "td": 0,
+     "weight": 57
+    }
+   },
+   "blend_share_2025_26": 0.67
+  },
+  "Jaden Ivey": {
+   "DD_exact": 0.0,
+   "dd_source": "gamelog_blend",
+   "seasons": {
+    "2025-26": {
+     "gp_gamelog": 37,
+     "dd": 0,
+     "td": 0,
+     "weight": 55.5
+    },
+    "2024-25": {
+     "gp_gamelog": 30,
+     "dd": 0,
+     "td": 0,
+     "weight": 30
+    }
+   },
+   "blend_share_2025_26": 0.649
+  }
+ }
+}

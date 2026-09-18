@@ -302,13 +302,13 @@
      "FT%": 0.232,
      "FG%": 0.6558,
      "A/T": 0.666,
-     "DD": 0.9375
+     "DD": 0.9514
     },
-    "expected_cats_won": 8.99,
-    "weekly_win_rate": 0.9287,
+    "expected_cats_won": 9.01,
+    "weekly_win_rate": 0.9325,
     "p_big5_collapse": 0.0,
-    "p_cats_won_le4": 0.0065,
-    "cats_won_sd": 1.6,
+    "p_cats_won_le4": 0.0057,
+    "cats_won_sd": 1.592,
     "iterations": 4000
    },
    "value_max": {
@@ -325,13 +325,13 @@
      "FT%": 0.453,
      "FG%": 0.1986,
      "A/T": 0.546,
-     "DD": 0.2005
+     "DD": 0.2657
     },
-    "expected_cats_won": 6.54,
-    "weekly_win_rate": 0.5122,
-    "p_big5_collapse": 0.155,
-    "p_cats_won_le4": 0.1782,
-    "cats_won_sd": 2.136,
+    "expected_cats_won": 6.61,
+    "weekly_win_rate": 0.521,
+    "p_big5_collapse": 0.1467,
+    "p_cats_won_le4": 0.1722,
+    "cats_won_sd": 2.158,
     "iterations": 4000
    },
    "big_stack": {
@@ -348,13 +348,13 @@
      "FT%": 0.5955,
      "FG%": 0.0467,
      "A/T": 0.669,
-     "DD": 0.3327
+     "DD": 0.3997
     },
-    "expected_cats_won": 7.46,
-    "weekly_win_rate": 0.71,
-    "p_big5_collapse": 0.1862,
-    "p_cats_won_le4": 0.0508,
-    "cats_won_sd": 1.765,
+    "expected_cats_won": 7.53,
+    "weekly_win_rate": 0.7185,
+    "p_big5_collapse": 0.1722,
+    "p_cats_won_le4": 0.0483,
+    "cats_won_sd": 1.77,
     "iterations": 4000
    },
    "guard_stack": {
@@ -371,13 +371,13 @@
      "FT%": 0.113,
      "FG%": 0.6673,
      "A/T": 0.1008,
-     "DD": 0.8614
+     "DD": 0.906
     },
-    "expected_cats_won": 6.82,
-    "weekly_win_rate": 0.577,
+    "expected_cats_won": 6.87,
+    "weekly_win_rate": 0.5933,
     "p_big5_collapse": 0.0,
-    "p_cats_won_le4": 0.0305,
-    "cats_won_sd": 1.361,
+    "p_cats_won_le4": 0.0267,
+    "cats_won_sd": 1.344,
     "iterations": 4000
    },
    "baseline": {
@@ -394,13 +394,13 @@
      "FT%": 0.1623,
      "FG%": 0.6927,
      "A/T": 0.6345,
-     "DD": 0.9889
+     "DD": 0.9949
     },
     "expected_cats_won": 8.77,
-    "weekly_win_rate": 0.907,
+    "weekly_win_rate": 0.9095,
     "p_big5_collapse": 0.0,
-    "p_cats_won_le4": 0.007,
-    "cats_won_sd": 1.64,
+    "p_cats_won_le4": 0.0067,
+    "cats_won_sd": 1.636,
     "iterations": 4000
    },
    "benchmark": {
@@ -417,20 +417,20 @@
      "FT%": 0.2757,
      "FG%": 0.5595,
      "A/T": 0.6675,
-     "DD": 0.6382
+     "DD": 0.6759
     },
-    "expected_cats_won": 6.76,
-    "weekly_win_rate": 0.5387,
-    "p_big5_collapse": 0.0343,
-    "p_cats_won_le4": 0.1435,
-    "cats_won_sd": 2.101,
+    "expected_cats_won": 6.8,
+    "weekly_win_rate": 0.5465,
+    "p_big5_collapse": 0.0333,
+    "p_cats_won_le4": 0.1403,
+    "cats_won_sd": 2.105,
     "iterations": 4000
    },
-   "min_win_rate": 0.5122,
+   "min_win_rate": 0.521,
    "min_win_rate_vs": [
     "value_max"
    ],
-   "tiebreak_p_big5_collapse": 0.1862,
+   "tiebreak_p_big5_collapse": 0.1722,
    "real": {
     "윤범": {
      "cat_win_probs": {
@@ -446,13 +446,13 @@
       "FT%": 0.21,
       "FG%": 0.75,
       "A/T": 0.598,
-      "DD": 0.8735
+      "DD": 0.9031
      },
-     "expected_cats_won": 7.79,
-     "weekly_win_rate": 0.7425,
+     "expected_cats_won": 7.82,
+     "weekly_win_rate": 0.7505,
      "p_big5_collapse": 0.0003,
-     "p_cats_won_le4": 0.0275,
-     "cats_won_sd": 1.816,
+     "p_cats_won_le4": 0.026,
+     "cats_won_sd": 1.812,
      "iterations": 4000
     },
     "수현": {
@@ -469,13 +469,13 @@
       "FT%": 0.1349,
       "FG%": 0.7879,
       "A/T": 0.6607,
-      "DD": 0.9333
+      "DD": 0.9573
      },
-     "expected_cats_won": 8.47,
-     "weekly_win_rate": 0.892,
+     "expected_cats_won": 8.5,
+     "weekly_win_rate": 0.898,
      "p_big5_collapse": 0.0,
      "p_cats_won_le4": 0.0063,
-     "cats_won_sd": 1.521,
+     "cats_won_sd": 1.513,
      "iterations": 4000
     },
     "철웅": {
@@ -492,13 +492,13 @@
       "FT%": 0.1963,
       "FG%": 0.553,
       "A/T": 0.841,
-      "DD": 0.9281
+      "DD": 0.9411
      },
-     "expected_cats_won": 9.0,
-     "weekly_win_rate": 0.9513,
+     "expected_cats_won": 9.01,
+     "weekly_win_rate": 0.9537,
      "p_big5_collapse": 0.0,
-     "p_cats_won_le4": 0.002,
-     "cats_won_sd": 1.428,
+     "p_cats_won_le4": 0.0018,
+     "cats_won_sd": 1.422,
      "iterations": 4000
     },
     "두현": {
@@ -515,13 +515,13 @@
       "FT%": 0.1771,
       "FG%": 0.5893,
       "A/T": 0.6345,
-      "DD": 0.9573
+      "DD": 0.9695
      },
-     "expected_cats_won": 9.0,
-     "weekly_win_rate": 0.9513,
+     "expected_cats_won": 9.01,
+     "weekly_win_rate": 0.953,
      "p_big5_collapse": 0.0,
      "p_cats_won_le4": 0.0005,
-     "cats_won_sd": 1.435,
+     "cats_won_sd": 1.43,
      "iterations": 4000
     },
     "진빈": {
@@ -538,13 +538,13 @@
       "FT%": 0.1766,
       "FG%": 0.8339,
       "A/T": 0.5565,
-      "DD": 0.8729
+      "DD": 0.9231
      },
-     "expected_cats_won": 8.42,
-     "weekly_win_rate": 0.859,
+     "expected_cats_won": 8.47,
+     "weekly_win_rate": 0.8732,
      "p_big5_collapse": 0.0,
-     "p_cats_won_le4": 0.0085,
-     "cats_won_sd": 1.697,
+     "p_cats_won_le4": 0.007,
+     "cats_won_sd": 1.675,
      "iterations": 4000
     },
     "원준": {
@@ -561,13 +561,13 @@
       "FT%": 0.1688,
       "FG%": 0.6201,
       "A/T": 0.5753,
-      "DD": 0.8327
+      "DD": 0.8848
      },
-     "expected_cats_won": 9.25,
-     "weekly_win_rate": 0.9485,
+     "expected_cats_won": 9.31,
+     "weekly_win_rate": 0.955,
      "p_big5_collapse": 0.0,
-     "p_cats_won_le4": 0.0037,
-     "cats_won_sd": 1.547,
+     "p_cats_won_le4": 0.0025,
+     "cats_won_sd": 1.53,
      "iterations": 4000
     },
     "단열": {
@@ -584,13 +584,13 @@
       "FT%": 0.1283,
       "FG%": 0.6514,
       "A/T": 0.858,
-      "DD": 0.9084
+      "DD": 0.9281
      },
-     "expected_cats_won": 8.93,
-     "weekly_win_rate": 0.9393,
+     "expected_cats_won": 8.95,
+     "weekly_win_rate": 0.943,
      "p_big5_collapse": 0.0,
-     "p_cats_won_le4": 0.0032,
-     "cats_won_sd": 1.469,
+     "p_cats_won_le4": 0.003,
+     "cats_won_sd": 1.463,
      "iterations": 4000
     },
     "지원": {
@@ -607,13 +607,13 @@
       "FT%": 0.2341,
       "FG%": 0.747,
       "A/T": 0.6785,
-      "DD": 0.8792
+      "DD": 0.9018
      },
-     "expected_cats_won": 8.8,
-     "weekly_win_rate": 0.8955,
+     "expected_cats_won": 8.82,
+     "weekly_win_rate": 0.8978,
      "p_big5_collapse": 0.0,
-     "p_cats_won_le4": 0.0057,
-     "cats_won_sd": 1.745,
+     "p_cats_won_le4": 0.0055,
+     "cats_won_sd": 1.741,
      "iterations": 4000
     },
     "정명": {
@@ -630,13 +630,13 @@
       "FT%": 0.0374,
       "FG%": 0.5391,
       "A/T": 0.6877,
-      "DD": 0.9369
+      "DD": 0.9511
      },
-     "expected_cats_won": 7.65,
-     "weekly_win_rate": 0.7632,
+     "expected_cats_won": 7.67,
+     "weekly_win_rate": 0.7685,
      "p_big5_collapse": 0.0,
      "p_cats_won_le4": 0.0195,
-     "cats_won_sd": 1.557,
+     "cats_won_sd": 1.549,
      "iterations": 4000
     },
     "준희": {
@@ -653,13 +653,13 @@
       "FT%": 0.0783,
       "FG%": 0.7927,
       "A/T": 0.4743,
-      "DD": 0.8748
+      "DD": 0.9246
      },
-     "expected_cats_won": 7.69,
-     "weekly_win_rate": 0.7648,
+     "expected_cats_won": 7.74,
+     "weekly_win_rate": 0.7795,
      "p_big5_collapse": 0.0,
-     "p_cats_won_le4": 0.0143,
-     "cats_won_sd": 1.542,
+     "p_cats_won_le4": 0.0118,
+     "cats_won_sd": 1.523,
      "iterations": 4000
     },
     "병욱": {
@@ -676,13 +676,13 @@
       "FT%": 0.3157,
       "FG%": 0.678,
       "A/T": 0.6298,
-      "DD": 0.9171
+      "DD": 0.9449
      },
-     "expected_cats_won": 8.31,
-     "weekly_win_rate": 0.8383,
+     "expected_cats_won": 8.34,
+     "weekly_win_rate": 0.8415,
      "p_big5_collapse": 0.0,
-     "p_cats_won_le4": 0.021,
-     "cats_won_sd": 1.776,
+     "p_cats_won_le4": 0.019,
+     "cats_won_sd": 1.768,
      "iterations": 4000
     },
     "경찬": {
@@ -699,23 +699,23 @@
       "FT%": 0.333,
       "FG%": 0.6963,
       "A/T": 0.689,
-      "DD": 0.8143
+      "DD": 0.8608
      },
-     "expected_cats_won": 9.27,
-     "weekly_win_rate": 0.9377,
+     "expected_cats_won": 9.32,
+     "weekly_win_rate": 0.9453,
      "p_big5_collapse": 0.0,
-     "p_cats_won_le4": 0.0035,
-     "cats_won_sd": 1.614,
+     "p_cats_won_le4": 0.0027,
+     "cats_won_sd": 1.6,
      "iterations": 4000
     }
    },
-   "real_mean_win_rate": 0.8736,
-   "real_min_win_rate": 0.7425,
+   "real_mean_win_rate": 0.8799,
+   "real_min_win_rate": 0.7505,
    "real_min_win_rate_vs": [
     "윤범"
    ],
-   "real_mean_expected_cats": 8.55,
-   "real_mean_se_unpaired": 0.023
+   "real_mean_expected_cats": 8.58,
+   "real_mean_se_unpaired": 0.0224
   },
   "c2": {
    "roster": [
@@ -743,13 +743,13 @@
      "FT%": 0.7067,
      "FG%": 0.4864,
      "A/T": 0.8688,
-     "DD": 0.775
+     "DD": 0.7664
     },
-    "expected_cats_won": 9.19,
-    "weekly_win_rate": 0.908,
-    "p_big5_collapse": 0.0182,
-    "p_cats_won_le4": 0.009,
-    "cats_won_sd": 1.801,
+    "expected_cats_won": 9.18,
+    "weekly_win_rate": 0.9065,
+    "p_big5_collapse": 0.0177,
+    "p_cats_won_le4": 0.0097,
+    "cats_won_sd": 1.807,
     "iterations": 4000
    },
    "value_max": {
@@ -766,13 +766,13 @@
      "FT%": 0.8955,
      "FG%": 0.0906,
      "A/T": 0.804,
-     "DD": 0.0403
+     "DD": 0.0451
     },
-    "expected_cats_won": 6.39,
-    "weekly_win_rate": 0.483,
-    "p_big5_collapse": 0.5122,
-    "p_cats_won_le4": 0.11,
-    "cats_won_sd": 1.55,
+    "expected_cats_won": 6.4,
+    "weekly_win_rate": 0.4843,
+    "p_big5_collapse": 0.51,
+    "p_cats_won_le4": 0.1108,
+    "cats_won_sd": 1.554,
     "iterations": 4000
    },
    "big_stack": {
@@ -789,13 +789,13 @@
      "FT%": 0.9565,
      "FG%": 0.017,
      "A/T": 0.882,
-     "DD": 0.0986
+     "DD": 0.105
     },
-    "expected_cats_won": 6.89,
-    "weekly_win_rate": 0.6318,
-    "p_big5_collapse": 0.5837,
-    "p_cats_won_le4": 0.0227,
-    "cats_won_sd": 1.222,
+    "expected_cats_won": 6.9,
+    "weekly_win_rate": 0.633,
+    "p_big5_collapse": 0.58,
+    "p_cats_won_le4": 0.0222,
+    "cats_won_sd": 1.225,
     "iterations": 4000
    },
    "guard_stack": {
@@ -812,13 +812,13 @@
      "FT%": 0.5609,
      "FG%": 0.5019,
      "A/T": 0.304,
-     "DD": 0.5815
+     "DD": 0.608
     },
-    "expected_cats_won": 7.21,
-    "weekly_win_rate": 0.636,
-    "p_big5_collapse": 0.001,
-    "p_cats_won_le4": 0.0558,
-    "cats_won_sd": 1.782,
+    "expected_cats_won": 7.24,
+    "weekly_win_rate": 0.6452,
+    "p_big5_collapse": 0.0013,
+    "p_cats_won_le4": 0.0565,
+    "cats_won_sd": 1.789,
     "iterations": 4000
    },
    "baseline": {
@@ -835,13 +835,13 @@
      "FT%": 0.7035,
      "FG%": 0.5029,
      "A/T": 0.8735,
-     "DD": 0.9341
+     "DD": 0.9441
     },
-    "expected_cats_won": 9.35,
-    "weekly_win_rate": 0.909,
+    "expected_cats_won": 9.36,
+    "weekly_win_rate": 0.911,
     "p_big5_collapse": 0.0025,
-    "p_cats_won_le4": 0.015,
-    "cats_won_sd": 1.908,
+    "p_cats_won_le4": 0.0143,
+    "cats_won_sd": 1.905,
     "iterations": 4000
    },
    "benchmark": {
@@ -858,20 +858,20 @@
      "FT%": 0.7907,
      "FG%": 0.37,
      "A/T": 0.899,
-     "DD": 0.3322
+     "DD": 0.2914
     },
-    "expected_cats_won": 6.38,
-    "weekly_win_rate": 0.4492,
-    "p_big5_collapse": 0.286,
-    "p_cats_won_le4": 0.1385,
-    "cats_won_sd": 1.807,
+    "expected_cats_won": 6.34,
+    "weekly_win_rate": 0.4392,
+    "p_big5_collapse": 0.307,
+    "p_cats_won_le4": 0.1437,
+    "cats_won_sd": 1.798,
     "iterations": 4000
    },
-   "min_win_rate": 0.4492,
+   "min_win_rate": 0.4392,
    "min_win_rate_vs": [
     "benchmark"
    ],
-   "tiebreak_p_big5_collapse": 0.5837,
+   "tiebreak_p_big5_collapse": 0.58,
    "real": {
     "윤범": {
      "cat_win_probs": {
@@ -887,13 +887,13 @@
       "FT%": 0.7421,
       "FG%": 0.5861,
       "A/T": 0.8652,
-      "DD": 0.6344
+      "DD": 0.619
      },
-     "expected_cats_won": 8.04,
-     "weekly_win_rate": 0.747,
-     "p_big5_collapse": 0.0248,
+     "expected_cats_won": 8.02,
+     "weekly_win_rate": 0.7442,
+     "p_big5_collapse": 0.0267,
      "p_cats_won_le4": 0.05,
-     "cats_won_sd": 2.112,
+     "cats_won_sd": 2.117,
      "iterations": 4000
     },
     "수현": {
@@ -910,13 +910,13 @@
       "FT%": 0.6081,
       "FG%": 0.611,
       "A/T": 0.891,
-      "DD": 0.7654
+      "DD": 0.7631
      },
      "expected_cats_won": 9.07,
-     "weekly_win_rate": 0.9012,
-     "p_big5_collapse": 0.0022,
-     "p_cats_won_le4": 0.0127,
-     "cats_won_sd": 1.843,
+     "weekly_win_rate": 0.8995,
+     "p_big5_collapse": 0.0027,
+     "p_cats_won_le4": 0.013,
+     "cats_won_sd": 1.851,
      "iterations": 4000
     },
     "철웅": {
@@ -933,13 +933,13 @@
       "FT%": 0.73,
       "FG%": 0.3673,
       "A/T": 0.9657,
-      "DD": 0.741
+      "DD": 0.7076
      },
-     "expected_cats_won": 9.36,
-     "weekly_win_rate": 0.9277,
-     "p_big5_collapse": 0.0103,
-     "p_cats_won_le4": 0.0105,
-     "cats_won_sd": 1.772,
+     "expected_cats_won": 9.33,
+     "weekly_win_rate": 0.9255,
+     "p_big5_collapse": 0.0115,
+     "p_cats_won_le4": 0.0115,
+     "cats_won_sd": 1.791,
      "iterations": 4000
     },
     "두현": {
@@ -956,13 +956,13 @@
       "FT%": 0.6989,
       "FG%": 0.4094,
       "A/T": 0.8772,
-      "DD": 0.8253
+      "DD": 0.813
      },
-     "expected_cats_won": 9.9,
+     "expected_cats_won": 9.89,
      "weekly_win_rate": 0.9692,
-     "p_big5_collapse": 0.0008,
-     "p_cats_won_le4": 0.0022,
-     "cats_won_sd": 1.486,
+     "p_big5_collapse": 0.0005,
+     "p_cats_won_le4": 0.002,
+     "cats_won_sd": 1.491,
      "iterations": 4000
     },
     "진빈": {
@@ -979,13 +979,13 @@
       "FT%": 0.6905,
       "FG%": 0.6967,
       "A/T": 0.8263,
-      "DD": 0.632
+      "DD": 0.6737
      },
-     "expected_cats_won": 9.12,
-     "weekly_win_rate": 0.8772,
-     "p_big5_collapse": 0.0022,
-     "p_cats_won_le4": 0.0118,
-     "cats_won_sd": 2.007,
+     "expected_cats_won": 9.16,
+     "weekly_win_rate": 0.885,
+     "p_big5_collapse": 0.0025,
+     "p_cats_won_le4": 0.011,
+     "cats_won_sd": 1.997,
      "iterations": 4000
     },
     "원준": {
@@ -1002,13 +1002,13 @@
       "FT%": 0.6929,
       "FG%": 0.455,
       "A/T": 0.839,
-      "DD": 0.564
+      "DD": 0.5969
      },
-     "expected_cats_won": 9.8,
+     "expected_cats_won": 9.83,
      "weekly_win_rate": 0.963,
-     "p_big5_collapse": 0.0055,
-     "p_cats_won_le4": 0.0037,
-     "cats_won_sd": 1.6,
+     "p_big5_collapse": 0.0057,
+     "p_cats_won_le4": 0.0035,
+     "cats_won_sd": 1.606,
      "iterations": 4000
     },
     "단열": {
@@ -1025,13 +1025,13 @@
       "FT%": 0.6446,
       "FG%": 0.47,
       "A/T": 0.967,
-      "DD": 0.6929
+      "DD": 0.6689
      },
-     "expected_cats_won": 9.02,
-     "weekly_win_rate": 0.8908,
+     "expected_cats_won": 9.0,
+     "weekly_win_rate": 0.8898,
      "p_big5_collapse": 0.0118,
      "p_cats_won_le4": 0.0138,
-     "cats_won_sd": 1.866,
+     "cats_won_sd": 1.867,
      "iterations": 4000
     },
     "지원": {
@@ -1048,13 +1048,13 @@
       "FT%": 0.7661,
       "FG%": 0.5876,
       "A/T": 0.8885,
-      "DD": 0.6388
+      "DD": 0.6206
      },
-     "expected_cats_won": 9.35,
-     "weekly_win_rate": 0.902,
-     "p_big5_collapse": 0.005,
-     "p_cats_won_le4": 0.0097,
-     "cats_won_sd": 1.954,
+     "expected_cats_won": 9.33,
+     "weekly_win_rate": 0.9008,
+     "p_big5_collapse": 0.0045,
+     "p_cats_won_le4": 0.009,
+     "cats_won_sd": 1.961,
      "iterations": 4000
     },
     "정명": {
@@ -1071,13 +1071,13 @@
       "FT%": 0.3726,
       "FG%": 0.3451,
       "A/T": 0.9015,
-      "DD": 0.757
+      "DD": 0.7351
      },
-     "expected_cats_won": 7.74,
-     "weekly_win_rate": 0.7163,
-     "p_big5_collapse": 0.0077,
-     "p_cats_won_le4": 0.06,
-     "cats_won_sd": 2.028,
+     "expected_cats_won": 7.72,
+     "weekly_win_rate": 0.7133,
+     "p_big5_collapse": 0.0085,
+     "p_cats_won_le4": 0.0628,
+     "cats_won_sd": 2.034,
      "iterations": 4000
     },
     "준희": {
@@ -1094,13 +1094,13 @@
       "FT%": 0.512,
       "FG%": 0.6499,
       "A/T": 0.7665,
-      "DD": 0.6105
+      "DD": 0.6609
      },
-     "expected_cats_won": 8.05,
-     "weekly_win_rate": 0.7555,
-     "p_big5_collapse": 0.007,
-     "p_cats_won_le4": 0.0545,
-     "cats_won_sd": 2.105,
+     "expected_cats_won": 8.1,
+     "weekly_win_rate": 0.7688,
+     "p_big5_collapse": 0.0063,
+     "p_cats_won_le4": 0.0535,
+     "cats_won_sd": 2.091,
      "iterations": 4000
     },
     "병욱": {
@@ -1117,13 +1117,13 @@
       "FT%": 0.8323,
       "FG%": 0.5015,
       "A/T": 0.8698,
-      "DD": 0.7129
+      "DD": 0.7248
      },
-     "expected_cats_won": 8.42,
-     "weekly_win_rate": 0.8237,
-     "p_big5_collapse": 0.024,
-     "p_cats_won_le4": 0.0278,
-     "cats_won_sd": 1.944,
+     "expected_cats_won": 8.43,
+     "weekly_win_rate": 0.8247,
+     "p_big5_collapse": 0.0222,
+     "p_cats_won_le4": 0.026,
+     "cats_won_sd": 1.938,
      "iterations": 4000
     },
     "경찬": {
@@ -1140,23 +1140,23 @@
       "FT%": 0.8444,
       "FG%": 0.5221,
       "A/T": 0.8932,
-      "DD": 0.5444
+      "DD": 0.548
      },
      "expected_cats_won": 9.65,
-     "weekly_win_rate": 0.9297,
-     "p_big5_collapse": 0.0115,
-     "p_cats_won_le4": 0.0085,
-     "cats_won_sd": 1.843,
+     "weekly_win_rate": 0.932,
+     "p_big5_collapse": 0.0118,
+     "p_cats_won_le4": 0.0092,
+     "cats_won_sd": 1.842,
      "iterations": 4000
     }
    },
-   "real_mean_win_rate": 0.8669,
-   "real_min_win_rate": 0.7163,
+   "real_mean_win_rate": 0.868,
+   "real_min_win_rate": 0.7133,
    "real_min_win_rate_vs": [
     "정명"
    ],
    "real_mean_expected_cats": 8.96,
-   "real_mean_se_unpaired": 0.0249
+   "real_mean_se_unpaired": 0.0247
   },
   "c3": {
    "roster": [
@@ -1184,12 +1184,12 @@
      "FT%": 0.2785,
      "FG%": 0.8165,
      "A/T": 0.714,
-     "DD": 0.8708
+     "DD": 0.8602
     },
-    "expected_cats_won": 8.75,
-    "weekly_win_rate": 0.9247,
+    "expected_cats_won": 8.74,
+    "weekly_win_rate": 0.9217,
     "p_big5_collapse": 0.0,
-    "p_cats_won_le4": 0.0067,
+    "p_cats_won_le4": 0.007,
     "cats_won_sd": 1.483,
     "iterations": 4000
    },
@@ -1207,13 +1207,13 @@
      "FT%": 0.5212,
      "FG%": 0.3824,
      "A/T": 0.601,
-     "DD": 0.1298
+     "DD": 0.1254
     },
-    "expected_cats_won": 6.25,
-    "weekly_win_rate": 0.4557,
-    "p_big5_collapse": 0.1168,
-    "p_cats_won_le4": 0.1968,
-    "cats_won_sd": 2.026,
+    "expected_cats_won": 6.24,
+    "weekly_win_rate": 0.4555,
+    "p_big5_collapse": 0.1175,
+    "p_cats_won_le4": 0.1965,
+    "cats_won_sd": 2.025,
     "iterations": 4000
    },
    "big_stack": {
@@ -1230,13 +1230,13 @@
      "FT%": 0.6797,
      "FG%": 0.1172,
      "A/T": 0.7278,
-     "DD": 0.224
+     "DD": 0.2205
     },
-    "expected_cats_won": 7.29,
-    "weekly_win_rate": 0.6803,
-    "p_big5_collapse": 0.203,
-    "p_cats_won_le4": 0.055,
-    "cats_won_sd": 1.714,
+    "expected_cats_won": 7.28,
+    "weekly_win_rate": 0.6777,
+    "p_big5_collapse": 0.2025,
+    "p_cats_won_le4": 0.053,
+    "cats_won_sd": 1.711,
     "iterations": 4000
    },
    "guard_stack": {
@@ -1253,13 +1253,13 @@
      "FT%": 0.1474,
      "FG%": 0.8399,
      "A/T": 0.1202,
-     "DD": 0.761
+     "DD": 0.7629
     },
-    "expected_cats_won": 6.91,
-    "weekly_win_rate": 0.6095,
+    "expected_cats_won": 6.92,
+    "weekly_win_rate": 0.608,
     "p_big5_collapse": 0.0,
-    "p_cats_won_le4": 0.0248,
-    "cats_won_sd": 1.34,
+    "p_cats_won_le4": 0.0257,
+    "cats_won_sd": 1.336,
     "iterations": 4000
    },
    "baseline": {
@@ -1276,13 +1276,13 @@
      "FT%": 0.2097,
      "FG%": 0.8465,
      "A/T": 0.7127,
-     "DD": 0.9656
+     "DD": 0.9715
     },
-    "expected_cats_won": 8.74,
-    "weekly_win_rate": 0.9245,
+    "expected_cats_won": 8.75,
+    "weekly_win_rate": 0.9267,
     "p_big5_collapse": 0.0,
     "p_cats_won_le4": 0.0067,
-    "cats_won_sd": 1.457,
+    "cats_won_sd": 1.456,
     "iterations": 4000
    },
    "benchmark": {
@@ -1299,20 +1299,20 @@
      "FT%": 0.3267,
      "FG%": 0.7525,
      "A/T": 0.733,
-     "DD": 0.5062
+     "DD": 0.455
     },
-    "expected_cats_won": 6.6,
-    "weekly_win_rate": 0.5138,
-    "p_big5_collapse": 0.0318,
-    "p_cats_won_le4": 0.1378,
+    "expected_cats_won": 6.55,
+    "weekly_win_rate": 0.504,
+    "p_big5_collapse": 0.0343,
+    "p_cats_won_le4": 0.1455,
     "cats_won_sd": 1.96,
     "iterations": 4000
    },
-   "min_win_rate": 0.4557,
+   "min_win_rate": 0.4555,
    "min_win_rate_vs": [
     "value_max"
    ],
-   "tiebreak_p_big5_collapse": 0.203,
+   "tiebreak_p_big5_collapse": 0.2025,
    "real": {
     "윤범": {
      "cat_win_probs": {
@@ -1328,13 +1328,13 @@
       "FT%": 0.2581,
       "FG%": 0.8814,
       "A/T": 0.6747,
-      "DD": 0.7708
+      "DD": 0.7541
      },
-     "expected_cats_won": 7.84,
-     "weekly_win_rate": 0.758,
+     "expected_cats_won": 7.82,
+     "weekly_win_rate": 0.7528,
      "p_big5_collapse": 0.0003,
-     "p_cats_won_le4": 0.0295,
-     "cats_won_sd": 1.785,
+     "p_cats_won_le4": 0.0293,
+     "cats_won_sd": 1.791,
      "iterations": 4000
     },
     "수현": {
@@ -1351,13 +1351,13 @@
       "FT%": 0.1629,
       "FG%": 0.8942,
       "A/T": 0.7298,
-      "DD": 0.8711
+      "DD": 0.8751
      },
-     "expected_cats_won": 8.48,
-     "weekly_win_rate": 0.917,
+     "expected_cats_won": 8.49,
+     "weekly_win_rate": 0.9183,
      "p_big5_collapse": 0.0,
-     "p_cats_won_le4": 0.0063,
-     "cats_won_sd": 1.35,
+     "p_cats_won_le4": 0.005,
+     "cats_won_sd": 1.343,
      "iterations": 4000
     },
     "철웅": {
@@ -1374,13 +1374,13 @@
       "FT%": 0.2349,
       "FG%": 0.7375,
       "A/T": 0.889,
-      "DD": 0.8608
+      "DD": 0.8386
      },
-     "expected_cats_won": 8.83,
-     "weekly_win_rate": 0.9515,
+     "expected_cats_won": 8.81,
+     "weekly_win_rate": 0.95,
      "p_big5_collapse": 0.0,
-     "p_cats_won_le4": 0.0013,
-     "cats_won_sd": 1.315,
+     "p_cats_won_le4": 0.0015,
+     "cats_won_sd": 1.323,
      "iterations": 4000
     },
     "두현": {
@@ -1397,13 +1397,13 @@
       "FT%": 0.2319,
       "FG%": 0.7917,
       "A/T": 0.7063,
-      "DD": 0.9041
+      "DD": 0.8942
      },
-     "expected_cats_won": 8.8,
-     "weekly_win_rate": 0.9465,
+     "expected_cats_won": 8.79,
+     "weekly_win_rate": 0.945,
      "p_big5_collapse": 0.0,
      "p_cats_won_le4": 0.0015,
-     "cats_won_sd": 1.345,
+     "cats_won_sd": 1.349,
      "iterations": 4000
     },
     "진빈": {
@@ -1420,13 +1420,13 @@
       "FT%": 0.2179,
       "FG%": 0.9383,
       "A/T": 0.6188,
-      "DD": 0.7718
+      "DD": 0.8005
      },
-     "expected_cats_won": 8.37,
-     "weekly_win_rate": 0.8645,
+     "expected_cats_won": 8.4,
+     "weekly_win_rate": 0.872,
      "p_big5_collapse": 0.0,
      "p_cats_won_le4": 0.0065,
-     "cats_won_sd": 1.581,
+     "cats_won_sd": 1.568,
      "iterations": 4000
     },
     "원준": {
@@ -1443,13 +1443,13 @@
       "FT%": 0.196,
       "FG%": 0.7762,
       "A/T": 0.648,
-      "DD": 0.7224
+      "DD": 0.7516
      },
-     "expected_cats_won": 8.91,
-     "weekly_win_rate": 0.935,
+     "expected_cats_won": 8.94,
+     "weekly_win_rate": 0.9383,
      "p_big5_collapse": 0.0,
-     "p_cats_won_le4": 0.0037,
-     "cats_won_sd": 1.467,
+     "p_cats_won_le4": 0.0032,
+     "cats_won_sd": 1.461,
      "iterations": 4000
     },
     "단열": {
@@ -1466,13 +1466,13 @@
       "FT%": 0.1649,
       "FG%": 0.8217,
       "A/T": 0.8928,
-      "DD": 0.8124
+      "DD": 0.7893
      },
-     "expected_cats_won": 8.65,
-     "weekly_win_rate": 0.9345,
+     "expected_cats_won": 8.62,
+     "weekly_win_rate": 0.9323,
      "p_big5_collapse": 0.0,
      "p_cats_won_le4": 0.0043,
-     "cats_won_sd": 1.332,
+     "cats_won_sd": 1.336,
      "iterations": 4000
     },
     "지원": {
@@ -1489,13 +1489,13 @@
       "FT%": 0.2981,
       "FG%": 0.8911,
       "A/T": 0.7278,
-      "DD": 0.7699
+      "DD": 0.748
      },
-     "expected_cats_won": 8.59,
-     "weekly_win_rate": 0.889,
+     "expected_cats_won": 8.57,
+     "weekly_win_rate": 0.883,
      "p_big5_collapse": 0.0,
-     "p_cats_won_le4": 0.006,
-     "cats_won_sd": 1.576,
+     "p_cats_won_le4": 0.0065,
+     "cats_won_sd": 1.584,
      "iterations": 4000
     },
     "정명": {
@@ -1512,13 +1512,13 @@
       "FT%": 0.0486,
       "FG%": 0.7401,
       "A/T": 0.7498,
-      "DD": 0.8668
+      "DD": 0.8445
      },
-     "expected_cats_won": 7.81,
-     "weekly_win_rate": 0.8187,
+     "expected_cats_won": 7.79,
+     "weekly_win_rate": 0.8133,
      "p_big5_collapse": 0.0,
-     "p_cats_won_le4": 0.0198,
-     "cats_won_sd": 1.46,
+     "p_cats_won_le4": 0.0205,
+     "cats_won_sd": 1.47,
      "iterations": 4000
     },
     "준희": {
@@ -1535,13 +1535,13 @@
       "FT%": 0.094,
       "FG%": 0.921,
       "A/T": 0.535,
-      "DD": 0.7732
+      "DD": 0.7985
      },
-     "expected_cats_won": 7.76,
-     "weekly_win_rate": 0.7853,
+     "expected_cats_won": 7.79,
+     "weekly_win_rate": 0.7915,
      "p_big5_collapse": 0.0,
-     "p_cats_won_le4": 0.0165,
-     "cats_won_sd": 1.508,
+     "p_cats_won_le4": 0.0145,
+     "cats_won_sd": 1.505,
      "iterations": 4000
     },
     "병욱": {
@@ -1558,13 +1558,13 @@
       "FT%": 0.3844,
       "FG%": 0.8465,
       "A/T": 0.679,
-      "DD": 0.8379
+      "DD": 0.8417
      },
-     "expected_cats_won": 8.18,
-     "weekly_win_rate": 0.8383,
+     "expected_cats_won": 8.19,
+     "weekly_win_rate": 0.841,
      "p_big5_collapse": 0.0,
-     "p_cats_won_le4": 0.0203,
-     "cats_won_sd": 1.695,
+     "p_cats_won_le4": 0.019,
+     "cats_won_sd": 1.69,
      "iterations": 4000
     },
     "경찬": {
@@ -1581,18 +1581,18 @@
       "FT%": 0.3961,
       "FG%": 0.8465,
       "A/T": 0.7422,
-      "DD": 0.7031
+      "DD": 0.6966
      },
      "expected_cats_won": 8.99,
-     "weekly_win_rate": 0.9375,
+     "weekly_win_rate": 0.9363,
      "p_big5_collapse": 0.0003,
      "p_cats_won_le4": 0.003,
-     "cats_won_sd": 1.48,
+     "cats_won_sd": 1.485,
      "iterations": 4000
     }
    },
-   "real_mean_win_rate": 0.8813,
-   "real_min_win_rate": 0.758,
+   "real_mean_win_rate": 0.8811,
+   "real_min_win_rate": 0.7528,
    "real_min_win_rate_vs": [
     "윤범"
    ],
@@ -1625,13 +1625,13 @@
      "FT%": 0.2279,
      "FG%": 0.7785,
      "A/T": 0.5105,
-     "DD": 0.9589
+     "DD": 0.9529
     },
-    "expected_cats_won": 8.52,
-    "weekly_win_rate": 0.908,
-    "p_big5_collapse": 0.001,
-    "p_cats_won_le4": 0.0088,
-    "cats_won_sd": 1.496,
+    "expected_cats_won": 8.51,
+    "weekly_win_rate": 0.906,
+    "p_big5_collapse": 0.0013,
+    "p_cats_won_le4": 0.008,
+    "cats_won_sd": 1.498,
     "iterations": 4000
    },
    "value_max": {
@@ -1648,13 +1648,13 @@
      "FT%": 0.4401,
      "FG%": 0.3075,
      "A/T": 0.3718,
-     "DD": 0.2776
+     "DD": 0.2802
     },
     "expected_cats_won": 6.0,
-    "weekly_win_rate": 0.4055,
-    "p_big5_collapse": 0.1653,
-    "p_cats_won_le4": 0.2318,
-    "cats_won_sd": 2.083,
+    "weekly_win_rate": 0.4062,
+    "p_big5_collapse": 0.165,
+    "p_cats_won_le4": 0.2303,
+    "cats_won_sd": 2.081,
     "iterations": 4000
    },
    "big_stack": {
@@ -1671,13 +1671,13 @@
      "FT%": 0.604,
      "FG%": 0.0891,
      "A/T": 0.524,
-     "DD": 0.4163
+     "DD": 0.4313
     },
-    "expected_cats_won": 7.04,
-    "weekly_win_rate": 0.609,
-    "p_big5_collapse": 0.2165,
-    "p_cats_won_le4": 0.0625,
-    "cats_won_sd": 1.683,
+    "expected_cats_won": 7.05,
+    "weekly_win_rate": 0.614,
+    "p_big5_collapse": 0.2067,
+    "p_cats_won_le4": 0.0628,
+    "cats_won_sd": 1.68,
     "iterations": 4000
    },
    "guard_stack": {
@@ -1694,13 +1694,13 @@
      "FT%": 0.0921,
      "FG%": 0.7983,
      "A/T": 0.0333,
-     "DD": 0.9045
+     "DD": 0.9134
     },
-    "expected_cats_won": 6.72,
-    "weekly_win_rate": 0.5573,
+    "expected_cats_won": 6.73,
+    "weekly_win_rate": 0.5615,
     "p_big5_collapse": 0.0,
-    "p_cats_won_le4": 0.0232,
-    "cats_won_sd": 1.199,
+    "p_cats_won_le4": 0.022,
+    "cats_won_sd": 1.192,
     "iterations": 4000
    },
    "baseline": {
@@ -1717,13 +1717,13 @@
      "FT%": 0.1516,
      "FG%": 0.8007,
      "A/T": 0.4883,
-     "DD": 0.9918
+     "DD": 0.9936
     },
     "expected_cats_won": 8.29,
-    "weekly_win_rate": 0.8855,
+    "weekly_win_rate": 0.8858,
     "p_big5_collapse": 0.0,
     "p_cats_won_le4": 0.008,
-    "cats_won_sd": 1.459,
+    "cats_won_sd": 1.46,
     "iterations": 4000
    },
    "benchmark": {
@@ -1740,20 +1740,20 @@
      "FT%": 0.248,
      "FG%": 0.7179,
      "A/T": 0.5323,
-     "DD": 0.7415
+     "DD": 0.7006
     },
-    "expected_cats_won": 6.36,
-    "weekly_win_rate": 0.4788,
-    "p_big5_collapse": 0.0213,
-    "p_cats_won_le4": 0.1578,
-    "cats_won_sd": 1.899,
+    "expected_cats_won": 6.32,
+    "weekly_win_rate": 0.472,
+    "p_big5_collapse": 0.0248,
+    "p_cats_won_le4": 0.1658,
+    "cats_won_sd": 1.912,
     "iterations": 4000
    },
-   "min_win_rate": 0.4055,
+   "min_win_rate": 0.4062,
    "min_win_rate_vs": [
     "value_max"
    ],
-   "tiebreak_p_big5_collapse": 0.2165,
+   "tiebreak_p_big5_collapse": 0.2067,
    "real": {
     "윤범": {
      "cat_win_probs": {
@@ -1769,12 +1769,12 @@
       "FT%": 0.2029,
       "FG%": 0.8646,
       "A/T": 0.4373,
-      "DD": 0.9133
+      "DD": 0.913
      },
      "expected_cats_won": 7.37,
-     "weekly_win_rate": 0.689,
+     "weekly_win_rate": 0.6885,
      "p_big5_collapse": 0.0,
-     "p_cats_won_le4": 0.0455,
+     "p_cats_won_le4": 0.0462,
      "cats_won_sd": 1.725,
      "iterations": 4000
     },
@@ -1792,13 +1792,13 @@
       "FT%": 0.1118,
       "FG%": 0.8801,
       "A/T": 0.5347,
-      "DD": 0.9595
+      "DD": 0.9621
      },
      "expected_cats_won": 8.22,
-     "weekly_win_rate": 0.8888,
+     "weekly_win_rate": 0.8905,
      "p_big5_collapse": 0.0,
-     "p_cats_won_le4": 0.0107,
-     "cats_won_sd": 1.372,
+     "p_cats_won_le4": 0.0097,
+     "cats_won_sd": 1.366,
      "iterations": 4000
     },
     "철웅": {
@@ -1815,13 +1815,13 @@
       "FT%": 0.1865,
       "FG%": 0.6923,
       "A/T": 0.7602,
-      "DD": 0.9501
+      "DD": 0.9396
      },
-     "expected_cats_won": 8.63,
-     "weekly_win_rate": 0.9325,
+     "expected_cats_won": 8.62,
+     "weekly_win_rate": 0.9317,
      "p_big5_collapse": 0.0,
-     "p_cats_won_le4": 0.005,
-     "cats_won_sd": 1.393,
+     "p_cats_won_le4": 0.0053,
+     "cats_won_sd": 1.399,
      "iterations": 4000
     },
     "두현": {
@@ -1838,13 +1838,13 @@
       "FT%": 0.1585,
       "FG%": 0.7426,
       "A/T": 0.5042,
-      "DD": 0.971
+      "DD": 0.97
      },
      "expected_cats_won": 8.71,
      "weekly_win_rate": 0.9497,
      "p_big5_collapse": 0.0,
      "p_cats_won_le4": 0.0013,
-     "cats_won_sd": 1.311,
+     "cats_won_sd": 1.314,
      "iterations": 4000
     },
     "진빈": {
@@ -1861,13 +1861,13 @@
       "FT%": 0.1585,
       "FG%": 0.9159,
       "A/T": 0.3867,
-      "DD": 0.9135
+      "DD": 0.9279
      },
-     "expected_cats_won": 7.99,
-     "weekly_win_rate": 0.8127,
+     "expected_cats_won": 8.01,
+     "weekly_win_rate": 0.817,
      "p_big5_collapse": 0.0,
-     "p_cats_won_le4": 0.0145,
-     "cats_won_sd": 1.583,
+     "p_cats_won_le4": 0.0132,
+     "cats_won_sd": 1.573,
      "iterations": 4000
     },
     "원준": {
@@ -1884,13 +1884,13 @@
       "FT%": 0.1388,
       "FG%": 0.7565,
       "A/T": 0.4313,
-      "DD": 0.8856
+      "DD": 0.9018
      },
-     "expected_cats_won": 8.92,
-     "weekly_win_rate": 0.9485,
+     "expected_cats_won": 8.94,
+     "weekly_win_rate": 0.9513,
      "p_big5_collapse": 0.0,
-     "p_cats_won_le4": 0.0022,
-     "cats_won_sd": 1.361,
+     "p_cats_won_le4": 0.0027,
+     "cats_won_sd": 1.355,
      "iterations": 4000
     },
     "단열": {
@@ -1907,13 +1907,13 @@
       "FT%": 0.1115,
       "FG%": 0.7861,
       "A/T": 0.7582,
-      "DD": 0.9376
+      "DD": 0.9283
      },
-     "expected_cats_won": 8.49,
-     "weekly_win_rate": 0.9085,
+     "expected_cats_won": 8.48,
+     "weekly_win_rate": 0.907,
      "p_big5_collapse": 0.0,
      "p_cats_won_le4": 0.006,
-     "cats_won_sd": 1.418,
+     "cats_won_sd": 1.419,
      "iterations": 4000
     },
     "지원": {
@@ -1930,13 +1930,13 @@
       "FT%": 0.2196,
       "FG%": 0.854,
       "A/T": 0.501,
-      "DD": 0.9155
+      "DD": 0.9116
      },
-     "expected_cats_won": 8.32,
-     "weekly_win_rate": 0.858,
+     "expected_cats_won": 8.31,
+     "weekly_win_rate": 0.8588,
      "p_big5_collapse": 0.0,
-     "p_cats_won_le4": 0.0135,
-     "cats_won_sd": 1.637,
+     "p_cats_won_le4": 0.0125,
+     "cats_won_sd": 1.636,
      "iterations": 4000
     },
     "정명": {
@@ -1953,13 +1953,13 @@
       "FT%": 0.0264,
       "FG%": 0.6897,
       "A/T": 0.5455,
-      "DD": 0.9597
+      "DD": 0.9559
      },
      "expected_cats_won": 7.36,
      "weekly_win_rate": 0.7173,
      "p_big5_collapse": 0.0,
-     "p_cats_won_le4": 0.0333,
-     "cats_won_sd": 1.517,
+     "p_cats_won_le4": 0.0335,
+     "cats_won_sd": 1.518,
      "iterations": 4000
     },
     "준희": {
@@ -1976,13 +1976,13 @@
       "FT%": 0.0645,
       "FG%": 0.9002,
       "A/T": 0.3115,
-      "DD": 0.9175
+      "DD": 0.9376
      },
-     "expected_cats_won": 7.47,
-     "weekly_win_rate": 0.7358,
+     "expected_cats_won": 7.49,
+     "weekly_win_rate": 0.742,
      "p_big5_collapse": 0.0,
-     "p_cats_won_le4": 0.026,
-     "cats_won_sd": 1.499,
+     "p_cats_won_le4": 0.0248,
+     "cats_won_sd": 1.486,
      "iterations": 4000
     },
     "병욱": {
@@ -1999,13 +1999,13 @@
       "FT%": 0.3033,
       "FG%": 0.8093,
       "A/T": 0.4723,
-      "DD": 0.9479
+      "DD": 0.954
      },
      "expected_cats_won": 7.86,
-     "weekly_win_rate": 0.7843,
+     "weekly_win_rate": 0.786,
      "p_big5_collapse": 0.0003,
      "p_cats_won_le4": 0.0278,
-     "cats_won_sd": 1.703,
+     "cats_won_sd": 1.702,
      "iterations": 4000
     },
     "경찬": {
@@ -2022,23 +2022,23 @@
       "FT%": 0.3018,
       "FG%": 0.7956,
       "A/T": 0.5473,
-      "DD": 0.8755
+      "DD": 0.8722
      },
      "expected_cats_won": 8.88,
-     "weekly_win_rate": 0.938,
+     "weekly_win_rate": 0.9393,
      "p_big5_collapse": 0.0,
      "p_cats_won_le4": 0.0057,
-     "cats_won_sd": 1.438,
+     "cats_won_sd": 1.436,
      "iterations": 4000
     }
    },
-   "real_mean_win_rate": 0.8469,
-   "real_min_win_rate": 0.689,
+   "real_mean_win_rate": 0.8483,
+   "real_min_win_rate": 0.6885,
    "real_min_win_rate_vs": [
     "윤범"
    ],
    "real_mean_expected_cats": 8.19,
-   "real_mean_se_unpaired": 0.0277
+   "real_mean_se_unpaired": 0.0276
   },
   "c5": {
    "roster": [
@@ -2066,13 +2066,13 @@
      "FT%": 0.1969,
      "FG%": 0.8509,
      "A/T": 0.7035,
-     "DD": 0.955
+     "DD": 0.9551
     },
     "expected_cats_won": 8.73,
-    "weekly_win_rate": 0.9048,
+    "weekly_win_rate": 0.9055,
     "p_big5_collapse": 0.0008,
     "p_cats_won_le4": 0.0095,
-    "cats_won_sd": 1.633,
+    "cats_won_sd": 1.634,
     "iterations": 4000
    },
    "value_max": {
@@ -2089,13 +2089,13 @@
      "FT%": 0.4046,
      "FG%": 0.4452,
      "A/T": 0.5627,
-     "DD": 0.273
+     "DD": 0.3021
     },
-    "expected_cats_won": 6.19,
-    "weekly_win_rate": 0.44,
-    "p_big5_collapse": 0.1278,
-    "p_cats_won_le4": 0.2435,
-    "cats_won_sd": 2.277,
+    "expected_cats_won": 6.22,
+    "weekly_win_rate": 0.4432,
+    "p_big5_collapse": 0.1237,
+    "p_cats_won_le4": 0.2382,
+    "cats_won_sd": 2.285,
     "iterations": 4000
    },
    "big_stack": {
@@ -2112,13 +2112,13 @@
      "FT%": 0.5341,
      "FG%": 0.1535,
      "A/T": 0.6787,
-     "DD": 0.3892
+     "DD": 0.4236
     },
-    "expected_cats_won": 7.23,
-    "weekly_win_rate": 0.6368,
-    "p_big5_collapse": 0.1908,
-    "p_cats_won_le4": 0.0772,
-    "cats_won_sd": 1.912,
+    "expected_cats_won": 7.26,
+    "weekly_win_rate": 0.6438,
+    "p_big5_collapse": 0.1862,
+    "p_cats_won_le4": 0.0762,
+    "cats_won_sd": 1.92,
     "iterations": 4000
    },
    "guard_stack": {
@@ -2135,13 +2135,13 @@
      "FT%": 0.089,
      "FG%": 0.864,
      "A/T": 0.115,
-     "DD": 0.8926
+     "DD": 0.9164
     },
-    "expected_cats_won": 6.76,
-    "weekly_win_rate": 0.565,
+    "expected_cats_won": 6.79,
+    "weekly_win_rate": 0.5755,
     "p_big5_collapse": 0.0,
-    "p_cats_won_le4": 0.0222,
-    "cats_won_sd": 1.246,
+    "p_cats_won_le4": 0.0203,
+    "cats_won_sd": 1.24,
     "iterations": 4000
    },
    "baseline": {
@@ -2158,13 +2158,13 @@
      "FT%": 0.1401,
      "FG%": 0.8789,
      "A/T": 0.6727,
-     "DD": 0.9911
+     "DD": 0.9948
     },
     "expected_cats_won": 8.44,
-    "weekly_win_rate": 0.8728,
+    "weekly_win_rate": 0.8742,
     "p_big5_collapse": 0.0,
     "p_cats_won_le4": 0.0085,
-    "cats_won_sd": 1.609,
+    "cats_won_sd": 1.607,
     "iterations": 4000
    },
    "benchmark": {
@@ -2181,20 +2181,20 @@
      "FT%": 0.2379,
      "FG%": 0.8096,
      "A/T": 0.6997,
-     "DD": 0.7096
+     "DD": 0.6986
     },
-    "expected_cats_won": 6.42,
-    "weekly_win_rate": 0.4755,
-    "p_big5_collapse": 0.0182,
-    "p_cats_won_le4": 0.1772,
-    "cats_won_sd": 2.084,
+    "expected_cats_won": 6.41,
+    "weekly_win_rate": 0.4723,
+    "p_big5_collapse": 0.0185,
+    "p_cats_won_le4": 0.179,
+    "cats_won_sd": 2.088,
     "iterations": 4000
    },
-   "min_win_rate": 0.44,
+   "min_win_rate": 0.4432,
    "min_win_rate_vs": [
     "value_max"
    ],
-   "tiebreak_p_big5_collapse": 0.1908,
+   "tiebreak_p_big5_collapse": 0.1862,
    "real": {
     "윤범": {
      "cat_win_probs": {
@@ -2210,13 +2210,13 @@
       "FT%": 0.1847,
       "FG%": 0.9091,
       "A/T": 0.623,
-      "DD": 0.8992
+      "DD": 0.9081
      },
-     "expected_cats_won": 7.43,
-     "weekly_win_rate": 0.6907,
+     "expected_cats_won": 7.44,
+     "weekly_win_rate": 0.6915,
      "p_big5_collapse": 0.0003,
-     "p_cats_won_le4": 0.0315,
-     "cats_won_sd": 1.724,
+     "p_cats_won_le4": 0.029,
+     "cats_won_sd": 1.719,
      "iterations": 4000
     },
     "수현": {
@@ -2233,13 +2233,13 @@
       "FT%": 0.1013,
       "FG%": 0.9277,
       "A/T": 0.7077,
-      "DD": 0.9565
+      "DD": 0.9644
      },
      "expected_cats_won": 8.32,
      "weekly_win_rate": 0.8798,
      "p_big5_collapse": 0.0,
-     "p_cats_won_le4": 0.0067,
-     "cats_won_sd": 1.471,
+     "p_cats_won_le4": 0.0065,
+     "cats_won_sd": 1.469,
      "iterations": 4000
     },
     "철웅": {
@@ -2256,13 +2256,13 @@
       "FT%": 0.1573,
       "FG%": 0.8037,
       "A/T": 0.8585,
-      "DD": 0.9414
+      "DD": 0.9385
      },
      "expected_cats_won": 8.85,
-     "weekly_win_rate": 0.9433,
+     "weekly_win_rate": 0.9427,
      "p_big5_collapse": 0.0,
-     "p_cats_won_le4": 0.0035,
-     "cats_won_sd": 1.432,
+     "p_cats_won_le4": 0.0045,
+     "cats_won_sd": 1.437,
      "iterations": 4000
     },
     "두현": {
@@ -2279,13 +2279,13 @@
       "FT%": 0.1444,
       "FG%": 0.8329,
       "A/T": 0.6735,
-      "DD": 0.9684
+      "DD": 0.9701
      },
      "expected_cats_won": 8.91,
-     "weekly_win_rate": 0.9477,
+     "weekly_win_rate": 0.9483,
      "p_big5_collapse": 0.0,
-     "p_cats_won_le4": 0.0025,
-     "cats_won_sd": 1.44,
+     "p_cats_won_le4": 0.002,
+     "cats_won_sd": 1.437,
      "iterations": 4000
     },
     "진빈": {
@@ -2302,13 +2302,13 @@
       "FT%": 0.1446,
       "FG%": 0.9536,
       "A/T": 0.5865,
-      "DD": 0.892
+      "DD": 0.9229
      },
-     "expected_cats_won": 8.09,
-     "weekly_win_rate": 0.8265,
+     "expected_cats_won": 8.12,
+     "weekly_win_rate": 0.8347,
      "p_big5_collapse": 0.0,
-     "p_cats_won_le4": 0.01,
-     "cats_won_sd": 1.649,
+     "p_cats_won_le4": 0.0085,
+     "cats_won_sd": 1.632,
      "iterations": 4000
     },
     "원준": {
@@ -2325,13 +2325,13 @@
       "FT%": 0.1315,
       "FG%": 0.8276,
       "A/T": 0.6122,
-      "DD": 0.8684
+      "DD": 0.8971
      },
-     "expected_cats_won": 9.1,
-     "weekly_win_rate": 0.9323,
+     "expected_cats_won": 9.13,
+     "weekly_win_rate": 0.9375,
      "p_big5_collapse": 0.0,
      "p_cats_won_le4": 0.004,
-     "cats_won_sd": 1.602,
+     "cats_won_sd": 1.59,
      "iterations": 4000
     },
     "단열": {
@@ -2348,13 +2348,13 @@
       "FT%": 0.1121,
       "FG%": 0.8651,
       "A/T": 0.8698,
-      "DD": 0.9319
+      "DD": 0.9381
      },
-     "expected_cats_won": 8.65,
-     "weekly_win_rate": 0.9233,
+     "expected_cats_won": 8.66,
+     "weekly_win_rate": 0.9235,
      "p_big5_collapse": 0.0,
-     "p_cats_won_le4": 0.0067,
-     "cats_won_sd": 1.449,
+     "p_cats_won_le4": 0.006,
+     "cats_won_sd": 1.447,
      "iterations": 4000
     },
     "지원": {
@@ -2371,13 +2371,13 @@
       "FT%": 0.1819,
       "FG%": 0.9123,
       "A/T": 0.698,
-      "DD": 0.9036
+      "DD": 0.9093
      },
-     "expected_cats_won": 8.39,
-     "weekly_win_rate": 0.859,
+     "expected_cats_won": 8.4,
+     "weekly_win_rate": 0.8595,
      "p_big5_collapse": 0.0,
      "p_cats_won_le4": 0.008,
-     "cats_won_sd": 1.7,
+     "cats_won_sd": 1.701,
      "iterations": 4000
     },
     "정명": {
@@ -2397,9 +2397,9 @@
       "DD": 0.9494
      },
      "expected_cats_won": 7.56,
-     "weekly_win_rate": 0.7528,
+     "weekly_win_rate": 0.7512,
      "p_big5_collapse": 0.0,
-     "p_cats_won_le4": 0.02,
+     "p_cats_won_le4": 0.021,
      "cats_won_sd": 1.504,
      "iterations": 4000
     },
@@ -2417,13 +2417,13 @@
       "FT%": 0.0607,
       "FG%": 0.9431,
       "A/T": 0.4943,
-      "DD": 0.9
+      "DD": 0.9275
      },
-     "expected_cats_won": 7.55,
-     "weekly_win_rate": 0.748,
+     "expected_cats_won": 7.58,
+     "weekly_win_rate": 0.7572,
      "p_big5_collapse": 0.0,
-     "p_cats_won_le4": 0.0147,
-     "cats_won_sd": 1.489,
+     "p_cats_won_le4": 0.0145,
+     "cats_won_sd": 1.475,
      "iterations": 4000
     },
     "병욱": {
@@ -2440,13 +2440,13 @@
       "FT%": 0.2635,
       "FG%": 0.8868,
       "A/T": 0.635,
-      "DD": 0.9406
+      "DD": 0.9526
      },
-     "expected_cats_won": 7.95,
-     "weekly_win_rate": 0.7847,
-     "p_big5_collapse": 0.0005,
-     "p_cats_won_le4": 0.0238,
-     "cats_won_sd": 1.779,
+     "expected_cats_won": 7.97,
+     "weekly_win_rate": 0.7863,
+     "p_big5_collapse": 0.0003,
+     "p_cats_won_le4": 0.0232,
+     "cats_won_sd": 1.772,
      "iterations": 4000
     },
     "경찬": {
@@ -2463,23 +2463,23 @@
       "FT%": 0.2819,
       "FG%": 0.8761,
       "A/T": 0.7117,
-      "DD": 0.8532
+      "DD": 0.8764
      },
-     "expected_cats_won": 9.04,
-     "weekly_win_rate": 0.9225,
+     "expected_cats_won": 9.06,
+     "weekly_win_rate": 0.9237,
      "p_big5_collapse": 0.0,
-     "p_cats_won_le4": 0.0057,
-     "cats_won_sd": 1.646,
+     "p_cats_won_le4": 0.0053,
+     "cats_won_sd": 1.644,
      "iterations": 4000
     }
    },
-   "real_mean_win_rate": 0.8509,
-   "real_min_win_rate": 0.6907,
+   "real_mean_win_rate": 0.853,
+   "real_min_win_rate": 0.6915,
    "real_min_win_rate_vs": [
     "윤범"
    ],
-   "real_mean_expected_cats": 8.32,
-   "real_mean_se_unpaired": 0.0256
+   "real_mean_expected_cats": 8.33,
+   "real_mean_se_unpaired": 0.0254
   },
   "c6": {
    "roster": [
@@ -2507,13 +2507,13 @@
      "FT%": 0.4224,
      "FG%": 0.5797,
      "A/T": 0.7167,
-     "DD": 0.8802
+     "DD": 0.8852
     },
-    "expected_cats_won": 9.1,
-    "weekly_win_rate": 0.9467,
+    "expected_cats_won": 9.11,
+    "weekly_win_rate": 0.9465,
     "p_big5_collapse": 0.003,
-    "p_cats_won_le4": 0.0057,
-    "cats_won_sd": 1.53,
+    "p_cats_won_le4": 0.006,
+    "cats_won_sd": 1.532,
     "iterations": 4000
    },
    "value_max": {
@@ -2530,13 +2530,13 @@
      "FT%": 0.698,
      "FG%": 0.129,
      "A/T": 0.5823,
-     "DD": 0.126
+     "DD": 0.1298
     },
     "expected_cats_won": 6.51,
-    "weekly_win_rate": 0.5085,
-    "p_big5_collapse": 0.299,
-    "p_cats_won_le4": 0.1202,
-    "cats_won_sd": 1.726,
+    "weekly_win_rate": 0.5078,
+    "p_big5_collapse": 0.2958,
+    "p_cats_won_le4": 0.118,
+    "cats_won_sd": 1.721,
     "iterations": 4000
    },
    "big_stack": {
@@ -2553,13 +2553,13 @@
      "FT%": 0.819,
      "FG%": 0.0222,
      "A/T": 0.712,
-     "DD": 0.2101
+     "DD": 0.2249
     },
-    "expected_cats_won": 7.11,
-    "weekly_win_rate": 0.6565,
-    "p_big5_collapse": 0.3565,
-    "p_cats_won_le4": 0.0232,
-    "cats_won_sd": 1.401,
+    "expected_cats_won": 7.13,
+    "weekly_win_rate": 0.6587,
+    "p_big5_collapse": 0.3533,
+    "p_cats_won_le4": 0.0227,
+    "cats_won_sd": 1.407,
     "iterations": 4000
    },
    "guard_stack": {
@@ -2576,13 +2576,13 @@
      "FT%": 0.2642,
      "FG%": 0.5691,
      "A/T": 0.1135,
-     "DD": 0.7625
+     "DD": 0.8009
     },
-    "expected_cats_won": 7.07,
-    "weekly_win_rate": 0.639,
+    "expected_cats_won": 7.11,
+    "weekly_win_rate": 0.6548,
     "p_big5_collapse": 0.0,
-    "p_cats_won_le4": 0.025,
-    "cats_won_sd": 1.4,
+    "p_cats_won_le4": 0.024,
+    "cats_won_sd": 1.404,
     "iterations": 4000
    },
    "baseline": {
@@ -2599,13 +2599,13 @@
      "FT%": 0.3765,
      "FG%": 0.5806,
      "A/T": 0.6977,
-     "DD": 0.97
+     "DD": 0.9798
     },
-    "expected_cats_won": 9.07,
-    "weekly_win_rate": 0.9403,
+    "expected_cats_won": 9.08,
+    "weekly_win_rate": 0.9417,
     "p_big5_collapse": 0.0,
     "p_cats_won_le4": 0.0043,
-    "cats_won_sd": 1.546,
+    "cats_won_sd": 1.543,
     "iterations": 4000
    },
    "benchmark": {
@@ -2622,20 +2622,20 @@
      "FT%": 0.5032,
      "FG%": 0.4619,
      "A/T": 0.7355,
-     "DD": 0.4926
+     "DD": 0.4693
     },
-    "expected_cats_won": 6.57,
-    "weekly_win_rate": 0.5025,
-    "p_big5_collapse": 0.108,
-    "p_cats_won_le4": 0.1318,
-    "cats_won_sd": 1.92,
+    "expected_cats_won": 6.55,
+    "weekly_win_rate": 0.4945,
+    "p_big5_collapse": 0.1123,
+    "p_cats_won_le4": 0.1355,
+    "cats_won_sd": 1.922,
     "iterations": 4000
    },
-   "min_win_rate": 0.5025,
+   "min_win_rate": 0.4945,
    "min_win_rate_vs": [
     "benchmark"
    ],
-   "tiebreak_p_big5_collapse": 0.3565,
+   "tiebreak_p_big5_collapse": 0.3533,
    "real": {
     "윤범": {
      "cat_win_probs": {
@@ -2651,13 +2651,13 @@
       "FT%": 0.425,
       "FG%": 0.6616,
       "A/T": 0.6615,
-      "DD": 0.7946
+      "DD": 0.7933
      },
      "expected_cats_won": 8.19,
-     "weekly_win_rate": 0.795,
-     "p_big5_collapse": 0.002,
+     "weekly_win_rate": 0.7943,
+     "p_big5_collapse": 0.0018,
      "p_cats_won_le4": 0.03,
-     "cats_won_sd": 1.913,
+     "cats_won_sd": 1.918,
      "iterations": 4000
     },
     "수현": {
@@ -2674,13 +2674,13 @@
       "FT%": 0.2979,
       "FG%": 0.6924,
       "A/T": 0.7173,
-      "DD": 0.8858
+      "DD": 0.8966
      },
-     "expected_cats_won": 8.78,
-     "weekly_win_rate": 0.9313,
+     "expected_cats_won": 8.79,
+     "weekly_win_rate": 0.9323,
      "p_big5_collapse": 0.0,
-     "p_cats_won_le4": 0.008,
-     "cats_won_sd": 1.454,
+     "p_cats_won_le4": 0.0077,
+     "cats_won_sd": 1.447,
      "iterations": 4000
     },
     "철웅": {
@@ -2697,13 +2697,13 @@
       "FT%": 0.4026,
       "FG%": 0.4351,
       "A/T": 0.8842,
-      "DD": 0.8605
+      "DD": 0.844
      },
-     "expected_cats_won": 9.17,
-     "weekly_win_rate": 0.9503,
-     "p_big5_collapse": 0.0008,
-     "p_cats_won_le4": 0.0022,
-     "cats_won_sd": 1.468,
+     "expected_cats_won": 9.16,
+     "weekly_win_rate": 0.9497,
+     "p_big5_collapse": 0.001,
+     "p_cats_won_le4": 0.0025,
+     "cats_won_sd": 1.471,
      "iterations": 4000
     },
     "두현": {
@@ -2720,10 +2720,10 @@
       "FT%": 0.3741,
       "FG%": 0.5015,
       "A/T": 0.7,
-      "DD": 0.914
+      "DD": 0.9131
      },
      "expected_cats_won": 9.33,
-     "weekly_win_rate": 0.9732,
+     "weekly_win_rate": 0.9728,
      "p_big5_collapse": 0.0,
      "p_cats_won_le4": 0.0005,
      "cats_won_sd": 1.382,
@@ -2743,13 +2743,13 @@
       "FT%": 0.3683,
       "FG%": 0.7689,
       "A/T": 0.6188,
-      "DD": 0.7907
+      "DD": 0.8324
      },
-     "expected_cats_won": 8.84,
-     "weekly_win_rate": 0.8932,
+     "expected_cats_won": 8.88,
+     "weekly_win_rate": 0.9022,
      "p_big5_collapse": 0.0003,
-     "p_cats_won_le4": 0.0073,
-     "cats_won_sd": 1.728,
+     "p_cats_won_le4": 0.007,
+     "cats_won_sd": 1.718,
      "iterations": 4000
     },
     "원준": {
@@ -2766,13 +2766,13 @@
       "FT%": 0.3594,
       "FG%": 0.512,
       "A/T": 0.654,
-      "DD": 0.733
+      "DD": 0.7764
      },
-     "expected_cats_won": 9.44,
-     "weekly_win_rate": 0.9738,
+     "expected_cats_won": 9.49,
+     "weekly_win_rate": 0.9762,
      "p_big5_collapse": 0.0,
-     "p_cats_won_le4": 0.002,
-     "cats_won_sd": 1.41,
+     "p_cats_won_le4": 0.0018,
+     "cats_won_sd": 1.401,
      "iterations": 4000
     },
     "단열": {
@@ -2789,13 +2789,13 @@
       "FT%": 0.3,
       "FG%": 0.5431,
       "A/T": 0.8862,
-      "DD": 0.8311
+      "DD": 0.824
      },
      "expected_cats_won": 9.02,
-     "weekly_win_rate": 0.9497,
+     "weekly_win_rate": 0.9483,
      "p_big5_collapse": 0.0005,
      "p_cats_won_le4": 0.0053,
-     "cats_won_sd": 1.473,
+     "cats_won_sd": 1.475,
      "iterations": 4000
     },
     "지원": {
@@ -2812,13 +2812,13 @@
       "FT%": 0.4567,
       "FG%": 0.6719,
       "A/T": 0.726,
-      "DD": 0.7946
+      "DD": 0.7955
      },
      "expected_cats_won": 9.17,
-     "weekly_win_rate": 0.9223,
+     "weekly_win_rate": 0.9215,
      "p_big5_collapse": 0.0,
      "p_cats_won_le4": 0.006,
-     "cats_won_sd": 1.713,
+     "cats_won_sd": 1.71,
      "iterations": 4000
     },
     "정명": {
@@ -2835,13 +2835,13 @@
       "FT%": 0.1067,
       "FG%": 0.4345,
       "A/T": 0.753,
-      "DD": 0.8774
+      "DD": 0.8694
      },
-     "expected_cats_won": 7.87,
-     "weekly_win_rate": 0.8057,
+     "expected_cats_won": 7.86,
+     "weekly_win_rate": 0.8053,
      "p_big5_collapse": 0.0003,
-     "p_cats_won_le4": 0.0267,
-     "cats_won_sd": 1.613,
+     "p_cats_won_le4": 0.028,
+     "cats_won_sd": 1.617,
      "iterations": 4000
     },
     "준희": {
@@ -2858,13 +2858,13 @@
       "FT%": 0.2076,
       "FG%": 0.7024,
       "A/T": 0.5258,
-      "DD": 0.7764
+      "DD": 0.8275
      },
-     "expected_cats_won": 7.99,
-     "weekly_win_rate": 0.8035,
+     "expected_cats_won": 8.04,
+     "weekly_win_rate": 0.8153,
      "p_big5_collapse": 0.001,
-     "p_cats_won_le4": 0.0232,
-     "cats_won_sd": 1.676,
+     "p_cats_won_le4": 0.0222,
+     "cats_won_sd": 1.666,
      "iterations": 4000
     },
     "병욱": {
@@ -2881,13 +2881,13 @@
       "FT%": 0.5526,
       "FG%": 0.5803,
       "A/T": 0.6675,
-      "DD": 0.8524
+      "DD": 0.867
      },
-     "expected_cats_won": 8.69,
-     "weekly_win_rate": 0.8712,
+     "expected_cats_won": 8.7,
+     "weekly_win_rate": 0.8735,
      "p_big5_collapse": 0.0015,
-     "p_cats_won_le4": 0.0175,
-     "cats_won_sd": 1.798,
+     "p_cats_won_le4": 0.0185,
+     "cats_won_sd": 1.797,
      "iterations": 4000
     },
     "경찬": {
@@ -2904,23 +2904,23 @@
       "FT%": 0.5689,
       "FG%": 0.6012,
       "A/T": 0.7315,
-      "DD": 0.724
+      "DD": 0.7374
      },
-     "expected_cats_won": 9.44,
-     "weekly_win_rate": 0.9557,
+     "expected_cats_won": 9.45,
+     "weekly_win_rate": 0.9565,
      "p_big5_collapse": 0.0005,
-     "p_cats_won_le4": 0.0037,
-     "cats_won_sd": 1.531,
+     "p_cats_won_le4": 0.0043,
+     "cats_won_sd": 1.524,
      "iterations": 4000
     }
    },
-   "real_mean_win_rate": 0.9021,
-   "real_min_win_rate": 0.795,
+   "real_mean_win_rate": 0.904,
+   "real_min_win_rate": 0.7943,
    "real_min_win_rate_vs": [
     "윤범"
    ],
-   "real_mean_expected_cats": 8.83,
-   "real_mean_se_unpaired": 0.0195
+   "real_mean_expected_cats": 8.84,
+   "real_mean_se_unpaired": 0.0192
   },
   "c7": {
    "roster": [
@@ -2948,12 +2948,12 @@
      "FT%": 0.213,
      "FG%": 0.6735,
      "A/T": 0.536,
-     "DD": 0.9355
+     "DD": 0.9357
     },
     "expected_cats_won": 8.88,
-    "weekly_win_rate": 0.921,
+    "weekly_win_rate": 0.9197,
     "p_big5_collapse": 0.001,
-    "p_cats_won_le4": 0.007,
+    "p_cats_won_le4": 0.0073,
     "cats_won_sd": 1.579,
     "iterations": 4000
    },
@@ -2971,13 +2971,13 @@
      "FT%": 0.4432,
      "FG%": 0.2052,
      "A/T": 0.3817,
-     "DD": 0.2258
+     "DD": 0.251
     },
-    "expected_cats_won": 6.4,
-    "weekly_win_rate": 0.485,
-    "p_big5_collapse": 0.139,
-    "p_cats_won_le4": 0.1787,
-    "cats_won_sd": 2.06,
+    "expected_cats_won": 6.43,
+    "weekly_win_rate": 0.486,
+    "p_big5_collapse": 0.138,
+    "p_cats_won_le4": 0.1792,
+    "cats_won_sd": 2.074,
     "iterations": 4000
    },
    "big_stack": {
@@ -2994,13 +2994,13 @@
      "FT%": 0.5873,
      "FG%": 0.0465,
      "A/T": 0.5295,
-     "DD": 0.3639
+     "DD": 0.3926
     },
-    "expected_cats_won": 7.31,
-    "weekly_win_rate": 0.678,
-    "p_big5_collapse": 0.1658,
-    "p_cats_won_le4": 0.0575,
-    "cats_won_sd": 1.762,
+    "expected_cats_won": 7.34,
+    "weekly_win_rate": 0.6873,
+    "p_big5_collapse": 0.1618,
+    "p_cats_won_le4": 0.0563,
+    "cats_won_sd": 1.765,
     "iterations": 4000
    },
    "guard_stack": {
@@ -3017,13 +3017,13 @@
      "FT%": 0.1056,
      "FG%": 0.6721,
      "A/T": 0.0437,
-     "DD": 0.8708
+     "DD": 0.897
     },
-    "expected_cats_won": 6.78,
-    "weekly_win_rate": 0.575,
+    "expected_cats_won": 6.81,
+    "weekly_win_rate": 0.5837,
     "p_big5_collapse": 0.0,
-    "p_cats_won_le4": 0.0272,
-    "cats_won_sd": 1.273,
+    "p_cats_won_le4": 0.0253,
+    "cats_won_sd": 1.26,
     "iterations": 4000
    },
    "baseline": {
@@ -3040,13 +3040,13 @@
      "FT%": 0.1611,
      "FG%": 0.7009,
      "A/T": 0.5162,
-     "DD": 0.9905
+     "DD": 0.9952
     },
     "expected_cats_won": 8.74,
-    "weekly_win_rate": 0.9077,
+    "weekly_win_rate": 0.9083,
     "p_big5_collapse": 0.0,
     "p_cats_won_le4": 0.0083,
-    "cats_won_sd": 1.631,
+    "cats_won_sd": 1.629,
     "iterations": 4000
    },
    "benchmark": {
@@ -3063,20 +3063,20 @@
      "FT%": 0.2729,
      "FG%": 0.5775,
      "A/T": 0.5225,
-     "DD": 0.6671
+     "DD": 0.6524
     },
-    "expected_cats_won": 6.69,
-    "weekly_win_rate": 0.5405,
-    "p_big5_collapse": 0.0305,
-    "p_cats_won_le4": 0.165,
-    "cats_won_sd": 2.169,
+    "expected_cats_won": 6.67,
+    "weekly_win_rate": 0.5365,
+    "p_big5_collapse": 0.033,
+    "p_cats_won_le4": 0.168,
+    "cats_won_sd": 2.178,
     "iterations": 4000
    },
-   "min_win_rate": 0.485,
+   "min_win_rate": 0.486,
    "min_win_rate_vs": [
     "value_max"
    ],
-   "tiebreak_p_big5_collapse": 0.1658,
+   "tiebreak_p_big5_collapse": 0.1618,
    "real": {
     "윤범": {
      "cat_win_probs": {
@@ -3092,13 +3092,13 @@
       "FT%": 0.2104,
       "FG%": 0.763,
       "A/T": 0.453,
-      "DD": 0.8999
+      "DD": 0.9075
      },
-     "expected_cats_won": 7.8,
-     "weekly_win_rate": 0.752,
+     "expected_cats_won": 7.81,
+     "weekly_win_rate": 0.754,
      "p_big5_collapse": 0.0,
-     "p_cats_won_le4": 0.031,
-     "cats_won_sd": 1.837,
+     "p_cats_won_le4": 0.0305,
+     "cats_won_sd": 1.834,
      "iterations": 4000
     },
     "수현": {
@@ -3115,13 +3115,13 @@
       "FT%": 0.1229,
       "FG%": 0.7823,
       "A/T": 0.5347,
-      "DD": 0.9427
+      "DD": 0.9574
      },
-     "expected_cats_won": 8.43,
-     "weekly_win_rate": 0.8835,
+     "expected_cats_won": 8.44,
+     "weekly_win_rate": 0.889,
      "p_big5_collapse": 0.0,
-     "p_cats_won_le4": 0.0088,
-     "cats_won_sd": 1.546,
+     "p_cats_won_le4": 0.008,
+     "cats_won_sd": 1.539,
      "iterations": 4000
     },
     "철웅": {
@@ -3138,13 +3138,13 @@
       "FT%": 0.1983,
       "FG%": 0.5529,
       "A/T": 0.7578,
-      "DD": 0.9323
+      "DD": 0.9281
      },
      "expected_cats_won": 9.01,
-     "weekly_win_rate": 0.9413,
+     "weekly_win_rate": 0.9415,
      "p_big5_collapse": 0.0,
-     "p_cats_won_le4": 0.0032,
-     "cats_won_sd": 1.497,
+     "p_cats_won_le4": 0.003,
+     "cats_won_sd": 1.492,
      "iterations": 4000
     },
     "두현": {
@@ -3161,13 +3161,13 @@
       "FT%": 0.1745,
       "FG%": 0.6209,
       "A/T": 0.5165,
-      "DD": 0.9624
+      "DD": 0.9645
      },
      "expected_cats_won": 9.04,
-     "weekly_win_rate": 0.9533,
+     "weekly_win_rate": 0.953,
      "p_big5_collapse": 0.0,
      "p_cats_won_le4": 0.0003,
-     "cats_won_sd": 1.416,
+     "cats_won_sd": 1.418,
      "iterations": 4000
     },
     "진빈": {
@@ -3184,13 +3184,13 @@
       "FT%": 0.1674,
       "FG%": 0.8485,
       "A/T": 0.4195,
-      "DD": 0.8855
+      "DD": 0.9156
      },
-     "expected_cats_won": 8.32,
-     "weekly_win_rate": 0.8485,
+     "expected_cats_won": 8.35,
+     "weekly_win_rate": 0.8565,
      "p_big5_collapse": 0.0,
-     "p_cats_won_le4": 0.0077,
-     "cats_won_sd": 1.692,
+     "p_cats_won_le4": 0.007,
+     "cats_won_sd": 1.68,
      "iterations": 4000
     },
     "원준": {
@@ -3207,13 +3207,13 @@
       "FT%": 0.1575,
       "FG%": 0.6344,
       "A/T": 0.4427,
-      "DD": 0.85
+      "DD": 0.8841
      },
-     "expected_cats_won": 9.2,
-     "weekly_win_rate": 0.95,
+     "expected_cats_won": 9.23,
+     "weekly_win_rate": 0.9543,
      "p_big5_collapse": 0.0,
-     "p_cats_won_le4": 0.0018,
-     "cats_won_sd": 1.461,
+     "p_cats_won_le4": 0.002,
+     "cats_won_sd": 1.451,
      "iterations": 4000
     },
     "단열": {
@@ -3230,13 +3230,13 @@
       "FT%": 0.1276,
       "FG%": 0.6654,
       "A/T": 0.7632,
-      "DD": 0.9166
+      "DD": 0.9203
      },
-     "expected_cats_won": 8.93,
+     "expected_cats_won": 8.94,
      "weekly_win_rate": 0.929,
      "p_big5_collapse": 0.0,
      "p_cats_won_le4": 0.003,
-     "cats_won_sd": 1.507,
+     "cats_won_sd": 1.509,
      "iterations": 4000
     },
     "지원": {
@@ -3253,13 +3253,13 @@
       "FT%": 0.2162,
       "FG%": 0.7709,
       "A/T": 0.5152,
-      "DD": 0.8926
+      "DD": 0.8961
      },
      "expected_cats_won": 8.71,
-     "weekly_win_rate": 0.8855,
+     "weekly_win_rate": 0.8858,
      "p_big5_collapse": 0.0,
-     "p_cats_won_le4": 0.0067,
-     "cats_won_sd": 1.724,
+     "p_cats_won_le4": 0.0073,
+     "cats_won_sd": 1.729,
      "iterations": 4000
     },
     "정명": {
@@ -3276,13 +3276,13 @@
       "FT%": 0.0259,
       "FG%": 0.5606,
       "A/T": 0.547,
-      "DD": 0.9389
+      "DD": 0.9414
      },
-     "expected_cats_won": 7.52,
-     "weekly_win_rate": 0.7188,
-     "p_big5_collapse": 0.0003,
-     "p_cats_won_le4": 0.0328,
-     "cats_won_sd": 1.626,
+     "expected_cats_won": 7.53,
+     "weekly_win_rate": 0.721,
+     "p_big5_collapse": 0.0,
+     "p_cats_won_le4": 0.033,
+     "cats_won_sd": 1.628,
      "iterations": 4000
     },
     "준희": {
@@ -3299,13 +3299,13 @@
       "FT%": 0.0694,
       "FG%": 0.8201,
       "A/T": 0.317,
-      "DD": 0.8851
+      "DD": 0.9197
      },
-     "expected_cats_won": 7.56,
-     "weekly_win_rate": 0.7325,
+     "expected_cats_won": 7.59,
+     "weekly_win_rate": 0.7425,
      "p_big5_collapse": 0.0,
-     "p_cats_won_le4": 0.0177,
-     "cats_won_sd": 1.561,
+     "p_cats_won_le4": 0.017,
+     "cats_won_sd": 1.552,
      "iterations": 4000
     },
     "병욱": {
@@ -3322,13 +3322,13 @@
       "FT%": 0.3046,
       "FG%": 0.7003,
       "A/T": 0.4773,
-      "DD": 0.9299
+      "DD": 0.9431
      },
-     "expected_cats_won": 8.32,
-     "weekly_win_rate": 0.84,
+     "expected_cats_won": 8.34,
+     "weekly_win_rate": 0.8427,
      "p_big5_collapse": 0.0,
-     "p_cats_won_le4": 0.0168,
-     "cats_won_sd": 1.754,
+     "p_cats_won_le4": 0.0163,
+     "cats_won_sd": 1.751,
      "iterations": 4000
     },
     "경찬": {
@@ -3345,128 +3345,128 @@
       "FT%": 0.3196,
       "FG%": 0.6923,
       "A/T": 0.5423,
-      "DD": 0.8396
+      "DD": 0.858
      },
-     "expected_cats_won": 9.27,
-     "weekly_win_rate": 0.9447,
+     "expected_cats_won": 9.29,
+     "weekly_win_rate": 0.9445,
      "p_big5_collapse": 0.0,
-     "p_cats_won_le4": 0.0022,
-     "cats_won_sd": 1.591,
+     "p_cats_won_le4": 0.002,
+     "cats_won_sd": 1.585,
      "iterations": 4000
     }
    },
-   "real_mean_win_rate": 0.8649,
-   "real_min_win_rate": 0.7188,
+   "real_mean_win_rate": 0.8678,
+   "real_min_win_rate": 0.721,
    "real_min_win_rate_vs": [
     "정명"
    ],
-   "real_mean_expected_cats": 8.51,
-   "real_mean_se_unpaired": 0.0253
+   "real_mean_expected_cats": 8.52,
+   "real_mean_se_unpaired": 0.0249
   }
  },
  "standard_error": {
   "n_opponents": 12,
-  "paired_se_median": 0.0068,
+  "paired_se_median": 0.0067,
   "paired_se_by_pair": {
    "c1-c2": {
-    "mean_diff": 0.0067,
-    "se": 0.0067
+    "mean_diff": 0.0119,
+    "se": 0.0068
    },
    "c1-c3": {
-    "mean_diff": -0.0077,
-    "se": 0.0055
+    "mean_diff": -0.0012,
+    "se": 0.005
    },
    "c1-c4": {
-    "mean_diff": 0.0267,
-    "se": 0.0062
+    "mean_diff": 0.0317,
+    "se": 0.0065
    },
    "c1-c5": {
-    "mean_diff": 0.0227,
+    "mean_diff": 0.0269,
     "se": 0.0049
    },
    "c1-c6": {
-    "mean_diff": -0.0285,
-    "se": 0.0043
+    "mean_diff": -0.0241,
+    "se": 0.0041
    },
    "c1-c7": {
-    "mean_diff": 0.0087,
-    "se": 0.0046
+    "mean_diff": 0.0121,
+    "se": 0.0045
    },
    "c2-c3": {
-    "mean_diff": -0.0144,
-    "se": 0.0102
+    "mean_diff": -0.0132,
+    "se": 0.01
    },
    "c2-c4": {
-    "mean_diff": 0.02,
-    "se": 0.0077
+    "mean_diff": 0.0197,
+    "se": 0.0078
    },
    "c2-c5": {
-    "mean_diff": 0.0161,
-    "se": 0.009
+    "mean_diff": 0.015,
+    "se": 0.0088
    },
    "c2-c6": {
-    "mean_diff": -0.0351,
+    "mean_diff": -0.036,
     "se": 0.007
    },
    "c2-c7": {
-    "mean_diff": 0.002,
-    "se": 0.0058
+    "mean_diff": 0.0002,
+    "se": 0.0059
    },
    "c3-c4": {
-    "mean_diff": 0.0344,
-    "se": 0.0095
-   },
-   "c3-c5": {
-    "mean_diff": 0.0304,
-    "se": 0.0068
-   },
-   "c3-c6": {
-    "mean_diff": -0.0208,
-    "se": 0.0045
-   },
-   "c3-c7": {
-    "mean_diff": 0.0164,
+    "mean_diff": 0.0329,
     "se": 0.0093
    },
+   "c3-c5": {
+    "mean_diff": 0.0282,
+    "se": 0.0067
+   },
+   "c3-c6": {
+    "mean_diff": -0.0228,
+    "se": 0.0044
+   },
+   "c3-c7": {
+    "mean_diff": 0.0133,
+    "se": 0.0089
+   },
    "c4-c5": {
-    "mean_diff": -0.004,
+    "mean_diff": -0.0047,
     "se": 0.0042
    },
    "c4-c6": {
-    "mean_diff": -0.0552,
-    "se": 0.009
+    "mean_diff": -0.0557,
+    "se": 0.0092
    },
    "c4-c7": {
-    "mean_diff": -0.018,
-    "se": 0.0066
+    "mean_diff": -0.0196,
+    "se": 0.0067
    },
    "c5-c6": {
-    "mean_diff": -0.0512,
-    "se": 0.0078
+    "mean_diff": -0.051,
+    "se": 0.0079
    },
    "c5-c7": {
-    "mean_diff": -0.014,
-    "se": 0.0077
+    "mean_diff": -0.0148,
+    "se": 0.0076
    },
    "c6-c7": {
-    "mean_diff": 0.0371,
-    "se": 0.0068
+    "mean_diff": 0.0362,
+    "se": 0.0067
    }
   },
   "unpaired_se_by_core": {
-   "c1": 0.023,
-   "c2": 0.0249,
+   "c1": 0.0224,
+   "c2": 0.0247,
    "c3": 0.0194,
-   "c4": 0.0277,
-   "c5": 0.0256,
-   "c6": 0.0195,
-   "c7": 0.0253
+   "c4": 0.0276,
+   "c5": 0.0254,
+   "c6": 0.0192,
+   "c7": 0.0249
   },
   "which_to_use": "코어끼리 **비교**할 때는 paired 를 쓴다. unpaired 는 '이 코어의 절대 승률이 얼마인가'의 오차이고, 모든 코어를 같은 12팀에 붙이므로 비교에서는 상대의 강약이 상쇄된다. 섞으면 4배 크게 잡는다.",
   "definition": "paired: 두 코어의 상대별 승률 **차이** 벡터의 표본SD ÷ √n. unpaired: 한 코어의 상대별 승률 벡터의 표본SD ÷ √n.",
   "not_monte_carlo": "🔴 몬테카를로 오차가 아니다 — 시행수를 늘려도 거의 안 줄어든다(2500 ±0.87%p → 10000 ±0.77%p). 병목은 n=12 다.",
   "use": "판단표 「동급 묶음」 컷에 쓴다. **컷 폭을 화면에 상수로 박지 말 것** — 상대 집합이 바뀌면 이 값이 바뀌는데 화면 상수는 그대로 남아 조용히 틀린다.",
-  "suggested_cut": 0.0085,
+  "suggested_cut": 0.0084,
   "caveat": "단일 컷은 근사다. 쌍마다 SE 가 다르다(c1-c6 0.25%p ↔ c2-c3 0.80%p) — 선수를 많이 공유하는 코어끼리는 차이가 더 정밀하게 측정된다."
  },
  "assumption_stress": {
@@ -3480,9 +3480,9 @@
   "rows": [
    {
     "core": "c1",
-    "base": 0.8736,
-    "stressed": 0.8144,
-    "delta": -0.0592,
+    "base": 0.8799,
+    "stressed": 0.8226,
+    "delta": -0.0573,
     "assumptions": [
      {
       "player": "Tyrese Haliburton",
@@ -3494,16 +3494,16 @@
    },
    {
     "core": "c2",
-    "base": 0.8669,
-    "stressed": 0.8669,
+    "base": 0.868,
+    "stressed": 0.868,
     "delta": 0.0,
     "assumptions": []
    },
    {
     "core": "c3",
-    "base": 0.8813,
+    "base": 0.8811,
     "stressed": 0.856,
-    "delta": -0.0253,
+    "delta": -0.0251,
     "assumptions": [
      {
       "player": "Damian Lillard",
@@ -3515,8 +3515,8 @@
    },
    {
     "core": "c4",
-    "base": 0.8469,
-    "stressed": 0.8122,
+    "base": 0.8483,
+    "stressed": 0.8136,
     "delta": -0.0347,
     "assumptions": [
      {
@@ -3529,9 +3529,9 @@
    },
    {
     "core": "c5",
-    "base": 0.8509,
-    "stressed": 0.7361,
-    "delta": -0.1148,
+    "base": 0.853,
+    "stressed": 0.743,
+    "delta": -0.11,
     "assumptions": [
      {
       "player": "Domantas Sabonis",
@@ -3555,15 +3555,15 @@
    },
    {
     "core": "c6",
-    "base": 0.9021,
-    "stressed": 0.9021,
+    "base": 0.904,
+    "stressed": 0.904,
     "delta": 0.0,
     "assumptions": []
    },
    {
     "core": "c7",
-    "base": 0.8649,
-    "stressed": 0.8649,
+    "base": 0.8678,
+    "stressed": 0.8678,
     "delta": 0.0,
     "assumptions": []
    }
@@ -3581,11 +3581,11 @@
     "gp_assumed": 73.0,
     "gp_alt": 54,
     "why": "아킬레스 복귀 시즌. 혼합 GP 73 은 전부 2024-25 투영이고 2025-26 실측이 0경기다. 54 는 다른 세션의 리그 전체 회귀 예측치로, **근거가 아니라 흔들어 보는 값**이다.",
-    "mean": 0.8736,
-    "min": 0.7425,
-    "alt_mean": 0.8144,
-    "alt_min": 0.6402,
-    "delta_mean": -0.0592
+    "mean": 0.8799,
+    "min": 0.7505,
+    "alt_mean": 0.8226,
+    "alt_min": 0.6505,
+    "delta_mean": -0.0573
    },
    {
     "core": "c5",
@@ -3593,297 +3593,12 @@
     "gp_assumed": 73.0,
     "gp_alt": 54,
     "why": "아킬레스 복귀 시즌. 혼합 GP 73 은 전부 2024-25 투영이고 2025-26 실측이 0경기다. 54 는 다른 세션의 리그 전체 회귀 예측치로, **근거가 아니라 흔들어 보는 값**이다.",
-    "mean": 0.8509,
-    "min": 0.6907,
-    "alt_mean": 0.7936,
-    "alt_min": 0.599,
-    "delta_mean": -0.0573
+    "mean": 0.853,
+    "min": 0.6915,
+    "alt_mean": 0.798,
+    "alt_min": 0.6048,
+    "delta_mean": -0.055
    }
   ]
- },
- "walkaway_40": {
-  "status": "부분 측정 — 5명 중 1명만 판정 가능",
-  "method": "무차별 가격 = 2순위 취득가 + (그 선수를 잃을 때의 승률 손실) / 환율. 환율은 코어마다 **사전 지정한** 큰 금액차 교체 1건으로 잰다(가장 비싼 비앵커 칸 → 그 칸의 가장 싼 적격 대안). 0.110~0.259%p/$.",
-  "rejected_attempt": {
-   "what": "후보 9개를 재고 **환율이 가장 높은 것**을 골랐다.",
-   "why_wrong": "max(잡음)/작은 분모다. 대응 SE 가 ±0.59%p 인데 금액차가 $1~3 이라 c3 가 1.768%p/$ 로 나왔다 — 독립 대조점(c3 에서 $7 빼니 1.1%p = 0.157%p/$)의 **11배**.",
-   "what_it_produced": "Daniels 철수가 $5. 그를 잃으면 4.5%p 를 잃는데 $6 에 포기하라고 말한다. 6개 코어의 1순위이고 대체후보가 어디에도 없는 선수다.",
-   "how_caught": "독립 대조점이 있었다. 없었으면 그대로 화면에 나갔다."
-  },
-  "paired_se": 0.0059,
-  "significance": "손실 > 2×SE (=1.18%p) 일 때만 판정한다",
-  "conclusions": {
-   "Dyson Daniels": "🔴 **예산 구속**. 6개 코어 전부에서 손실 3.9~4.6%p(SE 의 6.6~7.8배)이고 무차별 가격이 $20~44 로 **예산 상한을 넘는다**. 즉 그는 우리가 낼 수 있는 것보다 가치가 크다 — 철수선은 무차별이 아니라 **내 최대가 $20** 이다. ⚠️ $44 같은 값을 인용하지 말 것(먼 외삽이다). 필요한 주장은 '상한을 넘는다'뿐이고 그건 환율이 2배 틀려도 성립한다.",
-   "Kon Knueppel": "판정 불가 — 4개 코어 전부 손실이 잡음 안(0.43~1.50%p).",
-   "Desmond Bane": "판정 불가 — 0.55·0.76%p, 잡음 안.",
-   "DeMar DeRozan": "판정 불가 — 0.14·0.19%p, 잡음 안.",
-   "Josh Hart": "c3 는 잡음 안(0.73%p). c7 의 5.79%p 는 **가격이 아니라 대체 목록의 문제**였다 — 그 칸 대체가 Queta·Diabaté 로 **둘 다 센터**여서 SF 를 잃는 값이 찍혔다. 대체를 SF 가능한 선수로 바꿔 원인을 없앴다."
-  },
-  "side_finding": "Knueppel ↔ Bane 은 **어느 코어에서도 구별되지 않는다**(전부 잡음 안). SF 병목은 '둘 중 누구를 잡느냐'가 아니라 **'둘 중 하나를 잡느냐'** 의 문제다.",
-  "rate_by_core": {
-   "c1": {
-    "from": "Alperen Şengün",
-    "to": "Andrew Wiggins",
-    "delta_dollar": 24,
-    "delta_pp": 0.0264,
-    "rate": 0.0011
-   },
-   "c2": {
-    "from": "Desmond Bane",
-    "to": "Andrew Wiggins",
-    "delta_dollar": 20,
-    "delta_pp": 0.0292,
-    "rate": 0.00146
-   },
-   "c3": {
-    "from": "Alperen Şengün",
-    "to": "Andrew Wiggins",
-    "delta_dollar": 24,
-    "delta_pp": 0.0462,
-    "rate": 0.00193
-   },
-   "c4": {
-    "from": "Trae Young",
-    "to": "AJ Green",
-    "delta_dollar": 28,
-    "delta_pp": 0.0726,
-    "rate": 0.00259
-   },
-   "c5": {
-    "from": "Amen Thompson",
-    "to": "AJ Green",
-    "delta_dollar": 24,
-    "delta_pp": 0.0489,
-    "rate": 0.00204
-   },
-   "c6": {
-    "from": "Alperen Şengün",
-    "to": "Andrew Wiggins",
-    "delta_dollar": 24,
-    "delta_pp": 0.0458,
-    "rate": 0.00191
-   },
-   "c7": {
-    "from": "Alperen Şengün",
-    "to": "Andrew Wiggins",
-    "delta_dollar": 24,
-    "delta_pp": 0.0264,
-    "rate": 0.0011
-   }
-  },
-  "rows": [
-   {
-    "player": "Kon Knueppel",
-    "core": "c1",
-    "plan": 22,
-    "alt": "Desmond Bane",
-    "alt_price": 22,
-    "loss_pp": -0.007,
-    "significant": false,
-    "rate": 0.0011,
-    "indifference": null,
-    "budget_cap": 30,
-    "binding": "below_noise"
-   },
-   {
-    "player": "Kon Knueppel",
-    "core": "c4",
-    "plan": 22,
-    "alt": "Desmond Bane",
-    "alt_price": 22,
-    "loss_pp": -0.015,
-    "significant": false,
-    "rate": 0.00259,
-    "indifference": null,
-    "budget_cap": 32,
-    "binding": "below_noise"
-   },
-   {
-    "player": "Kon Knueppel",
-    "core": "c5",
-    "plan": 22,
-    "alt": "Josh Hart",
-    "alt_price": 4,
-    "loss_pp": -0.0112,
-    "significant": false,
-    "rate": 0.00204,
-    "indifference": null,
-    "budget_cap": 32,
-    "binding": "below_noise"
-   },
-   {
-    "player": "Kon Knueppel",
-    "core": "c7",
-    "plan": 22,
-    "alt": "Desmond Bane",
-    "alt_price": 22,
-    "loss_pp": -0.0043,
-    "significant": false,
-    "rate": 0.0011,
-    "indifference": null,
-    "budget_cap": 34,
-    "binding": "below_noise"
-   },
-   {
-    "player": "Desmond Bane",
-    "core": "c2",
-    "plan": 22,
-    "alt": "Josh Hart",
-    "alt_price": 4,
-    "loss_pp": -0.0055,
-    "significant": false,
-    "rate": 0.00146,
-    "indifference": null,
-    "budget_cap": 29,
-    "binding": "below_noise"
-   },
-   {
-    "player": "Desmond Bane",
-    "core": "c6",
-    "plan": 22,
-    "alt": "Josh Hart",
-    "alt_price": 4,
-    "loss_pp": 0.0076,
-    "significant": false,
-    "rate": 0.00191,
-    "indifference": null,
-    "budget_cap": 27,
-    "binding": "below_noise"
-   },
-   {
-    "player": "Josh Hart",
-    "core": "c3",
-    "plan": 4,
-    "alt": "DeMar DeRozan",
-    "alt_price": 8,
-    "loss_pp": 0.0073,
-    "significant": false,
-    "rate": 0.00193,
-    "indifference": null,
-    "budget_cap": 9,
-    "binding": "below_noise"
-   },
-   {
-    "player": "Josh Hart",
-    "core": "c7",
-    "plan": 4,
-    "alt": "Neemias Queta",
-    "alt_price": 2,
-    "loss_pp": 0.0579,
-    "significant": true,
-    "rate": 0.0011,
-    "indifference": 54.6,
-    "budget_cap": 16,
-    "binding": "budget"
-   },
-   {
-    "player": "DeMar DeRozan",
-    "core": "c2",
-    "plan": 8,
-    "alt": "Jaden McDaniels",
-    "alt_price": 5,
-    "loss_pp": -0.0014,
-    "significant": false,
-    "rate": 0.00146,
-    "indifference": null,
-    "budget_cap": 15,
-    "binding": "below_noise"
-   },
-   {
-    "player": "DeMar DeRozan",
-    "core": "c6",
-    "plan": 8,
-    "alt": "Josh Hart",
-    "alt_price": 4,
-    "loss_pp": 0.0019,
-    "significant": false,
-    "rate": 0.00191,
-    "indifference": null,
-    "budget_cap": 13,
-    "binding": "below_noise"
-   },
-   {
-    "player": "Dyson Daniels",
-    "core": "c1",
-    "plan": 12,
-    "alt": "Ausar Thompson",
-    "alt_price": 3,
-    "loss_pp": 0.0455,
-    "significant": true,
-    "rate": 0.0011,
-    "indifference": 44.4,
-    "budget_cap": 20,
-    "binding": "budget"
-   },
-   {
-    "player": "Dyson Daniels",
-    "core": "c3",
-    "plan": 12,
-    "alt": "Ausar Thompson",
-    "alt_price": 3,
-    "loss_pp": 0.0387,
-    "significant": true,
-    "rate": 0.00193,
-    "indifference": 23.1,
-    "budget_cap": 17,
-    "binding": "budget"
-   },
-   {
-    "player": "Dyson Daniels",
-    "core": "c4",
-    "plan": 12,
-    "alt": "Ausar Thompson",
-    "alt_price": 3,
-    "loss_pp": 0.0443,
-    "significant": true,
-    "rate": 0.00259,
-    "indifference": 20.1,
-    "budget_cap": 22,
-    "binding": "indifference"
-   },
-   {
-    "player": "Dyson Daniels",
-    "core": "c5",
-    "plan": 12,
-    "alt": "Andrew Nembhard",
-    "alt_price": 2,
-    "loss_pp": 0.0425,
-    "significant": true,
-    "rate": 0.00204,
-    "indifference": 22.8,
-    "budget_cap": 22,
-    "binding": "budget"
-   },
-   {
-    "player": "Dyson Daniels",
-    "core": "c6",
-    "plan": 12,
-    "alt": "Ausar Thompson",
-    "alt_price": 3,
-    "loss_pp": 0.0436,
-    "significant": true,
-    "rate": 0.00191,
-    "indifference": 25.8,
-    "budget_cap": 17,
-    "binding": "budget"
-   },
-   {
-    "player": "Dyson Daniels",
-    "core": "c7",
-    "plan": 12,
-    "alt": "Ausar Thompson",
-    "alt_price": 3,
-    "loss_pp": 0.0449,
-    "significant": true,
-    "rate": 0.0011,
-    "indifference": 43.8,
-    "budget_cap": 24,
-    "binding": "budget"
-   }
-  ],
-  "restored_44": "🔴 **44차에 git 668a179 에서 복원했다. 다시 재지 않았다** — 이 저장소에 **채택된 방법의 코드가 없다.**\n`tool/walkaway_price.py` 는 `rate_of()` 가 후보 중 **환율 최대**를 고른다(`r > best[0]`) — 위 `rejected_attempt` 가 「후보 9개를 재고 환율이 가장 높은 것을 골랐다」고 적어 **버린 바로 그 방법**이다. 44차에 실제로 돌려 보니 **Daniels c1 철수 $5** 가 그대로 나왔다(기각본이 냈던 값). 출력은 버렸다.\n채택된 방법(**코어마다 사전 지정한 큰 금액차 교체 1건**)은 `method` 에 서술만 있고 코드가 없다. 40차에 일회성으로 돌린 뒤 결과만 이 키에 남긴 것이다 — 그래서 42차에 이 키가 지워졌을 때 **채택 측정의 유일한 기록이 사라지고 기각된 코드만 남았다.**\n⚠️ **이 값들은 44차 이전 세계(c6 = Bane) 측정이다.** 승률에서 나온 부분은 낡았다.\n🟢 다만 **결정에 쓰이는 부분은 낡지 않았다** — `cores.json` 과 `docs/11` 이 인용하는 Daniels c6 의 `budget_cap $17` 은 `plan_price + 예비비 − 하한` 의 **산술**이라 방법·세계와 무관하다. 44차 기각본 실행에서도 $17 · 예산구속으로 같았다.\n📌 남은 일: 채택 방법을 **코드로** 구현하고 새 세계에서 재측정. 지금 미룬 이유는 결정에 쓰이는 유일한 값이 산술이라 방법 의존이 아니기 때문이다.",
-  "significance_note_45": "⚠️ 이 키의 `significant` 는 **옛 SE(0.0059 · 임계 1.18%p)** 로 매긴 것이다. 44차에 SE 가 **0.0068(임계 1.36%p)** 로 재측정됐다. **16행 중 뒤집힌 것은 0건**이다 — `significant` 가 `loss_pp > 임계` 의 **부호 있는** 비교라, 잡음 안이던 행들은 대부분 음수(대체가 더 좋다)여서 임계를 올려도 판정이 안 바뀐다.\n🔴 **다만 40차가 버린 신호가 하나 있다.** `Knueppel c4 loss_pp −0.015` 는 「대체(Bane)가 **1.50%p 더 좋다**」는 뜻이고 크기가 새 임계 1.36%p 를 **넘는다**. 40차는 부호로 걸러 `below_noise` 로 적고 넘어갔다 — 철수가 목적으로는 맞지만 **승격 신호를 버린 것**이다. 44차에 c6 BN 을 뒤집은 것과 같은 종류의 신호다. → `tool/walkaway_v2.py` 가 새 세계에서 다시 재고, 음수 행을 따로 보고한다.",
-  "conclusions_error_45": "🔴 **45차: `conclusions['Dyson Daniels']` 의 산문이 같은 기록의 `rows` 와 어긋난다.**\n산문: *「6개 코어 **전부**에서 … 무차별 가격이 $20~44 로 **예산 상한을 넘는다**」*\n데이터: **c4 는 `binding: \"indifference\"`** 다 — 무차별 $20.1 < 상한 $22 로 예산이 구속이 아니다. 5/6 이지 6/6 이 아니다.\n⚠️ 이 오류가 실제로 사람을 물었다: 45차에 재구현하면서 **산문에서 독립 대조점을 만들어** 「Daniels 가 6코어 전부 예산 구속인가」로 검사를 짰고, 올바른 구현이 c4 에서 **실패로 찍혔다.** 구현은 40차 binding 패턴을 **6/6 재현**하고 있었다.\n→ 대조점을 40차가 **실제로 쓴 것**(환율 크기 · `rejected_attempt.why_wrong` 의 0.157%p/$)으로 바꿨다. **산문이 아니라 데이터에서 대조점을 만든다.**\n🟢 결론 자체(「그는 우리가 낼 수 있는 것보다 가치가 크다 · 철수선은 내 최대가 $20」)는 **살아 있다** — c4 를 빼도 5개 코어에서 예산 구속이고, c4 의 무차별 $20.1 도 상한 $22 와 $2 차라 실질적으로 같은 이야기다. **틀린 것은 「전부」라는 단어다.**",
-  "superseded_by_45": "🟢 **45차에 채택 방법을 코드로 구현했다: `tool/walkaway_v2.py` → `data/walkaway_v2.json`.**\n이 키는 **역사 기록으로 남긴다.** 현재 값은 새 파일을 볼 것 — 같은 값을 두 곳에 두면 갈라진다.\n규칙은 목록이 아니라 **코드**가 소스다(40차가 목록만 남겨서 42차 유실 때 방법이 통째로 사라졌다). `walkaway_v2.py selftest` 가 옛 세계(668a179)에서 이 키의 `rate_by_core` 를 **7/7 재현**하는지 매 실행 확인한다.\n45차 결과 요약: 판정 가능 **2명**(40차 1명) — Daniels 6코어 전부 유의 · **Josh Hart c7 이 새로 유의**(2.16%p · 철수 $16 예산구속). 🔴 c6 Daniels **철수 $17 · 예산 구속**이 그대로 재현됐다 — `docs/11` 인용값의 대조점이다."
  }
 }

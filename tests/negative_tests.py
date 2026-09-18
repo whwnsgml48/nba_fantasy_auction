@@ -65,6 +65,8 @@ NEEDED = [
     "tool/walkaway_price.py",                    # 44차 — 기각 방법 재가동 감시 (I46)
     "data/walkaway_v2.json",                     # 45차 — 채택 철수가 산출물 (I46)
     "data/backtest_value.json",                  # 45차 — 조립기 예산 소진 (I47)
+    "data/walkaway_40_historical.json",          # 46차 — 재생성 불가 역사 기록 (I46)
+    "data/dd_exact.json",                        # 46차 — DD 실계수 (real_opponents 주입에 쓴다)
 ]
 
 TESTS = []

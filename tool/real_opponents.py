@@ -91,6 +91,21 @@ def build(verbose=False):
             continue
         rosters[t["manager"]] = names[:ROSTER_N]
 
+    # 🔴 46차 — 주입 행에도 **DD 실계수**를 붙인다.
+    #   안 붙이면 상대 전용 28명만 추정기에 남고, 추정기가 DD 를 과소평가하므로
+    #   **우리만 올라간다.** 46차 1차 측정에서 7코어가 전부 오른 것이 그 인공물이었다
+    #   (우리 95% ↔ 상대 66%). 지금은 상대 98.1% 다.
+    try:
+        _ddx = json.load(io.open(f"{BASE}/data/dd_exact.json", encoding="utf-8"))["players"]
+        for _n, _r in added.items():
+            _e = _ddx.get(_n)
+            if _e:
+                _r["DD_exact"] = _e["DD_exact"]; _r["dd_source"] = "gamelog_blend"
+            else:
+                _r["dd_source"] = "estimator"
+    except FileNotFoundError:
+        pass                                      # 아직 안 만들었으면 추정기로 간다
+
     CM.F.update(added)                            # in-memory 주입 (파일 무변경)
     report = {
         "teams_total": len(teams),

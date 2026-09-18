@@ -64,7 +64,8 @@
   퍼센트 자체에 별도 과분산을 얹지 않는다 — 그러면 이항 분산을 이중 계산한다.
   (검산 앵커가 이 선택을 검증한다: c6 FT% 승률 22~25%.)
 
-  DD는 cat_model.dd_game_prob 을 그대로 쓴다(24차 실측 25명 검증 완료).
+  DD는 cat_model.**dd_of** 를 쓴다 — 게임로그 실계수가 있으면 그것을, 없으면 추정기를
+  쓴다(46차 · 139/199 커버). 24차 실측 25명 검증은 추정기 쪽 근거다.
 
   주간 경기수는 선수별로 {3,4}에서 균등 추출한다 — 로스터 9명은 서로 다른 NBA 팀이라
   같은 주에 같은 경기수를 갖지 않는다. 출장은 경기별로 확률 GP/82의 베르누이다.
@@ -186,7 +187,7 @@ def prep(names, rates=None):
         out.append((av,
                     [(k, r.get(k)) for k in COUNT],
                     [(k, a, r.get(a), r.get(k)) for k, a in RATE.items()],
-                    CM.dd_game_prob(r.get("PTS"), r.get("REB"), r.get("AST"))))
+                    CM.dd_of(r)))            # 46차: 실계수 우선 (없으면 추정기)
     return out
 
 def team_week_prepped(pre, rng, draw):
@@ -231,7 +232,7 @@ def team_week(names, rng, draw=None):
         if not r: continue
         avail = (r.get("GP") or 0) / 82.0
         g = draw(rng)
-        p_dd = CM.dd_game_prob(r.get("PTS"), r.get("REB"), r.get("AST"))
+        p_dd = CM.dd_of(r)                   # 46차: 실계수 우선 (없으면 추정기)
         for _ in range(g):
             if rng.random() > avail: continue          # 결장
             for k in COUNT:
@@ -379,6 +380,9 @@ def baseline_prep():
                                   if p["name"] in F and F[p["name"]].get(a) is not None])
               for a in RATE.values()}
     rts = [(k, a, att_mu[a], Bpg[k]) for k, a in RATE.items()]
+    # 🔴 여기는 **집계값**이라 대응하는 실계수가 없다 — 추정기 그대로 둔다(46차).
+    #    기준선 팀은 가상의 평균 선수 9명이고 게임로그가 존재하지 않는다.
+    #    남는 비대칭이지만 기준선은 **1차 지표가 아니다**(실제 12팀이 1차다).
     p_dd = CM.dd_game_prob(Bpg["PTS"], Bpg["REB"], Bpg["AST"])
     return [(avail, cnts, rts, p_dd)] * 9
 

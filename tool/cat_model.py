@@ -430,6 +430,27 @@ def dd_estimate(pts, reb, ast, gp):
     if not gp: return None
     return dd_game_prob(pts, reb, ast)*gp
 
+def dd_of(r):
+    """DD 한 경기 확률 — **실계수가 있으면 그것을, 없으면 추정기를 쓴다** (46차).
+
+    🔴 채택 경위: `dd_game_prob` 은 정규근사 **추정기**이고 24차부터 「실측이 아니다」가
+       `docs/05 §2b-2` 의 한계 항목이었다. 46차에 BBRef 게임로그로 **세는** 길이 열렸다
+       (야후 API 는 여전히 안 열린다 — 필요가 없어졌다).
+    🔴 **한 곳만 둔다.** 이 함수가 유일한 분기점이고 `matchup_sim` 은 이것을 부른다.
+       값을 두 곳에 두면 갈라진다 — 이 저장소가 반복해 겪은 실패다.
+    ⚠️ `DD_exact` 는 **두 시즌을 measured_full 과 같은 가중으로 혼합**한 값이다
+       (`tool/dd_exact.py`). 2025-26 단일 시즌 실계수를 넣으면 DD 만 축이 달라진다 —
+       46차에 실제로 그 함정을 지나왔다(보고된 「추정기 오차」의 1/3 이 시즌 차이였다).
+    ⚠️ 커버리지는 139/199 다. 나머지는 `dd_source: "estimator"` 로 남고 **섞여 있다는
+       사실을 라벨로 들고 다닌다** — 40차 `pos_yahoo` 사고가 라벨 없는 혼합이었다.
+    """
+    if r:
+        v = r.get("DD_exact")
+        if v is not None:
+            return v
+    return dd_game_prob((r or {}).get("PTS"), (r or {}).get("REB"), (r or {}).get("AST"))
+
+
 def dd_from_row(r):
     """measured_full.json 한 행에서 DD를 추정한다."""
     if not r: return None

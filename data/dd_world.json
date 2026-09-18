@@ -1,0 +1,112 @@
+{
+ "generated_by": "tool/dd_world.py",
+ "iterations": 4000,
+ "seed": 20261020,
+ "n_exact": 139,
+ "what": "DD 를 추정기 대신 게임로그 실계수(두 시즌 혼합)로 바꾸면 코어 순위가 바뀌는가",
+ "rank_unchanged": false,
+ "decision_unchanged": true,
+ "verdict_note": "순서가 바뀐 것과 판정이 바뀐 것은 다르다. 2~5위는 대응 SE 안이라 README 가 순서를 읽지 말라고 적어 뒀다 — 그 안의 자리바꿈은 잡음이다. 1위 유지 + 자리바꿈 쌍이 전부 SE 안이면 판정은 그대로다.",
+ "swapped_pairs": [
+  {
+   "pair": [
+    "c1",
+    "c3"
+   ],
+   "gap_est_pp": 0.61,
+   "gap_exact_pp": 0.08
+  },
+  {
+   "pair": [
+    "c2",
+    "c7"
+   ],
+   "gap_est_pp": 0.2,
+   "gap_exact_pp": 0.04
+  }
+ ],
+ "readable_swaps": [],
+ "order_est": [
+  "c6",
+  "c3",
+  "c1",
+  "c2",
+  "c7",
+  "c5",
+  "c4"
+ ],
+ "order_exact": [
+  "c6",
+  "c1",
+  "c3",
+  "c7",
+  "c2",
+  "c5",
+  "c4"
+ ],
+ "rows": [
+  {
+   "core": "c6",
+   "est": 0.9055,
+   "exact": 0.9069,
+   "delta": 0.0014,
+   "sigma": 1.5,
+   "rank_est": 1,
+   "rank_exact": 1
+  },
+  {
+   "core": "c3",
+   "est": 0.8788,
+   "exact": 0.8782,
+   "delta": -0.0006,
+   "sigma": 0.48,
+   "rank_est": 2,
+   "rank_exact": 3
+  },
+  {
+   "core": "c1",
+   "est": 0.8727,
+   "exact": 0.879,
+   "delta": 0.0063,
+   "sigma": 4.92,
+   "rank_est": 3,
+   "rank_exact": 2
+  },
+  {
+   "core": "c2",
+   "est": 0.8679,
+   "exact": 0.8686,
+   "delta": 0.0007,
+   "sigma": 0.49,
+   "rank_est": 4,
+   "rank_exact": 5
+  },
+  {
+   "core": "c7",
+   "est": 0.8659,
+   "exact": 0.869,
+   "delta": 0.003,
+   "sigma": 2.96,
+   "rank_est": 5,
+   "rank_exact": 4
+  },
+  {
+   "core": "c5",
+   "est": 0.8508,
+   "exact": 0.8539,
+   "delta": 0.0031,
+   "sigma": 4.17,
+   "rank_est": 6,
+   "rank_exact": 6
+  },
+  {
+   "core": "c4",
+   "est": 0.847,
+   "exact": 0.8476,
+   "delta": 0.0007,
+   "sigma": 1.43,
+   "rank_est": 7,
+   "rank_exact": 7
+  }
+ ]
+}

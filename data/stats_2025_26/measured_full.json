@@ -27,7 +27,8 @@
    "DD"
   ],
   "cats_not_covered": [],
-  "note": "DD는 BBRef 미집계라 per-game PTS·REB·AST 정규근사로 **추정**한다(cat_model.dd_game_prob · σ=c√μ · c=PTS 1.50/REB 1.10/AST 1.05 · 연속성 보정). DD 필드는 경기당 확률, DD_est_season은 ×GP. 실측 25명(리더보드) 검증: 절대오차 중앙값 2.13 DD · 평균오차 -0.65 · 23/25명 오차 6 이내. 실측값으로 덮어쓰지 않는다 — 실측은 2025-26 단일 시즌이고 다른 12캣은 2시즌 혼합이라 기준이 섞인다. 실측은 dd_actual_2025_26에 기록만 남긴다."
+  "note": "DD는 BBRef 미집계라 per-game PTS·REB·AST 정규근사로 **추정**한다(cat_model.dd_game_prob · σ=c√μ · c=PTS 1.50/REB 1.10/AST 1.05 · 연속성 보정). DD 필드는 경기당 확률, DD_est_season은 ×GP. 실측 25명(리더보드) 검증: 절대오차 중앙값 2.13 DD · 평균오차 -0.65 · 23/25명 오차 6 이내. 실측값으로 덮어쓰지 않는다 — 실측은 2025-26 단일 시즌이고 다른 12캣은 2시즌 혼합이라 기준이 섞인다. 실측은 dd_actual_2025_26에 기록만 남긴다.",
+  "dd_adoption_46": "🔴 **DD 를 추정기에서 게임로그 실계수로 채택했다(46차).** `DD_exact` 를 **신설**했고 `DD`(추정값)는 **덮지 않았다** — 대조선으로 남긴다. 시뮬은 `cat_model.dd_of` 한 곳에서 실계수를 우선하고 없으면 추정기를 쓴다.\n⚠️ **혼합 출처다. 라벨 없이 쓰지 말 것** — `dd_source ∈ {gamelog_blend, estimator}`. 이 파일 기준 실계수 118명 · 추정 53명이고, 시뮬이 쓰는 모집단(`cat_model.F` 199명 · 상대 전용 28명 주입 포함)에서는 139/199 다.\n⚠️ 실계수는 **두 시즌을 이 파일과 같은 가중(GP25×1.5)으로 혼합**한 값이다. 2025-26 단일 실계수를 쓰면 DD 만 축이 달라진다 — 46차에 그 함정을 지나왔다.\n채택 근거: `data/dd_world.json` — 7코어를 두 세계에서 재니 **1위 유지 · 자리바꿈 2쌍은 전부 대응 SE 안**(c1↔c3 · c2↔c7 — README 가 순서를 읽지 말라고 적어 둔 구간). 전문 `docs/05 §20`."
  },
  "players": {
   "Nikola Jokić": {
@@ -68,7 +69,9 @@
      "weight": 70
     }
    },
-   "blend_share_2025_26": 0.582
+   "blend_share_2025_26": 0.582,
+   "DD_exact": 0.8448,
+   "dd_source": "gamelog_blend"
   },
   "Victor Wembanyama": {
    "season": "blend",
@@ -108,7 +111,9 @@
      "weight": 46
     }
    },
-   "blend_share_2025_26": 0.676
+   "blend_share_2025_26": 0.676,
+   "DD_exact": 0.6338,
+   "dd_source": "gamelog_blend"
   },
   "Shai Gilgeous-Alexander": {
    "season": "blend",
@@ -148,7 +153,9 @@
      "weight": 76
     }
    },
-   "blend_share_2025_26": 0.573
+   "blend_share_2025_26": 0.573,
+   "DD_exact": 0.1011,
+   "dd_source": "gamelog_blend"
   },
   "Karl-Anthony Towns": {
    "season": "blend",
@@ -188,7 +195,9 @@
      "weight": 72
     }
    },
-   "blend_share_2025_26": 0.61
+   "blend_share_2025_26": 0.61,
+   "DD_exact": 0.7696,
+   "dd_source": "gamelog_blend"
   },
   "Cade Cunningham": {
    "season": "blend",
@@ -228,7 +237,9 @@
      "weight": 70
     }
    },
-   "blend_share_2025_26": 0.578
+   "blend_share_2025_26": 0.578,
+   "DD_exact": 0.5301,
+   "dd_source": "gamelog_blend"
   },
   "Tyrese Haliburton": {
    "season": "blend",
@@ -268,7 +279,8 @@
      "weight": 73
     }
    },
-   "blend_share_2025_26": 0.0
+   "blend_share_2025_26": 0.0,
+   "dd_source": "estimator"
   },
   "Jalen Johnson": {
    "season": "blend",
@@ -308,7 +320,9 @@
      "weight": 36
     }
    },
-   "blend_share_2025_26": 0.75
+   "blend_share_2025_26": 0.75,
+   "DD_exact": 0.6493,
+   "dd_source": "gamelog_blend"
   },
   "Scottie Barnes": {
    "season": "blend",
@@ -348,7 +362,9 @@
      "weight": 65
     }
    },
-   "blend_share_2025_26": 0.649
+   "blend_share_2025_26": 0.649,
+   "DD_exact": 0.3838,
+   "dd_source": "gamelog_blend"
   },
   "Josh Giddey": {
    "season": "blend",
@@ -388,7 +404,9 @@
      "weight": 70
     }
    },
-   "blend_share_2025_26": 0.536
+   "blend_share_2025_26": 0.536,
+   "DD_exact": 0.4768,
+   "dd_source": "gamelog_blend"
   },
   "Chet Holmgren": {
    "season": "blend",
@@ -428,7 +446,9 @@
      "weight": 32
     }
    },
-   "blend_share_2025_26": 0.764
+   "blend_share_2025_26": 0.764,
+   "DD_exact": 0.3579,
+   "dd_source": "gamelog_blend"
   },
   "Derrick White": {
    "season": "blend",
@@ -468,7 +488,9 @@
      "weight": 76
     }
    },
-   "blend_share_2025_26": 0.603
+   "blend_share_2025_26": 0.603,
+   "DD_exact": 0.0287,
+   "dd_source": "gamelog_blend"
   },
   "Bam Adebayo": {
    "season": "blend",
@@ -508,7 +530,9 @@
      "weight": 78
     }
    },
-   "blend_share_2025_26": 0.584
+   "blend_share_2025_26": 0.584,
+   "DD_exact": 0.4827,
+   "dd_source": "gamelog_blend"
   },
   "Trey Murphy III": {
    "season": "blend",
@@ -548,7 +572,9 @@
      "weight": 53
     }
    },
-   "blend_share_2025_26": 0.651
+   "blend_share_2025_26": 0.651,
+   "DD_exact": 0.0526,
+   "dd_source": "gamelog_blend"
   },
   "Jalen Duren": {
    "season": "blend",
@@ -588,7 +614,9 @@
      "weight": 78
     }
    },
-   "blend_share_2025_26": 0.574
+   "blend_share_2025_26": 0.574,
+   "DD_exact": 0.5601,
+   "dd_source": "gamelog_blend"
   },
   "Alperen Şengün": {
    "season": "blend",
@@ -628,7 +656,9 @@
      "weight": 76
     }
    },
-   "blend_share_2025_26": 0.587
+   "blend_share_2025_26": 0.587,
+   "DD_exact": 0.5217,
+   "dd_source": "gamelog_blend"
   },
   "Amen Thompson": {
    "season": "blend",
@@ -668,7 +698,9 @@
      "weight": 69
     }
    },
-   "blend_share_2025_26": 0.632
+   "blend_share_2025_26": 0.632,
+   "DD_exact": 0.272,
+   "dd_source": "gamelog_blend"
   },
   "Evan Mobley": {
    "season": "blend",
@@ -708,7 +740,9 @@
      "weight": 71
     }
    },
-   "blend_share_2025_26": 0.579
+   "blend_share_2025_26": 0.579,
+   "DD_exact": 0.4599,
+   "dd_source": "gamelog_blend"
   },
   "Desmond Bane": {
    "season": "blend",
@@ -748,7 +782,9 @@
      "weight": 69
     }
    },
-   "blend_share_2025_26": 0.641
+   "blend_share_2025_26": 0.641,
+   "DD_exact": 0.0599,
+   "dd_source": "gamelog_blend"
   },
   "Dyson Daniels": {
    "season": "blend",
@@ -788,7 +824,9 @@
      "weight": 76
     }
    },
-   "blend_share_2025_26": 0.6
+   "blend_share_2025_26": 0.6,
+   "DD_exact": 0.1658,
+   "dd_source": "gamelog_blend"
   },
   "Walker Kessler": {
    "season": "blend",
@@ -828,7 +866,9 @@
      "weight": 58
     }
    },
-   "blend_share_2025_26": 0.115
+   "blend_share_2025_26": 0.115,
+   "DD_exact": 0.4733,
+   "dd_source": "gamelog_blend"
   },
   "Donovan Clingan": {
    "season": "blend",
@@ -868,7 +908,9 @@
      "weight": 67
     }
    },
-   "blend_share_2025_26": 0.633
+   "blend_share_2025_26": 0.633,
+   "DD_exact": 0.3479,
+   "dd_source": "gamelog_blend"
   },
   "Rudy Gobert": {
    "season": "blend",
@@ -908,7 +950,9 @@
      "weight": 72
     }
    },
-   "blend_share_2025_26": 0.613
+   "blend_share_2025_26": 0.613,
+   "DD_exact": 0.4597,
+   "dd_source": "gamelog_blend"
   },
   "Mitchell Robinson": {
    "season": "blend",
@@ -948,7 +992,9 @@
      "weight": 17
     }
    },
-   "blend_share_2025_26": 0.841
+   "blend_share_2025_26": 0.841,
+   "DD_exact": 0.1028,
+   "dd_source": "gamelog_blend"
   },
   "Deandre Ayton": {
    "season": "blend",
@@ -988,7 +1034,9 @@
      "weight": 40
     }
    },
-   "blend_share_2025_26": 0.73
+   "blend_share_2025_26": 0.73,
+   "DD_exact": 0.3581,
+   "dd_source": "gamelog_blend"
   },
   "Mark Williams": {
    "season": "blend",
@@ -1028,7 +1076,9 @@
      "weight": 44
     }
    },
-   "blend_share_2025_26": 0.672
+   "blend_share_2025_26": 0.672,
+   "DD_exact": 0.3134,
+   "dd_source": "gamelog_blend"
   },
   "Jarrett Allen": {
    "season": "blend",
@@ -1068,7 +1118,9 @@
      "weight": 82
     }
    },
-   "blend_share_2025_26": 0.506
+   "blend_share_2025_26": 0.506,
+   "DD_exact": 0.4217,
+   "dd_source": "gamelog_blend"
   },
   "Nic Claxton": {
    "season": "blend",
@@ -1108,7 +1160,9 @@
      "weight": 70
     }
    },
-   "blend_share_2025_26": 0.597
+   "blend_share_2025_26": 0.597,
+   "DD_exact": 0.17,
+   "dd_source": "gamelog_blend"
   },
   "Nikola Vučević": {
    "season": "blend",
@@ -1148,7 +1202,9 @@
      "weight": 73
     }
    },
-   "blend_share_2025_26": 0.568
+   "blend_share_2025_26": 0.568,
+   "DD_exact": 0.4704,
+   "dd_source": "gamelog_blend"
   },
   "Myles Turner": {
    "season": "blend",
@@ -1188,7 +1244,9 @@
      "weight": 72
     }
    },
-   "blend_share_2025_26": 0.597
+   "blend_share_2025_26": 0.597,
+   "DD_exact": 0.1064,
+   "dd_source": "gamelog_blend"
   },
   "Kel'el Ware": {
    "season": "blend",
@@ -1228,7 +1286,9 @@
      "weight": 64
     }
    },
-   "blend_share_2025_26": 0.643
+   "blend_share_2025_26": 0.643,
+   "DD_exact": 0.2841,
+   "dd_source": "gamelog_blend"
   },
   "Moussa Diabaté": {
    "season": "blend",
@@ -1268,7 +1328,9 @@
      "weight": 71
     }
    },
-   "blend_share_2025_26": 0.607
+   "blend_share_2025_26": 0.607,
+   "DD_exact": 0.205,
+   "dd_source": "gamelog_blend"
   },
   "Andre Drummond": {
    "season": "blend",
@@ -1308,7 +1370,8 @@
      "weight": 40
     }
    },
-   "blend_share_2025_26": 0.703
+   "blend_share_2025_26": 0.703,
+   "dd_source": "estimator"
   },
   "Jay Huff": {
    "season": "blend",
@@ -1348,7 +1411,8 @@
      "weight": 64
     }
    },
-   "blend_share_2025_26": 0.658
+   "blend_share_2025_26": 0.658,
+   "dd_source": "estimator"
   },
   "Luke Kornet": {
    "season": "blend",
@@ -1388,7 +1452,9 @@
      "weight": 73
     }
    },
-   "blend_share_2025_26": 0.583
+   "blend_share_2025_26": 0.583,
+   "DD_exact": 0.0429,
+   "dd_source": "gamelog_blend"
   },
   "Andrew Nembhard": {
    "season": "blend",
@@ -1428,7 +1494,9 @@
      "weight": 65
     }
    },
-   "blend_share_2025_26": 0.568
+   "blend_share_2025_26": 0.568,
+   "DD_exact": 0.1429,
+   "dd_source": "gamelog_blend"
   },
   "Yves Missi": {
    "season": "blend",
@@ -1468,7 +1536,9 @@
      "weight": 73
     }
    },
-   "blend_share_2025_26": 0.576
+   "blend_share_2025_26": 0.576,
+   "DD_exact": 0.125,
+   "dd_source": "gamelog_blend"
   },
   "Day'Ron Sharpe": {
    "season": "blend",
@@ -1508,7 +1578,8 @@
      "weight": 50
     }
    },
-   "blend_share_2025_26": 0.65
+   "blend_share_2025_26": 0.65,
+   "dd_source": "estimator"
   },
   "Ryan Kalkbrenner": {
    "season": "blend",
@@ -1548,7 +1619,9 @@
      "weight": 0.0
     }
    },
-   "blend_share_2025_26": 1.0
+   "blend_share_2025_26": 1.0,
+   "DD_exact": 0.0435,
+   "dd_source": "gamelog_blend"
   },
   "Neemias Queta": {
    "season": "blend",
@@ -1588,7 +1661,9 @@
      "weight": 62
     }
    },
-   "blend_share_2025_26": 0.648
+   "blend_share_2025_26": 0.648,
+   "DD_exact": 0.1449,
+   "dd_source": "gamelog_blend"
   },
   "Robert Williams III": {
    "season": "blend",
@@ -1628,7 +1703,9 @@
      "weight": 20
     }
    },
-   "blend_share_2025_26": 0.816
+   "blend_share_2025_26": 0.816,
+   "DD_exact": 0.0691,
+   "dd_source": "gamelog_blend"
   },
   "Isaiah Stewart": {
    "season": "blend",
@@ -1668,7 +1745,8 @@
      "weight": 72
     }
    },
-   "blend_share_2025_26": 0.547
+   "blend_share_2025_26": 0.547,
+   "dd_source": "estimator"
   },
   "Davion Mitchell": {
    "season": "blend",
@@ -1708,7 +1786,9 @@
      "weight": 74
     }
    },
-   "blend_share_2025_26": 0.587
+   "blend_share_2025_26": 0.587,
+   "DD_exact": 0.0475,
+   "dd_source": "gamelog_blend"
   },
   "Immanuel Quickley": {
    "season": "blend",
@@ -1748,7 +1828,9 @@
      "weight": 33
     }
    },
-   "blend_share_2025_26": 0.761
+   "blend_share_2025_26": 0.761,
+   "DD_exact": 0.1014,
+   "dd_source": "gamelog_blend"
   },
   "Ausar Thompson": {
    "season": "blend",
@@ -1788,7 +1870,9 @@
      "weight": 59
     }
    },
-   "blend_share_2025_26": 0.65
+   "blend_share_2025_26": 0.65,
+   "DD_exact": 0.0445,
+   "dd_source": "gamelog_blend"
   },
   "Cason Wallace": {
    "season": "blend",
@@ -1828,7 +1912,9 @@
      "weight": 68
     }
    },
-   "blend_share_2025_26": 0.629
+   "blend_share_2025_26": 0.629,
+   "DD_exact": 0.0082,
+   "dd_source": "gamelog_blend"
   },
   "Kris Dunn": {
    "season": "blend",
@@ -1868,7 +1954,8 @@
      "weight": 74
     }
    },
-   "blend_share_2025_26": 0.624
+   "blend_share_2025_26": 0.624,
+   "dd_source": "estimator"
   },
   "Jordan Goodwin": {
    "season": "blend",
@@ -1908,7 +1995,8 @@
      "weight": 29
     }
    },
-   "blend_share_2025_26": 0.784
+   "blend_share_2025_26": 0.784,
+   "dd_source": "estimator"
   },
   "Matas Buzelis": {
    "season": "blend",
@@ -1948,7 +2036,9 @@
      "weight": 80
     }
    },
-   "blend_share_2025_26": 0.591
+   "blend_share_2025_26": 0.591,
+   "DD_exact": 0.0358,
+   "dd_source": "gamelog_blend"
   },
   "OG Anunoby": {
    "season": "blend",
@@ -1988,7 +2078,9 @@
      "weight": 74
     }
    },
-   "blend_share_2025_26": 0.576
+   "blend_share_2025_26": 0.576,
+   "DD_exact": 0.0487,
+   "dd_source": "gamelog_blend"
   },
   "Nickeil Alexander-Walker": {
    "season": "blend",
@@ -2028,7 +2120,9 @@
      "weight": 82
     }
    },
-   "blend_share_2025_26": 0.588
+   "blend_share_2025_26": 0.588,
+   "DD_exact": 0.0201,
+   "dd_source": "gamelog_blend"
   },
   "Luka Dončić": {
    "season": "blend",
@@ -2068,7 +2162,9 @@
      "weight": 50
     }
    },
-   "blend_share_2025_26": 0.658
+   "blend_share_2025_26": 0.658,
+   "DD_exact": 0.4932,
+   "dd_source": "gamelog_blend"
   },
   "Anthony Edwards": {
    "season": "blend",
@@ -2108,7 +2204,9 @@
      "weight": 79
     }
    },
-   "blend_share_2025_26": 0.537
+   "blend_share_2025_26": 0.537,
+   "DD_exact": 0.0587,
+   "dd_source": "gamelog_blend"
   },
   "Giannis Antetokounmpo": {
    "season": "blend",
@@ -2148,7 +2246,9 @@
      "weight": 67
     }
    },
-   "blend_share_2025_26": 0.446
+   "blend_share_2025_26": 0.446,
+   "DD_exact": 0.6901,
+   "dd_source": "gamelog_blend"
   },
   "Kevin Durant": {
    "season": "blend",
@@ -2188,7 +2288,9 @@
      "weight": 62
     }
    },
-   "blend_share_2025_26": 0.654
+   "blend_share_2025_26": 0.654,
+   "DD_exact": 0.0866,
+   "dd_source": "gamelog_blend"
   },
   "Kawhi Leonard": {
    "season": "blend",
@@ -2228,7 +2330,9 @@
      "weight": 37
     }
    },
-   "blend_share_2025_26": 0.725
+   "blend_share_2025_26": 0.725,
+   "DD_exact": 0.0929,
+   "dd_source": "gamelog_blend"
   },
   "Stephen Curry": {
    "season": "blend",
@@ -2268,7 +2372,9 @@
      "weight": 70
     }
    },
-   "blend_share_2025_26": 0.48
+   "blend_share_2025_26": 0.48,
+   "DD_exact": 0.1004,
+   "dd_source": "gamelog_blend"
   },
   "Jaren Jackson Jr.": {
    "season": "blend",
@@ -2308,7 +2414,9 @@
      "weight": 74
     }
    },
-   "blend_share_2025_26": 0.493
+   "blend_share_2025_26": 0.493,
+   "DD_exact": 0.0719,
+   "dd_source": "gamelog_blend"
   },
   "LeBron James": {
    "season": "blend",
@@ -2348,7 +2456,9 @@
      "weight": 70
     }
    },
-   "blend_share_2025_26": 0.562
+   "blend_share_2025_26": 0.562,
+   "DD_exact": 0.3594,
+   "dd_source": "gamelog_blend"
   },
   "Anthony Davis": {
    "season": "blend",
@@ -2388,7 +2498,9 @@
      "weight": 51
     }
    },
-   "blend_share_2025_26": 0.37
+   "blend_share_2025_26": 0.37,
+   "DD_exact": 0.6852,
+   "dd_source": "gamelog_blend"
   },
   "Trae Young": {
    "season": "blend",
@@ -2428,7 +2540,9 @@
      "weight": 76
     }
    },
-   "blend_share_2025_26": 0.228
+   "blend_share_2025_26": 0.228,
+   "DD_exact": 0.5635,
+   "dd_source": "gamelog_blend"
   },
   "Tyrese Maxey": {
    "season": "blend",
@@ -2468,7 +2582,9 @@
      "weight": 52
     }
    },
-   "blend_share_2025_26": 0.669
+   "blend_share_2025_26": 0.669,
+   "DD_exact": 0.1178,
+   "dd_source": "gamelog_blend"
   },
   "Jayson Tatum": {
    "season": "blend",
@@ -2508,7 +2624,9 @@
      "weight": 72
     }
    },
-   "blend_share_2025_26": 0.25
+   "blend_share_2025_26": 0.25,
+   "DD_exact": 0.4792,
+   "dd_source": "gamelog_blend"
   },
   "Donovan Mitchell": {
    "season": "blend",
@@ -2548,7 +2666,9 @@
      "weight": 71
     }
    },
-   "blend_share_2025_26": 0.597
+   "blend_share_2025_26": 0.597,
+   "DD_exact": 0.0767,
+   "dd_source": "gamelog_blend"
   },
   "Jamal Murray": {
    "season": "blend",
@@ -2588,7 +2708,9 @@
      "weight": 67
     }
    },
-   "blend_share_2025_26": 0.627
+   "blend_share_2025_26": 0.627,
+   "DD_exact": 0.1783,
+   "dd_source": "gamelog_blend"
   },
   "Jalen Brunson": {
    "season": "blend",
@@ -2628,7 +2750,9 @@
      "weight": 65
     }
    },
-   "blend_share_2025_26": 0.631
+   "blend_share_2025_26": 0.631,
+   "DD_exact": 0.1818,
+   "dd_source": "gamelog_blend"
   },
   "LaMelo Ball": {
    "season": "blend",
@@ -2668,7 +2792,9 @@
      "weight": 47
     }
    },
-   "blend_share_2025_26": 0.697
+   "blend_share_2025_26": 0.697,
+   "DD_exact": 0.1806,
+   "dd_source": "gamelog_blend"
   },
   "Cooper Flagg": {
    "season": "blend",
@@ -2708,7 +2834,9 @@
      "weight": 0.0
     }
    },
-   "blend_share_2025_26": 1.0
+   "blend_share_2025_26": 1.0,
+   "DD_exact": 0.1857,
+   "dd_source": "gamelog_blend"
   },
   "Austin Reaves": {
    "season": "blend",
@@ -2748,7 +2876,9 @@
      "weight": 73
     }
    },
-   "blend_share_2025_26": 0.512
+   "blend_share_2025_26": 0.512,
+   "DD_exact": 0.1204,
+   "dd_source": "gamelog_blend"
   },
   "Lauri Markkanen": {
    "season": "blend",
@@ -2788,7 +2918,9 @@
      "weight": 47
     }
    },
-   "blend_share_2025_26": 0.573
+   "blend_share_2025_26": 0.573,
+   "DD_exact": 0.1136,
+   "dd_source": "gamelog_blend"
   },
   "Pascal Siakam": {
    "season": "blend",
@@ -2828,7 +2960,9 @@
      "weight": 78
     }
    },
-   "blend_share_2025_26": 0.544
+   "blend_share_2025_26": 0.544,
+   "DD_exact": 0.152,
+   "dd_source": "gamelog_blend"
   },
   "Deni Avdija": {
    "season": "blend",
@@ -2868,7 +3002,9 @@
      "weight": 72
     }
    },
-   "blend_share_2025_26": 0.579
+   "blend_share_2025_26": 0.579,
+   "DD_exact": 0.2661,
+   "dd_source": "gamelog_blend"
   },
   "Devin Booker": {
    "season": "blend",
@@ -2908,7 +3044,9 @@
      "weight": 75
     }
    },
-   "blend_share_2025_26": 0.561
+   "blend_share_2025_26": 0.561,
+   "DD_exact": 0.1462,
+   "dd_source": "gamelog_blend"
   },
   "Brandon Miller": {
    "season": "blend",
@@ -2948,7 +3086,9 @@
      "weight": 27
     }
    },
-   "blend_share_2025_26": 0.783
+   "blend_share_2025_26": 0.783,
+   "DD_exact": 0.0522,
+   "dd_source": "gamelog_blend"
   },
   "Jalen Williams": {
    "season": "blend",
@@ -2988,7 +3128,9 @@
      "weight": 69
     }
    },
-   "blend_share_2025_26": 0.418
+   "blend_share_2025_26": 0.418,
+   "DD_exact": 0.038,
+   "dd_source": "gamelog_blend"
   },
   "Domantas Sabonis": {
    "season": "blend",
@@ -3028,7 +3170,9 @@
      "weight": 70
     }
    },
-   "blend_share_2025_26": 0.289
+   "blend_share_2025_26": 0.289,
+   "DD_exact": 0.802,
+   "dd_source": "gamelog_blend"
   },
   "Ivica Zubac": {
    "season": "blend",
@@ -3068,7 +3212,9 @@
      "weight": 80
     }
    },
-   "blend_share_2025_26": 0.474
+   "blend_share_2025_26": 0.474,
+   "DD_exact": 0.625,
+   "dd_source": "gamelog_blend"
   },
   "Naz Reid": {
    "season": "blend",
@@ -3108,7 +3254,9 @@
      "weight": 80
     }
    },
-   "blend_share_2025_26": 0.591
+   "blend_share_2025_26": 0.591,
+   "DD_exact": 0.0972,
+   "dd_source": "gamelog_blend"
   },
   "Julius Randle": {
    "season": "blend",
@@ -3148,7 +3296,9 @@
      "weight": 69
     }
    },
-   "blend_share_2025_26": 0.632
+   "blend_share_2025_26": 0.632,
+   "DD_exact": 0.1947,
+   "dd_source": "gamelog_blend"
   },
   "Tyler Herro": {
    "season": "blend",
@@ -3188,7 +3338,9 @@
      "weight": 77
     }
    },
-   "blend_share_2025_26": 0.391
+   "blend_share_2025_26": 0.391,
+   "DD_exact": 0.0711,
+   "dd_source": "gamelog_blend"
   },
   "Reed Sheppard": {
    "season": "blend",
@@ -3228,7 +3380,9 @@
      "weight": 52
     }
    },
-   "blend_share_2025_26": 0.703
+   "blend_share_2025_26": 0.703,
+   "DD_exact": 0.0,
+   "dd_source": "gamelog_blend"
   },
   "Kon Knueppel": {
    "season": "blend",
@@ -3268,7 +3422,9 @@
      "weight": 0.0
     }
    },
-   "blend_share_2025_26": 1.0
+   "blend_share_2025_26": 1.0,
+   "DD_exact": 0.0864,
+   "dd_source": "gamelog_blend"
   },
   "Luke Kennard": {
    "season": "blend",
@@ -3308,7 +3464,8 @@
      "weight": 65
     }
    },
-   "blend_share_2025_26": 0.643
+   "blend_share_2025_26": 0.643,
+   "dd_source": "estimator"
   },
   "Grayson Allen": {
    "season": "blend",
@@ -3348,7 +3505,8 @@
      "weight": 64
     }
    },
-   "blend_share_2025_26": 0.544
+   "blend_share_2025_26": 0.544,
+   "dd_source": "estimator"
   },
   "Gary Trent Jr.": {
    "season": "blend",
@@ -3388,7 +3546,8 @@
      "weight": 74
     }
    },
-   "blend_share_2025_26": 0.569
+   "blend_share_2025_26": 0.569,
+   "dd_source": "estimator"
   },
   "Norman Powell": {
    "season": "blend",
@@ -3428,7 +3587,9 @@
      "weight": 60
     }
    },
-   "blend_share_2025_26": 0.592
+   "blend_share_2025_26": 0.592,
+   "DD_exact": 0.017,
+   "dd_source": "gamelog_blend"
   },
   "Bogdan Bogdanović": {
    "season": "blend",
@@ -3468,7 +3629,8 @@
      "weight": 54
     }
    },
-   "blend_share_2025_26": 0.39
+   "blend_share_2025_26": 0.39,
+   "dd_source": "estimator"
   },
   "Isaiah Joe": {
    "season": "blend",
@@ -3508,7 +3670,8 @@
      "weight": 74
     }
    },
-   "blend_share_2025_26": 0.59
+   "blend_share_2025_26": 0.59,
+   "dd_source": "estimator"
   },
   "Quentin Grimes": {
    "season": "blend",
@@ -3548,7 +3711,8 @@
      "weight": 75
     }
    },
-   "blend_share_2025_26": 0.6
+   "blend_share_2025_26": 0.6,
+   "dd_source": "estimator"
   },
   "Tim Hardaway Jr.": {
    "season": "blend",
@@ -3588,7 +3752,8 @@
      "weight": 77
     }
    },
-   "blend_share_2025_26": 0.609
+   "blend_share_2025_26": 0.609,
+   "dd_source": "estimator"
   },
   "Luguentz Dort": {
    "season": "blend",
@@ -3628,7 +3793,8 @@
      "weight": 71
     }
    },
-   "blend_share_2025_26": 0.593
+   "blend_share_2025_26": 0.593,
+   "dd_source": "estimator"
   },
   "CJ McCollum": {
    "season": "blend",
@@ -3668,7 +3834,9 @@
      "weight": 56
     }
    },
-   "blend_share_2025_26": 0.671
+   "blend_share_2025_26": 0.671,
+   "DD_exact": 0.0,
+   "dd_source": "gamelog_blend"
   },
   "Kelly Oubre Jr.": {
    "season": "blend",
@@ -3708,7 +3876,9 @@
      "weight": 60
     }
    },
-   "blend_share_2025_26": 0.556
+   "blend_share_2025_26": 0.556,
+   "DD_exact": 0.1296,
+   "dd_source": "gamelog_blend"
   },
   "Jordan Clarkson": {
    "season": "blend",
@@ -3748,7 +3918,9 @@
      "weight": 37
     }
    },
-   "blend_share_2025_26": 0.745
+   "blend_share_2025_26": 0.745,
+   "DD_exact": 0.0,
+   "dd_source": "gamelog_blend"
   },
   "Khris Middleton": {
    "season": "blend",
@@ -3788,7 +3960,8 @@
      "weight": 37
     }
    },
-   "blend_share_2025_26": 0.719
+   "blend_share_2025_26": 0.719,
+   "dd_source": "estimator"
   },
   "Keyonte George": {
    "season": "blend",
@@ -3828,7 +4001,8 @@
      "weight": 67
     }
    },
-   "blend_share_2025_26": 0.547
+   "blend_share_2025_26": 0.547,
+   "dd_source": "estimator"
   },
   "Jaylen Brown": {
    "season": "blend",
@@ -3868,7 +4042,9 @@
      "weight": 63
     }
    },
-   "blend_share_2025_26": 0.628
+   "blend_share_2025_26": 0.628,
+   "DD_exact": 0.1534,
+   "dd_source": "gamelog_blend"
   },
   "Kyrie Irving": {
    "season": "blend",
@@ -3908,7 +4084,8 @@
      "weight": 50
     }
    },
-   "blend_share_2025_26": 0.0
+   "blend_share_2025_26": 0.0,
+   "dd_source": "estimator"
   },
   "Tyus Jones": {
    "season": "blend",
@@ -3948,7 +4125,8 @@
      "weight": 81
     }
    },
-   "blend_share_2025_26": 0.554
+   "blend_share_2025_26": 0.554,
+   "dd_source": "estimator"
   },
   "Dennis Schröder": {
    "season": "blend",
@@ -3988,7 +4166,8 @@
      "weight": 75
     }
    },
-   "blend_share_2025_26": 0.583
+   "blend_share_2025_26": 0.583,
+   "dd_source": "estimator"
   },
   "Collin Gillespie": {
    "season": "blend",
@@ -4028,7 +4207,9 @@
      "weight": 33
     }
    },
-   "blend_share_2025_26": 0.784
+   "blend_share_2025_26": 0.784,
+   "DD_exact": 0.0359,
+   "dd_source": "gamelog_blend"
   },
   "Marcus Smart": {
    "season": "blend",
@@ -4068,7 +4249,8 @@
      "weight": 34
     }
    },
-   "blend_share_2025_26": 0.732
+   "blend_share_2025_26": 0.732,
+   "dd_source": "estimator"
   },
   "Ayo Dosunmu": {
    "season": "blend",
@@ -4108,7 +4290,9 @@
      "weight": 46
     }
    },
-   "blend_share_2025_26": 0.692
+   "blend_share_2025_26": 0.692,
+   "DD_exact": 0.0268,
+   "dd_source": "gamelog_blend"
   },
   "Coby White": {
    "season": "blend",
@@ -4148,7 +4332,9 @@
      "weight": 74
     }
    },
-   "blend_share_2025_26": 0.503
+   "blend_share_2025_26": 0.503,
+   "DD_exact": 0.0235,
+   "dd_source": "gamelog_blend"
   },
   "D'Angelo Russell": {
    "season": "blend",
@@ -4188,7 +4374,8 @@
      "weight": 58
     }
    },
-   "blend_share_2025_26": 0.402
+   "blend_share_2025_26": 0.402,
+   "dd_source": "estimator"
   },
   "Collin Sexton": {
    "season": "blend",
@@ -4228,7 +4415,8 @@
      "weight": 63
     }
    },
-   "blend_share_2025_26": 0.618
+   "blend_share_2025_26": 0.618,
+   "dd_source": "estimator"
   },
   "Josh Okogie": {
    "season": "blend",
@@ -4268,7 +4456,8 @@
      "weight": 40
     }
    },
-   "blend_share_2025_26": 0.745
+   "blend_share_2025_26": 0.745,
+   "dd_source": "estimator"
   },
   "Toumani Camara": {
    "season": "blend",
@@ -4308,7 +4497,9 @@
      "weight": 78
     }
    },
-   "blend_share_2025_26": 0.612
+   "blend_share_2025_26": 0.612,
+   "DD_exact": 0.0423,
+   "dd_source": "gamelog_blend"
   },
   "Tari Eason": {
    "season": "blend",
@@ -4348,7 +4539,9 @@
      "weight": 57
     }
    },
-   "blend_share_2025_26": 0.612
+   "blend_share_2025_26": 0.612,
+   "DD_exact": 0.102,
+   "dd_source": "gamelog_blend"
   },
   "Zaccharie Risacher": {
    "season": "blend",
@@ -4388,7 +4581,9 @@
      "weight": 75
     }
    },
-   "blend_share_2025_26": 0.573
+   "blend_share_2025_26": 0.573,
+   "DD_exact": 0.0133,
+   "dd_source": "gamelog_blend"
   },
   "Shaedon Sharpe": {
    "season": "blend",
@@ -4428,7 +4623,8 @@
      "weight": 72
     }
    },
-   "blend_share_2025_26": 0.51
+   "blend_share_2025_26": 0.51,
+   "dd_source": "estimator"
   },
   "Scoot Henderson": {
    "season": "blend",
@@ -4468,7 +4664,8 @@
      "weight": 66
     }
    },
-   "blend_share_2025_26": 0.405
+   "blend_share_2025_26": 0.405,
+   "dd_source": "estimator"
   },
   "Isaiah Hartenstein": {
    "season": "blend",
@@ -4508,7 +4705,9 @@
      "weight": 57
     }
    },
-   "blend_share_2025_26": 0.553
+   "blend_share_2025_26": 0.553,
+   "DD_exact": 0.349,
+   "dd_source": "gamelog_blend"
   },
   "John Collins": {
    "season": "blend",
@@ -4548,7 +4747,9 @@
      "weight": 40
     }
    },
-   "blend_share_2025_26": 0.721
+   "blend_share_2025_26": 0.721,
+   "DD_exact": 0.122,
+   "dd_source": "gamelog_blend"
   },
   "Kristaps Porziņģis": {
    "season": "blend",
@@ -4588,7 +4789,9 @@
      "weight": 42
     }
    },
-   "blend_share_2025_26": 0.533
+   "blend_share_2025_26": 0.533,
+   "DD_exact": 0.0833,
+   "dd_source": "gamelog_blend"
   },
   "Draymond Green": {
    "season": "blend",
@@ -4628,7 +4831,8 @@
      "weight": 68
     }
    },
-   "blend_share_2025_26": 0.6
+   "blend_share_2025_26": 0.6,
+   "dd_source": "estimator"
   },
   "Bobby Portis": {
    "season": "blend",
@@ -4668,7 +4872,9 @@
      "weight": 49
     }
    },
-   "blend_share_2025_26": 0.672
+   "blend_share_2025_26": 0.672,
+   "DD_exact": 0.1839,
+   "dd_source": "gamelog_blend"
   },
   "Moritz Wagner": {
    "season": "blend",
@@ -4708,7 +4914,8 @@
      "weight": 30
     }
    },
-   "blend_share_2025_26": 0.643
+   "blend_share_2025_26": 0.643,
+   "dd_source": "estimator"
   },
   "DeAndre Jordan": {
    "season": "blend",
@@ -4748,7 +4955,8 @@
      "weight": 56
     }
    },
-   "blend_share_2025_26": 0.243
+   "blend_share_2025_26": 0.243,
+   "dd_source": "estimator"
   },
   "Jaxson Hayes": {
    "season": "blend",
@@ -4788,7 +4996,8 @@
      "weight": 56
     }
    },
-   "blend_share_2025_26": 0.639
+   "blend_share_2025_26": 0.639,
+   "dd_source": "estimator"
   },
   "Thomas Bryant": {
    "season": "blend",
@@ -4828,7 +5037,8 @@
      "weight": 66
     }
    },
-   "blend_share_2025_26": 0.577
+   "blend_share_2025_26": 0.577,
+   "dd_source": "estimator"
   },
   "Larry Nance Jr.": {
    "season": "blend",
@@ -4868,7 +5078,8 @@
      "weight": 24
     }
    },
-   "blend_share_2025_26": 0.686
+   "blend_share_2025_26": 0.686,
+   "dd_source": "estimator"
   },
   "Paul George": {
    "season": "blend",
@@ -4908,7 +5119,9 @@
      "weight": 41
     }
    },
-   "blend_share_2025_26": 0.575
+   "blend_share_2025_26": 0.575,
+   "DD_exact": 0.0622,
+   "dd_source": "gamelog_blend"
   },
   "Brandon Ingram": {
    "season": "blend",
@@ -4948,7 +5161,9 @@
      "weight": 18
     }
    },
-   "blend_share_2025_26": 0.865
+   "blend_share_2025_26": 0.865,
+   "DD_exact": 0.0225,
+   "dd_source": "gamelog_blend"
   },
   "Tobias Harris": {
    "season": "blend",
@@ -4988,7 +5203,9 @@
      "weight": 73
     }
    },
-   "blend_share_2025_26": 0.564
+   "blend_share_2025_26": 0.564,
+   "DD_exact": 0.0567,
+   "dd_source": "gamelog_blend"
   },
   "Jerami Grant": {
    "season": "blend",
@@ -5028,7 +5245,8 @@
      "weight": 47
     }
    },
-   "blend_share_2025_26": 0.645
+   "blend_share_2025_26": 0.645,
+   "dd_source": "estimator"
   },
   "Santi Aldama": {
    "season": "blend",
@@ -5068,7 +5286,9 @@
      "weight": 65
     }
    },
-   "blend_share_2025_26": 0.498
+   "blend_share_2025_26": 0.498,
+   "DD_exact": 0.1351,
+   "dd_source": "gamelog_blend"
   },
   "Ja Morant": {
    "season": "blend",
@@ -5108,7 +5328,9 @@
      "weight": 50
     }
    },
-   "blend_share_2025_26": 0.375
+   "blend_share_2025_26": 0.375,
+   "DD_exact": 0.3125,
+   "dd_source": "gamelog_blend"
   },
   "Miles Bridges": {
    "season": "blend",
@@ -5148,7 +5370,9 @@
      "weight": 64
     }
    },
-   "blend_share_2025_26": 0.643
+   "blend_share_2025_26": 0.643,
+   "DD_exact": 0.1448,
+   "dd_source": "gamelog_blend"
   },
   "James Harden": {
    "season": "blend",
@@ -5188,7 +5412,9 @@
      "weight": 79
     }
    },
-   "blend_share_2025_26": 0.571
+   "blend_share_2025_26": 0.571,
+   "DD_exact": 0.3696,
+   "dd_source": "gamelog_blend"
   },
   "Darius Garland": {
    "season": "blend",
@@ -5228,7 +5454,9 @@
      "weight": 75
     }
    },
-   "blend_share_2025_26": 0.474
+   "blend_share_2025_26": 0.474,
+   "DD_exact": 0.1228,
+   "dd_source": "gamelog_blend"
   },
   "Bennedict Mathurin": {
    "season": "blend",
@@ -5268,7 +5496,9 @@
      "weight": 72
     }
    },
-   "blend_share_2025_26": 0.529
+   "blend_share_2025_26": 0.529,
+   "DD_exact": 0.0817,
+   "dd_source": "gamelog_blend"
   },
   "Isaiah Jackson": {
    "season": "blend",
@@ -5308,7 +5538,8 @@
      "weight": 5
     }
    },
-   "blend_share_2025_26": 0.943
+   "blend_share_2025_26": 0.943,
+   "dd_source": "estimator"
   },
   "Paolo Banchero": {
    "season": "blend",
@@ -5348,7 +5579,9 @@
      "weight": 46
     }
    },
-   "blend_share_2025_26": 0.701
+   "blend_share_2025_26": 0.701,
+   "DD_exact": 0.3247,
+   "dd_source": "gamelog_blend"
   },
   "T.J. McConnell": {
    "season": "blend",
@@ -5388,7 +5621,8 @@
      "weight": 79
     }
    },
-   "blend_share_2025_26": 0.515
+   "blend_share_2025_26": 0.515,
+   "dd_source": "estimator"
   },
   "De'Aaron Fox": {
    "season": "blend",
@@ -5428,7 +5662,9 @@
      "weight": 62
     }
    },
-   "blend_share_2025_26": 0.635
+   "blend_share_2025_26": 0.635,
+   "DD_exact": 0.1235,
+   "dd_source": "gamelog_blend"
   },
   "Jimmy Butler III": {
    "season": "blend",
@@ -5468,7 +5704,9 @@
      "weight": 55
     }
    },
-   "blend_share_2025_26": 0.509
+   "blend_share_2025_26": 0.509,
+   "DD_exact": 0.0938,
+   "dd_source": "gamelog_blend"
   },
   "Cam Spencer": {
    "season": "blend",
@@ -5508,7 +5746,8 @@
      "weight": 25
     }
    },
-   "blend_share_2025_26": 0.812
+   "blend_share_2025_26": 0.812,
+   "dd_source": "estimator"
   },
   "Sam Merrill": {
    "season": "blend",
@@ -5548,7 +5787,8 @@
      "weight": 71
     }
    },
-   "blend_share_2025_26": 0.523
+   "blend_share_2025_26": 0.523,
+   "dd_source": "estimator"
   },
   "AJ Green": {
    "season": "blend",
@@ -5588,7 +5828,8 @@
      "weight": 73
     }
    },
-   "blend_share_2025_26": 0.616
+   "blend_share_2025_26": 0.616,
+   "dd_source": "estimator"
   },
   "Duncan Robinson": {
    "season": "blend",
@@ -5628,7 +5869,8 @@
      "weight": 74
     }
    },
-   "blend_share_2025_26": 0.609
+   "blend_share_2025_26": 0.609,
+   "dd_source": "estimator"
   },
   "Miles McBride": {
    "season": "blend",
@@ -5668,7 +5910,8 @@
      "weight": 64
     }
    },
-   "blend_share_2025_26": 0.49
+   "blend_share_2025_26": 0.49,
+   "dd_source": "estimator"
   },
   "Royce O'Neale": {
    "season": "blend",
@@ -5708,7 +5951,9 @@
      "weight": 75
     }
    },
-   "blend_share_2025_26": 0.609
+   "blend_share_2025_26": 0.609,
+   "DD_exact": 0.0208,
+   "dd_source": "gamelog_blend"
   },
   "Rui Hachimura": {
    "season": "blend",
@@ -5748,7 +5993,8 @@
      "weight": 59
     }
    },
-   "blend_share_2025_26": 0.634
+   "blend_share_2025_26": 0.634,
+   "dd_source": "estimator"
   },
   "Jaylon Tyson": {
    "season": "blend",
@@ -5788,7 +6034,9 @@
      "weight": 47
     }
    },
-   "blend_share_2025_26": 0.678
+   "blend_share_2025_26": 0.678,
+   "DD_exact": 0.0213,
+   "dd_source": "gamelog_blend"
   },
   "Ryan Rollins": {
    "season": "blend",
@@ -5828,7 +6076,8 @@
      "weight": 56
     }
    },
-   "blend_share_2025_26": 0.665
+   "blend_share_2025_26": 0.665,
+   "dd_source": "estimator"
   },
   "Andrew Wiggins": {
    "season": "blend",
@@ -5868,7 +6117,9 @@
      "weight": 60
     }
    },
-   "blend_share_2025_26": 0.63
+   "blend_share_2025_26": 0.63,
+   "DD_exact": 0.037,
+   "dd_source": "gamelog_blend"
   },
   "Jaden McDaniels": {
    "season": "blend",
@@ -5908,7 +6159,9 @@
      "weight": 82
     }
    },
-   "blend_share_2025_26": 0.572
+   "blend_share_2025_26": 0.572,
+   "DD_exact": 0.0522,
+   "dd_source": "gamelog_blend"
   },
   "Josh Hart": {
    "season": "blend",
@@ -5948,7 +6201,9 @@
      "weight": 77
     }
    },
-   "blend_share_2025_26": 0.562
+   "blend_share_2025_26": 0.562,
+   "DD_exact": 0.304,
+   "dd_source": "gamelog_blend"
   },
   "Onyeka Okongwu": {
    "season": "blend",
@@ -5988,7 +6243,9 @@
      "weight": 74
     }
    },
-   "blend_share_2025_26": 0.6
+   "blend_share_2025_26": 0.6,
+   "DD_exact": 0.2811,
+   "dd_source": "gamelog_blend"
   },
   "Brook Lopez": {
    "season": "blend",
@@ -6028,7 +6285,9 @@
      "weight": 80
     }
    },
-   "blend_share_2025_26": 0.584
+   "blend_share_2025_26": 0.584,
+   "DD_exact": 0.0286,
+   "dd_source": "gamelog_blend"
   },
   "Adem Bona": {
    "season": "blend",
@@ -6068,7 +6327,9 @@
      "weight": 58
     }
    },
-   "blend_share_2025_26": 0.647
+   "blend_share_2025_26": 0.647,
+   "DD_exact": 0.0517,
+   "dd_source": "gamelog_blend"
   },
   "VJ Edgecombe": {
    "season": "blend",
@@ -6108,7 +6369,9 @@
      "weight": 0.0
     }
    },
-   "blend_share_2025_26": 1.0
+   "blend_share_2025_26": 1.0,
+   "DD_exact": 0.0933,
+   "dd_source": "gamelog_blend"
   },
   "Anthony Black": {
    "season": "blend",
@@ -6148,7 +6411,8 @@
      "weight": 78
     }
    },
-   "blend_share_2025_26": 0.552
+   "blend_share_2025_26": 0.552,
+   "dd_source": "estimator"
   },
   "Dru Smith": {
    "season": "blend",
@@ -6188,7 +6452,8 @@
      "weight": 14
     }
    },
-   "blend_share_2025_26": 0.882
+   "blend_share_2025_26": 0.882,
+   "dd_source": "estimator"
   },
   "Precious Achiuwa": {
    "season": "blend",
@@ -6228,7 +6493,8 @@
      "weight": 57
     }
    },
-   "blend_share_2025_26": 0.658
+   "blend_share_2025_26": 0.658,
+   "dd_source": "estimator"
   },
   "Jock Landale": {
    "season": "blend",
@@ -6268,7 +6534,8 @@
      "weight": 42
     }
    },
-   "blend_share_2025_26": 0.708
+   "blend_share_2025_26": 0.708,
+   "dd_source": "estimator"
   },
   "Zion Williamson": {
    "season": "blend",
@@ -6308,7 +6575,9 @@
      "weight": 30
     }
    },
-   "blend_share_2025_26": 0.756
+   "blend_share_2025_26": 0.756,
+   "DD_exact": 0.1382,
+   "dd_source": "gamelog_blend"
   },
   "Max Christie": {
    "season": "blend",
@@ -6348,7 +6617,8 @@
      "weight": 78
     }
    },
-   "blend_share_2025_26": 0.597
+   "blend_share_2025_26": 0.597,
+   "dd_source": "estimator"
   },
   "Ajay Mitchell": {
    "season": "blend",
@@ -6388,7 +6658,8 @@
      "weight": 36
     }
    },
-   "blend_share_2025_26": 0.704
+   "blend_share_2025_26": 0.704,
+   "dd_source": "estimator"
   },
   "DeMar DeRozan": {
    "season": "blend",
@@ -6428,7 +6699,9 @@
      "weight": 77
     }
    },
-   "blend_share_2025_26": 0.6
+   "blend_share_2025_26": 0.6,
+   "DD_exact": 0.0312,
+   "dd_source": "gamelog_blend"
   },
   "Damian Lillard": {
    "season": "blend",
@@ -6468,7 +6741,8 @@
      "weight": 58
     }
    },
-   "blend_share_2025_26": 0.0
+   "blend_share_2025_26": 0.0,
+   "dd_source": "estimator"
   },
   "Zach LaVine": {
    "season": "blend",
@@ -6508,7 +6782,9 @@
      "weight": 74
     }
    },
-   "blend_share_2025_26": 0.442
+   "blend_share_2025_26": 0.442,
+   "DD_exact": 0.0453,
+   "dd_source": "gamelog_blend"
   },
   "Cameron Johnson": {
    "season": "blend",
@@ -6548,7 +6824,9 @@
      "weight": 57
     }
    },
-   "blend_share_2025_26": 0.587
+   "blend_share_2025_26": 0.587,
+   "DD_exact": 0.0254,
+   "dd_source": "gamelog_blend"
   },
   "Jrue Holiday": {
    "season": "blend",
@@ -6588,7 +6866,9 @@
      "weight": 62
     }
    },
-   "blend_share_2025_26": 0.562
+   "blend_share_2025_26": 0.562,
+   "DD_exact": 0.1025,
+   "dd_source": "gamelog_blend"
   },
   "Dejounte Murray": {
    "season": "blend",
@@ -6628,7 +6908,8 @@
      "weight": 31
     }
    },
-   "blend_share_2025_26": 0.404
+   "blend_share_2025_26": 0.404,
+   "dd_source": "estimator"
   },
   "Jusuf Nurkic": {
    "season": "blend",
@@ -6668,7 +6949,8 @@
      "weight": 51
     }
    },
-   "blend_share_2025_26": 0.547
+   "blend_share_2025_26": 0.547,
+   "dd_source": "estimator"
   },
   "Kevin Porter Jr.": {
    "season": "blend",
@@ -6708,7 +6990,9 @@
      "weight": 75
     }
    },
-   "blend_share_2025_26": 0.432
+   "blend_share_2025_26": 0.432,
+   "DD_exact": 0.0267,
+   "dd_source": "gamelog_blend"
   },
   "Bub Carrington": {
    "season": "blend",
@@ -6748,7 +7032,9 @@
      "weight": 82
     }
    },
-   "blend_share_2025_26": 0.6
+   "blend_share_2025_26": 0.6,
+   "DD_exact": 0.061,
+   "dd_source": "gamelog_blend"
   },
   "Svi Mykhailiuk": {
    "season": "blend",
@@ -6788,7 +7074,8 @@
      "weight": 38
     }
    },
-   "blend_share_2025_26": 0.664
+   "blend_share_2025_26": 0.664,
+   "dd_source": "estimator"
   },
   "Ja'Kobe Walter": {
    "season": "blend",
@@ -6828,7 +7115,9 @@
      "weight": 52
     }
    },
-   "blend_share_2025_26": 0.675
+   "blend_share_2025_26": 0.675,
+   "DD_exact": 0.0192,
+   "dd_source": "gamelog_blend"
   },
   "Russell Westbrook": {
    "season": "blend",
@@ -6868,7 +7157,8 @@
      "weight": 75
     }
    },
-   "blend_share_2025_26": 0.561
+   "blend_share_2025_26": 0.561,
+   "dd_source": "estimator"
   }
  }
 }
