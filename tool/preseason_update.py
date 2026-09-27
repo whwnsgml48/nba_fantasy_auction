@@ -68,8 +68,12 @@ def main():
     print("  캠프 개시  %s (해외 경기팀) · %s (전 구단 · 드래프트 −6일)" % (CAMP_INTL, CAMP_ALL))
     print("  프리시즌   %s 개시 (~10-16) · 드래프트 −2일  ⚠️ 팀별 개막일이 다르다\n" % PRESEASON_OPEN)
 
-    print("  %-19s %-4s %-12s %-9s %s" % ("선수", "팀", "팀 개막", "판정", "실경기 채널"))
-    print("  " + "-" * 74)
+    # 🔴 `pre_camp_clearance` 열 (2026-09-28 추가) — 캠프 **개시 전** 클리어 발표는
+    #    사전 등록 기준(「풀 연습 **참가** 보도」)을 충족하지 않는다. 그래서 `verdict` 를
+    #    올리지 않고 **따로** 보여준다. 적어 놓고 안 보이면 적은 의미가 없다.
+    print("  %-19s %-4s %-11s %-9s %-11s %s"
+          % ("선수", "팀", "팀 개막", "판정", "캠프전 클리어", "실경기 채널"))
+    print("  " + "-" * 86)
     blanks = 0
     for name, team, opens, why in WATCH:
         rec = obs.get(name) or {}
@@ -83,8 +87,12 @@ def main():
             ch, od = "있다", opens
         if not rec.get("verdict"):
             blanks += 1
-        print("  %-19s %-4s %-12s %-9s %s" % (name.split()[-1], team, od, verdict, ch))
+        cl = rec.get("pre_camp_clearance") or "⬜ 없음"
+        print("  %-19s %-4s %-11s %-9s %-11s %s"
+              % (name.split()[-1], team, od, verdict, cl, ch))
         print("       └ %s" % why)
+        if rec.get("note"):
+            print("       └ 관측(%s): %s" % (rec.get("observed_at", "?"), rec["note"][:150]))
 
     print("\n  사전 등록 판정 기준")
     for k, v in CRITERION.items():

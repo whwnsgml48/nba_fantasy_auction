@@ -1,9 +1,75 @@
 {
  "draft_date": "2026-10-05",
- "observations": {},
+ "observations": {
+  "Tyrese Haliburton": {
+   "verdict": "⬜ 미확인",
+   "pre_camp_clearance": "🟢 클리어",
+   "observed_at": "2026-09-28",
+   "source": "Pacers GM Chad Buchanan (CBS/RotoWire/Yardbarker · 2026-09-24~25)",
+   "note": "GM: 캠프 개시(9/29)에 **「100% full go · 제한 없음」**. 다만 이것은 캠프 **전** 발표이고 참가 보도가 아니다. 구단은 개막일 가용을 낙관(Chris Haynes). 마지막 단계는 「NBA 경기 속도」라고 GM 이 명시."
+  },
+  "Damian Lillard": {
+   "verdict": "⬜ 미확인",
+   "pre_camp_clearance": "🟢 클리어",
+   "observed_at": "2026-09-28",
+   "source": "Jason Quick(The Athletic) 2026-09-25 · CBS/RotoWire · 감독 Micah Nori",
+   "note": "**「제한 없이 캠프 참가」** · 감독 「수술한 줄 모르겠다」 · 사전 훈련에서 첫 스텝·스피드 호평(Camara). 🔴 **`docs/13 §0` 의 「채널 없음」이 틀렸다** — 없는 것은 **실경기** 채널(POR 프리시즌 10-07)이고 **캠프 리포트 채널은 전 구단에 있다**(README 채널표). 오늘 그 채널로 관측됐다."
+  },
+  "Domantas Sabonis": {
+   "verdict": "⬜ 미확인",
+   "pre_camp_clearance": "🟢 클리어",
+   "observed_at": "2026-09-28",
+   "source": "Hoops Rumors Pacific Notes 2026-09 · NBC Sports Bay Area",
+   "note": "2월 반월판 수술 → **회복이 당초 일정보다 빠르다** · 리투아니아 FIBA 예선 불참하고 재활 완료 · 캠프(9/29) 개시 시점 준비 완료 예상 · 개막 주전 센터 전망."
+  },
+  "Trae Young": {
+   "verdict": "⬜ 미확인",
+   "pre_camp_clearance": "🔴 부정 신호",
+   "observed_at": "2026-09-28",
+   "source": "CBS Sports NBA Injuries (페이지 갱신 2026-09-27)",
+   "note": "**Quadriceps · Game Time Decision** 으로 등재. 🔴 그러나 「결장」 기준(구단·보도의 드래프트 시점 결장/제한 명시 또는 야후 OUT·IL)에는 **미달**이다 — GTD 는 둘 다 아니다. 미확인으로 둔다. c4 앵커."
+  },
+  "Nikola Jokić": {
+   "verdict": "⬜ 미확인",
+   "pre_camp_clearance": "⬜ 없음",
+   "observed_at": "2026-09-28",
+   "source": "CBS Sports NBA Injuries 미등재(2026-09-27) · 캠프 참가/클리어 보도 미발견",
+   "note": "부상 목록에 **없다**. 다만 **미보도 = 미확인**이다(사전 등록). 25-26 의 무릎 과신전(12월)·손목(2월)은 **시즌 중** 건이고 그 시즌 65경기는 **실측**이다 — Haliburton·Lillard 와 같은 투영 사례가 아니다. 🔴 c2 는 관측상 유일하게 감축 없이 조립되는 코어이므로 9/29~10/4 에 다시 볼 것."
+  }
+ },
  "yahoo_eligibility_2026_27": {
   "published_before_draft": null,
   "checked_at": null,
   "note": "개막(10-20) 전에 공시되는 것만 안다. 드래프트 전인지는 확인되지 않았다."
+ },
+ "criterion_note": "🔴 사전 등록 기준은 「캠프 **풀 연습 참가** 보도」다. 캠프 개시 전의 **클리어 발표**(「제한 없이 나올 것이다」)는 그 기준을 충족하지 않는다 — 보고 나서 기준을 넓히면 사후 합리화다(docs/11 ⑧). 그래서 클리어는 `pre_camp_clearance` 에 따로 기록하고 `verdict` 는 미확인으로 둔다. 9/29~10/4 의 **참가** 보도가 판정을 올린다.",
+ "burn_list_watch_2026_09_28": {
+  "why": "태우기는 **방이 붙어야** 값이 있다. 대상이 다치면 방이 값을 낮추고 드레인이 준다(떠안을 위험은 관측가가 my_max 를 크게 웃돌아 여전히 낮다).",
+  "source": "CBS Sports NBA Injuries · 2026-09-27",
+  "rows": [
+   {
+    "player": "Giannis Antetokounmpo",
+    "team": "MIA",
+    "status": "Knee · Game Time Decision",
+    "read": "작년 환산 $85 ↔ my_max $25. 무릎이면 방이 $85 를 안 낼 수 있다 → **드레인 감소**. 태우기 자체는 유효."
+   },
+   {
+    "player": "Anthony Davis",
+    "team": "WAS",
+    "status": "Finger · Game Time Decision",
+    "read": "손가락은 경미. 작년 $54 ↔ my_max $10 이라 태우기 유효. 원래 단서(「올해는 방이 $54 를 안 낼 수 있다」)는 그대로."
+   },
+   {
+    "player": "Kyrie Irving",
+    "team": "DAL",
+    "status": "Knee · Game Time Decision",
+    "read": "태우기 아님. 45차 「건강 베팅 열림」 목록(작년 미지명 · GP70 이면 $35)에 있던 선수 — 무릎이면 그 베팅이 닫힌다."
+   }
+  ]
+ },
+ "checked_2026_09_28": {
+  "by": "조율 세션",
+  "source_hub": "https://www.cbssports.com/nba/injuries/",
+  "result": "클리어 3(Haliburton·Lillard·Sabonis) · 부정 신호 1(Trae) · 미보도 1(Jokić). **판정은 전부 미확인** — 캠프 개시가 9/29 라 아직 「참가」 보도가 없다. 투영 GP·my_max·계획가 **아무것도 안 바꿨다**."
  }
 }
