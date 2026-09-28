@@ -1218,6 +1218,11 @@ python3 tool/walkaway_v2.py          # 45차 — 철수가(채택 방법) → da
 #      → **`validate.py [I46]` 이 이제 결측과 빈 콘솔 상수를 잡는다.** 목록을 믿지 말고
 #        검사를 믿을 것. 목록은 사람이 갱신을 잊지만 검사는 안 잊는다.
 python3 tool/core_value.py           # 42차 — 코어별 캣 진단표 (gpw_dual.json 의 primary world 사용)
+python3 tool/gen_print_sheet.py     # 48차 — 인쇄용 A4 한 장 → tool/draft-sheet-print.html
+#   🔴 `cores.json`·`players.json` 을 바꾸면 **종이도 낡는다**(sync_tool 과 같은 성질).
+#      드래프트 당일 손에 드는 것이 이 종이다 — 화면은 고칠 기회라도 있지만
+#      종이는 이미 인쇄돼 있다. `validate [I46]` 이 「재생성이 무연산인가」로 감시한다.
+#      값이 바뀌었으면 **다시 돌리고 재인쇄**할 것.
 python3 validate.py                 # 위반 0건 확인
 python3 tool/track_divergence.py    # M5·M6 진입/이탈 기준선 (27차 · 검증기는 읽기만)
 python3 tool/snapshot_data.py diff  # 변경 요약 → 사용자에게 보고

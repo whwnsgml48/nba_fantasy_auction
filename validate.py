@@ -1949,6 +1949,22 @@ try:
         elif not json.load(io.open(_hf46, encoding="utf-8")).get(_hk46):
             print("✗ [I46] %s 의 `%s` 가 비었다" % (os.path.basename(_hf46), _hk46)); err += 1
 
+    # 48차 — 인쇄용 종이도 **생성물**이다. `cores.json`·`players.json` 이 바뀌면 낡는다.
+    #   `sync_tool` 과 같은 성질이라 같은 방식으로 본다: **재생성이 무연산인가.**
+    #   🔴 드래프트 당일 손에 드는 것이 이 종이다 — 낡으면 화면보다 나쁘다(화면은 고칠
+    #      기회라도 있지만 종이는 이미 인쇄돼 있다).
+    try:
+        sys.path.insert(0, D + "/tool")
+        import gen_print_sheet as _gps
+        _cur = io.open(D + "/tool/draft-sheet-print.html", encoding="utf-8").read()
+        if _cur != _gps.build():
+            print("✗ [I46] tool/draft-sheet-print.html 이 데이터와 **불일치** — "
+                  "`python3 tool/gen_print_sheet.py` 로 다시 만들고 **재인쇄**할 것")
+            err += 1
+    except FileNotFoundError:
+        print("✗ [I46] tool/draft-sheet-print.html 이 없다 — `gen_print_sheet.py` 로 생성할 것")
+        err += 1
+
     _wv2 = D + "/data/walkaway_v2.json"
     if not os.path.exists(_wv2):
         print("✗ [I46] data/walkaway_v2.json 이 없다 — 채택된 철수가 측정의 산출물이다. "

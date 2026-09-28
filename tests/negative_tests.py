@@ -65,6 +65,8 @@ NEEDED = [
     "tool/walkaway_price.py",                    # 44차 — 기각 방법 재가동 감시 (I46)
     "data/walkaway_v2.json",                     # 45차 — 채택 철수가 산출물 (I46)
     "data/backtest_value.json",                  # 45차 — 조립기 예산 소진 (I47)
+    "tool/gen_print_sheet.py",                   # 48차 — 인쇄물 생성기 (I46)
+    "tool/draft-sheet-print.html",               # 48차 — 인쇄물 동기화 (I46)
     "data/walkaway_40_historical.json",          # 46차 — 재생성 불가 역사 기록 (I46)
     "data/dd_exact.json",                        # 46차 — DD 실계수 (real_opponents 주입에 쓴다)
 ]
@@ -188,6 +190,11 @@ class Box:
         d = json.load(io.open(p, encoding="utf-8"))
         fn(d)
         json.dump(d, io.open(p, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+
+    def html_print(self, fn):
+        """tool/draft-sheet-print.html 을 고친다 (48차 · I46)."""
+        p = self.root + "/tool/draft-sheet-print.html"
+        io.open(p, "w", encoding="utf-8").write(fn(io.open(p, encoding="utf-8").read()))
 
     def bt(self, fn):
         """data/backtest_value.json 을 고친다 (45차 · I47)."""
@@ -1083,6 +1090,16 @@ def _(b):
 
 # 45차 — I47 (조립기 예산 미소진)
 #   30·43·45차에 세 번 재발했다. 세 번 다 사람이 기록을 읽어서 잡았다.
+
+# 48차 — I46 (인쇄용 종이가 데이터와 갈라진다)
+#   🔴 드래프트 당일 손에 드는 것이 이 종이다. 낡으면 화면보다 나쁘다 —
+#      화면은 고칠 기회라도 있지만 종이는 이미 인쇄돼 있다.
+
+@test("I46", "인쇄용 종이를 데이터와 갈라지게 만든다 (생성기를 안 돌린 상태)",
+      "draft-sheet-print.html 이 데이터와 **불일치**")
+def _(b):
+    b.html_print(lambda s_: s_.replace("</div>", "<!-- stale -->\n</div>", 1))
+
 
 @test("I47", "조립기 산출물의 spent 를 절반으로 낮춘다 (예산을 안 쓴 로스터로 승률을 냈다)",
       "조립기가 $200 중")
